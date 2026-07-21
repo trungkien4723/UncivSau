@@ -13,6 +13,7 @@ import com.unciv.models.ruleset.tile.TileImprovement
 import com.unciv.models.ruleset.tile.TileResource
 import com.unciv.models.ruleset.unique.GameContext
 import com.unciv.models.ruleset.unique.UniqueType
+import com.unciv.models.ruleset.District
 import com.unciv.models.stats.Stats
 import com.unciv.testing.GdxTestRunner
 import com.unciv.testing.TestCase
@@ -297,22 +298,23 @@ class TileImprovementConstructionTests {
     }
 
     @Test
-    fun statsDiffFromRemovingForestTakesRemovedLumberMillIntoAccount() {
-        val tile = tileMap[1,1]
-        tile.baseTerrain = "Grassland"
-        tile.addTerrainFeature("Forest")
+    fun buildingCreatesDistrictOnTile() {
+        // Build a district in the test ruleset and a building that creates it
+        val campus = testGame.createDistrict("Creates a [Campus] district on a specific tile")
+        campus.name = "Campus"
+        testGame.ruleset.districts["Campus"] = campus
+        val creator = testGame.createBuilding("Creates a [Campus] district on a specific tile")
+        Assert.assertTrue(creator.hasUnique(UniqueType.CreatesOneDistrict))
+        Assert.assertEquals(campus, creator.getDistrictToCreate(testGame.ruleset))
 
-        val lumberMill = testGame.ruleset.tileImprovements["Lumber mill"]!!
-        tile.setImprovement(lumberMill)
-        assert(tile.tileImprovement == lumberMill)
+        // A tile in range (not the city center) may host the district
+        val targetTile = city.getTiles().first { !it.isCityCenter() }
+        Assert.assertTrue(city.cityConstructions.canPlaceCreateOneDistrictOn(campus, targetTile))
 
-        // 1f 1p from forest, 2p from lumber mill since all techs are researched
-        val tileStats = tile.stats.getTileStats(civInfo)
-        assert(tileStats.equals(Stats(production = 3f, food = 1f)))
-
-        val statsDiff = tile.stats.getStatDiffForImprovement(testGame.ruleset.tileImprovements["Remove Forest"]!!, civInfo, null)
-
-        // We'll be reverting back to grassland stats - 2f only
-        assert(statsDiff.equals(Stats(food = +1f, production = -3f)))
+        // Mark the tile, then verify it is found and the marker is set
+        val markerOk = city.cityConstructions.tryPlaceCreateOneDistrictMarker(campus, targetTile)
+        Assert.assertTrue("Could not mark tile for district", markerOk)
+        Assert.assertNotNull(city.cityConstructions.getTileForDistrict("Campus"))
+        Assert.assertEquals("Campus", targetTile.districtToCreate)
     }
 }

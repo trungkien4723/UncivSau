@@ -286,6 +286,7 @@ enum class UniqueType(
 
     /// Things you get at the start of the game
     StartingTech("Starting tech", UniqueTarget.Tech),
+    StartingCivic("Starting civic", UniqueTarget.Civic),
     StartsWithTech("Starts with [tech]", UniqueTarget.Nation),
     StartsWithPolicy("Starts with [policy] adopted", UniqueTarget.Nation),
 
@@ -389,6 +390,12 @@ enum class UniqueType(
     CreatesOneImprovement("Creates a [improvementName] improvement on a specific tile", UniqueTarget.Building,
         docDescription = "When choosing to construct this building, the player must select a tile where the improvement can be built." +
                 " Upon building completion, the tile will gain this improvement." + 
+                " Limited to one per building.",
+        flags = UniqueFlag.setOfNoConditionals
+        ),
+    CreatesOneDistrict("Creates a [districtName] district on a specific tile", UniqueTarget.Building,
+        docDescription = "When choosing to construct this building, the player must select a tile where the district can be built." +
+                " Upon building completion, the tile will become this district." +
                 " Limited to one per building.",
         flags = UniqueFlag.setOfNoConditionals
         ),
@@ -692,6 +699,7 @@ enum class UniqueType(
     ImprovementBuildableByFreshWater("Can also be built on tiles adjacent to fresh water", UniqueTarget.Improvement),
     ImprovementStatsOnTile("[stats] from [tileFilter] tiles", UniqueTarget.Improvement),
     ImprovementStatsForAdjacencies("[stats] for each adjacent [tileFilter]", UniqueTarget.Improvement),
+    StatsForAdjacentDistrict("[stats] for each adjacent [districtFilter]", UniqueTarget.District),
     EnsureMinimumStats("Ensures a minimum tile yield of [stats]", UniqueTarget.Improvement), // City center
 
     CanBuildOutsideBorders("Can be built outside your borders", UniqueTarget.Improvement),
@@ -892,6 +900,8 @@ enum class UniqueType(
     OneTimeAmountFreePolicies("[positiveAmount] Free Social Policies", UniqueTarget.Triggerable),  // Not used in Vanilla
     OneTimeEnterGoldenAge("Empire enters golden age", UniqueTarget.Triggerable),  // used in Policies, Buildings
     OneTimeEnterGoldenAgeTurns("Empire enters a [positiveAmount]-turn Golden Age", UniqueTarget.Triggerable),
+    EraScore("[amount] Era Score", UniqueTarget.Global),  // Civ VI Historic Moments - gained on completion of the object
+    OneTimeGainEraScore("Gain [amount] Era Score", UniqueTarget.Triggerable),  // Civ VI - triggerable Era Score gain
     OneTimeFreeGreatPerson("Free Great Person", UniqueTarget.Triggerable),  // used in Policies, Buildings
     OneTimeGainPopulation("[amount] population [cityFilter]", UniqueTarget.Triggerable),  // used in CN tower
     OneTimeGainPopulationRandomCity("[amount] population in a random city", UniqueTarget.Triggerable),
@@ -915,6 +925,13 @@ enum class UniqueType(
     OneTimeGainPantheon("Gain enough Faith for a Pantheon", UniqueTarget.Triggerable),
     OneTimeGainProphet("Gain enough Faith for [positiveAmount]% of a Great Prophet", UniqueTarget.Triggerable),
     OneTimeGainTechPercent("Research [relativeAmount]% of [tech]", UniqueTarget.Triggerable),
+    /** Civ VI "Eureka": placed on a Technology, grants a one-time [relativeAmount]% research boost toward
+     *  THAT technology when its trigger condition is met (e.g. `<upon building a [Mine] improvement>`).
+     *  Only fires once per tech per civ, and only while the tech is not yet researched. */
+    Eureka("Eureka: [relativeAmount]% of the cost of this technology", UniqueTarget.Tech),
+    /** Civ VI "Inspiration": placed on a Civic, grants a one-time [relativeAmount]% research boost toward
+     *  THAT civic when its trigger condition is met. Only fires once per civic per civ. */
+    Inspiration("Inspiration: [relativeAmount]% of the cost of this civic", UniqueTarget.Civic),
 
     OneTimeTakeOverTilesInRadius("Gain control over [tileFilter] tiles in a [nonNegativeAmount]-tile radius", UniqueTarget.Triggerable),
     OneTimeTakeOverTilesInCity("Gain control over [positiveAmount] tiles [cityFilter]", UniqueTarget.Triggerable),
@@ -978,6 +995,7 @@ enum class UniqueType(
     ///////////////////////////////////////// region 10 TRIGGERS /////////////////////////////////////////
 
     TriggerUponResearch("upon discovering [techFilter] technology", UniqueTarget.TriggerCondition),
+    TriggerUponAdoptingCivic("upon adopting [civicFilter] civic", UniqueTarget.TriggerCondition),
     TriggerUponEnteringEra("upon entering the [era]", UniqueTarget.TriggerCondition),
     TriggerUponEnteringEraUnfiltered("upon entering a new era", UniqueTarget.TriggerCondition),
     TriggerUponAdoptingPolicyOrBelief("upon adopting [policy/belief]", UniqueTarget.TriggerCondition),
@@ -996,6 +1014,7 @@ enum class UniqueType(
     TriggerUponBuildingImprovement("upon building a [improvementFilter] improvement", UniqueTarget.TriggerCondition, UniqueTarget.UnitTriggerCondition),
     TriggerUponDiscoveringNaturalWonder("upon discovering a Natural Wonder", UniqueTarget.TriggerCondition),
     TriggerUponConstructingBuilding("upon constructing [buildingFilter]", UniqueTarget.TriggerCondition),
+    TriggerUponConstructingDistrict("upon constructing a [districtFilter] district", UniqueTarget.TriggerCondition),
     // We have a separate trigger to include the cityFilter, since '[in all cities]' can be read '*only* if it's in all cities'
     TriggerUponConstructingBuildingCityFilter("upon constructing [buildingFilter] [cityFilter]", UniqueTarget.TriggerCondition),
     TriggerUponGainingUnit("upon gaining a [baseUnitFilter] unit", UniqueTarget.TriggerCondition),
@@ -1085,6 +1104,41 @@ enum class UniqueType(
         docDescription = "In this case, 'starting era' means the first defined Era in the entire ruleset."),
     AllowRazeCapital("Allow raze capital", UniqueTarget.ModOptions, flags = UniqueFlag.setOfNoConditionals),
     AllowRazeHolyCity("Allow raze holy city", UniqueTarget.ModOptions, flags = UniqueFlag.setOfNoConditionals),
+
+    DiplomaticFavor("[amount] Diplomatic Favor", UniqueTarget.Global),
+    WorldCongressProposal("[proposal] proposal", UniqueTarget.Event),
+    WorldCongressResolution("[resolution]", UniqueTarget.Event),
+    DiplomaticVictory("[amount] Diplomatic Favor for Diplomatic Victory", UniqueTarget.Global),
+    Emergency("[emergencyType] emergency", UniqueTarget.Event),
+
+    SecretSocieties("[society] society", UniqueTarget.Global),
+    Heroes("[hero] hero spawned", UniqueTarget.Global),
+    HeroesLegend("[legend] legend", UniqueTarget.Global),
+    Monopolies("[resource] monopoly", UniqueTarget.Global),
+    Corporation("[corporation] corporation", UniqueTarget.Global),
+    CorporationAction("[corporation] action available", UniqueTarget.Global),
+    MonopolyAction("[resource] monopoly action available", UniqueTarget.Global),
+    SecretSocietyGain("[society] society member", UniqueTarget.Global),
+    Zombie("[zombie] unit", UniqueTarget.Global),
+    Apocalypse("[disaster] apocalypse", UniqueTarget.Global),
+    RockBandPerform("[rock] action", UniqueTarget.Unit),
+    RockBandCulture("[amount] Culture from Rock Band performance", UniqueTarget.Unit, UniqueTarget.Global),
+    RockBandGold("[amount] Gold from Rock Band pillage", UniqueTarget.Unit, UniqueTarget.Global),
+    RockBandCompete("[rock band] compete with other Rock Bands", UniqueTarget.Unit),
+    CorporealCorporation("[corporation] corporation", UniqueTarget.Global),
+    CorporealCorporationAction("[corporation] action available", UniqueTarget.Global),
+    CorporealMonopoly("[resource] monopoly", UniqueTarget.Global),
+    CorporealMonopolyAction("[resource] monopoly action available", UniqueTarget.Global),
+    DramaticAges("Golden Age length modified for Dramatic Ages", UniqueTarget.ModOptions, flags = UniqueFlag.setOfNoConditionals),
+
+    PowerConsumption("[positiveAmount] Power [consumptionFilter] buildings consume", UniqueTarget.Building, UniqueTarget.Terrain,
+        docDescription = "Buildings that consume power (Coal, Oil, Uranium). If not supplied, they provide a negative bonus."),
+    PowerProduction("[amount] Power [productionFilter] buildings produce", UniqueTarget.Building, UniqueTarget.Terrain,
+        docDescription = "Buildings that produce electricity (Wind Farm, Solar Plant, Power Plant)."),
+    ClimateChange("CO2: [positiveAmount]", UniqueTarget.Global,
+        docDescription = "Accumulated CO2 contributes to Climate Change. Triggers sea level rise at certain thresholds."),
+    NaturalDisaster("[disasterType]", UniqueTarget.Global,
+        docDescription = "Natural disasters can pillage/improve tiles and districts. Types: Flood, Volcano, Storm, Drought."),
 
     SuppressWarnings("Suppress warning [validationWarning]", *UniqueTarget.CanIncludeSuppression, flags = UniqueFlag.setOfHiddenNoConditionals, docDescription = Suppression.uniqueDocDescription),
 

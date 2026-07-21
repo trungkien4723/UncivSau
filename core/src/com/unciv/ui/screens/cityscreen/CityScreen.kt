@@ -35,8 +35,10 @@ import com.unciv.ui.components.tilegroups.CityTileGroup
 import com.unciv.ui.components.tilegroups.CityTileState
 import com.unciv.ui.components.tilegroups.TileGroupMap
 import com.unciv.ui.components.tilegroups.TileSetStrings
+import com.unciv.ui.components.extensions.toLabel
 import com.unciv.ui.images.ImageGetter
 import com.unciv.ui.popups.ConfirmPopup
+import com.unciv.ui.popups.Popup
 import com.unciv.ui.popups.ToastPopup
 import com.unciv.ui.popups.closeAllPopups
 import com.unciv.ui.screens.basescreen.BaseScreen
@@ -107,6 +109,9 @@ class CityScreen(
         }
     }
 
+    /** Civ VI Loyalty (Rise and Fall — 6D): loyalty indicator + governor assignment - TOP CENTER */
+    private val loyaltyTable = Table()
+
 
     /** Holds City tiles group*/
     private var tileGroups = ArrayList<CityTileGroup>()
@@ -162,6 +167,7 @@ class CityScreen(
         stage.addActor(tileTable)
         stage.addActor(cityPickerTable)  // add late so it's top in Z-order and doesn't get covered in cramped portrait
         stage.addActor(exitCityButton)
+        stage.addActor(loyaltyTable)
         update()
 
         globalShortcuts.add(KeyboardBinding.PreviousCity) { page(-1) }
@@ -221,6 +227,8 @@ class CityScreen(
         // Top center: Annex/Raze button
         updateAnnexAndRazeCityButton()
 
+        // Top center: Loyalty + Governor (Civ VI — 6D)
+        updateLoyaltyAndGovernor()
     }
 
     private fun updateCityStats() {
@@ -356,6 +364,61 @@ class CityScreen(
             razeCityButtonHolder.setPosition(centerX, stage.height - 20f, Align.top)
         }
         stage.addActor(razeCityButtonHolder)
+    }
+
+    /** Civ VI Loyalty + Governors (Rise and Fall — 6D): shows loyalty level and governor assignment. */
+    private fun updateLoyaltyAndGovernor() {
+        loyaltyTable.clear()
+        if (city.civ.gameInfo.ruleset.governors.isEmpty()) {
+            loyaltyTable.isVisible = false
+            return
+        }
+        loyaltyTable.isVisible = true
+
+        val loyalty = city.loyalty.loyalty
+        loyaltyTable.add(ImageGetter.getStatIcon("Loyalty")).size(24f).padRight(5f)
+        val loyaltyLabel = loyalty.toString().toLabel()
+        loyaltyLabel.color = when {
+            loyalty < 25 -> Color.RED
+            loyalty < 50 -> Color.GOLD
+            else -> Color.WHITE
+        }
+        loyaltyTable.add(loyaltyLabel).padRight(10f)
+
+        val governor = city.getGovernor()
+        if (governor != null) {
+            loyaltyTable.add("Governor: [${governor.name}]".toLabel()).padRight(5f)
+            if (canChangeState) {
+                loyaltyTable.add("Recall".toTextButton().apply { labelCell.pad(5f) }.onClick {
+                    city.civ.governorManager.recallGovernor(city)
+                    update()
+                })
+            }
+        } else if (canChangeState && city.civ.governorManager.getAvailableGovernors() > 0) {
+            loyaltyTable.add("Assign Governor".toTextButton().apply { labelCell.pad(5f) }.onClick {
+                openGovernorPicker()
+            })
+        }
+
+        loyaltyTable.pack()
+        loyaltyTable.setPosition(stage.width / 2, stage.height - 95f, Align.top)
+    }
+
+    private fun openGovernorPicker() {
+        val popup = Popup(this)
+        popup.addGoodSizedLabel("Assign Governor").row()
+        for (governorName in city.civ.gameInfo.ruleset.governors.keys) {
+            val assignedElsewhere = city.civ.governorManager.isGovernorAssigned(governorName)
+            val label = if (assignedElsewhere) "[$governorName] (assigned)" else governorName
+            val button = label.toTextButton().onClick {
+                city.civ.governorManager.assignGovernor(city, governorName)
+                popup.close()
+                update()
+            }
+            popup.add(button).row()
+        }
+        popup.addCloseButton()
+        popup.open()
     }
 
     private fun addTiles() {

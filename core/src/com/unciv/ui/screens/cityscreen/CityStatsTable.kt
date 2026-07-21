@@ -21,6 +21,7 @@ import com.unciv.ui.components.input.onActivation
 import com.unciv.ui.components.input.onClick
 import com.unciv.ui.components.widgets.AutoScrollPane
 import com.unciv.ui.components.widgets.ExpanderTab
+import com.unciv.ui.screens.cityscreen.CityDistrictsTable
 import com.unciv.ui.components.UncivTooltip.Companion.addTooltip
 import com.unciv.ui.images.ImageGetter
 import com.unciv.ui.screens.basescreen.BaseScreen
@@ -100,6 +101,7 @@ class CityStatsTable(private val cityScreen: CityScreen) : Table() {
         if (city.religion.getNumberOfFollowers().isNotEmpty() && city.civ.gameInfo.isReligionEnabled())
             addReligionInfo()
 
+        addDistrictsInfo()
         addBuildingsInfo()
 
         lowerTable.pack()
@@ -214,6 +216,22 @@ class CityStatsTable(private val cityScreen: CityScreen) : Table() {
         }
 
         lowerTable.add(tableWithIcons).row()
+        
+        addPowerDeficitInfo()
+    }
+
+    private fun addPowerDeficitInfo() {
+        val powerDeficit = city.cityStats.calculatePowerDeficit()
+        if (powerDeficit <= 0) return
+        
+        val powerTable = Table()
+        powerTable.add(ImageGetter.getImage("StatIcons/Production")).size(20f).padRight(5f)
+        powerTable.add("Power Deficit: -$powerDeficit".toLabel(Color.RED)).row()
+        powerTable.add("Production penalty: -25%".toLabel(Color.ORANGE)).row()
+        powerTable.onClick {
+            cityScreen.openCivilopedia("Tutorial/Power")
+        }
+        lowerTable.add(powerTable)
     }
 
     private fun addCitizenManagement() {
@@ -228,6 +246,11 @@ class CityStatsTable(private val cityScreen: CityScreen) : Table() {
 
     private fun addReligionInfo() {
         val expanderTab = CityReligionInfoTable(city.religion).asExpander { onContentResize() }
+        lowerTable.add(expanderTab).growX().row()
+    }
+
+    private fun addDistrictsInfo() {
+        val expanderTab = CityDistrictsTable(cityScreen).asExpander()
         lowerTable.add(expanderTab).growX().row()
     }
 

@@ -1,0 +1,92 @@
+[
+    {
+        "name": "Chiefdom",
+        "requiredCivic": "Code of Laws",
+        "militarySlots": 1,
+        "economicSlots": 1,
+        "diplomaticSlots": 0,
+        "wildcardSlots": 0,
+        "uniques": []
+    },
+    {
+        "name": "Autocracy",
+        "requiredCivic": "Political Philosophy",
+        "militarySlots": 2,
+        "economicSlots": 1,
+        "diplomaticSlots": 0,
+        "wildcardSlots": 1,
+        "uniques": ["StatsPerCity(\"+1 [Culture] [in all cities]\")"]
+    },
+    {
+        "name": "Classical Republic",
+        "requiredCivic": "Political Philosophy",
+        "militarySlots": 1,
+        "economicSlots": 1,
+        "diplomaticSlots": 1,
+        "wildcardSlots": 1,
+        "uniques": ["StatsPerCity(\"-1 [Unrest] [in all cities]\")", "StatsPerCity(\"+1 [Food] [in all cities]\")"]
+    },
+    {
+        "name": "Oligarchy",
+        "requiredCivic": "Political Philosophy",
+        "militarySlots": 1,
+        "economicSlots": 2,
+        "diplomaticSlots": 0,
+        "wildcardSlots": 1,
+        "uniques": ["StatsFromTiles(\"+1 [Production] from [Mine] tiles [in all cities]\")", "StatsFromTiles(\"+1 [Production] from [Lumber Mill] tiles [in all cities]\")"]
+    },
+    {
+        "name": "Monarchy",
+        "requiredCivic": "Divine Right",
+        "militarySlots": 2,
+        "economicSlots": 1,
+        "diplomaticSlots": 1,
+        "wildcardSlots": 1,
+        "uniques": ["StatsPerCity(\"[+50]% [Gold] [in all cities]\")", "StatsPerCity(\"[+50]% [Food] [in all cities]\")"]
+    },
+    {
+        "name": "Theocracy",
+        "requiredCivic": "Divine Right",
+        "militarySlots": 1,
+        "economicSlots": 1,
+        "diplomaticSlots": 2,
+        "wildcardSlots": 1,
+        "uniques": ["StatsPerCity(\"+1 [Faith] [in all cities]\")"]
+    },
+    {
+        "name": "Merchant Republic",
+        "requiredCivic": "Foreign Trade",
+        "militarySlots": 1,
+        "economicSlots": 3,
+        "diplomaticSlots": 1,
+        "wildcardSlots": 1,
+        "uniques": ["StatsPerCity(\"[+100]% [Gold] [in all cities]\")"]
+    },
+    {
+        "name": "Democracy",
+        "requiredCivic": "Drama and Poetry",
+        "militarySlots": 1,
+        "economicSlots": 2,
+        "diplomaticSlots": 2,
+        "wildcardSlots": 2,
+        "uniques": ["StatsPerCity(\"[+50]% [Food] [in all cities]\")", "StatsPerCity(\"-1 [Unrest] [in all cities]\")"]
+    },
+    {
+        "name": "Fascism",
+        "requiredCivic": "Military Tradition",
+        "militarySlots": 4,
+        "economicSlots": 1,
+        "diplomaticSlots": 0,
+        "wildcardSlots": 2,
+        "uniques": ["StatsPerCity(\"+1 [Production] [in all cities]\")", "StatsPerCity(\"+1 [Culture] [in all cities]\")"]
+    },
+    {
+        "name": "Communism",
+        "requiredCivic": "Feudalism",
+        "militarySlots": 2,
+        "economicSlots": 2,
+        "diplomaticSlots": 1,
+        "wildcardSlots": 2,
+        "uniques": ["StatsPerCity(\"+2 [Production] [in all cities]\")", "StatsPerCity(\"+2 [Food] [in all cities]\")"]
+    }
+]

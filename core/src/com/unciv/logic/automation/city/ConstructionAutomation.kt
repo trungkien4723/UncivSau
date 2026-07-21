@@ -294,7 +294,13 @@ class ConstructionAutomation(val cityConstructions: CityConstructions) {
                 else -> 0f
             }
         } else value += when {
-            building.hasUnique(UniqueType.CreatesOneImprovement) -> 5f // District-type buildings, should be weighed by the stats (incl. adjacencies) of the improvement
+                building.hasUnique(UniqueType.CreatesOneImprovement) -> 5f // District-type buildings, should be weighed by the stats (incl. adjacencies) of the improvement
+                building.hasUnique(UniqueType.CreatesOneDistrict) -> {
+                    // Civ VI districts: high priority, especially the first district of a city
+                    val firstDistrictBonus = if (city.districts.isEmpty()) 12f else 8f
+                    firstDistrictBonus
+                }
+
             building.hasUnique(UniqueType.ProvidesResources) -> 3f // Should be weighed by how much we need the resources
             building.hasUnique(UniqueType.StatPercentFromObjectToResource) -> 1.5f // Should be weighed by the amount of active improvementFilter/buildingFilter in the city
             building.requiredResource != null && building.requiredResource in civInfo.gameInfo.spaceResources -> -4f // This may need to be reverted when resource management is bugfixed elsewhere

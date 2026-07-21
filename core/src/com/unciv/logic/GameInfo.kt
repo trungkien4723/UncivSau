@@ -733,6 +733,8 @@ class GameInfo : IsPartOfGameInfoSerialization, HasGameInfoSerializationVersion 
                 diplomacyManager.civInfo = civInfo
                 diplomacyManager.updateHasOpenBorders()
             }
+            for (diplomacyManager in civInfo.diplomacy.values)
+                diplomacyManager.updateAgendaModifiers()
         }
 
         // combinedGlobalUniques needs to be set before tileMap.setTransients!

@@ -70,6 +70,10 @@ class TechManager : IsPartOfGameInfoSerialization {
     private var overflowScience = 0
     var techsInProgress = HashMap<String, Int>()
 
+    /** Civ VI "Eureka" mechanic: names of technologies whose Eureka boost has already been granted.
+     *  Serialized. Ensures each tech's Eureka can only fire once. Empty by default (backward compatible). */
+    var eurekasTriggered = HashSet<String>()
+
     /** In civ IV, you can auto-convert a certain percentage of gold in cities to science */
     var goldPercentConvertedToScience = 0.6f
 
@@ -85,10 +89,23 @@ class TechManager : IsPartOfGameInfoSerialization {
         toReturn.scienceFromResearchAgreements = scienceFromResearchAgreements
         toReturn.overflowScience = overflowScience
         toReturn.goldPercentConvertedToScience = goldPercentConvertedToScience
+        toReturn.eurekasTriggered.addAll(eurekasTriggered)
         return toReturn
     }
 
     @Readonly fun getNumberOfTechsResearched(): Int = techsResearched.size
+
+    /** Civ VI Eureka: yields the [UniqueType.Eureka] uniques of technologies that are not yet researched
+     *  and whose Eureka has not yet fired. These need to participate in trigger dispatch even though the
+     *  tech isn't researched (unlike regular tech uniques). Conditionals are checked later by the caller. */
+    @Readonly
+    fun getPendingEurekaUniques(): Sequence<com.unciv.models.ruleset.unique.Unique> {
+        val ruleset = getRuleset()
+        if (ruleset.technologies.isEmpty()) return emptySequence()
+        return ruleset.technologies.values.asSequence()
+            .filter { it.name !in techsResearched && it.name !in eurekasTriggered }
+            .flatMap { tech -> tech.uniqueObjects.asSequence().filter { it.type == UniqueType.Eureka } }
+    }
 
     @Readonly fun getOverflowScience(): Int = overflowScience
 
@@ -327,6 +344,23 @@ class TechManager : IsPartOfGameInfoSerialization {
         for (unique in civInfo.getTriggeredUniques(UniqueType.TriggerUponResearch) { newTech.matchesFilter(it.params[0], civInfo.state) })
             UniqueTriggerActivation.triggerUnique(unique, civInfo, triggerNotificationText = triggerNotificationText)
 
+        // Civ VI Climate Change: add CO2 when researching relevant techs
+        for (unique in newTech.uniqueObjects) {
+            if (unique.type == UniqueType.ClimateChange) {
+                civInfo.climateManager.addCO2(unique.params[0].toInt())
+            }
+        }
+
+        // Handle legacy CO2 format in uniques text
+        for (unique in newTech.uniques) {
+            if (unique.startsWith("CO2:")) {
+                val match = Regex("""CO2:\s*\[([+-]?\d+)\]""").find(unique)
+                if (match != null) {
+                    val amount = match.groupValues[1].toInt()
+                    civInfo.climateManager.addCO2(amount)
+                }
+            }
+        }
 
         val revealedResources = getRuleset().tileResources.values.filter { techName == it.revealedBy }
         if (civInfo.playerType == PlayerType.Human) {
@@ -423,6 +457,8 @@ class TechManager : IsPartOfGameInfoSerialization {
         val currentEra = civInfo.getEra()
         if (previousEra == currentEra) return
         
+        // Civ VI Era Score / Age transition (6C)
+        civInfo.goldenAges.onEraTransition(currentEra.eraNumber)
         if (showNotification) {
             if (!civInfo.isSpectator())
                 civInfo.addNotification(

@@ -39,14 +39,18 @@ object UnitActionsPillage {
     internal fun getPillageAction(unit: MapUnit, tile: Tile): UnitAction? {
         val improvementName = unit.currentTile.getImprovementToPillageName()
         if (unit.isCivilian() || improvementName == null || tile.getOwner() == unit.civ) return null
+        val pillagingDistrict = tile.canPillageDistrict()
         return UnitAction(
             UnitActionType.Pillage, 65f,
             title = "${UnitActionType.Pillage} [$improvementName]",
             action = {
-                val pillagedImprovement = unit.currentTile.getImprovementToPillageName()!!  // can this differ from improvementName due to later execution???
+                val pillagedName = unit.currentTile.getImprovementToPillageName()!!
                 val pillagingImprovement = unit.currentTile.canPillageTileImprovement()
-                val pillageText = "An enemy [${unit.baseUnit.name}] has pillaged our [$pillagedImprovement]"
-                val icon = "ImprovementIcons/$pillagedImprovement"
+                val pillageText = if (pillagingDistrict)
+                    "An enemy [${unit.baseUnit.name}] has pillaged our [$pillagedName] district"
+                else
+                    "An enemy [${unit.baseUnit.name}] has pillaged our [$pillagedName]"
+                val icon = if (pillagingDistrict) "District/$pillagedName" else "ImprovementIcons/$pillagedName"
                 tile.getOwner()?.addNotification(
                     pillageText,
                     tile.position,
@@ -70,11 +74,11 @@ object UnitActionsPillage {
                     }
                     unit.healBy(healAmount.toInt())
                 }
-                
-                if (tile.getImprovementToPillage()?.hasUnique(UniqueType.DestroyedWhenPillaged) == true) {
+
+                if (!pillagingDistrict && tile.getImprovementToPillage()?.hasUnique(UniqueType.DestroyedWhenPillaged) == true) {
                     tile.removeImprovement()
                 }
-                    
+
             }.takeIf { unit.hasMovement() && canPillage(unit, tile) }
         )
     }

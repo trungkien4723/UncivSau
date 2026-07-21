@@ -72,6 +72,12 @@ class Nation : RulesetObject() {
     var startBias = ArrayList<String>()
     var personality: String? = null
 
+    /** Civ VI: the historical agenda always known for this leader. */
+    var agenda: String? = null
+
+    /** Civ VI: pool of possible hidden agendas randomly assigned at game start. */
+    var hiddenAgendas: ArrayList<String> = arrayListOf()
+
     var startIntroPart1 = ""
     var startIntroPart2 = ""
 

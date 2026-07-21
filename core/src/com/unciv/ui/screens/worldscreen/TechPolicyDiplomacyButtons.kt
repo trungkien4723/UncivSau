@@ -21,6 +21,9 @@ import com.unciv.ui.images.ImageGetter
 import com.unciv.ui.screens.basescreen.BaseScreen
 import com.unciv.ui.screens.diplomacyscreen.DiplomacyScreen
 import com.unciv.ui.screens.overviewscreen.EspionageOverviewScreen
+import com.unciv.ui.screens.pickerscreens.CivicButton
+import com.unciv.ui.screens.pickerscreens.CivicPickerScreen
+import com.unciv.ui.screens.pickerscreens.GovernmentPickerScreen
 import com.unciv.ui.screens.pickerscreens.PolicyPickerScreen
 import com.unciv.ui.screens.pickerscreens.TechButton
 import com.unciv.ui.screens.pickerscreens.TechPickerScreen
@@ -37,6 +40,14 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
     private val pickTechButton = Table(skin)
     private val pickTechLabel = "".toLabel(Color.WHITE, 30)
 
+    private val civicButtonHolder = Container<Table?>()
+    private val pickCivicButton = Table(skin)
+    private val pickCivicLabel = "".toLabel(Color.WHITE, 30)
+    private val pickCivicInnerLabel = "".toLabel(Color.WHITE, 30)
+
+    private val governmentButtonHolder = Container<Button?>()
+    private val governmentScreenButton = Button(skin)
+
     private val policyButtonHolder = Container<Button?>()
     private val policyScreenButton = Button(skin)
     private val diplomacyButtonHolder = Container<Button?>()
@@ -49,10 +60,16 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
     private val viewingCiv = worldScreen.viewingCiv
     private val game = worldScreen.game
 
+    /** Whether the current ruleset uses the Civ VI government system (Governments.json present). */
+    private var hasGovernmentButton = false
+
     init {
         defaults().left()
         add(fogOfWarButtonHolder).colspan(4).row()
         add(techButtonHolder).colspan(4).row()
+        add(civicButtonHolder).colspan(4).row()
+        hasGovernmentButton = worldScreen.gameInfo.ruleset.governments.isNotEmpty()
+        if (hasGovernmentButton) add(governmentButtonHolder).colspan(4).row()
         add(policyButtonHolder).padTop(10f).padRight(10f)
         add(diplomacyButtonHolder).padTop(10f).padRight(10f)
         add(espionageButtonHolder).padTop(10f).padRight(10f)
@@ -72,6 +89,18 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
         pickTechButton.add(pickTechLabel)
         techButtonHolder.onActivation(UncivSound.Paper, KeyboardBinding.TechnologyTree) {
             game.pushScreen(TechPickerScreen(viewingCiv))
+        }
+
+        pickCivicButton.background = BaseScreen.skinStrings.getUiBackground("WorldScreen/PickCivicButton", BaseScreen.skinStrings.roundedEdgeRectangleShape, colorFromRGB(46, 7, 43))
+        pickCivicButton.defaults().pad(20f)
+        pickCivicButton.add(pickCivicLabel)
+        civicButtonHolder.onActivation(UncivSound.Paper, KeyboardBinding.CivicTree) {
+            game.pushScreen(CivicPickerScreen(viewingCiv))
+        }
+
+        governmentScreenButton.add(ImageGetter.getImage("OtherIcons/Government")).size(30f).pad(15f)
+        governmentButtonHolder.onActivation {
+            game.pushScreen(GovernmentPickerScreen(viewingCiv))
         }
 
         undoButton.add(ImageGetter.getImage("OtherIcons/Undo")).size(30f).pad(15f)
@@ -105,6 +134,8 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
     fun update(): Boolean {
         updateFogOfWarButton()
         updateTechButton()
+        updateCivicButton()
+        updateGovernmentButton()
         updateUndoButton()
         updatePolicyButton()
         val result = updateDiplomacyButton()
@@ -147,6 +178,40 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
                 techButtonHolder.actor = pickTechButton
             }
         }
+    }
+
+    private fun updateCivicButton() {
+        civicButtonHolder.touchable = Touchable.disabled
+        civicButtonHolder.actor = null
+        if (worldScreen.gameInfo.ruleset.civics.isEmpty() || viewingCiv.cities.isEmpty()) return
+        civicButtonHolder.touchable = Touchable.enabled
+
+        if (viewingCiv.civics.currentCivic() != null) {
+            val currentCivic = viewingCiv.civics.currentCivicName()!!
+            val innerButton = CivicButton(currentCivic, viewingCiv.civics)
+            innerButton.setButtonColor(colorFromRGB(46, 7, 43))
+            civicButtonHolder.actor = innerButton
+            val turnsToCivic = viewingCiv.civics.turnsToCivic(currentCivic)
+            innerButton.text.setText(currentCivic.tr(true))
+            innerButton.turns.setText(turnsToCivic + Fonts.turn)
+        } else {
+            val canResearch = viewingCiv.civics.canResearchCivic()
+            if (canResearch || viewingCiv.civics.researchedCivics.size != 0) {
+                val text = if (canResearch) "{Pick a civic}!" else "Civics"
+                pickCivicLabel.setText(text.tr())
+                civicButtonHolder.actor = pickCivicButton
+            }
+        }
+    }
+
+    private fun updateGovernmentButton() {
+        if (!hasGovernmentButton) {
+            governmentButtonHolder.touchable = Touchable.disabled
+            governmentButtonHolder.actor = null
+            return
+        }
+        governmentButtonHolder.touchable = Touchable.enabled
+        governmentButtonHolder.actor = governmentScreenButton
     }
 
     private fun updateUndoButton() {

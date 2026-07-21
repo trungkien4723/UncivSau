@@ -1,0 +1,440 @@
+[
+    {
+        "name": "Campus",
+        "cost": 36,
+        "requiredTech": "Writing",
+        "buildings": [
+            "Library",
+            "University",
+            "Oxford University"
+        ],
+        "uniques": [
+            "[+1] [Science] [in this city]",
+            "[1] [Science] for each adjacent [districtFilter: Campus]"
+        ]
+    },
+    {
+        "name": "Theater Square",
+        "cost": 36,
+        "requiredCivic": "Drama and Poetry",
+        "buildings": [
+            "Monument",
+            "Amphitheater",
+            "Theatre"
+        ],
+        "uniques": [
+            "[+1] [Culture] [in this city]",
+            "[1] [Culture] for each adjacent [districtFilter: Theater Square]"
+        ]
+    },
+    {
+        "name": "Holy Site",
+        "cost": 36,
+        "requiredTech": "Pottery",
+        "buildings": [
+            "Shrine",
+            "Temple",
+            "Grand Temple"
+        ],
+        "uniques": [
+            "[+1] [Faith] [in this city]",
+            "[1] [Faith] for each adjacent [districtFilter: Holy Site]"
+        ]
+    },
+    {
+        "name": "Commercial Hub",
+        "cost": 36,
+        "requiredTech": "Currency",
+        "buildings": [
+            "Market",
+            "Bank",
+            "Stock Exchange"
+        ],
+        "uniques": [
+            "[+2] [Gold] [in this city]",
+            "[1] [Gold] for each adjacent [districtFilter: Commercial Hub]"
+        ]
+    },
+    {
+        "name": "Industrial Zone",
+        "cost": 36,
+        "requiredTech": "Apprenticeship",
+        "buildings": [
+            "Workshop",
+            "Factory",
+            "Power Plant"
+        ],
+        "uniques": [
+            "[+2] [Production] [in this city]",
+            "[1] [Production] for each adjacent [districtFilter: Industrial Zone]"
+        ]
+    },
+    {
+        "name": "Neighborhood",
+        "cost": 30,
+        "requiredTech": "Castles",
+        "uniques": [
+            "[+2] [Food] [in this city]"
+        ]
+    },
+    {
+        "name": "Encampment",
+        "cost": 36,
+        "requiredTech": "Bronze Working",
+        "buildings": [
+            "Barracks",
+            "Stable",
+            "Armory",
+            "Military Academy"
+        ],
+        "uniques": [
+            "[+1] [Production] [in this city]"
+        ]
+    },
+    {
+        "name": "Harbor",
+        "cost": 36,
+        "requiredTech": "Sailing",
+        "buildings": [
+            "Lighthouse",
+            "Shipyard",
+            "Seaport"
+        ],
+        "uniques": [
+            "[+2] [Gold] [in this city]",
+            "Requires [Coastal]"
+        ]
+    },
+    {
+        "name": "Aqueduct",
+        "cost": 36,
+        "requiredTech": "Engineering",
+        "uniques": [
+            "[+1] [Housing] [in this city]"
+        ]
+    },
+    {
+        "name": "Entertainment Complex",
+        "cost": 36,
+        "requiredCivic": "Games and Revelry",
+        "buildings": [
+            "Arena",
+            "Zoo",
+            "Stadium"
+        ],
+        "uniques": [
+            "[+1] [Amenities] [in this city]"
+        ]
+    },
+    {
+        "name": "Water Entertainment Complex",
+        "cost": 36,
+        "requiredCivic": "Games and Revelry",
+        "uniques": [
+            "[+1] [Amenities] [in this city]",
+            "Requires [Coastal]"
+        ]
+    },
+    {
+        "name": "Spaceport",
+        "cost": 60,
+        "requiredTech": "Rocketry",
+        "uniques": [
+            "[+2] [Science] [in this city]"
+        ]
+    },
+    {
+        "name": "Government Plaza",
+        "cost": 30,
+        "requiredCivic": "State Workforce",
+        "uniques": [
+            "[+1] [Production] [in this city]"
+        ]
+    },
+    {
+        "name": "Aerodrome",
+        "cost": 54,
+        "requiredTech": "Flight",
+        "buildings": [
+            "Airstrip",
+            "Aircraft Factory",
+            "Hangar"
+        ],
+        "uniques": [
+            "[+1] [Production] [in this city]"
+        ]
+    },
+    {
+        "name": "Preserve",
+        "cost": 36,
+        "requiredCivic": "Conservation",
+        "buildings": [
+            "Grocery Store",
+            "Medical Laboratory"
+        ],
+        "uniques": [
+            "[+1] [Culture] [in this city]",
+            "[1] [Culture] for each adjacent [districtFilter: Preserve]",
+            "[1] [Food] for each adjacent [districtFilter: Neighborhood]"
+        ]
+    },
+    {
+        "name": "Diplomatic Quarter",
+        "cost": 36,
+        "requiredCivic": "Diplomatic Service",
+        "buildings": [
+            "Chancery",
+            "Consulate"
+        ],
+        "uniques": [
+            "[+2] [Gold] [in this city]",
+            "[1] [Gold] for each adjacent [districtFilter: Diplomatic Quarter]"
+        ]
+    },
+    {
+        "name": "Acropolis",
+        "cost": 36,
+        "requiredCivic": "Drama and Poetry",
+        "replaces": "Theater Square",
+        "uniqueTo": "Greece",
+        "buildings": [
+            "Monument",
+            "Amphitheater",
+            "Theatre"
+        ],
+        "uniques": [
+            "[+1] [Culture] [in this city]",
+            "[1] [Culture] for each adjacent [districtFilter: Acropolis]",
+            "[1] [Culture] for each adjacent [Wonder]"
+        ]
+    },
+    {
+        "name": "Lavra",
+        "cost": 36,
+        "requiredTech": "Pottery",
+        "replaces": "Holy Site",
+        "uniqueTo": "Russia",
+        "buildings": [
+            "Shrine",
+            "Temple",
+            "Grand Temple"
+        ],
+        "uniques": [
+            "[+1] [Faith] [in this city]",
+            "[1] [Faith] for each adjacent [districtFilter: Lavra]",
+            "[1] [Faith] for each adjacent [Natural Wonder]"
+        ]
+    },
+    {
+        "name": "Stronghold",
+        "cost": 36,
+        "requiredTech": "Bronze Working",
+        "replaces": "Encampment",
+        "uniqueTo": "Poland",
+        "buildings": [
+            "Barracks",
+            "Stable",
+            "Armory",
+            "Military Academy"
+        ],
+        "uniques": [
+            "[+1] [Production] [in this city]",
+            "[+4] [Defense] [in this city]"
+        ]
+    },
+    {
+        "name": "Seowon",
+        "cost": 36,
+        "requiredTech": "Writing",
+        "replaces": "Campus",
+        "uniqueTo": "Korea",
+        "buildings": [
+            "Library",
+            "University",
+            "Oxford University"
+        ],
+        "uniques": [
+            "[+1] [Science] [in this city]",
+            "[1] [Science] for each adjacent [districtFilter: Seowon]",
+            "[-1] [Science] for each adjacent [districtFilter: Theater Square]"
+        ]
+    },
+    {
+        "name": "Torre de Belém",
+        "cost": 36,
+        "requiredTech": "Bronze Working",
+        "replaces": "Encampment",
+        "uniqueTo": "Portugal",
+        "buildings": [
+            "Barracks",
+            "Stable",
+            "Armory",
+            "Military Academy"
+        ],
+        "uniques": [
+            "[+1] [Production] [in this city]",
+            "[+2] [Gold] [in this city]"
+        ]
+    },
+    {
+        "name": "Royal Navy Dockyard",
+        "cost": 36,
+        "requiredTech": "Sailing",
+        "replaces": "Harbor",
+        "uniqueTo": "England",
+        "buildings": [
+            "Lighthouse",
+            "Shipyard",
+            "Seaport"
+        ],
+        "uniques": [
+            "[+2] [Gold] [in this city]",
+            "Requires [Coastal]",
+            "[1] [Gold] for each adjacent [districtFilter: Royal Navy Dockyard]"
+        ]
+    },
+    {
+        "name": "Cothon",
+        "cost": 36,
+        "requiredTech": "Sailing",
+        "replaces": "Harbor",
+        "uniqueTo": "Phoenicia",
+        "buildings": [
+            "Lighthouse",
+            "Shipyard",
+            "Seaport"
+        ],
+        "uniques": [
+            "[+2] [Gold] [in this city]",
+            "Requires [Coastal]",
+            "[+2] [Production] [in this city]"
+        ]
+    },
+    {
+        "name": "Oppidum",
+        "cost": 36,
+        "requiredTech": "Bronze Working",
+        "replaces": "Encampment",
+        "uniqueTo": "Gaul",
+        "buildings": [
+            "Barracks",
+            "Stable",
+            "Armory",
+            "Military Academy"
+        ],
+        "uniques": [
+            "[+1] [Production] [in this city]",
+            "[+50]% [Production] towards [Military] units [in this city]"
+        ]
+    },
+    {
+        "name": "Golf Course",
+        "cost": 36,
+        "requiredCivic": "Games and Revelry",
+        "uniqueTo": "Scotland",
+        "buildings": [
+            "Arena",
+            "Zoo",
+            "Stadium"
+        ],
+        "uniques": [
+            "[+1] [Amenities] [in this city]",
+            "[1] [Culture] for each adjacent [City Center]",
+            "[1] [Gold] for each adjacent [Entertainment Complex]"
+        ]
+    },
+    {
+        "name": "Hansa",
+        "cost": 36,
+        "requiredTech": "Industrialization",
+        "uniqueTo": "Germany",
+        "buildings": [
+            "Factory"
+        ],
+        "uniques": [
+            "[+1] [Production] [in this city]",
+            "[+1] [Production] for each adjacent [Industrial Zone] district",
+            "Gives a [1] [Gold] bonus [in this city] for each district [in this city]"
+        ]
+    },
+    {
+        "name": "Polder",
+        "cost": 30,
+        "requiredTech": "Castles",
+        "buildings": [],
+        "uniques": [
+            "[+2] [Food] [in this city]",
+            "[+2] [Production] [in this city]",
+            "Can only be built on [Coastal] or [Floodplain] tiles"
+        ]
+    },
+    {
+        "name": "Torre de Belém",
+        "cost": 36,
+        "requiredTech": "Education",
+        "uniqueTo": "Portugal",
+        "replaces": "Harbor",
+        "buildings": [
+            "Lighthouse",
+            "Shipyard",
+            "Seaport"
+        ],
+        "uniques": [
+            "[+2] [Gold] [in this city]",
+            "[+2] [Science] [in this city]",
+            "Requires [Coastal]",
+            "[+1] [Science] for each adjacent [Harbor] district"
+        ]
+    },
+    {
+        "name": "Seowon",
+        "cost": 36,
+        "requiredTech": "Education",
+        "uniqueTo": "Korea",
+        "replaces": "Campus",
+        "buildings": [
+            "Library",
+            "University",
+            "Research Lab"
+        ],
+        "uniques": [
+            "[+2] [Science] [in this city]",
+            "[+1] [Science] for each adjacent [Mountains] tile",
+            "Gives [1] [Science] to all Cities in the Empire for each [Campus] district"
+        ]
+    },
+    {
+        "name": "Acropolis",
+        "cost": 36,
+        "requiredCivic": "Drama and Poetry",
+        "uniqueTo": "Greece",
+        "replaces": "Theater Square",
+        "buildings": [
+            "Amphitheater",
+            "Opera House",
+            "Wonders"
+        ],
+        "uniques": [
+            "[+2] [Culture] [in this city]",
+            "[+1] [Culture] for each adjacent [City Center]",
+            "Gives [1] [Culture] to all Cities in the Empire for each [Theater Square] district"
+        ]
+    },
+    {
+        "name": "Lavra",
+        "cost": 36,
+        "requiredTech": "Mysticism",
+        "uniqueTo": "Russia",
+        "replaces": "Holy Site",
+        "buildings": [
+            "Shrine",
+            "Temple",
+            "Mosque"
+        ],
+        "uniques": [
+            "[+2] [Faith] [in this city]",
+            "[+1] [Faith] for each adjacent [Holy Site] district",
+            "[+1] [Culture] for each adjacent [Holy Site] district"
+        ]
+    }
+]

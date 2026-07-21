@@ -40,6 +40,13 @@ object TechnologyDescriptions {
 
         uniquesToDescription(lineList)
 
+        // Civ VI Eureka status
+        if (technology.hasUnique(UniqueType.Eureka)) {
+            lineList += if (name in viewingCiv.tech.eurekasTriggered)
+                "Eureka! achieved (research boost already gained)"
+            else "Eureka available (complete its condition for a research boost)"
+        }
+
         lineList.addAll(
             getAffectedImprovements(name, ruleset)
             .filter { it.improvement.uniqueTo == null || viewingCiv.matchesFilter(it.improvement.uniqueTo!!) }

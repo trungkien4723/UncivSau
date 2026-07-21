@@ -43,6 +43,7 @@ class TurnManager(val civInfo: Civilization) {
         civInfo.civConstructions.startTurn()
         civInfo.attacksSinceTurnStart.clear()
         civInfo.updateStatsForNextTurn() // for things that change when turn passes e.g. golden age, city state influence
+        civInfo.powerManager.calculatePower() // Update power production/consumption
 
         // Do this after updateStatsForNextTurn but before cities.startTurn
         if (civInfo.playerType == PlayerType.AI && civInfo.gameInfo.ruleset.modOptions.hasUnique(UniqueType.ConvertGoldToScience))
@@ -70,7 +71,7 @@ class TurnManager(val civInfo: Civilization) {
         for (unique in civInfo.getTriggeredUniques(UniqueType.TriggerUponTurnStart, civInfo.state, ignoreCities = true))
             UniqueTriggerActivation.triggerUnique(unique, civInfo)
 
-        for (city in civInfo.cities) {
+        for (city in civInfo.cities.toList()) {
             progressBar?.increment()
             CityTurnManager(city).startTurn()  // Most expensive part of startTurn
         }
@@ -270,6 +271,7 @@ class TurnManager(val civInfo: Civilization) {
             }
 
         civInfo.policies.endTurn(nextTurnStats.culture.toInt())
+        civInfo.civics.endTurn(nextTurnStats.culture.toInt())
         civInfo.totalCultureForContests += nextTurnStats.culture.toInt()
 
         if (civInfo.isCityState) {

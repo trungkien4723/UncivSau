@@ -8,6 +8,7 @@ import com.unciv.logic.automation.Timers.Companion.timeThis
 import com.unciv.logic.city.managers.CityConquestFunctions
 import com.unciv.logic.city.managers.CityEspionageManager
 import com.unciv.logic.city.managers.CityExpansionManager
+import com.unciv.logic.city.managers.CityLoyaltyManager
 import com.unciv.logic.city.managers.CityPopulationManager
 import com.unciv.logic.city.managers.CityReligionManager
 import com.unciv.logic.city.managers.SpyFleeReason
@@ -22,6 +23,8 @@ import com.unciv.logic.map.tile.RoadStatus
 import com.unciv.logic.map.tile.Tile
 import com.unciv.models.Counter
 import com.unciv.models.ruleset.Building
+import com.unciv.models.ruleset.District
+import com.unciv.models.ruleset.Governor
 import com.unciv.models.ruleset.tile.TileResource
 import com.unciv.models.ruleset.unique.GameContext
 import com.unciv.models.ruleset.unique.Unique
@@ -97,8 +100,17 @@ class City : IsPartOfGameInfoSerialization, INamed {
     
     var resourceStockpiles = Counter<String>()
 
+    /** Civ VI Loyalty (Rise and Fall — 6D). Persisted loyalty pressure state per city. */
+    var loyalty = CityLoyaltyManager()
+
+    /** Name of the governor currently assigned to this city (Civ VI Governors — 6D), or null. */
+    var governor: String? = null
+
     /** All tiles that this city controls */
     var tiles = HashSet<HexCoord>()
+
+    /** Civ VI Districts: maps the tile position of a district to its district name. */
+    var districts = HashMap<HexCoord, String>()
 
     /** Tiles that have population assigned to them */
     var workedTiles = HashSet<HexCoord>()
@@ -183,7 +195,10 @@ class City : IsPartOfGameInfoSerialization, INamed {
         toReturn.tiles = tiles
         toReturn.workedTiles = workedTiles
         toReturn.lockedTiles = lockedTiles
+        toReturn.districts = HashMap(districts)
         toReturn.resourceStockpiles = resourceStockpiles.clone()
+        toReturn.loyalty = loyalty.clone()
+        toReturn.governor = governor
         toReturn.isBeingRazed = isBeingRazed
         toReturn.attackedThisTurn = attackedThisTurn
         toReturn.foundingCiv = foundingCiv
@@ -207,6 +222,26 @@ class City : IsPartOfGameInfoSerialization, INamed {
     @Readonly fun getCenterTile(): Tile = centerTile
     @Readonly fun getCenterTileOrNull(): Tile? = if (::centerTile.isInitialized) centerTile else null
     @Readonly fun getTiles(): Sequence<Tile> = tiles.asSequence().map { tileMap[it] }
+    @Readonly fun getDistricts(): Sequence<Pair<Tile, District>> =
+        districts.asSequence().mapNotNull { (pos, name) ->
+            val tile = tileMap[pos] ?: return@mapNotNull null
+            val district = civ.gameInfo.ruleset.districts[name] ?: return@mapNotNull null
+            tile to district
+        }
+    @Readonly fun hasDistrict(districtName: String) = districts.values.contains(districtName)
+    @Readonly fun getDistrictAt(tile: Tile): District? =
+        districts[tile.position]?.let { civ.gameInfo.ruleset.districts[it] }
+
+    /** The [Governor] assigned to this city, or null if none (Civ VI Governors — 6D). */
+    @Readonly fun getGovernor(): Governor? =
+        governor?.let { civ.gameInfo.ruleset.governors[it] }
+
+    /** Uniques contributed by the assigned governor, applied locally to this city (Civ VI Governors — 6D). */
+    @Readonly private fun getGovernorUniques(): Sequence<Unique> {
+        val govName = governor ?: return emptySequence()
+        val gov = civ.gameInfo.ruleset.governors[govName] ?: return emptySequence()
+        return gov.uniqueObjects.asSequence()
+    }
     @Readonly fun getWorkableTiles() = tilesInRange.asSequence().filter { it.getOwner() == civ }
     @Readonly fun getWorkedTiles(): Sequence<Tile> = workedTiles.asSequence().map { tileMap[it] }
     @Readonly fun isWorked(tile: Tile) = workedTiles.contains(tile.position)
@@ -390,6 +425,7 @@ class City : IsPartOfGameInfoSerialization, INamed {
         religion.setTransients(this)
         cityConstructions.setTransients()
         espionage.setTransients(this)
+        loyalty.city = this
     }
 
     fun setFlag(flag: CityFlags, amount: Int, adjustWithGameSpeed: Boolean = false) {
@@ -645,7 +681,8 @@ class City : IsPartOfGameInfoSerialization, INamed {
         replaceWith = ReplaceWith("forEachLocalMatchingUnique"))
     fun getLocalMatchingUniques(uniqueType: UniqueType, gameContext: GameContext = state): Sequence<Unique> {
         val uniques = cityConstructions.builtBuildingUniqueMap.getUniques(uniqueType).filter { it.isLocalEffect } +
-            religion.getUniques(uniqueType)
+            religion.getUniques(uniqueType) +
+            getGovernorUniques().filter { it.type == uniqueType && it.isLocalEffect }
         return uniques.filter { !it.isTimedTriggerable && it.conditionalsApply(gameContext) }
                 .flatMap { it.getMultiplied(gameContext) }
     }
@@ -655,6 +692,10 @@ class City : IsPartOfGameInfoSerialization, INamed {
     fun forEachLocalMatchingUnique(uniqueType: UniqueType, gameContext: GameContext = state, op: (unique: Unique)->Unit) {
         cityConstructions.builtBuildingUniqueMap.forEachMatchingUnique(uniqueType, gameContext, isLocalUniqueFilter, op)
         religion.forEachMatchingUnique(uniqueType, gameContext, op)
+        for (unique in getGovernorUniques()) {
+            if (unique.type == uniqueType && isLocalUniqueFilter(unique) && unique.conditionalsApply(gameContext))
+                op(unique)
+        }
     }
 
     // Uniques coming from this city, but that should be provided globally
@@ -662,7 +703,8 @@ class City : IsPartOfGameInfoSerialization, INamed {
     @Deprecated(message = "forEachMatchingUniqueWithNonLocalEffects is faster. If not viable, then this can still be used",
         replaceWith = ReplaceWith("forEachMatchingUniqueWithNonLocalEffects"))
     fun getMatchingUniquesWithNonLocalEffects(uniqueType: UniqueType, gameContext: GameContext = state): Sequence<Unique> {
-        val uniques = cityConstructions.builtBuildingUniqueMap.getUniques(uniqueType)
+        val uniques = cityConstructions.builtBuildingUniqueMap.getUniques(uniqueType) +
+            getGovernorUniques().filter { it.type == uniqueType && !it.isLocalEffect }
         // Memory performance showed that this function was very memory intensive, thus we only create the filter if needed
         return if (uniques.any()) uniques.filter { !it.isLocalEffect && !it.isTimedTriggerable
             && it.conditionalsApply(gameContext) }.flatMap { it.getMultiplied(gameContext) }
@@ -671,8 +713,13 @@ class City : IsPartOfGameInfoSerialization, INamed {
 
     // Uniques coming from this city, but that should be provided globally
     @Readonly
-    fun forEachMatchingUniqueWithNonLocalEffects(uniqueType: UniqueType, gameContext: GameContext, op: (unique: Unique)->Unit)
-        = cityConstructions.builtBuildingUniqueMap.forEachMatchingUnique(uniqueType, gameContext, nonLocalUniqueFilter, op)
+    fun forEachMatchingUniqueWithNonLocalEffects(uniqueType: UniqueType, gameContext: GameContext, op: (unique: Unique)->Unit) {
+        cityConstructions.builtBuildingUniqueMap.forEachMatchingUnique(uniqueType, gameContext, nonLocalUniqueFilter, op)
+        for (unique in getGovernorUniques()) {
+            if (unique.type == uniqueType && nonLocalUniqueFilter(unique) && unique.conditionalsApply(gameContext))
+                op(unique)
+        }
+    }
 
     // All uniques affecting this city: both local uniques and civ uniques.
     // This replaces LocalUniqueCache#forCityGetMatchingUniques
@@ -733,9 +780,10 @@ class City : IsPartOfGameInfoSerialization, INamed {
     @Readonly
     fun getLocalTriggeredUniques(trigger: UniqueType, gameContext: GameContext = state,
         triggerFilter: (Unique) -> Boolean = { true }): Sequence<Unique> {
-        val uniques =
-            cityConstructions.builtBuildingUniqueMap.getAllUniques().filter { it.isLocalEffect } + religion.getAllUniques()
-        return uniques.filter {
+        val buildingUniques = cityConstructions.builtBuildingUniqueMap.getAllUniques().filter { it.isLocalEffect }.toList()
+        val govUniques = getGovernorUniques().filter { it.isLocalEffect }.toList()
+        val uniques = buildingUniques + religion.getAllUniques().toList() + govUniques
+        return uniques.asSequence().filter {
             it.getModifiers(trigger).any(triggerFilter) && it.conditionalsApply(gameContext)
         }.flatMap { it.getMultiplied(gameContext) }
     }
@@ -753,6 +801,9 @@ class City : IsPartOfGameInfoSerialization, INamed {
             = unique.isLocalEffect && uniqueFilter(unique)
         cityConstructions.builtBuildingUniqueMap.forEachUnique(::buildingFilter, op)
         religion.forEachUnique(::uniqueFilter, op)
+        for (unique in getGovernorUniques()) {
+            if (unique.isLocalEffect && uniqueFilter(unique)) op(unique)
+        }
     }
 
     //endregion

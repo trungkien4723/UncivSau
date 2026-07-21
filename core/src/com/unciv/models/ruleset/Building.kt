@@ -9,6 +9,7 @@ import com.unciv.logic.civilization.Civilization
 import com.unciv.models.Counter
 import com.unciv.models.ruleset.tile.ResourceType
 import com.unciv.models.ruleset.tile.TileImprovement
+import com.unciv.models.ruleset.District
 import com.unciv.models.ruleset.unique.*
 import com.unciv.models.stats.Stat
 import com.unciv.models.stats.Stats
@@ -48,6 +49,8 @@ class Building : RulesetStatsObject(), INonPerpetualConstruction {
     var cityHealth = 0
     var replaces: String? = null
     var uniqueTo: String? = null
+    /** Civ VI: this building can only be constructed inside the given district. */
+    var district: String? = null
     var quote: String = ""
     var replacementTextForUniques = ""
 
@@ -401,6 +404,10 @@ class Building : RulesetStatsObject(), INonPerpetualConstruction {
             yield(RejectionReasonType.RequiresBuildingInThisCity.toInstance("Requires a [${civ.getEquivalentBuilding(requiredBuilding!!)}] in this city"))
         }
 
+        if (district != null && !cityConstructions.city.hasDistrict(district!!)) {
+            yield(RejectionReasonType.RequiresDistrictInThisCity.toInstance("Requires a [$district] district in this city"))
+        }
+
         for ((resourceName, requiredAmount) in getResourceRequirementsPerTurn(stateForConditionals)) {
             val availableAmount = cityConstructions.city.getAvailableResourceAmount(resourceName)
             if (availableAmount < requiredAmount) {
@@ -554,6 +561,18 @@ class Building : RulesetStatsObject(), INonPerpetualConstruction {
     }
     
     @Readonly fun hasCreateOneImprovementUnique() = improvementToCreate != null
+
+    @Readonly
+    private fun getDistrictToCreateName(): String? {
+        val unique = getMatchingUniques(UniqueType.CreatesOneDistrict).firstOrNull() ?: return null
+        return unique.params[0]
+    }
+
+    @Readonly
+    fun getDistrictToCreate(ruleset: Ruleset): District? {
+        val name = getDistrictToCreateName() ?: return null
+        return ruleset.districts[name]
+    }
 
     @Readonly
     // Only the name can be cached across rulesets.

@@ -275,6 +275,8 @@ class TestGame(vararg addGlobalUniques: String, forUITesting: Boolean = false) {
     fun createBuilding(vararg uniques: String) =
         createRulesetObject(ruleset.buildings, *uniques) { Building() }
             .apply { ruleset = gameInfo.ruleset }
+    fun createDistrict(vararg uniques: String) =
+        createRulesetObject(ruleset.districts, *uniques) { District() }
     fun createResource(vararg uniques: String) =
         createRulesetObject(ruleset.tileResources, *uniques) { TileResource() }
 

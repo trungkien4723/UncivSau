@@ -125,6 +125,7 @@ class AlertPopup(
             // We did stuff
             AlertType.WonderBuilt -> addWonderBuilt()
             AlertType.TechResearched -> addTechResearched()
+            AlertType.CivicResearched -> addCivicResearched()
             AlertType.GoldenAge -> addGoldenAge()
             AlertType.StartIntro -> addStartIntro()
             AlertType.RecapturedCivilian -> shouldOpen = addRecapturedCivilian()
@@ -491,6 +492,20 @@ class AlertPopup(
         add(centerTable).row()
         addCloseButton()
         music.chooseTrack(tech.name, MusicMood.Researched, MusicTrackChooserFlags.setSpecific)
+    }
+
+    private fun addCivicResearched() {
+        val civic = gameInfo.ruleset.civics[popupAlert.value]!!
+        addGoodSizedLabel(civic.name)
+        addSeparator().padBottom(SEPARATOR_LINE_TO_TEXT_PADDING)
+        val centerTable = Table()
+        centerTable.add(civic.quote.toLabel().apply { wrap = true }).width(stageWidth / 3)
+        centerTable.add(ImageGetter.getConstructionPortrait(civic.name, 100f)).pad(20f)
+        val descriptionScroll = ScrollPane(civic.getDescription(viewingCiv).toLabel().apply { wrap = true })
+        centerTable.add(descriptionScroll).width(stageWidth / 3).maxHeight(stageHeight / 2)
+        add(centerTable).row()
+        addCloseButton()
+        music.chooseTrack(civic.name, MusicMood.Researched, MusicTrackChooserFlags.setSpecific)
     }
 
     private fun addWarDeclaration(): Boolean {

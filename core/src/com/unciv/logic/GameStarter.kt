@@ -186,6 +186,9 @@ class GameStarter private constructor(
             for (tech in ruleset.technologies.values.filter { it.hasUnique(UniqueType.StartingTech) })
                 civInfo.addTechSilently(tech.name)
 
+            for (civic in ruleset.civics.values.filter { it.hasUnique(UniqueType.StartingCivic) })
+                civInfo.civics.addCivicSilently(civic.name)
+
             if (!civInfo.isHuman())
                 for (tech in gameInfo.getDifficulty().aiFreeTechs)
                     civInfo.addTechSilently(tech)
@@ -373,6 +376,9 @@ class GameStarter private constructor(
             else if (!civ.cityStateFunctions.initCityState(ruleset, newGameParameters.startingEra, usedMajorCivs, rng))
                 continue
             gameInfo.civilizations.add(civ)
+            // Civ VI: assign a random hidden agenda from this nation's pool
+            if (civ.isMajorCiv() && civ.nation.hiddenAgendas.isNotEmpty())
+                civ.chosenHiddenAgenda = civ.nation.hiddenAgendas.random(rng)
         }
     }
 

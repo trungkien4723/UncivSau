@@ -11,6 +11,7 @@ import com.unciv.logic.civilization.PopupAlert
 import com.unciv.logic.civilization.diplomacy.*
 import com.unciv.logic.trade.TradeOffer
 import com.unciv.logic.trade.TradeOfferType
+import com.unciv.models.ruleset.nation.Agenda
 import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.models.translations.fillPlaceholders
 import com.unciv.models.translations.tr
@@ -88,6 +89,8 @@ class MajorCivDiplomacyTable(private val diplomacyScreen: DiplomacyScreen) {
         else {
             diplomacyTable.add(diplomacyScreen.getRelationshipTable(otherCivDiplomacyManager)).row()
             diplomacyTable.add(getDiplomacyModifiersTable(otherCivDiplomacyManager)).row()
+            val agendaTable = getAgendaTable(otherCiv)
+            if (agendaTable != null) diplomacyTable.add(agendaTable).row()
         }
         val promisesTable = getPromisesTable(diplomacyManager, otherCivDiplomacyManager)
         if (promisesTable != null) diplomacyTable.add(promisesTable).row()
@@ -215,6 +218,29 @@ class MajorCivDiplomacyTable(private val diplomacyScreen: DiplomacyScreen) {
             diplomacyModifiersTable.add(text.toLabel(color)).row()
         }
         return diplomacyModifiersTable
+    }
+
+    /** Civ VI: shows the historical agenda and the (revealed) hidden agenda of [otherCiv]. */
+    private fun getAgendaTable(otherCiv: Civilization): Table? {
+        val historical = otherCiv.nation.agenda
+        val hidden = otherCiv.chosenHiddenAgenda
+        if (historical == null && hidden == null) return null
+
+        val agendaTable = Table()
+        agendaTable.add("Agendas".toLabel().apply { color = Color.GOLD }).row()
+        for (agendaName in sequenceOf(historical, hidden)) {
+            val agenda = otherCiv.gameInfo.ruleset.agendas[agendaName] ?: continue
+            val label = buildAgendaLabel(agenda)
+            agendaTable.add(label).row()
+        }
+        return agendaTable
+    }
+
+    private fun buildAgendaLabel(agenda: Agenda): String {
+        var text = "[${agenda.name}]"
+        if (agenda.likes.isNotEmpty()) text += " (Likes: [${agenda.likes}])"
+        if (agenda.dislikes.isNotEmpty()) text += " (Dislikes: [${agenda.dislikes}])"
+        return text.tr()
     }
 
     private fun getDemandsTable(viewingCiv: Civilization, otherCiv: Civilization): Table {

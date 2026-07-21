@@ -507,10 +507,14 @@ object UnitActionsFromUniques {
         if (tile.improvementInProgress == Constants.repair) return tile.turnsToImprovement
         val repairTurns = tile.ruleset.tileImprovements[Constants.repair]!!.getTurnsToBuild(unit.civ, unit)
 
-        val pillagedImprovement = tile.getImprovementToRepair()!!
-        val turnsToBuild = pillagedImprovement.getTurnsToBuild(unit.civ, unit)
-        // cap repair to number of turns to build original improvement
-        return repairTurns.coerceAtMost(turnsToBuild)
+        val pillagedImprovement = tile.getImprovementToRepair()
+        if (pillagedImprovement != null) {
+            val turnsToBuild = pillagedImprovement.getTurnsToBuild(unit.civ, unit)
+            // cap repair to number of turns to build original improvement
+            return repairTurns.coerceAtMost(turnsToBuild)
+        }
+        // Pillaged Civ VI district: repair is fixed at 1 turn (regular Repair improvement).
+        return repairTurns
     }
 
     internal fun getRepairActions(unit: MapUnit, tile: Tile) =
@@ -527,18 +531,23 @@ object UnitActionsFromUniques {
         val unique = unit.getMatchingUniques(UniqueType.BuildImprovements).firstOrNull()
             ?: return null
 
+        val repairTargetName = tile.getImprovementToRepair()?.name ?: tile.district ?: return null
+
         val couldConstruct = unit.hasMovement()
             && !tile.isCityCenter() && tile.improvementInProgress != Constants.repair
             && !tile.isEnemyTerritory(unit.civ)
                 // Are there any other improvement building problems that should block repair?
-            && ImprovementFunctions.getImprovementBuildingProblems(unit.currentTile.getImprovementToRepair()!!, GameContext(civInfo = unit.civ, unit = unit, tile = tile))
-                .none { it == ImprovementBuildingProblem.OutsideBorders }
+            && (tile.getImprovementToRepair() != null
+                && ImprovementFunctions.getImprovementBuildingProblems(
+                    tile.getImprovementToRepair()!!, GameContext(civInfo = unit.civ, unit = unit, tile = tile))
+                    .none { it == ImprovementBuildingProblem.OutsideBorders }
+                || tile.canPillageDistrict())
 
         val turnsToBuild = getRepairTurns(unit)
         val useFrequency = getUseFrequency(unit, unique, 90f)
 
         return UnitAction(UnitActionType.Repair, useFrequency,
-            title = "${UnitActionType.Repair} [${unit.currentTile.getImprovementToRepair()!!.name}] - [${turnsToBuild}${Fonts.turn}]",
+            title = "${UnitActionType.Repair} [$repairTargetName] - [${turnsToBuild}${Fonts.turn}]",
             action = {
                 tile.queueImprovement(Constants.repair, turnsToBuild)
                 unit.action = null

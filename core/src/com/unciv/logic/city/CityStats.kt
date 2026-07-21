@@ -2,8 +2,10 @@ package com.unciv.logic.city
 
 import com.unciv.logic.automation.Timers.Companion.timeThis
 import com.unciv.logic.map.tile.RoadStatus
+import com.unciv.logic.map.tile.Tile
 import com.unciv.models.Counter
 import com.unciv.models.ruleset.Building
+import com.unciv.models.ruleset.District
 import com.unciv.models.ruleset.IConstruction
 import com.unciv.models.ruleset.INonPerpetualConstruction
 import com.unciv.models.ruleset.unique.Unique
@@ -366,7 +368,26 @@ class CityStats(val city: City) {
             val tileStats = tile.stats.getTileStats(city, city.civ)
             stats.add(tileStats)
         }
+        // Civ VI districts: each district tile provides its own stats and adjacency bonuses,
+        // independent of worked population. Pillaged districts contribute nothing.
+        for ((tile, district) in city.getDistricts()) {
+            if (tile.districtIsPillaged) continue
+            val districtStats = district.cloneStats()
+            districtStats.add(getDistrictAdjacencyStats(tile, district))
+            stats.add(districtStats)
+        }
         statsFromTiles = stats
+    }
+
+    /** Adjacency bonuses for a [district] placed on [tile], from [UniqueType.StatsForAdjacentDistrict]. */
+    @Readonly
+    private fun getDistrictAdjacencyStats(tile: Tile, district: District): Stats {
+        val stats = Stats()
+        for (unique in district.getMatchingUniques(UniqueType.StatsForAdjacentDistrict)) {
+            val adjacent = tile.neighbors.count { it.getDistrict()?.name == unique.params[1] }
+            if (adjacent > 0) stats.add(unique.stats.times(adjacent.toFloat()))
+        }
+        return stats
     }
 
 
@@ -590,6 +611,16 @@ class CityStats(val city: City) {
         val buildingsMaintenance = getBuildingMaintenanceCosts() // this is AFTER the bonus calculation!
         newFinalStatList["Maintenance"] = Stats(gold = -buildingsMaintenance.toInt().toFloat())
 
+        // Power calculation (Civ VI)
+        val powerDeficit = calculatePowerDeficit()
+        if (powerDeficit > 0) {
+            // Apply -25% production penalty per power deficit unit
+            // This affects all production, not just specific buildings
+            val powerPenaltyPercent = min(1.0f, powerDeficit * 0.25f)
+            val powerPenalty = Stats(production = -(powerPenaltyPercent))
+            newFinalStatList.add("Power Deficit", powerPenalty)
+        }
+
         if (canConvertFoodToProduction(totalFood, currentConstruction)) {
             newFinalStatList["Excess food to production"] =
                 Stats(production = getProductionFromExcessiveFood(totalFood), food = -totalFood)
@@ -654,6 +685,27 @@ class CityStats(val city: City) {
         }
         
         return foodEaten
+    }
+
+    @Readonly
+    fun calculatePowerDeficit(): Float {
+        var totalConsumption = 0
+        for (building in city.cityConstructions.getBuiltBuildings()) {
+            for (unique in building.uniqueObjects) {
+                if (unique.type == UniqueType.PowerConsumption) {
+                    totalConsumption += unique.params[1].toInt()
+                }
+            }
+        }
+        var totalProduction = 0
+        for (building in city.cityConstructions.getBuiltBuildings()) {
+            for (unique in building.uniqueObjects) {
+                if (unique.type == UniqueType.PowerProduction) {
+                    totalProduction += unique.params[1].toInt()
+                }
+            }
+        }
+        return (totalConsumption - totalProduction).toFloat()
     }
 
     //endregion

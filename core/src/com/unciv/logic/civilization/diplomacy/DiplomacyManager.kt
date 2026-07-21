@@ -17,6 +17,7 @@ import com.unciv.models.ruleset.tile.ResourceSupplyList
 import com.unciv.models.ruleset.unique.GameContext
 import com.unciv.models.ruleset.unique.UniqueTriggerActivation
 import com.unciv.models.ruleset.unique.UniqueType
+import com.unciv.models.ruleset.nation.Agenda
 import com.unciv.models.translations.fillPlaceholders
 import com.unciv.ui.components.extensions.toPercent
 import com.unciv.utils.Log
@@ -153,7 +154,11 @@ enum class DiplomaticModifiers(val text: String) {
     GaveUsUnits("You gave us units!"),
     GaveUsGifts("We appreciate your gifts"),
     ReturnedCapturedUnits("You returned captured units to us"),
-    BelieveSameReligion("We believe in the same religion");
+    BelieveSameReligion("We believe in the same religion"),
+
+    // Civ VI Leader Agendas - opinion shifts driven by a civ's historical/hidden agenda
+    AgendaLike("We like your kind!"),
+    AgendaDislike("We dislike your kind!");
 
     companion object{
         @Immutable private val valuesAsMap = entries.associateBy { it.name }
@@ -688,6 +693,48 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
     internal fun removeModifier(modifier: DiplomaticModifiers) = diplomaticModifiers.remove(modifier.name)
     @Readonly
     fun hasModifier(modifier: DiplomaticModifiers) = diplomaticModifiers.containsKey(modifier.name)
+
+    /**
+     * Civ VI Leader Agendas: re-evaluates this civ's opinion of every known civ based on its
+     * historical agenda ([Nation.agenda]) and randomly-assigned hidden agenda
+     * ([Civilization.chosenHiddenAgenda]). A civ whose behaviour matches an agenda's `likes`
+     * filter gains a positive [DiplomaticModifiers.AgendaLike], one matching `dislikes` gains
+     * a negative [DiplomaticModifiers.AgendaDislike]. Both are recalculated each call.
+     */
+    @Readonly
+    fun getAgendaModifierFor(otherCiv: Civilization): Float {
+        if (civInfo.isCityState || civInfo.isBarbarian || civInfo.nation.isSpectator) return 0f
+        if (otherCiv.isCityState || otherCiv.isBarbarian || otherCiv.nation.isSpectator) return 0f
+        if (!civInfo.knows(otherCiv)) return 0f
+
+        val state = GameContext(civInfo = civInfo, otherCiv = otherCiv)
+        var modifier = 0f
+        for (agendaName in sequenceOf(civInfo.nation.agenda, civInfo.chosenHiddenAgenda)) {
+            val agenda = civInfo.gameInfo.ruleset.agendas[agendaName] ?: continue
+            if (agenda.likes.isNotEmpty() && otherCiv.matchesFilter(agenda.likes, state))
+                modifier += 20f
+            if (agenda.dislikes.isNotEmpty() && otherCiv.matchesFilter(agenda.dislikes, state))
+                modifier -= 20f
+        }
+        return modifier
+    }
+
+    /** Updates the persistent [DiplomaticModifiers.AgendaLike]/[AgendaDislike] for a single known civ. */
+    fun updateAgendaModifierFor(otherCiv: Civilization) {
+        val value = getAgendaModifierFor(otherCiv)
+        if (value > 0f) setModifier(DiplomaticModifiers.AgendaLike, value)
+        else if (value < 0f) setModifier(DiplomaticModifiers.AgendaDislike, value)
+        else {
+            removeModifier(DiplomaticModifiers.AgendaLike)
+            removeModifier(DiplomaticModifiers.AgendaDislike)
+        }
+    }
+
+    /** Updates agenda-driven opinion modifiers for every known civ. Call once per turn. */
+    fun updateAgendaModifiers() {
+        for (otherCiv in civInfo.getKnownCivs())
+            updateAgendaModifierFor(otherCiv)
+    }
     
     fun replaceModifier(oldModifier: DiplomaticModifiers, newModifier: DiplomaticModifiers, amount: Float) {
         removeModifier(oldModifier)

@@ -35,7 +35,10 @@ enum class UniqueTarget(
     Personality,
     Era(inheritsFrom = Global),
     Tech(inheritsFrom = Global),
+    Civic(inheritsFrom = Global),
     Policy(inheritsFrom = Global),
+    Government(inheritsFrom = Global),
+    PolicyCard(inheritsFrom = Global),
     FounderBelief("Uniques for Founder and Enhancer type Beliefs, that will apply to the founder of this religion", inheritsFrom = Global),
     FollowerBelief("Uniques for Pantheon and Follower type beliefs, that will apply to each city where the religion is the majority religion", inheritsFrom = Triggerable),
 
@@ -52,6 +55,7 @@ enum class UniqueTarget(
     // Tile-specific
     Terrain,
     Improvement(inheritsFrom = Triggerable),
+    District(inheritsFrom = Global),
     Resource(inheritsFrom = Global),
     Ruins(inheritsFrom = UnitTriggerable),
 
@@ -124,9 +128,9 @@ enum class UniqueTarget(
         /** All targets that can display their Uniques */
         // As Array so it can used in a vararg parameter list.
         val Displayable = arrayOf(
-            Building, Unit, UnitType, Improvement, Tech, FollowerBelief, FounderBelief,
-            Terrain, Resource, Policy, Promotion, Nation, Ruins, Speed, EventChoice,
-            Difficulty
+            Building, Unit, UnitType, Improvement, Tech, Civic, FollowerBelief, FounderBelief,
+            Government, PolicyCard, Terrain, Resource, Policy, Promotion, Nation, Ruins, Speed, EventChoice,
+            Difficulty, District
         )
         val CanIncludeSuppression = arrayOf(
             Triggerable,    // Includes Global and covers most IHasUnique's

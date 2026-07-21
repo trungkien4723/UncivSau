@@ -915,6 +915,70 @@ object UniqueTriggerActivation {
                 }
             }
 
+            UniqueType.Eureka -> {
+                // Civ VI Eureka: boost is toward the technology this unique is attached to.
+                val tech = unique.sourceObjectName
+                val amount = unique.params[0].toFloatOrNull()
+                if (tech == null || amount == null
+                    || tech !in civInfo.gameInfo.ruleset.technologies
+                    || civInfo.tech.isResearched(tech)
+                    || tech in civInfo.tech.eurekasTriggered) // only once per tech
+                    return null
+                val scienceGain = (civInfo.tech.costOfTech(tech) * amount / 100).roundToInt()
+                if (scienceGain == 0) return null
+
+                return {
+                    civInfo.tech.eurekasTriggered.add(tech)
+                    civInfo.tech.techsInProgress[tech] =
+                        (civInfo.tech.techsInProgress[tech] ?: 0) + scienceGain
+                    // If this is the tech currently being researched, it may now be completable
+                    civInfo.tech.updateResearchProgress()
+
+                    if (civInfo.isMajorCiv() && !civInfo.isSpectator()) {
+                        val notificationText = getNotificationText(
+                            notification, triggerNotificationText,
+                            "We have achieved a Eureka! moment for [$tech]! (+[$scienceGain] Science)"
+                        )
+                        if (notificationText != null)
+                            civInfo.addNotification(notificationText, LocationAction(tile?.position),
+                                NotificationCategory.General, NotificationIcon.Science)
+                    }
+                    true
+                }
+            }
+
+            UniqueType.Inspiration -> {
+                // Civ VI Inspiration: boost is toward the civic this unique is attached to.
+                val civic = unique.sourceObjectName
+                val amount = unique.params[0].toFloatOrNull()
+                if (civic == null || amount == null
+                    || civic !in civInfo.gameInfo.ruleset.civics
+                    || civInfo.civics.isResearched(civic)
+                    || civic in civInfo.civics.inspirationsTriggered) // only once per civic
+                    return null
+                val cultureGain = (civInfo.civics.costOfCivic(civic) * amount / 100).roundToInt()
+                if (cultureGain == 0) return null
+
+                return {
+                    civInfo.civics.inspirationsTriggered.add(civic)
+                    civInfo.civics.civicsInProgress[civic] =
+                        (civInfo.civics.civicsInProgress[civic] ?: 0) + cultureGain
+                    // If this is the civic currently being researched, it may now be completable
+                    civInfo.civics.updateResearchProgress()
+
+                    if (civInfo.isMajorCiv() && !civInfo.isSpectator()) {
+                        val notificationText = getNotificationText(
+                            notification, triggerNotificationText,
+                            "We have achieved an Inspiration! moment for [$civic]! (+[$cultureGain] Culture)"
+                        )
+                        if (notificationText != null)
+                            civInfo.addNotification(notificationText, LocationAction(tile?.position),
+                                NotificationCategory.General, NotificationIcon.Culture)
+                    }
+                    true
+                }
+            }
+
             UniqueType.OneTimeFreeBelief -> {
                 if (!civInfo.isMajorCiv()) return null
                 val beliefType = BeliefType.valueOf(unique.params[0])

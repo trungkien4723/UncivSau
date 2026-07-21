@@ -19,15 +19,27 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
     private var numberOfGoldenAges = 0
     var turnsLeftForCurrentGoldenAge = 0
 
+    // === Civ VI Era Score / Ages (6C) ===
+    var eraScore = 0              // Era Score accumulated during the current era
+    var totalEraScore = 0         // all-time Era Score
+    var currentAge = "Normal"      // "Dark" | "Normal" | "Golden"
+    var previousAge = "Normal"
+    var eraScoreForLastAge = 0     // Era Score achieved in the age that just ended (for UI)
+
     fun clone(): GoldenAgeManager {
         val toReturn = GoldenAgeManager()
         toReturn.numberOfGoldenAges = numberOfGoldenAges
         toReturn.storedHappiness = storedHappiness
         toReturn.turnsLeftForCurrentGoldenAge = turnsLeftForCurrentGoldenAge
+        toReturn.eraScore = eraScore
+        toReturn.totalEraScore = totalEraScore
+        toReturn.currentAge = currentAge
+        toReturn.previousAge = previousAge
+        toReturn.eraScoreForLastAge = eraScoreForLastAge
         return toReturn
     }
 
-    @Readonly fun isGoldenAge(): Boolean = turnsLeftForCurrentGoldenAge > 0
+    @Readonly fun isGoldenAge(): Boolean = turnsLeftForCurrentGoldenAge > 0 || currentAge == "Golden"
     
     fun addHappiness(amount: Int) {
         storedHappiness += amount
@@ -62,6 +74,53 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
         //Golden Age can happen mid turn with Great Artist effects
         for (city in civInfo.cities)
             city.cityStats.update()
+    }
+
+    // === Civ VI Era Score / Ages (6C) ===
+
+    /** Add Era Score (Civ VI Historic Moments). */
+    fun addEraScore(amount: Int, source: String = "") {
+        if (amount <= 0) return
+        eraScore += amount
+        totalEraScore += amount
+        if (source.isNotEmpty()) {
+            civInfo.addNotification("You earned [$amount] Era Score from [$source]!",
+                NotificationCategory.General, "StatIcons/EraScore")
+        }
+    }
+
+    /**
+     * Called when the civilization enters a new era (from tech or civic research).
+     * Decides the Age (Dark / Normal / Golden) based on Era Score accumulated in the era that just ended.
+     * Returns the chosen age so the caller can fire UI/triggers.
+     */
+    fun onEraTransition(newEraNumber: Int): String {
+        // Thresholds scale with era number (Civ VI-like): Golden if score >= 2*era, Dark if < era.
+        val goldenThreshold = 2 * newEraNumber.coerceAtLeast(1)
+        val darkThreshold = newEraNumber.coerceAtLeast(1)
+        val age = when {
+            eraScore >= goldenThreshold -> "Golden"
+            eraScore < darkThreshold -> "Dark"
+            else -> "Normal"
+        }
+        previousAge = currentAge
+        currentAge = age
+        eraScoreForLastAge = eraScore
+        eraScore = 0  // reset for the new era
+
+        val label = when (age) {
+            "Golden" -> "Golden Age"
+            "Dark" -> "Dark Age"
+            else -> "Normal Age"
+        }
+        civInfo.addNotification("You have entered a [$label]!",
+            CivilopediaAction("Tutorial/Golden Age"), NotificationCategory.General, "StatIcons/EraScore")
+
+        if (age == "Golden") {
+            enterGoldenAge()
+            numberOfGoldenAges++
+        }
+        return age
     }
 
     fun endTurn(happiness: Int) {

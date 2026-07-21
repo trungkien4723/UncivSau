@@ -16,6 +16,7 @@ import com.unciv.ui.screens.overviewscreen.EmpireOverviewScreen
 import com.unciv.ui.screens.overviewscreen.EspionageOverviewScreen
 import com.unciv.ui.screens.pickerscreens.PolicyPickerScreen
 import com.unciv.ui.screens.pickerscreens.PromotionPickerScreen
+import com.unciv.ui.screens.pickerscreens.CivicPickerScreen
 import com.unciv.ui.screens.pickerscreens.TechPickerScreen
 import com.unciv.ui.screens.worldscreen.WorldScreen
 
@@ -63,6 +64,14 @@ class TechAction(private val techName: String = "") : NotificationAction {
     override fun execute(worldScreen: WorldScreen) {
         val tech = worldScreen.gameInfo.ruleset.technologies[techName]
         worldScreen.game.pushScreen(TechPickerScreen(worldScreen.selectedCiv, tech))
+    }
+}
+
+/** show civic screen */
+class CivicAction(private val civicName: String = "") : NotificationAction {
+    override fun execute(worldScreen: WorldScreen) {
+        val civic = worldScreen.gameInfo.ruleset.civics[civicName]
+        worldScreen.game.pushScreen(CivicPickerScreen(worldScreen.selectedCiv, civic))
     }
 }
 
@@ -251,6 +260,7 @@ class ReligionAction(private val religionName: String? = null) : NotificationAct
 internal class NotificationActionsDeserializer {
     private val LocationAction: LocationAction? = null
     private val TechAction: TechAction? = null
+    private val CivicAction: CivicAction? = null
     private val CityAction: CityAction? = null
     private val DiplomacyAction: DiplomacyAction? = null
     private val MayaLongCountAction: MayaLongCountAction? = null
@@ -266,7 +276,7 @@ internal class NotificationActionsDeserializer {
     fun read(json: Json, jsonData: JsonValue): List<NotificationAction> {
         json.readFields(this, jsonData)
         return listOfNotNull(
-            LocationAction, TechAction, CityAction, DiplomacyAction, MayaLongCountAction,
+            LocationAction, TechAction, CivicAction, CityAction, DiplomacyAction, MayaLongCountAction,
             MapUnitAction, CivilopediaAction, PromoteUnitAction, OverviewAction, PolicyAction,
             EspionageAction, LinkAction, ReligionAction
         )

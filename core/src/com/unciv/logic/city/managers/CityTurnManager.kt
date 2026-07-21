@@ -54,6 +54,9 @@ class CityTurnManager(val city: City) {
         if (city.demandedResource == "" && !city.hasFlag(CityFlags.ResourceDemand)) {
             setWltkResourceDemandCooldown(true)
         }
+
+        // Civ VI Loyalty (Rise and Fall — 6D): apply loyalty pressure; a city may fall here.
+        city.loyalty.startTurn()
     }
     
     private fun setWltkResourceDemandCooldown(isNewCity: Boolean) {

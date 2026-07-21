@@ -17,6 +17,7 @@ import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.tile.Tile
 import com.unciv.logic.multiplayer.isUsersTurn
 import com.unciv.models.ruleset.Building
+import com.unciv.models.ruleset.District
 import com.unciv.models.ruleset.IConstruction
 import com.unciv.models.ruleset.INonPerpetualConstruction
 import com.unciv.models.ruleset.IRulesetObject
@@ -74,6 +75,14 @@ class CityConstructions : IsPartOfGameInfoSerialization {
     @Readonly fun currentConstructionName() = if (constructionQueue.isEmpty()) "" else constructionQueue.first()
     fun setCurrentConstruction(value: String) {
         if (constructionQueue.isEmpty()) constructionQueue.add(value) else constructionQueue[0] = value
+        // Civ VI: if the chosen building creates a district and no placement marker exists yet,
+        // auto-pick the best tile (used by AI and as a safety net for manual selection).
+        val building = city.getRuleset().buildings[value]
+        val district = building?.getDistrictToCreate(city.getRuleset())
+        if (district != null && getTileForDistrict(district.name) == null) {
+            val tile = Automation.getTileForDistrict(city, district)
+            if (tile != null) tryPlaceCreateOneDistrictMarker(district, tile)
+        }
     }
 
     //endregion
@@ -633,8 +642,14 @@ class CityConstructions : IsPartOfGameInfoSerialization {
         /** Support for [UniqueType.CreatesOneImprovement] */
         applyCreateOneImprovement(building)
 
+        /** Support for [UniqueType.CreatesOneDistrict] */
+        applyCreateOneDistrict(building)
+
         triggerNewBuildingUniques(building)
 
+        // Civ VI Era Score: completing a building/wonder with the EraScore unique grants Era Score (6C)
+        for (unique in building.getMatchingUniques(UniqueType.EraScore))
+            civ.goldenAges.addEraScore(unique.params[0].toInt(), buildingName)
         if (building.hasUnique(UniqueType.EnemyUnitsSpendExtraMovement))
             civ.cache.updateHasActiveEnemyMovementPenalty()
 
@@ -676,6 +691,13 @@ class CityConstructions : IsPartOfGameInfoSerialization {
         for (unique in city.getTriggeredUniques(UniqueType.TriggerUponConstructingBuildingCityFilter, stateForConditionals,
                 { building.matchesFilter(it.params[0], stateForConditionals) && city.matchesFilter(it.params[1]) }))
             UniqueTriggerActivation.triggerUnique(unique, city, triggerNotificationText = triggerNotificationText)
+
+        // Civ VI: Handle DiplomaticFavor uniques
+        for (unique in building.uniqueObjects) {
+            if (unique.type == UniqueType.DiplomaticFavor) {
+                city.civ.worldCongress.addDiplomaticFavor(unique.params[0].toInt())
+            }
+        }
     }
 
     fun removeBuilding(buildingName: String) {
@@ -856,15 +878,20 @@ class CityConstructions : IsPartOfGameInfoSerialization {
 
         /** Support for [UniqueType.CreatesOneImprovement] - if an Improvement-creating Building was auto-queued, auto-choose a tile: */
         val building = getCurrentConstruction() as? Building ?: return
-        val improvement = building.getImprovementToCreate(city.getRuleset(), city.civ) ?: return
-        
-        if (getTileForImprovement(improvement.name) == null) {
+        val improvement = building.getImprovementToCreate(city.getRuleset(), city.civ)
+        if (improvement != null && getTileForImprovement(improvement.name) == null) {
             val newTile = Automation.getTileForConstructionImprovement(city, improvement) ?: return
             tryPlaceCreateOneImprovementMarker(improvement, newTile)
         }
+        /** Support for [UniqueType.CreatesOneDistrict] - auto-choose a tile for the district. */
+        val district = building.getDistrictToCreate(city.civ.gameInfo.ruleset)
+        if (district != null && getTileForDistrict(district.name) == null) {
+            val newTile = Automation.getTileForDistrict(city, district) ?: return
+            tryPlaceCreateOneDistrictMarker(district, newTile)
+        }
     }
 
-    /** Whether this city may mark its own [tile] to create [improvement] when construction completes. */
+    /** Whether this city may mark its own [tile] to create [improvement] or [district] when construction completes. */
     @Readonly
     fun canPlaceCreateOneImprovementOn(improvement: TileImprovement, tile: Tile): Boolean =
         tile.getCity() == city
@@ -872,6 +899,16 @@ class CityConstructions : IsPartOfGameInfoSerialization {
             && !tile.isCityCenter()
             && !tile.isMarkedForCreatesOneImprovement()
             && tile.improvementFunctions.canBuildImprovement(improvement, city.state)
+
+    /** Whether [tile] may host [district] for this city. */
+    @Readonly
+    fun canPlaceCreateOneDistrictOn(district: District, tile: Tile): Boolean =
+        tile.getCity() == city
+            && tile in city.tilesInRange
+            && !tile.isCityCenter()
+            && tile.district == null
+            && tile.districtToCreate == null
+            && (district.onlyBuildableOn.isEmpty() || tile.matchesFilter(district.onlyBuildableOn, city.civ))
 
     /**
      * Try to mark [tile] so completing this construction will create [improvement] there.
@@ -891,6 +928,18 @@ class CityConstructions : IsPartOfGameInfoSerialization {
             return false
 
         tile.improvementFunctions.markForCreatesOneImprovement(improvement.name)
+        return true
+    }
+
+    /** Try to mark [tile] so completing a [district]-creating building will place the district there. */
+    fun tryPlaceCreateOneDistrictMarker(district: District, tile: Tile): Boolean {
+        if (tile.getCity() == city && tile.districtToCreate == district.name)
+            return true
+        if (district.name !in city.districts.values && city.districts.values.count { it == district.name } >= 1)
+            return false // one of each district type per city
+        if (!canPlaceCreateOneDistrictOn(district, tile))
+            return false
+        tile.districtToCreate = district.name
         return true
     }
 
@@ -939,15 +988,27 @@ class CityConstructions : IsPartOfGameInfoSerialization {
     }
 
     private fun markTileForCreatesOneImprovement(construction: IConstruction, tile: Tile?) {
-        val improvementToCreate = (construction as? Building)?.getImprovementToCreate(city.getRuleset(), city.civ)
-            ?: return
-        if (getTileForImprovement(improvementToCreate.name) != null) return
-
-        val tileForImprovement = requireNotNull(tile) {
-            "Cannot queue ${construction.name} without a target tile for ${UniqueType.CreatesOneImprovement.name}"
+        val building = construction as? Building ?: return
+        val improvementToCreate = building.getImprovementToCreate(city.getRuleset(), city.civ)
+        if (improvementToCreate != null) {
+            if (getTileForImprovement(improvementToCreate.name) != null) return
+            val tileForImprovement = requireNotNull(tile) {
+                "Cannot queue ${construction.name} without a target tile for ${UniqueType.CreatesOneImprovement.name}"
+            }
+            require(tryPlaceCreateOneImprovementMarker(improvementToCreate, tileForImprovement)) {
+                "Cannot queue ${construction.name}: ${improvementToCreate.name} cannot be created on ${tileForImprovement.position}"
+            }
+            return
         }
-        require(tryPlaceCreateOneImprovementMarker(improvementToCreate, tileForImprovement)) {
-            "Cannot queue ${construction.name}: ${improvementToCreate.name} cannot be created on ${tileForImprovement.position}"
+        val districtToCreate = building.getDistrictToCreate(city.getRuleset())
+        if (districtToCreate != null) {
+            if (getTileForDistrict(districtToCreate.name) != null) return
+            val tileForDistrict = requireNotNull(tile) {
+                "Cannot queue ${construction.name} without a target tile for ${UniqueType.CreatesOneDistrict.name}"
+            }
+            require(tryPlaceCreateOneDistrictMarker(districtToCreate, tileForDistrict)) {
+                "Cannot queue ${construction.name}: ${districtToCreate.name} cannot be created on ${tileForDistrict.position}"
+            }
         }
     }
 
@@ -971,6 +1032,10 @@ class CityConstructions : IsPartOfGameInfoSerialization {
                 getTileForImprovement(improvement.name)
                     ?.improvementFunctions
                     ?.removeCreatesOneImprovementMarker(removeConstruction = false)
+            }
+            val district = construction.getDistrictToCreate(city.getRuleset())
+            if (district != null) {
+                getTileForDistrict(district.name)?.districtToCreate = null
             }
         }
 
@@ -1066,6 +1131,27 @@ class CityConstructions : IsPartOfGameInfoSerialization {
         GUI.setUpdateWorldOnNextRender()
     }
 
+    /** Support for [UniqueType.CreatesOneDistrict]:
+     *
+     *  If [building] creates a district, find the tile marked for it, place the district there
+     *  (adds to [City.districts] and sets [Tile.district]), then clear the transient marker.
+     */
+    private fun applyCreateOneDistrict(building: Building, removeOnly: Boolean = false) {
+        val district = building.getDistrictToCreate(city.getRuleset()) ?: return
+        val tileForDistrict = getTileForDistrict(district.name) ?: return
+        tileForDistrict.districtToCreate = null
+        if (removeOnly) return
+        city.districts[tileForDistrict.position] = district.name
+        tileForDistrict.district = district.name
+        GUI.setUpdateWorldOnNextRender()
+        
+        for (unique in city.civ.getTriggeredUniques(UniqueType.TriggerUponConstructingDistrict) { 
+            district.matchesFilter(it.params[0])
+        }) {
+            UniqueTriggerActivation.triggerUnique(unique, city.civ, tile = tileForDistrict)
+        }
+    }
+
     /** Support for [UniqueType.CreatesOneImprovement]:
      *
      *  To be called after circumstances forced clearing a marker from a tile (pillaging, nuking).
@@ -1094,5 +1180,9 @@ class CityConstructions : IsPartOfGameInfoSerialization {
     @Readonly
     fun getTileForImprovement(improvementName: String) = city.getTiles()
         .firstOrNull { it.isMarkedForCreatesOneImprovement(improvementName) }
+
+    @Readonly
+    fun getTileForDistrict(districtName: String) = city.getTiles()
+        .firstOrNull { it.districtToCreate == districtName }
     //endregion
 }

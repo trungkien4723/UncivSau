@@ -65,6 +65,7 @@ enum class KeyboardBinding(
     EmpireOverviewPolitics(Category.WorldScreen, Input.Keys.F4),      // Diplomacy info
     SocialPolicies(Category.WorldScreen, Input.Keys.F5),              // Social Policies Screen
     TechnologyTree(Category.WorldScreen, Input.Keys.F6),              // Tech Screen
+    CivicTree(Category.WorldScreen, Input.Keys.F11),                  // Civic Screen
     EmpireOverviewNotifications(Category.WorldScreen, Input.Keys.F7), // Notification Log
     VictoryScreen(Category.WorldScreen, "Victory status", Input.Keys.F8),    // Victory Progress
     EmpireOverviewStats(Category.WorldScreen, Input.Keys.F9),         // Demographics

@@ -146,6 +146,8 @@ class Civilization : IsPartOfGameInfoSerialization {
     var civID = ""
 
     var tech = TechManager()
+    var civics = CivicManager()
+    var government = GovernmentManager()
     var policies = PolicyManager()
     var civConstructions = CivConstructions()
     var questManager = QuestManager()
@@ -155,8 +157,17 @@ class Civilization : IsPartOfGameInfoSerialization {
     var espionageManager = EspionageManager()
     var victoryManager = VictoryManager()
     var ruinsManager = RuinsManager()
+    var governorManager = GovernorManager()
+    var powerManager = PowerManager()
+    var climateManager = ClimateManager()
+    var disasterManager = DisasterManager()
+    var worldCongress = WorldCongressManager()
+    var gameModes = GameModesManager()
     var diplomacy = HashMap<String, DiplomacyManager>()
     var proximity = HashMap<String, Proximity>()
+
+    /** Civ VI: the hidden agenda randomly assigned to this civ at game start. */
+    var chosenHiddenAgenda: String? = null
     val popupAlerts = ArrayList<PopupAlert>()
     /**Serialization field for [allyCiv]. Is equivalent to ``allyCiv.civName``*/
     private var allyCivName: String? = null
@@ -294,6 +305,8 @@ class Civilization : IsPartOfGameInfoSerialization {
         toReturn.civName = civName
         toReturn.civID = civID
         toReturn.tech = tech.clone()
+        toReturn.civics = civics.clone()
+        toReturn.government = government.clone()
         toReturn.policies = policies.clone()
         toReturn.civConstructions = civConstructions.clone().also { it.setTransients(toReturn) }
         toReturn.religionManager = religionManager.clone()
@@ -303,6 +316,12 @@ class Civilization : IsPartOfGameInfoSerialization {
         toReturn.ruinsManager = ruinsManager.clone()
         toReturn.espionageManager = espionageManager.clone()
         toReturn.victoryManager = victoryManager.clone()
+        toReturn.governorManager = governorManager.clone()
+        toReturn.powerManager = powerManager.clone()
+        toReturn.climateManager = climateManager.clone()
+        toReturn.disasterManager = disasterManager.clone()
+        toReturn.worldCongress = worldCongress.clone()
+        toReturn.gameModes = gameModes.clone()
         toReturn.allyCivName = allyCivName
         for (diplomacyManager in diplomacy.values.map { it.clone() })
             toReturn.diplomacy[diplomacyManager.otherCivName] = diplomacyManager
@@ -317,6 +336,7 @@ class Civilization : IsPartOfGameInfoSerialization {
         toReturn.notificationsLog.addAll(notificationsLog)
         toReturn.notificationCountAtStartTurn = notificationCountAtStartTurn
         toReturn.citiesCreated = citiesCreated
+        toReturn.chosenHiddenAgenda = chosenHiddenAgenda
         toReturn.popupAlerts.addAll(popupAlerts)
         toReturn.tradeRequests.addAll(tradeRequests)
         toReturn.naturalWonders.addAll(naturalWonders)
@@ -600,6 +620,8 @@ class Civilization : IsPartOfGameInfoSerialization {
         )
         yieldAll(policies.policyUniques.getMatchingUniques(uniqueType, gameContext))
         yieldAll(tech.techUniques.getMatchingUniques(uniqueType, gameContext))
+        yieldAll(civics.civicUniques.getMatchingUniques(uniqueType, gameContext))
+        yieldAll(government.governmentUniques.getMatchingUniques(uniqueType, gameContext))
         yieldAll(temporaryUniques.getMatchingTagUniques(uniqueType, gameContext))
         yieldAll(getEra().getMatchingUniques(uniqueType, gameContext))
         yieldAll(cityStateFunctions.getUniquesProvidedByCityStates(uniqueType, gameContext))
@@ -617,6 +639,8 @@ class Civilization : IsPartOfGameInfoSerialization {
             cities[i].forEachMatchingUniqueWithNonLocalEffects(uniqueType, gameContext, op)
         policies.policyUniques.forEachMatchingUnique(uniqueType, gameContext, op)
         tech.techUniques.forEachMatchingUnique(uniqueType, gameContext, op)
+        civics.civicUniques.forEachMatchingUnique(uniqueType, gameContext, op)
+        government.governmentUniques.forEachMatchingUnique(uniqueType, gameContext, op)
         temporaryUniques.forEachMatchingUnique(uniqueType, gameContext, op)
         getEra().forEachMatchingUnique(uniqueType, gameContext, op)
         cityStateFunctions.forEachUniqueProvidedByCityStates(uniqueType, gameContext, op)
@@ -640,6 +664,10 @@ class Civilization : IsPartOfGameInfoSerialization {
             yieldAll(religionManager.religion!!.founderBeliefUniqueMap.getAllUniques())
         yieldAll(policies.policyUniques.getAllUniques())
         yieldAll(tech.techUniques.getAllUniques())
+        yieldAll(tech.getPendingEurekaUniques()) // Civ VI Eureka: from not-yet-researched techs
+        yieldAll(civics.civicUniques.getAllUniques())
+        yieldAll(government.governmentUniques.getAllUniques())
+        yieldAll(civics.getPendingInspirationUniques()) // Civ VI Inspiration: from not-yet-researched civics
         yieldAll(getEra().uniqueMap.getAllUniques())
         yieldAll(gameInfo.getGlobalUniques().uniqueMap.getAllUniques())
     }.toList().asSequence() // Then convert back to a Sequence to check conditionals when triggering rather than before triggering
@@ -666,6 +694,10 @@ class Civilization : IsPartOfGameInfoSerialization {
             yieldAll(religionManager.religion!!.founderBeliefUniqueMap.getAllUniques())
         yieldAll(policies.policyUniques.getAllUniques())
         yieldAll(tech.techUniques.getAllUniques())
+        yieldAll(tech.getPendingEurekaUniques()) // Civ VI Eureka: from not-yet-researched techs
+        yieldAll(civics.civicUniques.getAllUniques())
+        yieldAll(government.governmentUniques.getAllUniques())
+        yieldAll(civics.getPendingInspirationUniques()) // Civ VI Inspiration: from not-yet-researched civics
         yieldAll(getEra().uniqueMap.getAllUniques())
         yieldAll(gameInfo.getGlobalUniques().uniqueMap.getAllUniques())
     }.toList().asSequence() // Then convert back to a Sequence to check conditionals when triggering rather than before triggering
@@ -702,6 +734,16 @@ class Civilization : IsPartOfGameInfoSerialization {
         religionManager.religion?.founderBeliefUniqueMap?.forEachMatchingUnique(trigger, gameContext, uniqueFilter, listOp)
         policies.policyUniques.forEachMatchingUnique(trigger, gameContext, uniqueFilter, listOp)
         tech.techUniques.forEachMatchingUnique(trigger, gameContext, uniqueFilter, listOp)
+        // Civ VI Eureka: from not-yet-researched techs (not present in techUniques)
+        for (eurekaUnique in tech.getPendingEurekaUniques())
+            if (uniqueFilter(eurekaUnique) && eurekaUnique.conditionalsApply(gameContext))
+                eurekaUnique.forEachMultiplied(gameContext, listOp)
+        civics.civicUniques.forEachMatchingUnique(trigger, gameContext, uniqueFilter, listOp)
+        government.governmentUniques.forEachMatchingUnique(trigger, gameContext, uniqueFilter, listOp)
+        // Civ VI Inspiration: from not-yet-researched civics (not present in civicUniques)
+        for (inspirationUnique in civics.getPendingInspirationUniques())
+            if (uniqueFilter(inspirationUnique) && inspirationUnique.conditionalsApply(gameContext))
+                inspirationUnique.forEachMultiplied(gameContext, listOp)
         getEra().uniqueMap.forEachMatchingUnique(trigger, gameContext, uniqueFilter, listOp)
         gameInfo.getGlobalUniques().uniqueMap.forEachMatchingUnique(trigger, gameContext, uniqueFilter, listOp)
         // now its safe to do the op, which might mutate the lists
@@ -945,8 +987,11 @@ class Civilization : IsPartOfGameInfoSerialization {
         questManager.setTransients(this)
         religionManager.setTransients(this) // needs to be before tech, since tech setTransients looks at all uniques
         tech.setTransients(this)
+        civics.setTransients(this)
+        government.setTransients(this)
         ruinsManager.setTransients(this)
         espionageManager.setTransients(this)
+        governorManager.setTransients(this)
         victoryManager.civInfo = this
 
         for (diplomacyManager in diplomacy.values) {

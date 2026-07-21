@@ -16,6 +16,7 @@ import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.mapunit.UnitTurnManager
 import com.unciv.logic.map.mapunit.movement.UnitMovement
 import com.unciv.models.ruleset.Ruleset
+import com.unciv.models.ruleset.District
 import com.unciv.models.ruleset.tile.ResourceType
 import com.unciv.models.ruleset.tile.Terrain
 import com.unciv.models.ruleset.tile.TerrainType
@@ -61,6 +62,11 @@ class Tile : IsPartOfGameInfoSerialization {
     var improvement: String? = null
     var improvementIsPillaged = false
 
+    /** Civ VI District placed on this tile (name of the district), if any. Set when a district finishes construction. */
+    var district: String? = null
+
+    /** Whether the [district] on this tile has been pillaged (loses its yields until repaired). */
+    var districtIsPillaged = false
     internal class ImprovementQueueEntry(
         val improvement: String, turnsToImprovement: Int
     ) : IsPartOfGameInfoSerialization {
@@ -249,6 +255,7 @@ class Tile : IsPartOfGameInfoSerialization {
         toReturn.improvementIsPillaged = improvementIsPillaged
         toReturn.roadStatus = roadStatus
         toReturn.roadIsPillaged = roadIsPillaged
+        toReturn.districtIsPillaged = districtIsPillaged
         toReturn.roadOwner = roadOwner
         toReturn.hasBottomLeftRiver = hasBottomLeftRiver
         toReturn.hasBottomRightRiver = hasBottomRightRiver
@@ -294,6 +301,13 @@ class Tile : IsPartOfGameInfoSerialization {
 
     @Readonly fun getCity(): City? = owningCity
 
+    /** The [District] placed on this tile, if this tile hosts one. Returns null while pillaged. */
+    @Readonly fun getDistrict(): District? =
+        if (districtIsPillaged) null else owningCity?.getDistrictAt(this)
+
+    /** The [District] placed on this tile, even if it is currently pillaged. */
+    @Readonly fun getUnpillagedDistrict(): District? = owningCity?.getDistrictAt(this)
+
     @Readonly internal fun getNaturalWonder(): Terrain =
             if (naturalWonder == null) throw Exception("No natural wonder exists for this tile!")
             else ruleset.terrains[naturalWonder!!]!!
@@ -324,7 +338,7 @@ class Tile : IsPartOfGameInfoSerialization {
     @Readonly fun hasImprovementInProgress() = improvementQueue.isNotEmpty()
 
     @Readonly fun getTileImprovementInProgress(): TileImprovement? = improvementQueue.firstOrNull()?.let { ruleset.tileImprovements[it.improvement] }
-    @Readonly fun isPillaged(): Boolean = improvementIsPillaged || roadIsPillaged
+    @Readonly fun isPillaged(): Boolean = improvementIsPillaged || roadIsPillaged || districtIsPillaged
 
     @Readonly fun getUnpillagedImprovement(): String? = if (improvementIsPillaged) null else improvement
 
@@ -341,6 +355,7 @@ class Tile : IsPartOfGameInfoSerialization {
     @Readonly
     fun getUnpillagedRoadImprovement(): TileImprovement? = if (roadIsPillaged) null else getRoadTileImprovement()
 
+    /** The first pillageable thing on this tile, preferring improvement, then road, then district. */
     @Readonly
     fun getImprovementToPillage(): TileImprovement? {
         if (canPillageTileImprovement())
@@ -356,6 +371,8 @@ class Tile : IsPartOfGameInfoSerialization {
             return improvement
         if (canPillageRoad())
             return roadStatus.name
+        if (canPillageDistrict())
+            return district
         return null
     }
     @Readonly
@@ -366,7 +383,8 @@ class Tile : IsPartOfGameInfoSerialization {
             return getRoadTileImprovement()!!
         return null
     }
-    @Readonly fun canPillageTile(): Boolean = canPillageTileImprovement() || canPillageRoad()
+    @Readonly fun canPillageTile(): Boolean = canPillageTileImprovement() || canPillageRoad() || canPillageDistrict()
+    @Readonly fun canPillageDistrict(): Boolean = district != null && !districtIsPillaged
     @Readonly
     fun canPillageTileImprovement(): Boolean {
         val improvement = tileImprovement ?: return false
@@ -818,6 +836,14 @@ class Tile : IsPartOfGameInfoSerialization {
     @Readonly fun isMarkedForCreatesOneImprovement(improvement: String) =
         turnsToImprovement < 0 && improvementInProgress == improvement
 
+    /** Checks if this tile is marked as target tile for a building creating a specific [district] */
+    @Readonly fun isMarkedForCreatesOneDistrict(district: String) =
+        districtToCreate == district
+
+    /** Transient marker: name of the district a queued building will create here. Cleared on completion. */
+    @Transient
+    var districtToCreate: String? = null
+
     @Readonly
     private fun approximateMajorDepositDistribution(): Double {
         // We can't replicate the MapRegions resource distributor, so let's try to get
@@ -1133,10 +1159,21 @@ class Tile : IsPartOfGameInfoSerialization {
     }
 
     /** Sets tile improvement to pillaged (without prior checks for validity)
-     *  and ensures that matching [UniqueType.CreatesOneImprovement] queued buildings are removed. */
+     *  and ensures that matching [UniqueType.CreatesOneImprovement] queued buildings are removed.
+     *  Also pillages a [district] on this tile if present. */
     fun setPillaged() {
         if (!canPillageTile())
             return
+
+        // A pillaged district loses its yields but is not destroyed; it can be repaired.
+        if (canPillageDistrict()) {
+            districtIsPillaged = true
+            owningCity?.reassignPopulationDeferred()
+            if (owningCity != null)
+                owningCity!!.civ.cache.updateCivResources()
+            return
+        }
+
         // http://well-of-souls.com/civ/civ5_improvements.html says that naval improvements are destroyed upon pillage
         //    and I can't find any other sources so I'll go with that
         if (!isLand) {
@@ -1171,7 +1208,9 @@ class Tile : IsPartOfGameInfoSerialization {
 
     fun setRepaired() {
         improvementQueue.clear()
-        if (improvementIsPillaged)
+        if (districtIsPillaged) {
+            districtIsPillaged = false
+        } else if (improvementIsPillaged)
             improvementIsPillaged = false
         else
             roadIsPillaged = false

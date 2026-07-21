@@ -9,6 +9,7 @@ import com.unciv.logic.map.BFS
 import com.unciv.logic.map.TileMap
 import com.unciv.logic.map.tile.Tile
 import com.unciv.models.ruleset.Building
+import com.unciv.models.ruleset.District
 import com.unciv.models.ruleset.INonPerpetualConstruction
 import com.unciv.models.ruleset.PerpetualConstruction
 import com.unciv.models.ruleset.tile.ResourceType
@@ -405,6 +406,39 @@ object Automation {
         val improvement = tile.tileImprovement ?: return false
         return !improvement.hasUnique(UniqueType.AutomatedUnitsWillNotReplace, gameContext) &&
             !improvement.hasUnique(UniqueType.Irremovable, gameContext)
+    }
+
+    /** Support [UniqueType.CreatesOneDistrict] unique - find best tile for district placement automation */
+    @Readonly
+    fun getTileForDistrict(city: City, district: District): Tile? {
+        val civ = city.civ
+        return city.getTiles().filter {
+            it.getCity() == city
+                && !it.isCityCenter()
+                && it.district == null
+                && (district.onlyBuildableOn.isEmpty() || it.matchesFilter(district.onlyBuildableOn, civ))
+        }.maxByOrNull { rankTileForDistrict(city, district, it) }
+    }
+
+    /** Scores a tile for placing [district], rewarding own stats and adjacency bonuses. */
+    @Readonly
+    private fun rankTileForDistrict(city: City, district: District, tile: Tile): Float {
+        val civ = city.civ
+        var rank = rankStatsValue(district.cloneStats(), civ)
+        for (unique in district.getMatchingUniques(UniqueType.StatsForAdjacentDistrict)) {
+            val adjacentSame = tile.neighbors.count { it.getDistrict()?.name == unique.params[1] }
+            rank += rankStatsValue(unique.stats, civ) * adjacentSame
+        }
+        // Reward adjacency to resource/terrain that Civ VI districts commonly benefit from
+        for (neighbor in tile.neighbors) {
+            if (neighbor.resource != null) rank += 1f
+            if (neighbor.terrainHasUnique(UniqueType.ProvidesResources)) rank += 0.5f
+        }
+        // Penalize tiles that hold a valuable bonus resource we'd rather improve
+        if (tile.resource != null) rank -= 4f
+        // Slightly prefer tiles adjacent to the city center for compactness
+        if (tile.neighbors.contains(city.getCenterTile())) rank += 0.5f
+        return rank
     }
 
     /** Support [UniqueType.CreatesOneImprovement] unique - find best tile for placement automation */

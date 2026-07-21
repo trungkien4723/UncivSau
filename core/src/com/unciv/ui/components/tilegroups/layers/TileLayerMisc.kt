@@ -211,15 +211,20 @@ class TileLayerImprovement(tileGroup: TileGroup, size: Float) : TileLayer(tileGr
     var improvementIcon: Actor? = null
         private set  // Getter public for BattleTable to display as City Combatant
 
+    /** Civ VI District overlay: a short label on the tile hosting a district. */
+    private var districtID: String? = null
+    private var districtIcon: Actor? = null
 
     override fun doUpdate(viewingCiv: Civilization?) {
         val showResourcesAndImprovements = if (tileGroup is WorldTileGroup)
             UncivGame.Current.settings.showResourcesAndImprovements else true
 
         updateImprovementIcon(viewingCiv, showResourcesAndImprovements)
+        updateDistrictIcon(showResourcesAndImprovements)
     }
 
     fun dimImprovement(dim: Boolean) { improvementIcon?.color?.a = if (dim) 0.5f else 1f }
+
 
     private fun updateImprovementIcon(viewingCiv: Civilization?, show: Boolean) {
         // If improvement has changed, force new icon next time it is needed
@@ -247,12 +252,36 @@ class TileLayerImprovement(tileGroup: TileGroup, size: Float) : TileLayer(tileGr
         improvementIcon?.isVisible = show
     }
 
+    private fun updateDistrictIcon(show: Boolean) {
+        val districtName = tile.district
+        val newDistrictID = if (districtName == null) null
+        else if (tile.districtIsPillaged) "$districtName-Pillaged" else districtName
+        if (districtID != newDistrictID) {
+            districtID = newDistrictID
+            districtIcon?.let { removeOwnedActor(it) }
+            districtIcon = null
+        }
+        if (districtName != null && show && districtIcon == null) {
+            val labelText = if (tile.districtIsPillaged) "$districtName (P)" else districtName
+            val label = labelText.toLabel(fontSize = 14, alignment = Align.center)
+                .apply {
+                    setFontColor(if (tile.districtIsPillaged) Color.RED else Color.WHITE)
+                }
+            label.x = tileX + (tileGroup.width - label.width) / 2
+            label.y = tileY + (tileGroup.height - label.height) / 2 + 4f
+            addOwnedActor(label)
+            districtIcon = label
+        }
+        districtIcon?.isVisible = show && districtName != null
+    }
+
     override fun determineVisibility() {
-        isVisible = improvementIcon?.isVisible == true
+        isVisible = improvementIcon?.isVisible == true || districtIcon?.isVisible == true
     }
 
     fun reset() {
         updateImprovementIcon(null, false)
+        updateDistrictIcon(false)
     }
 }
 

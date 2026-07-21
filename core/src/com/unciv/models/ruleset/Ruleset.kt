@@ -9,10 +9,17 @@ import com.unciv.logic.BackwardCompatibility.updateDeprecations
 import com.unciv.logic.GameInfo
 import com.unciv.logic.map.tile.RoadStatus
 import com.unciv.models.metadata.BaseRuleset
+import com.unciv.models.ruleset.nation.Agenda
 import com.unciv.models.ruleset.nation.CityStateType
 import com.unciv.models.ruleset.nation.Difficulty
 import com.unciv.models.ruleset.nation.Nation
 import com.unciv.models.ruleset.nation.Personality
+import com.unciv.models.ruleset.civic.Civic
+import com.unciv.models.ruleset.civic.CivicColumn
+import com.unciv.models.ruleset.government.Government
+import com.unciv.models.ruleset.government.PolicyCard
+import com.unciv.models.ruleset.District
+import com.unciv.models.ruleset.Governor
 import com.unciv.models.ruleset.tech.Era
 import com.unciv.models.ruleset.tech.TechColumn
 import com.unciv.models.ruleset.tech.Technology
@@ -70,6 +77,11 @@ enum class RulesetFile(
     }),
     Policies("Policies.json", { policies.values.asSequence() }),
     Techs("Techs.json", { technologies.values.asSequence() }),
+    Civics("Civics.json", { civics.values.asSequence() }),
+    Governments("Governments.json", { governments.values.asSequence() }),
+    PolicyCards("PolicyCards.json", { policyCards.values.asSequence() }),
+    Districts("Districts.json", { districts.values.asSequence() }),
+    Governors("Governors.json", { governors.values.asSequence() }),
     Terrains("Terrains.json", { terrains.values.asSequence() }),
     Tutorials("Tutorials.json", { tutorials.values.asSequence() }),
     TileImprovements("TileImprovements.json", { tileImprovements.values.asSequence() }),
@@ -91,7 +103,8 @@ enum class RulesetFile(
     CityStateTypes("CityStateTypes.json", getUniques =
         { cityStateTypes.values.asSequence().flatMap { it.allyBonusUniqueMap.getAllUniques() + it.friendBonusUniqueMap.getAllUniques() } },
         getINamed = { cityStateTypes.values.asSequence() }),
-    Personalities("Personalities.json", { personalities.values.asSequence() }),
+        Personalities("Personalities.json", { personalities.values.asSequence() }),
+        Agendas("Agendas.json", { agendas.values.asSequence() }),
     Events("Events.json", { events.values.asSequence() + events.values.flatMap { it.choices } }),
     GlobalUniques("GlobalUniques.json", { sequenceOf(globalUniques) }),
     ModOptions("ModOptions.json", getUniques = { modOptions.uniqueObjects.asSequence() }),
@@ -140,6 +153,12 @@ class Ruleset {
     val specialists = LinkedHashMap<String, Specialist>()
     val technologies = LinkedHashMap<String, Technology>()
     val techColumns = ArrayList<TechColumn>()
+    val civics = LinkedHashMap<String, Civic>()
+    val civicColumns = ArrayList<CivicColumn>()
+    val governments = LinkedHashMap<String, Government>()
+    val policyCards = LinkedHashMap<String, PolicyCard>()
+    val districts = LinkedHashMap<String, District>()
+    val governors = LinkedHashMap<String, Governor>()
     val terrains = LinkedHashMap<String, Terrain>()
     val tileImprovements = LinkedHashMap<String, TileImprovement>()
     val tileResources = LinkedHashMap<String, TileResource>()
@@ -151,6 +170,7 @@ class Ruleset {
     var victories = LinkedHashMap<String, Victory>()
     var cityStateTypes = LinkedHashMap<String, CityStateType>()
     val personalities = LinkedHashMap<String, Personality>()
+    val agendas = LinkedHashMap<String, Agenda>()
     val events = LinkedHashMap<String, Event>()
     var modOptions = ModOptions()
     //endregion
@@ -298,6 +318,12 @@ class Ruleset {
             }
         technologies.putAll(ruleset.technologies)
         techColumns.addAll(ruleset.techColumns)
+        civics.putAll(ruleset.civics)
+        civicColumns.addAll(ruleset.civicColumns)
+        governments.putAll(ruleset.governments)
+        policyCards.putAll(ruleset.policyCards)
+        districts.putAll(ruleset.districts)
+        governors.putAll(ruleset.governors)
         terrains.putAll(ruleset.terrains)
         tileImprovements.putAll(ruleset.tileImprovements)
         tileResources.putAll(ruleset.tileResources)
@@ -313,6 +339,7 @@ class Ruleset {
             }
         units.putAll(ruleset.units)
         personalities.putAll(ruleset.personalities)
+        agendas.putAll(ruleset.agendas)
         events.putAll(ruleset.events)
         modOptions.uniques.addAll(ruleset.modOptions.uniques)
         modOptions.constants.merge(ruleset.modOptions.constants)
@@ -340,6 +367,12 @@ class Ruleset {
         specialists.clear()
         technologies.clear()
         techColumns.clear()
+        civics.clear()
+        civicColumns.clear()
+        governments.clear()
+        policyCards.clear()
+        districts.clear()
+        governors.clear()
         terrains.clear()
         tileImprovements.clear()
         tileResources.clear()
@@ -351,6 +384,7 @@ class Ruleset {
         victories.clear()
         cityStateTypes.clear()
         personalities.clear()
+        agendas.clear()
         events.clear()
     }
 
@@ -391,6 +425,45 @@ class Ruleset {
                     technologies[tech.name] = tech
                 }
             }
+        }
+
+        val civicFile = RulesetFile.Civics.file()
+        if (civicFile.exists()) {
+            val civicColumns = json().fromJsonFile(Array<CivicColumn>::class.java, civicFile)
+            for (civicColumn in civicColumns) {
+                this.civicColumns.add(civicColumn)
+                for (civic in civicColumn.civics) {
+                    if (civic.cost == 0) civic.cost = civicColumn.civicCost
+                    civic.column = civicColumn
+                    civic.originRuleset = name
+                    civics[civic.name] = civic
+                }
+            }
+        }
+
+        val governmentsFile = RulesetFile.Governments.file()
+        if (governmentsFile.exists()) {
+            governments += createHashmap(json().fromJsonFile(Array<Government>::class.java, governmentsFile))
+        }
+
+        val policyCardsFile = RulesetFile.PolicyCards.file()
+        if (policyCardsFile.exists()) {
+            policyCards += createHashmap(json().fromJsonFile(Array<PolicyCard>::class.java, policyCardsFile))
+        }
+
+        val districtsFile = RulesetFile.Districts.file()
+        if (districtsFile.exists()) {
+            districts += createHashmap(json().fromJsonFile(Array<District>::class.java, districtsFile))
+        }
+
+        val governorsFile = RulesetFile.Governors.file()
+        if (governorsFile.exists()) {
+            governors += createHashmap(json().fromJsonFile(Array<Governor>::class.java, governorsFile))
+        }
+
+        val agendasFile = RulesetFile.Agendas.file()
+        if (agendasFile.exists()) {
+            agendas += createHashmap(json().fromJsonFile(Array<Agenda>::class.java, agendasFile))
         }
 
         val buildingsFile = RulesetFile.Buildings.file()
