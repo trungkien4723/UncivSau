@@ -120,8 +120,8 @@
             {"text": "Rivers", "link":"Terrain/River"},
             {"text": "Oasis", "link":"Terrain/Oasis"},
             {"text": "Farm", "link":"Improvement/Farm"},
-            {"text": "Civil Service", "link":"Technology/Civil Service"},
-            {"text": "Fertilizer", "link":"Technology/Fertilizer"}
+            {"text": "Civil Service", "link":"Civic/Civil Service"},
+            {"text": "Fertilizer", "link":"Technology/Chemistry"}
         ]
 	},
 	{
@@ -266,8 +266,8 @@
             {"text": "Rivers", "link":"Terrain/River"},
             {"text": "Lakes", "link":"Terrain/Lakes"},
             {"text": "Farm", "link":"Improvement/Farm"},
-            {"text": "Civil Service", "link":"Technology/Civil Service"},
-            {"text": "Fertilizer", "link":"Technology/Fertilizer"}
+            {"text": "Civil Service", "link":"Civic/Civil Service"},
+            {"text": "Fertilizer", "link":"Technology/Chemistry"}
         ]
 	},
 	{
@@ -325,8 +325,8 @@
             {"text": "Farm", "link":"Improvement/Farm"},
             {"text": "Road", "link":"Improvement/Road"},
             {"text": "Engineering", "link":"Technology/Engineering"},
-            {"text": "Civil Service", "link":"Technology/Civil Service"},
-            {"text": "Fertilizer", "link":"Technology/Fertilizer"},
+            {"text": "Civil Service", "link":"Civic/Civil Service"},
+            {"text": "Fertilizer", "link":"Technology/Chemistry"},
             {"text": "Amphibious", "link":"Promotion/Amphibious"}
         ]
     },

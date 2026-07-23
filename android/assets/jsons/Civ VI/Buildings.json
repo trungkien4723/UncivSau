@@ -209,7 +209,7 @@
         ],
         "amenities": 2,
         "hurryCostModifier": 25,
-        "requiredTech": "Trapping"
+        "requiredTech": "Animal Husbandry"
     },
     {
         "name": "Water Mill",
@@ -220,7 +220,7 @@
         "uniques": [
             "Must be on [River]"
         ],
-        "requiredTech": "The Wheel"
+        "requiredTech": "Wheel"
     },
     {
         "name": "Floating Gardens",
@@ -237,7 +237,7 @@
         "percentStatBonus": {
             "food": 15
         },
-        "requiredTech": "The Wheel"
+        "requiredTech": "Wheel"
     },
     {
         "name": "Walls",
@@ -340,7 +340,7 @@
             "[+1 Food] from [Coast] tiles [in this city]",
             "[+1 Food] from [Fish] tiles [in this city]"
         ],
-        "requiredTech": "Optics",
+        "requiredTech": "Sailing",
         "district": "Harbor"
     },
     {
@@ -358,7 +358,7 @@
             "[+1] Sight <for [{Military} {Water}] units>",
             "Gain a free [Lighthouse] [in this city]"
         ],
-        "requiredTech": "Optics",
+        "requiredTech": "Sailing",
         "quote": "'They that go down to the sea in ships, that do business in great waters; these see the works of the Lord, and his wonders in the deep.' - The Bible, Psalms 107:23-24"
     },
     {
@@ -439,7 +439,7 @@
         "requiredBuilding": "Shrine",
         "maintenance": 2,
         "hurryCostModifier": 25,
-        "requiredTech": "Philosophy",
+        "requiredCivic": "Political Philosophy",
         "uniques": [
             "Only available <when religion is enabled>",
             "Destroyed when the city is captured"
@@ -458,7 +458,7 @@
         "amenities": 2,
         "requiredBuilding": "Shrine",
         "hurryCostModifier": 25,
-        "requiredTech": "Philosophy"
+        "requiredCivic": "Political Philosophy"
     },
     {
         "name": "Mud Pyramid Mosque",
@@ -469,7 +469,7 @@
         "culture": 2,
         "faith": 2,
         "requiredBuilding": "Shrine",
-        "requiredTech": "Philosophy"
+        "requiredCivic": "Political Philosophy"
     },
     {
         "name": "National College",
@@ -484,7 +484,7 @@
             "Only available <if [Library] is constructed in all [non-[Puppeted]] cities>",
             "Cost increases by [30] per owned city"
         ],
-        "requiredTech": "Philosophy"
+        "requiredCivic": "Political Philosophy"
     },
     {
         "name": "The Oracle",
@@ -497,7 +497,7 @@
 			"EraScore: [4]",
             "Free Social Policy"
         ],
-        "requiredTech": "Philosophy",
+        "requiredCivic": "Political Philosophy",
         "quote": "'The ancient Oracle said that I was the wisest of all the Greeks. It is because I alone, of all the Greeks, know that I know nothing' - Socrates"
     },
     {
@@ -512,7 +512,7 @@
         "uniques": [
             "Destroyed when the city is captured"
         ],
-        "requiredTech": "Drama and Poetry",
+        "requiredCivic": "Drama and Poetry",
         "district": "Theater Square"
     },
     {
@@ -525,7 +525,7 @@
             "[+25]% Great Person generation [in this city]",
             "Cost increases by [30] per owned city"
         ],
-        "requiredTech": "Drama and Poetry"
+        "requiredCivic": "Drama and Poetry"
     },
     {
         "name": "Market",
@@ -585,7 +585,7 @@
             "Must be next to [Desert]",
             "[+1 Food, +1 Production, +1 Gold] from [Desert] tiles without [Flood plains] [in this city]",
             "Gain a free [Amphitheater] [in this city]",
-            "[+6 Culture] [in this city] <after discovering [Archaeology]>"
+            "[+6 Culture] [in this city] <after discovering [Scientific Theory]>"
         ],
         "requiredTech": "Currency",
         "quote": "'...who drinks the water I shall give him, says the Lord, will have a spring inside him welling up for eternal life. Let them bring me to your holy mountain in the place where you dwell. Across the desert and through the mountain to the Canyon of the Crescent Moon...' - Indiana Jones"
@@ -609,7 +609,7 @@
         "isWonder": true,
         "uniques": [
 			"EraScore: [4]",
-            "Enemy [Land] units must spend [1] extra movement points when inside your territory <before discovering [Dynamite]> <Suppress warning [*contains a conditional on a unit movement unique*]>",
+            "Enemy [Land] units must spend [1] extra movement points when inside your territory <before discovering [Chemistry]> <Suppress warning [*contains a conditional on a unit movement unique*]>",
             "Gain a free [Walls] [in this city]"
         ],
         "requiredTech": "Engineering",
@@ -652,7 +652,7 @@
         ],
         "hurryCostModifier": 25,
         "maintenance": 1,
-        "requiredTech": "Theology"
+        "requiredCivic": "Theology"
     },
     {
         "name": "Hagia Sophia",
@@ -667,7 +667,7 @@
             "Free [Great Prophet] appears",
             "Only available <when religion is enabled>"
         ],
-        "requiredTech": "Theology",
+        "requiredCivic": "Theology",
         "quote": "'For it soars to a height to match the sky, and as if surging up from among the other buildings it stands on high and looks down upon the remainder of the city, adorning it, because it is a part of it, but glorying in its own beauty' - Procopius, De Aedificis"
     },
     {
@@ -685,7 +685,7 @@
             "All newly-trained [Missionary] units [in this city] receive the [Devout] promotion",
             "All newly-trained [Great Prophet] units [in this city] receive the [Devout] promotion"
         ],
-        "requiredTech": "Theology",
+        "requiredCivic": "Theology",
         "quote": "'With the magnificence of eternity before us, let time, with all its fluctuations, dwindle into its own littleness.' - Thomas Chalmers"
     },
     {
@@ -700,7 +700,7 @@
             "Only available <when religion is enabled>",
             "Can only be built <in [Holy] cities>"
         ],
-        "requiredTech": "Theology",
+        "requiredCivic": "Theology",
         "isNationalWonder": true,
         "district": "Holy Site"
     },
@@ -716,7 +716,7 @@
 			"EraScore: [4]",
             "[+50]% Golden Age length"
         ],
-        "requiredTech": "Civil Service",
+        "requiredTech": "Education",
         "quote": "'The katun is established at Chichen Itza. The settlement of the Itza shall take place there. The quetzal shall come, the green bird shall come. Ah Kantenal shall come. It is the word of God. The Itza shall come.' - The Books of Chilam Balam"
     },
     {
@@ -729,7 +729,7 @@
             "Only available <if [Market] is constructed in all [non-[Puppeted]] cities>",
             "Cost increases by [30] per owned city"
         ],
-        "requiredTech": "Guilds"
+        "requiredCivic": "Guilds"
     },
     {
         "name": "Machu Picchu",
@@ -744,7 +744,7 @@
             "[+25]% [Gold] from Trade Routes",
             "Must have an owned [{non-[Natural Wonder]} {Mountain}] within [2] tiles"
         ],
-        "requiredTech": "Guilds",
+        "requiredCivic": "Guilds",
         "quote": "'Few romances can ever surpass that of the granite citadel on top of the beetling precipices of Machu Picchu, the crown of Inca Land.' - Hiram Bingham"
     },
     {
@@ -800,7 +800,7 @@
             "Connects trade routes over water",
             "Must be next to [Coast]"
         ],
-        "requiredTech": "Compass"
+        "requiredTech": "Sailing"
     },
     {
         "name": "University",
@@ -873,7 +873,7 @@
         "cityHealth": 25,
         "hurryCostModifier": 25,
         "requiredBuilding": "Walls",
-        "requiredTech": "Chivalry",
+        "requiredTech": "Machinery",
         "uniques": [
             "Destroyed when the city is captured"
         ]
@@ -892,7 +892,7 @@
             "[+1 Gold] [in this city] <after discovering [Flight]>",
             "Destroyed when the city is captured"
         ],
-        "requiredTech": "Chivalry"
+        "requiredTech": "Machinery"
     },
     {
         "name": "Alhambra",
@@ -909,7 +909,7 @@
             "All newly-trained [relevant] units [in this city] receive the [Drill I] promotion",
             "Gain a free [Castle] [in this city]"
         ],
-        "requiredTech": "Chivalry",
+        "requiredTech": "Machinery",
         "quote": "'Justice is an unassailable fortress, built on the brow of a mountain which cannot be overthrown by the violence of torrents, nor demolished by the force of armies.' - Joseph Addison"
     },
     {
@@ -932,7 +932,7 @@
             "Great Merchant": 1
         },
         "isWonder": true,
-        "requiredTech": "Physics",
+        "requiredTech": "Machinery",
         "quote": "'Architecture has recorded the great ideas of the human race. Not only every religious symbol, but every human thought has its page in that vast book.' - Victor Hugo"
     },
     {
@@ -969,7 +969,7 @@
         "hurryCostModifier": 10,
         "requiredBuilding": "Amphitheater",
         "maintenance": 2,
-        "requiredTech": "Acoustics",
+        "requiredTech": "Education",
         "uniques": [
             "Destroyed when the city is captured"
         ]
@@ -986,7 +986,7 @@
         "hurryCostModifier": 10,
         "requiredBuilding": "Amphitheater",
         "maintenance": 2,
-        "requiredTech": "Acoustics",
+        "requiredTech": "Education",
         "uniques": [
             "Destroyed when the city is captured"
         ]
@@ -1002,7 +1002,7 @@
 			"EraScore: [4]",
             "[+25]% [Culture] [in all cities]"
         ],
-        "requiredTech": "Acoustics",
+        "requiredTech": "Education",
         "quote": "'I live and love in God's peculiar light.' - Michelangelo Buonarroti"
     },
     {
@@ -1066,7 +1066,7 @@
         "hurryCostModifier": 10,
         "maintenance": 2,
         "requiredBuilding": "Colosseum",
-        "requiredTech": "Printing Press",
+        "requiredTech": "Printing",
         "district": "Theater Square"
     },
     {
@@ -1081,7 +1081,7 @@
             "[+25]% Great Person generation [in all cities]",
             "Free Great Person"
         ],
-        "requiredTech": "Printing Press",
+        "requiredTech": "Printing",
         "quote": "'Don't clap too hard - it's a very old building.' - John Osbourne"
     },
     {
@@ -1109,7 +1109,7 @@
             "Must be next to [Coast]",
             "[+15]% Production when constructing [Water] units [in this city]"
         ],
-        "requiredTech": "Navigation",
+        "requiredTech": "Astronomy",
         "district": "Harbor"
     },
     {
@@ -1124,7 +1124,7 @@
             "Only available <if [Opera House] is constructed in all [non-[Puppeted]] cities>",
             "Cost increases by [30] per owned city"
         ],
-        "requiredTech": "Architecture"
+        "requiredTech": "Economics"
     },
     {
         "name": "Taj Mahal",
@@ -1138,7 +1138,7 @@
 			"EraScore: [4]",
             "Empire enters golden age"
         ],
-        "requiredTech": "Architecture",
+        "requiredTech": "Economics",
         "quote": "'The Taj Mahal rises above the banks of the river like a solitary tear suspended on the cheek of time.' - Rabindranath Tagore"
     },
     {
@@ -1153,7 +1153,7 @@
             "Free [Great Scientist] appears",
             "Science gained from research agreements [+50]%"
         ],
-        "requiredTech": "Architecture",
+        "requiredTech": "Economics",
         "quote": "'Things always seem fairer when we look back at them, and it is out of that inaccessible tower of the past that Longing leans and beckons.' - James Russell Lowell"
     },
     {
@@ -1195,7 +1195,7 @@
         "cityHealth": 25,
         "hurryCostModifier": 25,
         "requiredBuilding": "Castle",
-        "requiredTech": "Metallurgy",
+        "requiredTech": "Steel",
         "uniques": [
             "Destroyed when the city is captured"
         ]
@@ -1212,7 +1212,7 @@
 			"EraScore: [4]",
             "[+25]% City Strength from defensive buildings"
         ],
-        "requiredTech": "Metallurgy",
+        "requiredTech": "Steel",
         "quote": "'The Kremlin is constantly changing the rules of the game to suit its purposes. We are not playing chess, we're playing roulette.' - Garry Kasparov"
     },
     {
@@ -1224,7 +1224,7 @@
         "requiredBuilding": "Opera House",
         "maintenance": 3,
         "hurryCostModifier": 0,
-        "requiredTech": "Archaeology",
+        "requiredTech": "Scientific Theory",
         "uniques": [
             "Destroyed when the city is captured"
         ]
@@ -1240,7 +1240,7 @@
 			"EraScore: [4]",
             "[2] free [Great Artist] units appear"
         ],
-        "requiredTech": "Archaeology",
+        "requiredTech": "Scientific Theory",
         "quote": "'Every genuine work of art has as much reason for being as the earth and the sun' - Ralph Waldo Emerson"
     },
     {
@@ -1325,7 +1325,7 @@
         "requiredBuilding": "Aqueduct",
         "maintenance": 2,
         "hurryCostModifier": 0,
-        "requiredTech": "Biology"
+        "requiredTech": "Scientific Theory"
     },
     {
         "name": "Stock Exchange",
@@ -1488,7 +1488,7 @@
         "science": 3,
         "maintenance": 2,
         "requiredBuilding": "University",
-        "requiredTech": "Climate Change",
+        "requiredTech": "Predictive Systems",
         "uniques": [
             "PowerConsumption: 1",
             "[+3] [Science] [in this city]",
@@ -1591,7 +1591,7 @@
         "production": 5,
         "maintenance": 4,
         "requiredBuilding": "Campus",
-        "requiredTech": "Climate Change",
+        "requiredTech": "Predictive Systems",
         "uniques": [
             "PowerConsumption: 2",
             "[+1] [Science] for each [District] in this city",
@@ -1603,7 +1603,7 @@
         "production": 3,
         "maintenance": 2,
         "requiredBuilding": "Research Lab",
-        "requiredTech": "Climate Change",
+        "requiredTech": "Predictive Systems",
         "uniques": [
             "PowerConsumption: 1",
             "[+2] [Science] [in this city]",
@@ -1694,11 +1694,11 @@
         ]
     },
     {
-        "name": "Globalization",
+        "name": "Globalization Tech",
         "cost": 500,
         "isWonder": true,
         "maintenance": 4,
-        "requiredTech": "Globalization",
+        "requiredCivic": "Globalization",
         "uniques": [
             "EraScore: [4]",
             "DiplomaticFavor: 5",
@@ -1710,7 +1710,7 @@
         "name": "Information Warfare",
         "production": 4,
         "maintenance": 3,
-        "requiredTech": "Information Warfare",
+        "requiredCivic": "Information Warfare",
         "uniques": [
             "DiplomaticFavor: 2",
             "[+1] Diplomatic Victory point per turn"
@@ -1720,7 +1720,7 @@
         "name": "Flood Barrier",
         "cost": 400,
         "maintenance": 2,
-        "requiredTech": "Climate Change",
+        "requiredTech": "Predictive Systems",
         "uniques": [
             "Prevents flooding on this tile",
             "PowerProduction: 1"
@@ -1786,7 +1786,7 @@
         "greatPersonPoints": {
             "Great Merchant": 2
         },
-        "requiredTech": "Globalization",
+        "requiredCivic": "Globalization",
         "uniques": [
 			"EraScore: [4]",
             "Triggers voting for the Diplomatic Victory",
