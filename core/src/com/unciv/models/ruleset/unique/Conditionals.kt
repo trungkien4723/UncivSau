@@ -138,7 +138,7 @@ object Conditionals {
                 checkResourceOrStatAmount(conditional.params[2], conditional.params[0].toFloat(), conditional.params[1].toFloat(), unique?.isModifiedByGameSpeed() == true)
                     { current, lowerLimit, upperLimit -> current >= lowerLimit && current <= upperLimit }
 
-            UniqueType.ConditionalHappy -> checkOnCiv { stats.happiness >= 0 }
+            UniqueType.ConditionalHappy -> checkOnCiv { stats.housing >= 0 }
             UniqueType.ConditionalGoldenAge -> checkOnCiv { goldenAges.isGoldenAge() }
             UniqueType.ConditionalNotGoldenAge -> checkOnCiv { !goldenAges.isGoldenAge() }
 
@@ -240,7 +240,6 @@ object Conditionals {
                 religion.getMajorityReligion()?.isEnhancedReligion() == true }
             UniqueType.ConditionalCityThisReligion -> checkOnCity {
                 religion.getMajorityReligion() == state.relevantCiv?.religionManager?.religion }
-            UniqueType.ConditionalWLTKD -> checkOnCity { isWeLoveTheKingDayActive() }
             UniqueType.ConditionalCityWithBuilding ->
                 checkOnCity { cityConstructions.containsBuildingOrEquivalent(conditional.params[0]) }
             UniqueType.ConditionalCityWithoutBuilding ->

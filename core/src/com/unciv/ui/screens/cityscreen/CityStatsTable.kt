@@ -196,25 +196,6 @@ class CityStatsTable(private val cityScreen: CityScreen) : Table() {
         if (resourceTable.cells.notEmpty())
             tableWithIcons.add(resourceTable)
 
-        val (wltkIcon: Actor?, wltkLabel: Label?) = when {
-            city.isWeLoveTheKingDayActive() ->
-                ImageGetter.getStatIcon("Food") to
-                "We Love The King Day for another [${city.getFlag(CityFlags.WeLoveTheKing)}] turns".toLabel(Color.LIME)
-            city.demandedResource.isNotEmpty() ->
-                ImageGetter.getResourcePortrait(city.demandedResource, 20f) to
-                "Demanding [${city.demandedResource}]".toLabel(Color.CORAL, hideIcons = true)
-            else -> null to null
-        }
-        if (wltkLabel != null) {
-            tableWithIcons.add(Table().apply {
-                add(wltkIcon!!).size(20f).padRight(5f)
-                add(wltkLabel).row()
-            })
-            wltkLabel.onClick {
-                cityScreen.openCivilopedia("Tutorial/We Love The King Day")
-            }
-        }
-
         lowerTable.add(tableWithIcons).row()
         
         addPowerDeficitInfo()
@@ -458,7 +439,11 @@ class CityStatsTable(private val cityScreen: CityScreen) : Table() {
                     }
                 }
                 add(icon).size(27f).padRight(3f)
-                val valueToDisplay = if (stat == Stat.Happiness) city.cityStats.happinessList.values.sum() else amount
+                val valueToDisplay = when (stat) {
+                    Stat.Housing -> city.cityStats.housingList.values.sum()
+                    Stat.Amenities -> city.cityStats.amenitiesList.values.sum()
+                    else -> amount
+                }
                 add(round(valueToDisplay).toInt().toLabel()).padRight(5f)
                 if (cityScreen.isCrampedPortrait() && (expanderIsOpen == null || !expanderIsOpen) && stat == Stat.Gold) {
                     row()

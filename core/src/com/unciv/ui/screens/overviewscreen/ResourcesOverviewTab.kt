@@ -111,8 +111,7 @@ class ResourcesOverviewTab(
             return amount < -getOrZero(resource, ExtraInfoOrigin.Stockpile.name) // Negative income won't run into deficit next turn
         if (origin != total)
             return amount < 0 && sumBy(resource) < 0 // E.g. units consuming is only bad if overcommitted
-        if (amount != 0) return amount < 0
-        return extraDrilldown.getOrZero(resource, ExtraInfoOrigin.DemandingWLTK.name) > 0
+        return amount != 0 && amount < 0
     }
 
     private fun getResourceImage(name: String) =
@@ -138,10 +137,6 @@ class ResourcesOverviewTab(
     ) {
         Unimproved("Unimproved", "Unimproved",
             "Number of tiles with this resource\nin your territory, without an\nappropriate improvement to use it"),
-        CelebratingWLTK("We Love The King Day", "WLTK+",
-            "Number of your cities celebrating\n'We Love The King Day' thanks\nto access to this resource"),
-        DemandingWLTK("WLTK demand", "WLTK-",
-            "Number of your cities\ndemanding this resource for\n'We Love The King Day'"),
         TradeOffer("Trade offer","Trade offer", "Resources we're offering in trades"),
         Stockpile("Stockpiled resources", "Stockpile", "The currently accumulated stockpile amount"),
         ;
@@ -287,14 +282,6 @@ class ResourcesOverviewTab(
 
         // Show resources relevant to WTLK day and/or needing improvement
         for (city in viewingPlayer.cities) {
-            if (city.demandedResource.isNotEmpty()) {
-                val wltkResource = gameInfo.ruleset.tileResources[city.demandedResource]!!
-                if (city.isWeLoveTheKingDayActive()) {
-                    newResourceSupplyList.add(wltkResource, ExtraInfoOrigin.CelebratingWLTK.name)
-                } else {
-                    newResourceSupplyList.add(wltkResource, ExtraInfoOrigin.DemandingWLTK.name)
-                }
-            }
             city.addUnimproved()
         }
 

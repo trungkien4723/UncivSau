@@ -109,11 +109,16 @@ object RulesetCache : HashMap<String, Ruleset>() {
         return errorLines
     }
 
-    fun getVanillaRuleset() = this[BaseRuleset.Civ_V_Vanilla.fullName]!!.clone() // safeguard, so no-one edits the base ruleset by mistake
+    fun getVanillaRuleset(): Ruleset {
+        val vanilla = this[BaseRuleset.Civ_VI.fullName]
+            ?: values.firstOrNull { it.modOptions?.isBaseRuleset == true }
+            ?: throw UncivShowableException("Base ruleset '${BaseRuleset.Civ_VI.fullName}' could not be found!")
+        return vanilla.clone()
+    }
 
     fun getSortedBaseRulesets(): List<String> {
         val baseRulesets = values
-            .filter { it.modOptions.isBaseRuleset }
+            .filter { it.modOptions?.isBaseRuleset == true }
             .map { it.name }
             .distinct()
         if (baseRulesets.size < 2) return baseRulesets
@@ -147,14 +152,13 @@ object RulesetCache : HashMap<String, Ruleset>() {
      */
     fun getComplexRuleset(mods: LinkedHashSet<String>, optionalBaseRuleset: String? = null): Ruleset {
         val baseRuleset =
-                if (containsKey(optionalBaseRuleset) && this[optionalBaseRuleset]!!.modOptions.isBaseRuleset)
-                    this[optionalBaseRuleset]!!
-                else getVanillaRuleset()
+            if (optionalBaseRuleset != null && containsKey(optionalBaseRuleset) && this[optionalBaseRuleset]?.modOptions?.isBaseRuleset == true)
+                this[optionalBaseRuleset]!!
+            else getVanillaRuleset()
 
         val loadedMods = mods.asSequence()
-            .filter { containsKey(it) }
-            .map { this[it]!! }
-            .filter { !it.modOptions.isBaseRuleset }
+            .mapNotNull { this[it] }
+            .filter { it.modOptions?.isBaseRuleset != true }
 
         return getComplexRuleset(baseRuleset, loadedMods.asIterable())
     }
@@ -167,8 +171,8 @@ object RulesetCache : HashMap<String, Ruleset>() {
 
         val loadedMods = extensionRulesets.asSequence() + baseRuleset
 
-        for (mod in loadedMods.sortedByDescending { it.modOptions.isBaseRuleset }) {
-            if (mod.modOptions.isBaseRuleset) {
+        for (mod in loadedMods.sortedByDescending { it.modOptions?.isBaseRuleset == true }) {
+            if (mod.modOptions?.isBaseRuleset == true) {
                 // This is so we don't keep using the base ruleset's uniques *by reference* and add to in ad infinitum
                 newRuleset.modOptions.uniques = ArrayList()
                 newRuleset.modOptions.isBaseRuleset = true

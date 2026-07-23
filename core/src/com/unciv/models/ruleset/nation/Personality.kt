@@ -29,8 +29,9 @@ class Personality : RulesetObject() {
     var gold: Float = 5f
     var science: Float = 5f
     var culture: Float = 5f
-    var happiness: Float = 5f
     var faith: Float = 5f
+    var housing: Float = 5f
+    var amenities: Float = 5f
 
     var military: Float = 5f
     var aggressive: Float = 5f

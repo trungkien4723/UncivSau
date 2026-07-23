@@ -65,11 +65,11 @@ class CityLoyaltyManager : IsPartOfGameInfoSerialization {
         if (city.turnAcquired > 0 && civ.gameInfo.turns - city.turnAcquired < 10) pressure -= 6
 
         // Happiness of the owning civ
-        val happiness = civ.getHappiness()
+        val amenities = civ.getAmenities()
         pressure += when {
-            happiness >= 10 -> 2
-            happiness >= 0 -> 0
-            happiness >= -10 -> -2
+            amenities >= 10 -> 2
+            amenities >= 0 -> 0
+            amenities >= -10 -> -2
             else -> -4
         }
 

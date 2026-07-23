@@ -12,8 +12,6 @@ enum class TutorialTrigger(val value: String, val isCivilopedia: Boolean = !valu
     NewGame("New_Game"),
     SlowStart("_Slow_Start"),
     CultureAndPolicies("Culture_and_Policies"),
-    Happiness("Happiness"),
-    Unhappiness("Unhappiness"),
     GoldenAge("Golden_Age"),
     RoadsAndRailroads("Roads_and_Railroads"),
     VictoryTypes("Victory_Types"),
@@ -46,7 +44,6 @@ enum class TutorialTrigger(val value: String, val isCivilopedia: Boolean = !valu
     SpreadingReligion("Spreading_Religion"),
     Inquisitors("Inquisitors"),
     MayanCalendar("Maya_Long_Count_calendar_cycle"),
-    WeLoveTheKingDay("We_Love_The_King_Day"),
     CityTileBlockade("City_Tile_Blockade"),
     CityBlockade("City_Blockade")
 }

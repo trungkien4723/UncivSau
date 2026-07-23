@@ -1,14 +1,10 @@
 [
-	//Spectator
-    //Not "Excluded from map editor" as it serves as placeholder for "Any Civ" starting locations
 	{
 		"name": "Spectator",
 		"outerColor": [255,255,255]
-//		"innerColor": [255,255,255]
 	},
 
 	{
-		//nations
 		"name": "Babylon",
 		"leaderName": "Nebuchadnezzar II",
 		"adjective": ["Babylonian"],
@@ -30,20 +26,19 @@
 		"neutralHello": "Greetings.",
 		"hateHello": "What do YOU want?!",
 
-		"tradeRequest": "It appears that you do have a reason for existing – to make this deal with me.",
+		"tradeRequest": "It appears that you do have a reason for existing â€“ to make this deal with me.",
 
-		"outerColor": [27,53,63],
-	"uniqueBuildings": ["Palgum"],
 		"outerColor": [27,53,63],
 		"innerColor": [213,249,255],
 		"favoredReligion": "Islam",
 		"uniqueName": "Ingenuity",
+		"uniqueBuildings": ["Palgum"],
 		"uniques": ["Free [Great Scientist] appears <upon discovering [Writing] technology>", "[Great Scientist] is earned [50]% faster"],
 		"cities": ["Babylon","Akkad","Dur-Kurigalzu","Nippur","Borsippa","Sippar","Opis","Mari","Shushan","Eshnunna",
 			"Ellasar","Erech","Kutha","Sirpurla","Neribtum","Ashur","Ninveh","Nimrud","Arbela","Nuzi",
 			"Arrapkha","Tutub","Shaduppum","Rapiqum","Mashkan Shapir","Tuttul","Ramad","Ana","Haradum","Agrab",
 			"Uqair","Gubba","Hafriyat","Nagar","Shubat Enlil","Urhai","Urkesh","Awan","Riblah","Tayma"],
-        "spyNames": ["Rim-Sin II", "Smerdis", "Ilum-ma-ili", "Peshgaldaramesh", "Ur-zigurumaš", "Semiramis", "Em", "Ishtar", "Bilit Taauth", "Aruru"]
+        "spyNames": ["Rim-Sin II", "Smerdis", "Ilum-ma-ili", "Peshgaldaramesh", "Ur-zigurumaÅ¡", "Semiramis", "Em", "Ishtar", "Bilit Taauth", "Aruru"]
 	},
     {
 		"name": "Greece",
@@ -69,8 +64,7 @@
 
 		"outerColor": [255, 255, 255],
 	"uniqueDistricts": ["Acropolis"],
-		"outerColor": [255, 255, 255],
-		"innerColor": [65, 141, 254],
+	"innerColor": [65, 141, 254],
 		"favoredReligion": "Christianity",
 		"uniqueName": "Hellenic League",
 		"uniques": ["[-50]% City-State Influence degradation", "City-State Influence recovers at twice the normal rate", "City-State territory always counts as friendly territory"],
@@ -199,13 +193,13 @@
         "innerColor": [239,236,148],
 
 		"favoredReligion": "Christianity",
-		"uniqueName": "Ancien Régime",
+		"uniqueName": "Ancien RÃ©gime",
 		"uniques": ["[+2 Culture] [in all cities] <before discovering [Steam Power]>"],
 		"cities": ["Paris","Orleans","Lyon","Troyes","Tours","Marseille","Chartres","Avignon","Rouen","Grenoble",
 			"Dijon","Amiens","Cherbourg","Poitiers","Toulouse","Bayonne","Strasbourg","Brest","Bordeaux","Rennes",
 			"Nice","Saint Etienne","Nantes","Reims","Le Mans","Montpellier","Limoges","Nancy","Lille","Caen","Toulon",
 			"Le Havre","Lourdes","Cannes","Aix-En-Provence","La Rochelle","Bourges","Calais"],
-        "spyNames": ["Jean-Paul", "Martine", "Lucien", "François", "Augustine", "Monsieur X", "Dr. Dupont", "Vipère", "Yvette", "Renard"]
+        "spyNames": ["Jean-Paul", "Martine", "Lucien", "FranÃ§ois", "Augustine", "Monsieur X", "Dr. Dupont", "VipÃ¨re", "Yvette", "Renard"]
     },
 	{
 		"name": "Russia",
@@ -425,12 +419,12 @@
 		"uniqueName": "Furor Teutonicus",
 		"uniques": ["When conquering an encampment, earn [25] Gold and recruit a Barbarian unit <with [67]% chance>",
 			"[-25]% maintenance costs <for [Land] units>"],
-		"cities": ["Berlin","Hamburg","Munich","Cologne","Frankfurt","Essen","Dortmund","Stuttgart","Düsseldorf","Bremen",
+		"cities": ["Berlin","Hamburg","Munich","Cologne","Frankfurt","Essen","Dortmund","Stuttgart","DÃ¼sseldorf","Bremen",
 			"Hannover","Duisburg","Leipzig","Dresden","Bonn","Bochum","Bielefeld","Karlsruhe","Gelsenkirchen","Wiesbaden",
-			"Münster","Rostock","Chemnitz","Braunschweig","Halle","Mönchengladbach","Kiel","Wuppertal","Freiburg","Hagen",
-			"Erfurt","Kaiserslautern","Kassel","Oberhausen","Hamm","Saarbrücken","Krefeld","Pirmasens","Potsdam","Solingen",
-			"Osnabrück","Ludwigshafen","Leverkusen","Oldenburg","Neuss","Mülheim","Darmstadt","Herne","Würzburg",
-			"Recklinghausen","Göttingen","Wolfsburg","Koblenz","Hildesheim","Erlangen"],
+			"MÃ¼nster","Rostock","Chemnitz","Braunschweig","Halle","MÃ¶nchengladbach","Kiel","Wuppertal","Freiburg","Hagen",
+			"Erfurt","Kaiserslautern","Kassel","Oberhausen","Hamm","SaarbrÃ¼cken","Krefeld","Pirmasens","Potsdam","Solingen",
+			"OsnabrÃ¼ck","Ludwigshafen","Leverkusen","Oldenburg","Neuss","MÃ¼lheim","Darmstadt","Herne","WÃ¼rzburg",
+			"Recklinghausen","GÃ¶ttingen","Wolfsburg","Koblenz","Hildesheim","Erlangen"],
         "spyNames": ["Johann", "Marlene", "Wilhelm", "Eva", "Heinz", "Horst", "Carl", "Viper", "Albrecht", "Anton"]
     },
 
@@ -460,8 +454,8 @@
 		"uniqueName": "Barbary Corsairs",
 		"uniques": ["[-66]% maintenance costs <for [Water] units>",
 			"When defeating a [{Barbarian} {Water}] unit, earn [25] Gold and recruit it <with [50]% chance>"],
-		"cities": ["Istanbul","Edirne","Ankara","Bursa","Konya","Samsun","Gaziantep","Diyarbakır","Izmir","Kayseri","Malatya",
-			"Mersin","Antalya","Zonguldak","Denizli","Ordu","Muğla","Eskişehir","Inebolu","Sinop","Adana","Artvin",
+		"cities": ["Istanbul","Edirne","Ankara","Bursa","Konya","Samsun","Gaziantep","DiyarbakÄ±r","Izmir","Kayseri","Malatya",
+			"Mersin","Antalya","Zonguldak","Denizli","Ordu","MuÄŸla","EskiÅŸehir","Inebolu","Sinop","Adana","Artvin",
 			"Bodrum","Eregli","Silifke","Sivas","Amasya","Marmaris","Trabzon","Erzurum","Urfa","Izmit","Afyonkarahisar",
 			"Bitlis","Yalova"],
         "spyNames": ["Ibrahim", "Bayezid", "Sokollu", "Mahmut", "Uveys", "Roxelana", "Safiye", "Hafsa", "Kosem", "Nurbanu"]
@@ -620,6 +614,7 @@
 		"innerColor": [177, 8, 3],
 		"favoredReligion": "Buddhism",
 		"uniqueName": "Father Governs Children",
+		"uniqueBuildings": ["Wat"],
 		"uniques": ["[+50]% [Food] from City-States","[+50]% [Culture] from City-States","[+50]% [Faith] from City-States","Military Units gifted from City-States start with [+10] XP"],
 		"cities": ["Sukhothai","Si Satchanalai","Muang Saluang","Lampang","Phitsanulok","Kamphaeng Pet","Nakhom Chum","Vientiane",
 			"Nakhon Si Thammarat","Martaban","Nakhon Sawan","Chainat","Luang Prabang","Uttaradit","Chiang Thong","Phrae",
@@ -635,7 +630,7 @@
 		"preferredVictoryType": "Domination",
 		"personality": "Isabella",
 
-        "startIntroPart1": "Holy Isabella, envoy of God, Great Queen of Castille and León, your people celebrate you! Spain is a beautiful and ancient country, a link between Europe and Africa, one shore on the Mediterranean and the other on the mighty Atlantic Ocean. The Spanish culture had taken the best of the Christian and Muslim worlds, and was ready to dominate the world for centuries. Powerful Spanish military fleets and brave explorers found and conquered much of the New World. Exploiting a whole new continent and its riches, Spain reached a state of power few could compete with for hundreds of years.",
+        "startIntroPart1": "Holy Isabella, envoy of God, Great Queen of Castille and LeÃ³n, your people celebrate you! Spain is a beautiful and ancient country, a link between Europe and Africa, one shore on the Mediterranean and the other on the mighty Atlantic Ocean. The Spanish culture had taken the best of the Christian and Muslim worlds, and was ready to dominate the world for centuries. Powerful Spanish military fleets and brave explorers found and conquered much of the New World. Exploiting a whole new continent and its riches, Spain reached a state of power few could compete with for hundreds of years.",
         "startIntroPart2": "O splendid and virtuous Isabella! By the will of the heavens, will Spain reborn to achieve its holy destiny and become a new El Dorado? Will your new empire shine through the ages of history?",
 
         "declaringWar": "God will probably forgive you... but I shall not. Prepare for war.",
@@ -652,10 +647,10 @@
 		"uniques": ["[+100 Gold] for discovering a Natural Wonder (bonus enhanced to [+500 Gold] if first to discover it)",
 			"[+1 Happiness] for every known Natural Wonder", "[+100]% Yield from every [Natural Wonder]"],
 		"cities": ["Madrid","Barcelona","Seville","Cordoba","Toledo","Santiago","Salamanca","Murcia","Valencia","Zaragoza","Pamplona",
-			"Vitoria","Santander","Oviedo","Jaen","Logroño","Valladolid","Palma","Teruel","Almeria","Leon","Zamora","Mida",
-			"Lugo","Alicante","Càdiz","Eiche","Alcorcon","Burgos","Vigo","Badajoz","La Coruña","Guadalquivir","Bilbao",
-			"San Sebastian","Granada","Mérida","Huelva","Ibiza","Las Palmas","Tenerife"],
-        "spyNames": ["Rodrigo", "Esmeralda", "Leon", "Mathilda", "Ramona", "Señor X", "Topolino", "Serpiente", "Garcia", "El Lobo"]
+			"Vitoria","Santander","Oviedo","Jaen","LogroÃ±o","Valladolid","Palma","Teruel","Almeria","Leon","Zamora","Mida",
+			"Lugo","Alicante","CÃ diz","Eiche","Alcorcon","Burgos","Vigo","Badajoz","La CoruÃ±a","Guadalquivir","Bilbao",
+			"San Sebastian","Granada","MÃ©rida","Huelva","Ibiza","Las Palmas","Tenerife"],
+        "spyNames": ["Rodrigo", "Esmeralda", "Leon", "Mathilda", "Ramona", "SeÃ±or X", "Topolino", "Serpiente", "Garcia", "El Lobo"]
     },
 	{
 		"name": "Songhai",
@@ -715,7 +710,7 @@
 			"Almarikh","Ulaanbaatar","Hovd","Darhan","Dalandzadgad","Mandalgovi","Choybalsan","Erdenet","Tsetserieg",
 			"Baruun-Urt","Ereen","Batshireet","Choyr","Ulaangom","Tosontsengel","Altay","Uliastay","Bayanhongor",
 			"Har-Ayrag","Nalayh","Tes"],
-        "spyNames": ["Asashŝryū", "Tömöriin", "Zevegiin", "Jigjidiin", "Enkhbat", "Mönkhbayar", "Gündegmaa", "Ssima", "Batachikhan", "Chulunny"]
+        "spyNames": ["AsashÅryÅ«", "TÃ¶mÃ¶riin", "Zevegiin", "Jigjidiin", "Enkhbat", "MÃ¶nkhbayar", "GÃ¼ndegmaa", "Ssima", "Batachikhan", "Chulunny"]
     },
 	{
 		"name": "Aztecs",
@@ -764,7 +759,7 @@
 
         "declaringWar": "Resistance is futile! You cannot hope to stand against the mighty Incan empire. If you will not surrender immediately, then prepare for war!",
 		"attacked": "Declare war on me?!? You can't, because I declare war on you first!",
-		"defeated": "How did you darken the sun? I ruled with diligence and mercy—see that you do so as well.",
+		"defeated": "How did you darken the sun? I ruled with diligence and mercyâ€”see that you do so as well.",
 		"introduction": "How are you? You stand before Pachacuti Inca Yupanqui.",
 
 		"neutralHello": "How are you doing?",
@@ -817,7 +812,7 @@
 			"Sarpsborg","Odense","Aalborg","Stavanger","Vorbasse","Schleswig","Kristiansand","Halogaland","Randers",
 			"Fredrikstad","Kolding","Horsens","Tromsoe","Vejle","Koge","Sandnes","Holstebro","Slagelse","Drammen",
 			"Hillerod","Sonderborg","Skien","Svendborg","Holbaek","Hjorring","Fladstrand","Haderslev","Ringsted","Skrive"],
-        "spyNames": ["Jørgen", "Mette", "Henrik", "Niels", "Helle", "Frederik", "Ida", "Thea", "Freja", "Morten"]
+        "spyNames": ["JÃ¸rgen", "Mette", "Henrik", "Niels", "Helle", "Frederik", "Ida", "Thea", "Freja", "Morten"]
     },
 	{
 		"name": "The Huns",
@@ -900,13 +895,13 @@
 		"favoredReligion": "Christianity",
 		"uniqueName": "Nobel Prize",
 		"uniques": ["Gain [90] Influence with a [Great Person] gift to a City-State", "When declaring friendship, both parties gain a [10]% boost to great person generation"],
-		"cities": ["Stockholm","Sigtuna","Helsinki","Birka","Uppsala","Gothenburg","Turku","Malmö","Linköping","Kalmar","Skara","Västerås","Jönköping",
-            "Visby","Falun","Norrköping","Gävle","Halmstad","Karlskrona","Hudiksvall","Örebro","Umeå","Karlstad",
-            "Helsingborg","Härnösand","Vadstena","Lund","Västervik","Enköping","Skövde","Eskilstuna","Luleå","Lidköping",
-            "Södertälje","Mariestad","Östersund","Borås","Sundsvall","Vimmerby","Köping","Mora","Arboga","Växjö","Gränna",
-            "Kiruna","Borgholm","Strängnäs","Sveg"
+		"cities": ["Stockholm","Sigtuna","Helsinki","Birka","Uppsala","Gothenburg","Turku","MalmÃ¶","LinkÃ¶ping","Kalmar","Skara","VÃ¤sterÃ¥s","JÃ¶nkÃ¶ping",
+            "Visby","Falun","NorrkÃ¶ping","GÃ¤vle","Halmstad","Karlskrona","Hudiksvall","Ã–rebro","UmeÃ¥","Karlstad",
+            "Helsingborg","HÃ¤rnÃ¶sand","Vadstena","Lund","VÃ¤stervik","EnkÃ¶ping","SkÃ¶vde","Eskilstuna","LuleÃ¥","LidkÃ¶ping",
+            "SÃ¶dertÃ¤lje","Mariestad","Ã–stersund","BorÃ¥s","Sundsvall","Vimmerby","KÃ¶ping","Mora","Arboga","VÃ¤xjÃ¶","GrÃ¤nna",
+            "Kiruna","Borgholm","StrÃ¤ngnÃ¤s","Sveg"
         ],
-        "spyNames": ["Leif", "Ingegard", "Sören", "Ragnhild", "Lars", "Lina", "Herr Grå", "Magnus", "Vilma", "Kusin"]
+        "spyNames": ["Leif", "Ingegard", "SÃ¶ren", "Ragnhild", "Lars", "Lina", "Herr GrÃ¥", "Magnus", "Vilma", "Kusin"]
     },
 	{
 		"name": "Austria",
@@ -933,9 +928,10 @@
 
 		"favoredReligion": "Christianity",
 		"uniqueName": "Diplomatic Marriage",
+		"uniqueBuildings": ["Coffee House"],
 		"uniques": ["Can spend Gold to annex or puppet a City-State that has been your Ally for [5] turns"],
-		"cities": ["Vienna", "Salzburg", "Graz", "Linz", "Klagenfurt", "Bregenz", "Innsbruck", "Kitzbühel",
-			"St. Pölten", "Eisenstadt", "Villach", "Zwettl", "Traun", "Wels", "Dornbirn", "Feldkirch",
+		"cities": ["Vienna", "Salzburg", "Graz", "Linz", "Klagenfurt", "Bregenz", "Innsbruck", "KitzbÃ¼hel",
+			"St. PÃ¶lten", "Eisenstadt", "Villach", "Zwettl", "Traun", "Wels", "Dornbirn", "Feldkirch",
 			"Amstetten", "Bad Ischl", "Wolfsberg", "Kufstein", "Leoben", "Klosterneuburg", "Leonding",
 			"Kapfenberg", "Hallein", "Bischofshofen", "Waidhofen", "Saalbach", "Lienz", "Steyr"
 		],
@@ -1032,8 +1028,7 @@
 			"Penzance","Rennes","Ramsey","Inverness","Limerick","Swansea","St. Ives","Brest","Peel","Aberdeen",
 			"Belfast","Caernarfon","Newquay","Saint-Nazaire","Castletown","Stirling","Galway","Conwy",
 			"St. Austell","Saint-Malo","Onchan","Dundee","Londonderry","Llanfairpwllgwyngyll","Falmouth","Lorient"],
-		// Llanfairpwllgwyngyll should actually be Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch
-        "spyNames": ["Crìsdean", "Siobhán", "Seamus", "Ffion", "Pádraig", "Deirdre", "Mr. Quinn", "Éadaoin", "Alwyn", "Col Ceathar"]
+        "spyNames": ["CrÃ¬sdean", "SiobhÃ¡n", "Seamus", "Ffion", "PÃ¡draig", "Deirdre", "Mr. Quinn", "Ã‰adaoin", "Alwyn", "Col Ceathar"]
     },
 	{
 		"name": "Ethiopia",
@@ -1092,18 +1087,15 @@
 		"innerColor": [24, 63, 66],
 		"favoredReligion": "Christianity",
 		"uniqueName": "The Long Count",
-		"uniques": ["Receive a free Great Person at the end of every [Maya Long Count calendar cycle] (every 394 years), after researching [Theology]. Each bonus person can only be chosen once.",
+"uniques": ["Receive a free Great Person at the end of every [Maya Long Count calendar cycle] (every 394 years), after researching [Theology]. Each bonus person can only be chosen once.",
 			"Once The Long Count activates, the year on the world screen displays as the traditional Mayan Long Count."],
- 		// Parameters: tech, comment, amount, comment. Compare "Free [Great General] appears" as used by policies
 		"cities": ["Palenque","Tikal","Chichen Itza","Uxmal","Tulum","Copan","Coba","El Mirador","Calakmul",
 			"Edzna","Lamanai","Izapa","Uaxactun","Comalcalco","Piedras Negras","Cancuen","Yaxha","Quirigua",
 			"Q'umarkaj","Nakbe","Cerros","Xunantunich","Takalik Abaj","Cival","San Bartolo","Altar de Sacrificios","Seibal",
 			"Caracol","Naranjo","Dos Pilas","Mayapan","Ixinche","Zaculeu","Kabah"],
-        "spyNames": ["Camazotz", "Coyopa", "Gukumatz", "Hunahpu", "Huracan", "Ixchel", "Ixtab", "Kukulkán", "Xbalanque", "Zipacna"]
+        "spyNames": ["Camazotz", "Coyopa", "Gukumatz", "Hunahpu", "Huracan", "Ixchel", "Ixtab", "Kukulk�n", "Xbalanque", "Zipacna"]
     },
 
-
-	// City-States sorted by cityStateType, name
 	{
 		"name": "Brussels",
 		"adjective": ["Bruxellois"],
@@ -1155,7 +1147,7 @@
 	{
 		"name": "Kathmandu",
 		"adjective": ["Kathmanduites"],
-		"cityStateType": "Cultured", // Changed from Cultured to Religious in BNW
+		"cityStateType": "Cultured",
 
 		"declaringWar": "You leave us no choice. War it must be.",
 		"attacked": "Very well, this shall not be forgotten.",
@@ -1238,7 +1230,7 @@
 		"cities": ["Cape Town"]
 	},
 	{
-		"name": "Helsinki", // In GK, Helsinki becomes a Swedish city.
+		"name": "Helsinki",
 		"adjective": ["Helsinkian"],
 		"cityStateType": "Maritime",
 
@@ -1263,7 +1255,7 @@
 		"cities": ["Manila"]
 	},
 	{
-		"name": "Mogadishu", // Introduced in BNW
+		"name": "Mogadishu",
 		"adjective": ["Maqdishawi"],
 		"cityStateType": "Maritime",
 
@@ -1289,7 +1281,7 @@
 	},
 	{
 		"name": "Quebec City",
-		"adjective": ["Québécois"],
+		"adjective": ["QuÃ©bÃ©cois"],
 		"cityStateType": "Maritime",
 
 		"declaringWar": "You leave us no choice. War it must be.",
@@ -1338,7 +1330,7 @@
 		"cities": ["Sydney"]
 	},
 	{
-		"name": "Ur", // Introduced in BNW
+		"name": "Ur",
 		"adjective": ["Urian"],
 		"cityStateType": "Maritime",
 		"startBias": ["Coast"],
@@ -1352,7 +1344,7 @@
         "uniques": ["Will not be displayed in Civilopedia", "Will not be chosen for new games", "Excluded from map editor"]
 	},
 	{
-		"name": "Vancouver", // Introduced in BNW
+		"name": "Vancouver",
 		"adjective": ["Vancouverite"],
 		"cityStateType": "Maritime",
 
@@ -1418,7 +1410,7 @@
 	{
 		"name": "Genoa",
 		"adjective": ["Genoese"],
-		"cityStateType": "Mercantile", // Changed from Maritime to Mercantile in GK
+		"cityStateType": "Mercantile",
 		"startBias": ["Coast"],
 
 		"declaringWar": "You leave us no choice. War it must be.",
@@ -1455,7 +1447,7 @@
 	{
 		"name": "Tyre",
 		"adjective": ["Tyrian"],
-		"cityStateType": "Mercantile", // Changed from Militaristic to Mercantile in GK
+		"cityStateType": "Mercantile",
 		"startBias": ["Coast"],
 
 		"declaringWar": "You leave us no choice. War it must be.",
@@ -1565,7 +1557,7 @@
 		"cities": ["Hanoi"]
 	},
 	{
-		"name": "M'Banza-Kongo", // Introduced in BNW
+		"name": "M'Banza-Kongo",
 		"adjective": ["Angolan"],
 		"cityStateType": "Militaristic",
 
@@ -1618,7 +1610,7 @@
 	{
 		"name": "Geneva",
 		"adjective": ["Genevan", "Genevese"],
-		"cityStateType": "Religious", // Changed from Cultured to Religious in GK
+		"cityStateType": "Religious",
 
 		"declaringWar": "You leave us no choice. War it must be.",
 		"attacked": "Very well, this shall not be forgotten.",
@@ -1654,7 +1646,7 @@
 	{
 		"name": "Lhasa",
 		"adjective": ["Tibetano"],
-		"cityStateType": "Religious", // Changed from Cultured to Religious in GK
+		"cityStateType": "Religious",
 
 		"declaringWar": "You leave us no choice. War it must be.",
 		"attacked": "Very well, this shall not be forgotten.",
@@ -1688,9 +1680,6 @@
 		"cities": ["Wittenberg"]
 	},
 
-
-
-	//Barbarian
 	{
 		"name": "Barbarians",
 		"outerColor": [0,0,0],
@@ -1818,7 +1807,7 @@
 		"favoredReligion": "Buddhism",
 		"uniqueName": "Grand Baray",
 		"uniques": [],
-		"cities": ["Angkor","Yaśodharapura","Chok Gargyar","Koh Ker","Banteay Srei","Preah Khan","Neak Pean","Ta Prohm","Beng Mealea","Kampong Thom",
+		"cities": ["Angkor","YaÅ›odharapura","Chok Gargyar","Koh Ker","Banteay Srei","Preah Khan","Neak Pean","Ta Prohm","Beng Mealea","Kampong Thom",
 			"Sambor Prei Kuk","Phnom Penh","Battambang","Siem Reap","Kratie","Takeo","Pursat","Kampot","Svay Rieng","Prey Veng",
 			"Kompong Cham","Oddar Meanchey","Pailin","Ratanakiri","Mondulkiri","Stung Treng","Koh Kong","Sihanoukville","Kep","Banteay Meanchey"],
 		"spyNames": ["Jayavarman", "Indradevi", "Tep", "Suryakumari", "Rajendravarman", "Kamrateng", "Sikhara", "Cham", "Vrah", "Naga"]
@@ -1934,13 +1923,12 @@
 		"attacked": "Fool. You have awakened the Black Army.",
 		"defeated": "The library burns, but knowledge lives on.",
 		"introduction": "I am Matthias, king of Hungary. State your business.",
-		"neutralHello": "Üdvözlöm.",
+		"neutralHello": "ÃœdvÃ¶zlÃ¶m.",
 		"hateHello": "You again.",
 		"tradeRequest": "Gold for the treasury. Reasonable?",
 		"outerColor": [188, 0, 45],
 	"uniqueBuildings": ["Thermal Bath"],
-		"outerColor": [188, 0, 45],
-		"innerColor": [255, 255, 255],
+	"innerColor": [255, 255, 255],
 		"favoredReligion": "Christianity",
 		"uniqueName": "Raven King",
 		"uniques": [],
@@ -2005,8 +1993,8 @@
 		"uniqueName": "Libertador",
 		"uniques": [],
 		"cities": ["Santiago","Valparaiso","Concepcion","La Serena","Antofagasta","Temuco","Rancagua","Talca","Arica","Puerto Montt",
-			"Copiapo","Iquique","Chillan","Calama","Osorno","Quilpué","Valdivia","Punta Arenas","Coquimbo","Puerto Natales",
-			"San Felipe","Curico","Los Angeles","Rengo","Linares","Villa Alemana","Viña del Mar","Talagante","Melipilla","San Antonio"],
+			"Copiapo","Iquique","Chillan","Calama","Osorno","QuilpuÃ©","Valdivia","Punta Arenas","Coquimbo","Puerto Natales",
+			"San Felipe","Curico","Los Angeles","Rengo","Linares","Villa Alemana","ViÃ±a del Mar","Talagante","Melipilla","San Antonio"],
 		"spyNames": ["Manuel", "Javiera", "Diego", "Camila", "Jose", "Rosario", "Ramon", "Mercedes", "Pedro", "Isabel"]
 	},
 	{
@@ -2063,8 +2051,7 @@
 		"tradeRequest": "Gold, and no lies.",
 		"outerColor": [206, 17, 38],
 	"uniqueBuildings": ["Dacian Fort"],
-		"outerColor": [206, 17, 38],
-		"innerColor": [253, 253, 200],
+	"innerColor": [253, 253, 200],
 		"favoredReligion": "Christianity",
 		"uniqueName": "Tepes",
 		"uniques": [],
@@ -2090,14 +2077,21 @@
 		"attacked": "You came to our shores? You will drown in them.",
 		"defeated": "The dragon sleeps, but wakes again.",
 		"introduction": "I am Ba Trieu. Bow, or be swept away.",
-		"neutralHello": "Chào.",
+		"neutralHello": "ChÃ o.",
 		"hateHello": "You?",
 		"tradeRequest": "Rice and silk, for what you bring.",
 		"outerColor": [218, 36, 28],
 		"innerColor": [255, 255, 255],
-		"favoredReligion": "Buddhism",
+"favoredReligion": "Buddhism",
 		"uniqueName": "Hai Ba Trung",
-		"uniques": [],
+		"uniqueDistricts": ["Thành"],
+		"uniques": [
+			"All land specialty districts can only be built on Rainforest, Woods, or Marsh tiles",
+			"Buildings on Woods tiles provide +1 Culture",
+			"Buildings on Rainforest tiles provide +1 Science", 
+			"Buildings on Marsh tiles provide +1 Production",
+			"Woods can be planted with Medieval Faires civic"
+		],
 		"cities": ["Hanoi","Ho Chi Minh City","Hai Phong","Da Nang","Hue","Can Tho","Nha Trang","Bien Hoa","Hue","Vinh",
 			"Qui Nhon","Nam Dinh","Thai Nguyen","Vung Tau","Dong Hoi","Ha Long","Cam Ranh","Rach Gia","My Tho","Long Xuyen",
 			"Ben Tre","Tuy Hoa","Phan Thiet","Dong Nai","Bac Ninh","Thanh Hoa","Hoa Binh","Lao Cai","Son La","Ca Mau"],
@@ -2227,7 +2221,7 @@
 			"Edzna","Lamanai","Izapa","Uaxactun","Comalcalco","Piedras Negras","Cancuen","Yaxha","Quirigua",
 			"Q'umarkaj","Nakbe","Cerros","Xunantunich","Takalik Abaj","Cival","San Bartolo","Altar de Sacrificios","Seibal","Caracol"],
 		"uniqueBuildings": ["Pyramid"],
-		"spyNames": ["Camazotz", "Coyopa", "Gukumatz", "Hunahpu", "Huracan", "Ixchel", "Ixtab", "Kukulk�n", "Xbalanque", "Zipacna"]
+		"spyNames": ["Camazotz", "Coyopa", "Gukumatz", "Hunahpu", "Huracan", "Ixchel", "Ixtab", "Kukulkï¿½n", "Xbalanque", "Zipacna"]
 	},
 	{
 		"name": "Gran Colombia",
@@ -2250,8 +2244,8 @@
 		"hateHello": "You?",
 		"tradeRequest": "For the cause of the people.",
 		"outerColor": [255, 204, 0],
-		"innerColor": [0, 102, 153],
-		"favoredReligion": "Christianity",
+	"innerColor": [0, 102, 153],
+	"favoredReligion": "Christianity",
 		"uniqueName": "Ejercito Libertador",
 		"uniques": [],
 		"cities": ["Bogota","Caracas","Quito","Medellin","Cali","Barranquilla","Cartagena","Cucuta","Bucaramanga","Pereira",
@@ -2311,8 +2305,7 @@
 		"tradeRequest": "A trade worthy of merchants, yes?",
 		"outerColor": [255, 102, 0],
 	"uniqueDistricts": ["Polder"],
-		"outerColor": [255, 102, 0],
-		"innerColor": [0, 38, 102],
+	"innerColor": [0, 38, 102],
 		"favoredReligion": "Christianity",
 		"uniqueName": "Polder",
 		"uniques": [],
@@ -2338,15 +2331,15 @@
 		"attacked": "You strike the realm of the navigators? Presume not.",
 		"defeated": "The sea remembers Portugal's name.",
 		"introduction": "I am Joao, king of Portugal. Name your wish.",
-		"neutralHello": "Olá.",
+		"neutralHello": "OlÃ¡.",
 		"hateHello": "You?",
 		"tradeRequest": "Spice and gold, for mutual gain.",
 		"outerColor": [0, 102, 0],
-	"uniqueDistricts": ["Torre de Bel�m"],
-		"outerColor": [0, 102, 0],
-		"innerColor": [255, 204, 0],
-		"favoredReligion": "Christianity",
-		"uniqueName": "Casa da Ýndia",
+	"uniqueDistricts": ["Torre de Belém"],
+	"uniqueBuildings": ["Feitoria"],
+	"innerColor": [255, 204, 0],
+	"favoredReligion": "Christianity",
+		"uniqueName": "Casa da Ãndia",
 		"uniques": [],
 		"cities": ["Lisbon","Porto","Braga","Coimbra","Funchal","Evora","Setubal","Aveiro","Faro","Guarda",
 			"Leiria","Viseu","Viana do Castelo","Beja","Castelo Branco","Braganca","Portalegre","Santarem","Angra","Ponta Delgada",
@@ -2403,7 +2396,7 @@
 		"attacked": "You war on learning itself? You will fail.",
 		"defeated": "The mind outlives the crown.",
 		"introduction": "I am Kristina, queen of Sweden. Speak, if wisely.",
-		"neutralHello": "Välkommen.",
+		"neutralHello": "VÃ¤lkommen.",
 		"hateHello": "You?",
 
 		"tradeRequest": "For the arts, and for friendship.",
@@ -2415,7 +2408,7 @@
 		"cities": ["Stockholm","Uppsala","Gothenburg","Malmo","Linkoping","Vasteras","Norrkoping","Orebro","Helsingborg","Jonkoping",
 			"Lund","Umea","Gavle","Boras","Sundsvall","Halmstad","Karlstad","Vaxjo","Kalmar","Skovde",
 			"Ostersund","Falun","Vastervik","Lulea","Karlskrona","Koping","Enkoping","Sodertalje","Mora","Kiruna"],
-		"spyNames": ["Leif", "Ingegard", "Sören", "Ragnhild", "Lars", "Lina", "Magnus", "Vilma", "Kusin", "Herr Grå"]
+		"spyNames": ["Leif", "Ingegard", "SÃ¶ren", "Ragnhild", "Lars", "Lina", "Magnus", "Vilma", "Kusin", "Herr GrÃ¥"]
 	},
 
 	{
@@ -2458,7 +2451,7 @@
 		"agenda": "Cultured",
 		"hiddenAgendas": ["Warmonger Hater", "Piety", "Nature Lover"],
 
-		"startIntroPart1": "Catherine de Medici, queen of France and spider of the Louvre! From the banks of the Arno to the throne of the Valois you brought the arts of Italy and the poison of intrigue, ruling a court where every whisper was a dagger. Your fêtes made Paris the jewel of Europe.",
+		"startIntroPart1": "Catherine de Medici, queen of France and spider of the Louvre! From the banks of the Arno to the throne of the Valois you brought the arts of Italy and the poison of intrigue, ruling a court where every whisper was a dagger. Your fÃªtes made Paris the jewel of Europe.",
 		"startIntroPart2": "Magnificent queen, will you once more weave art and guile into the destiny of France? Will your new empire shine through the ages of history?",
 
 		"declaringWar": "The court has judged you. You fall.",
@@ -2476,7 +2469,7 @@
 		"cities": ["Paris","Orleans","Lyon","Troyes","Tours","Marseille","Chartres","Avignon","Rouen","Grenoble",
 			"Dijon","Amiens","Cherbourg","Poitiers","Toulouse","Bayonne","Strasbourg","Brest","Bordeaux","Rennes",
 			"Nice","Saint Etienne","Nantes","Reims","Le Mans","Montpellier","Limoges","Nancy","Lille","Caen"],
-		"spyNames": ["Catherine", "Marie", "Lorenzo", "Cosimo", "Marguerite", "Henri", "Diane", "Francois", "Renaud", "Vipère"]
+		"spyNames": ["Catherine", "Marie", "Lorenzo", "Cosimo", "Marguerite", "Henri", "Diane", "Francois", "Renaud", "VipÃ¨re"]
 	},
 	{
 		"name": "Arabia (Sultan Saladin)",
@@ -2820,7 +2813,7 @@
 		"agenda": "Militaristic",
 		"hiddenAgendas": ["Cultured", "Warmonger Hater", "Nature Lover"],
 
-		"startIntroPart1": "Harald Hardrada, the last great Viking and thunderbolt of the north! From the Varangian guard of Byzan­tium to the fjords of Norway you carried sword and saga, claiming the crown by right of iron. Your death at Stamford Bridge closed the age of the raiders.",
+		"startIntroPart1": "Harald Hardrada, the last great Viking and thunderbolt of the north! From the Varangian guard of ByzanÂ­tium to the fjords of Norway you carried sword and saga, claiming the crown by right of iron. Your death at Stamford Bridge closed the age of the raiders.",
 		"startIntroPart2": "Hardrade, will you once more let the longships thunder across the cold seas? Will your new empire shine through the ages of history?",
 
 		"declaringWar": "The raven flies. You fall.",
@@ -2841,7 +2834,7 @@
 		"spyNames": ["Harald", "Olaf", "Sigrid", "Ragnar", "Ingrid", "Bjorn", "Astrid", "Leif", "Torstein", "Gunhild"]
 	},
 	{
-		"name": "England (Victoria — Age of Steam)",
+		"name": "England (Victoria â€” Age of Steam)",
 		"leaderName": "Victoria",
 		"adjective": ["English"],
 		"startBias": ["Coast"],

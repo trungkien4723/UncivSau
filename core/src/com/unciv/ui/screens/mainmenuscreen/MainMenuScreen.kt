@@ -377,7 +377,7 @@ class MainMenuScreen: BaseScreen(), RecreateOnResize {
         if (easterEggRuleset != null) return easterEggRuleset!!
         val rulesetParameters = game.settings.lastGameSetup?.gameParameters
         if (rulesetParameters != null) return RulesetCache.getComplexRuleset(rulesetParameters)
-        return RulesetCache[BaseRuleset.Civ_V_GnK.fullName]
+        return RulesetCache[BaseRuleset.Civ_VI.fullName]
             ?: throw IllegalStateException("No ruleset found")
     }
 

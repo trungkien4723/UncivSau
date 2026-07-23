@@ -85,6 +85,11 @@
         "uniques": ["Can pass through impassable tiles"]
     },
 
+    {
+        "name": "Military Engineer",
+        "movementType": "Land"
+    },
+
     // Deprecated unit types required for mods without a UnitTypes.json file to work
 
     {

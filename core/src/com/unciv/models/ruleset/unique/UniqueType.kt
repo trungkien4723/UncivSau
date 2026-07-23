@@ -105,7 +105,6 @@ enum class UniqueType(
 
     CityStateStatPercent("Allied City-States provide [stat] equal to [relativeAmount]% of what they produce for themselves", UniqueTarget.Global),
     CityStateResources("[relativeAmount]% resources gifted by City-States",  UniqueTarget.Global),
-    CityStateLuxuryHappiness("[relativeAmount]% Happiness from luxury resources gifted by City-States", UniqueTarget.Global),
     CityStateInfluenceRecoversTwiceNormalRate("City-State Influence recovers at twice the normal rate", UniqueTarget.Global),
 
     // endregion
@@ -120,15 +119,16 @@ enum class UniqueType(
     @Deprecated("As of 4.19.10", ReplaceWith("[relativeAmount]% Food consumption by [Specialists] [cityFilter]"), DeprecationLevel.WARNING)
     FoodConsumptionBySpecialists("[relativeAmount]% Food consumption by specialists [cityFilter]", UniqueTarget.Global, UniqueTarget.FollowerBelief),
 
-    /// Happiness
-    UnhappinessFromCitiesPercentage("[relativeAmount]% unhappiness from the number of cities", UniqueTarget.Global),
-    // Todo: capitalization of 'Unhappiness' -> 'unhappiness'
-    UnhappinessFromPopulationTypePercentageChange("[relativeAmount]% Unhappiness from [populationFilter] [cityFilter]", UniqueTarget.Global, UniqueTarget.FollowerBelief),
-    BonusHappinessFromLuxury("[amount] Happiness from each type of luxury resource", UniqueTarget.Global),
-    // Todo: capitalization of 'happiness' -> 'Happiness'
-    RetainHappinessFromLuxury("Retain [relativeAmount]% of the happiness from a luxury after the last copy has been traded away", UniqueTarget.Global),
-    // Todo: capitalization of 'happiness' -> 'Happiness'
-    ExcessHappinessToGlobalStat("[relativeAmount]% of excess happiness converted to [stat]", UniqueTarget.Global),
+    /// Housing (Civ VI)
+    Housing("[amount] Housing [cityFilter]", UniqueTarget.Global, UniqueTarget.Building, UniqueTarget.District),
+    HousingPerPopulation("[amount] Housing per [positiveAmount] population [cityFilter]", UniqueTarget.Global),
+    HousingFromFreshWater("[amount] Housing from fresh water [cityFilter]", UniqueTarget.Global),
+    ExcessHousingToGlobalStat("[relativeAmount]% of excess housing converted to [stat]", UniqueTarget.Global),
+
+    /// Amenities (Civ VI)
+    Amenities("[amount] Amenities [cityFilter]", UniqueTarget.Global, UniqueTarget.Building),
+    AmenitiesFromPopulation("[amount] Amenities from [populationFilter] [cityFilter]", UniqueTarget.Global),
+    AmenitiesPerCity("[amount] Amenities from each city [cityFilter]", UniqueTarget.Global),
 
     /// Unit Production
     CannotBuildUnits("Cannot build [baseUnitFilter] units", UniqueTarget.Global),
@@ -383,7 +383,6 @@ enum class UniqueType(
     NotDestroyedWhenCityCaptured("Never destroyed when the city is captured", UniqueTarget.Building),
     GoldFromCapturingCity("[relativeAmount]% Gold given to enemy if city is captured", UniqueTarget.Building),
 
-    RemovesAnnexUnhappiness("Removes extra unhappiness from annexed cities", UniqueTarget.Building),
     ConnectTradeRoutes("Connects trade routes over water", UniqueTarget.Building),
     GainBuildingWhereBuildable("Automatically built in all cities where it is buildable", UniqueTarget.Building),
 
@@ -771,8 +770,6 @@ enum class UniqueType(
     ConditionalNotWar("when not at war", UniqueTarget.Conditional),
     ConditionalGoldenAge("during a Golden Age", UniqueTarget.Conditional),
     ConditionalNotGoldenAge("when not in a Golden Age", UniqueTarget.Conditional),
-    ConditionalWLTKD("during We Love The King Day", UniqueTarget.Conditional),
-
     ConditionalHappy("while the empire is happy", UniqueTarget.Conditional),
     
     ConditionalDuringEra("during the [era]", UniqueTarget.Conditional),
@@ -811,12 +808,11 @@ enum class UniqueType(
 
     // Supports also stockpileable resources (Gold, Faith, Culture, Science)
     ConditionalWhenAboveAmountStatResource("when above [amount] [stat/resource]", UniqueTarget.Conditional, flags = setOf(UniqueFlag.AcceptsSpeedModifier),
-        docDescription = "Stats refers to the accumulated stat, not stat-per-turn. Therefore, does not support Happiness - for that use 'when above [amount] Happiness'"),
+        docDescription = "Stats refers to the accumulated stat, not stat-per-turn. Therefore, does not support Housing/Amenities - for that use 'when above [amount] Housing'"),
     ConditionalWhenBelowAmountStatResource("when below [amount] [stat/resource]", UniqueTarget.Conditional, flags = setOf(UniqueFlag.AcceptsSpeedModifier),
-        docDescription = "Stats refers to the accumulated stat, not stat-per-turn. Therefore, does not support Happiness - for that use 'when below [amount] Happiness'"),
+        docDescription = "Stats refers to the accumulated stat, not stat-per-turn. Therefore, does not support Housing/Amenities - for that use 'when below [amount] Housing'"),
     ConditionalWhenBetweenStatResource("when between [amount] and [amount] [stat/resource]", UniqueTarget.Conditional, flags = setOf(UniqueFlag.AcceptsSpeedModifier),
         docDescription = "Stats refers to the accumulated stat, not stat-per-turn." +
-                " Therefore, does not support Happiness." +
                 " 'Between' is inclusive - so 'between 1 and 5' includes 1 and 5."),
 
     /////// city conditionals

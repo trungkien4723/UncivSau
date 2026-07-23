@@ -88,7 +88,6 @@ object BuildingDescriptions {
 
         if (cityStrength != 0.0) translatedLines += "{City strength} +$cityStrength".tr()
         if (cityHealth != 0) translatedLines += "{City health} +$cityHealth".tr()
-        if (maintenance != 0 && !isFree) translatedLines += "{Maintenance cost}: $maintenance {Gold}".tr()
         if (showAdditionalInfo) additionalDescription(building, city, translatedLines)
         return translatedLines.joinToString("\n").trim()
     }
@@ -138,8 +137,8 @@ object BuildingDescriptions {
             if (replacementStatBonus[stat] != originalStatBonus[stat])
                 yield(FormattedLine("[${replacementStatBonus[stat].toInt()}]% [${stat.name}] vs [${originalStatBonus[stat].toInt()}]% [${stat.name}]", indent=1))
 
-        if (replacementBuilding.maintenance != originalBuilding.maintenance)
-            yield(FormattedLine("{Maintenance} ".tr() + "[${replacementBuilding.maintenance}] vs [${originalBuilding.maintenance}]".tr(), indent=1))
+        if (replacementBuilding.cityHealth != originalBuilding.cityHealth)
+            yield(FormattedLine("{City health} ".tr() + "[${replacementBuilding.cityHealth}] vs [${originalBuilding.cityHealth}]".tr(), indent=1))
         if (replacementBuilding.cost != originalBuilding.cost)
             yield(FormattedLine("{Cost} ".tr() + "[${replacementBuilding.cost}] vs [${originalBuilding.cost}]".tr(), indent=1))
         if (replacementBuilding.cityStrength != originalBuilding.cityStrength)
@@ -250,10 +249,9 @@ object BuildingDescriptions {
             }
         }
 
-        if (cityStrength != 0.0 || cityHealth != 0 || maintenance != 0) textList += FormattedLine()
+        if (cityStrength != 0.0 || cityHealth != 0) textList += FormattedLine()
         if (cityStrength != 0.0) textList +=  FormattedLine("{City strength} +$cityStrength")
         if (cityHealth != 0) textList +=  FormattedLine("{City health} +$cityHealth")
-        if (maintenance != 0) textList +=  FormattedLine("{Maintenance cost}: $maintenance {Gold}")
 
         val seeAlso = ArrayList<FormattedLine>()
         for (seeAlsoBuilding in ruleset.buildings.values) {

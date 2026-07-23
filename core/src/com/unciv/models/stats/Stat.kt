@@ -19,8 +19,9 @@ enum class Stat(
     Gold(NotificationIcon.Gold, UncivSound.Coin, Fonts.gold, colorFromHex(0xffeb7f)),
     Science(NotificationIcon.Science, UncivSound.Chimes, Fonts.science, colorFromHex(0x8c9dff)),
     Culture(NotificationIcon.Culture, UncivSound.Paper, Fonts.culture, colorFromHex(0x8b60ff)),
-    Happiness(NotificationIcon.Happiness, UncivSound.Click, Fonts.happiness, colorFromHex(0xffd800)),
-    Faith(NotificationIcon.Faith, UncivSound.Choir, Fonts.faith, colorFromHex(0xcbdfff))
+    Faith(NotificationIcon.Faith, UncivSound.Choir, Fonts.faith, colorFromHex(0xcbdfff)),
+    Housing(NotificationIcon.Housing, UncivSound.Click, 'H', colorFromHex(0x00bcd4)),
+    Amenities(NotificationIcon.Amenities, UncivSound.Click, 'A', colorFromHex(0xe91e63))
     ;
     val isCityWide by lazy { this !in statsWithCivWideField }
 
@@ -31,6 +32,6 @@ enum class Stat(
         @Pure fun isStat(name: String) = name in valuesAsMap
         @Pure fun names() = valuesAsMap.keys
         val fontChars = entries.map { it.character }.toSet()
-        val statsWithCivWideField = setOf(Gold, Science, Culture, Faith, Happiness)
+        val statsWithCivWideField = setOf(Gold, Science, Culture, Faith)
     }
 }

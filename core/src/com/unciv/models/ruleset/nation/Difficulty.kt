@@ -10,15 +10,14 @@ import com.unciv.ui.screens.civilopediascreen.FormattedLine
 
 class Difficulty : RulesetObject() {
     override lateinit var name: String
-    var baseHappiness: Int = 0
-    var extraHappinessPerLuxury: Float = 0f
+    var baseAmenities: Int = 0
+    var extraAmenitiesPerLuxury: Float = 0f
     var researchCostModifier: Float = 1f
     var unitCostModifier: Float = 1f
     var unitSupplyBase: Int = 5
     var unitSupplyPerCity: Int = 2
     var buildingCostModifier: Float = 1f
     var policyCostModifier: Float = 1f
-    var unhappinessModifier: Float = 1f
     var barbarianBonus: Float = 0f
     var barbarianSpawnDelay: Int = 0
     var playerBonusStartingUnits = ArrayList<String>()
@@ -34,7 +33,7 @@ class Difficulty : RulesetObject() {
     var aiFreeTechs = ArrayList<String>()
     var aiMajorCivBonusStartingUnits = ArrayList<String>()
     var aiCityStateBonusStartingUnits = ArrayList<String>()
-    var aiUnhappinessModifier: Float = 1f
+    var aiAmenitiesModifier: Float = 1f
     var turnBarbariansCanEnterPlayerTiles: Int = 0
     var clearBarbarianCampReward: Int = 25
 
@@ -52,13 +51,12 @@ class Difficulty : RulesetObject() {
     override fun getCivilopediaTextLines(ruleset: Ruleset): List<FormattedLine> {
         val lines = ArrayList<FormattedLine>()
         lines += FormattedLine("Player settings", header = 3)
-        lines += FormattedLine("{Base happiness}: $baseHappiness ${Fonts.happiness}", indent = 1)
-        lines += FormattedLine("{Extra happiness per luxury}: ${extraHappinessPerLuxury.toInt()} ${Fonts.happiness}", indent = 1)
+        lines += FormattedLine("{Base amenities}: $baseAmenities", indent = 1)
+        lines += FormattedLine("{Luxury amenities}: ${extraAmenitiesPerLuxury.toInt()}", indent = 1)
         lines += FormattedLine("{Research cost modifier}: ${researchCostModifier.toPercent()}% ${Fonts.science}", indent = 1)
         lines += FormattedLine("{Unit cost modifier}: ${unitCostModifier.toPercent()}% ${Fonts.production}", indent = 1)
         lines += FormattedLine("{Building cost modifier}: ${buildingCostModifier.toPercent()}% ${Fonts.production}", indent = 1)
         lines += FormattedLine("{Policy cost modifier}: ${policyCostModifier.toPercent()}% ${Fonts.culture}", indent = 1)
-        lines += FormattedLine("{Unhappiness modifier}: ${unhappinessModifier.toPercent()}%", indent = 1)
         lines += FormattedLine("{Bonus vs. Barbarians}: ${barbarianBonus.toPercent()}% ${Fonts.strength}", indent = 1)
         lines += FormattedLine("{Barbarian spawning delay}: $barbarianSpawnDelay", indent = 1)
 
@@ -82,7 +80,7 @@ class Difficulty : RulesetObject() {
         lines += FormattedLine("{AI wonder cost modifier}: ${aiWonderCostModifier.toPercent()}% ${Fonts.production}", indent = 1)
         lines += FormattedLine("{AI building maintenance modifier}: ${aiBuildingMaintenanceModifier.toPercent()}% ${Fonts.gold}", indent = 1)
         lines += FormattedLine("{AI unit maintenance modifier}: ${aiUnitMaintenanceModifier.toPercent()}% ${Fonts.gold}", indent = 1)
-        lines += FormattedLine("{AI unhappiness modifier}: ${aiUnhappinessModifier.toPercent()}%", indent = 1)
+        lines += FormattedLine("{AI amenities modifier}: ${aiAmenitiesModifier.toPercent()}%", indent = 1)
 
         if (aiFreeTechs.isNotEmpty()) {
             lines += FormattedLine()

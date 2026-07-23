@@ -44,7 +44,6 @@ import java.util.concurrent.ConcurrentHashMap
 import kotlin.math.roundToInt
 
 enum class CityFlags {
-    WeLoveTheKing,
     ResourceDemand,
     Resistance
 }
@@ -102,6 +101,9 @@ class City : IsPartOfGameInfoSerialization, INamed {
 
     /** Civ VI Loyalty (Rise and Fall — 6D). Persisted loyalty pressure state per city. */
     var loyalty = CityLoyaltyManager()
+
+    /** Civ VI Trade Routes: manages domestic and international trade routes per city. */
+    var tradeRoutes = CityTradeRoutes()
 
     /** Name of the governor currently assigned to this city (Civ VI Governors — 6D), or null. */
     var governor: String? = null
@@ -198,6 +200,7 @@ class City : IsPartOfGameInfoSerialization, INamed {
         toReturn.districts = HashMap(districts)
         toReturn.resourceStockpiles = resourceStockpiles.clone()
         toReturn.loyalty = loyalty.clone()
+        toReturn.tradeRoutes = tradeRoutes.clone()
         toReturn.governor = governor
         toReturn.isBeingRazed = isBeingRazed
         toReturn.attackedThisTurn = attackedThisTurn
@@ -231,6 +234,14 @@ class City : IsPartOfGameInfoSerialization, INamed {
     @Readonly fun hasDistrict(districtName: String) = districts.values.contains(districtName)
     @Readonly fun getDistrictAt(tile: Tile): District? =
         districts[tile.position]?.let { civ.gameInfo.ruleset.districts[it] }
+
+    @Readonly
+    fun getDistrictCapacity(): Int {
+        val pop = population.population
+        return ((pop - 1) / 3) + 1
+    }
+
+    @Readonly fun getDistrictsCount(): Int = districts.size
 
     /** The [Governor] assigned to this city, or null if none (Civ VI Governors — 6D). */
     @Readonly fun getGovernor(): Governor? =
@@ -305,7 +316,29 @@ class City : IsPartOfGameInfoSerialization, INamed {
     @Readonly fun hasFlag(flag: CityFlags) = flagsCountdown.containsKey(flag.name)
     @Readonly fun getFlag(flag: CityFlags) = flagsCountdown[flag.name]!!
 
-    @Readonly fun isWeLoveTheKingDayActive() = hasFlag(CityFlags.WeLoveTheKing)
+    @Readonly
+    fun getAvailableHousing(): Int {
+        var totalHousing = 0
+        
+        if (isCoastal()) {
+            totalHousing += 3
+        } else if (getCenterTile().isAdjacentTo(Constants.freshWater)) {
+            totalHousing += 5
+        } else {
+            totalHousing += 2
+        }
+        
+        for (building in cityConstructions.getBuiltBuildings()) {
+            totalHousing += building.housing.toInt()
+        }
+        
+        for (district in getDistricts()) {
+            totalHousing += district.second.housing.toInt()
+        }
+        
+        return totalHousing
+    }
+
     @Readonly fun isInResistance() = hasFlag(CityFlags.Resistance)
     @Readonly
     fun isBlockaded(): Boolean {
@@ -438,10 +471,7 @@ class City : IsPartOfGameInfoSerialization, INamed {
         flagsCountdown.remove(flag.name)
     }
 
-    fun resetWLTKD() {
-        // Removes the flags for we love the king & resource demand
-        // The resource demand flag will automatically be readded with 15 turns remaining, see startTurn()
-        removeFlag(CityFlags.WeLoveTheKing)
+    fun resetCityFlags() {
         removeFlag(CityFlags.ResourceDemand)
         demandedResource = ""
     }
@@ -594,7 +624,7 @@ class City : IsPartOfGameInfoSerialization, INamed {
             "in your cities", "Your" -> viewingCiv == civ
             "in all coastal cities", "Coastal" -> isCoastal()
             "in capital", "Capital" -> isCapital()
-            "in all non-occupied cities", "Non-occupied" -> !cityStats.hasExtraAnnexUnhappiness() || isPuppet
+            "in all non-occupied cities", "Non-occupied" -> !isInResistance()
             "in all cities with a world wonder" -> cityConstructions.getBuiltBuildings()
                 .any { it.isWonder }
             "in all cities connected to capital" -> isConnectedToCapital()
@@ -610,8 +640,8 @@ class City : IsPartOfGameInfoSerialization, INamed {
                 && !civ.isAtWarWith(viewingCiv)
             "in enemy cities", "Enemy" -> civ.isAtWarWith(viewingCiv ?: civ)
             "in foreign cities", "Foreign" -> viewingCiv != null && viewingCiv != civ
-            "in annexed cities", "Annexed" -> foundingCivObject != civ && !isPuppet
-            "in puppeted cities", "Puppeted" -> isPuppet
+            "in annexed cities", "Annexed" -> foundingCivObject != civ && !isInResistance()
+            "in puppeted cities", "Puppeted" -> false // Puppet cities don't exist in Civ VI
             "in resisting cities", "Resisting" -> isInResistance()
             "in cities being razed", "Razing" -> isBeingRazed
             "in holy cities", "Holy" -> isHolyCity()

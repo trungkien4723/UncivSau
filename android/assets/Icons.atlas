@@ -1516,6 +1516,20 @@ StatIcons/Happiness
   orig: 100, 100
   offset: 0, 0
   index: -1
+StatIcons/Housing
+  rotate: false
+  xy: 1384, 1818
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+StatIcons/Amenities
+  rotate: false
+  xy: 1384, 1818
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
 StatIcons/InterceptRange
   rotate: false
   xy: 1736, 1119

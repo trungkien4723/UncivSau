@@ -790,7 +790,7 @@ class GameInfo : IsPartOfGameInfoSerialization, HasGameInfoSerializationVersion 
 
     private fun updateCivilizationState():Unit = timeThis("GameInfo.updateCivilizationState") {
         for (civInfo in civilizations.asSequence()
-            // update city-state resource first since the happiness of major civ depends on it.
+            // update city-state resource first since the amenities of major civ depends on it.
             // See issue: https://github.com/yairm210/Unciv/issues/7781
             .sortedByDescending { it.isCityState }
         ) {
@@ -807,10 +807,10 @@ class GameInfo : IsPartOfGameInfoSerialization, HasGameInfoSerializationVersion 
             // Hence why it's not in CivInfo.setTransients().
             civInfo.cache.updateCitiesConnectedToCapital(true)
 
-            // We need to determine the GLOBAL happiness state in order to determine the city stats
+            // We need to determine the GLOBAL housing and amenities state in order to determine the city stats
             for (city in civInfo.cities) {
-                city.cityStats.updateTileStats() // Some nat wonders can give happiness!
-                city.cityStats.updateCityHappiness(
+                city.cityStats.updateTileStats() // Some nat wonders can give housing/amenities!
+                city.cityStats.updateCityHousingAndAmenities(
                     city.cityConstructions.getStats()
                 )
             }

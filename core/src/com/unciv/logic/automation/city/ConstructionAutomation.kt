@@ -353,11 +353,21 @@ class ConstructionAutomation(val cityConstructions: CityConstructions) {
 
         buildingStats.gold *= 2 // Everything's weighed by rankStatsValue, which ranks gold at 0.3, let's make that 0.6 (vs Science being 1)
 
-        if (civInfo.getHappiness() < 10 || civInfo.getHappiness() < civInfo.cities.size)
-            buildingStats.happiness *= 3
-
         if (city.cityStats.currentCityStats.culture < 2) {
             buildingStats.culture *= 2 // We need to start growing borders
+        }
+
+        val availableHousing = city.getAvailableHousing()
+        if (city.population.population >= availableHousing - 2) {
+            buildingStats.housing *= 10f // High priority when near or over housing cap
+        } else {
+            buildingStats.housing *= 2f
+        }
+
+        val requiredAmenities = maxOf(0, (city.population.population - 2) / 2)
+        val totalAmenities = city.cityStats.amenitiesList.values.sum()
+        if (totalAmenities < requiredAmenities) {
+            buildingStats.amenities *= 10f // High priority when amenities deficit
         }
 
         for (stat in Stat.entries) {

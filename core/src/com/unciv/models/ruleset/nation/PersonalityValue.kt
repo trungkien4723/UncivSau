@@ -23,8 +23,9 @@ enum class PersonalityValue(
     Gold("Greedy", { ::gold }),
     Science("Scientific", { ::science }),
     Culture("Cultured", { ::culture }),
-    Happiness("Hedonistic", { ::happiness }),
     Faith("Religious", { ::faith }),
+    Housing("Comfortable", { ::housing }),
+    Amenities("Prosperous", { ::amenities }),
     // Behaviour focused personalities
     Military("Militaristic", { ::military }), // Building a military but not nessesarily using it
     Aggressive("Pushy", { ::aggressive }), // How they use units agressively or defensively in wars, or their priority on war related buildings
@@ -45,8 +46,9 @@ enum class PersonalityValue(
                 Stat.Gold -> Gold
                 Stat.Science -> Science
                 Stat.Culture -> Culture
-                Stat.Happiness -> Happiness
                 Stat.Faith -> Faith
+                Stat.Housing -> Housing
+                Stat.Amenities -> Amenities
             }
         }
     }

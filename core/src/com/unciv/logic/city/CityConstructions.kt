@@ -134,27 +134,11 @@ class CityConstructions : IsPartOfGameInfoSerialization {
     }
 
     /**
-     * @return Maintenance cost of all built buildings
+     * @return Maintenance cost of all built buildings (Civ V - removed in Civ VI)
+     * @deprecated Use district adjacency bonuses instead
      */
     @Readonly
-    fun getMaintenanceCosts(): Float {
-        var maintenanceCost = 0f
-        val freeBuildings = city.civ.civConstructions.getFreeBuildingNames(city)
-
-        val buildingMaintenanceUniques = city.getMatchingUniques(UniqueType.BuildingMaintenance)
-            .filter { city.matchesFilter(it.params[2]) }.toList()
-
-        for (building in getBuiltBuildings().filterNot { it.name in freeBuildings }) {
-            var maintenanceForThisBuilding = building.maintenance.toFloat()
-            for (unique in buildingMaintenanceUniques)
-                if (building.matchesFilter(unique.params[1]))
-                    maintenanceForThisBuilding *= unique.params[0].toPercent()
-
-            maintenanceCost += maintenanceForThisBuilding
-        }
-
-        return maintenanceCost
-    }
+    fun getMaintenanceCosts(): Float = 0f
 
     @Readonly
     fun getCityProductionTextForCityButton(): String {
@@ -658,16 +642,7 @@ class CityConstructions : IsPartOfGameInfoSerialization {
             && city.isCapital())
             civ.tech.addScience(civ.tech.scienceOfLast8Turns.sum() / 8)
 
-        val previousHappiness = civ.getHappiness()
-        // can cause civ happiness update: reassignPopulationDeferred -> reassignPopulation -> cityStats.update -> civ.updateHappiness
         city.reassignPopulationDeferred()
-        val newHappiness = civ.getHappiness()
-
-        /** Same check as [com.unciv.logic.civilization.Civilization.updateStatsForNextTurn] -
-         *   but that triggers *stat calculation* whereas this is for *population assignment* */
-        if (previousHappiness != newHappiness && city.civ.gameInfo.ruleset.allHappinessLevelsThatAffectUniques
-                .any { newHappiness < it != previousHappiness < it})
-            city.civ.cities.filter { it != city }.forEach { it.reassignPopulationDeferred() }
 
         if (tryAddFreeBuildings)
             city.civ.civConstructions.tryAddFreeBuildings()
@@ -908,6 +883,7 @@ class CityConstructions : IsPartOfGameInfoSerialization {
             && !tile.isCityCenter()
             && tile.district == null
             && tile.districtToCreate == null
+            && city.getDistrictsCount() < city.getDistrictCapacity()
             && (district.onlyBuildableOn.isEmpty() || tile.matchesFilter(district.onlyBuildableOn, city.civ))
 
     /**

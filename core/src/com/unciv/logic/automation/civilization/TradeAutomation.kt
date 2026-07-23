@@ -211,7 +211,7 @@ object TradeAutomation {
             .filter { resource ->
                 tradeLogic.ourAvailableOffers
                     .none { it.name == resource.name && it.type == TradeOfferType.Luxury_Resource }
-            }.sortedBy { civInfo.cities.count { city -> city.demandedResource == it.name } } // Prioritize resources that get WLTKD
+            }.sortedBy { civInfo.cities.count { city -> city.population.population > 4 } } // Prioritize luxuries for larger cities
         val trades = ArrayList<Trade>()
         for (i in 0..min(weHaveTheyDont.lastIndex, theyHaveWeDont.lastIndex)) {
             val trade = Trade()

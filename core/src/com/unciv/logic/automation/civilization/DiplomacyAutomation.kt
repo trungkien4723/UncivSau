@@ -366,7 +366,6 @@ object DiplomacyAutomation {
     internal fun declareWar(civInfo: Civilization) {
         if (civInfo.cities.isEmpty() || civInfo.diplomacy.isEmpty()) return
         if (civInfo.getPersonality()[PersonalityValue.DeclareWar] == 0f) return
-        if (civInfo.getHappiness() <= 0) return
 
         val ourMilitaryUnits = civInfo.units.getCivUnits().filter { !it.isCivilian() }.count()
         if (ourMilitaryUnits < civInfo.cities.size) return

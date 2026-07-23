@@ -10,7 +10,6 @@ import com.unciv.models.ruleset.Policy
 import com.unciv.models.ruleset.tile.ResourceType
 import com.unciv.models.ruleset.tile.TileImprovement
 import com.unciv.models.ruleset.unique.GameContext
-import com.unciv.models.ruleset.unique.Unique
 import com.unciv.models.ruleset.unique.UniqueTarget
 import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.models.stats.Stat
@@ -26,8 +25,7 @@ import kotlin.math.pow
 class CivInfoStatsForNextTurn(val civInfo: Civilization) {
 
     @Transient
-    /** Happiness for next turn */
-    var happiness = 0
+    var housing = 0
 
     @Transient
     var statsForNextTurn = Stats()
@@ -200,13 +198,13 @@ class CivInfoStatsForNextTurn(val civInfo: Civilization) {
         statMap["Transportation upkeep"] = getTransportationUpkeep() * -1
         statMap["Unit upkeep"] = Stats(gold = -getUnitMaintenance().toFloat())
 
-
-        if (civInfo.getHappiness() > 0) {
-            val excessHappinessConversion = Stats()
-            for (unique in civInfo.getMatchingUniques(UniqueType.ExcessHappinessToGlobalStat)) {
-                excessHappinessConversion.add(Stat.valueOf(unique.params[1]), (unique.params[0].toFloat() / 100f * civInfo.getHappiness()))
+        // Civ VI: Excess housing can be converted to other stats
+        if (housing > 0) {
+            val excessHousingConversion = Stats()
+            for (unique in civInfo.getMatchingUniques(UniqueType.ExcessHousingToGlobalStat)) {
+                excessHousingConversion.add(Stat.valueOf(unique.params[1]), (unique.params[0].toFloat() / 100f * housing))
             }
-            statMap.add("Policies", excessHappinessConversion)
+            statMap.add("Policies", excessHousingConversion)
         }
 
         // negative gold hurts science
@@ -228,8 +226,7 @@ class CivInfoStatsForNextTurn(val civInfo: Civilization) {
         return statMap
     }
 
-
-    fun getHappinessBreakdown(): HashMap<String, Float> {
+    fun getHousingBreakdown(): HashMap<String, Float> {
         val statMap = HashMap<String, Float>()
 
         fun HashMap<String, Float>.add(key:String, value: Float) {
@@ -237,11 +234,9 @@ class CivInfoStatsForNextTurn(val civInfo: Civilization) {
             else put(key, value+get(key)!!)
         }
 
-        statMap["Base happiness"] = civInfo.getDifficulty().baseHappiness.toFloat()
+        statMap["Base Housing"] = civInfo.getDifficulty().baseAmenities.toFloat()
 
-        var happinessPerUniqueLuxury = 4f + civInfo.getDifficulty().extraHappinessPerLuxury
-        for (unique in civInfo.getMatchingUniques(UniqueType.BonusHappinessFromLuxury))
-            happinessPerUniqueLuxury += unique.params[0].toInt()
+        var housingPerLuxury = 4f + civInfo.getDifficulty().extraAmenitiesPerLuxury
 
         val ownedLuxuries = civInfo.getCivResourceSupply().map { it.resource }
             .filter { it.resourceType == ResourceType.Luxury }
@@ -251,47 +246,17 @@ class CivInfoStatsForNextTurn(val civInfo: Civilization) {
             .count { it.resourceType == ResourceType.Luxury
                     && it.getMatchingUniques(UniqueType.ObsoleteWith)
                 .none { unique -> civInfo.tech.isResearched(unique.params[0]) } }
-        statMap["Luxury resources"] = relevantLuxuries * happinessPerUniqueLuxury
-
-        val happinessBonusForCityStateProvidedLuxuries =
-            civInfo.getMatchingUniques(UniqueType.CityStateLuxuryHappiness).sumOf { it.params[0].toInt() } / 100f
-
-        val luxuriesProvidedByCityStates = civInfo.getKnownCivs().asSequence()
-            .filter { it.isCityState && it.allyCiv == civInfo }
-            .flatMap { it.getCivResourceSupply().map { res -> res.resource } }
-            .distinct()
-            .count { it.resourceType === ResourceType.Luxury && ownedLuxuries.contains(it) }
-
-        statMap["City-State Luxuries"] =
-            happinessPerUniqueLuxury * luxuriesProvidedByCityStates * happinessBonusForCityStateProvidedLuxuries
-
-        val luxuriesAllOfWhichAreTradedAway = civInfo.detailedCivResources
-            .filter {
-                it.amount < 0 && it.resource.resourceType == ResourceType.Luxury
-                        && (it.origin == "Trade" || it.origin == "Trade request")
-            }
-            .map { it.resource }
-            .filter { !ownedLuxuries.contains(it) }
-
-        statMap["Traded Luxuries"] =
-            luxuriesAllOfWhichAreTradedAway.size * happinessPerUniqueLuxury *
-                    civInfo.getMatchingUniques(UniqueType.RetainHappinessFromLuxury)
-                        .sumOf { it.params[0].toInt() } / 100f
+        statMap["Luxury resources"] = relevantLuxuries * housingPerLuxury
 
         for (city in civInfo.cities) {
-            // There appears to be a concurrency problem? In concurrent thread in ConstructionsTable.getConstructionButtonDTOs
-            // Literally no idea how, since happinessList is ONLY replaced, NEVER altered.
-            // Oh well, toList() should solve the problem, wherever it may come from.
-            for ((key, value) in city.cityStats.happinessList.toList())
+            for ((key, value) in city.cityStats.housingList.toList())
+                statMap.add(key, value)
+            for ((key, value) in city.cityStats.amenitiesList.toList())
                 statMap.add(key, value)
         }
 
-        val transportUpkeep = getTransportationUpkeep()
-        if (transportUpkeep.happiness != 0f)
-            statMap["Transportation Upkeep"] = -transportUpkeep.happiness
-
         for ((key, value) in getGlobalStatsFromUniques())
-            statMap.add(key,value.happiness)
+            statMap.add(key, value.housing)
 
         return statMap
     }
@@ -334,7 +299,7 @@ class CivInfoStatsForNextTurn(val civInfo: Civilization) {
             statMap.add("Stats", unique.stats.times(amount))
         }
 
-        val statsPerNaturalWonder = Stats(happiness = 1f)
+        val statsPerNaturalWonder = Stats(housing = 1f)
 
         for (unique in civInfo.getMatchingUniques(UniqueType.StatsFromNaturalWonders))
             statsPerNaturalWonder.add(unique.stats)

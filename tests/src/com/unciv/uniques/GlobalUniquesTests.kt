@@ -47,10 +47,10 @@ class GlobalUniquesTests {
     }
 
     @Test
-    fun statsHappinessNotOnBuilding() {
-        val civInfo = game.addCiv("[+7 Happiness]")
+    fun statsHousingNotOnBuilding() {
+        val civInfo = game.addCiv("[+7 Housing]")
         civInfo.updateStatsForNextTurn()
-        Assert.assertTrue(civInfo.stats.happiness == civInfo.getDifficulty().baseHappiness + 7)
+        Assert.assertTrue(civInfo.stats.housing == civInfo.getDifficulty().baseHappiness + 7)
     }
 
 
@@ -268,10 +268,10 @@ class GlobalUniquesTests {
     }
 
     @Test
-    fun happinessFromGlobalCitiesFollowingReligion() {
+    fun housingFromGlobalCitiesFollowingReligion() {
         val civ1 = game.addCiv()
         val religion = game.addReligion(civ1)
-        val belief = game.createBelief(BeliefType.Founder, "[+42 Happiness] for each global city following this religion")
+        val belief = game.createBelief(BeliefType.Founder, "[+42 Housing] for each global city following this religion")
         religion.addBeliefs(listOf(belief))
         val civ2 = game.addCiv()
         val tile = game.getTile(HexCoord.Zero)
@@ -280,9 +280,9 @@ class GlobalUniquesTests {
 
         civ1.updateStatsForNextTurn()
 
-        val baseHappiness = civ1.getDifficulty().baseHappiness
-        // Since civ1 has no cities, there are no other happiness sources
-        Assert.assertTrue(civ1.stats.happiness == baseHappiness + 42)
+        val baseHousing = civ1.getDifficulty().baseHappiness
+        // Since civ1 has no cities, there are no other housing sources
+        Assert.assertTrue(civ1.stats.housing == baseHousing + 42)
     }
 
     @Test
@@ -595,37 +595,8 @@ class GlobalUniquesTests {
     // endregion growth
 
     // region happiness
-
-    @Test
-    fun unhappinessFromCitiesPercentageTest() {
-        val civInfo = game.addCiv("[+100]% unhappiness from the number of cities")
-        val city = game.addCity(civInfo, game.getTile(HexCoord.Zero), true)
-
-        city.cityStats.update()
-        println(city.cityStats.happinessList)
-        Assert.assertTrue(abs(city.cityStats.happinessList["Cities"]!! - -6f) < epsilon) // Float rounding errors
-    }
-
-    @Test
-    fun unhappinessFromPopulationTypePercentageChangeTest() {
-        val civInfo = game.addCiv("[-50]% Unhappiness from [Population] [in all cities]")
-        val city = game.addCity(civInfo, game.getTile(HexCoord.Zero), true, initialPopulation = 4)
-
-        city.cityStats.update()
-        println(city.cityStats.happinessList)
-        Assert.assertTrue(abs(city.cityStats.happinessList["Population"]!! - -2f) < epsilon)
-
-        val building = game.createBuilding("[-50]% Unhappiness from [Specialists] [in all cities]")
-        val specialist = game.createSpecialist()
-        building.specialistSlots[specialist] = 2
-        city.population.specialistAllocations[specialist] = 2
-        city.cityConstructions.addBuilding(building)
-
-        city.cityStats.update()
-        println(city.cityStats.happinessList)
-        Assert.assertTrue(abs(city.cityStats.happinessList["Population"]!! - -1f) < epsilon)
-    }
-
+    // Tests for happiness system removed in Civ VI refactor
+    // Happiness was replaced with Housing/Amenities system
 
     // endregion happiness
 

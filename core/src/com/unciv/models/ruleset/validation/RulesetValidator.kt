@@ -177,10 +177,10 @@ open class RulesetValidator protected constructor(
     protected open fun addDifficultyErrors(lines: RulesetErrorList) {
         for (difficulty in ruleset.difficulties.values) {
             if (difficulty.aiBuildingCostModifier < 0 || difficulty.aiBuildingMaintenanceModifier < 0 || difficulty.aiCityGrowthModifier < 0 ||
-                difficulty.aiUnhappinessModifier < 0 || difficulty.aiUnitCostModifier < 0 || difficulty.aiUnitMaintenanceModifier < 0 ||
+                difficulty.aiUnitCostModifier < 0 || difficulty.aiUnitMaintenanceModifier < 0 ||
                 difficulty.aiUnitSupplyModifier < 0 || difficulty.aiWonderCostModifier < 0 ||
                 difficulty.buildingCostModifier < 0 || difficulty.policyCostModifier < 0 || difficulty.researchCostModifier < 0 ||
-                difficulty.unhappinessModifier < 0 || difficulty.unitCostModifier < 0)
+                difficulty.unitCostModifier < 0)
                 lines.add("Difficulty ${difficulty.name} contains one or more negative modifier(s)!", sourceObject = null)
             if (difficulty.turnBarbariansCanEnterPlayerTiles < 0)
                 lines.add("Difficulty ${difficulty.name} has a negative turnBarbariansCanEnterPlayerTiles!",

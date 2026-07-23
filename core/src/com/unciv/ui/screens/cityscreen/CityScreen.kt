@@ -20,7 +20,6 @@ import com.unciv.models.stats.Stat
 import com.unciv.models.translations.tr
 import com.unciv.ui.audio.CityAmbiencePlayer
 import com.unciv.ui.audio.SoundPlayer
-import com.unciv.ui.components.ParticleEffectMapFireworks
 import com.unciv.ui.components.extensions.colorFromRGB
 import com.unciv.ui.components.extensions.disable
 import com.unciv.ui.components.extensions.packIfNeeded
@@ -58,9 +57,6 @@ class CityScreen(
     companion object {
         /** Distance from stage edges to floating widgets */
         const val posFromEdge = 5f
-
-        /** Size of the decoration icons shown besides the raze button */
-        const val wltkIconSize = 40f
     }
 
     private val selectedCiv: Civilization = GUI.getWorldScreen().selectedCiv
@@ -145,17 +141,7 @@ class CityScreen(
 
     private var cityAmbiencePlayer: CityAmbiencePlayer?  = ambiencePlayer ?: CityAmbiencePlayer(city)
 
-    /** Particle effects for WLTK day decoration */
-    private val isWLTKday = city.isWeLoveTheKingDayActive()
-    private val fireworks: ParticleEffectMapFireworks?
-    internal var pauseFireworks = false
-
     init {
-        if (isWLTKday && UncivGame.Current.settings.citySoundsVolume > 0) {
-            SoundPlayer.play(UncivSound("WLTK"))
-        }
-        fireworks = if (isWLTKday) ParticleEffectMapFireworks.create(game, mapScrollPane) else null
-
         UncivGame.Current.settings.addCompletedTutorialTask("Enter city screen")
 
         addTiles()
@@ -294,38 +280,19 @@ class CityScreen(
                     getPickImprovementColor(tileGroup.tile).run {
                         tileGroup.layerMisc.addHexOutline(first.cpy().apply { this.a = second }) }
             }
-
-            if (fireworks != null && tileGroup.tile.position == city.location)
-                fireworks.setActorBounds(tileGroup)
         }
     }
 
     private fun updateAnnexAndRazeCityButton() {
         razeCityButtonHolder.clear()
 
-        fun addWltkIcon(name: String, apply: Image.()->Unit = {}) =
-            razeCityButtonHolder.add(ImageGetter.getImage(name).apply(apply)).size(wltkIconSize)
-
-        if (isWLTKday && fireworks == null) {
-            addWltkIcon("OtherIcons/WLTK LR") { color = Color.GOLD }
-            addWltkIcon("OtherIcons/WLTK 1") { color = Color.FIREBRICK }.padRight(10f)
-        }
-
         val canAnnex = !city.civ.hasUnique(UniqueType.MayNotAnnexCities)
-        if (city.isPuppet && canAnnex) {
-            val annexCityButton = "Annex city".toTextButton()
-            annexCityButton.labelCell.pad(10f)
-            annexCityButton.onClick {
-                city.annexCity()
-                update()
-            }
-            if (!canChangeState) annexCityButton.disable()
-            razeCityButtonHolder.add(annexCityButton) //.colspan(cityPickerTable.columns)
-        } else if (!city.isBeingRazed) {
+        // Civ VI: No puppet/annex states - cities are immediately owned after capture
+        if (!city.isBeingRazed) {
             val razeCityButton = "Raze city".toTextButton()
             razeCityButton.labelCell.pad(10f)
             razeCityButton.onClick { city.isBeingRazed = true; update() }
-            if (!canChangeState || !city.canBeDestroyed() || !canAnnex) {
+            if (!canChangeState || !city.canBeDestroyed()) {
                 razeCityButton.disable()
             }
 
@@ -336,15 +303,6 @@ class CityScreen(
             stopRazingCityButton.onClick { city.isBeingRazed = false; update() }
             if (!canChangeState) stopRazingCityButton.disable()
             razeCityButtonHolder.add(stopRazingCityButton) //.colspan(cityPickerTable.columns)
-        }
-
-        if (isWLTKday && fireworks == null) {
-            addWltkIcon("OtherIcons/WLTK 2") { color = Color.FIREBRICK }.padLeft(10f)
-            addWltkIcon("OtherIcons/WLTK LR") {
-                color = Color.GOLD
-                scaleX = -scaleX
-                originX = wltkIconSize * 0.5f
-            }
         }
 
         razeCityButtonHolder.pack()
@@ -631,13 +589,6 @@ class CityScreen(
 
     override fun dispose() {
         cityAmbiencePlayer?.dispose()
-        fireworks?.dispose()
         super.dispose()
-    }
-
-    override fun render(delta: Float) {
-        super.render(delta)
-        if (pauseFireworks) return
-        fireworks?.render(stage, delta)
     }
 }

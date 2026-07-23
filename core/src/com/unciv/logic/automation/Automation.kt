@@ -53,14 +53,11 @@ object Automation {
     @Readonly
     private fun getFoodModWeight(city: City, surplusFood: Float): Float {
         val speed = city.civ.gameInfo.speed.modifier
-        // Zero out Growth if close to Unhappiness limit
-        if (city.civ.getHappiness() < -8)
-            return 0f
         if (city.civ.isAI()) {
             // Value 1 Growth at less than 2 Production, but above 1 Production + 1 Gold
             return 1.5f
         }
-        // Human weights. May be different since AI Happiness is always "easier"
+        // Human weights
         // Only apply these for Default to not interfere with Focus weights
         if (city.getCityFocus() == CityFocus.NoFocus) {
             if (city.population.population < 5)
@@ -86,11 +83,6 @@ object Automation {
             city.forEachMatchingUnique(UniqueType.FoodConsumptionBySpecialists, city.state) { unique: Unique ->
                 if (city.matchesFilter(unique.params[1]))
                     yieldStats.food -= (unique.params[0].toFloat() / 100f) * 2f // base 2 food per Pop
-            }
-            // Specialist Happiness Percentage Change 0f-1f
-            city.forEachMatchingUnique(UniqueType.UnhappinessFromPopulationTypePercentageChange, city.state) { unique: Unique ->
-                if (unique.params[1] == "Specialists" && city.matchesFilter(unique.params[2]))
-                    yieldStats.happiness -= (unique.params[0].toFloat() / 100f)  // relative val is negative, make positive
             }
             if (yieldStats.science == 3f || yieldStats.science >= 5f )
                 yieldStats.science *= 1.3f
@@ -144,9 +136,6 @@ object Automation {
             for (growthBonus in growthBonuses) {
                 newGrowthFood += growthBonus.value.food
             }
-            if (city.isWeLoveTheKingDayActive() && city.civ.getHappiness() >= 0) {
-                newGrowthFood += growthFood / 4
-            }
             newGrowthFood = newGrowthFood.coerceAtLeast(0f) // floor to 0 for safety
             
             yieldStats.food += newGrowthFood * foodBaseWeight * getFoodModWeight(city, surplusFood)
@@ -161,10 +150,6 @@ object Automation {
         if (city.civ.stats.statsForNextTurn.gold < 0) {
             // We have a global problem, we need to deal with it before it leads to science loss
             yieldStats.gold *= 2
-        }
-
-        if (city.civ.getHappiness() < 0) {
-            yieldStats.happiness *= 2
         }
 
         if (allTechsAreResearched) {
@@ -189,7 +174,6 @@ object Automation {
     }
 
     fun tryTrainMilitaryUnit(city: City) {
-        if (city.isPuppet) return
         if ((city.cityConstructions.getCurrentConstruction() as? BaseUnit)?.isMilitary == true)
             return // already training a military unit
         val chosenUnit = chooseMilitaryUnit(city, city.civ.gameInfo.ruleset.units.values.asSequence())
@@ -551,7 +535,6 @@ object Automation {
         //otherwise the AI would replace tiles with trade posts upon entering a golden age,
         //and replace the trade post again when the golden age ends.
         // We need a way to take golden age gold into account before the GA actually takes place
-        rank += stats.happiness
         rank += stats.production
         rank += stats.science
         rank += stats.culture

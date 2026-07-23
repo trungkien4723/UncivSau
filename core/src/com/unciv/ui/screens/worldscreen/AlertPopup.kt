@@ -376,13 +376,9 @@ class AlertPopup(
                 city.destroyCity(overrideSafeties = true)
             }
         } else {
-            val mayAnnex = !marryingCiv.hasUnique(UniqueType.MayNotAnnexCities)
-            addAnnexOption(city, mayAnnex) {}
-            addSeparator()
-
-            addPuppetOption(mayAnnex) {
-                city.isPuppet = true
-                city.cityStats.update()
+            // Civ VI: Cities are immediately owned after capture - no puppet/annex options
+            addDestroyOption {
+                city.destroyCity(overrideSafeties = true)
             }
         }
     }
@@ -605,7 +601,7 @@ class AlertPopup(
         add(button).row()
         if (mayAnnex) {
             addGoodSizedLabel("Annexed cities become part of your regular empire.").row()
-            addGoodSizedLabel("Their citizens generate 2x the unhappiness, unless you build a courthouse.").row()
+            addGoodSizedLabel("Their loyalty decreases faster, unless you build a courthouse.").row()
         } else {
             addGoodSizedLabel("Your civilization may not annex this city.").row()
         }

@@ -10,7 +10,7 @@ enum class RankingType(
     val getImage: () -> Image?,
     val idForSerialization: Char
 ) {
-    // production, gold, happiness, and culture already have icons added when the line is `tr()`anslated
+    // production, gold, and culture already have icons added when the line is `tr()`anslated
     Score({ ImageGetter.getImage("OtherIcons/Score").apply { color = Color.FIREBRICK } }, 'S'),
     Population({ ImageGetter.getStatIcon("Population") }, 'N'),
     Growth("Growth", { ImageGetter.getStatIcon("Food") }, 'C'),
@@ -18,7 +18,7 @@ enum class RankingType(
     Gold('G'),
     Territory({ ImageGetter.getImage("OtherIcons/Hexagon") }, 'T'),
     Force({ ImageGetter.getImage("OtherIcons/Shield") }, 'F'),
-    Happiness('H'),
+    Housing('H'),
     Technologies({ ImageGetter.getStatIcon("Science") }, 'W'),
     Culture('A'),
     ;

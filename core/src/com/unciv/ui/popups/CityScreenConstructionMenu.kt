@@ -41,7 +41,7 @@ class CityScreenConstructionMenu(
      *  (excludes isBeingRazed even though technically that would be allowed) */
     // Can't use CityScreen.canChangeState for other cities
     @Readonly private fun candidateCities() = city.civ.cities.asSequence()
-        .filterNot { it.isPuppet || it.isInResistance() || it.isBeingRazed }
+        .filterNot { it.isInResistance() || it.isBeingRazed }
     /** Check whether an "All cities" menu makes sense: `true` if there's more than one city, it's not a Wonder, and any city's queue matches [predicate]. */
     @Readonly private fun allCitiesEntryValid(predicate: (CityConstructions) -> Boolean) =
         city.civ.cities.size > 1 &&  // Yes any 2 cities, not candidateCities.drop(1).any()

@@ -705,6 +705,25 @@
 		"attackSound": "arrow"
 	},
 	{
+		"name": "Voi Chiến",
+		"unitType": "Archery",
+		"replaces": "Crossbowman",
+		"uniqueTo": "Vietnam",
+		"movement": 4,
+		"strength": 15,
+		"rangedStrength": 15,
+		"cost": 150,
+		"requiredTech": "Machinery",
+		"upgradesTo": "Gatling Gun",
+		"obsoleteTech": "Industrialization",
+		"uniques": [
+			"Can move after attacking",
+			"Stronger when defending",
+			"Greater sight"
+		],
+		"attackSound": "arrow"
+	},
+	{
 		"name": "Trebuchet",
 		"unitType": "Siege",
 		"movement": 2,

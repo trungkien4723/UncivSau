@@ -48,7 +48,6 @@ class GlobalUniques: RulesetObject() {
             return when (unique.modifiers.first().type) {
                 UniqueType.ConditionalGoldenAge -> "Golden Age"
                 UniqueType.ConditionalHappy -> "Happiness"
-                UniqueType.ConditionalWLTKD -> "We Love The King Day"
                 else -> "Global Effect"
             }
         }

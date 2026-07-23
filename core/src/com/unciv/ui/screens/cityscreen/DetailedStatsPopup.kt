@@ -58,9 +58,6 @@ class DetailedStatsPopup(
         row()
         addCloseButton(additionalKey = KeyCharAndCode.SPACE)
         update()
-
-        showListeners.add { cityScreen.pauseFireworks = true }
-        closeListeners.add { cityScreen.pauseFireworks = false }
     }
 
     private fun update() {
@@ -95,7 +92,7 @@ class DetailedStatsPopup(
         totalTable.add("Base values".toLabel().apply { setAlignment(Align.center) })
             .colspan(columnCount).growX().row()
         totalTable.addSeparator(colSpan = columnCount).padTop(2f)
-        traverseTree(totalTable, stats, cityStats.baseStatTree, mergeHappiness = true, percentage = false)
+        traverseTree(totalTable, stats, cityStats.baseStatTree, percentage = false)
 
         totalTable.addSeparator().padBottom(2f)
         totalTable.add("Bonuses".toLabel().apply { setAlignment(Align.center) })
@@ -110,14 +107,6 @@ class DetailedStatsPopup(
 
         val final = LinkedHashMap<Stat, Float>()
         val map = cityStats.finalStatList.toSortedMap()
-
-        for ((key, value) in cityScreen.city.cityStats.happinessList) {
-            if (!map.containsKey(key)) {
-                map[key] = Stats(happiness = value)
-            } else if (map[key]!![Stat.Happiness] == 0f) {
-                map[key]!![Stat.Happiness] = value
-            }
-        }
 
         for ((source, finalStats) in map) {
 
@@ -192,24 +181,12 @@ class DetailedStatsPopup(
         table: Table,
         stats: List<Stat>,
         statTreeNode: StatTreeNode,
-        mergeHappiness: Boolean = false,
         percentage: Boolean = false,
         indentation: Int = 0
     ) {
 
         val total = LinkedHashMap<Stat, Float>()
         val map = statTreeNode.children.toSortedMap()
-
-        if (mergeHappiness) {
-            for ((key, value) in cityScreen.city.cityStats.happinessList) {
-                if (!map.containsKey(key)) {
-                    map[key] = StatTreeNode()
-                    map[key]?.setInnerStat(Stat.Happiness, value)
-                } else if (map[key]!!.totalStats.happiness == 0f) {
-                    map[key]?.setInnerStat(Stat.Happiness, value)
-                }
-            }
-        }
 
         for ((name, child) in map) {
 

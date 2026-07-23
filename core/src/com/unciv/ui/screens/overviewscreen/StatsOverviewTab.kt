@@ -22,8 +22,8 @@ class StatsOverviewTab(
     viewingPlayer: Civilization,
     overviewScreen: EmpireOverviewScreen
 ) : EmpireOverviewTab(viewingPlayer, overviewScreen) {
-    private val happinessTable = Table()
-    private val unhappinessTable = UnhappinessTable()
+    private val housingTable = Table()
+    private val housingIssuesTable = HousingIssuesTable()
     private val goldAndSliderTable = Table()
     private val goldTable = Table()
     private val scienceTable = Table()
@@ -42,14 +42,14 @@ class StatsOverviewTab(
         val tablePadding = 30f  // Padding around each of the stat tables
         defaults().pad(tablePadding).top()
 
-        happinessTable.defaults().pad(5f)
+        housingTable.defaults().pad(5f)
         goldTable.defaults().pad(5f)
         scienceTable.defaults().pad(5f)
         cultureTable.defaults().pad(5f)
         faithTable.defaults().pad(5f)
         greatPeopleTable.defaults().pad(5f)
         scoreTable.defaults().pad(5f)
-        unhappinessTable.update()
+        housingIssuesTable.update()
 
         goldAndSliderTable.add(goldTable).row()
         if (gameInfo.ruleset.modOptions.hasUnique(UniqueType.ConvertGoldToScience))
@@ -58,8 +58,8 @@ class StatsOverviewTab(
         update()
 
         val allStatTables = sequence {
-            yield(happinessTable)
-            if (unhappinessTable.show) yield(unhappinessTable)
+            yield(housingTable)
+            if (housingIssuesTable.show) yield(housingIssuesTable)
             yield(goldAndSliderTable)
             yield(scienceTable)
             yield(cultureTable)
@@ -93,7 +93,7 @@ class StatsOverviewTab(
 
     fun update() {
         val statMap = viewingPlayer.stats.getStatMapForNextTurn()
-        updateHappinessTable()
+        updateHousingTable()
         goldTable.updateStatTable(Stat.Gold, statMap)
         scienceTable.updateStatTable(Stat.Science, statMap)
         cultureTable.updateStatTable(Stat.Culture, statMap)
@@ -119,15 +119,15 @@ class StatsOverviewTab(
         pack()
     }
 
-    private fun updateHappinessTable() = happinessTable.apply {
-        addHeading("Happiness")
-        val happinessBreakdown = viewingPlayer.stats.getHappinessBreakdown()
-        for ((key, value) in happinessBreakdown)
+    private fun updateHousingTable() = housingTable.apply {
+        addHeading("Housing")
+        val housingBreakdown = viewingPlayer.stats.getHousingBreakdown()
+        for ((key, value) in housingBreakdown)
             addLabeledValue(key, value)
-        addTotal(happinessBreakdown.values.sum())
+        addTotal(housingBreakdown.values.sum())
     }
 
-    inner class UnhappinessTable : Table() {
+    inner class HousingIssuesTable : Table() {
         val show: Boolean
 
         private val uniques: Set<Unique>
@@ -140,7 +140,7 @@ class StatsOverviewTab(
                     UniqueType.ConditionalWhenBelowAmountStatResource,
                 ).flatMap { conditionalType ->
                     viewingPlayer.getMatchingUniques(conditionalType)
-                        .filter { it.params.last() == "Happiness" }
+                        .filter { it.params.last() == "Housing" }
                         .sortedBy { it.type } // otherwise order might change as a HashMap is involved
                 }.filterNot { it.isHiddenToUsers() }
                 .toSet()
@@ -148,10 +148,10 @@ class StatsOverviewTab(
         }
 
         fun update() {
-            add(ImageGetter.getStatIcon("Malcontent"))
+            add(ImageGetter.getStatIcon("Housing"))
                 .size(Constants.headingFontSize.toFloat())
                 .right().padRight(1f)
-            add("Unhappiness".toLabel(fontSize = Constants.headingFontSize)).left()
+            add("Housing Issues".toLabel(fontSize = Constants.headingFontSize)).left()
             addSeparator()
 
             add(MarkupRenderer.render(

@@ -44,11 +44,10 @@ object UseGoldAutomation {
         val knownCityStates = civ.getKnownCivs().filter { it.isCityState && MotivationToAttackAutomation.hasAtLeastMotivationToAttack(civ, it, 0f) <= 0 }.toList()
 
         // canBeMarriedBy checks actual cost, but it can't be below 500*speedmodifier, and the later check is expensive
-        if (civ.gold >= 330 && civ.getHappiness() > 0 && civ.hasUnique(UniqueType.CityStateCanBeBoughtForGold)) {
+        if (civ.gold >= 330 && civ.hasUnique(UniqueType.CityStateCanBeBoughtForGold)) {
             for (cityState in knownCityStates.toList() ) {  // Materialize sequence as diplomaticMarriage may kill a CS
                 if (cityState.cityStateFunctions.canBeMarriedBy(civ))
                     cityState.cityStateFunctions.diplomaticMarriage(civ)
-                if (civ.getHappiness() <= 0) break // Stop marrying if happiness is getting too low
             }
         }
 
@@ -126,7 +125,7 @@ object UseGoldAutomation {
                 .thenBy { it.hashCode() }
         )
 
-        for (city in civInfo.cities.filter { !it.isPuppet && !it.isBeingRazed }) {
+        for (city in civInfo.cities.filter { !it.isBeingRazed }) {
             val highlyDesirableTilesInCity = city.getCenterTile().getTilesAtDistance(2).filter {
                 // Only consider second ring tiles: further tiles may be as good or better, but have much higher gold cost 
                 isHighlyDesirableTile(it, civInfo, city)

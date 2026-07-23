@@ -49,7 +49,7 @@ interface INonPerpetualConstruction : IConstruction, INamed, IHasUniques {
     @Readonly
     fun canBePurchasedWithStatReasons(city: City?, stat: Stat): PurchaseReason {
         val gameContext = city?.state ?: GameContext.EmptyState
-        if (stat == Stat.Production || stat == Stat.Happiness) return PurchaseReason.Invalid
+        if (stat == Stat.Production) return PurchaseReason.Invalid
         if (hasUnique(UniqueType.CannotBePurchased, gameContext)) return PurchaseReason.Unpurchasable
         // Can be purchased with [Stat] [cityFilter]
         if (getMatchingUniques(UniqueType.CanBePurchasedWithStat, GameContext.IgnoreConditionals)

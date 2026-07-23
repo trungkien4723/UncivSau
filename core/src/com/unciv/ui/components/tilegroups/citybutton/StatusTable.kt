@@ -9,7 +9,7 @@ import com.unciv.ui.images.ImageGetter
 
 /**
  *  Bottom-most decoration showing zero or more icons
- *  (blockaded, connected to capital, resistance, puppet, razing, WLTK),
+ *  (blockaded, connected to capital, resistance, puppet, razing),
  *  goes below main button and city-state influence bar.
  */
 internal class StatusTable(
@@ -44,11 +44,6 @@ internal class StatusTable(
         if (city.isBeingRazed) {
             val fireImage = ImageGetter.getImage("OtherIcons/Fire")
             add(fireImage).size(iconSize)
-        }
-
-        if (city.civ == selectedCiv && city.isWeLoveTheKingDayActive()) {
-            val wltkdImage = ImageGetter.getImage("OtherIcons/WLTKD")
-            add(wltkdImage).size(iconSize)
         }
     }
 }

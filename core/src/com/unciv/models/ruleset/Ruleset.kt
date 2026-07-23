@@ -184,25 +184,6 @@ class Ruleset {
     val nonRoadTileRemovals by lazy { tileRemovals.filter { rulesetImprovement ->
             RoadStatus.entries.toTypedArray().none { it.removeAction == rulesetImprovement.name } } }
 
-    /** Contains all happiness levels that moving *from* them, to one *below* them, can change uniques that apply */
-    val allHappinessLevelsThatAffectUniques by lazy {
-        sequence {
-            for (unique in this@Ruleset.allUniques())
-                for (conditional in unique.modifiers){
-                    if (conditional.type == UniqueType.ConditionalWhenBelowAmountStatResource
-                        && conditional.params[1] == "Happiness") yield(conditional.params[0].toInt())
-                    if (conditional.type == UniqueType.ConditionalWhenAboveAmountStatResource
-                        && conditional.params[1] == "Happiness") yield(conditional.params[0].toInt())
-                    if (conditional.type == UniqueType.ConditionalWhenBetweenStatResource
-                        && conditional.params[2] == "Happiness"){
-                        yield(conditional.params[0].toInt())
-                        yield(conditional.params[1].toInt() + 1)
-                    }
-                    if (conditional.type == UniqueType.ConditionalHappy) yield(0)
-                }
-        }.toSet()
-    }
-
     val roadImprovement: TileImprovement? by lazy { RoadStatus.Road.improvement(this) }
     val railroadImprovement: TileImprovement? by lazy { RoadStatus.Railroad.improvement(this) }
     //endregion
@@ -399,6 +380,11 @@ class Ruleset {
     @Readonly fun allICivilopediaText(): Sequence<ICivilopediaText> = allRulesetObjects()
 
     fun load(folderHandle: FileHandle) {
+        // Note: When running from a JAR, ClasspathFileHandle.exists()/isDirectory() may
+        // not work correctly for directory entries. The individual file checks below handle it.
+        if (!folderHandle.exists() || !folderHandle.isDirectory) {
+            Log.debug("Ruleset folder (${folderHandle.path()}) not resolvable as directory — will try individual files")
+        }
         fun RulesetFile.file() = folderHandle.child(filename)
 
         // Note: Most files are loaded using createHashmap, which sets originRuleset automatically.
@@ -406,8 +392,11 @@ class Ruleset {
         val modOptionsFile = RulesetFile.ModOptions.file()
         if (modOptionsFile.exists()) {
             try {
-                modOptions = json().fromJsonFile(ModOptions::class.java, modOptionsFile)
-                modOptions.updateDeprecations()
+                val loadedModOptions = json().fromJsonFile(ModOptions::class.java, modOptionsFile)
+                if (loadedModOptions != null) {
+                    modOptions = loadedModOptions
+                    modOptions.updateDeprecations()
+                }
             } catch (ex: Exception) {
                 Log.error("Failed to get modOptions from json file", ex)
             }

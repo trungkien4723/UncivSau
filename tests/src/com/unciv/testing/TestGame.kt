@@ -64,7 +64,7 @@ class TestGame(vararg addGlobalUniques: String, forUITesting: Boolean = false) {
         // Create a new ruleset we can easily edit, and set the important variables of gameInfo
         if (RulesetCache.isEmpty())
             RulesetCache.loadRulesets(noMods = true)
-        ruleset = RulesetCache[BaseRuleset.Civ_V_GnK.fullName]!!.clone()
+        ruleset = RulesetCache[BaseRuleset.Civ_VI.fullName]!!.clone()
         ruleset.addGlobalUniques(*addGlobalUniques)
         if (forUITesting)
             ImageGetter.ruleset = ruleset

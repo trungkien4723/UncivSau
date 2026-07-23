@@ -472,12 +472,18 @@ class Civilization : IsPartOfGameInfoSerialization {
     val cache = CivInfoTransientCache(this)
 
     fun updateStatsForNextTurn(): Unit = timeThis<Unit>("Civilization.updateStatsForNextTurn") {
-        val previousHappiness = stats.happiness
-        stats.happiness = stats.getHappinessBreakdown().values.sum().roundToInt()
-        if (stats.happiness != previousHappiness && gameInfo.ruleset.allHappinessLevelsThatAffectUniques.any {
-            stats.happiness < it != previousHappiness < it // If move from being below them to not, or vice versa
-            })
-            for (city in cities) city.cityStats.update(updateCivStats = false)
+        val housingList = LinkedHashMap<String, Float>()
+        for (city in cities) {
+            for ((key, value) in city.cityStats.housingList) {
+                if (key != "Total") {
+                    if (!housingList.containsKey(key)) housingList[key] = 0f
+                    housingList[key] = housingList[key]!! + value
+                }
+            }
+        }
+        val totalHousing = cities.sumOf { city: City -> city.getAvailableHousing() }
+        stats.housing = totalHousing
+        
         val statMapForNextTurn = stats.getStatMapForNextTurn()
 
         val newStats = Stats()
@@ -486,7 +492,16 @@ class Civilization : IsPartOfGameInfoSerialization {
     }
 
     @Readonly
-    fun getHappiness() = stats.happiness
+    fun getHousing() = stats.housing
+    
+    @Readonly
+    fun getAmenities(): Float {
+        var totalAmenities = 0f
+        for (city in cities) {
+            totalAmenities += city.cityStats.amenitiesList["Total"] ?: 0f
+        }
+        return totalAmenities
+    }
     
     @OptIn(ExperimentalContracts::class)
     @Readonly
@@ -893,7 +908,7 @@ class Civilization : IsPartOfGameInfoSerialization {
                 RankingType.Gold -> gold
                 RankingType.Territory -> cities.sumOf { it.tiles.size }
                 RankingType.Force -> getMilitaryMight()
-                RankingType.Happiness -> getHappiness()
+                RankingType.Housing -> stats.housing.toFloat().roundToInt()
                 RankingType.Technologies -> tech.researchedTechnologies.size
                 RankingType.Culture -> policies.adoptedPolicies.count { !Policy.isBranchCompleteByName(it) }
         }
@@ -1095,7 +1110,7 @@ class Civilization : IsPartOfGameInfoSerialization {
             Stat.Gold -> addGold(amount)
             Stat.Faith -> { religionManager.storedFaith += amount
                 if (amount > 0) totalFaithForContests += amount }
-            SubStat.GoldenAgePoints -> goldenAges.addHappiness(amount)
+            SubStat.GoldenAgePoints -> goldenAges.addEraPoints(amount)
             else -> {}
             // Food and Production wouldn't make sense to be added nationwide
             // Happiness cannot be added as it is recalculated again, use a unique instead
@@ -1107,7 +1122,7 @@ class Civilization : IsPartOfGameInfoSerialization {
         return when (gameResource) {
             is TileResource -> getResourceAmount(gameResource)
             is Stat -> getStatReserve(gameResource)
-            SubStat.GoldenAgePoints -> goldenAges.storedHappiness
+            SubStat.GoldenAgePoints -> goldenAges.storedEraPoints
             else -> throw Exception("Unrecognized gameResource ${gameResource.name}")
         }
     }
@@ -1127,7 +1142,6 @@ class Civilization : IsPartOfGameInfoSerialization {
             }
             Stat.Gold -> gold
             Stat.Faith -> religionManager.storedFaith
-            Stat.Happiness -> stats.happiness
             else -> 0
         }
     }

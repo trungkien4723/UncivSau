@@ -210,10 +210,10 @@ class TurnManager(val civInfo: Civilization) {
             )
         }
 
-        // Will be automatically added again as long as unhappiness is still low enough
+        // Will be automatically added again as long as loyalty is low enough
         civInfo.removeFlag(CivFlags.RevoltSpawning.name)
 
-        civInfo.addNotification("Your citizens are revolting due to very high unhappiness!", spawnTile.position, NotificationCategory.General, unitToSpawn.name, "StatIcons/Malcontent")
+        civInfo.addNotification("Your citizens are rebelling due to very low loyalty!", spawnTile.position, NotificationCategory.General, unitToSpawn.name, "StatIcons/Malcontent")
     }
 
     // Higher is better
@@ -326,7 +326,7 @@ class TurnManager(val civInfo: Civilization) {
 
         civInfo.temporaryUniques.endTurn()
 
-        civInfo.goldenAges.endTurn(civInfo.getHappiness())
+        civInfo.goldenAges.endTurn()
         civInfo.units.getCivUnits().forEach { UnitTurnManager(it).endTurn() }  // This is the most expensive part of endTurn
         civInfo.diplomacy.values.toList().forEach { it.nextTurn() } // we copy the diplomacy values so if it changes in-loop we won't crash
         civInfo.cache.updateHasActiveEnemyMovementPenalty()

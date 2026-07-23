@@ -401,7 +401,6 @@ class Milestone(val uniqueDescription: String, private val parentVictory: Victor
                         Stat.Gold -> Victory.Focus.Gold
                         Stat.Science -> Victory.Focus.Science
                         Stat.Culture -> Victory.Focus.Culture
-                        Stat.Happiness -> Victory.Focus.Gold
                         Stat.Faith -> Victory.Focus.Faith
                         else -> Victory.Focus.Production
                     }

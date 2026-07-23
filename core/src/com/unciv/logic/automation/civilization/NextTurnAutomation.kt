@@ -173,11 +173,6 @@ object NextTurnAutomation {
             // In case someone mods this in
             value += civPersonality[PersonalityValue.Science].toInt() - 5
         }
-        if (canProvideStat(Stat.Happiness)) {
-            if (civInfo.getHappiness() < 10)
-                value += 10 - civInfo.getHappiness()
-            value += civPersonality[PersonalityValue.Happiness].toInt() - 5
-        }
         if (canProvideStat(Stat.Food)) {
             value += 5
             value += civPersonality[PersonalityValue.Food].toInt() - 5
@@ -559,13 +554,6 @@ object NextTurnAutomation {
         for (city in civInfo.cities) UnitAutomation.tryBombardEnemy(city)
     }
 
-    private fun shouldAnnexCity(civInfo: Civilization, city: City) =
-        city.isPuppet
-            && city.population.population > 9
-            && !city.isInResistance()
-            && !civInfo.hasUnique(UniqueType.MayNotAnnexCities)
-            && civInfo.stats.statsForNextTurn.happiness > city.population.population * 2 - 8 // don't go below -10 happiness due to annexing
-
     fun automateCities(civInfo: Civilization) {
         val ownMilitaryStrength = civInfo.getStatForRanking(RankingType.Force)
         val sumOfEnemiesMilitaryStrength =
@@ -575,8 +563,6 @@ object NextTurnAutomation {
         val civHasSignificantlyWeakerMilitaryThanEnemies =
                 ownMilitaryStrength < sumOfEnemiesMilitaryStrength * 0.66f
         for (city in civInfo.cities) {
-            if (shouldAnnexCity(civInfo, city)) city.annexCity()
-
             if (city.health < city.getMaxHealth() || civHasSignificantlyWeakerMilitaryThanEnemies) {
                 Automation.tryTrainMilitaryUnit(city) // need defenses if city is under attack
                 if (city.cityConstructions.constructionQueue.isNotEmpty())
@@ -592,7 +578,6 @@ object NextTurnAutomation {
         if (civInfo.isCityState) return
         if (civInfo.isOneCityChallenger()) return
         if (civInfo.cities.none()) return
-        if (civInfo.getHappiness() <= civInfo.cities.size) return
         if (CivilianUnitAutomation.isLateGame(civInfo)){
             // all suitable land may be occupied already
             // 10 tiles away and 6 "options" are heuristics based on nothing, feel free to change 

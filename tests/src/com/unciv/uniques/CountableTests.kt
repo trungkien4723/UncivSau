@@ -264,14 +264,15 @@ class CountableTests {
         fun verifyStats(context: GameContext) {
             for (stat in Stat.entries) {
                 val countableResult = Countables.Stats.eval(stat.name, context)
-                val expected = if (stat == Stat.Happiness) civ.getHappiness()
+                val expected = if (stat == Stat.Housing) civ.getHousing()
+                else if (stat == Stat.Amenities) civ.getAmenities()
                 else context.getStatAmount(stat)
                 assertEquals("Testing $stat countable:", countableResult, expected)
             }
         }
 
         val providesStats =
-            game.createBuilding("[+1 Gold, +2 Food, +3 Production, +4 Happiness, +3 Science, +2 Culture, +1 Faith] [in this city] <when number of [Cities] is equal to [1]>")
+            game.createBuilding("[+1 Gold, +2 Food, +3 Production, +2 Housing, +3 Science, +2 Culture, +1 Faith] [in this city] <when number of [Cities] is equal to [1]>")
         city.cityConstructions.addBuilding(providesStats)
         verifyStats(GameContext(civ, city))
 

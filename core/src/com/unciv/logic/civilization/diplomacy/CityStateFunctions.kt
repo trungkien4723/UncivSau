@@ -413,7 +413,8 @@ class CityStateFunctions(val civInfo: Civilization) {
         for (city in civInfo.cities) {
             city.espionage.removeAllPresentSpies(SpyFleeReason.CityTakenOverByMarriage)
             city.moveToCiv(otherCiv)
-            city.isPuppet = true // Human players get a popup that allows them to annex instead
+            // Civ VI: Cities are immediately owned after marriage
+            city.isPuppet = false
         }
         civInfo.destroy(notificationLocation.toHexCoord())
     }

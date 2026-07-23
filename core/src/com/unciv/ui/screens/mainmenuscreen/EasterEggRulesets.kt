@@ -65,7 +65,6 @@ object EasterEggRulesets {
 
     private fun getWonder() = Terrain().apply {
         type = TerrainType.NaturalWonder
-        happiness = 42f
         food = 9f
         faith = 9f
         occursOn.addAll(listOf("Grassland", "Plains", "Desert"))
@@ -78,7 +77,6 @@ object EasterEggRulesets {
 
     private fun getRareFeature() = Terrain().apply {
         type = TerrainType.TerrainFeature
-        happiness = 2f
         food = 1f
         faith = 1f
         occursOn.addAll(listOf("Grassland", "Plains", "Desert", "Tundra", "Snow"))

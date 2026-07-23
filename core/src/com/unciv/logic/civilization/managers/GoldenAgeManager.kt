@@ -10,12 +10,13 @@ import com.unciv.models.ruleset.unique.UniqueTriggerActivation
 import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.ui.components.extensions.toPercent
 import yairm210.purity.annotations.Readonly
+import kotlin.math.max
 
 class GoldenAgeManager : IsPartOfGameInfoSerialization {
     @Transient
     lateinit var civInfo: Civilization
 
-    var storedHappiness = 0
+    var storedEraPoints = 0
     private var numberOfGoldenAges = 0
     var turnsLeftForCurrentGoldenAge = 0
 
@@ -29,7 +30,7 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
     fun clone(): GoldenAgeManager {
         val toReturn = GoldenAgeManager()
         toReturn.numberOfGoldenAges = numberOfGoldenAges
-        toReturn.storedHappiness = storedHappiness
+        toReturn.storedEraPoints = storedEraPoints
         toReturn.turnsLeftForCurrentGoldenAge = turnsLeftForCurrentGoldenAge
         toReturn.eraScore = eraScore
         toReturn.totalEraScore = totalEraScore
@@ -41,14 +42,14 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
 
     @Readonly fun isGoldenAge(): Boolean = turnsLeftForCurrentGoldenAge > 0 || currentAge == "Golden"
     
-    fun addHappiness(amount: Int) {
-        storedHappiness += amount
+    fun addEraPoints(amount: Int) {
+        storedEraPoints += amount
     }
 
     @Readonly
-    fun happinessRequiredForNextGoldenAge(): Int {
+    fun eraPointsRequiredForNextGoldenAge(): Int {
         var cost = (500 + numberOfGoldenAges * 250).toFloat()
-        cost *= civInfo.cities.size.toPercent()  //https://forums.civfanatics.com/resources/complete-guide-to-happiness-vanilla.25584/
+        cost *= civInfo.cities.size.toPercent()
         cost *= civInfo.gameInfo.speed.modifier
         return cost.toInt()
     }
@@ -123,9 +124,16 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
         return age
     }
 
-    fun endTurn(happiness: Int) {
+fun endTurn() {
+        val amenitiesSurplus = civInfo.getAmenities() - (civInfo.cities.sumOf { it.population.population } - civInfo.cities.size * 2)
+        if (amenitiesSurplus >= 3) {
+            storedEraPoints += 3
+        } else if (amenitiesSurplus < 0) {
+            storedEraPoints = maxOf(0, storedEraPoints - 1)
+        }
+        
         if (!isGoldenAge())
-            storedHappiness = (storedHappiness + happiness).coerceAtLeast(0)
+            storedEraPoints = (storedEraPoints + if (amenitiesSurplus >= 3) 1 else 0).coerceAtLeast(0)
 
         if (isGoldenAge()){
             turnsLeftForCurrentGoldenAge--
@@ -133,9 +141,9 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
                 for (unique in civInfo.getTriggeredUniques(UniqueType.TriggerUpponEndingGoldenAge))
                     UniqueTriggerActivation.triggerUnique(unique, civInfo)
         }
-                
-        else if (storedHappiness > happinessRequiredForNextGoldenAge()) {
-            storedHappiness -= happinessRequiredForNextGoldenAge()
+                  
+        else if (storedEraPoints > eraPointsRequiredForNextGoldenAge()) {
+            storedEraPoints -= eraPointsRequiredForNextGoldenAge()
             enterGoldenAge()
             numberOfGoldenAges++
         }

@@ -726,14 +726,12 @@ object Battle {
             UniqueTriggerActivation.triggerUnique(unique, attacker.unit)
     }
 
-    /** Handle decision-making after city conquest, namely whether the AI should liberate, puppet,
+    /** Handle decision-making after city conquest, namely whether the AI should liberate,
      * or raze a city */
     private fun automateCityConquer(civInfo: Civilization, city: City) {
         if (!city.hasDiplomaticMarriage()) {
             val foundingCiv = city.foundingCivObject!!
             var valueAlliance = NextTurnAutomation.valueCityStateAlliance(civInfo, foundingCiv)
-            if (civInfo.getHappiness() < 0)
-                valueAlliance -= civInfo.getHappiness() // put extra weight on liberating if unhappy
             if (foundingCiv.isCityState && city.civ != civInfo && foundingCiv != civInfo
                 && !civInfo.isAtWarWith(foundingCiv)
                 && valueAlliance > 0) {
@@ -742,12 +740,8 @@ object Battle {
             }
         }
 
-        city.puppetCity(civInfo)
-        if ((city.population.population < 4 || civInfo.isCityState)
-            && city.foundingCivObject != civInfo && city.canBeDestroyed(justCaptured = true)) {
-            // raze if attacker is a city state
-            if (!civInfo.hasUnique(UniqueType.MayNotAnnexCities)) city.annexCity()
-            city.isBeingRazed = true
+        if (city.population.population < 4 || civInfo.isCityState) {
+            if (!civInfo.hasUnique(UniqueType.MayNotAnnexCities)) city.destroyCity()
         }
     }
     

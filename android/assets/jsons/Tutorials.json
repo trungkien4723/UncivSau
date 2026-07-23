@@ -539,16 +539,6 @@
       ]
   },
   {
-    "name": "We Love The King Day",
-    "category": "Cities",
-    "steps": [
-        "Your cities will periodically demand different luxury goods to satisfy their desire for new things in life.",
-        "If you manage to acquire the demanded luxury by trade, expansion, or conquest, the city will celebrate We Love The King Day for 20 turns.",
-        "During the We Love The King Day, the city will grow 25% faster.",
-        "This means exploration and trade is important to grow your cities!"
-    ]
-  },
-  {
     "name": "Air Combat and Interception",
     "category": "Units",
     "civilopediaText": [

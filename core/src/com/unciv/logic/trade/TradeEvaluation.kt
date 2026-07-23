@@ -176,15 +176,15 @@ class TradeEvaluation {
 
                 if (lowestExplicitBuyCost != null) return lowestExplicitBuyCost
 
-                val weLoveTheKingPotential = civInfo.cities.count { it.demandedResource == offer.name } * 50
+                val totalAmenities = civInfo.getAmenities()
                 return if(!civInfo.hasResource(offer.name)) { // we can't trade on resources, so we are only interested in 1 copy for ourselves
-                        weLoveTheKingPotential + when { // We're a lot more interested in luxury if low on happiness (AI is never low on happiness though)
-                            civInfo.getHappiness() < 0 -> 450
-                            civInfo.getHappiness() < 10 -> 350
+                        25 * civInfo.cities.count { city -> city.population.population > 4 } + when { // We're more interested in luxury if low on amenities
+                            totalAmenities < 0 -> 450
+                            totalAmenities < 4 -> 350
                             else -> 300 // Higher than corresponding sell cost since a trade is mutually beneficial!
                         }
                     } else 0
-            }
+                }
 
             TradeOfferType.Strategic_Resource -> {
                 if (civInfo.getDiplomacyManager(tradePartner)!!.hasFlag(DiplomacyFlags.ResourceTradesCutShort))
@@ -259,8 +259,6 @@ class TradeEvaluation {
                 val city = tradePartner.cities.firstOrNull { it.id == offer.name }
                     ?: throw Exception("Got an offer for city id "+offer.name+" which does't seem to exist for this civ!")
                 val surrounded: Int = surroundedByOurCities(city, civInfo)
-                if (civInfo.getHappiness() + city.cityStats.happinessList.values.sum() < 0)
-                    return 0 // we can't really afford to go into negative happiness because of buying a city
                 val sumOfPop = city.population.population
                 val sumOfBuildings = city.cityConstructions.getBuiltBuildings().count()
                 return (sumOfPop * 4 + sumOfBuildings + 4 + surrounded) * 100
@@ -385,9 +383,6 @@ class TradeEvaluation {
                 
                 return when {
                     civInfo.getResourceAmount(offer.name) > 1 -> 250 // fair price
-                    civInfo.hasUnique(UniqueType.RetainHappinessFromLuxury) -> // If we retain 100% happiness, value it as a duplicate lux
-                        600 - (civInfo.getMatchingUniques(UniqueType.RetainHappinessFromLuxury)
-                            .first().params[0].toFloat() * 3.5f).toInt()
                     else -> 600 // you want to take away our last lux of this type?!
                 }
             }

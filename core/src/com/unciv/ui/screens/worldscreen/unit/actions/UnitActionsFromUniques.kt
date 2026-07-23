@@ -69,10 +69,7 @@ object UnitActionsFromUniques {
             if (hasActionModifiers) UnitActionModifiers.activateSideEffects(unit, unique)
             else unit.destroy()
             GUI.setUpdateWorldOnNextRender() // Set manually, since this could be triggered from the ConfirmPopup and not from the UnitActionsTable
-            // If unit has FoundPuppetCity make it into a puppet city.
-            if (unique.type == UniqueType.FoundPuppetCity) {
-                city.isPuppet = true
-            }
+            // Civ VI: Cities are immediately owned, no puppet state
         }
 
         if (unit.civ.playerType == PlayerType.AI)

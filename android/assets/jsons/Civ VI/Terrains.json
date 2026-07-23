@@ -353,7 +353,7 @@
 		"name": "Old Faithful",
 		"type": "NaturalWonder",
 		"science": 2,
-		"happiness": 3,
+		"amenities": 3,
 		"occursOn": ["Grassland","Plains","Tundra","Mountain"],
 		"uniques": ["Must be adjacent to [0] [Coast] tiles",
 			"Must be adjacent to [0] to [4] [Mountain] tiles",
@@ -382,7 +382,7 @@
 	{ // This will count as "Fresh water" in civ 6
 		"name": "Fountain of Youth",
 		"type": "NaturalWonder",
-		"happiness": 10,
+		"amenities": 10,
 		"overrideStats": true,
 		"occursOn": ["Plains"],
 		"turnsInto": "Plains",
@@ -486,7 +486,7 @@
 		"name": "Mount Kailash",
 		"type": "NaturalWonder",
 		"faith": 6,
-		"happiness": 2,
+		"amenities": 2,
 		"occursOn": ["Plains","Grassland"],
 		"uniques": ["Must be adjacent to [0] [Coast] tiles",
 			"Must be adjacent to [0] [Marsh] tiles",
@@ -517,7 +517,7 @@
 		"type": "NaturalWonder",
 		"food": 2,
 		"faith": 4,
-		"happiness": 2,
+		"amenities": 2,
 		"occursOn": ["Plains","Grassland"],
 		"uniques": ["Must be adjacent to [0] [Tundra] tiles",
 			"Must be adjacent to [0] [Desert] tiles",
@@ -543,7 +543,7 @@
 		"impassable": true,
 		"unbuildable": true,
 		"weight": 10
-	},
+	}
 /*
 	// BNW wonders
 	{

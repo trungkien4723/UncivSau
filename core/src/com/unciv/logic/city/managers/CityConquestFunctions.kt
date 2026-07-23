@@ -143,7 +143,7 @@ class CityConquestFunctions(val city: City) {
     }
 
 
-    /** This happens when we either puppet OR annex, basically whenever we conquer a city and don't liberate it */
+    /** Civ VI: Finalize city conquest - city is immediately owned, no puppet/annex states */
     fun puppetCity(conqueringCiv: Civilization) {
         val oldCiv = city.civ
 
@@ -152,18 +152,15 @@ class CityConquestFunctions(val city: City) {
         diplomaticRepercussionsForConqueringCity(oldCiv, conqueringCiv)
 
         conquerCity(conqueringCiv, oldCiv, conqueringCiv)
-        makePuppet()
+        city.shouldReassignPopulation = true
+        city.avoidGrowth = false
+        city.setCityFocus(CityFocus.NoFocus)
         city.cityStats.update()
-    }
-    
-    private fun makePuppet(){
-        city.isPuppet = true
-        // The city could be producing something that puppets shouldn't, like units
-        city.cityConstructions.removeAll()
+        GUI.setUpdateWorldOnNextRender()
     }
 
+    /** Civ VI: Annex is immediate on conquest - no separate annex step */
     fun annexCity() {
-        city.isPuppet = false
         if (!city.isInResistance()) city.shouldReassignPopulation = true
         city.avoidGrowth = false
         city.setCityFocus(CityFocus.NoFocus)
@@ -310,7 +307,7 @@ class CityConquestFunctions(val city: City) {
         }
 
         // Stop WLTKD if it's still going
-        city.resetWLTKD()
+        city.resetCityFlags()
 
         // Remove their free buildings from this city and remove free buildings provided by the city from their cities
         removeBuildingsOnMoveToCiv()
@@ -341,7 +338,7 @@ class CityConquestFunctions(val city: City) {
 
         if (city.civ.gameInfo.isReligionEnabled()) city.religion.removeUnknownPantheons()
 
-        if (newCiv.hasUnique(UniqueType.MayNotAnnexCities)) makePuppet()
+        if (newCiv.hasUnique(UniqueType.MayNotAnnexCities)) city.cityConstructions.removeAll()
 
         city.tryUpdateRoadStatus()
         city.cityStats.update()

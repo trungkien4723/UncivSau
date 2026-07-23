@@ -6,7 +6,6 @@ import com.badlogic.gdx.utils.Align
 import com.unciv.logic.GameInfo
 import com.unciv.logic.battle.CityCombatant
 import com.unciv.logic.city.City
-import com.unciv.logic.city.CityFlags
 import com.unciv.models.stats.Stat
 import com.unciv.models.translations.tr
 import com.unciv.ui.components.ISortableGridContentProvider
@@ -110,42 +109,13 @@ enum class CityOverviewTabColumn : ISortableGridContentProvider<City, EmpireOver
     Science,
     Production,
     Culture,
-    Happiness {
+    Housing {
         override fun getEntryValue(item: City) =
-            item.cityStats.happinessList.values.sum().roundToInt()
+            item.cityStats.housingList.values.sum().roundToInt()
     },
     Faith {
         override fun isVisible(gameInfo: GameInfo) =
             gameInfo.isReligionEnabled()
-    },
-
-    WLTK {
-        override val headerTip = "We Love The King Day"
-        override val defaultSort get() = SortableGrid.SortDirection.Ascending
-        override fun getComparator() =
-            super.getComparator().thenBy { it.demandedResource.tr(hideIcons = true) }
-        override fun getHeaderActor(iconSize: Float) =
-                getCircledIcon("OtherIcons/WLTK 2", iconSize, Color.TAN)
-        override fun getEntryValue(item: City) =
-                if (item.isWeLoveTheKingDayActive()) 1 else 0
-        override fun getEntryActor(item: City, iconSize: Float, actionContext: EmpireOverviewScreen) = when {
-            item.isWeLoveTheKingDayActive() -> {
-                ImageGetter.getImage("OtherIcons/WLTK 1")
-                    .surroundWithCircle(iconSize, color = Color.CLEAR)
-                    .apply {
-                        addTooltip("[${item.getFlag(CityFlags.WeLoveTheKing)}] turns", 18f, tipAlign = Align.topLeft)
-                    }
-            }
-            item.demandedResource.isNotEmpty() -> {
-                ImageGetter.getResourcePortrait(item.demandedResource, iconSize * 0.7f).apply {
-                    addTooltip("Demanding [${item.demandedResource}]", 18f, tipAlign = Align.topLeft)
-                    onClick { actionContext.showOneTimeNotification(
-                        item.civ.gameInfo.getExploredResourcesNotification(item.civ, item.demandedResource)
-                    ) }
-                }
-            }
-            else -> null
-        }
     },
 
     Garrison {

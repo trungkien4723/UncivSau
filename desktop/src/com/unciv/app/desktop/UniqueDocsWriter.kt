@@ -127,8 +127,10 @@ class UniqueDocsWriter {
                     // This one will give examples for _each_ filter in a "tileFilter/specialist/buildingFilter" kind of parameter e.g. "Farm/Merchant/Library":
                     // `val paramExamples = uniqueType.parameterTypeMap.map { it.joinToString("/") { pt -> pt.docExample } }.toTypedArray()`
                     // Might confuse modders to think "/" can go into the _actual_ unique and mean "or", so better show just one ("Farm" in the example above):
-                    val paramExamples = uniqueType.parameterTypeMap.map { it.first().docExample }.toTypedArray()
-                    lines += "\tExample: \"${uniqueText.fillPlaceholders(*paramExamples)}\"\n"
+                    val paramExamples = uniqueType.parameterTypeMap.mapNotNull { it.firstOrNull()?.docExample }.toTypedArray()
+                    if (paramExamples.isNotEmpty()) {
+                        lines += "\tExample: \"${uniqueText.fillPlaceholders(*paramExamples)}\"\n"
+                    }
                 }
                 if (uniqueType.flags.contains(UniqueFlag.AcceptsSpeedModifier))
                     lines += "\tThis unique's effect can be modified with &lt;${UniqueType.ModifiedByGameSpeed.text}&gt;\n"

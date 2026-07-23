@@ -259,7 +259,7 @@ internal class AdvancedTab(
 
         // Can't use UncivGame.Current.translations.modsWithTranslations here, it's selective to the chosen language
         val entries = listOf("All mods") +
-            (if (isRunFromJar(this)) emptyList() else listOf(BaseRuleset.Civ_V_GnK.fullName)) +
+            (if (isRunFromJar(this)) emptyList() else listOf(BaseRuleset.Civ_VI.fullName)) +
             RulesetCache.keys.filter { mod -> BaseRuleset.entries.none { it.fullName == mod } }.sorted()
         val modSelect = TranslatedSelectBox(entries, "All mods")
 

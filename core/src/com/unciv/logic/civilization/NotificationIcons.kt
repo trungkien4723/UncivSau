@@ -34,6 +34,8 @@ object NotificationIcon {
     const val Trade = "StatIcons/Acquire"
     const val War = "OtherIcons/Pillage"
     const val Quest = "OtherIcons/Quest"
+    const val Housing = "StatIcons/Housing"
+    const val Amenities = "StatIcons/Amenities"
 
     /** Get the image for a [Notification] icon, translating:
      *  - A [Baseunit][com.unciv.models.ruleset.unit.BaseUnit] name to [ImageGetter.getUnitIcon]

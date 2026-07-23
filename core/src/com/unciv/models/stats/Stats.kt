@@ -18,8 +18,9 @@ open class Stats(
     var gold: Float = 0f,
     var science: Float = 0f,
     var culture: Float = 0f,
-    var happiness: Float = 0f,
-    var faith: Float = 0f
+    var faith: Float = 0f,
+    var housing: Float = 0f,
+    var amenities: Float = 0f
 ): Iterable<Stats.StatValuePair> {
 
     /** Indexed read of a value for a given [Stat], e.g. `this.gold == this[Stat.Gold]` */
@@ -31,8 +32,9 @@ open class Stats(
             Stat.Gold -> gold
             Stat.Science -> science
             Stat.Culture -> culture
-            Stat.Happiness -> happiness
             Stat.Faith -> faith
+            Stat.Housing -> housing
+            Stat.Amenities -> amenities
         }
     }
     /** Indexed write of a value for a given [Stat], e.g. `this.gold += 1f` is equivalent to `this[Stat.Gold] += 1f` */
@@ -43,8 +45,9 @@ open class Stats(
             Stat.Gold -> gold = value
             Stat.Science -> science = value
             Stat.Culture -> culture = value
-            Stat.Happiness -> happiness = value
             Stat.Faith -> faith = value
+            Stat.Housing -> housing = value
+            Stat.Amenities -> amenities = value
         }
     }
 
@@ -59,13 +62,14 @@ open class Stats(
                 && gold == otherStats.gold
                 && science == otherStats.science
                 && culture == otherStats.culture
-                && happiness == otherStats.happiness
                 && faith == otherStats.faith
+                && housing == otherStats.housing
+                && amenities == otherStats.amenities
     }
 
     /** **Non-Mutating function**
      * @return a new instance containing the same values as `this` */
-    @Readonly fun clone() = Stats(production, food, gold, science, culture, happiness, faith)
+    @Readonly fun clone() = Stats(production, food, gold, science, culture, faith, housing, amenities)
 
     /** @return `true` if all values are zero */
     @Readonly
@@ -75,8 +79,9 @@ open class Stats(
             && gold == 0f
             && science == 0f
             && culture == 0f
-            && happiness == 0f
-            && faith == 0f )
+            && faith == 0f
+            && housing == 0f
+            && amenities == 0f )
 
     /** Reset all values to zero (in place) */
     fun clear() {
@@ -85,8 +90,9 @@ open class Stats(
         gold = 0f
         science = 0f
         culture = 0f
-        happiness = 0f
         faith = 0f
+        housing = 0f
+        amenities = 0f
     }
 
     /** **Mutating function** (but does **not** mutate [other])
@@ -98,8 +104,9 @@ open class Stats(
         gold += other.gold
         science += other.science
         culture += other.culture
-        happiness += other.happiness
         faith += other.faith
+        housing += other.housing
+        amenities += other.amenities
         return this
     }
 
@@ -132,8 +139,9 @@ open class Stats(
         gold * number,
         science * number,
         culture * number,
-        happiness * number,
-        faith * number
+        faith * number,
+        housing * number,
+        amenities * number
     )
 
     /** **Mutating function**
@@ -144,8 +152,9 @@ open class Stats(
         gold *= number
         science *= number
         culture *= number
-        happiness *= number
         faith *= number
+        housing *= number
+        amenities *= number
     }
 
     /** **Non-Mutating function**
@@ -160,7 +169,6 @@ open class Stats(
         gold *= 6 // 2 gold worth about 1 production
         science *= 9.01f // 4 Science better than 3 Production
         culture *= 8
-        happiness *= 10 // base
         faith *= 7
     }
 
@@ -210,23 +218,26 @@ open class Stats(
         if (gold != 0f) yield(StatValuePair(Stat.Gold, gold))
         if (science != 0f) yield(StatValuePair(Stat.Science, science))
         if (culture != 0f) yield(StatValuePair(Stat.Culture, culture))
-        if (happiness != 0f) yield(StatValuePair(Stat.Happiness, happiness))
         if (faith != 0f) yield(StatValuePair(Stat.Faith, faith))
+        if (housing != 0f) yield(StatValuePair(Stat.Housing, housing))
+        if (amenities != 0f) yield(StatValuePair(Stat.Amenities, amenities))
     }
 
     @Readonly
-    /** Fast aggregate: Sum over all seven stats */
-    fun sum() = production + food + gold + science + culture + happiness + faith
+    /** Fast aggregate: Sum over all eight stats */
+    fun sum() = production + food + gold + science + culture + faith + housing + amenities
     @Readonly
-    /** Fast aggregate: Min of all seven stats */
+    /** Fast aggregate: Min of all eight stats */
     fun min() = production.coerceAtMost(food).coerceAtMost(gold)
         .coerceAtMost(science).coerceAtMost(culture)
-        .coerceAtMost(happiness).coerceAtMost(faith)
+        .coerceAtMost(faith)
+        .coerceAtMost(housing).coerceAtMost(amenities)
     @Readonly
-    /** Fast aggregate: Max of all seven stats */
+    /** Fast aggregate: Max of all eight stats */
     fun max() = production.coerceAtLeast(food).coerceAtLeast(gold)
         .coerceAtLeast(science).coerceAtLeast(culture)
-        .coerceAtLeast(happiness).coerceAtLeast(faith)
+        .coerceAtLeast(faith)
+        .coerceAtLeast(housing).coerceAtLeast(amenities)
 
     /** Returns an iterator over the elements of this object, wrapped as [StatValuePair]s */
     override fun iterator(): Iterator<StatValuePair> = asSequence().iterator()

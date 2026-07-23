@@ -29,20 +29,20 @@ internal class WorldScreenTopBarStats(topbar: WorldScreenTopBar) : ScalingTableW
         .toLabel(colorFromRGB(225, 217, 71), 14)
 
     private val scienceLabel = "0".toLabel(colorFromRGB(78, 140, 151)) // #4e8c97
-    private val happinessLabel = "0".toLabel()
+    private val housingLabel = "0".toLabel()
     private val cultureLabel = "0".toLabel(colorFromRGB(210, 94, 210)) // #d25ed2
 
     private val faithLabel = "0".toLabel(colorFromRGB(168, 196, 241)) // #a8c4f1
     private val faithPerTurnLabel = "+0"
         .toLabel(colorFromRGB(168, 196, 241), 14)
 
-    private val happinessContainer = Group()
+    private val housingContainer = Group()
 
     // These are all to improve performance IE reduce update time (was 150 ms on my phone, which is a lot!)
     private val malcontentColor = colorFromRGB(239,83,80) // Color.valueOf("ef5350")
-    private val happinessColor = colorFromRGB(92, 194, 77) // Color.valueOf("8cc24d")
+    private val housingColor = colorFromRGB(92, 194, 77) // Color.valueOf("8cc24d")
     private val malcontentImage = ImageGetter.getStatIcon("Malcontent")
-    private val happinessImage = ImageGetter.getStatIcon("Happiness")
+    private val housingImage = ImageGetter.getStatIcon("Housing")
 
     private val worldScreen = topbar.worldScreen
 
@@ -101,10 +101,10 @@ internal class WorldScreenTopBarStats(topbar: WorldScreenTopBar) : ScalingTableW
         val invokeResourcesPage = {
             worldScreen.openEmpireOverview(EmpireOverviewCategories.Resources)
         }
-        happinessContainer.onClick(invokeResourcesPage)
-        happinessLabel.onClick(invokeResourcesPage)
-        add(happinessContainer).padBottom(defaultImageBottomPad).size(defaultImageSize)
-        add(happinessLabel).padRight(padRightBetweenStats)
+        housingContainer.onClick(invokeResourcesPage)
+        housingLabel.onClick(invokeResourcesPage)
+        add(housingContainer).padBottom(defaultImageBottomPad).size(defaultImageSize)
+        add(housingLabel).padRight(padRightBetweenStats)
 
         addStat("Culture", cultureLabel) {
             if (worldScreen.gameInfo.ruleset.policyBranches.isEmpty()) null
@@ -130,16 +130,16 @@ internal class WorldScreenTopBarStats(topbar: WorldScreenTopBar) : ScalingTableW
 
         scienceLabel.setText(rateLabel(nextTurnStats.science))
 
-        happinessLabel.setText(getHappinessText(civInfo))
+        housingLabel.setText(getHousingText(civInfo))
 
-        if (civInfo.getHappiness() < 0) {
-            happinessLabel.setFontColor(malcontentColor)
-            happinessContainer.clearChildren()
-            happinessContainer.addActor(malcontentImage)
+        if (civInfo.getHousing() < 0) {
+            housingLabel.setFontColor(malcontentColor)
+            housingContainer.clearChildren()
+            housingContainer.addActor(malcontentImage)
         } else {
-            happinessLabel.setFontColor(happinessColor)
-            happinessContainer.clearChildren()
-            happinessContainer.addActor(happinessImage)
+            housingLabel.setFontColor(housingColor)
+            housingContainer.clearChildren()
+            housingContainer.addActor(housingImage)
         }
 
         cultureLabel.setText(getCultureText(civInfo, nextTurnStats))
@@ -162,15 +162,13 @@ internal class WorldScreenTopBarStats(topbar: WorldScreenTopBar) : ScalingTableW
         return cultureString
     }
 
-    private fun getHappinessText(civInfo: Civilization): String {
-        var happinessText = civInfo.getHappiness().tr()
-        val goldenAges = civInfo.goldenAges
-        happinessText +=
-            if (goldenAges.isGoldenAge())
-                "    {GOLDEN AGE}(${goldenAges.turnsLeftForCurrentGoldenAge})".tr()
-            else
-                " (${goldenAges.storedHappiness.tr()}/${goldenAges.happinessRequiredForNextGoldenAge().tr()})"
-        return happinessText
+    private fun getHousingText(civInfo: Civilization): String {
+        var housingText = civInfo.getHousing().toString()
+        val amenities = civInfo.getAmenities()
+        val totalPopulation = civInfo.cities.sumOf { it.population.population }
+        val requiredAmenities = maxOf(0, (totalPopulation - civInfo.cities.size) / 2)
+        housingText += " / $requiredAmenities (Amenities)"
+        return housingText
     }
 
     private fun rateLabel(value: Float): String {

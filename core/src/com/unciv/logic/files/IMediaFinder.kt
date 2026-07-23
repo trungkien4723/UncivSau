@@ -162,7 +162,7 @@ interface IMediaFinder {
             // Remember this replaces enumeration over *bundled* assets - not necessary for mods
             // Keeps unit around not for this class but for the labeled version
             fun unitAttackSounds(): Sequence<Pair<BaseUnit, String>> {
-                val ruleset = RulesetCache[BaseRuleset.Civ_V_GnK.fullName] ?: return emptySequence()
+                val ruleset = RulesetCache[BaseRuleset.Civ_VI.fullName] ?: return emptySequence()
                 return ruleset.units.values.asSequence()
                     .filter { it.attackSound != null }
                     .distinctBy { it.attackSound }
