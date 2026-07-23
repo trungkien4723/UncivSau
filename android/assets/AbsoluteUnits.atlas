@@ -3224,49 +3224,49 @@ TileSets/AbsoluteUnits/Units/Work Boats-Industrial era-2
   orig: 64, 56
   offset: 0, 0
   index: -1
-TileSets/AbsoluteUnits/Units/Worker
+TileSets/AbsoluteUnits/Units/Builder
   rotate: false
   xy: 829, 1133
   size: 95, 81
   orig: 95, 81
   offset: 0, 0
   index: -1
-TileSets/AbsoluteUnits/Units/Worker-1
+TileSets/AbsoluteUnits/Units/Builder-1
   rotate: false
   xy: 932, 1133
   size: 95, 81
   orig: 95, 81
   offset: 0, 0
   index: -1
-TileSets/AbsoluteUnits/Units/Worker-2
+TileSets/AbsoluteUnits/Units/Builder-2
   rotate: false
   xy: 1035, 1133
   size: 95, 81
   orig: 95, 81
   offset: 0, 0
   index: -1
-TileSets/AbsoluteUnits/Units/Worker-Barbarians
+TileSets/AbsoluteUnits/Units/Builder-Barbarians
   rotate: false
   xy: 4, 1145
   size: 96, 96
   orig: 96, 96
   offset: 0, 0
   index: -1
-TileSets/AbsoluteUnits/Units/Worker-Industrial era
+TileSets/AbsoluteUnits/Units/Builder-Industrial era
   rotate: false
   xy: 1138, 1147
   size: 95, 81
   orig: 95, 81
   offset: 0, 0
   index: -1
-TileSets/AbsoluteUnits/Units/Worker-Industrial era-1
+TileSets/AbsoluteUnits/Units/Builder-Industrial era-1
   rotate: false
   xy: 1241, 1161
   size: 95, 81
   orig: 95, 81
   offset: 0, 0
   index: -1
-TileSets/AbsoluteUnits/Units/Worker-Industrial era-2
+TileSets/AbsoluteUnits/Units/Builder-Industrial era-2
   rotate: false
   xy: 1344, 1161
   size: 95, 81

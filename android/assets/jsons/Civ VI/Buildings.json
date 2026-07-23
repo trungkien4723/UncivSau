@@ -1927,7 +1927,7 @@
     {
         "name": "Arena",
         "cost": 36,
-        "requiredCivic": "Games and Revelry",
+        "requiredCivic": "Games and Recreation",
         "district": "Entertainment Complex",
         "uniques": [
             "[+1] [Amenities] [in this city]",
@@ -1937,7 +1937,7 @@
     {
         "name": "Zoo",
         "cost": 36,
-        "requiredCivic": "Games and Revelry",
+        "requiredCivic": "Games and Recreation",
         "district": "Entertainment Complex",
         "uniques": [
             "[+1] [Amenities] [in this city]",
@@ -2504,7 +2504,7 @@
         "replaces": "Zoo",
         "uniqueTo": "Brazil",
         "district": "Entertainment Complex",
-        "requiredCivic": "Games and Revelry",
+        "requiredCivic": "Games and Recreation",
         "uniques": [
             "[+2] [Amenities] [in this city]",
             "[+2] [Culture] [in this city]"
@@ -2515,7 +2515,7 @@
         "replaces": "Zoo",
         "uniqueTo": "Canada",
         "district": "Entertainment Complex",
-        "requiredCivic": "Games and Revelry",
+        "requiredCivic": "Games and Recreation",
         "uniques": [
             "[+2] [Amenities] [in this city]",
             "[+1] [Production] [in this city]",

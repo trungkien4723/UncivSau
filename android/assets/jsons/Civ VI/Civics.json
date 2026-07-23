@@ -109,6 +109,17 @@
         "civicCost": 130,
         "civics": [
             {
+                "name": "Civil Service",
+                "row": 1,
+                "prerequisites": [
+                    "Political Philosophy",
+                    "Feudalism"
+                ],
+                "uniques": [
+                    "Inspiration: [40]% of the cost of this civic <upon establishing a [Trade Route]>"
+                ]
+            },
+            {
                 "name": "Feudalism",
                 "row": 2,
                 "prerequisites": [
@@ -131,7 +142,7 @@
                 ]
             },
             {
-                "name": "Games and Revelry",
+                "name": "Games and Recreation",
                 "row": 4,
                 "prerequisites": [
                     "Drama and Poetry"
@@ -166,7 +177,7 @@
                 "row": 3,
                 "prerequisites": [
                     "Political Philosophy",
-                    "Games and Revelry"
+                    "Games and Recreation"
                 ],
                 "uniques": [
                     "Inspiration: [40]% of the cost of this civic <upon reaching [6] [Population] in a city>"
@@ -203,7 +214,7 @@
                 "name": "Medieval Faires",
                 "row": 4,
                 "prerequisites": [
-                    "Games and Revelry",
+                    "Games and Recreation",
                     "Defensive Tactics"
                 ],
                 "uniques": [
@@ -302,16 +313,6 @@
                     "Inspiration: [40]% of the cost of this civic <upon building a [University] building>"
                 ]
             },
-            {
-                "name": "The Great Green Wall",
-                "row": 3,
-                "prerequisites": [
-                    "Diplomatic Service"
-                ],
-                "uniques": [
-                    "Inspiration: [40]% of the cost of this civic <upon planting a [Wood] improvement>"
-                ]
-            }
         ]
     },
     {
@@ -320,13 +321,13 @@
         "civicCost": 320,
         "civics": [
             {
-                "name": "Reformation",
-                "row": 2,
+                "name": "The Enlightenment",
+                "row": 1,
                 "prerequisites": [
                     "Humanism"
                 ],
                 "uniques": [
-                    "[+100]% weight to this choice for AI decisions"
+                    "Inspiration: [40]% of the cost of this civic <upon building a [University] district>"
                 ]
             },
             {
@@ -341,21 +342,9 @@
                 ]
             },
             {
-                "name": "Trade Confederation",
-                "row": 4,
-                "prerequisites": [
-                    "Exploration",
-                    "Reformation"
-                ],
-                "uniques": [
-                    "Inspiration: [40]% of the cost of this civic <upon gaining a [Trader] unit>"
-                ]
-            },
-            {
                 "name": "Natural History",
                 "row": 6,
                 "prerequisites": [
-                    "The Great Green Wall",
                     "Guilds"
                 ],
                 "uniques": [
@@ -366,7 +355,7 @@
                 "name": "Mercantilism",
                 "row": 3,
                 "prerequisites": [
-                    "Trade Confederation"
+                    "Exploration"
                 ],
                 "uniques": [
                     "[+100]% weight to this choice for AI decisions"
@@ -394,7 +383,6 @@
                 "name": "Nationalism",
                 "row": 2,
                 "prerequisites": [
-                    "Reformation",
                     "Mercantilism"
                 ],
                 "uniques": [
@@ -402,32 +390,20 @@
                 ]
             },
             {
-                "name": "Liberalism",
-                "row": 5,
-                "prerequisites": [
-                    "Mercantilism",
-                    "Nationalism"
-                ],
-                "uniques": [
-                    "Inspiration: [40]% of the cost of this civic <upon building a [Bank] building>"
-                ]
-            },
-            {
-                "name": "Collective Activism",
+                "name": "Colonialism",
                 "row": 4,
                 "prerequisites": [
-                    "Cultural Heritage",
-                    "Nationalism"
+                    "Mercantilism"
                 ],
                 "uniques": [
-                    "Inspiration: [40]% of the cost of this civic <upon gaining a [Great Writer] unit>"
+                    "Inspiration: [40]% of the cost of this civic <upon settling a city on a different continent>"
                 ]
             },
             {
                 "name": "Class Struggle",
                 "row": 6,
                 "prerequisites": [
-                    "Collective Activism"
+                    "Nationalism"
                 ],
                 "uniques": [
                     "Inspiration: [40]% of the cost of this civic <upon building a [Neighborhood] district>"
@@ -437,7 +413,7 @@
                 "name": "Suffrage",
                 "row": 3,
                 "prerequisites": [
-                    "Liberalism"
+                    "Nationalism"
                 ],
                 "uniques": [
                     "Inspiration: [40]% of the cost of this civic <upon building a [Seaport] building>"
@@ -447,7 +423,6 @@
                 "name": "Totalitarianism",
                 "row": 7,
                 "prerequisites": [
-                    "Liberalism",
                     "Class Struggle"
                 ],
                 "uniques": [
@@ -461,6 +436,16 @@
         "era": "Industrial era",
         "civicCost": 580,
         "civics": [
+            {
+                "name": "Urbanization",
+                "row": 1,
+                "prerequisites": [
+                    "Capitalism"
+                ],
+                "uniques": [
+                    "Inspiration: [40]% of the cost of this civic <upon building a [Neighborhood] district>"
+                ]
+            },
             {
                 "name": "Capitalism",
                 "row": 2,
@@ -503,16 +488,6 @@
                 ]
             },
             {
-                "name": "New Deal",
-                "row": 3,
-                "prerequisites": [
-                    "Capitalism"
-                ],
-                "uniques": [
-                    "Inspiration: [40]% of the cost of this civic <upon building a [Power Plant] building>"
-                ]
-            },
-            {
                 "name": "Scorched Earth",
                 "row": 7,
                 "prerequisites": [
@@ -530,18 +505,17 @@
         "civicCost": 780,
         "civics": [
             {
-                "name": "Cultural Heritage Reforms",
-                "row": 2,
+                "name": "Mass Media",
+                "row": 1,
                 "prerequisites": [
-                    "Ideology",
-                    "New Deal"
+                    "Capitalism"
                 ],
                 "uniques": [
-                    "[+100]% weight to this choice for AI decisions"
+                    "Inspiration: [40]% of the cost of this civic <upon building a [Broadcast Center] building>"
                 ]
             },
             {
-                "name": "Grand Opera",
+                "name": "Opera and Ballet",
                 "row": 5,
                 "prerequisites": [
                     "Ideology",
@@ -555,21 +529,10 @@
                 "name": "Nuclear Program",
                 "row": 4,
                 "prerequisites": [
-                    "Mobilization",
-                    "New Deal"
+                    "Mobilization"
                 ],
                 "uniques": [
                     "Inspiration: [40]% of the cost of this civic <upon building a [Military Academy] building>"
-                ]
-            },
-            {
-                "name": "Suffragette Movement",
-                "row": 6,
-                "prerequisites": [
-                    "Scorched Earth"
-                ],
-                "uniques": [
-                    "Inspiration: [40]% of the cost of this civic <upon building a [Broadcast Center] building>"
                 ]
             },
             {
@@ -580,16 +543,6 @@
                 ],
                 "uniques": [
                     "Inspiration: [40]% of the cost of this civic <upon building a [Aerodrome] district>"
-                ]
-            },
-            {
-                "name": "Arctic",
-                "row": 7,
-                "prerequisites": [
-                    "Nuclear Program"
-                ],
-                "uniques": [
-                    "Inspiration: [40]% of the cost of this civic <upon building a [Research Station] improvement>"
                 ]
             }
         ]
@@ -603,29 +556,18 @@
                 "name": "Social Media",
                 "row": 2,
                 "prerequisites": [
-                    "Cultural Heritage Reforms",
-                    "Suffragette Movement"
+                    "Capitalism",
+                    "Rapid Deployment"
                 ],
                 "uniques": [
                     "Inspiration: [40]% of the cost of this civic <upon gaining a [Great Artist] unit>"
                 ]
             },
             {
-                "name": "Nuclear Fusion",
-                "row": 5,
-                "prerequisites": [
-                    "Rapid Deployment",
-                    "Arctic"
-                ],
-                "uniques": [
-                    "Inspiration: [40]% of the cost of this civic <upon building a [Hydroelectric Dam] improvement>"
-                ]
-            },
-            {
                 "name": "Globalization",
                 "row": 4,
                 "prerequisites": [
-                    "Grand Opera",
+                    "Opera and Ballet",
                     "Social Media"
                 ],
                 "uniques": [
@@ -643,7 +585,7 @@
                 ]
             },
             {
-                "name": "Smart Power",
+                "name": "Smart Power Doctrine",
                 "row": 3,
                 "prerequisites": [
                     "Globalization"
@@ -651,16 +593,33 @@
                 "uniques": [
                     "Inspiration: [40]% of the cost of this civic <upon gaining a [Great Diplomat] unit>"
                 ]
-            },
+            }
+        ]
+    },
+    {
+        "columnNumber": 12,
+        "era": "Atomic era",
+        "civicCost": 1250,
+        "civics": [
             {
-                "name": "Environmental Policy",
-                "row": 7,
+                "name": "Professional Sports",
+                "row": 2,
                 "prerequisites": [
-                    "Nuclear Fusion",
-                    "Globalization"
+                    "Mass Media"
                 ],
                 "uniques": [
-                    "Inspiration: [40]% of the cost of this civic <upon building a [Biosphere] improvement>"
+                    "Inspiration: [40]% of the cost of this civic <upon building a [Stadium] building>"
+                ]
+            },
+            {
+                "name": "Space Race",
+                "row": 4,
+                "prerequisites": [
+                    "Social Media",
+                    "Cold War"
+                ],
+                "uniques": [
+                    "Inspiration: [40]% of the cost of this civic <upon building a [Spaceport] district>"
                 ]
             }
         ]
@@ -671,64 +630,13 @@
         "civicCost": 1400,
         "civics": [
             {
-                "name": "Near Future Governance",
-                "row": 2,
-                "prerequisites": [
-                    "Smart Power",
-                    "Environmental Policy"
-                ],
-                "uniques": [
-                    "[+100]% weight to this choice for AI decisions"
-                ]
-            },
-            {
-                "name": "Near Future Authority",
-                "row": 5,
-                "prerequisites": [
-                    "Near Future Governance"
-                ],
-                "uniques": [
-                    "Inspiration: [40]% of the cost of this civic <upon building a [Spaceport] district>"
-                ]
-            },
-            {
-                "name": "Near Future Engagement",
-                "row": 4,
-                "prerequisites": [
-                    "Near Future Governance"
-                ],
-                "uniques": [
-                    "Inspiration: [40]% of the cost of this civic <upon gaining a [Trader] unit>"
-                ]
-            },
-            {
                 "name": "Cultural Hegemony",
                 "row": 6,
                 "prerequisites": [
-                    "Near Future Authority"
+                    "Smart Power Doctrine"
                 ],
                 "uniques": [
                     "Inspiration: [40]% of the cost of this civic <upon gaining a [Great Writer] unit>"
-                ]
-            },
-            {
-                "name": "Virtualization",
-                "row": 3,
-                "prerequisites": [
-                    "Near Future Engagement"
-                ],
-                "uniques": [
-                    "Inspiration: [40]% of the cost of this civic <upon building a [Research Lab] building>"
-                ]
-            },
-            {
-                "name": "Dataism",
-                "row": 7,
-                "prerequisites": [
-                    "Virtualization"
-                ],
-                "uniques": [
-                    "Inspiration: [40]% of the cost of this civic <upon building a [Film Studio] building>"
                 ]
             }
         ]
@@ -742,11 +650,81 @@
                 "name": "Future Civic",
                 "row": 3,
                 "prerequisites": [
-                    "Cultural Hegemony",
-                    "Dataism"
+                    "Cultural Hegemony"
                 ],
                 "uniques": [
                     "Inspiration: [40]% of the cost of this civic <upon building a [Seaside Resort] improvement>"
+                ]
+            }
+        ]
+    },
+    {
+        "columnNumber": 14,
+        "era": "Future era",
+        "civicCost": 2500,
+        "civics": [
+            {
+                "name": "Information Warfare",
+                "row": 2,
+                "prerequisites": [
+                    "Cultural Hegemony",
+                    "Space Race"
+                ],
+                "uniques": [
+                    "Inspiration: [40]% of the cost of this civic <upon winning a war>"
+                ]
+            },
+            {
+                "name": "Global Warming Mitigation",
+                "row": 3,
+                "prerequisites": [
+                    "Cultural Hegemony",
+                    "Conservation"
+                ],
+                "uniques": [
+                    "Inspiration: [40]% of the cost of this civic <upon building a [Carbon Recapture] improvement>"
+                ]
+            },
+            {
+                "name": "Exodus Imperative",
+                "row": 4,
+                "prerequisites": [
+                    "Space Race"
+                ],
+                "uniques": [
+                    "Inspiration: [40]% of the cost of this civic <upon building a [Spaceport] district>"
+                ]
+            },
+            {
+                "name": "Venture Politics",
+                "row": 5,
+                "prerequisites": [
+                    "Information Warfare"
+                ],
+                "uniques": [
+                    "Inspiration: [40]% of the cost of this civic <upon gaining a [Great Diplomat] unit>"
+                ]
+            },
+            {
+                "name": "Distributed Sovereignty",
+                "row": 6,
+                "prerequisites": [
+                    "Venture Politics",
+                    "Smart Power Doctrine"
+                ],
+                "uniques": [
+                    "Inspiration: [40]% of the cost of this civic <upon building a [Government] building>"
+                ]
+            },
+            {
+                "name": "Optimization Imperative",
+                "row": 7,
+                "prerequisites": [
+                    "Exodus Imperative",
+                    "Distributed Sovereignty"
+                ],
+                "uniques": [
+                    "Inspiration: [40]% of the cost of this civic <upon building a [Research Lab] building>"
                 ]
             }
         ]

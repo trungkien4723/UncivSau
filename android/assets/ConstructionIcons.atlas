@@ -2335,7 +2335,7 @@ UnitIcons/Work Boats
   orig: 100, 100
   offset: 0, 0
   index: -1
-UnitIcons/Worker
+UnitIcons/Builder
   rotate: false
   xy: 1918, 756
   size: 100, 100

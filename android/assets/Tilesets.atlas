@@ -2440,28 +2440,28 @@ TileSets/FantasyHex/Units/Work Boats-Modern era
   orig: 32, 28
   offset: 0, 0
   index: -1
-TileSets/FantasyHex/Units/Worker
+TileSets/FantasyHex/Units/Builder
   rotate: false
   xy: 1180, 625
   size: 32, 28
   orig: 32, 28
   offset: 0, 0
   index: -1
-TileSets/FantasyHex/Units/Worker-Barbarians
+TileSets/FantasyHex/Units/Builder-Barbarians
   rotate: false
   xy: 1220, 976
   size: 32, 28
   orig: 32, 28
   offset: 0, 0
   index: -1
-TileSets/FantasyHex/Units/Worker-Barbarians-Modern era
+TileSets/FantasyHex/Units/Builder-Barbarians-Modern era
   rotate: false
   xy: 1220, 976
   size: 32, 28
   orig: 32, 28
   offset: 0, 0
   index: -1
-TileSets/FantasyHex/Units/Worker-Modern era
+TileSets/FantasyHex/Units/Builder-Modern era
   rotate: false
   xy: 1220, 940
   size: 32, 28
@@ -6101,7 +6101,7 @@ TileSets/HexaRealm/Units/CivilianLandUnit
   orig: 64, 56
   offset: 0, 0
   index: -1
-TileSets/HexaRealm/Units/Worker
+TileSets/HexaRealm/Units/Builder
   rotate: false
   xy: 1534, 1692
   size: 64, 56
@@ -6962,7 +6962,7 @@ TileSets/HexaRealm/Units/Work Boats-Modern era
   orig: 64, 56
   offset: 0, 0
   index: -1
-TileSets/HexaRealm/Units/Worker-Modern era
+TileSets/HexaRealm/Units/Builder-Modern era
   rotate: false
   xy: 580, 352
   size: 64, 56

@@ -164,7 +164,7 @@
     {
         "name": "Levee en Masse",
         "slotType": "Military",
-        "requiredCivic": "Liberalism",
+        "requiredCivic": "Nationalism",
         "uniques": ["StatsPerCity(\"+50% [Production] towards [Military] units [in all cities]\")", "StatsPerCity(\"+1 [Builder] build charges [in all cities]\")"]
     },
     {
@@ -194,7 +194,7 @@
     {
         "name": "Public Works",
         "slotType": "Military",
-        "requiredCivic": "New Deal",
+        "requiredCivic": "Scorched Earth",
         "uniques": ["StatsPerCity(\"+25% [Production] towards [District]s [in all cities]\")"]
     },
     {
@@ -212,7 +212,7 @@
     {
         "name": "Lightning Warfare",
         "slotType": "Military",
-        "requiredCivic": "Near Future Authority",
+        "requiredCivic": "Smart Power Doctrine",
         "uniques": ["StatsPerCity(\"+1 [Movement] for all [Military] units [in all cities]\")"]
     },
     {
@@ -236,7 +236,7 @@
     {
         "name": "Triangular Trade",
         "slotType": "Economic",
-        "requiredCivic": "Trade Confederation",
+        "requiredCivic": "Exploration",
         "uniques": ["StatsPerCity(\"+50% [Production] towards [Trader]s [in all cities]\")"]
     },
     {
@@ -254,7 +254,7 @@
     {
         "name": "Merchant Confederation",
         "slotType": "Economic",
-        "requiredCivic": "Trade Confederation",
+        "requiredCivic": "Exploration",
         "uniques": ["StatsPerCity(\"+2 [Gold] [in all cities]\")"]
     },
     {
@@ -296,7 +296,7 @@
     {
         "name": "Robotics Protocol",
         "slotType": "Economic",
-        "requiredCivic": "Virtualization",
+        "requiredCivic": "Smart Power Doctrine",
         "uniques": ["StatsPerCity(\"+20% [Production] [in all cities]\")"]
     },
     {
@@ -314,7 +314,7 @@
     {
         "name": "Rapacious Plans",
         "slotType": "Diplomatic",
-        "requiredCivic": "Trade Confederation",
+        "requiredCivic": "Exploration",
         "uniques": ["StatsPerCity(\"+2 [Gold] per [City-State] [in all cities]\")"]
     },
     {
@@ -338,7 +338,7 @@
     {
         "name": "Cultural Diplomacy",
         "slotType": "Diplomatic",
-        "requiredCivic": "Smart Power",
+        "requiredCivic": "Smart Power Doctrine",
         "uniques": ["StatsPerCity(\"+2 [Culture] per [City-State] [in all cities]\")"]
     },
     {
@@ -356,7 +356,7 @@
     {
         "name": "Environmental Diplomacy",
         "slotType": "Diplomatic",
-        "requiredCivic": "Environmental Policy",
+        "requiredCivic": "Conservation",
         "uniques": ["StatsPerCity(\"+1 [Envoy]s [in all cities]\")"]
     },
     {
@@ -402,9 +402,9 @@
         "uniques": ["StatsPerCity(\"+2 [Great Admiral] points [in all cities]\")"]
     },
     {
-        "name": "Grand Opera",
+        "name": "Opera and Ballet",
         "slotType": "Wildcard",
-        "requiredCivic": "Grand Opera",
+        "requiredCivic": "Opera and Ballet",
         "uniques": ["StatsPerCity(\"+2 [Great Musician] points [in all cities]\")"]
     },
     {
@@ -416,7 +416,7 @@
     {
         "name": "Penumbra Protocol",
         "slotType": "Wildcard",
-        "requiredCivic": "Virtualization",
+        "requiredCivic": "Smart Power Doctrine",
         "uniques": ["StatsPerCity(\"+2 [Great Scientist] points [in all cities]\")"]
     },
     {
@@ -428,13 +428,13 @@
     {
         "name": "Satellite Broadcast",
         "slotType": "Wildcard",
-        "requiredCivic": "Dataism",
+        "requiredCivic": "Cultural Hegemony",
         "uniques": ["StatsPerCity(\"+2 [Great Musician] points [in all cities]\")"]
     },
     {
         "name": "Cloud Computing",
         "slotType": "Wildcard",
-        "requiredCivic": "Virtualization",
+        "requiredCivic": "Smart Power Doctrine",
         "uniques": ["StatsPerCity(\"+2 [Great Scientist] points [in all cities]\")"]
     },
     {
@@ -458,19 +458,19 @@
     {
         "name": "Recycling",
         "slotType": "Wildcard",
-        "requiredCivic": "Environmental Policy",
+        "requiredCivic": "Conservation",
         "uniques": ["StatsPerCity(\"+1 [Production] [in all cities]\")"]
     },
     {
         "name": "Send Aid",
         "slotType": "Wildcard",
-        "requiredCivic": "Smart Power",
+        "requiredCivic": "Smart Power Doctrine",
         "uniques": ["StatsPerCity(\"+1 [Gold] per [City-State] [in all cities]\")"]
     },
     {
         "name": "Public Transport",
         "slotType": "Wildcard",
-        "requiredCivic": "New Deal",
+        "requiredCivic": "Scorched Earth",
         "uniques": ["StatsPerCity(\"+1 [Amenity] per [District] [in all cities]\")"]
     },
     {
@@ -482,7 +482,7 @@
     {
         "name": "Earthquake Engineering",
         "slotType": "Wildcard",
-        "requiredCivic": "Environmental Policy",
+        "requiredCivic": "Conservation",
         "uniques": ["StatsPerCity(\"+1 [Housing] [in all cities]\")"]
     },
     {
@@ -498,9 +498,9 @@
         "uniques": ["StatsPerCity(\"+25% [Production] towards [District]s [in all cities]\")"]
     },
     {
-        "name": "Smart Power",
+        "name": "Smart Power Doctrine",
         "slotType": "Wildcard",
-        "requiredCivic": "Smart Power",
+        "requiredCivic": "Smart Power Doctrine",
         "uniques": ["StatsPerCity(\"+1 [Culture] [in all cities]\")"]
     }
 ]

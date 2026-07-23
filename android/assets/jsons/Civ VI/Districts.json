@@ -116,7 +116,7 @@
     {
         "name": "Entertainment Complex",
         "cost": 36,
-        "requiredCivic": "Games and Revelry",
+        "requiredCivic": "Games and Recreation",
         "buildings": [
             "Arena",
             "Zoo",
@@ -129,7 +129,7 @@
     {
         "name": "Water Entertainment Complex",
         "cost": 36,
-        "requiredCivic": "Games and Revelry",
+        "requiredCivic": "Games and Recreation",
         "uniques": [
             "[+1] [Amenities] [in this city]",
             "Requires [Coastal]"
@@ -330,7 +330,7 @@
     {
         "name": "Golf Course",
         "cost": 36,
-        "requiredCivic": "Games and Revelry",
+        "requiredCivic": "Games and Recreation",
         "uniqueTo": "Scotland",
         "buildings": [
             "Arena",

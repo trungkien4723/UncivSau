@@ -41,7 +41,7 @@ class GovernmentPickerScreen(
                 }
             governmentList.add(button).row()
             if (!available)
-                governmentList.add("Requires [$government.requiredCivic]".tr()).padBottom(4f).row()
+                governmentList.add("Requires [$government.requiredCivic]".tr().toLabel()).padBottom(4f).row()
         }
 
         topTable.add(governmentList)
