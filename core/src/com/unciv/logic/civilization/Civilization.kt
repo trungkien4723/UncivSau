@@ -1008,6 +1008,7 @@ class Civilization : IsPartOfGameInfoSerialization {
         espionageManager.setTransients(this)
         governorManager.setTransients(this)
         victoryManager.civInfo = this
+        powerManager.civInfo = this
 
         for (diplomacyManager in diplomacy.values) {
             diplomacyManager.civInfo = this
