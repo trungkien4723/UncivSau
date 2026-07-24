@@ -27,6 +27,7 @@ object DiplomacyTurnManager {
             nextTurnCityStateInfluence()
         if (civInfo.isMajorCiv())
             saveSmoothedOpinionOfOtherCiv()
+        processAllianceBonuses()
     }
 
     private fun DiplomacyManager.removeUntenableTrades() {
@@ -182,6 +183,13 @@ object DiplomacyTurnManager {
                     DiplomacyFlags.DefensivePact.name -> {
                         diplomaticStatus = DiplomaticStatus.Peace
                     }
+                    DiplomacyFlags.ResearchAlliance.name,
+                    DiplomacyFlags.MilitaryAlliance.name,
+                    DiplomacyFlags.EconomicAlliance.name,
+                    DiplomacyFlags.CulturalAlliance.name,
+                    DiplomacyFlags.ReligiousAlliance.name -> {
+                        removeModifier(getAllianceModifierFromFlagName(flag))
+                    }
                     // This is confusingly named - in fact, the civ that has the flag set is the MAJOR civ
                     DiplomacyFlags.ProvideMilitaryUnit.name -> {
                         // Do not unset the flag - they may return soon, and we'll continue from that point on
@@ -223,6 +231,50 @@ object DiplomacyTurnManager {
         }
     }
 
+
+    private fun DiplomacyManager.processAllianceBonuses() {
+        if (!civInfo.isMajorCiv() || !otherCiv.isMajorCiv()) return
+
+        val allianceFlags = listOf(
+            DiplomacyFlags.ResearchAlliance,
+            DiplomacyFlags.MilitaryAlliance,
+            DiplomacyFlags.EconomicAlliance,
+            DiplomacyFlags.CulturalAlliance,
+            DiplomacyFlags.ReligiousAlliance
+        )
+
+        for (allianceFlag in allianceFlags) {
+            if (!hasFlag(allianceFlag)) continue
+            if (!otherCivDiplomacy().hasFlag(allianceFlag)) continue
+
+            when (allianceFlag) {
+                DiplomacyFlags.ResearchAlliance -> {
+                    val ourScience = civInfo.stats.statsForNextTurn.science.toInt()
+                    val theirScience = otherCiv.stats.statsForNextTurn.science.toInt()
+                    val sharedScience = (ourScience * 0.05f).toInt().coerceAtLeast(1)
+                    civInfo.tech.scienceFromResearchAgreements += sharedScience
+                    otherCiv.tech.scienceFromResearchAgreements += sharedScience
+                }
+                DiplomacyFlags.MilitaryAlliance -> {
+                    civInfo.stats.statsForNextTurn.production += 2f * civInfo.cities.size.toFloat()
+                    otherCiv.stats.statsForNextTurn.production += 2f * otherCiv.cities.size.toFloat()
+                }
+                DiplomacyFlags.EconomicAlliance -> {
+                    civInfo.stats.statsForNextTurn.gold += 3f * civInfo.cities.size.toFloat()
+                    otherCiv.stats.statsForNextTurn.gold += 3f * otherCiv.cities.size.toFloat()
+                }
+                DiplomacyFlags.CulturalAlliance -> {
+                    civInfo.stats.statsForNextTurn.culture += 2f * civInfo.cities.size.toFloat()
+                    otherCiv.stats.statsForNextTurn.culture += 2f * otherCiv.cities.size.toFloat()
+                }
+                DiplomacyFlags.ReligiousAlliance -> {
+                    civInfo.stats.statsForNextTurn.faith += 2f * civInfo.cities.size.toFloat()
+                    otherCiv.stats.statsForNextTurn.faith += 2f * otherCiv.cities.size.toFloat()
+                }
+                else -> {}
+            }
+        }
+    }
 
     private fun DiplomacyManager.scienceFromResearchAgreement() {
         // https://forums.civfanatics.com/resources/research-agreements-bnw.25568/
@@ -331,6 +383,8 @@ object DiplomacyTurnManager {
 
         setDefensivePactBasedModifier()
 
+        setAllianceBasedModifier()
+
         setReligionBasedModifier()
 
         if (!hasFlag(DiplomacyFlags.DeclarationOfFriendship))
@@ -338,6 +392,19 @@ object DiplomacyTurnManager {
 
         if (!hasFlag(DiplomacyFlags.DefensivePact))
             revertToZero(DiplomaticModifiers.DefensivePact, 1f)
+
+        val allianceFlags = listOf(
+            DiplomacyFlags.ResearchAlliance, DiplomacyFlags.MilitaryAlliance,
+            DiplomacyFlags.EconomicAlliance, DiplomacyFlags.CulturalAlliance, DiplomacyFlags.ReligiousAlliance
+        )
+        val hasAnyAlliance = allianceFlags.any { hasFlag(it) }
+        if (!hasAnyAlliance) {
+            revertToZero(DiplomaticModifiers.ResearchAlliance, 1 / 4f)
+            revertToZero(DiplomaticModifiers.MilitaryAlliance, 1 / 4f)
+            revertToZero(DiplomaticModifiers.EconomicAlliance, 1 / 4f)
+            revertToZero(DiplomaticModifiers.CulturalAlliance, 1 / 4f)
+            revertToZero(DiplomaticModifiers.ReligiousAlliance, 1 / 4f)
+        }
 
         if (!otherCiv.isCityState) return
 

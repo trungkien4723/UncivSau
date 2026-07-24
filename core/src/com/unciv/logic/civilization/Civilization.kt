@@ -154,6 +154,7 @@ class Civilization : IsPartOfGameInfoSerialization {
     var religionManager = ReligionManager()
     var goldenAges = GoldenAgeManager()
     var greatPeople = GreatPersonManager()
+    var greatWorks = GreatWorksManager()
     var espionageManager = EspionageManager()
     var victoryManager = VictoryManager()
     var ruinsManager = RuinsManager()
@@ -313,6 +314,7 @@ class Civilization : IsPartOfGameInfoSerialization {
         toReturn.questManager = questManager.clone()
         toReturn.goldenAges = goldenAges.clone()
         toReturn.greatPeople = greatPeople.clone()
+        toReturn.greatWorks = greatWorks.clone()
         toReturn.ruinsManager = ruinsManager.clone()
         toReturn.espionageManager = espionageManager.clone()
         toReturn.victoryManager = victoryManager.clone()
@@ -911,6 +913,7 @@ class Civilization : IsPartOfGameInfoSerialization {
                 RankingType.Housing -> stats.housing.toFloat().roundToInt()
                 RankingType.Technologies -> tech.researchedTechnologies.size
                 RankingType.Culture -> policies.adoptedPolicies.count { !Policy.isBranchCompleteByName(it) }
+                RankingType.Tourism -> stats.statsForNextTurn.tourism.roundToInt()
         }
     }
 
@@ -997,6 +1000,7 @@ class Civilization : IsPartOfGameInfoSerialization {
     fun setTransients():Unit = timeThis("Civilization.setTransients") {
         goldenAges.civInfo = this
         greatPeople.civInfo = this
+        greatWorks.civInfo = this
         civConstructions.setTransients(civInfo = this)
         policies.setTransients(this)
         questManager.setTransients(this)

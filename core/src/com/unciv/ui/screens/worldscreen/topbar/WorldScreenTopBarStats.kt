@@ -19,6 +19,7 @@ import com.unciv.ui.screens.overviewscreen.EmpireOverviewCategories
 import com.unciv.ui.screens.overviewscreen.EmpireOverviewScreen
 import com.unciv.ui.screens.pickerscreens.PolicyPickerScreen
 import com.unciv.ui.screens.pickerscreens.TechPickerScreen
+import com.unciv.ui.screens.victoryscreen.VictoryScreen
 import kotlin.math.ceil
 import kotlin.math.roundToInt
 
@@ -35,6 +36,10 @@ internal class WorldScreenTopBarStats(topbar: WorldScreenTopBar) : ScalingTableW
     private val faithLabel = "0".toLabel(colorFromRGB(168, 196, 241)) // #a8c4f1
     private val faithPerTurnLabel = "+0"
         .toLabel(colorFromRGB(168, 196, 241), 14)
+
+    private val tourismLabel = "0".toLabel(colorFromRGB(255, 111, 0)) // #ff6f00
+    private val tourismPerTurnLabel = "+0"
+        .toLabel(colorFromRGB(255, 111, 0), 14)
 
     private val housingContainer = Group()
 
@@ -111,6 +116,11 @@ internal class WorldScreenTopBarStats(topbar: WorldScreenTopBar) : ScalingTableW
             else PolicyPickerScreen(worldScreen.selectedCiv, worldScreen.canChangeState)
         }
 
+        addStat("Tourism", tourismLabel, false) {
+            VictoryScreen(worldScreen)
+        }
+        addPerTurnLabel(tourismPerTurnLabel)
+
         if (worldScreen.gameInfo.isReligionEnabled()) {
             addStat("Faith", faithLabel, EmpireOverviewCategories.Religion, true)
             addPerTurnLabel(faithPerTurnLabel)
@@ -146,6 +156,9 @@ internal class WorldScreenTopBarStats(topbar: WorldScreenTopBar) : ScalingTableW
 
         faithLabel.setText(civInfo.religionManager.storedFaith.tr())
         faithPerTurnLabel.setText(rateLabel(nextTurnStats.faith))
+
+        tourismLabel.setText(nextTurnStats.tourism.roundToInt().tr())
+        tourismPerTurnLabel.setText(rateLabel(nextTurnStats.tourism))
 
         scaleTo(worldScreen.stage.width)
     }

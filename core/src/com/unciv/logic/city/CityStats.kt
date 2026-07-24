@@ -592,6 +592,7 @@ class CityStats(val city: City) {
             entry.culture *= statPercentBonusesSum.culture.toPercent()
             entry.food *= statPercentBonusesSum.food.toPercent()
             entry.faith *= statPercentBonusesSum.faith.toPercent()
+            entry.tourism *= statPercentBonusesSum.tourism.toPercent()
         }
 
         // AFTER we've gotten all the gold stats figured out, only THEN do we plonk that gold into Science

@@ -419,6 +419,7 @@ enum class Countables(
                 Stat.Faith -> speed.faithCostModifier
                 Stat.Housing -> speed.modifier
                 Stat.Amenities -> speed.modifier
+                Stat.Tourism -> speed.modifier
             }
             return modifier.times(100).toInt()
         }

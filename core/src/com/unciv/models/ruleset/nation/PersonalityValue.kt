@@ -49,6 +49,7 @@ enum class PersonalityValue(
                 Stat.Faith -> Faith
                 Stat.Housing -> Housing
                 Stat.Amenities -> Amenities
+                Stat.Tourism -> Culture // Treat Tourism like Culture for personality
             }
         }
     }

@@ -20,7 +20,8 @@ enum class TradeOfferType(val numberType: TradeTypeNumberType, val isImmediate: 
     Introduction        (TradeTypeNumberType.None, true),
     WarDeclaration      (TradeTypeNumberType.None, true),
     PeaceProposal      (TradeTypeNumberType.None, true),
-    City                (TradeTypeNumberType.None, true);
+    City                (TradeTypeNumberType.None, true),
+    Alliance            (TradeTypeNumberType.None, false);
     
     enum class TradeTypeNumberType { None, Simple, Gold }
 }

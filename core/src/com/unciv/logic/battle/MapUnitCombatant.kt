@@ -38,19 +38,29 @@ class MapUnitCombatant(val unit: MapUnit) : ICombatant {
     override fun getAttackingStrength(defender: ICombatant?): Int {
         val state = GameContext(this, defender, this.getTile(), CombatAction.Attack)
         val extraStrength = unit.getMatchingUniques(UniqueType.StrengthAmount, state).sumOf { it.params[0].toInt() }
-        return if (isRanged()) unit.baseUnit.rangedStrength + extraStrength
-        else unit.baseUnit.strength + extraStrength
+        val formationBonus = getFormationBonus()
+        val baseStrength = if (isRanged()) unit.baseUnit.rangedStrength else unit.baseUnit.strength
+        return baseStrength + extraStrength + formationBonus
     }
 
     override fun getDefendingStrength(attacker: ICombatant?): Int {
         val attackedByRanged = attacker?.isRanged() == true
         val state = GameContext(this, attacker, this.getTile(), CombatAction.Defend)
         val extraStrength = unit.getMatchingUniques(UniqueType.StrengthAmount, state).sumOf { it.params[0].toInt() }
+        val formationBonus = getFormationBonus()
         return if (unit.isEmbarked() && !isCivilian())
             unit.civ.getEra().embarkDefense
         else if (isRanged() && attackedByRanged)
-            unit.baseUnit.rangedStrength + extraStrength
-        else unit.baseUnit.strength + extraStrength
+            unit.baseUnit.rangedStrength + extraStrength + formationBonus
+        else unit.baseUnit.strength + extraStrength + formationBonus
+    }
+
+    @Readonly private fun getFormationBonus(): Int {
+        return when (unit.formationLevel) {
+            1 -> 10  // Corps/Fleet: +10 strength
+            2 -> 17  // Army/Armada: +17 strength
+            else -> 0
+        }
     }
 
     override fun getUnitType(): UnitType {

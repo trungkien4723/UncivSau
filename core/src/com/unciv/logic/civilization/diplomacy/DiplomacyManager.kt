@@ -100,6 +100,12 @@ enum class DiplomacyFlags {
     Bullied,
     RecentlyAttacked,
     ResourceTradesCutShort,
+
+    ResearchAlliance,
+    MilitaryAlliance,
+    EconomicAlliance,
+    CulturalAlliance,
+    ReligiousAlliance,
 }
 
 enum class DiplomaticModifiers(val text: String) {
@@ -155,6 +161,15 @@ enum class DiplomaticModifiers(val text: String) {
     GaveUsGifts("We appreciate your gifts"),
     ReturnedCapturedUnits("You returned captured units to us"),
     BelieveSameReligion("We believe in the same religion"),
+
+    // Civ VI Alliances
+    ResearchAlliance("We have formed a Research Alliance"),
+    MilitaryAlliance("We have formed a Military Alliance"),
+    EconomicAlliance("We have formed an Economic Alliance"),
+    CulturalAlliance("We have formed a Cultural Alliance"),
+    ReligiousAlliance("We have formed a Religious Alliance"),
+    SignedAllianceWithOurEnemies("You have signed an alliance with our enemy!"),
+    SignedAllianceWithOurAllies("You have signed an alliance with our ally"),
 
     // Civ VI Leader Agendas - opinion shifts driven by a civ's historical/hidden agenda
     AgendaLike("We like your kind!"),
@@ -580,6 +595,10 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
             (isRelationshipLevelGE(RelationshipLevel.Friend) || otherCiv.hasUnique(UniqueType.CityStateTerritoryAlwaysFriendly)))
             return true
 
+        if (civInfo.isMajorCiv() && otherCiv.isMajorCiv() &&
+            (hasFlag(DiplomacyFlags.MilitaryAlliance) || otherCivDiplomacy().hasFlag(DiplomacyFlags.MilitaryAlliance)))
+            return true
+
         return otherCivDiplomacy().hasOpenBorders // if THEY can enter US then WE are considered friendly territory for THEM
     }
     //endregion
@@ -588,7 +607,10 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
     // for performance reasons we don't want to call this every time we want to see if a unit can move through a tile
     fun updateHasOpenBorders() {
         // City-states can enter ally's territory (the opposite is true anyway even without open borders)
+        val hasMilitaryAlliance = civInfo.isMajorCiv() && otherCiv.isMajorCiv()
+                && (hasFlag(DiplomacyFlags.MilitaryAlliance) || otherCivDiplomacy().hasFlag(DiplomacyFlags.MilitaryAlliance))
         val newHasOpenBorders = civInfo.allyCiv == otherCiv
+                || hasMilitaryAlliance
                 || trades.flatMap { it.theirOffers }.any { it.name == Constants.openBorders && it.duration > 0 }
 
         val bordersWereClosed = hasOpenBorders && !newHasOpenBorders
@@ -846,6 +868,134 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
         else
             // their majority religions differ or one or both don't have a majority religion at all
             removeModifier(DiplomaticModifiers.BelieveSameReligion)
+    }
+
+    @Readonly private fun getAllianceFlagForType(allianceType: String): DiplomacyFlags {
+        return when (allianceType) {
+            Constants.researchAlliance -> DiplomacyFlags.ResearchAlliance
+            Constants.militaryAlliance -> DiplomacyFlags.MilitaryAlliance
+            Constants.economicAlliance -> DiplomacyFlags.EconomicAlliance
+            Constants.culturalAlliance -> DiplomacyFlags.CulturalAlliance
+            Constants.religiousAlliance -> DiplomacyFlags.ReligiousAlliance
+            else -> throw IllegalArgumentException("Unknown alliance type: $allianceType")
+        }
+    }
+
+    private fun getAllianceModifierForType(allianceType: String): DiplomaticModifiers {
+        return when (allianceType) {
+            Constants.researchAlliance -> DiplomaticModifiers.ResearchAlliance
+            Constants.militaryAlliance -> DiplomaticModifiers.MilitaryAlliance
+            Constants.economicAlliance -> DiplomaticModifiers.EconomicAlliance
+            Constants.culturalAlliance -> DiplomaticModifiers.CulturalAlliance
+            Constants.religiousAlliance -> DiplomaticModifiers.ReligiousAlliance
+            else -> throw IllegalArgumentException("Unknown alliance type: $allianceType")
+        }
+    }
+
+    private fun getAllianceDuration(): Int {
+        return (30 * civInfo.gameInfo.speed.modifier).roundToInt()
+    }
+
+    fun signAlliance(allianceType: String) {
+        val flag = getAllianceFlagForType(allianceType)
+        val modifier = getAllianceModifierForType(allianceType)
+        val duration = getAllianceDuration()
+
+        setModifier(modifier, 20f)
+        otherCivDiplomacy().setModifier(modifier, 20f)
+        setFlag(flag, duration)
+        otherCivDiplomacy().setFlag(flag, duration)
+
+        for (thirdCiv in getCommonKnownCivsWithSpectators()) {
+            thirdCiv.addNotification("[${civInfo.civName}] and [${otherCiv.civName}] have signed a [$allianceType]!",
+                NotificationCategory.Diplomacy, civInfo.civName, NotificationIcon.Diplomacy, otherCiv.civName)
+            if (thirdCiv.isSpectator()) continue
+            thirdCiv.getDiplomacyManager(civInfo)!!.setAllianceBasedModifier()
+            thirdCiv.getDiplomacyManager(otherCiv)!!.setAllianceBasedModifier()
+        }
+
+        for (unique in civInfo.getTriggeredUniques(UniqueType.TriggerUponSigningAlliance, GameContext.IgnoreConditionals))
+            UniqueTriggerActivation.triggerUnique(unique, civInfo)
+        for (unique in otherCiv.getTriggeredUniques(UniqueType.TriggerUponSigningAlliance, GameContext.IgnoreConditionals))
+            UniqueTriggerActivation.triggerUnique(unique, otherCiv)
+    }
+
+    internal fun setAllianceBasedModifier() {
+        removeModifier(DiplomaticModifiers.SignedAllianceWithOurAllies)
+        removeModifier(DiplomaticModifiers.SignedAllianceWithOurEnemies)
+
+        val allianceFlags = listOf(
+            DiplomacyFlags.ResearchAlliance,
+            DiplomacyFlags.MilitaryAlliance,
+            DiplomacyFlags.EconomicAlliance,
+            DiplomacyFlags.CulturalAlliance,
+            DiplomacyFlags.ReligiousAlliance
+        )
+        val hasAllianceWithOtherCiv = allianceFlags.any { otherCiv.getDiplomacyManager(civInfo)!!.hasFlag(it) }
+
+        if (!hasAllianceWithOtherCiv) return
+
+        val civsOtherCivHasAllianceWith = getCommonKnownCivs()
+            .filter { thirdCiv ->
+                allianceFlags.any { otherCiv.getDiplomacyManager(thirdCiv)!!.hasFlag(it) }
+            }
+
+        for (thirdCiv in civsOtherCivHasAllianceWith) {
+            val ourRelationshipWithThirdCiv = civInfo.getDiplomacyManager(thirdCiv)!!.relationshipIgnoreAfraid()
+            val modifierType = when (ourRelationshipWithThirdCiv) {
+                RelationshipLevel.Unforgivable, RelationshipLevel.Enemy -> DiplomaticModifiers.SignedAllianceWithOurEnemies
+                else -> DiplomaticModifiers.SignedAllianceWithOurAllies
+            }
+            val modifierValue = when (ourRelationshipWithThirdCiv) {
+                RelationshipLevel.Unforgivable -> -20f
+                RelationshipLevel.Enemy -> -15f
+                RelationshipLevel.Friend -> 5f
+                RelationshipLevel.Ally -> 10f
+                else -> 0f
+            }
+            addModifier(modifierType, modifierValue)
+        }
+    }
+
+    @Readonly fun hasAlliance(): Boolean {
+        val allianceFlags = listOf(
+            DiplomacyFlags.ResearchAlliance,
+            DiplomacyFlags.MilitaryAlliance,
+            DiplomacyFlags.EconomicAlliance,
+            DiplomacyFlags.CulturalAlliance,
+            DiplomacyFlags.ReligiousAlliance
+        )
+        return allianceFlags.any { hasFlag(it) }
+    }
+
+    @Readonly fun hasAllianceOfType(allianceType: String): Boolean {
+        val flag = getAllianceFlagForType(allianceType)
+        return hasFlag(flag)
+    }
+
+    fun getAllianceModifierFromFlagName(flagName: String): DiplomaticModifiers {
+        return when (flagName) {
+            DiplomacyFlags.ResearchAlliance.name -> DiplomaticModifiers.ResearchAlliance
+            DiplomacyFlags.MilitaryAlliance.name -> DiplomaticModifiers.MilitaryAlliance
+            DiplomacyFlags.EconomicAlliance.name -> DiplomaticModifiers.EconomicAlliance
+            DiplomacyFlags.CulturalAlliance.name -> DiplomaticModifiers.CulturalAlliance
+            DiplomacyFlags.ReligiousAlliance.name -> DiplomaticModifiers.ReligiousAlliance
+            else -> throw IllegalArgumentException("Unknown alliance flag: $flagName")
+        }
+    }
+
+    @Readonly
+    fun getAllianceType(): String? {
+        for ((name, flag) in listOf(
+            Constants.researchAlliance to DiplomacyFlags.ResearchAlliance,
+            Constants.militaryAlliance to DiplomacyFlags.MilitaryAlliance,
+            Constants.economicAlliance to DiplomacyFlags.EconomicAlliance,
+            Constants.culturalAlliance to DiplomacyFlags.CulturalAlliance,
+            Constants.religiousAlliance to DiplomacyFlags.ReligiousAlliance
+        )) {
+            if (hasFlag(flag)) return name
+        }
+        return null
     }
 
     fun denounce() {

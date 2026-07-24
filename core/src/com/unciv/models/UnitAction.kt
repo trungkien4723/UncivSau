@@ -223,6 +223,12 @@ enum class UnitActionType(
         { ImageGetter.getUnitActionPortrait("HideMore") }, false, defaultPage = 1),
     AddInCapital( "Add in capital",
         { ImageGetter.getUnitActionPortrait("AddInCapital")}, UncivSound.Chimes),
+    CreateGreatWork("Create Great Work ({greatWorkType})",
+        { ImageGetter.getUnitActionPortrait("AddInCapital") }, UncivSound.Chimes),
+    FormCorps("Form Corps",
+        { ImageGetter.getUnitActionPortrait("Upgrade") }, UncivSound.Upgrade, defaultPage = 1),
+    FormArmy("Form Army",
+        { ImageGetter.getUnitActionPortrait("Upgrade") }, UncivSound.Upgrade, defaultPage = 1),
     ;
 
     // Allow shorter initializations

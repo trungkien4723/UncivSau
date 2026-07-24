@@ -20,7 +20,8 @@ open class Stats(
     var culture: Float = 0f,
     var faith: Float = 0f,
     var housing: Float = 0f,
-    var amenities: Float = 0f
+    var amenities: Float = 0f,
+    var tourism: Float = 0f
 ): Iterable<Stats.StatValuePair> {
 
     /** Indexed read of a value for a given [Stat], e.g. `this.gold == this[Stat.Gold]` */
@@ -35,6 +36,7 @@ open class Stats(
             Stat.Faith -> faith
             Stat.Housing -> housing
             Stat.Amenities -> amenities
+            Stat.Tourism -> tourism
         }
     }
     /** Indexed write of a value for a given [Stat], e.g. `this.gold += 1f` is equivalent to `this[Stat.Gold] += 1f` */
@@ -48,6 +50,7 @@ open class Stats(
             Stat.Faith -> faith = value
             Stat.Housing -> housing = value
             Stat.Amenities -> amenities = value
+            Stat.Tourism -> tourism = value
         }
     }
 
@@ -65,11 +68,12 @@ open class Stats(
                 && faith == otherStats.faith
                 && housing == otherStats.housing
                 && amenities == otherStats.amenities
+                && tourism == otherStats.tourism
     }
 
     /** **Non-Mutating function**
      * @return a new instance containing the same values as `this` */
-    @Readonly fun clone() = Stats(production, food, gold, science, culture, faith, housing, amenities)
+    @Readonly fun clone() = Stats(production, food, gold, science, culture, faith, housing, amenities, tourism)
 
     /** @return `true` if all values are zero */
     @Readonly
@@ -81,7 +85,8 @@ open class Stats(
             && culture == 0f
             && faith == 0f
             && housing == 0f
-            && amenities == 0f )
+            && amenities == 0f
+            && tourism == 0f )
 
     /** Reset all values to zero (in place) */
     fun clear() {
@@ -93,6 +98,7 @@ open class Stats(
         faith = 0f
         housing = 0f
         amenities = 0f
+        tourism = 0f
     }
 
     /** **Mutating function** (but does **not** mutate [other])
@@ -107,6 +113,7 @@ open class Stats(
         faith += other.faith
         housing += other.housing
         amenities += other.amenities
+        tourism += other.tourism
         return this
     }
 
@@ -141,7 +148,8 @@ open class Stats(
         culture * number,
         faith * number,
         housing * number,
-        amenities * number
+        amenities * number,
+        tourism * number
     )
 
     /** **Mutating function**
@@ -155,6 +163,7 @@ open class Stats(
         faith *= number
         housing *= number
         amenities *= number
+        tourism *= number
     }
 
     /** **Non-Mutating function**
@@ -221,23 +230,26 @@ open class Stats(
         if (faith != 0f) yield(StatValuePair(Stat.Faith, faith))
         if (housing != 0f) yield(StatValuePair(Stat.Housing, housing))
         if (amenities != 0f) yield(StatValuePair(Stat.Amenities, amenities))
+        if (tourism != 0f) yield(StatValuePair(Stat.Tourism, tourism))
     }
 
     @Readonly
     /** Fast aggregate: Sum over all eight stats */
-    fun sum() = production + food + gold + science + culture + faith + housing + amenities
+    fun sum() = production + food + gold + science + culture + faith + housing + amenities + tourism
     @Readonly
     /** Fast aggregate: Min of all eight stats */
     fun min() = production.coerceAtMost(food).coerceAtMost(gold)
         .coerceAtMost(science).coerceAtMost(culture)
         .coerceAtMost(faith)
         .coerceAtMost(housing).coerceAtMost(amenities)
+        .coerceAtMost(tourism)
     @Readonly
-    /** Fast aggregate: Max of all eight stats */
+    /** Fast aggregate: Max of all nine stats */
     fun max() = production.coerceAtLeast(food).coerceAtLeast(gold)
         .coerceAtLeast(science).coerceAtLeast(culture)
         .coerceAtLeast(faith)
         .coerceAtLeast(housing).coerceAtLeast(amenities)
+        .coerceAtLeast(tourism)
 
     /** Returns an iterator over the elements of this object, wrapped as [StatValuePair]s */
     override fun iterator(): Iterator<StatValuePair> = asSequence().iterator()

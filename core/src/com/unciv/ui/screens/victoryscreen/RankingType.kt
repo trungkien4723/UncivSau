@@ -21,6 +21,7 @@ enum class RankingType(
     Housing('H'),
     Technologies({ ImageGetter.getStatIcon("Science") }, 'W'),
     Culture('A'),
+    Tourism({ ImageGetter.getStatIcon("Tourism") }, 'U'),
     ;
     val label = label ?: name
     constructor(getImage: () -> Image?, idForSerialization: Char) : this(null, getImage, idForSerialization)

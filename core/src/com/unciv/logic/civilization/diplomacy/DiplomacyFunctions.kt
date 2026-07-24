@@ -215,6 +215,28 @@ class DiplomacyFunctions(val civInfo: Civilization) {
             && ourDiplomacyManager.diplomaticStatus != DiplomaticStatus.DefensivePact
     }
 
+    @Readonly
+    fun canSignAllianceWith(otherCiv: Civilization): Boolean {
+        if (!civInfo.isMajorCiv() || !otherCiv.isMajorCiv()) return false
+        if (civInfo.isAtWarWith(otherCiv)) return false
+        val ourDiploManager = civInfo.getDiplomacyManager(otherCiv)!!
+        if (ourDiploManager.hasAlliance()) return false
+        if (ourDiploManager.otherCivDiplomacy().hasAlliance()) return false
+        if (ourDiploManager.hasFlag(DiplomacyFlags.Denunciation)) return false
+        if (!meetsEmbassyRequirementFor(otherCiv)) return false
+        if (!ourDiploManager.hasFlag(DiplomacyFlags.DeclarationOfFriendship)) return false
+        return true
+    }
+
+    @Readonly
+    fun canSignAllianceOfTypeWith(otherCiv: Civilization, allianceType: String): Boolean {
+        if (!canSignAllianceWith(otherCiv)) return false
+        val ourDiploManager = civInfo.getDiplomacyManager(otherCiv)!!
+        if (ourDiploManager.hasAllianceOfType(allianceType)) return false
+        if (ourDiploManager.otherCivDiplomacy().hasAllianceOfType(allianceType)) return false
+        return true
+    }
+
     /**
      * @returns whether units of this civilization can pass through the tiles owned by [otherCiv],
      * considering only civ-wide filters.

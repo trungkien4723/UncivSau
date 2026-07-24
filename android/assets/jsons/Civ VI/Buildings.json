@@ -157,6 +157,7 @@
       "Great Scientist": 1
     },
     "isWonder": true,
+    "greatWorkSlots": {"Writing": 2},
     "requiredTech": "Writing",
     "uniques": [
       "EraScore: [4]",
@@ -477,6 +478,7 @@
   {
     "name": "Great Wall",
     "culture": 3,
+    "tourism": 2,
     "greatPersonPoints": {
       "Great Engineer": 1
     },
@@ -811,6 +813,7 @@
     "greatPersonPoints": {
       "Great Artist": 2
     },
+    "greatWorkSlots": {"Art": 2},
     "uniques": [
       "EraScore: [4]",
       "[+25]% [Culture] [in all cities]"
@@ -906,6 +909,7 @@
     },
     "culture": 5,
     "isNationalWonder": true,
+    "greatWorkSlots": {"Art": 3},
     "uniques": [
       "Only available <if [Opera House] is constructed in all [non-[Puppeted]] cities>",
       "Cost increases by [30] per owned city"
@@ -1022,6 +1026,7 @@
       "Great Artist": 2
     },
     "isWonder": true,
+    "greatWorkSlots": {"Art": 3, "Artifact": 1},
     "uniques": [
       "EraScore: [4]",
       "[2] free [Great Artist] units appear"
@@ -1721,6 +1726,7 @@
     "greatPersonPoints": {
       "Great Artist": 2
     },
+    "greatWorkSlots": {"Music": 2},
     "requiredCivic": "Class Struggle",
     "quote": "'The lights of Broadway shine brightest when the world is darkest.' - Unknown"
   },
@@ -2110,6 +2116,7 @@
     "cost": 0,
     "maintenance": 0,
     "stats": {},
+    "greatWorkSlots": {"Writing": 1, "Art": 1, "Music": 1},
     "uniques": []
   },
   {
@@ -2632,7 +2639,8 @@
     "district": "Theater Square",
     "cost": 75,
     "maintenance": 1,
-    "stats": {},
+    "stats": {"Culture": 2, "Tourism": 1},
+    "greatWorkSlots": {"Writing": 1},
     "uniques": [],
     "requiredCivic": "Drama and Poetry"
   },
@@ -2641,7 +2649,8 @@
     "district": "Theater Square",
     "cost": 75,
     "maintenance": 0,
-    "stats": {},
+    "stats": {"Culture": 1, "Tourism": 1},
+    "greatWorkSlots": {"Art": 1},
     "uniques": []
   },
   {
@@ -2649,7 +2658,8 @@
     "district": "Theater Square",
     "cost": 145,
     "maintenance": 2,
-    "stats": {},
+    "stats": {"Culture": 3, "Tourism": 3},
+    "greatWorkSlots": {"Art": 2},
     "uniques": [],
     "requiredTech": "Astronomy"
   },
@@ -2658,7 +2668,8 @@
     "district": "Theater Square",
     "cost": 145,
     "maintenance": 2,
-    "stats": {},
+    "stats": {"Culture": 3, "Tourism": 2},
+    "greatWorkSlots": {"Artifact": 3},
     "uniques": [],
     "requiredTech": "Writing"
   },
@@ -2669,8 +2680,10 @@
     "maintenance": 3,
     "stats": {
       "Culture": 4,
+      "Tourism": 4,
       "GreatMusicianPoints": 1
     },
+    "greatWorkSlots": {"Music": 1},
     "uniques": [
       "+1 Citizen slot"
     ],
@@ -2681,9 +2694,9 @@
     "district": "Theater Square",
     "cost": 220,
     "maintenance": 3,
-    "stats": {},
+    "stats": {"Tourism": 4},
     "uniques": [
-      "A building unique to America. +30%Tourism pressure from this city towards other civilizations who reached the Modern era."
+      "A building unique to America. +30% Tourism pressure from this city towards other civilizations who reached the Modern era."
     ],
     "requiredTech": "Mass Media"
   },

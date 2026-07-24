@@ -65,6 +65,7 @@ class OffersListScroll(
                 WarDeclaration -> "Declarations of war"
                 PeaceProposal -> "Peace Proposals"
                 City -> "Cities"
+                Alliance -> "Alliances"
             }
             val offersOfType = offersToDisplay.filter { it.type == offerType }
             if (labelName.isNotEmpty() && offersOfType.any()) {

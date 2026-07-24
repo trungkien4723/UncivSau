@@ -74,8 +74,12 @@ enum class EmpireOverviewCategories(
         override fun createTab(viewingPlayer: Civilization, overviewScreen: EmpireOverviewScreen, persistedData: EmpireOverviewTabPersistableData?) =
                 NotificationsOverviewTable(viewingPlayer, overviewScreen, persistedData)
         override fun showDisabled(viewingPlayer: Civilization) = viewingPlayer.notifications.isEmpty() && viewingPlayer.notificationsLog.isEmpty()
+    },
+    GreatWorks("StatIcons/Tourism", 'K', Align.top) {
+        override fun createTab(viewingPlayer: Civilization, overviewScreen: EmpireOverviewScreen, persistedData: EmpireOverviewTabPersistableData?) =
+                GreatWorksOverviewTab(viewingPlayer, overviewScreen)
+        override fun showDisabled(viewingPlayer: Civilization) = viewingPlayer.greatWorks.greatWorks.isEmpty()
     }
-
     ;
 
     constructor(iconName: String, shortcutChar: Char, scrollAlign: Int)

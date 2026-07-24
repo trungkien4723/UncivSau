@@ -60,6 +60,7 @@ object NextTurnAutomation {
             DiplomacyAutomation.offerOpenBorders(civInfo)
             DiplomacyAutomation.offerResearchAgreement(civInfo)
             DiplomacyAutomation.offerDefensivePact(civInfo)
+            DiplomacyAutomation.offerAlliances(civInfo)
             DiplomacyAutomation.checkMilitaryPresenceNearBorder(civInfo)
             TradeAutomation.exchangeLuxuries(civInfo)
             

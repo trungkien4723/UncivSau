@@ -57,6 +57,17 @@ class TradeLogic(val ourCivilization: Civilization, val otherCivilization: Civil
         if (civInfo.diplomacyFunctions.canSignDefensivePactWith(otherCiv))
             offers.add(TradeOffer(Constants.defensivePact, TradeOfferType.Treaty, speed = civInfo.gameInfo.speed))
 
+        if (civInfo.diplomacyFunctions.canSignAllianceOfTypeWith(otherCiv, Constants.researchAlliance))
+            offers.add(TradeOffer(Constants.researchAlliance, TradeOfferType.Alliance, 1, speed = civInfo.gameInfo.speed))
+        if (civInfo.diplomacyFunctions.canSignAllianceOfTypeWith(otherCiv, Constants.militaryAlliance))
+            offers.add(TradeOffer(Constants.militaryAlliance, TradeOfferType.Alliance, 1, speed = civInfo.gameInfo.speed))
+        if (civInfo.diplomacyFunctions.canSignAllianceOfTypeWith(otherCiv, Constants.economicAlliance))
+            offers.add(TradeOffer(Constants.economicAlliance, TradeOfferType.Alliance, 1, speed = civInfo.gameInfo.speed))
+        if (civInfo.diplomacyFunctions.canSignAllianceOfTypeWith(otherCiv, Constants.culturalAlliance))
+            offers.add(TradeOffer(Constants.culturalAlliance, TradeOfferType.Alliance, 1, speed = civInfo.gameInfo.speed))
+        if (civInfo.diplomacyFunctions.canSignAllianceOfTypeWith(otherCiv, Constants.religiousAlliance))
+            offers.add(TradeOffer(Constants.religiousAlliance, TradeOfferType.Alliance, 1, speed = civInfo.gameInfo.speed))
+
         for (entry in civInfo.getPerTurnResourcesWithOriginsForTrade()
             .filterNot { it.resource.resourceType == ResourceType.Bonus }
             .filter { it.origin == Constants.tradable }
@@ -199,6 +210,18 @@ class TradeLogic(val ourCivilization: Civilization, val otherCivilization: Civil
                                 .declareWar(DeclareWarReason(warType))
                         }
                         else -> {throw IllegalStateException("Unhandled WarType: $warType found within TradeOfferType.WarDeclaration")}
+                    }
+                }
+                TradeOfferType.Alliance -> {
+                    val allianceTypes = listOf(
+                        Constants.researchAlliance,
+                        Constants.militaryAlliance,
+                        Constants.economicAlliance,
+                        Constants.culturalAlliance,
+                        Constants.religiousAlliance
+                    )
+                    if (offer.name in allianceTypes) {
+                        to.getDiplomacyManager(from)!!.signAlliance(offer.name)
                     }
                 }
                 TradeOfferType.PeaceProposal -> {

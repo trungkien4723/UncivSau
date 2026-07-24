@@ -326,6 +326,8 @@ class TurnManager(val civInfo: Civilization) {
 
         civInfo.temporaryUniques.endTurn()
 
+        civInfo.worldCongress.processEmergenciesEachTurn()
+
         civInfo.goldenAges.endTurn()
         civInfo.units.getCivUnits().forEach { UnitTurnManager(it).endTurn() }  // This is the most expensive part of endTurn
         civInfo.diplomacy.values.toList().forEach { it.nextTurn() } // we copy the diplomacy values so if it changes in-loop we won't crash

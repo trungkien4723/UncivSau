@@ -77,6 +77,8 @@ class MapUnit : IsPartOfGameInfoSerialization {
     var automatedRoadConnectionPath: List<HexCoord>? = null
 
     var attacksThisTurn = 0
+    /** 0=normal, 1=Corps/Fleet, 2=Army/Armada */
+    var formationLevel: Int = 0
     var promotions = UnitPromotions()
 
     /** Indicates if unit should be located with 'next unit' action */

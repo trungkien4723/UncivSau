@@ -5,6 +5,7 @@
     "cost": null,
     "maintenance": null,
     "stats": {},
+    "greatWorkSlots": {"Writing": 1, "Art": 1, "Music": 1},
     "uniques": []
   },
   {

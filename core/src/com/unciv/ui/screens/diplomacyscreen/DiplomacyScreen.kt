@@ -251,6 +251,8 @@ class DiplomacyScreen(
      * @return Relationship text (e.g. "Friend")
      */
     private fun getHumanRelationshipText(otherCivDiplomacyManager: DiplomacyManager): String {
+        val allianceType = otherCivDiplomacyManager.getAllianceType()
+        if (allianceType != null) return allianceType
         return if (otherCivDiplomacyManager.diplomaticStatus == DiplomaticStatus.DefensivePact)
             Constants.defensivePact
         else if (otherCivDiplomacyManager.hasFlag(DiplomacyFlags.DeclarationOfFriendship))

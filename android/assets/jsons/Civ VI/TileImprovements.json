@@ -318,11 +318,12 @@
 	},
 	{
 		"name": "National Park",
-		"terrainsCanBeBuiltOn": ["Forest", "Woods", "Mountain"],
+		"terrainsCanBeBuiltOn": ["Land"],
 		"culture": 2,
 		"food": 2,
-		"turnsToBuild": 10,
-		"uniques": ["[+1 Housing]", "Can only be built on [Natural wonder] tiles", "Pillaging this improvement yields approximately [+20 Gold]"],
+		"tourism": 5,
+		"turnsToBuild": 1,
+		"uniques": ["[+1 Housing]", "Can only be built on [Featureless] tiles", "Pillaging this improvement yields approximately [+20 Gold]", "[+3 Tourism] <after discovering [Flight]>"],
 		"techRequired": "Conservation",
 		"shortcutKey": "N"
 	},
@@ -330,8 +331,9 @@
 		"name": "Seaside Resort",
 		"terrainsCanBeBuiltOn": ["Coast"],
 		"gold": 2,
+		"tourism": 2,
 		"turnsToBuild": 8,
-		"uniques": ["Can only be built on [Coastal] tiles", "[+2 Gold] <after discovering [Reforming the Coinage]>", "Pillaging this improvement yields approximately [+20 Gold]"],
+		"uniques": ["Can only be built on [Coastal] tiles", "[+2 Gold] <after discovering [Reforming the Coinage]>", "Pillaging this improvement yields approximately [+20 Gold]", "[+1 Tourism] <after discovering [Flight]>"],
 		"techRequired": "Reforming the Coinage",
 		"shortcutKey": "S"
 	},

@@ -314,6 +314,10 @@ class CivInfoStatsForNextTurn(val civInfo: Civilization) {
             }
         }
 
+        val greatWorksStats = civInfo.greatWorks.getTotalStats()
+        if (!greatWorksStats.isEmpty())
+            statMap.add("Great Works", greatWorksStats)
+
         return statMap
     }
 

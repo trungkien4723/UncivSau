@@ -7,6 +7,7 @@ import com.unciv.logic.map.tile.Tile
 import com.unciv.models.UnitAction
 import com.unciv.models.UnitActionType
 import com.unciv.models.ruleset.Building
+import com.unciv.models.ruleset.GreatWorkType
 import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.models.translations.tr
 import com.unciv.ui.components.extensions.toPercent
@@ -100,6 +101,38 @@ object UnitActionsGreatPerson {
                     unit.consume()
                 }.takeIf { unit.hasMovement() && canHurryConstruction }
             ))
+        }
+    }
+
+    internal fun getCreateGreatWorkActions(unit: MapUnit, tile: Tile) = sequence {
+        if (!tile.isCityCenter()) return@sequence
+        val city = tile.getCity() ?: return@sequence
+        val greatWorkType = getGreatWorkType(unit) ?: return@sequence
+        val greatWorksManager = unit.civ.greatWorks
+        if (!greatWorksManager.hasAvailableSlot(greatWorkType)) return@sequence
+
+        val greatPersonName = unit.name
+        val eraName = unit.civ.getEra().name
+        for (unique in unit.getMatchingUniques(UniqueType.CanCreateGreatWork)) {
+            val useFrequency = getUseFrequency(unit, unique, 70f)
+            yield(UnitAction(
+                UnitActionType.CreateGreatWork, useFrequency,
+                action = {
+                    greatWorksManager.addGreatWork(greatWorkType, greatPersonName, greatPersonName, eraName)
+                    unit.civ.addNotification("${greatWorkType.name} created: $greatPersonName",
+                        NotificationCategory.General, NotificationIcon.Tourism)
+                    unit.consume()
+                }.takeIf { unit.hasMovement() }
+            ))
+        }
+    }
+
+    private fun getGreatWorkType(unit: MapUnit): GreatWorkType? {
+        return when {
+            unit.isGreatPersonOfType("Writer") -> GreatWorkType.Writing
+            unit.isGreatPersonOfType("Artist") -> GreatWorkType.Art
+            unit.isGreatPersonOfType("Musician") -> GreatWorkType.Music
+            else -> null
         }
     }
 

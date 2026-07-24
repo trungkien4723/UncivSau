@@ -47,6 +47,15 @@ object Constants {
     const val peaceTreaty = "Peace Treaty"
     const val researchAgreement = "Research Agreement"
     const val defensivePact = "Defensive Pact"
+
+    // Alliances
+    const val researchAlliance = "Research Alliance"
+    const val militaryAlliance = "Military Alliance"
+    const val economicAlliance = "Economic Alliance"
+    const val culturalAlliance = "Cultural Alliance"
+    const val religiousAlliance = "Religious Alliance"
+
+    const val allianceDuration = "Alliance Duration"
     
     // Agreements
     const val openBorders = "Open Borders"

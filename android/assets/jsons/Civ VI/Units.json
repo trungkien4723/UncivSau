@@ -1129,6 +1129,7 @@
     "uniques": [
       "Empire enters a [8]-turn Golden Age <by consuming this unit>",
       "Can instantly construct a [Landmark] improvement <by consuming this unit>",
+      "Can create Great Work",
       "Is part of Great Person group [Great Person]",
       "[This Unit] gets a name from the [Artist] group",
       "Great Person - [Culture]",
@@ -1336,6 +1337,7 @@
     "unitType": "Civilian",
     "uniques": [
       "Can instantly construct a [Writers guild] improvement <by consuming this unit>",
+      "Can create Great Work",
       "Is part of Great Person group [Great Person]",
       "[This Unit] gets a name from the [Writer] group",
       "Great Person - [Culture]",
@@ -1349,6 +1351,7 @@
     "unitType": "Civilian",
     "uniques": [
       "Can instantly construct a [Musicians guild] improvement <by consuming this unit>",
+      "Can create Great Work",
       "Is part of Great Person group [Great Person]",
       "[This Unit] gets a name from the [Musician] group",
       "Great Person - [Culture]",

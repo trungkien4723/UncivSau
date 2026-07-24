@@ -90,6 +90,7 @@ object UnitActions {
         UnitActionType.HurryWonder to UnitActionsGreatPerson::getHurryWonderActions,
         UnitActionType.HurryBuilding to UnitActionsGreatPerson::getHurryBuildingActions,
         UnitActionType.ConductTradeMission to UnitActionsGreatPerson::getConductTradeMissionActions,
+        UnitActionType.CreateGreatWork to UnitActionsGreatPerson::getCreateGreatWorkActions,
         UnitActionType.FoundReligion to UnitActionsReligion::getFoundReligionActions,
         UnitActionType.EnhanceReligion to UnitActionsReligion::getEnhanceReligionActions,
         UnitActionType.CreateImprovement to UnitActionsFromUniques::getImprovementCreationActions,
@@ -97,7 +98,9 @@ object UnitActions {
         UnitActionType.RemoveHeresy to UnitActionsReligion::getRemoveHeresyActions,
         UnitActionType.TriggerUnique to UnitActionsFromUniques::getTriggerUniqueActions,
         UnitActionType.AddInCapital to UnitActionsFromUniques::getAddInCapitalActions,
-        UnitActionType.GiftUnit to UnitActions::getGiftActions
+        UnitActionType.GiftUnit to UnitActions::getGiftActions,
+        UnitActionType.FormCorps to UnitActionsCombine::getFormCorpsActions,
+        UnitActionType.FormArmy to UnitActionsCombine::getFormArmyActions
     )
 
     /** Gets the preferred "page" to display a [UnitAction] of type [unitActionType] on, possibly dynamic depending on the state or situation [unit] is in. */

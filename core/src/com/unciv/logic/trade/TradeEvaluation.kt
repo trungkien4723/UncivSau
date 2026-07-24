@@ -96,6 +96,7 @@ class TradeEvaluation {
             TradeOfferType.WarDeclaration -> offerer.getDiplomacyManager(tradeOffer.name)!!.canDeclareWar()
             TradeOfferType.PeaceProposal -> offerer.isAtWarWith(offerer.gameInfo.getCivilization(tradeOffer.name))
             TradeOfferType.City -> offerer.cities.any { it.id == tradeOffer.name }
+            TradeOfferType.Alliance -> true
         }
     }
 
@@ -267,6 +268,7 @@ class TradeEvaluation {
                 if (offer.name == Constants.openBorders) return 100
                 throw Exception("Invalid agreement type!")
             }
+            TradeOfferType.Alliance -> return 0
         }
     }
 
@@ -472,6 +474,7 @@ class TradeEvaluation {
                 }
                 throw Exception("Invalid agreement type!")
             }
+            TradeOfferType.Alliance -> return 0
         }
     }
 

@@ -32,6 +32,8 @@ class Building : RulesetStatsObject(), INonPerpetualConstruction {
     @Readonly fun newSpecialists(): Counter<String>  = specialistSlots
 
     var greatPersonPoints = Counter<String>()
+    /** Civ VI: Great Work slots in this building, keyed by GreatWorkType name */
+    var greatWorkSlots: Counter<String> = Counter()
 
     /** Extra cost percentage when purchasing */
     override var hurryCostModifier = 0
