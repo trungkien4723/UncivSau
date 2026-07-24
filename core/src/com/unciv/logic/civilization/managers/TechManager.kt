@@ -77,6 +77,39 @@ class TechManager : IsPartOfGameInfoSerialization {
     /** In civ IV, you can auto-convert a certain percentage of gold in cities to science */
     var goldPercentConvertedToScience = 0.6f
 
+    fun applyTechShuffle() {
+        val ruleset = civInfo.gameInfo.ruleset
+        val techs = ruleset.technologies.values.toList()
+        val rng = civInfo.state.stateBasedRandom("TechManager.applyTechShuffle")
+
+        val eras = techs.groupBy { it.era() }.toMutableMap()
+        for ((eraName, eraTechs) in eras) {
+            if (eraTechs.size < 3) continue
+            val techNames = eraTechs.map { it.name }.toMutableList()
+            val allPrereqs = eraTechs.flatMap { it.prerequisites }.filter { it in techNames }.toMutableList()
+            if (allPrereqs.size < 2) continue
+            allPrereqs.shuffle(rng)
+
+            var prereqIndex = 0
+            for (tech in eraTechs) {
+                val oldPrereqs = tech.prerequisites.filter { it in techNames }.toSet()
+                if (oldPrereqs.isNotEmpty()) {
+                    val numNewPrereqs = oldPrereqs.size
+                    tech.prerequisites.removeAll(oldPrereqs)
+                    for (i in 0 until numNewPrereqs) {
+                        if (prereqIndex < allPrereqs.size) {
+                            val newPrereq = allPrereqs[prereqIndex]
+                            if (newPrereq != tech.name && newPrereq !in tech.prerequisites) {
+                                tech.prerequisites.add(newPrereq)
+                            }
+                            prereqIndex++
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     //region state-changing functions
     fun clone(): TechManager {
         val toReturn = TechManager()

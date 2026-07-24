@@ -14,6 +14,7 @@ import com.unciv.logic.map.mapgenerator.NaturalWonderGenerator
 import com.unciv.logic.map.mapgenerator.RiverGenerator
 import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.tile.Tile
+import com.unciv.logic.map.tile.TileAppeal
 import com.unciv.logic.map.tile.TileNormalizer
 import com.unciv.models.UncivSound
 import com.unciv.models.UpgradeUnitAction
@@ -1523,6 +1524,23 @@ object UniqueTriggerActivation {
                 val alertText = unique.params[0]
                 return {
                     UniqueTriggerExecutors.triggerGlobalAlerts(civInfo, alertText, triggerNotificationText)
+                }
+            }
+
+            UniqueType.RockBandPerform -> {
+                val currentUnit = unit ?: return null
+                val currentTile = currentUnit.currentTile ?: return null
+                return {
+                    val appeal = TileAppeal.getAppeal(currentTile, civInfo)
+                    val tourismAmount = (50 + appeal * 10).coerceAtLeast(20)
+                    civInfo.addStat(Stat.Tourism, tourismAmount)
+                    val goldAmount = 30
+                    civInfo.addGold(goldAmount)
+                    val cultureAmount = 30
+                    civInfo.addStat(Stat.Culture, cultureAmount)
+                    civInfo.addNotification("Rock Band performed a concert! Generated [$tourismAmount] Tourism, [$goldAmount] Gold, and [$cultureAmount] Culture!",
+                        NotificationCategory.General)
+                    true
                 }
             }
 

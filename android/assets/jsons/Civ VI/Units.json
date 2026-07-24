@@ -3690,7 +3690,7 @@
   },
   {
     "name": "GDR",
-    "unitType": "NavalRanged",
+    "unitType": "Armored",
     "movement": 2,
     "strength": 0,
     "rangedStrength": 0,
@@ -3702,22 +3702,25 @@
   },
   {
     "name": "Giant Death Robot",
-    "unitType": "NavalRanged",
-    "movement": 5,
-    "strength": 0,
+    "unitType": "Armored",
+    "movement": 3,
+    "strength": 140,
     "rangedStrength": 120,
+    "range": 3,
     "cost": 750,
-    "requiredTech": "Future Technology",
+    "requiredTech": "Future Tech",
     "upgradesTo": null,
     "uniqueTo": null,
     "uniques": [
-      "1",
-      "Maintenance Cost: 15, 2Per Turn",
-      "140Melee Strength",
-      "3Range",
-      "120Anti-air Strength",
-      "3Line of Sight",
-      "Information Era Super-Unit. Able to move and fight in water. Resistant to Weapons of Mass Destruction. Combat abilities can be upgraded by researching future technologies."
+      "May travel on Water tiles without embarking",
+      "Can enter ice tiles",
+      "All combat bonuses stack",
+      "Maintenance Cost: 15, 2Per Turn"
+    ],
+    "civilopediaText": [
+      {
+        "text": "Information Era Super-Unit. Able to move and fight in water. Resistant to Weapons of Mass Destruction. Combat abilities can be upgraded by researching future technologies."
+      }
     ]
   }
 ]

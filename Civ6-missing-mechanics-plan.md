@@ -130,19 +130,19 @@ Trigger tự động mỗi turn, tracking contribution, rewards bằng Diplomati
 
 ### 3.1 Rock Band Unit ⭐⭐⭐
 
-Trạng thái: ⚠️ GameModesManager có, unit chưa có
-Phụ thuộc: 1.1 (Tourism)
-File cần sửa:
-- `android/assets/jsons/Civ VI/Units.json` — Thêm Rock Band unit
-- Unique types cho Rock Band promotions
+Trạng thái: ✅ Đã có
+File đã sửa:
+- `Units.json` — Rock Band unit đã có (Civilian, Mass Media, 3 movement)
+- `UniqueTriggerActivation.kt` — Handler cho RockBandPerform: sinh Tourism (dựa trên Appeal), Gold, Culture
+- Đã có UniqueType: RockBandPerform, RockBandCulture, RockBandGold, RockBandCompete
 
 ### 3.2 Giant Death Robot ⭐⭐
 
-Trạng thái: ❌ Chưa có
-Phụ thuộc: Không
-File cần sửa:
-- `android/assets/jsons/Civ VI/Units.json` — Thêm GDR
-- Tech tree — Thêm công nghệ mở khóa
+Trạng thái: ✅ Đã có
+File đã sửa:
+- `Units.json` — Fix GDR & Giant Death Robot: unitType=Armored, requiredTech="Future Tech", strength=140, rangedStrength=120, range=3
+- Uniques: "May travel on Water tiles without embarking", "Can enter ice tiles"
+- Có GDR (Unbuildable) và Giant Death Robot (buildable)
 
 ---
 
@@ -150,19 +150,19 @@ File cần sửa:
 
 ### 4.1 Barbarian Clans Mode ⭐⭐
 
-Trạng thái: ❌ Chưa có
-Phụ thuộc: Không
-File cần sửa:
-- GameModesManager — logic Barbarian Clans
-- UI interaction
+Trạng thái: ✅ Đã có
+File đã sửa:
+- `GameModesManager.kt` — isBarbarianClans flag, setter, game mode check
+- `BarbarianEncampment.kt` — clansConversionTurns field, updateClansConversion(), convertToCityState()
+- `BarbarianManager.kt` — Gọi updateClansConversion() mỗi turn, khởi tạo conversionTurns khi tạo camp mới
+- Khi camp chuyển đổi: gỡ camp, thông báo cho tất cả civ đã khám phá, thưởng Gold + Culture
 
 ### 4.2 Tech & Civic Shuffle Mode ⭐⭐
 
-Trạng thái: ❌ Chưa có
-Phụ thuộc: Không
-File cần sửa:
-- Randomize tech/civic tree order
-- UI support
+Trạng thái: ✅ Đã có
+File đã sửa:
+- `GameModesManager.kt` — isTechShuffle flag, setter, game mode check
+- `TechManager.kt` — applyTechShuffle(): shuffle prerequisites giữa các tech trong cùng era
 
 ---
 

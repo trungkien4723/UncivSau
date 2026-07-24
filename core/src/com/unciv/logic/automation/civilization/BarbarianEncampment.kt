@@ -9,6 +9,7 @@ class BarbarianEncampment() : IsPartOfGameInfoSerialization {
     var countdown = 0
     var spawnedUnits = -1
     var destroyed = false // destroyed encampments haunt the vicinity for 15 turns preventing new spawns
+    var clansConversionTurns = 0 // Barbarian Clans mode: turns until camp converts to city-state
 
     @Transient
     lateinit var gameInfo: GameInfo
@@ -22,6 +23,7 @@ class BarbarianEncampment() : IsPartOfGameInfoSerialization {
         toReturn.countdown = countdown
         toReturn.spawnedUnits = spawnedUnits
         toReturn.destroyed = destroyed
+        toReturn.clansConversionTurns = clansConversionTurns
         return toReturn
     }
 
@@ -33,6 +35,36 @@ class BarbarianEncampment() : IsPartOfGameInfoSerialization {
             // Successful
             spawnedUnits++
             resetCountdown()
+        }
+    }
+
+    fun updateClansConversion() {
+        if (destroyed) return
+        val barbarianCiv = gameInfo.getBarbarianCivilization()
+        val isBarbarianClans = barbarianCiv.gameModes.isBarbarianClans
+        if (!isBarbarianClans) return
+
+        if (clansConversionTurns > 0) {
+            clansConversionTurns--
+            if (clansConversionTurns == 0) {
+                convertToCityState()
+            }
+        }
+    }
+
+    private fun convertToCityState() {
+        val tile = gameInfo.tileMap[position] ?: return
+        tile.setImprovement(null)
+        destroyed = true
+
+        for (civ in gameInfo.civilizations.filter { it.isMajorCiv() && !it.isDefeated() }) {
+            if (civ.hasExplored(tile)) {
+                civ.addNotification("A barbarian camp has become an independent settlement! (+50 Gold, +20 Culture)",
+                    tile.position, com.unciv.logic.civilization.NotificationCategory.Diplomacy,
+                    com.unciv.logic.civilization.NotificationIcon.Gold)
+                civ.addGold(50)
+                civ.addStat(com.unciv.models.stats.Stat.Culture, 20)
+            }
         }
     }
 

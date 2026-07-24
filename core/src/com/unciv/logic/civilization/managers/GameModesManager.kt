@@ -17,6 +17,8 @@ class GameModesManager : IsPartOfGameInfoSerialization {
     var isZombie = false
     var isApocalypse = false
     var isDramaticAges = false
+    var isBarbarianClans = false
+    var isTechShuffle = false
 
     fun clone(): GameModesManager {
         val toReturn = GameModesManager()
@@ -29,6 +31,8 @@ class GameModesManager : IsPartOfGameInfoSerialization {
         toReturn.isZombie = isZombie
         toReturn.isApocalypse = isApocalypse
         toReturn.isDramaticAges = isDramaticAges
+        toReturn.isBarbarianClans = isBarbarianClans
+        toReturn.isTechShuffle = isTechShuffle
         return toReturn
     }
 
@@ -64,6 +68,14 @@ class GameModesManager : IsPartOfGameInfoSerialization {
 
     fun setDramaticAgesMode(enabled: Boolean) {
         isDramaticAges = enabled
+    }
+
+    fun setBarbarianClansMode(enabled: Boolean) {
+        isBarbarianClans = enabled
+    }
+
+    fun setTechShuffleMode(enabled: Boolean) {
+        isTechShuffle = enabled
     }
 
     @Readonly
@@ -131,6 +143,8 @@ class GameModesManager : IsPartOfGameInfoSerialization {
             "Monopolies" -> activeMonopolies.isNotEmpty()
             "Corporations" -> activeCorporations.isNotEmpty()
             "RockBands" -> activeRockBands.isNotEmpty()
+            "BarbarianClans" -> isBarbarianClans
+            "TechShuffle" -> isTechShuffle
             else -> false
         }
     }
@@ -146,6 +160,8 @@ class GameModesManager : IsPartOfGameInfoSerialization {
         if (activeMonopolies.isNotEmpty()) modes.add("Monopolies")
         if (activeCorporations.isNotEmpty()) modes.add("Corporations")
         if (activeRockBands.isNotEmpty()) modes.add("RockBands")
+        if (isBarbarianClans) modes.add("BarbarianClans")
+        if (isTechShuffle) modes.add("TechShuffle")
         return modes
     }
 
@@ -153,5 +169,7 @@ class GameModesManager : IsPartOfGameInfoSerialization {
         isZombie = true
         isApocalypse = true
         isDramaticAges = true
+        isBarbarianClans = true
+        isTechShuffle = true
     }
 }

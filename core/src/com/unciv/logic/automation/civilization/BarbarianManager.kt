@@ -68,6 +68,7 @@ class BarbarianManager : IsPartOfGameInfoSerialization {
         placeBarbarianEncampment()
 
         for (encampment in encampments) encampment.update()
+        for (encampment in encampments) encampment.updateClansConversion()
     }
 
     /** Called when an encampment was attacked, will speed up time to next spawn */
@@ -169,6 +170,9 @@ class BarbarianManager : IsPartOfGameInfoSerialization {
         tile.setImprovement(improvement)
         val newCamp = BarbarianEncampment(tile.position)
         newCamp.gameInfo = gameInfo
+        if (gameInfo.getBarbarianCivilization().gameModes.isBarbarianClans) {
+            newCamp.clansConversionTurns = 30 + rng.nextInt(20)
+        }
         encampments.add(newCamp)
     }
 
