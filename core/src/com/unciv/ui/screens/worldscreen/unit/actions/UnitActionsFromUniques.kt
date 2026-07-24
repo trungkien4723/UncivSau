@@ -333,13 +333,24 @@ object UnitActionsFromUniques {
             val useFrequency = getUseFrequency(unit, unique, 85f)
 
             for (improvement in improvements) {
-                // Try to skip Improvements we can never build
-                // (getImprovementBuildingProblems catches those so the button is always disabled, but it nevertheless looks nicer)
-                if (tile.improvementFunctions.getImprovementBuildingProblems(improvement, gameContext).any { it.permanent })
+                // Skip improvements we can't build on this tile
+                if (tile.improvementFunctions.getImprovementBuildingProblems(improvement, gameContext).any())
                     continue
 
                 val resourcesAvailable = improvement.getMatchingUniques(UniqueType.ConsumesResources).none { improvementUnique ->
                         (civResources[improvementUnique.params[1]] ?: 0) < improvementUnique.params[0].toInt()
+                }
+
+                if (improvement.name == Constants.cancelImprovementOrder) {
+                    val currentImprovement = tile.improvementInProgress ?: continue
+                    yield(UnitAction(UnitActionType.CreateImprovement, useFrequency,
+                        title = "Cancel [${currentImprovement}]",
+                        action = {
+                            tile.stopWorkingOnImprovement()
+                            unit.civ.cache.updateViewableTiles()
+                        }.takeIf { tile.improvementQueue.isNotEmpty() && unit.hasMovement() })
+                    )
+                    continue
                 }
 
                 yield(UnitAction(UnitActionType.CreateImprovement, useFrequency,

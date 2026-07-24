@@ -253,19 +253,20 @@ class TileLayerImprovement(tileGroup: TileGroup, size: Float) : TileLayer(tileGr
     }
 
     private fun updateDistrictIcon(show: Boolean) {
-        val districtName = tile.district
+        val districtName = tile.district ?: tile.districtToCreate
+        val isPillaged = tile.districtIsPillaged && tile.district != null
         val newDistrictID = if (districtName == null) null
-        else if (tile.districtIsPillaged) "$districtName-Pillaged" else districtName
+        else if (isPillaged) "$districtName-Pillaged" else districtName
         if (districtID != newDistrictID) {
             districtID = newDistrictID
             districtIcon?.let { removeOwnedActor(it) }
             districtIcon = null
         }
         if (districtName != null && show && districtIcon == null) {
-            val labelText = if (tile.districtIsPillaged) "$districtName (P)" else districtName
+            val labelText = if (isPillaged) "$districtName (P)" else districtName
             val label = labelText.toLabel(fontSize = 14, alignment = Align.center)
                 .apply {
-                    setFontColor(if (tile.districtIsPillaged) Color.RED else Color.WHITE)
+                    setFontColor(if (isPillaged) Color.RED else Color.WHITE)
                 }
             label.x = tileX + (tileGroup.width - label.width) / 2
             label.y = tileY + (tileGroup.height - label.height) / 2 + 4f
