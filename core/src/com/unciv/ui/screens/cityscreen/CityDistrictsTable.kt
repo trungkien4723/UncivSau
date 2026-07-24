@@ -65,6 +65,16 @@ class CityDistrictsTable(private val cityScreen: CityScreen) {
                 val district = building.getDistrictToCreate(city.getRuleset()) ?: return@filter false
                 district.name !in builtDistrictNames
             }
+            .filter { building ->
+                val district = building.getDistrictToCreate(city.getRuleset()) ?: return@filter false
+                val techRequired = district.requiredTech
+                val civicRequired = district.requiredCivic
+                (techRequired == null || city.civ.tech.isResearched(techRequired))
+                        && (civicRequired == null || city.civ.civics.isResearched(civicRequired))
+            }
+            .filter {
+                city.getDistrictsCount() < city.getDistrictCapacity()
+            }
             .toList()
     }
 

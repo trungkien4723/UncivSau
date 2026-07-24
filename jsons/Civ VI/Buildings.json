@@ -2109,7 +2109,12 @@
     "district": "City Center",
     "cost": 0,
     "maintenance": 0,
-    "stats": {},
+    "stats": {
+      "Production": 1,
+      "Culture": 2,
+      "Science": 2,
+      "Gold": 8
+    },
     "uniques": []
   },
   {

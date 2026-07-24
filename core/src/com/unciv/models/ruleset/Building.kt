@@ -410,7 +410,8 @@ class Building : RulesetStatsObject(), INonPerpetualConstruction {
         }
 
         if (district != null && !cityConstructions.city.hasDistrict(district!!)) {
-            yield(RejectionReasonType.RequiresDistrictInThisCity.toInstance("Requires a [$district] district in this city"))
+            if (!hasCreateOneDistrictUnique() || getDistrictToCreateName() != district)
+                yield(RejectionReasonType.RequiresDistrictInThisCity.toInstance("Requires a [$district] district in this city"))
         }
 
         for ((resourceName, requiredAmount) in getResourceRequirementsPerTurn(stateForConditionals)) {

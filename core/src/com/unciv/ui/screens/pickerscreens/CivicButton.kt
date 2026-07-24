@@ -25,13 +25,13 @@ class CivicButton(
 
     internal val text = "".toLabel().apply {
         wrap = false
-        setFontSize(14)
+        setFontSize(16)
         setAlignment(Align.left)
         setEllipsis(true)
     }
 
     internal val turns = "".toLabel().apply {
-        setFontSize(14)
+        setFontSize(16)
         setAlignment(Align.right)
     }
 
@@ -51,7 +51,7 @@ class CivicButton(
 
         pad(5f, 5f, 5f, 0f)
 
-        add(ImageGetter.getConstructionPortrait(civicName, 46f))
+        add(ImageGetter.getConstructionPortrait(civicName, 60f))
             .padRight(5f).padLeft(2f).left()
 
         if (isWorldScreen) {
@@ -72,8 +72,8 @@ class CivicButton(
             override fun draw(batch: Batch?, parentAlpha: Float) = super.draw(batch, parentAlpha)
         }
 
-        rightSide.add(text).width(140f).top().left().padRight(15f)
-        rightSide.add(turns).width(40f).top().left().padRight(10f).row()
+        rightSide.add(text).width(220f).top().left().padRight(15f)
+        rightSide.add(turns).width(50f).top().left().padRight(10f).row()
 
         rightSide.centerY(this)
         add(rightSide).expandX().left()

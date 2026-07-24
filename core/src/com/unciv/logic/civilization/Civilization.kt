@@ -1011,6 +1011,7 @@ class Civilization : IsPartOfGameInfoSerialization {
         ruinsManager.setTransients(this)
         espionageManager.setTransients(this)
         governorManager.setTransients(this)
+        worldCongress.setTransients(this)
         victoryManager.civInfo = this
         powerManager.civInfo = this
 

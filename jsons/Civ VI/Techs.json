@@ -2,7 +2,7 @@
   {
     "columnNumber": 0,
     "era": "Ancient era",
-    "techCost": 35,
+    "techCost": 25,
     "buildingCost": 60,
     "wonderCost": 185,
     "techs": [
@@ -89,7 +89,7 @@
   {
     "columnNumber": 1,
     "era": "Ancient era",
-    "techCost": 45,
+    "techCost": 50,
     "buildingCost": 65,
     "wonderCost": 185,
     "techs": [
@@ -142,7 +142,7 @@
   {
     "columnNumber": 2,
     "era": "Ancient era",
-    "techCost": 55,
+    "techCost": 50,
     "buildingCost": 75,
     "wonderCost": 185,
     "techs": [
@@ -216,6 +216,7 @@
       },
       {
         "name": "Wheel",
+        "cost": 80,
         "row": 7,
         "prerequisites": [
           "Animal Husbandry",
@@ -240,6 +241,7 @@
       },
       {
         "name": "Masonry",
+        "cost": 80,
         "row": 9,
         "prerequisites": [
           "Mining"
@@ -262,6 +264,7 @@
       },
       {
         "name": "Bronze Working",
+        "cost": 80,
         "row": 10,
         "prerequisites": [
           "Mining"
@@ -288,7 +291,7 @@
   {
     "columnNumber": 3,
     "era": "Classical era",
-    "techCost": 105,
+    "techCost": 120,
     "buildingCost": 100,
     "wonderCost": 250,
     "techs": [
@@ -384,7 +387,7 @@
   {
     "columnNumber": 4,
     "era": "Classical era",
-    "techCost": 175,
+    "techCost": 200,
     "buildingCost": 100,
     "wonderCost": 250,
     "techs": [
@@ -484,7 +487,7 @@
   {
     "columnNumber": 5,
     "era": "Medieval era",
-    "techCost": 275,
+    "techCost": 300,
     "buildingCost": 120,
     "wonderCost": 300,
     "techs": [
@@ -512,6 +515,7 @@
       },
       {
         "name": "Military Engineering",
+        "cost": 390,
         "row": 3,
         "prerequisites": [
           "Siege Tactics"
@@ -578,6 +582,7 @@
       },
       {
         "name": "Metal Casting",
+        "cost": 660,
         "row": 9,
         "prerequisites": [
           "Engineering",
@@ -604,12 +609,13 @@
   {
     "columnNumber": 6,
     "era": "Medieval era",
-    "techCost": 485,
+    "techCost": 300,
     "buildingCost": 160,
     "wonderCost": 400,
     "techs": [
       {
         "name": "Education",
+        "cost": 390,
         "row": 3,
         "prerequisites": [
           "Currency"
@@ -655,6 +661,7 @@
       },
       {
         "name": "Castles",
+        "cost": 390,
         "row": 4,
         "prerequisites": [
           "Currency"
@@ -702,7 +709,7 @@
   {
     "columnNumber": 7,
     "era": "Renaissance era",
-    "techCost": 780,
+    "techCost": 540,
     "buildingCost": 200,
     "wonderCost": 500,
     "techs": [
@@ -730,6 +737,7 @@
       },
       {
         "name": "Astronomy",
+        "cost": 660,
         "row": 2,
         "uniques": [
           "[+1] Movement <for [Embarked] units>",
@@ -848,7 +856,7 @@
   {
     "columnNumber": 8,
     "era": "Renaissance era",
-    "techCost": 1150,
+    "techCost": 660,
     "buildingCost": 250,
     "wonderCost": 625,
     "techs": [
@@ -898,6 +906,7 @@
       },
       {
         "name": "Economics",
+        "cost": 925,
         "row": 6,
         "prerequisites": [
           "Banking",
@@ -924,7 +933,7 @@
   {
     "columnNumber": 9,
     "era": "Industrial era",
-    "techCost": 1600,
+    "techCost": 805,
     "buildingCost": 300,
     "wonderCost": 750,
     "techs": [
@@ -975,6 +984,7 @@
       },
       {
         "name": "Rifling",
+        "cost": 925,
         "row": 7,
         "prerequisites": [
           "Economics",
@@ -1021,7 +1031,7 @@
   {
     "columnNumber": 10,
     "era": "Industrial era",
-    "techCost": 2350,
+    "techCost": 925,
     "buildingCost": 360,
     "wonderCost": 900,
     "techs": [
@@ -1049,6 +1059,7 @@
       },
       {
         "name": "Electricity",
+        "cost": 1135,
         "row": 3,
         "prerequisites": [
           "Scientific Theory"
@@ -1098,7 +1109,7 @@
   {
     "columnNumber": 11,
     "era": "Modern era",
-    "techCost": 3100,
+    "techCost": 1035,
     "buildingCost": 500,
     "wonderCost": 1060,
     "techs": [
@@ -1126,6 +1137,7 @@
       },
       {
         "name": "Radio",
+        "cost": 1135,
         "row": 3,
         "prerequisites": [
           "Electricity"
@@ -1235,6 +1247,7 @@
       },
       {
         "name": "Chemistry",
+        "cost": 1135,
         "row": 9,
         "prerequisites": [
           "Gunpowder"
@@ -1260,7 +1273,7 @@
   {
     "columnNumber": 12,
     "era": "Modern era",
-    "techCost": 4100,
+    "techCost": 1480,
     "buildingCost": 500,
     "wonderCost": 1250,
     "techs": [
@@ -1333,7 +1346,7 @@
   {
     "columnNumber": 13,
     "era": "Atomic era",
-    "techCost": 5100,
+    "techCost": 1950,
     "buildingCost": 500,
     "wonderCost": 1250,
     "techs": [
@@ -1496,7 +1509,7 @@
   {
     "columnNumber": 14,
     "era": "Atomic era",
-    "techCost": 6400,
+    "techCost": 2500,
     "buildingCost": 500,
     "wonderCost": 1250,
     "techs": [
@@ -1587,7 +1600,7 @@
   {
     "columnNumber": 15,
     "era": "Information era",
-    "techCost": 7700,
+    "techCost": 3000,
     "buildingCost": 750,
     "wonderCost": 1250,
     "techs": [
@@ -1700,7 +1713,7 @@
   {
     "columnNumber": 16,
     "era": "Information era",
-    "techCost": 8800,
+    "techCost": 3500,
     "buildingCost": 750,
     "wonderCost": 1250,
     "techs": [
@@ -1819,7 +1832,7 @@
   {
     "columnNumber": 17,
     "era": "Future era",
-    "techCost": 9500,
+    "techCost": 4000,
     "buildingCost": 750,
     "wonderCost": 1250,
     "techs": [
@@ -1966,7 +1979,7 @@
   {
     "columnNumber": 18,
     "era": "Information era",
-    "techCost": 9500,
+    "techCost": 4500,
     "buildingCost": 750,
     "wonderCost": 1250,
     "techs": [
@@ -2020,7 +2033,7 @@
   {
     "columnNumber": 19,
     "era": "Information era",
-    "techCost": 10000,
+    "techCost": 6000,
     "buildingCost": 750,
     "wonderCost": 1250,
     "techs": []
@@ -2028,7 +2041,7 @@
   {
     "columnNumber": 20,
     "era": "Information era",
-    "techCost": 15000,
+    "techCost": 7500,
     "buildingCost": 750,
     "wonderCost": 1250,
     "techs": []

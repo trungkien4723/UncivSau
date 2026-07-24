@@ -88,6 +88,10 @@ class GovernmentManager : IsPartOfGameInfoSerialization {
         if (cardName == null || cardName.isEmpty()) {
             if (slotIndex < assignedCards.size) assignedCards.removeAt(slotIndex)
         } else {
+            val slots = government.getSlots()
+            val slotType = slots[slotIndex]
+            val card = getRuleset().policyCards[cardName] ?: return
+            if (slotType != "Wildcard" && card.slotType != "Wildcard" && card.slotType != slotType) return
             // Prevent the same card occupying two slots
             assignedCards.remove(cardName)
             while (assignedCards.size <= slotIndex) assignedCards.add("")

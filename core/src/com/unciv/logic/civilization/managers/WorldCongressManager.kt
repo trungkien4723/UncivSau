@@ -10,6 +10,10 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
     @Transient
     lateinit var civInfo: Civilization
 
+    fun setTransients(civInfo: Civilization) {
+        this.civInfo = civInfo
+    }
+
     var diplomaticFavor = 0
     var votesCast = HashMap<String, String?>()
     var activeResolutions = mutableSetOf<String>()

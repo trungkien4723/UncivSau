@@ -877,14 +877,19 @@ class CityConstructions : IsPartOfGameInfoSerialization {
 
     /** Whether [tile] may host [district] for this city. */
     @Readonly
-    fun canPlaceCreateOneDistrictOn(district: District, tile: Tile): Boolean =
-        tile.getCity() == city
+    fun canPlaceCreateOneDistrictOn(district: District, tile: Tile): Boolean {
+        val techRequired = district.requiredTech
+        val civicRequired = district.requiredCivic
+        return tile.getCity() == city
             && tile in city.tilesInRange
             && !tile.isCityCenter()
             && tile.district == null
             && tile.districtToCreate == null
             && city.getDistrictsCount() < city.getDistrictCapacity()
+            && (techRequired == null || city.civ.tech.isResearched(techRequired))
+            && (civicRequired == null || city.civ.civics.isResearched(civicRequired))
             && (district.onlyBuildableOn.isEmpty() || tile.matchesFilter(district.onlyBuildableOn, city.civ))
+    }
 
     /**
      * Try to mark [tile] so completing this construction will create [improvement] there.
@@ -922,7 +927,9 @@ class CityConstructions : IsPartOfGameInfoSerialization {
     @Readonly
     fun canAddToQueue(construction: IConstruction) =
         !isQueueFull() &&
-        construction.isBuildable(this) &&
+        (construction.isBuildable(this)
+                || (construction is Building && construction.hasCreateOneDistrictUnique()
+                    && city.getDistrictsCount() < city.getDistrictCapacity())) &&
         !(construction is Building && isBeingConstructedOrEnqueued(construction.name))
 
     private fun isLastConstructionPerpetual() = constructionQueue.isNotEmpty() &&
