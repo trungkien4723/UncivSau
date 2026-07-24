@@ -267,7 +267,7 @@
 	},
 	{
 		"name": "Polder",
-		"uniqueTo": "The Netherlands",
+		"uniqueTo": "Netherlands",
 		"food": 3,
 		"terrainsCanBeBuiltOn": ["Marsh", "Flood plains"],
 		"turnsToBuild": 7,

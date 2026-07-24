@@ -4,7 +4,7 @@
     "unitType": "Civilian",
     "movement": 2,
     "uniques": [
-      "Can instantly construct a [Land] improvement <[3] times> <after which this unit is consumed>",
+      "Can instantly construct a [{All} {non-[Great]}] improvement <[3] times> <after which this unit is consumed> <for all movement>",
       "Automation is a primary action"
     ],
     "cost": 50
@@ -39,7 +39,7 @@
   {
     "name": "Jaguar",
     "unitType": "Sword",
-    "uniqueTo": "Aztecs",
+    "uniqueTo": "Aztec",
     "replaces": "Warrior",
     "movement": 2,
     "strength": 8,
@@ -88,7 +88,7 @@
     "requiredTech": "Archery",
     "obsoleteTech": "Construction",
     "replaces": "Archer",
-    "uniqueTo": "The Maya",
+    "uniqueTo": "Maya",
     "upgradesTo": "Composite Bowman",
     "attackSound": "arrow"
   },
@@ -606,7 +606,7 @@
     "name": "Sea Beggar",
     "unitType": "Melee Water",
     "replaces": "Privateer",
-    "uniqueTo": "The Netherlands",
+    "uniqueTo": "Netherlands",
     "movement": 5,
     "strength": 25,
     "cost": 150,
@@ -664,7 +664,7 @@
     "name": "Sipahi",
     "unitType": "Mounted",
     "replaces": "Lancer",
-    "uniqueTo": "The Ottomans",
+    "uniqueTo": "Ottomans",
     "movement": 5,
     "strength": 25,
     "cost": 185,
@@ -1412,12 +1412,14 @@
     "upgradesTo": null,
     "uniqueTo": null,
     "uniques": [
+      "Unbuildable",
       "Cost: 75",
       "Maintenance Cost: 0Per Turn",
       "100Religious Strength",
       "3Spread Charges",
       "2Line of Sight",
-      "May convertCitizens to their Religion. May not initiate theological combat with units of other Religions (but can defend)."
+      "May convert Citizens to their Religion. Can only Spread Religion in cities that do not have a majority Religion. Religion spreads inland from coastal cities. Can Spread Religion. Religious units can enter other civilizations' territory without an open border agreement.",
+      "Adjacent enemy religious units receive -10Religious Strength during Theologic Combat. Religious Unit"
     ]
   },
   {
@@ -1431,12 +1433,17 @@
     "upgradesTo": null,
     "uniqueTo": null,
     "uniques": [
+      "Unbuildable",
       "Cost: 200",
       "Maintenance Cost: 0Per Turn",
       "110Religious Strength",
       "3Spread Charges",
       "2Line of Sight",
-      "May convertCitizens to their Religion and initiate theological combat with units of other Religions. Once per game may Launch Inquisition to allow the purchase of Inquisitors. Once per game may Evangelize Belief to add an additional Belief to their Religion. These uses consume the Apostle."
+      "May convert Citizens to their Religion. Can only Spread Religion in cities that do not have a majority Religion. Religion spreads inland from coastal cities. Can Spread Religion.",
+      "Religious units can enter other civilizations' territory without an open border agreement.",
+      "Adjacent enemy religious units receive -10Religious Strength during Theologic Combat. Religious Unit",
+      "May Launch Inquisition",
+      "May Evangelize Beliefs"
     ]
   },
   {
@@ -1450,12 +1457,17 @@
     "upgradesTo": null,
     "uniqueTo": null,
     "uniques": [
+      "Unbuildable",
       "Cost: 75",
       "Maintenance Cost: 0Per Turn",
       "75Religious Strength",
       "3Spread Charges",
       "2Line of Sight",
-      "May reduce the presence of other Religions in their territory by 75%, and initiate theological combat with units of other Religions."
+      "May convert Citizens to their Religion. Can only Spread Religion in cities that do not have a majority Religion. Religion spreads inland from coastal cities. Can Spread Religion.",
+      "Religious units can enter other civilizations' territory without an open border agreement.",
+      "Adjacent enemy religious units receive -10Religious Strength during Theologic Combat. Religious Unit",
+      "May reduce the presence of other Religions in cities where the majority Religion is: Religion from city state w",
+      "Religious Unit"
     ]
   },
   {
@@ -1469,12 +1481,15 @@
     "upgradesTo": null,
     "uniqueTo": null,
     "uniques": [
+      "Unbuildable",
       "Cost: 120",
       "Maintenance Cost: 0Per Turn",
       "90Religious Strength",
       "3Heal Charges",
       "2Line of Sight",
-      "May use a charge to heal itself and all adjacent friendly religious units. May not initiate theological combat with units of other Religions (but can defend)."
+      "May use a charge to heal adjacent religious units by 30HP and extra by 5HP per Theological Combat victory",
+      "Adjacent enemy religious units receive -10Religious Strength during Theologic Combat. Religious Unit",
+      "Religious Unit"
     ]
   },
   {
@@ -1486,7 +1501,7 @@
     "cost": 17,
     "requiredTech": null,
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Babylon",
     "uniques": [
       "Maintenance Cost: 0Per Turn",
       "17Melee Strength",
@@ -1514,12 +1529,12 @@
     "name": "Gaesatae",
     "unitType": "Sword",
     "movement": 2,
-    "strength": 10,
+    "strength": 0,
     "rangedStrength": 0,
     "cost": 30,
     "requiredTech": null,
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Gaul",
     "uniques": [
       "Maintenance Cost: 0Per Turn",
       "20Melee Strength",
@@ -1535,7 +1550,7 @@
     "cost": 32,
     "requiredTech": null,
     "upgradesTo": null,
-    "uniqueTo": "Aztec unique Ancient era unit that replaces the Warrior.  Has a chance to capture other civilization's military units by turning them into Builders.",
+    "uniqueTo": "Aztec",
     "uniques": [
       "Maintenance Cost: 0Per Turn",
       "28Melee Strength",
@@ -1569,7 +1584,7 @@
     "cost": 50,
     "requiredTech": "Iron Working",
     "upgradesTo": null,
-    "uniqueTo": "Persian unique melee unit that replaces the Swordsman. Melee class unit with a ranged attack,Range 2. Strong defense strength.",
+    "uniqueTo": "Persia",
     "uniques": [
       "5",
       "Maintenance Cost: 2Per Turn",
@@ -1587,7 +1602,7 @@
     "cost": 55,
     "requiredTech": "Iron Working",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Kongo",
     "uniques": [
       "5",
       "Maintenance Cost: 2Per Turn",
@@ -1604,7 +1619,7 @@
     "cost": 50,
     "requiredTech": "Iron Working",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Macedon",
     "uniques": [
       "5",
       "Maintenance Cost: 2Per Turn",
@@ -1621,7 +1636,7 @@
     "cost": 60,
     "requiredTech": "Iron Working",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Maori",
     "uniques": [
       "Maintenance Cost: 0Per Turn",
       "38Melee Strength",
@@ -1638,7 +1653,7 @@
     "cost": 55,
     "requiredTech": "Iron Working",
     "upgradesTo": null,
-    "uniqueTo": "Roman unique Classical era melee unit that replaces the Swordsman. Has 1charge to build a Roman Fort.",
+    "uniqueTo": "Rome",
     "uniques": [
       "5",
       "Maintenance Cost: 2Per Turn",
@@ -1651,12 +1666,12 @@
     "name": "Berserker",
     "unitType": "Sword",
     "movement": 2,
-    "strength": 2,
+    "strength": 0,
     "rangedStrength": 0,
     "cost": 80,
     "requiredTech": "Military Tactics",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Norway",
     "uniques": [
       "5",
       "Maintenance Cost: 3Per Turn",
@@ -1691,7 +1706,7 @@
     "cost": 80,
     "requiredTech": "Military Tactics",
     "upgradesTo": null,
-    "uniqueTo": "Japanese unique Medieval era melee unit that replaces the Man-At-Arms. Does not suffer combat penalties when damaged.",
+    "uniqueTo": "Japan",
     "uniques": [
       "5",
       "Maintenance Cost: 3Per Turn",
@@ -1708,7 +1723,7 @@
     "cost": 80,
     "requiredTech": "Military Tactics",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Georgia",
     "uniques": [
       "5",
       "Maintenance Cost: 3Per Turn",
@@ -1743,7 +1758,7 @@
     "cost": 125,
     "requiredTech": "Gunpowder",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Spain",
     "uniques": [
       "5",
       "Maintenance Cost: 4Per Turn",
@@ -1760,7 +1775,7 @@
     "cost": 60,
     "requiredTech": "Gunpowder",
     "upgradesTo": null,
-    "uniqueTo": "Ottoman unique Renaissance Era unit that replaces the Musketman. Starts with afree promotion. Stronger and cheaper than the Musketman. To train a Janissary a city must have a population of at least 2. If a city is founded by the Ottomans and trains a Janissary it loses a population.",
+    "uniqueTo": "Ottomans",
     "uniques": [
       "5",
       "Maintenance Cost: 4Per Turn",
@@ -1790,12 +1805,12 @@
     "name": "Redcoat",
     "unitType": "Sword",
     "movement": 2,
-    "strength": 5,
+    "strength": 0,
     "rangedStrength": 0,
     "cost": 180,
     "requiredTech": "Military Science",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "England",
     "uniques": [
       "5",
       "Maintenance Cost: 5Per Turn",
@@ -1807,12 +1822,12 @@
     "name": "Garde Impériale",
     "unitType": "Sword",
     "movement": 2,
-    "strength": 5,
+    "strength": 0,
     "rangedStrength": 0,
     "cost": 180,
     "requiredTech": "Military Science",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "France",
     "uniques": [
       "5",
       "Maintenance Cost: 5Per Turn",
@@ -1841,13 +1856,13 @@
   {
     "name": "Digger",
     "unitType": "Sword",
-    "movement": 3,
-    "strength": 10,
+    "movement": 2,
+    "strength": 0,
     "rangedStrength": 0,
     "cost": 215,
     "requiredTech": "Replaceable Parts",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Australia",
     "uniques": [
       "1",
       "Maintenance Cost: 6, 1Per Turn",
@@ -1883,7 +1898,7 @@
     "requiredTech": null,
     "upgradesTo": null,
     "uniqueTo": null,
-    "uniques": []
+    "uniques": ["Unbuildable"]
   },
   {
     "name": "Spearman",
@@ -1911,7 +1926,7 @@
     "cost": 32,
     "requiredTech": "Bronze Working",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Greece",
     "uniques": [
       "Maintenance Cost: 1Per Turn",
       "28Melee Strength",
@@ -1944,7 +1959,7 @@
     "cost": 62,
     "requiredTech": "Military Tactics",
     "upgradesTo": null,
-    "uniqueTo": "Zulu unique Medieval Era unit that replaces the Pikeman. Increased Flanking bonus, low cost and low maintenance. Earns XP faster.",
+    "uniqueTo": "Zulu",
     "uniques": [
       "Maintenance Cost: 1Per Turn",
       "45Melee Strength",
@@ -1971,13 +1986,13 @@
   {
     "name": "Carolean",
     "unitType": "Sword",
-    "movement": 3,
-    "strength": 3,
+    "movement": 2,
+    "strength": 0,
     "rangedStrength": 0,
     "cost": 125,
     "requiredTech": "Rifling",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Sweden",
     "uniques": [
       "Maintenance Cost: 3Per Turn",
       "55Melee Strength",
@@ -2058,12 +2073,12 @@
     "name": "Hul'che",
     "unitType": "Archery",
     "movement": 2,
-    "strength": 5,
+    "strength": 0,
     "rangedStrength": 28,
     "cost": 30,
     "requiredTech": "Archery",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Maya",
     "uniques": [
       "Maintenance Cost: 1Per Turn",
       "15Melee Strength",
@@ -2074,13 +2089,13 @@
   {
     "name": "Pítati Archer",
     "unitType": "Archery",
-    "movement": 3,
+    "movement": 2,
     "strength": 0,
     "rangedStrength": 30,
     "cost": 35,
     "requiredTech": "Archery",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Nubia",
     "uniques": [
       "Maintenance Cost: 1Per Turn",
       "17Melee Strength",
@@ -2091,13 +2106,13 @@
   {
     "name": "Saka Horse Archer",
     "unitType": "Archery",
-    "movement": 4,
+    "movement": 3,
     "strength": 0,
     "rangedStrength": 25,
     "cost": 35,
     "requiredTech": "Horseback Riding",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Scythia",
     "uniques": [
       "5",
       "Maintenance Cost: 2Per Turn",
@@ -2109,13 +2124,13 @@
   {
     "name": "Maryannu Chariot Archer",
     "unitType": "Archery",
-    "movement": 4,
+    "movement": 3,
     "strength": 0,
     "rangedStrength": 35,
     "cost": 45,
     "requiredTech": "Wheel",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Egypt",
     "uniques": [
       "Maintenance Cost: 1Per Turn",
       "25Melee Strength",
@@ -2150,7 +2165,7 @@
     "cost": 85,
     "requiredTech": "Machinery",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "China",
     "uniques": [
       "Maintenance Cost: 3Per Turn",
       "30Melee Strength",
@@ -2161,13 +2176,13 @@
   {
     "name": "Keshig",
     "unitType": "Archery",
-    "movement": 4,
+    "movement": 3,
     "strength": 0,
     "rangedStrength": 40,
     "cost": 90,
     "requiredTech": "Stirrups",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Mongolia",
     "uniques": [
       "5",
       "Maintenance Cost: 3Per Turn",
@@ -2185,7 +2200,7 @@
     "cost": 100,
     "requiredTech": "Machinery",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Vietnam",
     "uniques": [
       "Maintenance Cost: 3Per Turn",
       "35Melee Strength",
@@ -2202,7 +2217,7 @@
     "cost": 125,
     "requiredTech": "Ballistics",
     "upgradesTo": null,
-    "uniqueTo": "Korean unique Renaissance Era unit that replaces the Field Cannon. HighRanged Attack Strength. Cannot move and attack in the same turn.",
+    "uniqueTo": "Korea",
     "uniques": [
       "Maintenance Cost: 3Per Turn",
       "45Melee Strength",
@@ -2293,7 +2308,7 @@
     "cost": 100,
     "requiredTech": "Military Engineering",
     "upgradesTo": null,
-    "uniqueTo": "Khmer unique Medieval era siege unit that replaces the Trebuchet. This unit has a higherMelee and Range Strength than the Trebuchet. It can move and shoot in the same turn and exerts zone of control.",
+    "uniqueTo": "Khmer",
     "uniques": [
       "Maintenance Cost: 3Per Turn",
       "40Melee Strength",
@@ -2372,7 +2387,7 @@
     "requiredTech": null,
     "upgradesTo": null,
     "uniqueTo": null,
-    "uniques": []
+    "uniques": ["Unbuildable"]
   },
   {
     "name": "Horseman",
@@ -2419,7 +2434,7 @@
     "cost": 115,
     "requiredTech": "Military Science",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Mapuche",
     "uniques": [
       "10",
       "Maintenance Cost: 3Per Turn",
@@ -2436,7 +2451,7 @@
     "cost": 100,
     "requiredTech": "Military Science",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Ethiopia",
     "uniques": [
       "5",
       "Maintenance Cost: 3Per Turn",
@@ -2453,7 +2468,7 @@
     "cost": 102,
     "requiredTech": "Stirrups",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Hungary",
     "uniques": [
       "5",
       "Maintenance Cost: 3Per Turn",
@@ -2470,7 +2485,7 @@
     "cost": 170,
     "requiredTech": "Military Science",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Russia",
     "uniques": [
       "5",
       "Maintenance Cost: 5Per Turn",
@@ -2487,7 +2502,7 @@
     "cost": 165,
     "requiredTech": "Military Science",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Gran",
     "uniques": [
       "10",
       "Maintenance Cost: 2Per Turn",
@@ -2504,7 +2519,7 @@
     "cost": 167,
     "requiredTech": "Military Science",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Hungary",
     "uniques": [
       "5",
       "Maintenance Cost: 5Per Turn",
@@ -2521,7 +2536,7 @@
     "cost": 180,
     "requiredTech": "Replaceable Parts",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Canada",
     "uniques": [
       "Maintenance Cost: 3Per Turn",
       "70Melee Strength",
@@ -2556,7 +2571,7 @@
     "requiredTech": null,
     "upgradesTo": null,
     "uniqueTo": null,
-    "uniques": []
+    "uniques": ["Unbuildable"]
   },
   {
     "name": "War-Cart",
@@ -2567,7 +2582,7 @@
     "cost": 20,
     "requiredTech": null,
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Sumeria",
     "uniques": [
       "Maintenance Cost: 0Per Turn",
       "20Melee Strength",
@@ -2599,7 +2614,7 @@
     "cost": 50,
     "requiredTech": "Horseback Riding",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Macedon",
     "uniques": [
       "5",
       "Maintenance Cost: 2Per Turn",
@@ -2616,7 +2631,7 @@
     "cost": 60,
     "requiredTech": "Horseback Riding",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "India",
     "uniques": [
       "5",
       "Maintenance Cost: 2Per Turn",
@@ -2651,7 +2666,7 @@
     "cost": 110,
     "requiredTech": "Stirrups",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Byzantium",
     "uniques": [
       "5",
       "Maintenance Cost: 4Per Turn",
@@ -2668,7 +2683,7 @@
     "cost": 110,
     "requiredTech": "Stirrups",
     "upgradesTo": null,
-    "uniqueTo": "Arabian unique Medieval era unit that replaces the Knight. Heals at the end of every turn, even after moving or attacking.",
+    "uniqueTo": "Arabia",
     "uniques": [
       "5",
       "Maintenance Cost: 4Per Turn",
@@ -2685,7 +2700,7 @@
     "cost": 110,
     "requiredTech": "Stirrups",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Mali",
     "uniques": [
       "5",
       "Maintenance Cost: 4Per Turn",
@@ -2702,7 +2717,7 @@
     "cost": 165,
     "requiredTech": "Mercenaries",
     "upgradesTo": null,
-    "uniqueTo": "Polish unique Renaissance era unit that replaces the Cuirassier. Pushes defending enemy units back from their hex in any battle where they score more damage. Defenders that cannot retreat suffer additional damage.",
+    "uniqueTo": "Poland",
     "uniques": [
       "5",
       "Maintenance Cost: 5Per Turn",
@@ -2737,7 +2752,7 @@
     "cost": 192,
     "requiredTech": "Rifling",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "America",
     "uniques": [
       "5",
       "Maintenance Cost: 2Per Turn",
@@ -2791,7 +2806,7 @@
     "requiredTech": null,
     "upgradesTo": null,
     "uniqueTo": null,
-    "uniques": []
+    "uniques": ["Unbuildable"]
   },
   {
     "name": "Scout",
@@ -2819,7 +2834,7 @@
     "cost": 20,
     "requiredTech": null,
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Cree",
     "uniques": [
       "Maintenance Cost: 0Per Turn",
       "15Melee Strength",
@@ -2853,7 +2868,7 @@
     "cost": 82,
     "requiredTech": "Horseback Riding",
     "upgradesTo": null,
-    "uniqueTo": "Incan unique Medieval Era unit that replaces the Skirmisher. Stronger at ranged combat than the Skirmisher and +1 additional attack per turn.",
+    "uniqueTo": "Inca",
     "uniques": [
       "Maintenance Cost: 2Per Turn",
       "25Melee Strength",
@@ -2888,7 +2903,7 @@
     "cost": 190,
     "requiredTech": "Rifling",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Scotland",
     "uniques": [
       "Maintenance Cost: 5Per Turn",
       "65Melee Strength",
@@ -3086,7 +3101,7 @@
     "cost": 32,
     "requiredTech": "Sailing",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Norway",
     "uniques": [
       "Maintenance Cost: 1Per Turn",
       "35Melee Strength",
@@ -3102,7 +3117,7 @@
     "cost": 32,
     "requiredTech": "Sailing",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Phoenicia",
     "uniques": [
       "Maintenance Cost: 1Per Turn",
       "35Melee Strength",
@@ -3135,7 +3150,7 @@
     "cost": 120,
     "requiredTech": "Cartography",
     "upgradesTo": null,
-    "uniqueTo": "Portuguese unique naval melee unit that replaces the Caravel. Starts withfree Promotion and is less maintenance. Has 2charge to build Feitorias.",
+    "uniqueTo": "Portugal",
     "uniques": [
       "Maintenance Cost: 2Per Turn",
       "55Melee Strength",
@@ -3207,7 +3222,7 @@
     "cost": 60,
     "requiredTech": "Shipbuilding",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Byzantium",
     "uniques": [
       "Maintenance Cost: 2Per Turn",
       "20Melee Strength",
@@ -3243,7 +3258,7 @@
     "cost": 150,
     "requiredTech": "Mercantilism",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Indonesia",
     "uniques": [
       "5",
       "Maintenance Cost: 5Per Turn",
@@ -3261,7 +3276,7 @@
     "cost": 140,
     "requiredTech": "Square Rigging",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Netherlands",
     "uniques": [
       "5",
       "Maintenance Cost: 5Per Turn",
@@ -3297,9 +3312,9 @@
     "strength": 0,
     "rangedStrength": 80,
     "cost": 215,
-    "requiredTech": "Brazilian unique Industrial era unit that replaces the Battleship. Stronger than the Battleship. Unlocked by Nationalism.",
+    "requiredTech": "Nationalism",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Brazil",
     "uniques": [
       "1",
       "Maintenance Cost: 6, 1Per Turn",
@@ -3339,7 +3354,7 @@
     "requiredTech": null,
     "upgradesTo": null,
     "uniqueTo": null,
-    "uniques": []
+    "uniques": ["Unbuildable"]
   },
   {
     "name": "Privateer",
@@ -3368,7 +3383,7 @@
     "cost": 140,
     "requiredTech": "Mercantilism",
     "upgradesTo": null,
-    "uniqueTo": "English unique Renaissance era naval unit that replaces the Privateer. Has a chance to capture defeated enemy ships. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.",
+    "uniqueTo": "England",
     "uniques": [
       "Maintenance Cost: 4Per Turn",
       "40Melee Strength",
@@ -3420,7 +3435,7 @@
     "cost": 215,
     "requiredTech": "Electricity",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "Germany",
     "uniques": [
       "Maintenance Cost: 6Per Turn",
       "65Melee Strength",
@@ -3456,7 +3471,7 @@
     "requiredTech": null,
     "upgradesTo": null,
     "uniqueTo": null,
-    "uniques": []
+    "uniques": ["Unbuildable"]
   },
   {
     "name": "Aircraft Carrier",
@@ -3485,7 +3500,7 @@
     "requiredTech": null,
     "upgradesTo": null,
     "uniqueTo": null,
-    "uniques": []
+    "uniques": ["Unbuildable"]
   },
   {
     "name": "Nihang",
@@ -3513,7 +3528,7 @@
     "requiredTech": null,
     "upgradesTo": null,
     "uniqueTo": null,
-    "uniques": []
+    "uniques": ["Unbuildable"]
   },
   {
     "name": "Warrior Monk",
@@ -3541,7 +3556,7 @@
     "requiredTech": null,
     "upgradesTo": null,
     "uniqueTo": null,
-    "uniques": []
+    "uniques": ["Unbuildable"]
   },
   {
     "name": "Biplane",
@@ -3590,7 +3605,7 @@
     "cost": 260,
     "requiredTech": "Advanced Flight",
     "upgradesTo": null,
-    "uniqueTo": null,
+    "uniqueTo": "America",
     "uniques": [
       "1",
       "Maintenance Cost: 7, 1Per Turn",
@@ -3628,7 +3643,7 @@
     "requiredTech": null,
     "upgradesTo": null,
     "uniqueTo": null,
-    "uniques": []
+    "uniques": ["Unbuildable"]
   },
   {
     "name": "Bomber",
@@ -3680,7 +3695,7 @@
     "requiredTech": null,
     "upgradesTo": null,
     "uniqueTo": null,
-    "uniques": []
+    "uniques": ["Unbuildable"]
   },
   {
     "name": "Giant Death Robot",

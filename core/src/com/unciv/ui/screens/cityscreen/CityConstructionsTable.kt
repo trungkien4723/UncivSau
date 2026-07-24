@@ -287,6 +287,7 @@ class CityConstructionsTable(private val cityScreen: CityScreen) {
 
         val constructionsSequence = city.getRuleset().units.values.asSequence() +
                 city.getRuleset().buildings.values.asSequence()
+                .filter { !(it is Building && it.hasCreateOneDistrictUnique()) }
 
         city.cityStats.updateTileStats() // only once
         for (entry in constructionsSequence.filter { it.shouldBeDisplayed(cityConstructions) }) {

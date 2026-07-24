@@ -63,7 +63,7 @@
   {
     "name": "Pyramid",
     "replaces": "Shrine",
-    "uniqueTo": "The Maya",
+    "uniqueTo": "Maya",
     "faith": 2,
     "science": 2,
     "cost": 40,
@@ -156,7 +156,7 @@
   {
     "name": "Floating Gardens",
     "replaces": "Water Mill",
-    "uniqueTo": "Aztecs",
+    "uniqueTo": "Aztec",
     "food": 2,
     "production": 1,
     "uniques": [
@@ -1555,6 +1555,7 @@
     "name": "Government Plaza",
     "cost": 36,
     "uniques": [
+      "Unbuildable",
       "Creates a [Government Plaza] district on a specific tile",
       "Requires [Government Plaza] placement"
     ]
@@ -1919,7 +1920,7 @@
   {
     "name": "Observatory",
     "replaces": "Library",
-    "uniqueTo": "The Maya",
+    "uniqueTo": "Maya",
     "district": "Campus",
     "requiredTech": "Writing",
     "uniques": [
