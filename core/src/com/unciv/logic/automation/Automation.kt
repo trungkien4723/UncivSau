@@ -396,6 +396,9 @@ object Automation {
     @Readonly
     fun getTileForDistrict(city: City, district: District): Tile? {
         val civ = city.civ
+        // Check tech/civic requirements before considering the district
+        if (district.requiredTech != null && !civ.tech.isResearched(district.requiredTech!!)) return null
+        if (district.requiredCivic != null && !civ.civics.isResearched(district.requiredCivic!!)) return null
         return city.getTiles().filter {
             it.getCity() == city
                 && !it.isCityCenter()

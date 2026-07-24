@@ -378,7 +378,7 @@ Allowed values:
     - Example: `Only available <when number of [Cities] is more than [0]>`
 -   `Units` - The number of units the relevant Civilization owns
     - Example: `Only available <when number of [Units] is more than [0]>`
--   Stat name (`Production`, `Food`, `Gold`, `Science`, `Culture`, `Happiness` or `Faith`)
+-   Stat name (`Production`, `Food`, `Gold`, `Science`, `Culture`, `Faith`, `Housing` or `Amenities`)
     - Example: `Only available <when number of [Science] is more than [0]>`
     - Gets the stat *reserve*, not the amount per turn (can be city stats or civilization stats, depending on where the unique is used)
 -   Stat/Resource Per Turn

@@ -979,12 +979,11 @@ class CityConstructions : IsPartOfGameInfoSerialization {
         val districtToCreate = building.getDistrictToCreate(city.getRuleset())
         if (districtToCreate != null) {
             if (getTileForDistrict(districtToCreate.name) != null) return
-            val tileForDistrict = requireNotNull(tile) {
-                "Cannot queue ${construction.name} without a target tile for ${UniqueType.CreatesOneDistrict.name}"
+            if (tile == null) return
+            require(tryPlaceCreateOneDistrictMarker(districtToCreate, tile)) {
+                "Cannot queue ${construction.name}: ${districtToCreate.name} cannot be created on ${tile.position}"
             }
-            require(tryPlaceCreateOneDistrictMarker(districtToCreate, tileForDistrict)) {
-                "Cannot queue ${construction.name}: ${districtToCreate.name} cannot be created on ${tileForDistrict.position}"
-            }
+            return
         }
     }
 
@@ -1160,5 +1159,26 @@ class CityConstructions : IsPartOfGameInfoSerialization {
     @Readonly
     fun getTileForDistrict(districtName: String) = city.getTiles()
         .firstOrNull { it.districtToCreate == districtName }
+
+    fun getTurnsToBuildDistrict(districtName: String): Int {
+        val district = city.getRuleset().districts[districtName] ?: return 0
+        val cost = district.cost
+        val production = city.cityStats.currentCityStats.production.roundToInt()
+        val inProgress = city.cityConstructions.inProgressConstructions[districtName] ?: 0
+        val turns = if (production > 0) ceil((cost - inProgress).toDouble() / production).toInt() else cost
+        return maxOf(1, turns)
+    }
+
+    fun buildDistrict(district: District, tile: Tile) {
+        city.districts[tile.position] = district.name
+        tile.district = district.name
+        GUI.setUpdateWorldOnNextRender()
+
+        for (unique in city.civ.getTriggeredUniques(UniqueType.TriggerUponConstructingDistrict) {
+            district.matchesFilter(it.params[0])
+        }) {
+            UniqueTriggerActivation.triggerUnique(unique, city.civ, tile = tile)
+        }
+    }
     //endregion
 }

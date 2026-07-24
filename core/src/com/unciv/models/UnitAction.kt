@@ -185,6 +185,8 @@ enum class UnitActionType(
         { ImageGetter.getUnitActionPortrait("FoundCity") }, UncivSound.Silent),
     ConstructImprovement("Construct improvement",
         { ImageGetter.getUnitActionPortrait("ConstructImprovement") }, false),
+    BuildDistrict("Build district",
+        null, false, UncivSound.Construction),
     Repair(Constants.repair,
         { ImageGetter.getUnitActionPortrait("Repair") }, UncivSound.Construction),
     CreateImprovement("Create",

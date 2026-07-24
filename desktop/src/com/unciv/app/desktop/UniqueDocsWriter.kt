@@ -7,6 +7,7 @@ import com.unciv.models.ruleset.unique.UniqueParameterType
 import com.unciv.models.ruleset.unique.UniqueTarget
 import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.models.translations.fillPlaceholders
+import com.unciv.models.translations.getPlaceholderParameters
 import com.unciv.utils.Log
 import java.io.File
 
@@ -129,7 +130,11 @@ class UniqueDocsWriter {
                     // Might confuse modders to think "/" can go into the _actual_ unique and mean "or", so better show just one ("Farm" in the example above):
                     val paramExamples = uniqueType.parameterTypeMap.mapNotNull { it.firstOrNull()?.docExample }.toTypedArray()
                     if (paramExamples.isNotEmpty()) {
-                        lines += "\tExample: \"${uniqueText.fillPlaceholders(*paramExamples)}\"\n"
+                        val keys = uniqueType.text.getPlaceholderParameters()
+                        if (paramExamples.size >= keys.size) {
+                            val examplesToUse = paramExamples.take(keys.size).toTypedArray()
+                            lines += "\tExample: \"${uniqueText.fillPlaceholders(*examplesToUse)}\"\n"
+                        }
                     }
                 }
                 if (uniqueType.flags.contains(UniqueFlag.AcceptsSpeedModifier))

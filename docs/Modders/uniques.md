@@ -61,6 +61,11 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 	Applicable to: Triggerable
 
+??? example  "Gain [amount] Era Score"
+	Example: "Gain [3] Era Score"
+
+	Applicable to: Triggerable
+
 ??? example  "Free Great Person"
 	Applicable to: Triggerable
 
@@ -567,11 +572,6 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 	Applicable to: Global
 
-??? example  "[relativeAmount]% Happiness from luxury resources gifted by City-States"
-	Example: "[+20]% Happiness from luxury resources gifted by City-States"
-
-	Applicable to: Global
-
 ??? example  "City-State Influence recovers at twice the normal rate"
 	Applicable to: Global
 
@@ -592,28 +592,38 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 	Applicable to: Global, FollowerBelief
 
-??? example  "[relativeAmount]% unhappiness from the number of cities"
-	Example: "[+20]% unhappiness from the number of cities"
+??? example  "[amount] Housing [cityFilter]"
+	Example: "[3] Housing [in all cities]"
+
+	Applicable to: Global, Building, District
+
+??? example  "[amount] Housing per [positiveAmount] population [cityFilter]"
+	Example: "[3] Housing per [3] population [in all cities]"
 
 	Applicable to: Global
 
-??? example  "[relativeAmount]% Unhappiness from [populationFilter] [cityFilter]"
-	Example: "[+20]% Unhappiness from [Followers of this Religion] [in all cities]"
-
-	Applicable to: Global, FollowerBelief
-
-??? example  "[amount] Happiness from each type of luxury resource"
-	Example: "[3] Happiness from each type of luxury resource"
+??? example  "[amount] Housing from fresh water [cityFilter]"
+	Example: "[3] Housing from fresh water [in all cities]"
 
 	Applicable to: Global
 
-??? example  "Retain [relativeAmount]% of the happiness from a luxury after the last copy has been traded away"
-	Example: "Retain [+20]% of the happiness from a luxury after the last copy has been traded away"
+??? example  "[relativeAmount]% of excess housing converted to [stat]"
+	Example: "[+20]% of excess housing converted to [Culture]"
 
 	Applicable to: Global
 
-??? example  "[relativeAmount]% of excess happiness converted to [stat]"
-	Example: "[+20]% of excess happiness converted to [Culture]"
+??? example  "[amount] Amenities [cityFilter]"
+	Example: "[3] Amenities [in all cities]"
+
+	Applicable to: Global, Building
+
+??? example  "[amount] Amenities from [populationFilter] [cityFilter]"
+	Example: "[3] Amenities from [Followers of this Religion] [in all cities]"
+
+	Applicable to: Global
+
+??? example  "[amount] Amenities from each city [cityFilter]"
+	Example: "[3] Amenities from each city [in all cities]"
 
 	Applicable to: Global
 
@@ -1229,6 +1239,93 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 	Applicable to: Global, Unit
 
+??? example  "[amount] Era Score"
+	Example: "[3] Era Score"
+
+	Applicable to: Global
+
+??? example  "[amount] Diplomatic Favor"
+	Example: "[3] Diplomatic Favor"
+
+	Applicable to: Global
+
+??? example  "[amount] Diplomatic Favor for Diplomatic Victory"
+	Example: "[3] Diplomatic Favor for Diplomatic Victory"
+
+	Applicable to: Global
+
+??? example  "[society] society"
+	Applicable to: Global
+
+??? example  "[hero] hero spawned"
+	Applicable to: Global
+
+??? example  "[legend] legend"
+	Applicable to: Global
+
+??? example  "[resource] monopoly"
+	Example: "[Iron] monopoly"
+
+	Applicable to: Global
+
+??? example  "[corporation] corporation"
+	Applicable to: Global
+
+??? example  "[corporation] action available"
+	Applicable to: Global
+
+??? example  "[resource] monopoly action available"
+	Example: "[Iron] monopoly action available"
+
+	Applicable to: Global
+
+??? example  "[society] society member"
+	Applicable to: Global
+
+??? example  "[zombie] unit"
+	Applicable to: Global
+
+??? example  "[disaster] apocalypse"
+	Applicable to: Global
+
+??? example  "[amount] Culture from Rock Band performance"
+	Example: "[3] Culture from Rock Band performance"
+
+	Applicable to: Global, Unit
+
+??? example  "[amount] Gold from Rock Band pillage"
+	Example: "[3] Gold from Rock Band pillage"
+
+	Applicable to: Global, Unit
+
+??? example  "[corporation] corporation"
+	Applicable to: Global
+
+??? example  "[corporation] action available"
+	Applicable to: Global
+
+??? example  "[resource] monopoly"
+	Example: "[Iron] monopoly"
+
+	Applicable to: Global
+
+??? example  "[resource] monopoly action available"
+	Example: "[Iron] monopoly action available"
+
+	Applicable to: Global
+
+??? example  "CO2: [positiveAmount]"
+	Accumulated CO2 contributes to Climate Change. Triggers sea level rise at certain thresholds.
+
+	Example: "CO2: [3]"
+
+	Applicable to: Global
+
+??? example  "[disasterType]"
+	Natural disasters can pillage/improve tiles and districts. Types: Flood, Volcano, Storm, Drought.
+
+	Applicable to: Global
+
 ## Nation uniques
 ??? example  "Starts with [tech]"
 	Example: "Starts with [Agriculture]"
@@ -1258,7 +1355,7 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Will not be chosen for new games"
 	Applicable to: Nation
@@ -1268,7 +1365,7 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ## Personality uniques
 ??? example  "Will not build [baseUnitFilter/buildingFilter]"
@@ -1310,6 +1407,11 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Cannot be hurried"
 	Applicable to: Tech, Building
 
+??? example  "Eureka: [relativeAmount]% of the cost of this technology"
+	Example: "Eureka: [+20]% of the cost of this technology"
+
+	Applicable to: Tech
+
 ??? example  "[relativeAmount]% weight to this choice for AI decisions"
 	Example: "[+20]% weight to this choice for AI decisions"
 
@@ -1320,14 +1422,35 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Comment [comment]"
 	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
+
+## Civic uniques
+??? example  "Starting civic"
+	Applicable to: Civic
+
+??? example  "Inspiration: [relativeAmount]% of the cost of this civic"
+	Example: "Inspiration: [+20]% of the cost of this civic"
+
+	Applicable to: Civic
+
+??? example  "Will not be displayed in Civilopedia"
+	This unique is automatically hidden from users.
+
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
+
+??? example  "Comment [comment]"
+	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
+
+	Example: "Comment [comment]"
+
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ## Policy uniques
 ??? example  "Only available"
@@ -1350,14 +1473,40 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Comment [comment]"
 	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
+
+## Government uniques
+??? example  "Will not be displayed in Civilopedia"
+	This unique is automatically hidden from users.
+
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
+
+??? example  "Comment [comment]"
+	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
+
+	Example: "Comment [comment]"
+
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
+
+## PolicyCard uniques
+??? example  "Will not be displayed in Civilopedia"
+	This unique is automatically hidden from users.
+
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
+
+??? example  "Comment [comment]"
+	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
+
+	Example: "Comment [comment]"
+
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ## FounderBelief uniques
 !!! note ""
@@ -1399,14 +1548,14 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Comment [comment]"
 	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ## FollowerBelief uniques
 !!! note ""
@@ -1531,11 +1680,6 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 ??? example  "[relativeAmount]% Food consumption by [populationFilter] [cityFilter]"
 	Example: "[+20]% Food consumption by [Followers of this Religion] [in all cities]"
-
-	Applicable to: Global, FollowerBelief
-
-??? example  "[relativeAmount]% Unhappiness from [populationFilter] [cityFilter]"
-	Example: "[+20]% Unhappiness from [Followers of this Religion] [in all cities]"
 
 	Applicable to: Global, FollowerBelief
 
@@ -1690,20 +1834,30 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Comment [comment]"
 	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ## Building uniques
 ??? example  "[positiveAmount]% of [stat] from every [improvementFilter/buildingFilter] in the city added to [resource]"
 	Example: "[3]% of [Culture] from every [All Road] in the city added to [Iron]"
 
 	Applicable to: Building
+
+??? example  "[amount] Housing [cityFilter]"
+	Example: "[3] Housing [in all cities]"
+
+	Applicable to: Global, Building, District
+
+??? example  "[amount] Amenities [cityFilter]"
+	Example: "[3] Amenities [in all cities]"
+
+	Applicable to: Global, Building
 
 ??? example  "Consumes [amount] [resource]"
 	Example: "Consumes [3] [Iron]"
@@ -1844,9 +1998,6 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 	Applicable to: Building
 
-??? example  "Removes extra unhappiness from annexed cities"
-	Applicable to: Building
-
 ??? example  "Connects trade routes over water"
 	Applicable to: Building
 
@@ -1857,6 +2008,13 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	When choosing to construct this building, the player must select a tile where the improvement can be built. Upon building completion, the tile will gain this improvement. Limited to one per building.
 
 	Example: "Creates a [Trading Post] improvement on a specific tile"
+
+	This unique does not support conditionals.
+
+	Applicable to: Building
+
+??? example  "Creates a [districtName] district on a specific tile"
+	When choosing to construct this building, the player must select a tile where the district can be built. Upon building completion, the tile will become this district. Limited to one per building.
 
 	This unique does not support conditionals.
 
@@ -1885,7 +2043,7 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Shown while unbuilable"
 	This unique is automatically hidden from users.
@@ -1897,7 +2055,17 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
+
+??? example  "[positiveAmount] Power [consumptionFilter] buildings consume"
+	Buildings that consume power (Coal, Oil, Uranium). If not supplied, they provide a negative bonus.
+
+	Applicable to: Building, Terrain
+
+??? example  "[amount] Power [productionFilter] buildings produce"
+	Buildings that produce electricity (Wind Farm, Solar Plant, Power Plant).
+
+	Applicable to: Building, Terrain
 
 ## UnitAction uniques
 !!! note ""
@@ -2056,6 +2224,9 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Can build [improvementFilter/terrainFilter] improvements on tiles"
 	Example: "Can build [All Road] improvements on tiles"
 
+	Applicable to: Unit
+
+??? example  "Can build [districtFilter] districts on tiles"
 	Applicable to: Unit
 
 ??? example  "Can be added to [comment] in the Capital"
@@ -2527,7 +2698,7 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Shown while unbuilable"
 	This unique is automatically hidden from users.
@@ -2539,20 +2710,36 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
+
+??? example  "[rock] action"
+	Applicable to: Unit
+
+??? example  "[amount] Culture from Rock Band performance"
+	Example: "[3] Culture from Rock Band performance"
+
+	Applicable to: Global, Unit
+
+??? example  "[amount] Gold from Rock Band pillage"
+	Example: "[3] Gold from Rock Band pillage"
+
+	Applicable to: Global, Unit
+
+??? example  "[rock band] compete with other Rock Bands"
+	Applicable to: Unit
 
 ## UnitType uniques
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Comment [comment]"
 	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ## Promotion uniques
 ??? example  "Only available"
@@ -2586,14 +2773,14 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Comment [comment]"
 	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ## Terrain uniques
 ??? example  "[stats]"
@@ -2842,14 +3029,24 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Comment [comment]"
 	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
+
+??? example  "[positiveAmount] Power [consumptionFilter] buildings consume"
+	Buildings that consume power (Coal, Oil, Uranium). If not supplied, they provide a negative bonus.
+
+	Applicable to: Building, Terrain
+
+??? example  "[amount] Power [productionFilter] buildings produce"
+	Buildings that produce electricity (Wind Farm, Solar Plant, Power Plant).
+
+	Applicable to: Building, Terrain
 
 ??? example  "Suppress warning [validationWarning]"
 	Allows suppressing specific validation warnings. Errors, deprecation warnings, or warnings about untyped and non-filtering uniques should be heeded, not suppressed, and are therefore not accepted. Note that this can be used in ModOptions, in the uniques a warning is about, or as modifier on the unique triggering a warning - but you still need to be specific. Even in the modifier case you will need to specify a sufficiently selective portion of the warning text as parameter.
@@ -3050,14 +3247,35 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Comment [comment]"
 	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
+
+## District uniques
+??? example  "[amount] Housing [cityFilter]"
+	Example: "[3] Housing [in all cities]"
+
+	Applicable to: Global, Building, District
+
+??? example  "[stats] for each adjacent [districtFilter]"
+	Applicable to: District
+
+??? example  "Will not be displayed in Civilopedia"
+	This unique is automatically hidden from users.
+
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
+
+??? example  "Comment [comment]"
+	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
+
+	Example: "Comment [comment]"
+
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ## Resource uniques
 ??? example  "Obsolete with [tech]"
@@ -3181,14 +3399,14 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Comment [comment]"
 	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ## Ruins uniques
 ??? example  "Only available"
@@ -3214,14 +3432,14 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Comment [comment]"
 	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ## Speed uniques
 !!! note ""
@@ -3231,14 +3449,14 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Comment [comment]"
 	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Suppress warning [validationWarning]"
 	Allows suppressing specific validation warnings. Errors, deprecation warnings, or warnings about untyped and non-filtering uniques should be heeded, not suppressed, and are therefore not accepted. Note that this can be used in ModOptions, in the uniques a warning is about, or as modifier on the unique triggering a warning - but you still need to be specific. Even in the modifier case you will need to specify a sufficiently selective portion of the warning text as parameter.
@@ -3259,14 +3477,14 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Comment [comment]"
 	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ## CityState uniques
 ??? example  "Provides military units every ≈[positiveAmount] turns"
@@ -3318,6 +3536,11 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: ModOptions
 
 ??? example  "Allow raze holy city"
+	This unique does not support conditionals.
+
+	Applicable to: ModOptions
+
+??? example  "Golden Age length modified for Dramatic Ages"
 	This unique does not support conditionals.
 
 	Applicable to: ModOptions
@@ -3388,6 +3611,15 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 	Applicable to: Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, Promotion, Improvement, Ruins, Event, EventChoice
 
+??? example  "[proposal] proposal"
+	Applicable to: Event
+
+??? example  "[resolution]"
+	Applicable to: Event
+
+??? example  "[emergencyType] emergency"
+	Applicable to: Event
+
 ## EventChoice uniques
 ??? example  "Only available"
 	Meant to be used together with conditionals, like "Only available &lt;after adopting [policy]&gt; &lt;while the empire is happy&gt;". Only allows Building when ALL conditionals are met. Will also block Upgrade and Transform actions. See also CanOnlyBeBuiltWhen
@@ -3409,14 +3641,14 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ??? example  "Comment [comment]"
 	Allows displaying arbitrary text in a Unique listing. Only the text within the '[]' brackets will be displayed, the rest serves to allow Ruleset validation to recognize the intent.
 
 	Example: "Comment [comment]"
 
-	Applicable to: Nation, Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, Resource, Ruins, Speed, Difficulty, EventChoice
+	Applicable to: Nation, Tech, Civic, Policy, Government, PolicyCard, FounderBelief, FollowerBelief, Building, Unit, UnitType, Promotion, Terrain, Improvement, District, Resource, Ruins, Speed, Difficulty, EventChoice
 
 ## Conditional uniques
 !!! note ""
@@ -3518,9 +3750,6 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: Conditional
 
 ??? example  "&lt;when not in a Golden Age&gt;"
-	Applicable to: Conditional
-
-??? example  "&lt;during We Love The King Day&gt;"
 	Applicable to: Conditional
 
 ??? example  "&lt;while the empire is happy&gt;"
@@ -3646,7 +3875,7 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: Conditional
 
 ??? example  "&lt;when above [amount] [stat/resource]&gt;"
-	Stats refers to the accumulated stat, not stat-per-turn. Therefore, does not support Happiness - for that use 'when above [amount] Happiness'
+	Stats refers to the accumulated stat, not stat-per-turn. Therefore, does not support Housing/Amenities - for that use 'when above [amount] Housing'
 
 	Example: "&lt;when above [3] [Culture]&gt;"
 
@@ -3655,7 +3884,7 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: Conditional
 
 ??? example  "&lt;when below [amount] [stat/resource]&gt;"
-	Stats refers to the accumulated stat, not stat-per-turn. Therefore, does not support Happiness - for that use 'when below [amount] Happiness'
+	Stats refers to the accumulated stat, not stat-per-turn. Therefore, does not support Housing/Amenities - for that use 'when below [amount] Housing'
 
 	Example: "&lt;when below [3] [Culture]&gt;"
 
@@ -3664,7 +3893,7 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: Conditional
 
 ??? example  "&lt;when between [amount] and [amount] [stat/resource]&gt;"
-	Stats refers to the accumulated stat, not stat-per-turn. Therefore, does not support Happiness. 'Between' is inclusive - so 'between 1 and 5' includes 1 and 5.
+	Stats refers to the accumulated stat, not stat-per-turn. 'Between' is inclusive - so 'between 1 and 5' includes 1 and 5.
 
 	Example: "&lt;when between [3] and [3] [Culture]&gt;"
 
@@ -3924,6 +4153,9 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 	Applicable to: TriggerCondition
 
+??? example  "&lt;upon adopting [civicFilter] civic&gt;"
+	Applicable to: TriggerCondition
+
 ??? example  "&lt;upon entering the [era]&gt;"
 	Example: "&lt;upon entering the [Ancient era]&gt;"
 
@@ -3989,6 +4221,9 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "&lt;upon constructing [buildingFilter]&gt;"
 	Example: "&lt;upon constructing [Culture]&gt;"
 
+	Applicable to: TriggerCondition
+
+??? example  "&lt;upon constructing a [districtFilter] district&gt;"
 	Applicable to: TriggerCondition
 
 ??? example  "&lt;upon constructing [buildingFilter] [cityFilter]&gt;"

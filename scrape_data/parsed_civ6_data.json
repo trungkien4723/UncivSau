@@ -1,0 +1,4631 @@
+{
+  "leaders": [
+    {
+      "civilization": "America",
+      "leader": "Abraham Lincoln",
+      "anchor": "America Abraham Lincoln",
+      "uniques": [
+        "American unique Atomic era air unit that replaces the Fighter.  Gains +5Combat Strength against fighter aircraft, has +2 flight range, and gains +50% experience.Unlocked by Advanced Flight Technology"
+      ]
+    },
+    {
+      "civilization": "America",
+      "leader": "Teddy Roosevelt (Bull Moose)",
+      "anchor": "America Teddy Roosevelt (Bull Moose)",
+      "uniques": [
+        "American unique Atomic era air unit that replaces the Fighter.  Gains +5Combat Strength against fighter aircraft, has +2 flight range, and gains +50% experience.Unlocked by Advanced Flight Technology"
+      ]
+    },
+    {
+      "civilization": "America",
+      "leader": "Teddy Roosevelt (Rough Rider)",
+      "anchor": "America Teddy Roosevelt (Rough Rider)",
+      "uniques": [
+        "American unique Industrial era unit when Teddy Roosevelt is their leader that replaces the Cuirassiers.Culture is earned from kills on theirCapital's continent. +10Combat Strength when fighting on Hills. Lower maintenance cost.Unlocked by Ballistics Technology"
+      ]
+    },
+    {
+      "civilization": "Arabia",
+      "leader": "Saladin (Vizier)",
+      "anchor": "Arabia Saladin (Vizier)",
+      "uniques": [
+        "Arabian unique Medieval era unit that replaces the Knight. Heals at the end of every turn, even after moving or attacking.Unlocked by Stirrups Technology"
+      ]
+    },
+    {
+      "civilization": "Arabia",
+      "leader": "Saladin (Sultan)",
+      "anchor": "Arabia Saladin (Sultan)",
+      "uniques": [
+        "Arabian unique Medieval era unit that replaces the Knight. Heals at the end of every turn, even after moving or attacking.Unlocked by Stirrups Technology"
+      ]
+    },
+    {
+      "civilization": "Australia",
+      "leader": "John Curtin",
+      "anchor": "Australia John Curtin",
+      "ability": "Unlocks the Builder ability to construct an Outback Station, unique to Australia.+1Food and +1Production. +1Food for each adjacent Pasture. AdditionalFood andProduction as you advance through the Technology and Civic Tree for adjacent Outback Stations and Pastures. Can only be built in Desert, Desert Hills, Grassland, and Plains tiles.",
+      "uniques": [
+        "Australian unique Modern era unit that replaces Infantry. +10Combat Strength when fighting on Coastal tiles. +5Combat Strength when fighting on Neutral or Foreign Territory.Unlocked by Replaceable Parts Technology"
+      ]
+    },
+    {
+      "civilization": "Aztec",
+      "leader": "Montezuma",
+      "anchor": "Aztec Montezuma",
+      "uniques": [
+        "Aztec unique Ancient era unit that replaces the Warrior.  Has a chance to capture other civilization's military units by turning them into Builders."
+      ]
+    },
+    {
+      "civilization": "Babylon",
+      "leader": "Hammurabi",
+      "anchor": "Babylon Hammurabi",
+      "uniques": [
+        "Babylonian unique Ancient era melee unit. +17Combat Strength against Heavy and Light Cavalry promotion class units. This unit has 3Movement and sight."
+      ]
+    },
+    {
+      "civilization": "Brazil",
+      "leader": "Pedro II",
+      "anchor": "Brazil Pedro II",
+      "uniques": [
+        "Brazilian unique Industrial era unit that replaces the Battleship. Stronger than the Battleship. Unlocked by Nationalism.Unlocked by Nationalism Civic"
+      ]
+    },
+    {
+      "civilization": "Byzantium",
+      "leader": "Basil II",
+      "anchor": "Byzantium Basil II",
+      "uniques": [
+        "Basil II's unique Medieval era unit that replaces the Knight. Land units within 1 tile of the Tagma receive +4Combat Strength orReligious Strength.Unlocked by Divine Right Civic"
+      ]
+    },
+    {
+      "civilization": "Byzantium",
+      "leader": "Theodora",
+      "anchor": "Byzantium Theodora",
+      "uniques": [
+        "Byzantine unique Classical era unit that replaces the Quadrireme that has additional range and receives +10Combat Strength against units.Unlocked by Shipbuilding Technology"
+      ]
+    },
+    {
+      "civilization": "Canada",
+      "leader": "Wilfrid Laurier",
+      "anchor": "Canada Wilfrid Laurier",
+      "ability": "Unlocks the Builder ability to construct an Ice Hockey Rink, unique to Canada.+1Amenity. +1Culture for each adjacent Tundra, Tundra Hills, Snow, and Snow Hills tile. ProvidesTourism from Culture once Flight is unlocked. +2Food andProduction once the Professional Sports civic is unlocked. +4Culture if adjacent to a Stadium building. Can be built on Tundra, Tundra Hills, Snow, and Snow Hills. One per city. +2 Appeal.",
+      "uniques": [
+        "Canadian unique Modern era unit. Can create 2 National Parks. +5Combat Strength when fighting within 2 tiles of a National Park. Additional +5Combat Strength when fighting within 2 tiles of a National Park you own.Unlocked by Conservation Civic"
+      ]
+    },
+    {
+      "civilization": "China",
+      "leader": "Kublai Khan (China)",
+      "anchor": "China Kublai Khan (China)",
+      "ability": "Unlocks the Builder ability to construct the Great Wall, unique to China.+2Gold. Provides an increase toDefense. Bonus toGold if adjacent to other segments. AdditionalCulture andTourism as you advance through the Technology Tree for adjacent segments. Must be built in a line along the borders of your empire. Can only be pillaged (never destroyed) by natural disasters.",
+      "uniques": [
+        "Chinese unique Medieval era unit. Ranged unit with aRange of 1 and high combat strength.Unlocked by Machinery Technology"
+      ]
+    },
+    {
+      "civilization": "China",
+      "leader": "Qin (Mandate of Heaven)",
+      "anchor": "China Qin (Mandate of Heaven)",
+      "ability": "Unlocks the Builder ability to construct the Great Wall, unique to China.+2Gold. Provides an increase toDefense. Bonus toGold if adjacent to other segments. AdditionalCulture andTourism as you advance through the Technology Tree for adjacent segments. Must be built in a line along the borders of your empire. Can only be pillaged (never destroyed) by natural disasters.",
+      "uniques": [
+        "Chinese unique Medieval era unit. Ranged unit with aRange of 1 and high combat strength.Unlocked by Machinery Technology"
+      ]
+    },
+    {
+      "civilization": "China",
+      "leader": "Qin (Unifier)",
+      "anchor": "China Qin (Unifier)",
+      "ability": "Unlocks the Builder ability to construct the Great Wall, unique to China.+2Gold. Provides an increase toDefense. Bonus toGold if adjacent to other segments. AdditionalCulture andTourism as you advance through the Technology Tree for adjacent segments. Must be built in a line along the borders of your empire. Can only be pillaged (never destroyed) by natural disasters.",
+      "uniques": [
+        "Chinese unique Medieval era unit. Ranged unit with aRange of 1 and high combat strength.Unlocked by Machinery Technology"
+      ]
+    },
+    {
+      "civilization": "China",
+      "leader": "Wu Zetian",
+      "anchor": "China Wu Zetian",
+      "ability": "Unlocks the Builder ability to construct the Great Wall, unique to China.+2Gold. Provides an increase toDefense. Bonus toGold if adjacent to other segments. AdditionalCulture andTourism as you advance through the Technology Tree for adjacent segments. Must be built in a line along the borders of your empire. Can only be pillaged (never destroyed) by natural disasters.",
+      "uniques": [
+        "Chinese unique Medieval era unit. Ranged unit with aRange of 1 and high combat strength.Unlocked by Machinery Technology"
+      ]
+    },
+    {
+      "civilization": "China",
+      "leader": "Yongle",
+      "anchor": "China Yongle",
+      "ability": "Unlocks the Builder ability to construct the Great Wall, unique to China.+2Gold. Provides an increase toDefense. Bonus toGold if adjacent to other segments. AdditionalCulture andTourism as you advance through the Technology Tree for adjacent segments. Must be built in a line along the borders of your empire. Can only be pillaged (never destroyed) by natural disasters.",
+      "uniques": [
+        "Chinese unique Medieval era unit. Ranged unit with aRange of 1 and high combat strength.Unlocked by Machinery Technology"
+      ]
+    },
+    {
+      "civilization": "Cree",
+      "leader": "Poundmaker",
+      "anchor": "Cree Poundmaker",
+      "ability": "Unlocks the Builder ability to construct a Mekewap, unique to Cree.Provides +1Production and +1Housing. +1Gold if adjacent to a Luxury resource.  For every 2 adjacent Bonus Resources +1Food.  AdditionalProduction,Gold,Food, andHousing as you advance through the Civics and Technology Tree. Must be placed adjacent to a Bonus or Luxury resource. Cannot be built adjacent to another Mekewap.",
+      "uniques": [
+        "Cree unique Ancient era unit that replaces the Scout. Strong reconnaissance unit. Starts with 1 free promotion."
+      ]
+    },
+    {
+      "civilization": "Egypt",
+      "leader": "Cleopatra (Egyptian)",
+      "anchor": "Egypt Cleopatra (Egyptian)",
+      "ability": "Unlocks the Builder ability to construct a Sphinx, unique to Egypt.+1Faith and +1Culture. +2 Appeal. +2Faith if next to a wonder. +1Culture if built on Floodplains. AdditionalCulture once Natural History is discovered. ProvidesTourism after researching Flight. Cannot be built next to another Sphinx. Cannot be built on Snow or Snow Hills.",
+      "uniques": [
+        "Egyptian unique Ancient era ranged unit. 4Movement when starting in open terrain.Unlocked by Wheel Technology"
+      ]
+    },
+    {
+      "civilization": "Egypt",
+      "leader": "Cleopatra (Ptolemaic)",
+      "anchor": "Egypt Cleopatra (Ptolemaic)",
+      "ability": "Unlocks the Builder ability to construct a Sphinx, unique to Egypt.+1Faith and +1Culture. +2 Appeal. +2Faith if next to a wonder. +1Culture if built on Floodplains. AdditionalCulture once Natural History is discovered. ProvidesTourism after researching Flight. Cannot be built next to another Sphinx. Cannot be built on Snow or Snow Hills.",
+      "uniques": [
+        "Egyptian unique Ancient era ranged unit. 4Movement when starting in open terrain.Unlocked by Wheel Technology"
+      ]
+    },
+    {
+      "civilization": "Egypt",
+      "leader": "Ramses II",
+      "anchor": "Egypt Ramses II",
+      "ability": "Unlocks the Builder ability to construct a Sphinx, unique to Egypt.+1Faith and +1Culture. +2 Appeal. +2Faith if next to a wonder. +1Culture if built on Floodplains. AdditionalCulture once Natural History is discovered. ProvidesTourism after researching Flight. Cannot be built next to another Sphinx. Cannot be built on Snow or Snow Hills.",
+      "uniques": [
+        "Egyptian unique Ancient era ranged unit. 4Movement when starting in open terrain.Unlocked by Wheel Technology"
+      ]
+    },
+    {
+      "civilization": "England",
+      "leader": "Eleanor of Aquitaine (England)",
+      "anchor": "England Eleanor of Aquitaine (England)",
+      "uniques": [
+        "English unique Renaissance era naval unit that replaces the Privateer. Has a chance to capture defeated enemy ships. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.Unlocked by Mercantilism Civic"
+      ]
+    },
+    {
+      "civilization": "England",
+      "leader": "Elizabeth I",
+      "anchor": "England Elizabeth I",
+      "uniques": [
+        "English unique Renaissance era naval unit that replaces the Privateer. Has a chance to capture defeated enemy ships. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.Unlocked by Mercantilism Civic"
+      ]
+    },
+    {
+      "civilization": "England",
+      "leader": "Victoria (Age of Empire)",
+      "anchor": "England Victoria (Age of Empire)",
+      "uniques": [
+        "English unique Renaissance era naval unit that replaces the Privateer. Has a chance to capture defeated enemy ships. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.Unlocked by Mercantilism Civic"
+      ]
+    },
+    {
+      "civilization": "England",
+      "leader": "Victoria (Age of Steam)",
+      "anchor": "England Victoria (Age of Steam)",
+      "uniques": [
+        "English unique Renaissance era naval unit that replaces the Privateer. Has a chance to capture defeated enemy ships. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.Unlocked by Mercantilism Civic"
+      ]
+    },
+    {
+      "civilization": "Ethiopia",
+      "leader": "Menelik II",
+      "anchor": "Ethiopia Menelik II",
+      "ability": "Unlocks the Builder ability to construct a Rock-Hewn Church, unique to Ethiopia.+1Faith. +1Faith for every adjacent Mountain and Hills tile. ProvidesTourism fromFaith, after researching Flight. +1 Appeal. Can only be pillaged (never destroyed) by natural disasters. Can only be built on Hills or Volcanic Soil not adjacent to another Rock-Hewn Church.",
+      "uniques": [
+        "Ethiopian unique Medieval era light cavalry unit. Stronger and greater sight than the Courser that it replaces. Receives noMovement penalty from moving in Hills.Unlocked by Castles Technology"
+      ]
+    },
+    {
+      "civilization": "France",
+      "leader": "Catherine de Medici (Black Queen)",
+      "anchor": "France Catherine de Medici (Black Queen)",
+      "ability": "Unlocks the Builder ability to construct a Château, unique to France.+2Culture and +1Gold. +1 Appeal. +1Culture for every adjacent wonder (becomes +2 after researching Flight). +2Gold if on a tile containing a River edge. ProvidesTourism fromCulture after researching Flight. Must be placed adjacent to a Bonus or Luxury resource. Cannot be built adjacent to another Château.",
+      "uniques": [
+        "French unique Industrial era melee unit that replaces the Line Infantry. +10Combat Strength when fighting on your capital's continent.Great General points for killing units.Unlocked by Military Science Technology"
+      ]
+    },
+    {
+      "civilization": "France",
+      "leader": "Catherine de Medici (Magnificence)",
+      "anchor": "France Catherine de Medici (Magnificence)",
+      "uniques": [
+        "French unique Industrial era melee unit that replaces the Line Infantry. +10Combat Strength when fighting on your capital's continent.Great General points for killing units.Unlocked by Military Science Technology"
+      ],
+      "ability": "Unlocks the Builder ability to construct a Château, unique to France.+2Culture and +1Gold. +1 Appeal. +1Culture for every adjacent wonder (becomes +2 after researching Flight). +2Gold if on a tile containing a River edge. ProvidesTourism fromCulture after researching Flight. Must be placed adjacent to a Bonus or Luxury resource. Cannot be built adjacent to another Château."
+    },
+    {
+      "civilization": "France",
+      "leader": "Eleanor of Aquitaine (France)",
+      "anchor": "France Eleanor of Aquitaine (France)",
+      "ability": "Unlocks the Builder ability to construct a Château, unique to France.+2Culture and +1Gold. +1 Appeal. +1Culture for every adjacent wonder (becomes +2 after researching Flight). +2Gold if on a tile containing a River edge. ProvidesTourism fromCulture after researching Flight. Must be placed adjacent to a Bonus or Luxury resource. Cannot be built adjacent to another Château.",
+      "uniques": [
+        "French unique Industrial era melee unit that replaces the Line Infantry. +10Combat Strength when fighting on your capital's continent.Great General points for killing units.Unlocked by Military Science Technology"
+      ]
+    },
+    {
+      "civilization": "Gaul",
+      "leader": "Ambiorix",
+      "anchor": "Gaul Ambiorix",
+      "uniques": [
+        "Gallic unique Ancient era unit that replaces the Warrior. This unit has increased cost and receives +10Combat Strength when fighting units with a higher base Combat Strength. +5Combat Strength vs. district defenses."
+      ]
+    },
+    {
+      "civilization": "Georgia",
+      "leader": "Tamar",
+      "anchor": "Georgia Tamar",
+      "uniques": [
+        "Georgian unique Medieval Era unit that replaces the Man-At-Arms. +7Combat Strength bonus when fighting in hill terrain. NoMovement penalty in hill terrain.Unlocked by Military Tactics Technology"
+      ]
+    },
+    {
+      "civilization": "Germany",
+      "leader": "Frederick Barbarossa",
+      "anchor": "Germany Frederick Barbarossa",
+      "uniques": [
+        "German unique Modern era naval unit that replaces the Submarine. Cheaper to produce, +1 Sight, and +10Combat Strength when fighting on Ocean tiles. Able to reveal other stealthed units.Unlocked by Electricity Technology"
+      ]
+    },
+    {
+      "civilization": "Germany",
+      "leader": "Ludwig II",
+      "anchor": "Germany Ludwig II",
+      "uniques": [
+        "German unique Modern era naval unit that replaces the Submarine. Cheaper to produce, +1 Sight, and +10Combat Strength when fighting on Ocean tiles. Able to reveal other stealthed units.Unlocked by Electricity Technology"
+      ]
+    },
+    {
+      "civilization": "Gran",
+      "leader": "Colombia Simón Bolívar",
+      "anchor": "Gran Colombia Simón Bolívar",
+      "ability": "Gran Colombian Industrial era unique unit that replaces the Cavalry. Low maintenance cost. +2Combat Strength for every adjacent Llanero. Fully heals when in range of a Comandante General that activates its retire ability.Unlocked by Military Science Technology",
+      "uniques": [
+        "A special type of Great Person only available to Simón Bolívar. Each has unique abilities, including a passive effect, and a Retire effect."
+      ]
+    },
+    {
+      "civilization": "Greece",
+      "leader": "Gorgo",
+      "anchor": "Greece Gorgo",
+      "uniques": [
+        "Greek unique Ancient era anti-cavalry unit that replaces the Spearman. +10Combat Strength if there is at least one adjacent Hoplite unit.Unlocked by Bronze Working Technology"
+      ]
+    },
+    {
+      "civilization": "Greece",
+      "leader": "Pericles",
+      "anchor": "Greece Pericles",
+      "uniques": [
+        "Greek unique Ancient era anti-cavalry unit that replaces the Spearman. +10Combat Strength if there is at least one adjacent Hoplite unit.Unlocked by Bronze Working Technology"
+      ]
+    },
+    {
+      "civilization": "Hungary",
+      "leader": "Matthias Corvinus",
+      "anchor": "Hungary Matthias Corvinus",
+      "ability": "Levied units gain an ability giving them +2Movement and +5Combat Strength. It costs 75% lessGold and resources to upgrade Levied units. If you Levy troops from a City-State receive 2Envoys with that City-State. Gain the Black Army unique unit when the Castles technology is researched.",
+      "uniques": [
+        "Hungarian unique Industrial era unit that replaces Cavalry. +3Combat Strength for every active Alliance.Unlocked by Military Science Technology"
+      ]
+    },
+    {
+      "civilization": "Inca",
+      "leader": "Pachacuti",
+      "anchor": "Inca Pachacuti",
+      "ability": "Unlocks the Builder ability to construct a Terrace Farm, unique to the Inca.+1Food. Provides +1Housing. +1Food for each adjacent Mountain Tile. Gain +2Production for each adjacent Aqueduct district. Receive +1Production if adjacent to Fresh Water and not an Aqueduct district. AdditionalFood as you advance through the Civics and Technology Tree for adjacency with other Terrace Farms. Can be placed on Grassland Hills, Plains Hills, and Desert Hills.",
+      "uniques": [
+        "Incan unique Medieval Era unit that replaces the Skirmisher. Stronger at ranged combat than the Skirmisher and +1 additional attack per turn.Unlocked by Machinery Technology"
+      ]
+    },
+    {
+      "civilization": "India",
+      "leader": "Chandragupta",
+      "anchor": "India Chandragupta",
+      "ability": "Unlocks the Builder ability to construct a Stepwell, unique to India.+1Food and +1Housing. +1Faith if adjacent to a Holy Site district. +1Food if adjacent to a Farm. AdditionalHousing,Faith, andFood as you advance through the Technology and Civics Tree. PreventsFood loss during Drought. Cannot be built on Hills or adjacent to another Stepwell.",
+      "uniques": [
+        "Indian unique Classical era heavy cavalry unit.  Adjacent enemy units receive -5Combat Strength.Unlocked by Horseback Riding Technology"
+      ]
+    },
+    {
+      "civilization": "India",
+      "leader": "Gandhi",
+      "anchor": "India Gandhi",
+      "ability": "Unlocks the Builder ability to construct a Stepwell, unique to India.+1Food and +1Housing. +1Faith if adjacent to a Holy Site district. +1Food if adjacent to a Farm. AdditionalHousing,Faith, andFood as you advance through the Technology and Civics Tree. PreventsFood loss during Drought. Cannot be built on Hills or adjacent to another Stepwell.",
+      "uniques": [
+        "Indian unique Classical era heavy cavalry unit.  Adjacent enemy units receive -5Combat Strength.Unlocked by Horseback Riding Technology"
+      ]
+    },
+    {
+      "civilization": "Indonesia",
+      "leader": "Gitarja",
+      "anchor": "Indonesia Gitarja",
+      "ability": "Unlocks the Builder ability to construct a Kampung, unique to Indonesia.+1Production and +1Housing. +1Food for each adjacent Fishing Boat. AdditionalProduction,Housing, andTourism as you advance through the Technology and Civics Tree. Must be placed on a Coast or Lake tile adjacent to a sea resource.",
+      "uniques": [
+        "Indonesian unique Medieval era naval unit that replaces the Frigate. Formation units all inherit escort'sMovement speed and +5Combat Strength when in a formation.Unlocked by Mercenaries Civic"
+      ]
+    },
+    {
+      "civilization": "Japan",
+      "leader": "Hojo Tokimune",
+      "anchor": "Japan Hojo Tokimune",
+      "uniques": [
+        "Japanese unique Medieval era melee unit that replaces the Man-At-Arms. Does not suffer combat penalties when damaged.Unlocked by Feudalism Civic"
+      ]
+    },
+    {
+      "civilization": "Japan",
+      "leader": "Tokugawa",
+      "anchor": "Japan Tokugawa",
+      "uniques": [
+        "Japanese unique Medieval era melee unit that replaces the Man-At-Arms. Does not suffer combat penalties when damaged.Unlocked by Feudalism Civic"
+      ]
+    },
+    {
+      "civilization": "Khmer",
+      "leader": "Jayavarman VII",
+      "anchor": "Khmer Jayavarman VII",
+      "uniques": [
+        "Khmer unique Medieval era siege unit that replaces the Trebuchet. This unit has a higherMelee and Range Strength than the Trebuchet. It can move and shoot in the same turn and exerts zone of control.Unlocked by Military Engineering Technology"
+      ]
+    },
+    {
+      "civilization": "Kongo",
+      "leader": "Mvemba a Nzinga",
+      "anchor": "Kongo Mvemba a Nzinga",
+      "uniques": [
+        "Kongo unique Classical era unit that replaces the Swordsman. +10Combat Strength when defending against ranged attacks. Can move and see through Woods and Rainforest.Unlocked by Iron Working Technology"
+      ]
+    },
+    {
+      "civilization": "Kongo",
+      "leader": "Nzinga Mbande",
+      "anchor": "Kongo Nzinga Mbande",
+      "uniques": [
+        "Kongo unique Classical era unit that replaces the Swordsman. +10Combat Strength when defending against ranged attacks. Can move and see through Woods and Rainforest.Unlocked by Iron Working Technology"
+      ]
+    },
+    {
+      "civilization": "Korea",
+      "leader": "Sejong",
+      "anchor": "Korea Sejong",
+      "uniques": [
+        "Korean unique Renaissance Era unit that replaces the Field Cannon. HighRanged Attack Strength. Cannot move and attack in the same turn.Unlocked by Gunpowder Technology"
+      ]
+    },
+    {
+      "civilization": "Korea",
+      "leader": "Seondeok",
+      "anchor": "Korea Seondeok",
+      "uniques": [
+        "Korean unique Renaissance Era unit that replaces the Field Cannon. HighRanged Attack Strength. Cannot move and attack in the same turn.Unlocked by Gunpowder Technology"
+      ]
+    },
+    {
+      "civilization": "Macedon",
+      "leader": "Alexander",
+      "anchor": "Macedon Alexander",
+      "uniques": [
+        "Macedonian unique melee unit that replaces the Swordsman. +5Combat Strength when besieging districts. 50% Additional Support Bonus.Unlocked by Iron Working Technology"
+      ]
+    },
+    {
+      "civilization": "Mali",
+      "leader": "Mansa Musa",
+      "anchor": "Mali Mansa Musa",
+      "uniques": [
+        "Mali unique Medieval Era unit that replaces the Knight. Trader units are immune to being plundered if they are within 4 tiles of a Mandekalu Cavalry and on a land tile. Combat victories provideGold equal to 100% of that unit's baseCombat Strength (on Standard Speed).Unlocked by Stirrups Technology"
+      ]
+    },
+    {
+      "civilization": "Mali",
+      "leader": "Sundiata Keita",
+      "anchor": "Mali Sundiata Keita",
+      "uniques": [
+        "Mali unique Medieval Era unit that replaces the Knight. Trader units are immune to being plundered if they are within 4 tiles of a Mandekalu Cavalry and on a land tile. Combat victories provideGold equal to 100% of that unit's baseCombat Strength (on Standard Speed).Unlocked by Stirrups Technology"
+      ]
+    },
+    {
+      "civilization": "Māori",
+      "leader": "Kupe",
+      "anchor": "Māori Kupe",
+      "ability": "Unlocks the Toa ability to construct a Pā, unique to Māori.Occupying unit receives +4Defense Strength, and automatically gains 2 turns of fortification. A Māori unit occupying a Pā heals even if they just moved or attacked. Must be built on a Hill tile.",
+      "uniques": [
+        "Māori unique Classical era melee unit. Adjacent enemy units receive -5Combat Strength. Can build the unique Pā improvement.Unlocked by Construction Technology"
+      ]
+    },
+    {
+      "civilization": "Mapuche",
+      "leader": "Lautaro",
+      "anchor": "Mapuche Lautaro",
+      "ability": "Unlocks the Builder ability to construct a Chemamull, unique to Mapuche.+1Production. ProvidesCulture equal to 75% of the tile's Appeal. AdditionalTourism after researching Flight. Minimum Appeal of Breathtaking.",
+      "uniques": [
+        "Mapuche unique Renaissance Era unit. +5Combat Strength bonus if within 4 hexes of friendly territory. Pillaging costs 1Movement.Unlocked by Gunpowder Technology"
+      ]
+    },
+    {
+      "civilization": "Maya",
+      "leader": "Lady Six Sky",
+      "anchor": "Maya Lady Six Sky",
+      "uniques": [
+        "Mayan unique Ancient Era ranged unit that replaces the Archer. Strong ranged attack. +5Combat Strength when fighting a wounded opponent.Unlocked by Archery Technology"
+      ]
+    },
+    {
+      "civilization": "Mongolia",
+      "leader": "Genghis Khan",
+      "anchor": "Mongolia Genghis Khan",
+      "ability": "A building unique to Mongolia. Grants an ability that gives +1Movement to Heavy and Light Cavalry trained in this city. +25% combat experience for all cavalry and siege class units trained in this city.Strategic Resource Stockpiles increased +10 (on Standard Speed).May not be built in an Encampment district that already has a Barracks.",
+      "uniques": [
+        "Mongolian unique Medieval Era Ranged Cavalry unit. Can escort moving civilian and support units at their higherMovement speed.Unlocked by Stirrups Technology"
+      ]
+    },
+    {
+      "civilization": "Mongolia",
+      "leader": "Kublai Khan (Mongolia)",
+      "anchor": "Mongolia Kublai Khan (Mongolia)",
+      "ability": "A building unique to Mongolia. Grants an ability that gives +1Movement to Heavy and Light Cavalry trained in this city. +25% combat experience for all cavalry and siege class units trained in this city.Strategic Resource Stockpiles increased +10 (on Standard Speed).May not be built in an Encampment district that already has a Barracks.",
+      "uniques": [
+        "Mongolian unique Medieval Era Ranged Cavalry unit. Can escort moving civilian and support units at their higherMovement speed.Unlocked by Stirrups Technology"
+      ]
+    },
+    {
+      "civilization": "Netherlands",
+      "leader": "Wilhelmina",
+      "anchor": "Netherlands Wilhelmina",
+      "ability": "Unlocks the Builder ability to construct a Polder, unique to Netherlands.+1Food, +1Production, and +0.5Housing. +1Food if adjacent to a Polder improvement. AdditionalProduction,Gold, andFood  as you advance through the Civics and Technology Tree. Must be placed on a Coast or Lake tile adjacent to 3 or more passable land tiles. IncreasesMovement Cost of tile to 3.",
+      "uniques": [
+        "Netherlands unique Renaissance Era unit that replaces the Frigate. +7Combat Strength when attacking defensible districts.Unlocked by Square Rigging Technology"
+      ]
+    },
+    {
+      "civilization": "Norway",
+      "leader": "Harald Hardrada (Varangian)",
+      "anchor": "Norway Harald Hardrada (Varangian)",
+      "ability": "Units gain the ability to enter Ocean tiles after researching the Shipbuilding technology. Naval melee units heal in neutral territory. Units ignore additionalMovement costs from embarking and disembarking.",
+      "uniques": [
+        "Norwegian unique Medieval era melee unit that replaces the Man-At-Arms. 4Movement if this unit starts in enemy territory. +10Combat Strength when attacking and -5Combat Strength when defending against melee attacks.Unlocked by Military Tactics Technology"
+      ]
+    },
+    {
+      "civilization": "Norway",
+      "leader": "Harald Hardrada (Konge)",
+      "anchor": "Norway Harald Hardrada (Konge)",
+      "ability": "Norwegian unique Ancient era naval unit that replaces the Galley. Can pillage enemy coastal lands and capture civilians if adjacent using its coastal raiding ability. 4Movement while in coastal waters.Unlocked by Sailing Technology",
+      "uniques": [
+        "Norwegian unique Ancient era naval unit that replaces the Galley. Can pillage enemy coastal lands and capture civilians if adjacent using its coastal raiding ability. 4Movement while in coastal waters.Unlocked by Sailing Technology"
+      ]
+    },
+    {
+      "civilization": "Nubia",
+      "leader": "Amanitore",
+      "anchor": "Nubia Amanitore",
+      "ability": "The Craftsmanship civic unlocks the Builder ability to construct a Nubian Pyramid, unique to Nubia.+1Food and +2Faith.Receives additional yields from adjacent districts:+2Food for the City Center,+2Science per adjacent Campus,+2Production per adjacent Industrial Zone,+2Culture per adjacent Theater Square,+2Faith per adjacent Holy Site,+2Gold per adjacent Commercial Hub and Harbor.Must be built on Desert, Desert Hills, Floodplains, Plains, or Grassland. Cannot be built next to another Nubian Pyramid.",
+      "uniques": [
+        "Nubian unique Ancient era unit that replaces the Archer. Stronger than the Archer with extraMovement. Upgrades to Crossbowman.Unlocked by Archery Technology"
+      ]
+    },
+    {
+      "civilization": "Ottomans",
+      "leader": "Suleiman (Kanuni)",
+      "anchor": "Ottomans Suleiman (Kanuni)",
+      "uniques": [
+        "Ottoman unique Renaissance Era unit that replaces the Musketman. Starts with a free promotion. Stronger and cheaper than the Musketman. To train a Janissary a city must have a population of at least 2. If a city is founded by the Ottomans and trains a Janissary it loses a population.Unlocked by Gunpowder Technology"
+      ]
+    },
+    {
+      "civilization": "Ottomans",
+      "leader": "Suleiman (Muhteşem)",
+      "anchor": "Ottomans Suleiman (Muhteşem)",
+      "uniques": [
+        "Ottoman unique Medieval era naval unit that replaces the Privateer. It costs noMovement to coastal raid. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.Unlocked by Medieval Faires Civic"
+      ]
+    },
+    {
+      "civilization": "Persia",
+      "leader": "Cyrus",
+      "anchor": "Persia Cyrus",
+      "ability": "Unlocks the Builder ability to construct a Pairidaeza, unique to Persia.+1Culture and +2Gold. +1 Appeal. +1Culture for each adjacent Holy Site and Theater Square. +1Gold for each adjacent Commercial Hub and City Center. AdditionalCulture andTourism as you advance through the Technology and Civics Tree. Cannot be built on Snow, Tundra, Snow Hills, or Tundra Hills or adjacent to another Pairidaeza.",
+      "uniques": [
+        "Persian unique melee unit that replaces the Swordsman. Melee class unit with a ranged attack,Range 2. Strong defense strength.Unlocked by Iron Working Technology"
+      ]
+    },
+    {
+      "civilization": "Persia",
+      "leader": "Nader Shah",
+      "anchor": "Persia Nader Shah",
+      "ability": "Unlocks the Builder ability to construct a Pairidaeza, unique to Persia.+1Culture and +2Gold. +1 Appeal. +1Culture for each adjacent Holy Site and Theater Square. +1Gold for each adjacent Commercial Hub and City Center. AdditionalCulture andTourism as you advance through the Technology and Civics Tree. Cannot be built on Snow, Tundra, Snow Hills, or Tundra Hills or adjacent to another Pairidaeza.",
+      "uniques": [
+        "Persian unique melee unit that replaces the Swordsman. Melee class unit with a ranged attack,Range 2. Strong defense strength.Unlocked by Iron Working Technology"
+      ]
+    },
+    {
+      "civilization": "Phoenicia",
+      "leader": "Dido",
+      "anchor": "Phoenicia Dido",
+      "uniques": [
+        "Phoenician unique Ancient Era unit that replaces the Galley. IncreasedCombat Strength andMovement. Trader units are immune to being plundered if they are within 4 tiles of a Bireme and on a water tile.Unlocked by Sailing Technology"
+      ]
+    },
+    {
+      "civilization": "Poland",
+      "leader": "Jadwiga",
+      "anchor": "Poland Jadwiga",
+      "uniques": [
+        "Polish unique Renaissance era unit that replaces the Cuirassier. Pushes defending enemy units back from their hex in any battle where they score more damage. Defenders that cannot retreat suffer additional damage.Unlocked by Mercantilism Civic"
+      ]
+    },
+    {
+      "civilization": "Portugal",
+      "leader": "João III",
+      "anchor": "Portugal João III",
+      "uniques": [
+        "Portuguese unique naval melee unit that replaces the Caravel. Starts with 1 free Promotion and is less maintenance. Has two charges to build Feitorias.Unlocked by Cartography Technology"
+      ],
+      "ability": "Unlocks the Nau ability to construct a Feitoria, unique to Portugal.Provides +4Gold and +1Production. Trade routes sent to this city from Portugal gain +4Gold and +1Production. Can only be built adjacent to Luxury or Bonus resources in territory belonging to other Civilizations or City-States that you have Open Borders with. Must be built on a Coast or Lake tile adjacent to land and not adjacent to another Feitoria. Feitorias cannot be removed."
+    },
+    {
+      "civilization": "Rome",
+      "leader": "Julius Caesar",
+      "anchor": "Rome Julius Caesar",
+      "uniques": [
+        "Roman unique Classical era melee unit that replaces the Swordsman. Can build a Roman Fort.Unlocked by Iron Working Technology"
+      ]
+    },
+    {
+      "civilization": "Rome",
+      "leader": "Trajan",
+      "anchor": "Rome Trajan",
+      "uniques": [
+        "Roman unique Classical era melee unit that replaces the Swordsman. Can build a Roman Fort.Unlocked by Iron Working Technology"
+      ]
+    },
+    {
+      "civilization": "Russia",
+      "leader": "Peter",
+      "anchor": "Russia Peter",
+      "uniques": [
+        "Russian unique Industrial era unit that replaces Cavalry. Stronger than Cavalry, and gains +5Combat Strength when fighting in or adjacent to its home territory. Can move after attacking ifMovement points remain.Unlocked by Military Science Technology"
+      ]
+    },
+    {
+      "civilization": "Scotland",
+      "leader": "Robert the Bruce",
+      "anchor": "Scotland Robert the Bruce",
+      "ability": "Unlocks the Builder ability to construct a Golf Course, unique to Scotland.+2Amenities and +2Gold. +1Culture if adjacent to a City Center district and +1Culture if adjacent to an Entertainment Complex district. AdditionalTourism andHousing as you advance through the Civics and Technology Tree. Cannot be placed on Desert or Desert Hills. One per city. Tiles with Golf Courses cannot be swapped. +1 Appeal.",
+      "uniques": [
+        "Scottish unique Industrial Era unit that replaces the Ranger. Strong reconnaissance unit. +5Combat Strength bonus when fighting in Hill and Forest terrain.Unlocked by Rifling Technology"
+      ]
+    },
+    {
+      "civilization": "Scythia",
+      "leader": "Tomyris",
+      "anchor": "Scythia Tomyris",
+      "ability": "Unlocks the Builder ability to construct a Kurgan, unique to Scythia.+1Faith and +3Gold. +1Faith for each adjacent Pasture (becomes +2 after researching Stirrups). ProvidesTourism fromFaith after researching Flight. Cannot be built on Hills.",
+      "uniques": [
+        "Scythian unique Classical era unit. Ranged unit with 4Movement with aRange of 1.Unlocked by Horseback Riding Technology"
+      ]
+    },
+    {
+      "civilization": "Spain",
+      "leader": "Philip II",
+      "anchor": "Spain Philip II",
+      "ability": "Unlocks the Builder ability to construct a Mission, unique to Spain.+2Faith. +2Faith, +1Production, and +1Food if on a different continent than yourCapital. +1Science for every adjacent Campus and Holy Site district. AdditionalScience once Cultural Heritage is discovered. +2 Loyalty per turn for cities with a Mission improvement adjacent to the City Center and not on your originalCapital's continent.",
+      "uniques": [
+        "Spanish unique Renaissance era unit that replaces the Musketman. +10Combat Strength when there is a religious unit within one hex. If this unit captures a city or is adjacent to a city when it is captured, the city will automatically adopt the Conquistador player's Religion as the dominant Religion.Unlocked by Gunpowder Technology"
+      ]
+    },
+    {
+      "civilization": "Sumeria",
+      "leader": "Gilgamesh",
+      "anchor": "Sumeria Gilgamesh",
+      "ability": "Unlocks the Builder ability to construct a Ziggurat, unique to Sumeria.+2Science. +1Culture if next to River. Cannot be built on Hills but may be built on Floodplains.",
+      "uniques": [
+        "Sumerian unique Ancient era unit. Stronger than all other starting units. No penalties against anti-cavalry units. 4Movement if this unit starts in open terrain."
+      ]
+    },
+    {
+      "civilization": "Sweden",
+      "leader": "Kristina",
+      "anchor": "Sweden Kristina",
+      "uniques": [
+        "Swedish unique Renaissance Era unit that replaces the Pike and Shot. Faster than the Pike and Shot. +3Combat Strength per unusedMovement.Unlocked by Metal Casting Technology"
+      ],
+      "ability": "Unlocks the Builder ability to construct an Open-Air Museum, unique to Sweden.Provides +2 Loyalty per turn in this city. +2Culture and +2Tourism for each type of terrain (Snow, Tundra, Desert, Plains or Grassland) in which at least one Swedish city is founded. One per city. Tiles with Open-Air Museums cannot be swapped."
+    },
+    {
+      "civilization": "Vietnam",
+      "leader": "Bà Triệu",
+      "anchor": "Vietnam Bà Triệu",
+      "uniques": [
+        "Vietnamese unique Medieval era ranged unit that replaces the Crossbowman. These units have additional movement and can move after attacking. They are also stronger when defending, more expensive, and have greater sight.Unlocked by Machinery Technology"
+      ]
+    },
+    {
+      "civilization": "Zulu",
+      "leader": "Shaka",
+      "anchor": "Zulu Shaka",
+      "uniques": [
+        "Zulu unique Medieval Era unit that replaces the Pikeman. Increased Flanking bonus, low cost and low maintenance. Earns XP faster.Unlocked by Military Tactics Technology"
+      ]
+    }
+  ],
+  "buildings": [
+    {
+      "name": "Palace",
+      "district": "City Center",
+      "yields": [
+        "+1Culture",
+        "+5Gold",
+        "+2Production",
+        "+2Science",
+        "+1Housing",
+        "+1Amenities",
+        "1 Great Work slot (holds any type)"
+      ],
+      "cost": null,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Monument",
+      "district": "City Center",
+      "yields": [
+        "+1Culture",
+        "Provides +1 Loyalty per turn in this city. If the city already has maximum Loyalty, also provides an additional +1Culture."
+      ],
+      "cost": 30,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Granary",
+      "district": "City Center",
+      "yields": [
+        "+1Food",
+        "+2Housing"
+      ],
+      "cost": 32,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Water Mill",
+      "district": "City Center",
+      "yields": [
+        "+1Food",
+        "+1Production",
+        "Farms gain +1Production."
+      ],
+      "cost": 40,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Flood Barrier",
+      "district": "City Center",
+      "yields": [],
+      "cost": 40,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Palgum",
+      "district": "City Center",
+      "yields": [
+        "+2Production",
+        "+1Housing",
+        "A building unique to Babylon. +1Housing and +2Production. All farms gain +1Production. Freshwater improved tiles, except Farms, receive +1Food."
+      ],
+      "cost": 40,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Ancient Walls",
+      "district": "City Center",
+      "yields": [],
+      "cost": 50,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Tsikhe",
+      "district": "City Center",
+      "yields": [
+        "+1Culture",
+        "+4Faith",
+        "A building unique to Georgia which replaces and is stronger than Ancient Walls. +4Faith and +1Culture. Provides +1Tourism after advancing to the Conservation Civic. +3Faith and +100%Tourism when in aGolden orHeroic Age."
+      ],
+      "cost": 50,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Medieval Walls",
+      "district": "City Center",
+      "yields": [],
+      "cost": 100,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Sewer",
+      "district": "City Center",
+      "yields": [
+        "+2Housing",
+        "+1Amenities"
+      ],
+      "cost": 100,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Renaissance Walls",
+      "district": "City Center",
+      "yields": [],
+      "cost": 150,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Ordu",
+      "district": "Encampment",
+      "yields": [
+        "+2Production",
+        "+1Housing",
+        "1Citizen slot",
+        "1Great General point per turn."
+      ],
+      "cost": 30,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": "A building unique to Mongolia. Grants an ability that gives +1Movement to Heavy and Light Cavalry trained in this city. +25% combat experience for all cavalry and siege class units trained in this city.Strategic Resource Stockpiles increased +10 (on Standard Speed).May not be built in an Encampment district that already has a Barracks."
+    },
+    {
+      "name": "Barracks",
+      "district": "Encampment",
+      "yields": [
+        "+2Production",
+        "+1Housing",
+        "1Citizen slot",
+        "1Great General point per turn."
+      ],
+      "cost": 45,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Basilikoi Paides",
+      "district": "Encampment",
+      "yields": [
+        "+2Production",
+        "+1Housing",
+        "1Citizen slot",
+        "1Great General point per turn.",
+        "A building unique to Macedon. +25% combat experience for all melee, ranged land units, and Hetairoi trained in this city. GainScience equal to 25% of the unit'sProduction cost when a non-civilian unit is trained in this city.Strategic Resource Stockpiles increased +10 (on Standard speed).May not be built in an Encampment district that already has a Stable."
+      ],
+      "cost": 45,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Stable",
+      "district": "Encampment",
+      "yields": [
+        "+2Production",
+        "+1Housing",
+        "1Citizen slot",
+        "1Great General point per turn."
+      ],
+      "cost": 60,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Armory",
+      "district": "Encampment",
+      "yields": [
+        "+3Production",
+        "1Citizen slot",
+        "2Great General points per turn."
+      ],
+      "cost": 97,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Military Academy",
+      "district": "Encampment",
+      "yields": [
+        "+4Production",
+        "+1Housing",
+        "1Citizen slot",
+        "2Great General points per turn.",
+        "Citizen Yields (per citizen in this district):•+1Production"
+      ],
+      "cost": 165,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Shrine",
+      "district": "Holy Site",
+      "yields": [
+        "+2Faith",
+        "1Citizen slot",
+        "1Great Prophet point per turn.",
+        "Allows the purchasing of Missionaries, and with the proper belief, Warrior Monks. These units can only be purchased withFaith."
+      ],
+      "cost": 35,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Temple",
+      "district": "Holy Site",
+      "yields": [
+        "+4Faith",
+        "1Citizen slot",
+        "1Great Prophet point per turn.",
+        "Allows the purchasing of Apostles, Gurus, Inquisitors. These units can only be purchased withFaith."
+      ],
+      "cost": 60,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Stave Church",
+      "district": "Holy Site",
+      "yields": [
+        "+4Faith",
+        "1Citizen slot",
+        "1Great Prophet point per turn.",
+        "A building unique to Norway that replaces the Temple. +1to each resource tile in this city and +1Production for each coastal resource tile in this city. Required to purchase Apostles and Inquisitors withFaith."
+      ],
+      "cost": 60,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Prasat",
+      "district": "Holy Site",
+      "yields": [
+        "+6Faith",
+        "1Citizen slot",
+        "1Great Prophet point per turn.",
+        "+6Faith. A building unique to Khmer. Replaces the Temple. Required to purchase Apostles and Inquisitors withFaith. +0.3Culture for everypopulation in this city. Once Flight is researched receive +10Tourism if the citypopulation is 10 or higher and +20Tourism if the citypopulation is 20 or higher."
+      ],
+      "cost": 60,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Cathedral",
+      "district": "Holy Site",
+      "yields": [
+        "+3Faith",
+        "1Citizen slot",
+        "1 Great Work slot (holds any type)",
+        "Citizen Yields (per citizen in this district):•+1Faith"
+      ],
+      "cost": 95,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Gurdwara",
+      "district": "Holy Site",
+      "yields": [
+        "+3Faith",
+        "+3Food",
+        "+1Housing",
+        "1Citizen slot",
+        "Citizen Yields (per citizen in this district):•+1Faith"
+      ],
+      "cost": 95,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Meeting House",
+      "district": "Holy Site",
+      "yields": [
+        "+3Faith",
+        "+3Production",
+        "1Citizen slot",
+        "Citizen Yields (per citizen in this district):•+1Faith"
+      ],
+      "cost": 95,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Mosque",
+      "district": "Holy Site",
+      "yields": [
+        "+3Faith",
+        "1Citizen slot",
+        "Citizen Yields (per citizen in this district):•+1Faith"
+      ],
+      "cost": 95,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Pagoda",
+      "district": "Holy Site",
+      "yields": [
+        "+3Faith",
+        "1Citizen slot",
+        "Citizen Yields (per citizen in this district):•+1Faith"
+      ],
+      "cost": 95,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Synagogue",
+      "district": "Holy Site",
+      "yields": [
+        "+9Faith",
+        "1Citizen slot",
+        "Citizen Yields (per citizen in this district):•+1Faith"
+      ],
+      "cost": 95,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Wat",
+      "district": "Holy Site",
+      "yields": [
+        "+3Faith",
+        "+3Science",
+        "1Citizen slot",
+        "Citizen Yields (per citizen in this district):•+1Faith"
+      ],
+      "cost": 95,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Stupa",
+      "district": "Holy Site",
+      "yields": [
+        "+3Faith",
+        "+1Amenities",
+        "1Citizen slot",
+        "Citizen Yields (per citizen in this district):•+1Faith"
+      ],
+      "cost": 95,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Dar-e Mehr",
+      "district": "Holy Site",
+      "yields": [
+        "+3Culture",
+        "+3Faith",
+        "1Citizen slot",
+        "Citizen Yields (per citizen in this district):•+1Faith"
+      ],
+      "cost": 95,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Library",
+      "district": "Campus",
+      "yields": [
+        "+2Science",
+        "1Citizen slot",
+        "1Great Scientist point per turn."
+      ],
+      "cost": 45,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "University",
+      "district": "Campus",
+      "yields": [
+        "+4Science",
+        "+1Housing",
+        "1Citizen slot",
+        "1Great Scientist point per turn."
+      ],
+      "cost": 125,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Madrasa",
+      "district": "Campus",
+      "yields": [
+        "+5Science",
+        "+1Housing",
+        "1Citizen slot",
+        "1Great Scientist point per turn.",
+        "BonusFaith equal to the adjacencyScience bonus of its district.",
+        "A building unique to Arabia. BonusFaith equal to the adjacency bonus of the Campus district."
+      ],
+      "cost": 125,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Navigation School",
+      "district": "Campus",
+      "yields": [
+        "+4Science",
+        "+1Housing",
+        "1Citizen slot",
+        "1Great Admiral point per turn.",
+        "1Great Scientist point per turn.",
+        "A building unique to Portugal. +25%Production towards naval units in this city. +1Science for every two coast or lake tiles in this city. +1Great Admiral and +1Great Scientist point per turn."
+      ],
+      "cost": 125,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Research Lab",
+      "district": "Campus",
+      "yields": [
+        "+3Science",
+        "1Citizen slot",
+        "1Great Scientist point per turn.",
+        "5Science additionally whenPowered",
+        "Citizen Yields (per citizen in this district):•+1Science"
+      ],
+      "cost": 220,
+      "maintenance": 3,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Tlachtli",
+      "district": "Entertainment Complex",
+      "yields": [
+        "+1Culture",
+        "+1Amenities",
+        "1Great General point per turn.",
+        "A building unique to the Aztecs. Provides +1Amenity and +1Culture to each City Center within 6 tiles. This bonus applies once to a city, and multiple copies of this building within 6 tiles of a City Center do not provide additional bonuses.Provides +1Great General Point per turn and +3Tourism."
+      ],
+      "cost": 50,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Arena",
+      "district": "Entertainment Complex",
+      "yields": [
+        "+1Culture",
+        "+2Amenities"
+      ],
+      "cost": 75,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Zoo",
+      "district": "Entertainment Complex",
+      "yields": [
+        "+1Amenities",
+        "BonusAmenity extends to each city center within 6 tiles. This bonus applies once to a city, and multiple copies of this building within 6 tiles of a city center do not provide additional bonuses. +1Science to each Rainforest and Marsh tile in this city."
+      ],
+      "cost": 180,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Thermal Bath",
+      "district": "Entertainment Complex",
+      "yields": [
+        "+2Production",
+        "+2Amenities",
+        "A building unique to Hungary. +2Amenities and +2Production extends to each city center within 6 tiles. These bonuses apply once to a city, and multiple copies of this building within 6 tiles of a city center do not provide additional bonuses.This city receives +3Tourism and +2 additionalAmenities if there is at least one Geothermal Fissure in this city's borders."
+      ],
+      "cost": 180,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Stadium",
+      "district": "Entertainment Complex",
+      "yields": [
+        "+1Amenities",
+        "2Amenities from entertainment additionally whenPowered",
+        "BonusAmenities extend to each city center within 6 tiles. This bonus applies once to a city, and multiple copies of this building within 6 tiles of a city center do not provide additional bonuses. +6Tourism if the citypopulation is 10 or higher and +15Tourism if the citypopulation is 20 or higher."
+      ],
+      "cost": 240,
+      "maintenance": 3,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Lighthouse",
+      "district": "Harbor",
+      "yields": [
+        "+1Housing",
+        "1Citizen slot",
+        "1Great Admiral point per turn.",
+        "+25% combat experience for all naval units trained in this city. +1Food on all Coast and Lake tiles for this city. +2Housing if this city is adjacent to coast. +1Trade Route capacity, if this city does not yet have a Market building."
+      ],
+      "cost": 60,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Shipyard",
+      "district": "Harbor",
+      "yields": [
+        "+1Food",
+        "1Citizen slot",
+        "1Great Admiral point per turn.",
+        "BonusProduction equal to the adjacencyGold bonus of its district.",
+        "+25% combat experience for all naval units trained in this city. BonusProduction equal to the adjacency bonus of the Harbor district. +1Production on all unimproved Coast and Lake tiles for this city. +1Coal per turn once discovered."
+      ],
+      "cost": 145,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Seaport",
+      "district": "Harbor",
+      "yields": [
+        "+2Food",
+        "+2Gold",
+        "+1Housing",
+        "1Citizen slot",
+        "3Great Admiral points per turn.",
+        "Citizen Yields (per citizen in this district):•+1Food",
+        "+25% combat experience for all naval units trained in this city. Once required Civics are unlocked, allowsFleets orArmadas to be trained directly and their costs reduced by 25%. +2Gold on all Coast and Lake tiles for this city."
+      ],
+      "cost": 220,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Market",
+      "district": "Commercial Hub",
+      "yields": [
+        "+2Gold",
+        "1Citizen slot",
+        "1Great Merchant point per turn."
+      ],
+      "cost": 60,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Sukiennice",
+      "district": "Commercial Hub",
+      "yields": [
+        "+2Gold",
+        "1Citizen slot",
+        "1Great Merchant point per turn.",
+        "A building unique to Poland. InternationalTrade Routes from this city gain +2Production; domesticTrade Routes gain +4Gold. +1Trade Route capacity, if this city does not yet have a Lighthouse building."
+      ],
+      "cost": 60,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Grand Bazaar",
+      "district": "Commercial Hub",
+      "yields": [
+        "+6Gold",
+        "1Citizen slot",
+        "2Great Merchant points per turn.",
+        "A building unique to the Ottomans. Accumulate 1 extra Strategic resource for every different type of Strategic resource this city has improved. Receive 1Amenity for every Luxury resource this city has improved. Grants aGovernor Title when constructed for the first time.+1Trade route capacity.+2Gold for eachtrade routes from this city.+1Gold for eachtrade routes to this city."
+      ],
+      "cost": 110,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Bank",
+      "district": "Commercial Hub",
+      "yields": [
+        "+6Gold",
+        "1Citizen slot",
+        "2Great Merchant points per turn.",
+        "+2Gold for eachtrade routes from this city.+1Gold for eachtrade routes to this city."
+      ],
+      "cost": 145,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Stock Exchange",
+      "district": "Commercial Hub",
+      "yields": [
+        "+8Gold",
+        "1Citizen slot",
+        "3Great Merchant points per turn.",
+        "12Gold additionally whenPowered",
+        "Citizen Yields (per citizen in this district):•+2Gold",
+        "+4Gold for eachtrade routes from this city.+2Gold for eachtrade routes to this city."
+      ],
+      "cost": 165,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Amphitheater",
+      "district": "Theater Square",
+      "yields": [
+        "+2Culture",
+        "1Citizen slot",
+        "1Great Writer point per turn.",
+        "2Great Works of Writing slots"
+      ],
+      "cost": 75,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Marae",
+      "district": "Theater Square",
+      "yields": [
+        "1Citizen slot",
+        "A building unique to the Māori. +1Culture andFaith to all of this city's tiles with a passable feature or natural wonder. After Flight is researched receive +1Tourism to all of this city's tiles with a feature or natural wonder. Costs no maintenance. Has no Great Work slots."
+      ],
+      "cost": 75,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Art Museum",
+      "district": "Theater Square",
+      "yields": [
+        "+2Culture",
+        "1Citizen slot",
+        "2Great Artist points per turn.",
+        "3Great Works of Art slots",
+        "1Great Writer point per turn.",
+        "HoldsGreat Works of Art. May not be built in a Theater Square district that already has an Archaeological Museum."
+      ],
+      "cost": 145,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Archaeological Museum",
+      "district": "Theater Square",
+      "yields": [
+        "+2Culture",
+        "1Citizen slot",
+        "2Great Artist points per turn.",
+        "1Great Writer point per turn."
+      ],
+      "cost": 145,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Broadcast Center",
+      "district": "Theater Square",
+      "yields": [
+        "+2Culture",
+        "1Citizen slot",
+        "1Great Artist point per turn.",
+        "1Great Work of Music slot",
+        "4Culture additionally whenPowered",
+        "Citizen Yields (per citizen in this district):•+1Culture",
+        "2Great Musician points per turn."
+      ],
+      "cost": 220,
+      "maintenance": 3,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Film Studio",
+      "district": "Theater Square",
+      "yields": [
+        "+2Culture",
+        "1Citizen slot",
+        "1Great Artist point per turn.",
+        "1Great Work of Music slot",
+        "4Culture additionally whenPowered",
+        "Citizen Yields (per citizen in this district):•+1Culture",
+        "2Great Musician points per turn."
+      ],
+      "cost": 220,
+      "maintenance": 3,
+      "requires": null,
+      "unique_to": "A building unique to America. +30%Tourism pressure from this city towards other civilizations who reached the Modern era."
+    },
+    {
+      "name": "Audience Chamber",
+      "district": "Government Plaza",
+      "yields": [
+        "+1Amenity, +3Food, and +3Housing in Cities with aGovernor. -2 Loyalty in Cities without aGovernor.Awards +1Governor Title."
+      ],
+      "cost": 75,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Ancestral Hall",
+      "district": "Government Plaza",
+      "yields": [
+        "50% increasedProduction toward Settlers in this City.New cities receive a free Builder.Awards +1Governor Title."
+      ],
+      "cost": 75,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Warlord's Throne",
+      "district": "Government Plaza",
+      "yields": [
+        "+25%Production towards all naval and land military units in all cities. Reduces the maintenance cost of units by 1Gold. Increases Strategic Resources stockpiles by 15 (on Online speed). Provides you with 2 of each strategic resource per turn that you have revealed.Awards +1Governor Title."
+      ],
+      "cost": 75,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Queen's Bibliotheque",
+      "district": "Government Plaza",
+      "yields": [
+        "2Great Artist points per turn.",
+        "2Great Works of Art slots",
+        "2Great Works of Music slots",
+        "2Great Works of Writing slots",
+        "2Great Musician points per turn.",
+        "2Great Writer points per turn."
+      ],
+      "cost": 108,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": "A building unique to Sweden. Provides 2 slots ofWriting,Music, and any type ofArt. This building is not mutually exclusive with other buildings in Government Plaza.Awards +1Governor Title."
+    },
+    {
+      "name": "Foreign Ministry",
+      "district": "Government Plaza",
+      "yields": [
+        "+3Diplomatic Favor per turn and +2Influence Points per turn. Leveraging City-states costs halfGold. City-state units gain +4Combat Strength if you are the City-state's Suzerain (including Leveraged Units).Awards +1Governor Title and +2Envoys."
+      ],
+      "cost": 145,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Intelligence Agency",
+      "district": "Government Plaza",
+      "yields": [],
+      "cost": 145,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Grand Master's Chapel",
+      "district": "Government Plaza",
+      "yields": [
+        "+5Faith",
+        "Grants the ability to buy land units withFaith in all founded cities.Pillaging Improvements and Districts provides bonusFaith.Awards +1Governor Title."
+      ],
+      "cost": 145,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "War Department",
+      "district": "Government Plaza",
+      "yields": [],
+      "cost": 220,
+      "maintenance": 3,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "National History Museum",
+      "district": "Government Plaza",
+      "yields": [
+        "4 Great Work slots (holds any type)",
+        "Provides 4 slots for any Great Work.Awards +1Governor Title."
+      ],
+      "cost": 220,
+      "maintenance": 3,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Royal Society",
+      "district": "Government Plaza",
+      "yields": [
+        "Builders and Military Engineers gain the ability to use all of theircharges to provide bonusProduction to a District Project. Eachcharge grants 2% of projectProduction. Once per city per turn.Awards +1Governor Title."
+      ],
+      "cost": 220,
+      "maintenance": 3,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Grove",
+      "district": "Preserve",
+      "yields": [
+        "All adjacent unimproved tiles receive yields according to their Appeal:•+1Food and +1Faith for tiles with Charming or less Appeal.•Additional +1Culture if the tile is Charming Appeal.•+2Food, +2Culture, +2Faith on tiles with Breathtaking Appeal."
+      ],
+      "cost": 75,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Sanctuary",
+      "district": "Preserve",
+      "yields": [
+        "All adjacent unimproved tiles receive yields according to their Appeal:•+1Gold and +1Science for tiles with Charming or less Appeal.•Additional +1Production if the tile is Charming Appeal.•+2Gold, +2Science, +2Production on tiles with Breathtaking Appeal."
+      ],
+      "cost": 220,
+      "maintenance": null,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Consulate",
+      "district": "Diplomatic Quarter",
+      "yields": [],
+      "cost": 75,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Chancery",
+      "district": "Diplomatic Quarter",
+      "yields": [
+        "+3Influence Points per turn. When this civilization captures or kills an enemy Spy, receive 200Science (on Standard speed) for every level of the enemy Spy."
+      ],
+      "cost": 145,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Workshop",
+      "district": "Industrial Zone",
+      "yields": [
+        "+4Production",
+        "1Citizen slot",
+        "1Great Engineer point per turn."
+      ],
+      "cost": 80,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Factory",
+      "district": "Industrial Zone",
+      "yields": [
+        "+3Production",
+        "1Citizen slot",
+        "1Great Engineer point per turn.",
+        "3Production additionally whenPowered",
+        "ItsProduction bonus is extended to all City Centers within 6 tiles that do not already have a bonus from this building type."
+      ],
+      "cost": 145,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Electronics Factory",
+      "district": "Industrial Zone",
+      "yields": [
+        "+3Production",
+        "1Citizen slot",
+        "1Great Engineer point per turn.",
+        "5Production additionally whenPowered",
+        "A building unique to Japan. Provides +4Culture to this city after researching the Electricity technology. ItsProduction bonus is extended to all City Centers within 6 tiles that do not already have a bonus from this building type."
+      ],
+      "cost": 145,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Coal Power Plant",
+      "district": "Industrial Zone",
+      "yields": [
+        "1Citizen slot",
+        "1Great Engineer point per turn.",
+        "BonusProduction equal to the adjacencyProduction bonus of its district.",
+        "Citizen Yields (per citizen in this district):•+1Production"
+      ],
+      "cost": 165,
+      "maintenance": 3,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Oil Power Plant",
+      "district": "Industrial Zone",
+      "yields": [
+        "+6Production",
+        "1Citizen slot",
+        "1Great Engineer point per turn.",
+        "Citizen Yields (per citizen in this district):•+1Production",
+        "Automatically converts any amount ofOil intoPower for cities within 6 tiles that need it each turn, at the rate of:•1Oil   4Power•Moderate CO2 into the atmosphereItsProduction bonus is extended to all City Centers within 6 tiles that do not already have a bonus from a Power Plant building."
+      ],
+      "cost": 180,
+      "maintenance": 3,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Nuclear Power Plant",
+      "district": "Industrial Zone",
+      "yields": [
+        "+8Production",
+        "+6Science",
+        "1Citizen slot",
+        "1Great Engineer point per turn.",
+        "Citizen Yields (per citizen in this district):•+1Production",
+        "Automatically converts any amount ofUranium intoPower for cities within 6 tiles that need it each turn, at the rate of:•1Uranium   16Power•Miniscule CO2 into the atmosphereOnce built, as a Nuclear Power Plant ages, there is an increased chance for a Nuclear Accident to occur. ItsProduction andScience bonus is extended to all City Centers within 6 tiles that do not already have a bonus from a Power Plant building."
+      ],
+      "cost": 240,
+      "maintenance": 3,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Ferris Wheel",
+      "district": "Water Park",
+      "yields": [
+        "+3Culture",
+        "+2Amenities"
+      ],
+      "cost": 145,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Aquarium",
+      "district": "Water Park",
+      "yields": [
+        "+1Amenities",
+        "BonusAmenity extends to each city center within 9 tiles. This bonus applies once to a city, and multiple copies of this building within 9 tiles of a city center do not provide additional bonuses. +1Science to each coastal resource, Shipwreck, and Reef tile in this city."
+      ],
+      "cost": 180,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Aquatics Center",
+      "district": "Water Park",
+      "yields": [
+        "+1Amenities",
+        "2Amenities from entertainment additionally whenPowered",
+        "BonusAmenities extend to each city center within 9 tiles. This bonus applies once to a city, and multiple copies of this building within 9 tiles of a city center do not provide additional bonuses. +6Tourism for each Wonder built in this city on or adjacent to a Coast tile."
+      ],
+      "cost": 240,
+      "maintenance": 3,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Hangar",
+      "district": "Aerodrome",
+      "yields": [
+        "+2Production"
+      ],
+      "cost": 160,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Airport",
+      "district": "Aerodrome",
+      "yields": [
+        "+4Production",
+        "2Production additionally whenPowered"
+      ],
+      "cost": 200,
+      "maintenance": 2,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Food Market",
+      "district": "Neighborhood",
+      "yields": [
+        "+4Food",
+        "2Food additionally whenPowered"
+      ],
+      "cost": 190,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Shopping Mall",
+      "district": "Neighborhood",
+      "yields": [
+        "+10Gold",
+        "+1Amenities",
+        "10Gold additionally whenPowered"
+      ],
+      "cost": 220,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    },
+    {
+      "name": "Hydroelectric Dam",
+      "district": "Dam",
+      "yields": [],
+      "cost": 220,
+      "maintenance": 1,
+      "requires": null,
+      "unique_to": null
+    }
+  ],
+  "units": [
+    {
+      "name": "Missionary",
+      "unitClass": "Religious",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Cost: 75",
+        "Maintenance Cost: 0Per Turn",
+        "100Religious Strength",
+        "3Spread Charges",
+        "2Line of Sight",
+        "May convertCitizens to their Religion. May not initiate theological combat with units of other Religions (but can defend)."
+      ]
+    },
+    {
+      "name": "Apostle",
+      "unitClass": "Religious",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Cost: 200",
+        "Maintenance Cost: 0Per Turn",
+        "110Religious Strength",
+        "3Spread Charges",
+        "2Line of Sight",
+        "May convertCitizens to their Religion and initiate theological combat with units of other Religions. Once per game may Launch Inquisition to allow the purchase of Inquisitors. Once per game may Evangelize Belief to add an additional Belief to their Religion. These uses consume the Apostle."
+      ]
+    },
+    {
+      "name": "Inquisitor",
+      "unitClass": "Religious",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Cost: 75",
+        "Maintenance Cost: 0Per Turn",
+        "75Religious Strength",
+        "3Spread Charges",
+        "2Line of Sight",
+        "May reduce the presence of other Religions in their territory by 75%, and initiate theological combat with units of other Religions."
+      ]
+    },
+    {
+      "name": "Guru",
+      "unitClass": "Religious",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Cost: 120",
+        "Maintenance Cost: 0Per Turn",
+        "90Religious Strength",
+        "3Heal Charges",
+        "2Line of Sight",
+        "May use a charge to heal itself and all adjacent friendly religious units. May not initiate theological combat with units of other Religions (but can defend)."
+      ]
+    },
+    {
+      "name": "Sabum Kibittum",
+      "unitClass": "Melee",
+      "strength": 17,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 17,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 0Per Turn",
+        "17Melee Strength",
+        "3Line of Sight"
+      ]
+    },
+    {
+      "name": "Warrior",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 20,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 0Per Turn",
+        "20Melee Strength",
+        "2Line of Sight",
+        "Weak Ancient era melee unit."
+      ]
+    },
+    {
+      "name": "Gaesatae",
+      "unitClass": "Melee",
+      "strength": 10,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 30,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 0Per Turn",
+        "20Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Eagle Warrior",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 32,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": "Aztec unique Ancient era unit that replaces the Warrior.  Has a chance to capture other civilization's military units by turning them into Builders.",
+      "abilities": [
+        "Maintenance Cost: 0Per Turn",
+        "28Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Swordsman",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 45,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "7",
+        "Maintenance Cost: 2Per Turn",
+        "36Melee Strength",
+        "2Line of Sight",
+        "Strong Classical era melee unit."
+      ]
+    },
+    {
+      "name": "Immortal",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": 25,
+      "movement": 2,
+      "cost": 50,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": "Persian unique melee unit that replaces the Swordsman. Melee class unit with a ranged attack,Range 2. Strong defense strength.",
+      "abilities": [
+        "5",
+        "Maintenance Cost: 2Per Turn",
+        "36Melee Strength",
+        "2Range",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Ngao Mbeba",
+      "unitClass": "Melee",
+      "strength": 10,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 55,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 2Per Turn",
+        "38Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Hypaspist",
+      "unitClass": "Melee",
+      "strength": 10,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 50,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 2Per Turn",
+        "38Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Toa",
+      "unitClass": "Melee",
+      "strength": 5,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 60,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 0Per Turn",
+        "38Melee Strength",
+        "1Build Charges",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Legion",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 55,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": "Roman unique Classical era melee unit that replaces the Swordsman. Has 1charge to build a Roman Fort.",
+      "abilities": [
+        "5",
+        "Maintenance Cost: 2Per Turn",
+        "40Melee Strength",
+        "1Build Charges",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Berserker",
+      "unitClass": "Melee",
+      "strength": 2,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 80,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 3Per Turn",
+        "40Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Man-At-Arms",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 80,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "7",
+        "Maintenance Cost: 3Per Turn",
+        "46Melee Strength",
+        "2Line of Sight",
+        "Medieval Era melee unit."
+      ]
+    },
+    {
+      "name": "Samurai",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 80,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": "Japanese unique Medieval era melee unit that replaces the Man-At-Arms. Does not suffer combat penalties when damaged.",
+      "abilities": [
+        "5",
+        "Maintenance Cost: 3Per Turn",
+        "48Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Khevsur",
+      "unitClass": "Melee",
+      "strength": 7,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 80,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 3Per Turn",
+        "48Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Musketman",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 110,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "7",
+        "Maintenance Cost: 4Per Turn",
+        "55Melee Strength",
+        "2Line of Sight",
+        "Renaissance era melee unit."
+      ]
+    },
+    {
+      "name": "Conquistador",
+      "unitClass": "Melee",
+      "strength": 5,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 125,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 4Per Turn",
+        "58Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Janissary",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 60,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": "Ottoman unique Renaissance Era unit that replaces the Musketman. Starts with afree promotion. Stronger and cheaper than the Musketman. To train a Janissary a city must have a population of at least 2. If a city is founded by the Ottomans and trains a Janissary it loses a population.",
+      "abilities": [
+        "5",
+        "Maintenance Cost: 4Per Turn",
+        "60Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Line Infantry",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 165,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "7",
+        "Maintenance Cost: 5Per Turn",
+        "65Melee Strength",
+        "2Line of Sight",
+        "Industrial Era melee unit."
+      ]
+    },
+    {
+      "name": "Redcoat",
+      "unitClass": "Melee",
+      "strength": 5,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 180,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 5Per Turn",
+        "70Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Garde Impériale",
+      "unitClass": "Melee",
+      "strength": 5,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 180,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 5Per Turn",
+        "70Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Infantry",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 215,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 6, 1Per Turn",
+        "80Melee Strength",
+        "2Line of Sight",
+        "Modern era melee unit."
+      ]
+    },
+    {
+      "name": "Digger",
+      "unitClass": "Melee",
+      "strength": 10,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 215,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 6, 1Per Turn",
+        "83Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Mechanized Infantry",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 325,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 8, 1Per Turn",
+        "90Melee Strength",
+        "2Line of Sight",
+        "Information era melee unit."
+      ]
+    },
+    {
+      "name": "Anti Cavalry",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": null,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": []
+    },
+    {
+      "name": "Spearman",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 32,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 1Per Turn",
+        "25Melee Strength",
+        "2Line of Sight",
+        "Ancient era anti-cavalry unit."
+      ]
+    },
+    {
+      "name": "Hoplite",
+      "unitClass": "Melee",
+      "strength": 7,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 32,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 1Per Turn",
+        "28Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Pikeman",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 100,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 2Per Turn",
+        "45Melee Strength",
+        "2Line of Sight",
+        "Medieval era anti-cavalry unit."
+      ]
+    },
+    {
+      "name": "Impi",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 62,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": "Zulu unique Medieval Era unit that replaces the Pikeman. Increased Flanking bonus, low cost and low maintenance. Earns XP faster.",
+      "abilities": [
+        "Maintenance Cost: 1Per Turn",
+        "45Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Pike and Shot",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 145,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 4Per Turn",
+        "55Melee Strength",
+        "2Line of Sight",
+        "Late Renaissance era anti-cavalry unit."
+      ]
+    },
+    {
+      "name": "Carolean",
+      "unitClass": "Melee",
+      "strength": 3,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 125,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 3Per Turn",
+        "55Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "AT Crew",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 200,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 4Per Turn",
+        "80Melee Strength",
+        "2Line of Sight",
+        "Modern era counter to cavalry class units."
+      ]
+    },
+    {
+      "name": "Modern AT",
+      "unitClass": "Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 290,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 8Per Turn",
+        "90Melee Strength",
+        "2Line of Sight",
+        "Information era counter to cavalry class units."
+      ]
+    },
+    {
+      "name": "Slinger",
+      "unitClass": "Ranged",
+      "strength": null,
+      "rangedStrength": 15,
+      "movement": 2,
+      "cost": 17,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 0Per Turn",
+        "5Melee Strength",
+        "1Range",
+        "2Line of Sight",
+        "Weak Ancient era ranged unit. Better on attack than defense."
+      ]
+    },
+    {
+      "name": "Archer",
+      "unitClass": "Ranged",
+      "strength": null,
+      "rangedStrength": 25,
+      "movement": 2,
+      "cost": 30,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 1Per Turn",
+        "15Melee Strength",
+        "2Range",
+        "2Line of Sight",
+        "First Ancient era ranged unit with aRange of 2."
+      ]
+    },
+    {
+      "name": "Hul'che",
+      "unitClass": "Ranged",
+      "strength": 5,
+      "rangedStrength": 28,
+      "movement": 2,
+      "cost": 30,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 1Per Turn",
+        "15Melee Strength",
+        "2Range",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Pítati Archer",
+      "unitClass": "Ranged",
+      "strength": null,
+      "rangedStrength": 30,
+      "movement": 3,
+      "cost": 35,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 1Per Turn",
+        "17Melee Strength",
+        "2Range",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Saka Horse Archer",
+      "unitClass": "Ranged",
+      "strength": null,
+      "rangedStrength": 25,
+      "movement": 4,
+      "cost": 35,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 2Per Turn",
+        "20Melee Strength",
+        "2Range",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Maryannu Chariot Archer",
+      "unitClass": "Ranged",
+      "strength": null,
+      "rangedStrength": 35,
+      "movement": 4,
+      "cost": 45,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 1Per Turn",
+        "25Melee Strength",
+        "2Range",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Crossbowman",
+      "unitClass": "Ranged",
+      "strength": null,
+      "rangedStrength": 40,
+      "movement": 2,
+      "cost": 90,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 3Per Turn",
+        "30Melee Strength",
+        "2Range",
+        "2Line of Sight",
+        "Medieval era ranged unit."
+      ]
+    },
+    {
+      "name": "Crouching Tiger",
+      "unitClass": "Ranged",
+      "strength": null,
+      "rangedStrength": 7,
+      "movement": 2,
+      "cost": 85,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 3Per Turn",
+        "30Melee Strength",
+        "2Range",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Keshig",
+      "unitClass": "Ranged",
+      "strength": null,
+      "rangedStrength": 40,
+      "movement": 4,
+      "cost": 90,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 3Per Turn",
+        "35Melee Strength",
+        "2Range",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Voi Chiến",
+      "unitClass": "Ranged",
+      "strength": null,
+      "rangedStrength": 40,
+      "movement": 3,
+      "cost": 100,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 3Per Turn",
+        "35Melee Strength",
+        "2Range",
+        "3Line of Sight"
+      ]
+    },
+    {
+      "name": "Hwacha",
+      "unitClass": "Ranged",
+      "strength": null,
+      "rangedStrength": 60,
+      "movement": 2,
+      "cost": 125,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": "Korean unique Renaissance Era unit that replaces the Field Cannon. HighRanged Attack Strength. Cannot move and attack in the same turn.",
+      "abilities": [
+        "Maintenance Cost: 3Per Turn",
+        "45Melee Strength",
+        "2Range",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Field Cannon",
+      "unitClass": "Ranged",
+      "strength": null,
+      "rangedStrength": 60,
+      "movement": 2,
+      "cost": 165,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 5Per Turn",
+        "50Melee Strength",
+        "2Range",
+        "2Line of Sight",
+        "Industrial era ranged unit."
+      ]
+    },
+    {
+      "name": "Machine Gun",
+      "unitClass": "Ranged",
+      "strength": null,
+      "rangedStrength": 85,
+      "movement": 3,
+      "cost": 270,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 6Per Turn",
+        "70Melee Strength",
+        "2Range",
+        "2Line of Sight",
+        "Atomic era ranged unit."
+      ]
+    },
+    {
+      "name": "Catapult",
+      "unitClass": "Siege",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 60,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 2Per Turn",
+        "25Melee Strength",
+        "2Range",
+        "35Bombard Strength",
+        "2Line of Sight",
+        "Classical era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
+      ]
+    },
+    {
+      "name": "Trebuchet",
+      "unitClass": "Siege",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 100,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 3Per Turn",
+        "35Melee Strength",
+        "2Range",
+        "45Bombard Strength",
+        "2Line of Sight",
+        "Medieval era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
+      ]
+    },
+    {
+      "name": "Domrey",
+      "unitClass": "Siege",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 100,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": "Khmer unique Medieval era siege unit that replaces the Trebuchet. This unit has a higherMelee and Range Strength than the Trebuchet. It can move and shoot in the same turn and exerts zone of control.",
+      "abilities": [
+        "Maintenance Cost: 3Per Turn",
+        "40Melee Strength",
+        "2Range",
+        "50Bombard Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Bombard",
+      "unitClass": "Siege",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 140,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "10",
+        "Maintenance Cost: 4Per Turn",
+        "45Melee Strength",
+        "2Range",
+        "55Bombard Strength",
+        "2Line of Sight",
+        "Renaissance era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
+      ]
+    },
+    {
+      "name": "Artillery",
+      "unitClass": "Siege",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 215,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 6, 1Per Turn",
+        "60Melee Strength",
+        "2Range",
+        "80Bombard Strength",
+        "2Line of Sight",
+        "Modern era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
+      ]
+    },
+    {
+      "name": "Rocket Artillery",
+      "unitClass": "Siege",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 340,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 8, 1Per Turn",
+        "70Melee Strength",
+        "3Range",
+        "100Bombard Strength",
+        "3Line of Sight",
+        "Information era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
+      ]
+    },
+    {
+      "name": "Light Cavalry",
+      "unitClass": "Siege",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": null,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": []
+    },
+    {
+      "name": "Horseman",
+      "unitClass": "Siege",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": 40,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "10",
+        "Maintenance Cost: 2Per Turn",
+        "36Melee Strength",
+        "2Line of Sight",
+        "Fast-moving Classical era light cavalry unit."
+      ]
+    },
+    {
+      "name": "Courser",
+      "unitClass": "Siege",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 5,
+      "cost": 90,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "10",
+        "Maintenance Cost: 3Per Turn",
+        "46Melee Strength",
+        "2Line of Sight",
+        "Medieval Era light cavalry unit."
+      ]
+    },
+    {
+      "name": "Malón Raider",
+      "unitClass": "Siege",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 1,
+      "cost": 115,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "10",
+        "Maintenance Cost: 3Per Turn",
+        "48Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Oromo Cavalry",
+      "unitClass": "Siege",
+      "strength": 1,
+      "rangedStrength": null,
+      "movement": 5,
+      "cost": 100,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 3Per Turn",
+        "48Melee Strength",
+        "3Line of Sight"
+      ]
+    },
+    {
+      "name": "Black Army",
+      "unitClass": "Siege",
+      "strength": 2,
+      "rangedStrength": null,
+      "movement": 5,
+      "cost": 102,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 3Per Turn",
+        "49Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Cossack",
+      "unitClass": "Cavalry",
+      "strength": 5,
+      "rangedStrength": null,
+      "movement": 5,
+      "cost": 170,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 5Per Turn",
+        "62Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Llanero",
+      "unitClass": "Cavalry",
+      "strength": 2,
+      "rangedStrength": null,
+      "movement": 5,
+      "cost": 165,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "10",
+        "Maintenance Cost: 2Per Turn",
+        "62Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Huszár",
+      "unitClass": "Cavalry",
+      "strength": 2,
+      "rangedStrength": null,
+      "movement": 5,
+      "cost": 167,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 5Per Turn",
+        "65Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Mountie",
+      "unitClass": "Cavalry",
+      "strength": 4,
+      "rangedStrength": null,
+      "movement": 5,
+      "cost": 180,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 3Per Turn",
+        "70Melee Strength",
+        "4Line of Sight"
+      ]
+    },
+    {
+      "name": "Helicopter",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 5,
+      "cost": 300,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 7, 1Per Turn",
+        "86Melee Strength",
+        "3Line of Sight",
+        "Fast-moving Atomic era light cavalry unit."
+      ]
+    },
+    {
+      "name": "Heavy Cavalry",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": null,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": []
+    },
+    {
+      "name": "War-Cart",
+      "unitClass": "Cavalry",
+      "strength": 4,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 20,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 0Per Turn",
+        "20Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Heavy Chariot",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 1,
+      "cost": 32,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 1Per Turn",
+        "28Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Hetairoi",
+      "unitClass": "Cavalry",
+      "strength": 5,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": 50,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 2Per Turn",
+        "36Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Varu",
+      "unitClass": "Cavalry",
+      "strength": 3,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 60,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 2Per Turn",
+        "40Melee Strength",
+        "3Line of Sight"
+      ]
+    },
+    {
+      "name": "Knight",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": 100,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "10",
+        "Maintenance Cost: 4Per Turn",
+        "50Melee Strength",
+        "2Line of Sight",
+        "Hard-hitting, Medieval era heavy cavalry unit."
+      ]
+    },
+    {
+      "name": "Tagma",
+      "unitClass": "Cavalry",
+      "strength": 1,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": 110,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 4Per Turn",
+        "50Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Mamluk",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": 110,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": "Arabian unique Medieval era unit that replaces the Knight. Heals at the end of every turn, even after moving or attacking.",
+      "abilities": [
+        "5",
+        "Maintenance Cost: 4Per Turn",
+        "53Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Mandekalu Cavalry",
+      "unitClass": "Cavalry",
+      "strength": 4,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": 110,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 4Per Turn",
+        "53Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Winged Hussar",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": 165,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": "Polish unique Renaissance era unit that replaces the Cuirassier. Pushes defending enemy units back from their hex in any battle where they score more damage. Defenders that cannot retreat suffer additional damage.",
+      "abilities": [
+        "5",
+        "Maintenance Cost: 5Per Turn",
+        "64Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Cuirassier",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": 165,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "10",
+        "Maintenance Cost: 5Per Turn",
+        "64Melee Strength",
+        "2Line of Sight",
+        "Industrial Era heavy cavalry unit."
+      ]
+    },
+    {
+      "name": "Rough Rider",
+      "unitClass": "Cavalry",
+      "strength": 25,
+      "rangedStrength": null,
+      "movement": 5,
+      "cost": 192,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 2Per Turn",
+        "64Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Tank",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": 240,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 6, 1Per Turn",
+        "85Melee Strength",
+        "2Line of Sight",
+        "Fast-moving Modern era heavy cavalry unit that ignores zone of control."
+      ]
+    },
+    {
+      "name": "Modern Armor",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": 340,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 8, 1Per Turn",
+        "95Melee Strength",
+        "2Line of Sight",
+        "Information era heavy cavalry unit that is fast and strong."
+      ]
+    },
+    {
+      "name": "Recon",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": null,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": []
+    },
+    {
+      "name": "Scout",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 15,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 0Per Turn",
+        "10Melee Strength",
+        "2Line of Sight",
+        "Fast-moving Ancient era recon unit."
+      ]
+    },
+    {
+      "name": "Okihtcitaw",
+      "unitClass": "Cavalry",
+      "strength": 5,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 20,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 0Per Turn",
+        "15Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Skirmisher",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": 35,
+      "movement": 3,
+      "cost": 75,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 2Per Turn",
+        "25Melee Strength",
+        "1Range",
+        "3Line of Sight",
+        "Medieval Era recon unit."
+      ]
+    },
+    {
+      "name": "Warak’aq",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": 40,
+      "movement": 3,
+      "cost": 82,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": "Incan unique Medieval Era unit that replaces the Skirmisher. Stronger at ranged combat than the Skirmisher and +1 additional attack per turn.",
+      "abilities": [
+        "Maintenance Cost: 2Per Turn",
+        "25Melee Strength",
+        "1Range",
+        "3Line of Sight"
+      ]
+    },
+    {
+      "name": "Ranger",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": 65,
+      "movement": 3,
+      "cost": 190,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 5Per Turn",
+        "55Melee Strength",
+        "1Range",
+        "4Line of Sight",
+        "Fast-moving Industrial era recon unit."
+      ]
+    },
+    {
+      "name": "Highlander",
+      "unitClass": "Cavalry",
+      "strength": 5,
+      "rangedStrength": 70,
+      "movement": 3,
+      "cost": 190,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 5Per Turn",
+        "65Melee Strength",
+        "1Range",
+        "3Line of Sight"
+      ]
+    },
+    {
+      "name": "Spec Ops",
+      "unitClass": "Cavalry",
+      "strength": null,
+      "rangedStrength": 75,
+      "movement": 3,
+      "cost": 260,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 7Per Turn",
+        "65Melee Strength",
+        "2Range",
+        "4Line of Sight",
+        "Atomic Era reconnaissance unit. Paradrop ability allows movement from friendly tile to location 7 tiles away (12 if starting from Aerodrome or Airstrip). Can attack support units directly without having to eliminate the combat unit first."
+      ]
+    },
+    {
+      "name": "Battering Ram",
+      "unitClass": "Support",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 32,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 1Per Turn",
+        "2Line of Sight",
+        "Ancient era support unit. When adjacent to a city, attacking melee and anti-cavalry units do full damage to the city’s Walls. Does not affect cities with Medieval or Renaissance Walls. Ineffective against Urban Defenses."
+      ]
+    },
+    {
+      "name": "Siege Tower",
+      "unitClass": "Support",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 50,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 2Per Turn",
+        "2Line of Sight",
+        "Medieval era support unit. When adjacent to a city, attacking melee and anti-cavalry units ignore Walls and immediately assault the city. Does not affect cities with Renaissance Walls. Ineffective against Urban Defenses."
+      ]
+    },
+    {
+      "name": "Military Engineer",
+      "unitClass": "Support",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 85,
+      "requires": "Medieval era support unit. Requires an Armory to produce. Can construct Roads, Railroads, Forts, Airstrips, Missile Silos, and Mountain Tunnel improvements. One of their build charges can also be used to complete 20% of a Canal, Dam or Aqueduct district or a Flood Barrier building.",
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 2Per Turn",
+        "3Build Charges",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Medic",
+      "unitClass": "Support",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 1,
+      "cost": 150,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 5Per Turn",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Observation Balloon",
+      "unitClass": "Support",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 120,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 2Per Turn",
+        "3Line of Sight",
+        "Modern era support unit. Grants +1Range to Siege class units within 1 hex."
+      ]
+    },
+    {
+      "name": "Anti-Air Gun",
+      "unitClass": "Support",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 227,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 2Per Turn",
+        "1Range",
+        "90Anti-air Strength",
+        "2Line of Sight",
+        "Modern era anti-air support unit. Provides cover from air attacks up to 1 hex away from the weapon."
+      ]
+    },
+    {
+      "name": "Mobile SAM",
+      "unitClass": "Support",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 295,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 4Per Turn",
+        "1Range",
+        "110Anti-air Strength",
+        "2Line of Sight",
+        "Information era anti-air support unit. Provides cover from air and nuclear attacks up to 1 hex away from the weapon."
+      ]
+    },
+    {
+      "name": "Drone",
+      "unitClass": "Support",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 210,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 3Per Turn",
+        "5Line of Sight",
+        "Atomic era support unit. Adds +1Range and +5Bombard Strength to Siege class units within 1 hex."
+      ]
+    },
+    {
+      "name": "Supply Convoy",
+      "unitClass": "Support",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 1,
+      "cost": 225,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 2Per Turn",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Galley",
+      "unitClass": "Naval Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 32,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 1Per Turn",
+        "30Melee Strength",
+        "2Line of Sight",
+        "Ancient era melee naval combat unit. Can only operate on Coastal waters until Cartography is researched."
+      ]
+    },
+    {
+      "name": "Viking Longship",
+      "unitClass": "Naval Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": 32,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 1Per Turn",
+        "35Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Bireme",
+      "unitClass": "Naval Melee",
+      "strength": 4,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": 32,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 1Per Turn",
+        "35Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Caravel",
+      "unitClass": "Naval Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": 120,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 4Per Turn",
+        "55Melee Strength",
+        "3Line of Sight",
+        "Fast Renaissance era exploration melee naval unit."
+      ]
+    },
+    {
+      "name": "Nau",
+      "unitClass": "Naval Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 4,
+      "cost": 120,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": "Portuguese unique naval melee unit that replaces the Caravel. Starts withfree Promotion and is less maintenance. Has 2charge to build Feitorias.",
+      "abilities": [
+        "Maintenance Cost: 2Per Turn",
+        "55Melee Strength",
+        "2Build Charges",
+        "3Line of Sight"
+      ]
+    },
+    {
+      "name": "Ironclad",
+      "unitClass": "Naval Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 5,
+      "cost": 190,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 5, 1Per Turn",
+        "70Melee Strength",
+        "3Line of Sight",
+        "Powerful Industrial era armored melee naval unit."
+      ]
+    },
+    {
+      "name": "Destroyer",
+      "unitClass": "Naval Melee",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 6,
+      "cost": 270,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 7, 1Per Turn",
+        "90Melee Strength",
+        "90Anti-air Strength",
+        "3Line of Sight",
+        "Strongest melee naval unit. Reveals Naval Raiders within sight range."
+      ]
+    },
+    {
+      "name": "Quadrireme",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": 25,
+      "movement": 3,
+      "cost": 60,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 2Per Turn",
+        "20Melee Strength",
+        "1Range",
+        "2Line of Sight",
+        "Classical era ranged naval unit withRange of 1. Can only operate on Coastal waters until Cartography is researched."
+      ]
+    },
+    {
+      "name": "Dromon",
+      "unitClass": "Naval Ranged",
+      "strength": 5,
+      "rangedStrength": 25,
+      "movement": 3,
+      "cost": 60,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 2Per Turn",
+        "20Melee Strength",
+        "2Range",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Frigate",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": 55,
+      "movement": 4,
+      "cost": 140,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "10",
+        "Maintenance Cost: 5Per Turn",
+        "45Melee Strength",
+        "2Range",
+        "2Line of Sight",
+        "Renaissance era ranged naval unit withRange of 2."
+      ]
+    },
+    {
+      "name": "Jong",
+      "unitClass": "Naval Ranged",
+      "strength": 5,
+      "rangedStrength": 55,
+      "movement": 5,
+      "cost": 150,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 5Per Turn",
+        "45Melee Strength",
+        "2Range",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "De Zeven Provinciën",
+      "unitClass": "Naval Ranged",
+      "strength": 7,
+      "rangedStrength": 60,
+      "movement": 4,
+      "cost": 140,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "5",
+        "Maintenance Cost: 5Per Turn",
+        "50Melee Strength",
+        "2Range",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Battleship",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": 75,
+      "movement": 5,
+      "cost": 215,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 6, 1Per Turn",
+        "65Melee Strength",
+        "3Range",
+        "90Anti-air Strength",
+        "2Line of Sight",
+        "Modern era naval ranged unit withRange of 3. Provides cover from air and nuclear attacks up to 1 tile away."
+      ]
+    },
+    {
+      "name": "Minas Geraes",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": 80,
+      "movement": 5,
+      "cost": 215,
+      "requires": "Brazilian unique Industrial era unit that replaces the Battleship. Stronger than the Battleship. Unlocked by Nationalism.",
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 6, 1Per Turn",
+        "70Melee Strength",
+        "3Range",
+        "95Anti-air Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Missile Cruiser",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": 90,
+      "movement": 5,
+      "cost": 340,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 8, 1Per Turn",
+        "75Melee Strength",
+        "4Range",
+        "110Anti-air Strength",
+        "3Line of Sight",
+        "Information era ranged naval unit withRange of 4. Provides cover from air and nuclear attacks up to 1 tile away."
+      ]
+    },
+    {
+      "name": "Naval Raider",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": null,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": []
+    },
+    {
+      "name": "Privateer",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": 50,
+      "movement": 4,
+      "cost": 140,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 4Per Turn",
+        "40Melee Strength",
+        "2Range",
+        "2Line of Sight",
+        "Renaissance era ranged naval unit with the ability to coastal raid.Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range."
+      ]
+    },
+    {
+      "name": "Sea Dog",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": 53,
+      "movement": 4,
+      "cost": 140,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": "English unique Renaissance era naval unit that replaces the Privateer. Has a chance to capture defeated enemy ships. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.",
+      "abilities": [
+        "Maintenance Cost: 4Per Turn",
+        "40Melee Strength",
+        "2Range",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Barbary Corsair",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": 50,
+      "movement": 4,
+      "cost": 120,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 3Per Turn",
+        "40Melee Strength",
+        "2Range",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Submarine",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": 75,
+      "movement": 4,
+      "cost": 240,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 6Per Turn",
+        "65Melee Strength",
+        "2Range",
+        "2Line of Sight",
+        "Modern era ranged raiding naval unit. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range."
+      ]
+    },
+    {
+      "name": "U-Boat",
+      "unitClass": "Naval Ranged",
+      "strength": 1,
+      "rangedStrength": 75,
+      "movement": 4,
+      "cost": 215,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 6Per Turn",
+        "65Melee Strength",
+        "2Range",
+        "3Line of Sight"
+      ]
+    },
+    {
+      "name": "Nuclear Submarine",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": 85,
+      "movement": 4,
+      "cost": 340,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 8Per Turn",
+        "80Melee Strength",
+        "2Range",
+        "2Line of Sight",
+        "Highly advanced Information era ranged raiding naval unit that can be armed with nuclear weapons. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range."
+      ]
+    },
+    {
+      "name": "Naval Carrier",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": null,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": []
+    },
+    {
+      "name": "Aircraft Carrier",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 5,
+      "cost": 270,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 7Per Turn",
+        "80Melee Strength",
+        "2Line of Sight",
+        "Atomic era melee naval unit that can transport air units."
+      ]
+    },
+    {
+      "name": "Nihang",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": null,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": []
+    },
+    {
+      "name": "Nihang",
+      "unitClass": "Naval Ranged",
+      "strength": 15,
+      "rangedStrength": null,
+      "movement": 2,
+      "cost": 50,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 2Per Turn",
+        "28Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Warrior Monk",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": null,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": []
+    },
+    {
+      "name": "Warrior Monk",
+      "unitClass": "Naval Ranged",
+      "strength": 1,
+      "rangedStrength": null,
+      "movement": 3,
+      "cost": 30,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "Maintenance Cost: 2Per Turn",
+        "28Melee Strength",
+        "2Line of Sight"
+      ]
+    },
+    {
+      "name": "Air Fighter",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": null,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": []
+    },
+    {
+      "name": "Biplane",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": 70,
+      "movement": 6,
+      "cost": 215,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 6, 1Per Turn",
+        "75Melee Strength",
+        "4Range",
+        "4Line of Sight",
+        "First air combat unit, available in the Modern era."
+      ]
+    },
+    {
+      "name": "Fighter",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": 95,
+      "movement": 8,
+      "cost": 260,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 7, 1Per Turn",
+        "95Melee Strength",
+        "5Range",
+        "4Line of Sight",
+        "Atomic era Biplane upgrade."
+      ]
+    },
+    {
+      "name": "P-51 Mustang",
+      "unitClass": "Naval Ranged",
+      "strength": 5,
+      "rangedStrength": 95,
+      "movement": 10,
+      "cost": 260,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 7, 1Per Turn",
+        "95Melee Strength",
+        "5Range",
+        "4Line of Sight"
+      ]
+    },
+    {
+      "name": "Jet Fighter",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": 105,
+      "movement": 10,
+      "cost": 325,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 8, 1Per Turn",
+        "105Melee Strength",
+        "6Range",
+        "5Line of Sight",
+        "Information era Fighter upgrade."
+      ]
+    },
+    {
+      "name": "Air Bomber",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": null,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": []
+    },
+    {
+      "name": "Bomber",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 10,
+      "cost": 280,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 7, 1Per Turn",
+        "80Melee Strength",
+        "10Range",
+        "105Bombard Strength",
+        "4Line of Sight",
+        "First bomber unit, available in the Atomic era."
+      ]
+    },
+    {
+      "name": "Jet Bomber",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": 15,
+      "cost": 350,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 8, 1Per Turn",
+        "85Melee Strength",
+        "15Range",
+        "115Bombard Strength",
+        "5Line of Sight",
+        "Information era Bomber upgrade."
+      ]
+    },
+    {
+      "name": "GDR",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": null,
+      "movement": null,
+      "cost": null,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": []
+    },
+    {
+      "name": "Giant Death Robot",
+      "unitClass": "Naval Ranged",
+      "strength": null,
+      "rangedStrength": 120,
+      "movement": 5,
+      "cost": 750,
+      "requires": null,
+      "upgradesTo": null,
+      "uniqueTo": null,
+      "abilities": [
+        "1",
+        "Maintenance Cost: 15, 2Per Turn",
+        "140Melee Strength",
+        "3Range",
+        "120Anti-air Strength",
+        "3Line of Sight",
+        "Information Era Super-Unit. Able to move and fight in water. Resistant to Weapons of Mass Destruction. Combat abilities can be upgraded by researching future technologies."
+      ]
+    }
+  ],
+  "wonders": [
+    {
+      "name": "Ancient Era",
+      "era": null,
+      "cost": null,
+      "requires": null,
+      "placement": null,
+      "effects": []
+    },
+    {
+      "name": "Etemenanki",
+      "era": null,
+      "cost": 110,
+      "requires": "Unlocked by Writing Technology",
+      "placement": "+1Science and +1Production to all Marsh tiles in your empire. +1Production on all Floodplains in this city.  +1Science on Floodplains improved with a Farm for this city.Must be built on Floodplains or Marsh.",
+      "effects": [
+        "+2Science"
+      ]
+    },
+    {
+      "name": "Great Bath",
+      "era": null,
+      "cost": 90,
+      "requires": "Unlocked by Pottery Technology",
+      "placement": "The Floodplains tiles along the river containing the Great Bath are now immune to Flood damage (thoughFood andProduction bonuses from flooding drop by 50%). Floodplains tiles belonging to this city gain +1Faith for each time Flood damage is mitigated.Must be built on a Floodplains tile.",
+      "effects": [
+        "+3Housing",
+        "+1Amenities"
+      ]
+    },
+    {
+      "name": "Hanging Gardens",
+      "era": null,
+      "cost": 90,
+      "requires": "Unlocked by Irrigation Technology",
+      "placement": "Increases growth by 15% in all cities. +2Housing in the city in which this wonder is built and +1Housing in all other cities within 6 tiles.Must be built next to a river.",
+      "effects": [
+        "+1Housing"
+      ]
+    },
+    {
+      "name": "Oracle",
+      "era": null,
+      "cost": 145,
+      "requires": "Unlocked by Mysticism Civic",
+      "placement": "Patronage of Great People costs 25% lessFaith. Districts in this city provide +2Great Person points of their type (for example,Great Writer points from the Theater Square district). Must be built on Hills.",
+      "effects": [
+        "+1Culture",
+        "+1Faith"
+      ]
+    },
+    {
+      "name": "Pyramids",
+      "era": null,
+      "cost": 110,
+      "requires": "Unlocked by Masonry Technology",
+      "placement": "Grants a free Builder and +1charge for all existing and new Builders.Must be built on flat Desert tile (including Floodplains).",
+      "effects": [
+        "+2Culture"
+      ]
+    },
+    {
+      "name": "Stonehenge",
+      "era": null,
+      "cost": 90,
+      "requires": "Unlocked by Astrology Technology",
+      "placement": "Grants a freeGreat Prophet.Great Prophets may found a Religion on Stonehenge instead of a Holy Site. Must be adjacent toStone and on flat land.",
+      "effects": [
+        "+2Faith"
+      ]
+    },
+    {
+      "name": "Temple of Artemis",
+      "era": null,
+      "cost": 90,
+      "requires": "Unlocked by Archery Technology",
+      "placement": "Each Camp, Pasture, and Plantation improvement within 4 tiles of this wonder provides +1Amenity. Must be placed adjacent to a Camp improvement.",
+      "effects": [
+        "+3Food",
+        "+2Housing"
+      ]
+    },
+    {
+      "name": "Classical Era",
+      "era": null,
+      "cost": null,
+      "requires": null,
+      "placement": null,
+      "effects": []
+    },
+    {
+      "name": "Apadana",
+      "era": null,
+      "cost": 200,
+      "requires": "Unlocked by Political Philosophy Civic",
+      "placement": "+1Envoy when you build a wonder, including Apadana, in this city.Must be built adjacent to yourCapital.",
+      "effects": [
+        "2 Great Work slots (holds any type)"
+      ]
+    },
+    {
+      "name": "Colosseum",
+      "era": null,
+      "cost": 200,
+      "requires": "Unlocked by Games and Recreation Civic",
+      "placement": "+1Culture, +2 Loyalty, +2Amenities to each your City Center within 6 tiles.Must be built on flat land adjacent to an Entertainment Complex with an Arena.",
+      "effects": [
+        "+1Culture",
+        "+2Amenities"
+      ]
+    },
+    {
+      "name": "Colossus",
+      "era": null,
+      "cost": 200,
+      "requires": "Unlocked by Shipbuilding Technology",
+      "placement": "+1Trade Route capacity. Grants a Trader unit. Must be built on the Coast, adjacent to land and a Harbor district.",
+      "effects": [
+        "+3Gold",
+        "1Great Admiral point per turn."
+      ]
+    },
+    {
+      "name": "Great Library",
+      "era": null,
+      "cost": 200,
+      "requires": "Unlocked by Drama and Poetry Civic",
+      "placement": "Receive boosts to all Ancient and Classical era technologies. Receive a random tech boost after another player recruits aGreat Scientist. Must be built on flat land adjacent to a Campus district with a Library.",
+      "effects": [
+        "+2Science",
+        "1Great Scientist point per turn.",
+        "2Great Works of Writing slots",
+        "1Great Writer point per turn."
+      ]
+    },
+    {
+      "name": "Great Lighthouse",
+      "era": null,
+      "cost": 145,
+      "requires": "Unlocked by Celestial Navigation Technology",
+      "placement": "+1Movement for all naval unitsMust be built on the Coast, and adjacent to land and a Harbor district with a Lighthouse.",
+      "effects": [
+        "+3Gold",
+        "1Great Admiral point per turn."
+      ]
+    },
+    {
+      "name": "Mausoleum at Halicarnassus",
+      "era": null,
+      "cost": 200,
+      "requires": "Unlocked by Defensive Tactics Civic",
+      "placement": "+1Science, +1Faith, and +1Culture on all Coast tiles for this city.Great Engineers have an additional charge. Must be built adjacent to a Harbor district.",
+      "effects": []
+    },
+    {
+      "name": "Jebel Barkal",
+      "era": null,
+      "cost": 200,
+      "requires": "Unlocked by Iron Working Technology",
+      "placement": "Awards 4Iron per turn. +4Faith to each your City Center within 6 tiles.Must be built on Desert Hills.",
+      "effects": [
+        "+4Faith"
+      ]
+    },
+    {
+      "name": "Machu Picchu",
+      "era": null,
+      "cost": 200,
+      "requires": "Unlocked by Engineering Technology",
+      "placement": "Mountain tiles provide a standard adjacency bonus to Commercial Hub, Theater Square, and Industrial Zone districts in all cities.Must be built on a Mountain tile that does not contain a Volcano.",
+      "effects": [
+        "+4Gold"
+      ]
+    },
+    {
+      "name": "Mahabodhi Temple",
+      "era": null,
+      "cost": 200,
+      "requires": "Unlocked by Theology Civic",
+      "placement": "+2 Diplomatic Victory Points and grants 2 Apostles when built.Must be built on Woods adjacent to a Holy Site district with a Temple, and you must have founded a Religion.",
+      "effects": [
+        "+4Faith"
+      ]
+    },
+    {
+      "name": "Petra",
+      "era": null,
+      "cost": 200,
+      "requires": "Unlocked by Mathematics Technology",
+      "placement": "+2Food, +2Gold, and +1Production on all Desert tiles for this city (non-Floodplains). Must be built on Desert or Desert Floodplains without Hills.",
+      "effects": []
+    },
+    {
+      "name": "Statue of Zeus",
+      "era": null,
+      "cost": 200,
+      "requires": "Unlocked by Military Training Civic",
+      "placement": "Grants 3 Archers, 3 Spearmen, and a Battering Ram. +35%Production towards anti-cavalry units.Must be built on flat land adjacent to an Encampment district with a Barracks.",
+      "effects": [
+        "+3Gold"
+      ]
+    },
+    {
+      "name": "Terracotta Army",
+      "era": null,
+      "cost": 200,
+      "requires": "Unlocked by Construction Technology",
+      "placement": "All current units gain apromotion level. All Archaeologists from the owner may enter foreign lands without Open Borders.Must be built on flat Grassland or Plains adjacent to an Encampment district with a Barracks or Stable.",
+      "effects": [
+        "1Great General point per turn."
+      ]
+    },
+    {
+      "name": "Medieval Era",
+      "era": null,
+      "cost": null,
+      "requires": null,
+      "placement": null,
+      "effects": []
+    },
+    {
+      "name": "Alhambra",
+      "era": null,
+      "cost": 355,
+      "requires": "Unlocked by Castles Technology",
+      "placement": "+1 Military policy slotProvides the same defensive bonuses as the Fort improvement. Must be built on Hills adjacent to an Encampment district.",
+      "effects": [
+        "+2Amenities",
+        "2Great General points per turn."
+      ]
+    },
+    {
+      "name": "Angkor Wat",
+      "era": null,
+      "cost": 355,
+      "requires": "Unlocked by Medieval Faires Civic",
+      "placement": "+1Population  in all Current Cities when built. +1Housing in all cities.Must be built adjacent to an Aqueduct district.",
+      "effects": [
+        "+2Faith"
+      ]
+    },
+    {
+      "name": "Chichen Itza",
+      "era": null,
+      "cost": 355,
+      "requires": "Unlocked by Guilds Civic",
+      "placement": "+1Culture and +1Production to all Rainforest tiles in your empire.Must be built on Rainforest.",
+      "effects": []
+    },
+    {
+      "name": "Hagia Sophia",
+      "era": null,
+      "cost": 355,
+      "requires": "Unlocked by Buttress Technology",
+      "placement": "+2Movement for Missionaries, Apostles and Gurus. Missionaries and Apostles can spread Religion 1 extra time. Missionaries are 25% cheaper to purchase.Must be built on flat land adjacent to a Holy Site district, and you must have founded a Religion.",
+      "effects": [
+        "+4Faith"
+      ]
+    },
+    {
+      "name": "Huey Teocalli",
+      "era": null,
+      "cost": 355,
+      "requires": "Unlocked by Military Tactics Technology",
+      "placement": "+1Amenity from entertainment for each Lake tile within one tile of Huey Teocalli. +1Food, +1Production, +2Culture for each Lake tile in your empire.Must be built on a Lake tile adjacent to land.",
+      "effects": []
+    },
+    {
+      "name": "Kilwa Kisiwani",
+      "era": null,
+      "cost": 355,
+      "requires": "Unlocked by Machinery Technology",
+      "placement": "+3Envoys when built. When you are the Suzerain of a City-State this city receives a +15% boost to the Type bonuses provided by that City-State. If you are the Suzerain to 2 or more City-States of that type an additional +15% boost is given to all your cities. Must be built on a flat tile adjacent to Coast.",
+      "effects": []
+    },
+    {
+      "name": "Kotoku-in",
+      "era": null,
+      "cost": 355,
+      "requires": "Unlocked by Divine Right Civic",
+      "placement": "+20%Faith in this city. Grants 4 Warrior Monks. Allows purchasing of Warrior Monks in this city regardless of city's Religion.Must be built adjacent to a Holy Site district with a Temple.",
+      "effects": []
+    },
+    {
+      "name": "Meenakshi Temple",
+      "era": null,
+      "cost": 355,
+      "requires": "Unlocked by Civil Service Civic",
+      "placement": "Grants 2 Apostles. Apostles and Gurus are 25% cheaper to purchase. Religious units adjacent to Gurus receive +5Religious Strength in Theological Combat and +1Movement.Must be built adjacent to a Holy Site and you must have founded a Religion.",
+      "effects": [
+        "+3Faith"
+      ]
+    },
+    {
+      "name": "Mont St. Michel",
+      "era": null,
+      "cost": 355,
+      "requires": "Unlocked by Divine Right Civic",
+      "placement": "+1Culture and +1Food to all Floodplains tiles in your empire. All Apostles you create gain the Martyr ability in addition to a second ability you chose normally.Must be built on Floodplains or Marsh.",
+      "effects": [
+        "+2Faith",
+        "2Relic slots"
+      ]
+    },
+    {
+      "name": "University of Sankore",
+      "era": null,
+      "cost": 355,
+      "requires": "Unlocked by Education Technology",
+      "placement": "+1Trade Route capacity. All your Trade Routes provide +1Science and +2Gold.Must be built on the Desert or Desert Hills, and adjacent to a Campus district with a University.",
+      "effects": [
+        "+1Faith",
+        "+3Science",
+        "2Great Scientist points per turn."
+      ]
+    },
+    {
+      "name": "Renaissance Era",
+      "era": null,
+      "cost": null,
+      "requires": null,
+      "placement": null,
+      "effects": []
+    },
+    {
+      "name": "Casa de Contratación",
+      "era": null,
+      "cost": 460,
+      "requires": "Unlocked by Cartography Technology",
+      "placement": "Gain 3Governor promotions.  All your cities not on your originalCapital's continent with aGovernor gain +15%Production, +15%Faith and +15%Gold. Must be built adjacent to a Government Plaza.",
+      "effects": [
+        "3Great Merchant points per turn."
+      ]
+    },
+    {
+      "name": "Forbidden City",
+      "era": null,
+      "cost": 460,
+      "requires": "Unlocked by Printing Technology",
+      "placement": "+1 Wildcard policy slotMust be built on flat land adjacent to the City Center.",
+      "effects": [
+        "+5Culture"
+      ]
+    },
+    {
+      "name": "Great Zimbabwe",
+      "era": null,
+      "cost": 460,
+      "requires": "Unlocked by Banking Technology",
+      "placement": "+2Trade Route capacity and +2Traders. YourTrade Routes from this city get +2Gold for every Bonus resource within 3 tiles of the city and in this city's territory.Must be built adjacent to a Commercial Hub district with a Market and adjacent toCattle.",
+      "effects": [
+        "+5Gold",
+        "2Great Merchant points per turn."
+      ]
+    },
+    {
+      "name": "Potala Palace",
+      "era": null,
+      "cost": 530,
+      "requires": "Unlocked by Astronomy Technology",
+      "placement": "+1 Diplomatic policy slot.  +1 Diplomatic Victory point.Must be built on a Hill adjacent to a Mountain.",
+      "effects": [
+        "+2Culture",
+        "+3Faith"
+      ]
+    },
+    {
+      "name": "St. Basil's Cathedral",
+      "era": null,
+      "cost": 460,
+      "requires": "Unlocked by Reformed Church Civic",
+      "placement": "Awards 1Relic. +100%Religious Tourism from this city. +1Food, +1Production, and +1Culture on all Tundra tiles for this city.Must be built adjacent to a City Center.",
+      "effects": [
+        "3Relic slots"
+      ]
+    },
+    {
+      "name": "Taj Mahal",
+      "era": "+1Era Score from Historic Moment earned after this wonder is complete if that Moment is usually worth 2 or moreEra Score. All your cities gain +10%Gold when you are inGolden orHeroic Age.Must be built next to a River.",
+      "cost": 460,
+      "requires": "Unlocked by Humanism Civic",
+      "placement": null,
+      "effects": []
+    },
+    {
+      "name": "Torre de Belém",
+      "era": null,
+      "cost": 460,
+      "requires": "Unlocked by Mercantilism Civic",
+      "placement": "InternationalTrade Routes receive +2Gold for every Luxury Resource at the destination. When the Torre de Belém is constructed, all cities not on your home continent receive the lowestProduction cost City Center building they can currently construct.Must be built on a Coast tile that is adjacent to a Harbor district.",
+      "effects": [
+        "+5Gold",
+        "1Great Admiral point per turn."
+      ]
+    },
+    {
+      "name": "Venetian Arsenal",
+      "era": null,
+      "cost": 460,
+      "requires": "Unlocked by Mass Production Technology",
+      "placement": "+75%Production towards naval units in all cities.Must be built on a Coast tile that is adjacent to an Industrial Zone district.",
+      "effects": [
+        "2Great Engineer points per turn."
+      ]
+    },
+    {
+      "name": "Industrial Era",
+      "era": null,
+      "cost": null,
+      "requires": null,
+      "placement": null,
+      "effects": []
+    },
+    {
+      "name": "Big Ben",
+      "era": null,
+      "cost": 725,
+      "requires": "Unlocked by Economics Technology",
+      "placement": "+1 Economic policy slotImmediately after constructionGold in treasury is increased by 50%. Must be built next to a River adjacent to a Commercial Hub district with a Bank.",
+      "effects": [
+        "+6Gold",
+        "3Great Merchant points per turn."
+      ]
+    },
+    {
+      "name": "Bolshoi Theatre",
+      "era": null,
+      "cost": 620,
+      "requires": "Unlocked by Opera and Ballet Civic",
+      "placement": "Awards 2 randomly-chosen free civics when completed. Must be built on flat land adjacent to a Theater Square district.",
+      "effects": [
+        "2Great Musician points per turn.",
+        "1Great Work of Music slot",
+        "1Great Work of Writing slot",
+        "2Great Writer points per turn."
+      ]
+    },
+    {
+      "name": "Hermitage",
+      "era": null,
+      "cost": 725,
+      "requires": "Unlocked by Natural History Civic",
+      "placement": "Great works stored in this wonder become automatically themed when full.Must be built along a River.",
+      "effects": [
+        "3Great Artist points per turn.",
+        "4Great Works of Art slots"
+      ]
+    },
+    {
+      "name": "Országház",
+      "era": null,
+      "cost": 460,
+      "requires": "Unlocked by Sanitation Technology",
+      "placement": "Additional +3Diplomatic Favor per City-state you are the Suzerain of.Must be built on a River.",
+      "effects": [
+        "+4Culture"
+      ]
+    },
+    {
+      "name": "Oxford University",
+      "era": null,
+      "cost": 620,
+      "requires": "Unlocked by Urbanization Civic",
+      "placement": "+20%Science in this city, and awards 2 randomly-chosen free technologies when completed. Must be built on Grassland or Plains adjacent to a Campus district with a University.",
+      "effects": [
+        "3Great Scientist points per turn.",
+        "2Great Works of Writing slots"
+      ]
+    },
+    {
+      "name": "Panama Canal",
+      "era": null,
+      "cost": 460,
+      "requires": "Unlocked by Steam Power Technology",
+      "placement": "Upon completion 1 or 2 adjacent Canal districts are automatically constructed. The Canal wonder tile can now be crossed by naval units.Trade Routes traveling through it can multiply theGold they get from districts at their destination.Must be built on a flat land tile where there are two adjacent tiles directly across the build tile from one another that meet the following criteria: one adjacent tile must be able to legally hold a Canal district connecting into the Panama Canal construction tile; the other must be either a city, a water tile, or be another tile that can hold a connecting Canal.",
+      "effects": [
+        "+10Gold"
+      ]
+    },
+    {
+      "name": "Ruhr Valley",
+      "era": null,
+      "cost": 620,
+      "requires": "Unlocked by Industrialization Technology",
+      "placement": "+20%Production in this city, and +1Production for each Mine and Quarry in this city. Must be built along a River adjacent to an Industrial Zone district with a Factory.",
+      "effects": []
+    },
+    {
+      "name": "Statue of Liberty",
+      "era": null,
+      "cost": 620,
+      "requires": "Unlocked by Civil Engineering Civic",
+      "placement": "+3 Diplomatic Victory Points when built. All your cities within 6 tiles are always 100% Loyal.Must be built on the Coast, adjacent to land and a Harbor district.",
+      "effects": []
+    },
+    {
+      "name": "Modern Era",
+      "era": null,
+      "cost": null,
+      "requires": null,
+      "placement": null,
+      "effects": []
+    },
+    {
+      "name": "Broadway",
+      "era": null,
+      "cost": 810,
+      "requires": "Unlocked by Mass Media Civic",
+      "placement": "+20%Culture in this city. 1 free random Atomic era civic boost. Must be built on flat land adjacent to a Theater Square district.",
+      "effects": [
+        "3Great Musician points per turn.",
+        "2Great Works of Music slots",
+        "1Great Work of Writing slot",
+        "3Great Writer points per turn."
+      ]
+    },
+    {
+      "name": "Cristo Redentor",
+      "era": null,
+      "cost": 610,
+      "requires": "Unlocked by Mass Media Civic",
+      "placement": "Awards 1 Relic. Holy City andRelicTourism is not diminished by other civilizations who have researched The Enlightenment civic. +75%Tourism from Seaside Resorts across your civilization.Must be built on Hills.",
+      "effects": [
+        "+4Culture"
+      ]
+    },
+    {
+      "name": "Eiffel Tower",
+      "era": null,
+      "cost": 810,
+      "requires": "Unlocked by Steel Technology",
+      "placement": "All tiles in your civilization gain +2 Appeal. Must be built on flat land adjacent to the City Center.",
+      "effects": []
+    },
+    {
+      "name": "Golden Gate Bridge",
+      "era": null,
+      "cost": 810,
+      "requires": "Unlocked by Combustion Technology",
+      "placement": "Land units can cross without needing to embark. Acts as Modern Road and creates Modern Roads (if not present) in land tiles on either end. City gains +3Amenities. All tiles in this city +4 Appeal. +100%Tourism from improvements and National Parks in this city.Trade Routes traveling through it can multiply theGold they get from districts at their destination.Must be built on a Coast tile. The bridge must run straight across the hex between two land tiles directly opposite one another. At least one water tile must be present on both the left and right sides of the bridge.",
+      "effects": [
+        "+3Amenities"
+      ]
+    },
+    {
+      "name": "Atomic Era",
+      "era": null,
+      "cost": null,
+      "requires": null,
+      "placement": null,
+      "effects": []
+    },
+    {
+      "name": "Amundsen-Scott Research Station",
+      "era": null,
+      "cost": 810,
+      "requires": "Unlocked by Rapid Deployment Civic",
+      "placement": "+20%Science and +10%Production in all cities. If there are 5 Tundra or Tundra Hills tiles within 3 tiles of a city and owned by this player these yields are doubled.Must be built next to a Campus with a Research Lab on a Tundra or Snow tile.",
+      "effects": [
+        "5Great Scientist points per turn."
+      ]
+    },
+    {
+      "name": "Biosphère",
+      "era": null,
+      "cost": 810,
+      "requires": "Unlocked by Synthetic Materials Technology",
+      "placement": "+200%Power for all Offshore Windfarms, Solar Farms, Wind Farms, Geothermal Plants, and Hydroelectric Dams. This building and these improvements provideTourism equal to theirPower. +1 Appeal to tiles adjacent to Rainforest and Marsh in your empire. Must be built along a River adjacent to a Neighborhood district.",
+      "effects": []
+    },
+    {
+      "name": "Estádio do Maracanã",
+      "era": null,
+      "cost": 870,
+      "requires": "Unlocked by Professional Sports Civic",
+      "placement": "+2Amenities in each city in your civilization. Must be built on flat land adjacent to an Entertainment Complex district with a Stadium.",
+      "effects": [
+        "+6Culture",
+        "+2Amenities"
+      ]
+    },
+    {
+      "name": "Sydney Opera House",
+      "era": null,
+      "cost": 925,
+      "requires": "Unlocked by Cultural Heritage Civic",
+      "placement": "Must be built on the Coast, adjacent to land and a Harbor district.",
+      "effects": [
+        "+8Culture",
+        "5Great Musician points per turn.",
+        "3Great Works of Music slots"
+      ]
+    }
+  ]
+}

@@ -32,7 +32,7 @@ val deployFolder = file("../deploy")
 tasks.register<JavaExec>("run") {
     dependsOn(tasks.getByName("classes"))
     mainClass.set(mainClassName)
-    classpath = sourceSets.main.get().runtimeClasspath
+    classpath = sourceSets.main.get().runtimeClasspath + files(assetsDir)
     standardInput = System.`in`
     workingDir = assetsDir
     isIgnoreExitValue = true
@@ -41,7 +41,7 @@ tasks.register<JavaExec>("run") {
 tasks.register<JavaExec>("debug") {
     dependsOn(tasks.getByName("classes"))
     mainClass.set(mainClassName)
-    classpath = sourceSets.main.get().runtimeClasspath
+    classpath = sourceSets.main.get().runtimeClasspath + files(assetsDir)
     standardInput = System.`in`
     workingDir = assetsDir
     isIgnoreExitValue = true

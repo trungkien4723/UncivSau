@@ -671,7 +671,13 @@ class CityConstructionsTable(private val cityScreen: CityScreen) {
             cityScreen.startPickTileForCreatesOneImprovement(construction, Stat.Gold, false)
             return
         }
+        // UniqueType.CreatesOneDistrict support - don't add yet, postpone until target tile for the district is selected
+        if (construction is Building && construction.hasCreateOneDistrictUnique()) {
+            cityScreen.startPickTileForCreatesOneDistrict(construction, Stat.Gold, false)
+            return
+        }
         cityScreen.stopPickTileForCreatesOneImprovement()
+        cityScreen.stopPickTileForCreatesOneDistrict()
 
         SoundPlayer.play(getConstructionSound(construction))
 

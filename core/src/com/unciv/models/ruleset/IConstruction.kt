@@ -176,6 +176,7 @@ class RejectionReason(val type: RejectionReasonType,
         private val techPolicyEraWonderRequirements = hashSetOf(
             RejectionReasonType.Obsoleted,
             RejectionReasonType.RequiresTech,
+            RejectionReasonType.RequiresCivic,
             RejectionReasonType.RequiresPolicy,
             RejectionReasonType.MorePolicyBranches,
             RejectionReasonType.RequiresBuildingInSomeCity,
@@ -218,6 +219,8 @@ class RejectionReason(val type: RejectionReasonType,
             RejectionReasonType.Obsoleted,
             RejectionReasonType.WonderBeingBuiltElsewhere,
             RejectionReasonType.RequiresTech,
+            RejectionReasonType.RequiresCivic,
+            RejectionReasonType.RequiresDistrictInThisCity,
             RejectionReasonType.NoSettlerForOneCityPlayers,
             RejectionReasonType.WaterUnitsInCoastalCities,
         )
@@ -249,6 +252,7 @@ enum class RejectionReasonType(val shouldShow: Boolean, val errorMessage: String
 
     Obsoleted(false, "Obsolete"),
     RequiresTech(false, "Required tech not researched"),
+    RequiresCivic(false, "Required civic not researched"),
     RequiresPolicy(false, "Requires a specific policy!"),
     MorePolicyBranches(false, "Hidden until more policy branches are fully adopted"),
 
@@ -259,7 +263,7 @@ enum class RejectionReasonType(val shouldShow: Boolean, val errorMessage: String
     RequiresBuildingInAllCities(true, "Requires a specific building in all cities!"),
     RequiresBuildingInSomeCities(true, "Requires a specific building in more cities!"),
     RequiresBuildingInSomeCity(true, "Requires a specific building anywhere in your empire!"),
-    RequiresDistrictInThisCity(true, "Requires a specific district in this city!"),
+    RequiresDistrictInThisCity(false, "Requires a specific district in this city!"),
     
     NoSuchImprovement(false, "No such improvement exists in the ruleset"),
     NoTileCanContainImprovement(false, "No tile can contain this improvement"),

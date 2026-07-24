@@ -1,0 +1,6850 @@
+{
+  "Babylon": {
+    "adjective": [
+      "Babylonian"
+    ],
+    "startBias": [
+      "Avoid [Tundra]"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Nebuchadnezzar II",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      27,
+      53,
+      63
+    ],
+    "innerColor": [
+      213,
+      249,
+      255
+    ],
+    "favoredReligion": "Islam",
+    "uniqueName": "Ingenuity",
+    "cities": [
+      "Babylon",
+      "Akkad",
+      "Dur-Kurigalzu",
+      "Nippur",
+      "Borsippa",
+      "Sippar",
+      "Opis",
+      "Mari",
+      "Shushan",
+      "Eshnunna",
+      "Ellasar",
+      "Erech",
+      "Kutha",
+      "Sirpurla",
+      "Neribtum",
+      "Ashur",
+      "Ninveh",
+      "Nimrud",
+      "Arbela",
+      "Nuzi",
+      "Arrapkha",
+      "Tutub",
+      "Shaduppum",
+      "Rapiqum",
+      "Mashkan Shapir",
+      "Tuttul",
+      "Ramad",
+      "Ana",
+      "Haradum",
+      "Agrab",
+      "Uqair",
+      "Gubba",
+      "Hafriyat",
+      "Nagar",
+      "Shubat Enlil",
+      "Urhai",
+      "Urkesh",
+      "Awan",
+      "Riblah",
+      "Tayma"
+    ],
+    "spyNames": [
+      "Rim-Sin II",
+      "Smerdis",
+      "Ilum-ma-ili",
+      "Peshgaldaramesh",
+      "Ur-zigurumaÅ¡",
+      "Semiramis",
+      "Em",
+      "Ishtar",
+      "Bilit Taauth",
+      "Aruru"
+    ],
+    "uniqueBuildings": [
+      "Palgum"
+    ],
+    "uniqueDistricts": []
+  },
+  "Greece": {
+    "adjective": [
+      "Greek"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Diplomatic",
+    "personality": "Alexander",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      255,
+      255,
+      255
+    ],
+    "innerColor": [
+      65,
+      141,
+      254
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Hellenic League",
+    "cities": [
+      "Athens",
+      "Sparta",
+      "Corinth",
+      "Argos",
+      "Knossos",
+      "Mycenae",
+      "Pharsalos",
+      "Ephesus",
+      "Halicarnassus",
+      "Rhodes",
+      "Eretria",
+      "Pergamon",
+      "Miletos",
+      "Megara",
+      "Phocaea",
+      "Sicyon",
+      "Tiryns",
+      "Samos",
+      "Mytilene",
+      "Chios",
+      "Paros",
+      "Elis",
+      "Syracuse",
+      "Herakleia",
+      "Gortyn",
+      "Chalkis",
+      "Pylos",
+      "Pella",
+      "Naxos",
+      "Larissa",
+      "Apollonia",
+      "Messene",
+      "Orchomenos",
+      "Ambracia",
+      "Kos",
+      "Knidos",
+      "Amphipolis",
+      "Patras",
+      "Lamia",
+      "Nafplion",
+      "Apolyton"
+    ],
+    "spyNames": [
+      "Jason",
+      "Helena",
+      "Alexa",
+      "Cletus",
+      "Kassandra",
+      "Andres",
+      "Desdemona",
+      "Anthea",
+      "Aeneas",
+      "Leander"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": [
+      "Acropolis"
+    ]
+  },
+  "China": {
+    "adjective": [
+      "Chinese"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "Scientific",
+    "personality": "Wu Zetian",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      9,
+      112,
+      84
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Taoism",
+    "uniqueName": "Art of War",
+    "cities": [
+      "Beijing",
+      "Shanghai",
+      "Guangzhou",
+      "Nanjing",
+      "Xian",
+      "Chengdu",
+      "Hangzhou",
+      "Tianjin",
+      "Macau",
+      "Shandong",
+      "Kaifeng",
+      "Ningbo",
+      "Baoding",
+      "Yangzhou",
+      "Harbin",
+      "Chongqing",
+      "Luoyang",
+      "Kunming",
+      "Taipei",
+      "Shenyang",
+      "Taiyuan",
+      "Tainan",
+      "Dalian",
+      "Lijiang",
+      "Wuxi",
+      "Suzhou",
+      "Maoming",
+      "Shaoguan",
+      "Yangjiang",
+      "Heyuan",
+      "Huangshi",
+      "Yichang",
+      "Yingtian",
+      "Xinyu",
+      "Xinzheng",
+      "Handan",
+      "Dunhuang",
+      "Gaoyu",
+      "Nantong",
+      "Weifang",
+      "Xikang"
+    ],
+    "spyNames": [
+      "Li",
+      "Chen",
+      "Zhang",
+      "Liu",
+      "Yang",
+      "Huang",
+      "Zhao",
+      "Wu",
+      "Zhou",
+      "Sun"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Egypt": {
+    "adjective": [
+      "Egyptian"
+    ],
+    "startBias": [
+      "Avoid [Jungle]",
+      "Avoid [Forest]"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Ramesses II",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      255,
+      252,
+      3
+    ],
+    "innerColor": [
+      83,
+      0,
+      208
+    ],
+    "favoredReligion": "Islam",
+    "uniqueName": "Monument Builders",
+    "cities": [
+      "Thebes",
+      "Memphis",
+      "Heliopolis",
+      "Elephantine",
+      "Alexandria",
+      "Pi-Ramesses",
+      "Giza",
+      "Byblos",
+      "Akhetaten",
+      "Hieraconpolis",
+      "Abydos",
+      "Asyut",
+      "Avaris",
+      "Lisht",
+      "Buto",
+      "Edfu",
+      "Pithom",
+      "Busiris",
+      "Kahun",
+      "Athribis",
+      "Mendes",
+      "Elashmunein",
+      "Tanis",
+      "Bubastis",
+      "Oryx",
+      "Sebennytus",
+      "Akhmin",
+      "Karnak",
+      "Luxor",
+      "El Kab",
+      "Armant",
+      "Balat",
+      "Ellahun",
+      "Hawara",
+      "Dashur",
+      "Damanhur",
+      "Abusir",
+      "Herakleopolis",
+      "Akoris",
+      "Benihasan",
+      "Badari",
+      "Hermopolis",
+      "Amrah",
+      "Koptos",
+      "Ombos",
+      "Naqada",
+      "Semna",
+      "Soleb"
+    ],
+    "spyNames": [
+      "Refaat",
+      "Heba",
+      "Salah",
+      "Ahmed",
+      "Zakaria",
+      "Bastet",
+      "Ma'at",
+      "Nebhet",
+      "Tefenet",
+      "Neuth"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "England": {
+    "adjective": [
+      "English"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Diplomatic",
+    "personality": "Elizabeth",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      109,
+      2,
+      0
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Sun Never Sets",
+    "cities": [
+      "London",
+      "York",
+      "Nottingham",
+      "Hastings",
+      "Canterbury",
+      "Coventry",
+      "Warwick",
+      "Newcastle",
+      "Oxford",
+      "Liverpool",
+      "Dover",
+      "Brighton",
+      "Norwich",
+      "Leeds",
+      "Reading",
+      "Birmingham",
+      "Richmond",
+      "Exeter",
+      "Cambridge",
+      "Gloucester",
+      "Manchester",
+      "Bristol",
+      "Leicester",
+      "Carlisle",
+      "Ipswich",
+      "Portsmouth",
+      "Berwick",
+      "Bath",
+      "Mumbles",
+      "Southampton",
+      "Sheffield",
+      "Salisbury",
+      "Colchester",
+      "Plymouth",
+      "Lancaster",
+      "Blackpool",
+      "Winchester",
+      "Hull"
+    ],
+    "spyNames": [
+      "James",
+      "Scarlett",
+      "Mycroft",
+      "Charlotte",
+      "Gwendolyn",
+      "Mr. Eks",
+      "Dr. Grey",
+      "Andrew",
+      "Scott",
+      "Anne"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": [
+      "Royal Navy Dockyard"
+    ]
+  },
+  "France": {
+    "adjective": [
+      "French"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "Cultural",
+    "personality": "Napoleon",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      38,
+      98,
+      255
+    ],
+    "innerColor": [
+      239,
+      236,
+      148
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Ancien RÃ©gime",
+    "cities": [
+      "Paris",
+      "Orleans",
+      "Lyon",
+      "Troyes",
+      "Tours",
+      "Marseille",
+      "Chartres",
+      "Avignon",
+      "Rouen",
+      "Grenoble",
+      "Dijon",
+      "Amiens",
+      "Cherbourg",
+      "Poitiers",
+      "Toulouse",
+      "Bayonne",
+      "Strasbourg",
+      "Brest",
+      "Bordeaux",
+      "Rennes",
+      "Nice",
+      "Saint Etienne",
+      "Nantes",
+      "Reims",
+      "Le Mans",
+      "Montpellier",
+      "Limoges",
+      "Nancy",
+      "Lille",
+      "Caen",
+      "Toulon",
+      "Le Havre",
+      "Lourdes",
+      "Cannes",
+      "Aix-En-Provence",
+      "La Rochelle",
+      "Bourges",
+      "Calais"
+    ],
+    "spyNames": [
+      "Jean-Paul",
+      "Martine",
+      "Lucien",
+      "FranÃ§ois",
+      "Augustine",
+      "Monsieur X",
+      "Dr. Dupont",
+      "VipÃ¨re",
+      "Yvette",
+      "Renard"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Russia": {
+    "adjective": [
+      "Russian"
+    ],
+    "startBias": [
+      "Tundra"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Catherine",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      239,
+      180,
+      0
+    ],
+    "innerColor": [
+      0,
+      0,
+      0
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Siberian Riches",
+    "cities": [
+      "Moscow",
+      "St. Petersburg",
+      "Novgorod",
+      "Rostov",
+      "Yaroslavl",
+      "Yekaterinburg",
+      "Yakutsk",
+      "Vladivostok",
+      "Smolensk",
+      "Orenburg",
+      "Krasnoyarsk",
+      "Khabarovsk",
+      "Bryansk",
+      "Tver",
+      "Novosibirsk",
+      "Magadan",
+      "Murmansk",
+      "Irkutsk",
+      "Chita",
+      "Samara",
+      "Arkhangelsk",
+      "Chelyabinsk",
+      "Tobolsk",
+      "Vologda",
+      "Omsk",
+      "Astrakhan",
+      "Kursk",
+      "Saratov",
+      "Tula",
+      "Vladimir",
+      "Perm",
+      "Voronezh",
+      "Pskov",
+      "Starayarussa",
+      "Kostoma",
+      "Nizhniy Novgorod",
+      "Suzdal",
+      "Magnitogorsk"
+    ],
+    "spyNames": [
+      "Alexei",
+      "Lena",
+      "Dmitry",
+      "Anastasia",
+      "Tatiana",
+      "Boris",
+      "Doktor Seriy",
+      "Mikhail",
+      "Natacha",
+      "Zmeya"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": [
+      "Lavra"
+    ]
+  },
+  "Rome": {
+    "adjective": [
+      "Roman"
+    ],
+    "startBias": [
+      "Avoid [Tundra]",
+      "Avoid [Desert]"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Augustus Caesar",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      70,
+      0,
+      118
+    ],
+    "innerColor": [
+      240,
+      199,
+      0
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "The Glory of Rome",
+    "cities": [
+      "Rome",
+      "Antium",
+      "Cumae",
+      "Neapolis",
+      "Ravenna",
+      "Arretium",
+      "Mediolanum",
+      "Arpinum",
+      "Circei",
+      "Setia",
+      "Satricum",
+      "Ardea",
+      "Ostia",
+      "Velitrae",
+      "Viroconium",
+      "Tarentum",
+      "Brundisium",
+      "Caesaraugusta",
+      "Caesarea",
+      "Palmyra",
+      "Signia",
+      "Aquileia",
+      "Clusium",
+      "Sutrium",
+      "Cremona",
+      "Placentia",
+      "Hispalis",
+      "Artaxata",
+      "Aurelianorum",
+      "Nicopolis",
+      "Agrippina",
+      "Verona",
+      "Corfinium",
+      "Treverii",
+      "Sirmium",
+      "Augustadorum",
+      "Curia",
+      "Interrama",
+      "Adria"
+    ],
+    "spyNames": [
+      "Flavius",
+      "Regula",
+      "Servius",
+      "Lucia",
+      "Cornelius",
+      "Licina",
+      "Canus",
+      "Serpens",
+      "Agrippa",
+      "Brutus"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Arabia": {
+    "adjective": [
+      "Arabian"
+    ],
+    "startBias": [
+      "Desert"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Harun al-Rashid",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      43,
+      88,
+      46
+    ],
+    "innerColor": [
+      146,
+      221,
+      10
+    ],
+    "favoredReligion": "Islam",
+    "uniqueName": "Trade Caravans",
+    "cities": [
+      "Mecca",
+      "Medina",
+      "Damascus",
+      "Baghdad",
+      "Najran",
+      "Kufah",
+      "Basra",
+      "Khurasan",
+      "Anjar",
+      "Fustat",
+      "Aden",
+      "Yamama",
+      "Muscat",
+      "Mansura",
+      "Bukhara",
+      "Fez",
+      "Shiraz",
+      "Merw",
+      "Balkh",
+      "Mosul",
+      "Aydab",
+      "Bayt",
+      "Suhar",
+      "Taif",
+      "Hama",
+      "Tabuk",
+      "Sana'a",
+      "Shihr",
+      "Tripoli",
+      "Tunis",
+      "Kairouan",
+      "Algiers",
+      "Oran"
+    ],
+    "spyNames": [
+      "Solhofaat",
+      "Khenzeer",
+      "Zarafah",
+      "Temsaah",
+      "Abyadh",
+      "Mostafa",
+      "Yusuf",
+      "Waddah",
+      "Sameera",
+      "Gamal"
+    ],
+    "uniqueBuildings": [
+      "Madrasa"
+    ],
+    "uniqueDistricts": []
+  },
+  "America": {
+    "adjective": [
+      "American"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "Scientific",
+    "personality": "George Washington",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      28,
+      51,
+      119
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Manifest Destiny",
+    "cities": [
+      "Washington",
+      "New York",
+      "Boston",
+      "Philadelphia",
+      "Atlanta",
+      "Chicago",
+      "Seattle",
+      "San Francisco",
+      "Los Angeles",
+      "Houston",
+      "Portland",
+      "St. Louis",
+      "Miami",
+      "Buffalo",
+      "Detroit",
+      "New Orleans",
+      "Baltimore",
+      "Denver",
+      "Cincinnati",
+      "Dallas",
+      "Memphis",
+      "Cleveland",
+      "Kansas City",
+      "San Diego",
+      "Richmond",
+      "Las Vegas",
+      "Phoenix",
+      "Albuquerque",
+      "Minneapolis",
+      "Pittsburgh",
+      "Oakland",
+      "Tampa Bay",
+      "Orlando",
+      "Tacoma",
+      "Santa Fe",
+      "Olympia",
+      "Hunt Valley",
+      "Springfield",
+      "Palo Alto",
+      "Centralia",
+      "Spokane",
+      "Jacksonville",
+      "Savannah",
+      "Charleston",
+      "San Antonio",
+      "Birmingham",
+      "Anchorage",
+      "Sacramento",
+      "Reno",
+      "Salt Lake City",
+      "Boise",
+      "Milwaukee",
+      "Santa Cruz",
+      "Little Rock"
+    ],
+    "spyNames": [
+      "Cousin",
+      "Felix",
+      "Dennis",
+      "Edward",
+      "Prof. Rex",
+      "Eliza",
+      "Mary",
+      "Virginia",
+      "Scarlett",
+      "Barbara"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Japan": {
+    "adjective": [
+      "Japanese"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Oda Nobunaga",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      255,
+      255,
+      255
+    ],
+    "innerColor": [
+      184,
+      0,
+      0
+    ],
+    "favoredReligion": "Shinto",
+    "uniqueName": "Bushido",
+    "cities": [
+      "Kyoto",
+      "Osaka",
+      "Tokyo",
+      "Satsuma",
+      "Kagoshima",
+      "Nara",
+      "Nagoya",
+      "Izumo",
+      "Nagasaki",
+      "Yokohama",
+      "Shimonoseki",
+      "Matsuyama",
+      "Sapporo",
+      "Hakodate",
+      "Ise",
+      "Toyama",
+      "Fukushima",
+      "Suo",
+      "Bizen",
+      "Echizen",
+      "Izumi",
+      "Omi",
+      "Echigo",
+      "Kozuke",
+      "Sado",
+      "Kobe",
+      "Nagano",
+      "Hiroshima",
+      "Takayama",
+      "Akita",
+      "Fukuoka",
+      "Aomori",
+      "Kamakura",
+      "Kochi",
+      "Naha",
+      "Sendai",
+      "Gifu",
+      "Yamaguchi",
+      "Ota",
+      "Tottori"
+    ],
+    "spyNames": [
+      "Akaishi",
+      "Oki",
+      "Hattori",
+      "Morozumi",
+      "Momochi",
+      "Kawashima",
+      "Orin",
+      "Sakanishi",
+      "Kaede",
+      "Mochizuki"
+    ],
+    "uniqueBuildings": [
+      "Electronics Factory"
+    ],
+    "uniqueDistricts": []
+  },
+  "India": {
+    "adjective": [
+      "Indian"
+    ],
+    "startBias": [
+      "Grassland"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Gandhi",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      14,
+      113,
+      4
+    ],
+    "innerColor": [
+      255,
+      163,
+      71
+    ],
+    "favoredReligion": "Hinduism",
+    "uniqueName": "Population Growth",
+    "cities": [
+      "Delhi",
+      "Mumbai",
+      "Vijayanagara",
+      "Pataliputra",
+      "Varanasi",
+      "Agra",
+      "Calcutta",
+      "Lahore",
+      "Bangalore",
+      "Hyderabad",
+      "Madurai",
+      "Ahmedabad",
+      "Kolhapur",
+      "Prayaga",
+      "Ayodhya",
+      "Indraprastha",
+      "Mathura",
+      "Ujjain",
+      "Gulbarga",
+      "Jaunpur",
+      "Rajagriha",
+      "Sravasti",
+      "Tiruchirapalli",
+      "Thanjavur",
+      "Bodhgaya",
+      "Kushinagar",
+      "Amaravati",
+      "Gaur",
+      "Gwalior",
+      "Jaipur",
+      "Karachi"
+    ],
+    "spyNames": [
+      "Ashok",
+      "Shanx",
+      "Hormis",
+      "Sanjeev",
+      "Ananda",
+      "Rani",
+      "Parvati",
+      "Mukta",
+      "Karishma",
+      "Jyotsna"
+    ],
+    "uniqueBuildings": [
+      "Stepwell"
+    ],
+    "uniqueDistricts": []
+  },
+  "Germany": {
+    "adjective": [
+      "German"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "Scientific",
+    "personality": "Otto von Bismarck",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      179,
+      178,
+      184
+    ],
+    "innerColor": [
+      37,
+      43,
+      33
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Furor Teutonicus",
+    "cities": [
+      "Berlin",
+      "Hamburg",
+      "Munich",
+      "Cologne",
+      "Frankfurt",
+      "Essen",
+      "Dortmund",
+      "Stuttgart",
+      "DÃ¼sseldorf",
+      "Bremen",
+      "Hannover",
+      "Duisburg",
+      "Leipzig",
+      "Dresden",
+      "Bonn",
+      "Bochum",
+      "Bielefeld",
+      "Karlsruhe",
+      "Gelsenkirchen",
+      "Wiesbaden",
+      "MÃ¼nster",
+      "Rostock",
+      "Chemnitz",
+      "Braunschweig",
+      "Halle",
+      "MÃ¶nchengladbach",
+      "Kiel",
+      "Wuppertal",
+      "Freiburg",
+      "Hagen",
+      "Erfurt",
+      "Kaiserslautern",
+      "Kassel",
+      "Oberhausen",
+      "Hamm",
+      "SaarbrÃ¼cken",
+      "Krefeld",
+      "Pirmasens",
+      "Potsdam",
+      "Solingen",
+      "OsnabrÃ¼ck",
+      "Ludwigshafen",
+      "Leverkusen",
+      "Oldenburg",
+      "Neuss",
+      "MÃ¼lheim",
+      "Darmstadt",
+      "Herne",
+      "WÃ¼rzburg",
+      "Recklinghausen",
+      "GÃ¶ttingen",
+      "Wolfsburg",
+      "Koblenz",
+      "Hildesheim",
+      "Erlangen"
+    ],
+    "spyNames": [
+      "Johann",
+      "Marlene",
+      "Wilhelm",
+      "Eva",
+      "Heinz",
+      "Horst",
+      "Carl",
+      "Viper",
+      "Albrecht",
+      "Anton"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "The Ottomans": {
+    "adjective": [
+      "Ottoman"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Suleiman I",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      245,
+      248,
+      185
+    ],
+    "innerColor": [
+      18,
+      84,
+      30
+    ],
+    "favoredReligion": "Islam",
+    "uniqueName": "Barbary Corsairs",
+    "cities": [
+      "Istanbul",
+      "Edirne",
+      "Ankara",
+      "Bursa",
+      "Konya",
+      "Samsun",
+      "Gaziantep",
+      "DiyarbakÄ±r",
+      "Izmir",
+      "Kayseri",
+      "Malatya",
+      "Mersin",
+      "Antalya",
+      "Zonguldak",
+      "Denizli",
+      "Ordu",
+      "MuÄŸla",
+      "EskiÅŸehir",
+      "Inebolu",
+      "Sinop",
+      "Adana",
+      "Artvin",
+      "Bodrum",
+      "Eregli",
+      "Silifke",
+      "Sivas",
+      "Amasya",
+      "Marmaris",
+      "Trabzon",
+      "Erzurum",
+      "Urfa",
+      "Izmit",
+      "Afyonkarahisar",
+      "Bitlis",
+      "Yalova"
+    ],
+    "spyNames": [
+      "Ibrahim",
+      "Bayezid",
+      "Sokollu",
+      "Mahmut",
+      "Uveys",
+      "Roxelana",
+      "Safiye",
+      "Hafsa",
+      "Kosem",
+      "Nurbanu"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Korea": {
+    "adjective": [
+      "Korean"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Seondeok",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Scientific",
+      "Piety",
+      "Nature Lover"
+    ],
+    "outerColor": [
+      0,
+      21,
+      84
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Buddhism",
+    "uniqueName": "Cheomseongdae",
+    "cities": [
+      "Gyeongju",
+      "Seoul",
+      "Busan",
+      "Daegu",
+      "Pyongyang",
+      "Kaesong",
+      "Suwon",
+      "Gwangju",
+      "Gangneung",
+      "Hamhung",
+      "Wonju",
+      "Ulsan",
+      "Changwon",
+      "Andong",
+      "Gongju",
+      "Haeju",
+      "Cheongju",
+      "Mokpo",
+      "Dongducheon",
+      "Geoje",
+      "Suncheon",
+      "Jinju",
+      "Sangju",
+      "Rason",
+      "Gyeongju",
+      "Chungju",
+      "Sacheon",
+      "Gimje",
+      "Anju",
+      "Jeonju"
+    ],
+    "spyNames": [
+      "Kim",
+      "Park",
+      "Han",
+      "Na",
+      "Kong",
+      "Yu",
+      "Ahn",
+      "Da",
+      "Eun",
+      "Choe"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Iroquois": {
+    "adjective": [
+      "Iroquoise"
+    ],
+    "startBias": [
+      "Forest"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Hiawatha",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      54,
+      72,
+      72
+    ],
+    "innerColor": [
+      246,
+      205,
+      137
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "The Great Warpath",
+    "cities": [
+      "Onondaga",
+      "Osininka",
+      "Grand River",
+      "Akwesasme",
+      "Buffalo Creek",
+      "Brantford",
+      "Montreal",
+      "Genesse River",
+      "Canandaigua Lake",
+      "Lake Simcoe",
+      "Salamanca",
+      "Gowanda",
+      "Cuba",
+      "Akron",
+      "Kanesatake",
+      "Ganienkeh",
+      "Cayuga Castle",
+      "Chondote",
+      "Canajoharie",
+      "Nedrow",
+      "Oneida Lake",
+      "Kanonwalohale",
+      "Green Bay",
+      "Southwold",
+      "Mohawk Valley",
+      "Schoharie",
+      "Bay of Quinte",
+      "Kanawale",
+      "Kanatsiokareke",
+      "Tyendinaga",
+      "Hahta"
+    ],
+    "spyNames": [
+      "Onatah",
+      "Oneida",
+      "Oshadagea",
+      "Otetiani",
+      "Genesee",
+      "Dadgayadoh",
+      "Otwtiani",
+      "Kateri",
+      "Onondakai",
+      "Honanyawus"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Persia": {
+    "adjective": [
+      "Persian"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "Scientific",
+    "personality": "Darius I",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      153,
+      5,
+      3
+    ],
+    "innerColor": [
+      244,
+      232,
+      54
+    ],
+    "favoredReligion": "Zoroastrianism",
+    "uniqueName": "Achaemenid Legacy",
+    "cities": [
+      "Persepolis",
+      "Parsagadae",
+      "Susa",
+      "Ecbatana",
+      "Tarsus",
+      "Gordium",
+      "Bactra",
+      "Sardis",
+      "Ergili",
+      "Dariushkabir",
+      "Ghulaman",
+      "Zohak",
+      "Istakhr",
+      "Jinjan",
+      "Borazjan",
+      "Herat",
+      "Dakyanus",
+      "Bampur",
+      "Turengtepe",
+      "Rey",
+      "Shiraz",
+      "Thuspa",
+      "Hasanlu",
+      "Gabae",
+      "Merv",
+      "Behistun",
+      "Kandahar",
+      "Altintepe",
+      "Bunyan",
+      "Charsadda",
+      "Uratyube",
+      "Dura Europos",
+      "Aleppo",
+      "Qatna",
+      "Kabul",
+      "Capisa",
+      "Kyreskhata",
+      "Marakanda",
+      "Peshawar",
+      "Van",
+      "Pteira",
+      "Arshada",
+      "Artakaona",
+      "Aspabota",
+      "Autiyara",
+      "Bagastana",
+      "Baxtri",
+      "Darmasa",
+      "Daphnai",
+      "Drapsaka",
+      "Eion",
+      "Gandutava",
+      "Gaugamela",
+      "Harmozeia",
+      "Ekatompylos",
+      "Izata",
+      "Kampada",
+      "Kapisa",
+      "Karmana",
+      "Kounaxa",
+      "Kuganaka",
+      "Nautaka",
+      "Paishiyauvada",
+      "Patigrbana",
+      "Phrada"
+    ],
+    "spyNames": [
+      "Azi",
+      "Dabir",
+      "Firuz",
+      "Gaspar",
+      "Shahzad",
+      "Aga",
+      "Marjane",
+      "Peri",
+      "Sartaj ",
+      "Yasmin"
+    ],
+    "uniqueBuildings": [
+      "Darb-i Imam"
+    ],
+    "uniqueDistricts": []
+  },
+  "Polynesia": {
+    "adjective": [
+      "Polynesia"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Kamehameha I",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      217,
+      89,
+      0
+    ],
+    "innerColor": [
+      255,
+      255,
+      75
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Wayfinding",
+    "cities": [
+      "Honolulu",
+      "Samoa",
+      "Tonga",
+      "Nuku Hiva",
+      "Raiatea",
+      "Aotearoa",
+      "Tahiti",
+      "Hilo",
+      "Te Wai Pounamu",
+      "Rapa Nui",
+      "Tuamotu",
+      "Rarotonga",
+      "Tuvalu",
+      "Tubuai",
+      "Mangareva",
+      "Oahu",
+      "Kiritimati",
+      "Ontong Java",
+      "Niue",
+      "Rekohu",
+      "Rakahanga",
+      "Bora Bora",
+      "Kailua",
+      "Uvea",
+      "Futuna",
+      "Rotuma",
+      "Tokelau",
+      "Lahaina",
+      "Bellona",
+      "Mungava",
+      "Tikopia",
+      "Emae",
+      "Kapingamarangi",
+      "Takuu",
+      "Nukuoro",
+      "Sikaiana",
+      "Anuta",
+      "Nuguria",
+      "Pileni",
+      "Nukumanu"
+    ],
+    "spyNames": [
+      "Tiki",
+      "Hotu Matua",
+      "Rongo-ma-tane",
+      "Kupe",
+      "Haloti",
+      "Degei",
+      "Babamik",
+      "Kulu Lau",
+      "Nangananga",
+      "Turua"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Siam": {
+    "adjective": [
+      "Siamese"
+    ],
+    "startBias": [
+      "Avoid [Forest]"
+    ],
+    "preferredVictoryType": "Diplomatic",
+    "personality": "Ramkhamhaeng",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      245,
+      230,
+      55
+    ],
+    "innerColor": [
+      177,
+      8,
+      3
+    ],
+    "favoredReligion": "Buddhism",
+    "uniqueName": "Father Governs Children",
+    "cities": [
+      "Sukhothai",
+      "Si Satchanalai",
+      "Muang Saluang",
+      "Lampang",
+      "Phitsanulok",
+      "Kamphaeng Pet",
+      "Nakhom Chum",
+      "Vientiane",
+      "Nakhon Si Thammarat",
+      "Martaban",
+      "Nakhon Sawan",
+      "Chainat",
+      "Luang Prabang",
+      "Uttaradit",
+      "Chiang Thong",
+      "Phrae",
+      "Nan",
+      "Tak",
+      "Suphanburi",
+      "Hongsawadee",
+      "Thawaii",
+      "Ayutthaya",
+      "Taphan Hin",
+      "Uthai Thani",
+      "Lap Buri",
+      "Ratchasima",
+      "Ban Phai",
+      "Loci",
+      "Khon Kaen",
+      "Surin"
+    ],
+    "spyNames": [
+      "Aran",
+      "Chanarong",
+      "Kiet",
+      "Niran",
+      "Virote",
+      "Kulap",
+      "Mayuree",
+      "Phueng",
+      "Ratana",
+      "Tola"
+    ],
+    "uniqueBuildings": [
+      "Wat"
+    ],
+    "uniqueDistricts": []
+  },
+  "Spain": {
+    "adjective": [
+      "Spanish"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Isabella",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      84,
+      26,
+      26
+    ],
+    "innerColor": [
+      255,
+      168,
+      168
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Seven Cities of Gold",
+    "cities": [
+      "Madrid",
+      "Barcelona",
+      "Seville",
+      "Cordoba",
+      "Toledo",
+      "Santiago",
+      "Salamanca",
+      "Murcia",
+      "Valencia",
+      "Zaragoza",
+      "Pamplona",
+      "Vitoria",
+      "Santander",
+      "Oviedo",
+      "Jaen",
+      "LogroÃ±o",
+      "Valladolid",
+      "Palma",
+      "Teruel",
+      "Almeria",
+      "Leon",
+      "Zamora",
+      "Mida",
+      "Lugo",
+      "Alicante",
+      "CÃ diz",
+      "Eiche",
+      "Alcorcon",
+      "Burgos",
+      "Vigo",
+      "Badajoz",
+      "La CoruÃ±a",
+      "Guadalquivir",
+      "Bilbao",
+      "San Sebastian",
+      "Granada",
+      "MÃ©rida",
+      "Huelva",
+      "Ibiza",
+      "Las Palmas",
+      "Tenerife"
+    ],
+    "spyNames": [
+      "Rodrigo",
+      "Esmeralda",
+      "Leon",
+      "Mathilda",
+      "Ramona",
+      "SeÃ±or X",
+      "Topolino",
+      "Serpiente",
+      "Garcia",
+      "El Lobo"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Songhai": {
+    "adjective": [
+      "Songhai"
+    ],
+    "startBias": [
+      "Avoid [Tundra]"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Askia",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      214,
+      145,
+      19
+    ],
+    "innerColor": [
+      90,
+      0,
+      10
+    ],
+    "favoredReligion": "Islam",
+    "uniqueName": "River Warlord",
+    "cities": [
+      "Gao",
+      "Tombouctu",
+      "Jenne",
+      "Taghaza",
+      "Tondibi",
+      "Kumbi Saleh",
+      "Kukia",
+      "Walata",
+      "Tegdaoust",
+      "Argungu",
+      "Gwandu",
+      "Kebbi",
+      "Boussa",
+      "Motpi",
+      "Bamako",
+      "Wa",
+      "Kayes",
+      "Awdaghost",
+      "Ouadane",
+      "Dakar",
+      "Tadmekket",
+      "Tekedda",
+      "Kano",
+      "Agadez",
+      "Niamey",
+      "Torodi",
+      "Ouatagouna",
+      "Dori",
+      "Bamba",
+      "Segou"
+    ],
+    "spyNames": [
+      "Ahmadou",
+      "Ayub",
+      "Badru",
+      "Bokhari",
+      "Guedado",
+      "Adhiambo",
+      "Chinaka",
+      "Laila",
+      "Mariama",
+      "Oni"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Mongolia": {
+    "adjective": [
+      "Mongolian"
+    ],
+    "startBias": [
+      "Plains"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Genghis Khan",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      81,
+      0,
+      9
+    ],
+    "innerColor": [
+      255,
+      120,
+      0
+    ],
+    "favoredReligion": "Tengriism",
+    "uniqueName": "Mongol Terror",
+    "cities": [
+      "Karakorum",
+      "Beshbalik",
+      "Turfan",
+      "Hsia",
+      "Old Sarai",
+      "New Sarai",
+      "Tabriz",
+      "Tiflis",
+      "Otrar",
+      "Sanchu",
+      "Kazan",
+      "Almarikh",
+      "Ulaanbaatar",
+      "Hovd",
+      "Darhan",
+      "Dalandzadgad",
+      "Mandalgovi",
+      "Choybalsan",
+      "Erdenet",
+      "Tsetserieg",
+      "Baruun-Urt",
+      "Ereen",
+      "Batshireet",
+      "Choyr",
+      "Ulaangom",
+      "Tosontsengel",
+      "Altay",
+      "Uliastay",
+      "Bayanhongor",
+      "Har-Ayrag",
+      "Nalayh",
+      "Tes"
+    ],
+    "spyNames": [
+      "AsashÅryÅ«",
+      "TÃ¶mÃ¶riin",
+      "Zevegiin",
+      "Jigjidiin",
+      "Enkhbat",
+      "MÃ¶nkhbayar",
+      "GÃ¼ndegmaa",
+      "Ssima",
+      "Batachikhan",
+      "Chulunny"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Aztecs": {
+    "adjective": [
+      "Aztec"
+    ],
+    "startBias": [
+      "Jungle"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Montezuma I",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      139,
+      32,
+      23
+    ],
+    "innerColor": [
+      134,
+      238,
+      214
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Sacrificial Captives",
+    "cities": [
+      "Tenochtitlan",
+      "Teotihuacan",
+      "Tlatelolco",
+      "Texcoco",
+      "Tlaxcala",
+      "Calixtlahuaca",
+      "Xochicalco",
+      "Tlacopan",
+      "Atzcapotzalco",
+      "Tzintzuntzan",
+      "Malinalco",
+      "Tula",
+      "Tamuin",
+      "Teayo",
+      "Cempoala",
+      "Chalco",
+      "Tlalmanalco",
+      "Ixtapaluca",
+      "Huexotla",
+      "Tepexpan",
+      "Tepetlaoxtoc",
+      "Chiconautla",
+      "Zitlaltepec",
+      "Coyotepec",
+      "Tequixquiac",
+      "Jilotzingo",
+      "Tlapanaloya",
+      "Tultitan",
+      "Ecatepec",
+      "Coatepec",
+      "Chalchiuites",
+      "Chiauhita",
+      "Chapultepec",
+      "Itzapalapa",
+      "Ayotzinco",
+      "Iztapam"
+    ],
+    "spyNames": [
+      "Metztli",
+      "Xitllali",
+      "Chimalli",
+      "Quauhtli",
+      "Teyacapan",
+      "Yaotl",
+      "Coatl",
+      "Huitzilin",
+      "Itzli",
+      "Tepin"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Inca": {
+    "adjective": [
+      "Incan"
+    ],
+    "startBias": [
+      "Hill"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Pachacuti",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      255,
+      184,
+      33
+    ],
+    "innerColor": [
+      3,
+      115,
+      86
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Great Andean Road",
+    "cities": [
+      "Cuzco",
+      "Tiwanaku",
+      "Machu",
+      "Ollantaytambo",
+      "Corihuayrachina",
+      "Huamanga",
+      "Rumicucho",
+      "Vilcabamba",
+      "Vitcos",
+      "Andahuaylas",
+      "Ica",
+      "Arequipa",
+      "Nasca",
+      "Atico",
+      "Juli",
+      "Chuito",
+      "Chuquiapo",
+      "Huanuco Pampa",
+      "Tamboccocha",
+      "Huaras",
+      "Riobamba",
+      "Caxamalca",
+      "Sausa",
+      "Tambo Colorado",
+      "Huaca",
+      "Tumbes",
+      "Chan Chan",
+      "Sipan",
+      "Pachacamac",
+      "Llactapata",
+      "Pisac",
+      "Kuelap",
+      "Pajaten",
+      "Chucuito",
+      "Choquequirao"
+    ],
+    "spyNames": [
+      "Amaru",
+      "Apichu",
+      "Pariapichiu",
+      "Puma",
+      "Quenti",
+      "Suyuntu",
+      "Uturuncu",
+      "Purutu",
+      "Ozcollo"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Denmark": {
+    "adjective": [
+      "Danish"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Harald Bluetooth",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      51,
+      25,
+      0
+    ],
+    "innerColor": [
+      255,
+      255,
+      102
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Viking Fury",
+    "cities": [
+      "Copenhagen",
+      "Aarhus",
+      "Kaupang",
+      "Ribe",
+      "Viborg",
+      "Tunsberg",
+      "Roskilde",
+      "Hedeby",
+      "Oslo",
+      "Jelling",
+      "Truso",
+      "Bergen",
+      "Faeroerne",
+      "Reykjavik",
+      "Trondheim",
+      "Godthab",
+      "Helluland",
+      "Lillehammer",
+      "Markland",
+      "Elsinore",
+      "Sarpsborg",
+      "Odense",
+      "Aalborg",
+      "Stavanger",
+      "Vorbasse",
+      "Schleswig",
+      "Kristiansand",
+      "Halogaland",
+      "Randers",
+      "Fredrikstad",
+      "Kolding",
+      "Horsens",
+      "Tromsoe",
+      "Vejle",
+      "Koge",
+      "Sandnes",
+      "Holstebro",
+      "Slagelse",
+      "Drammen",
+      "Hillerod",
+      "Sonderborg",
+      "Skien",
+      "Svendborg",
+      "Holbaek",
+      "Hjorring",
+      "Fladstrand",
+      "Haderslev",
+      "Ringsted",
+      "Skrive"
+    ],
+    "spyNames": [
+      "JÃ¸rgen",
+      "Mette",
+      "Henrik",
+      "Niels",
+      "Helle",
+      "Frederik",
+      "Ida",
+      "Thea",
+      "Freja",
+      "Morten"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "The Huns": {
+    "adjective": [
+      "Hunnic"
+    ],
+    "startBias": [
+      "Avoid [Jungle]",
+      "Avoid [Forest]"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Attila the Hun",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      180,
+      178,
+      164
+    ],
+    "innerColor": [
+      70,
+      0,
+      4
+    ],
+    "favoredReligion": "Tengriism",
+    "uniqueName": "Scourge of God",
+    "cities": [
+      "Attila's Court"
+    ],
+    "spyNames": [
+      "Balamber",
+      "Uldin",
+      "Donatus",
+      "Charato",
+      "Octar",
+      "Bleda",
+      "Ellac",
+      "Dengizik",
+      "Hildico",
+      "Gudrun"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "The Netherlands": {
+    "adjective": [
+      "Dutch"
+    ],
+    "startBias": [
+      "Grassland"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "William of Orange",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      216,
+      120,
+      0
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Dutch East India Company",
+    "cities": [
+      "Amsterdam",
+      "Rotterdam",
+      "Utrecht",
+      "Groningen",
+      "Breda",
+      "Nijmegen",
+      "The Hague",
+      "Haarlem",
+      "Arnhem",
+      "Zutphen",
+      "Maastricht",
+      "Tilburg",
+      "Eindhoven",
+      "Dordrecht",
+      "Leiden",
+      "'s Hertogenbosch",
+      "Almere",
+      "Alkmaar",
+      "Brielle",
+      "Vlissingen",
+      "Apeldoorn",
+      "Enschede",
+      "Amersfoort",
+      "Zwolle",
+      "Venlo",
+      "Uden",
+      "Grave",
+      "Delft",
+      "Gouda",
+      "Nieuwstadt",
+      "Weesp",
+      "Coevorden",
+      "Kerkrade"
+    ],
+    "spyNames": [
+      "Joost",
+      "Hendrika",
+      "Marten",
+      "Anke",
+      "Guus",
+      "Mr. X",
+      "Dr. Grijs",
+      "Willem",
+      "Thijs",
+      "Neef"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Sweden": {
+    "adjective": [
+      "Swedish"
+    ],
+    "startBias": [
+      "Tundra"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Kristina",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Piety",
+      "Nature Lover"
+    ],
+    "outerColor": [
+      8,
+      8,
+      166
+    ],
+    "innerColor": [
+      249,
+      247,
+      3
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Queen of the North",
+    "cities": [
+      "Stockholm",
+      "Uppsala",
+      "Gothenburg",
+      "Malmo",
+      "Linkoping",
+      "Vasteras",
+      "Norrkoping",
+      "Orebro",
+      "Helsingborg",
+      "Jonkoping",
+      "Lund",
+      "Umea",
+      "Gavle",
+      "Boras",
+      "Sundsvall",
+      "Halmstad",
+      "Karlstad",
+      "Vaxjo",
+      "Kalmar",
+      "Skovde",
+      "Ostersund",
+      "Falun",
+      "Vastervik",
+      "Lulea",
+      "Karlskrona",
+      "Koping",
+      "Enkoping",
+      "Sodertalje",
+      "Mora",
+      "Kiruna"
+    ],
+    "spyNames": [
+      "Leif",
+      "Ingegard",
+      "SÃ¶ren",
+      "Ragnhild",
+      "Lars",
+      "Lina",
+      "Magnus",
+      "Vilma",
+      "Kusin",
+      "Herr GrÃ¥"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Austria": {
+    "adjective": [
+      "Austrian"
+    ],
+    "startBias": [
+      "Hill"
+    ],
+    "preferredVictoryType": "Diplomatic",
+    "personality": "Maria Theresa",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      234,
+      0,
+      0
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Diplomatic Marriage",
+    "cities": [
+      "Vienna",
+      "Salzburg",
+      "Graz",
+      "Linz",
+      "Klagenfurt",
+      "Bregenz",
+      "Innsbruck",
+      "KitzbÃ¼hel",
+      "St. PÃ¶lten",
+      "Eisenstadt",
+      "Villach",
+      "Zwettl",
+      "Traun",
+      "Wels",
+      "Dornbirn",
+      "Feldkirch",
+      "Amstetten",
+      "Bad Ischl",
+      "Wolfsberg",
+      "Kufstein",
+      "Leoben",
+      "Klosterneuburg",
+      "Leonding",
+      "Kapfenberg",
+      "Hallein",
+      "Bischofshofen",
+      "Waidhofen",
+      "Saalbach",
+      "Lienz",
+      "Steyr"
+    ],
+    "spyNames": [
+      "Ferdinand",
+      "Johanna",
+      "Franz-Josef",
+      "Astrid",
+      "Anna",
+      "Hubert",
+      "Alois",
+      "Natter",
+      "Georg",
+      "Arnold"
+    ],
+    "uniqueBuildings": [
+      "Coffee House"
+    ],
+    "uniqueDistricts": []
+  },
+  "Carthage": {
+    "adjective": [
+      "Carthaginian"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Dido",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      205,
+      205,
+      205
+    ],
+    "innerColor": [
+      81,
+      0,
+      137
+    ],
+    "favoredReligion": "Islam",
+    "uniqueName": "Phoenician Heritage",
+    "cities": [
+      "Carthage",
+      "Utique",
+      "Hippo Regius",
+      "Gades",
+      "Saguntum",
+      "Carthago Nova",
+      "Panormus",
+      "Lilybaeum",
+      "Hadrumetum",
+      "Zama Regia",
+      "Karalis",
+      "Malaca",
+      "Leptis Magna",
+      "Hippo Diarrhytus",
+      "Motya",
+      "Sulci",
+      "Leptis Parva",
+      "Tharros",
+      "Soluntum",
+      "Lixus",
+      "Oea",
+      "Theveste",
+      "Ibossim",
+      "Thapsus",
+      "Aleria",
+      "Tingis",
+      "Abyla",
+      "Sabratha",
+      "Rusadir",
+      "Baecula",
+      "Saldae"
+    ],
+    "spyNames": [
+      "Hamilcar",
+      "Mago",
+      "Baalhaan",
+      "Sophoniba",
+      "Yzebel",
+      "Similce",
+      "Kandaulo",
+      "Zinnridi",
+      "Gisgo",
+      "Fierelus"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Byzantium": {
+    "adjective": [
+      "Byzantine"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Theodora",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      114,
+      162,
+      233
+    ],
+    "innerColor": [
+      61,
+      0,
+      109
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Patriarchate of Constantinople",
+    "cities": [
+      "Constantinople",
+      "Adrianople",
+      "Nicaea",
+      "Antioch",
+      "Varna",
+      "Ohrid",
+      "Nicomedia",
+      "Trebizond",
+      "Cherson",
+      "Sardica",
+      "Ani",
+      "Dyrrachium",
+      "Edessa",
+      "Chalcedon",
+      "Naissus",
+      "Bari",
+      "Iconium",
+      "Prilep",
+      "Samosata",
+      "Kars",
+      "Nicopolis",
+      "Theodosiopolis",
+      "Tyana",
+      "Gaza",
+      "Kerkyra",
+      "Phoenice",
+      "Selymbria",
+      "Sillyon",
+      "Chrysopolis",
+      "Vodena",
+      "Caesarea",
+      "Traianoupoli",
+      "Constantia",
+      "Athens",
+      "Patra",
+      "Korinthos"
+    ],
+    "spyNames": [
+      "Basil",
+      "Nikophoros",
+      "Demetrios",
+      "Philippos",
+      "Theophylaktos",
+      "Simonis",
+      "Zoe",
+      "Ioanno",
+      "Xene",
+      "Euphrosyne"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Celts": {
+    "adjective": [
+      "celtic"
+    ],
+    "startBias": [
+      "Forest"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Boudicca",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      12,
+      75,
+      25
+    ],
+    "innerColor": [
+      157,
+      172,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Druidic Lore",
+    "cities": [
+      "Edinburgh",
+      "Dublin",
+      "Cardiff",
+      "Truro",
+      "Nantes",
+      "Douglas",
+      "Glasgow",
+      "Cork",
+      "Aberystwyth",
+      "Penzance",
+      "Rennes",
+      "Ramsey",
+      "Inverness",
+      "Limerick",
+      "Swansea",
+      "St. Ives",
+      "Brest",
+      "Peel",
+      "Aberdeen",
+      "Belfast",
+      "Caernarfon",
+      "Newquay",
+      "Saint-Nazaire",
+      "Castletown",
+      "Stirling",
+      "Galway",
+      "Conwy",
+      "St. Austell",
+      "Saint-Malo",
+      "Onchan",
+      "Dundee",
+      "Londonderry",
+      "Llanfairpwllgwyngyll",
+      "Falmouth",
+      "Lorient"
+    ],
+    "spyNames": [
+      "CrÃ¬sdean",
+      "SiobhÃ¡n",
+      "Seamus",
+      "Ffion",
+      "PÃ¡draig",
+      "Deirdre",
+      "Mr. Quinn",
+      "Ã‰adaoin",
+      "Alwyn",
+      "Col Ceathar"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Ethiopia": {
+    "adjective": [
+      "Ethiopian"
+    ],
+    "startBias": [
+      "Jungle"
+    ],
+    "preferredVictoryType": "Religious",
+    "personality": "Menelik II",
+    "agenda": "Piety",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Nature Lover"
+    ],
+    "outerColor": [
+      18,
+      66,
+      22
+    ],
+    "innerColor": [
+      255,
+      56,
+      56
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Adwa",
+    "cities": [
+      "Addis Ababa",
+      "Harar",
+      "Adwa",
+      "Lalibela",
+      "Gondar",
+      "Axum",
+      "Dire Dawa",
+      "Bahir Dar",
+      "Adama",
+      "Mek'ele",
+      "Awasa",
+      "Jimma",
+      "Jijiga",
+      "Dessie",
+      "Debre Berhan",
+      "Shashamane",
+      "Debre Zeyit",
+      "Sodo",
+      "Hosaena",
+      "Nekemte",
+      "Asella",
+      "Dila",
+      "Adigrat",
+      "Debre Markos",
+      "Kombolcha",
+      "Debre Tabor",
+      "Sebeta",
+      "Shire",
+      "Ambo"
+    ],
+    "spyNames": [
+      "Mulu Ken",
+      "Wendimu",
+      "Li'ol",
+      "Demeke",
+      "Mulu Alem",
+      "Abebech",
+      "Zema",
+      "Mihret",
+      "Kebedech",
+      "Alemnesh"
+    ],
+    "uniqueBuildings": [
+      "Stele"
+    ],
+    "uniqueDistricts": []
+  },
+  "The Maya": {
+    "adjective": [
+      "mayan"
+    ],
+    "startBias": [
+      "Jungle"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Pacal",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      198,
+      141,
+      99
+    ],
+    "innerColor": [
+      24,
+      63,
+      66
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "The Long Count",
+    "cities": [
+      "Palenque",
+      "Tikal",
+      "Chichen Itza",
+      "Uxmal",
+      "Tulum",
+      "Copan",
+      "Coba",
+      "El Mirador",
+      "Calakmul",
+      "Edzna",
+      "Lamanai",
+      "Izapa",
+      "Uaxactun",
+      "Comalcalco",
+      "Piedras Negras",
+      "Cancuen",
+      "Yaxha",
+      "Quirigua",
+      "Q'umarkaj",
+      "Nakbe",
+      "Cerros",
+      "Xunantunich",
+      "Takalik Abaj",
+      "Cival",
+      "San Bartolo",
+      "Altar de Sacrificios",
+      "Seibal",
+      "Caracol",
+      "Naranjo",
+      "Dos Pilas",
+      "Mayapan",
+      "Ixinche",
+      "Zaculeu",
+      "Kabah"
+    ],
+    "spyNames": [
+      "Camazotz",
+      "Coyopa",
+      "Gukumatz",
+      "Hunahpu",
+      "Huracan",
+      "Ixchel",
+      "Ixtab",
+      "Kukulk�n",
+      "Xbalanque",
+      "Zipacna"
+    ],
+    "uniqueBuildings": [
+      "Observatory"
+    ],
+    "uniqueDistricts": []
+  },
+  "Brussels": {
+    "adjective": [
+      "Bruxellois"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      127,
+      177,
+      236
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Brussels"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Bucharest": {
+    "adjective": [
+      "Bucuresti"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      113,
+      227,
+      114
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Bucharest"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Florence": {
+    "adjective": [
+      "Florentine"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      18,
+      188,
+      221
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Florence"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Kabul": {
+    "adjective": [
+      "Kabuli"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      121,
+      226,
+      0
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Kabul"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Kathmandu": {
+    "adjective": [
+      "Kathmanduites"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      186,
+      18,
+      202
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Kathmandu"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Kuala Lumpur": {
+    "adjective": [
+      "KLite"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      222,
+      237,
+      59
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Kuala Lumpur"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Milan": {
+    "adjective": [
+      "Milanese"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      225,
+      194,
+      129
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Milan"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Monaco": {
+    "adjective": [
+      "Monegasque"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      193,
+      84,
+      255
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Monaco"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Prague": {
+    "adjective": [
+      "Praguer",
+      "Pragueite"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      51,
+      97,
+      242
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Prague"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Yerevan": {
+    "adjective": [
+      "Yerevantsi"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      225,
+      194,
+      129
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Yerevan"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Cape Town": {
+    "adjective": [
+      "Capetonian"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      217,
+      158,
+      78
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Cape Town"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Helsinki": {
+    "adjective": [
+      "Helsinkian"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      255,
+      178,
+      102
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Helsinki"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Manila": {
+    "adjective": [
+      "Manilan"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      113,
+      227,
+      114
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Manila"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Mogadishu": {
+    "adjective": [
+      "Maqdishawi"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      127,
+      177,
+      236
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Mogadishu"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Mombasa": {
+    "adjective": [
+      "Mombasaan"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      121,
+      226,
+      0
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Mombasa"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Quebec City": {
+    "adjective": [
+      "QuÃ©bÃ©cois"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      51,
+      97,
+      242
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Quebec City"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Ragusa": {
+    "adjective": [
+      "Ragusan"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      0,
+      163,
+      181
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Ragusa"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Rio de Janeiro": {
+    "adjective": [
+      "Carioca"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      211,
+      220,
+      103
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Rio de Janeiro"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Sydney": {
+    "adjective": [
+      "Sydneysider"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      51,
+      97,
+      242
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Sydney"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Ur": {
+    "adjective": [
+      "Urian"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      167,
+      16,
+      216
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Ur"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Vancouver": {
+    "adjective": [
+      "Vancouverite"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      193,
+      84,
+      255
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Vancouver"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Venice": {
+    "adjective": [
+      "Venetian"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      153,
+      204,
+      255
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Venice"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Antwerp": {
+    "adjective": [
+      "Antwerpenaar",
+      "Antwerpian"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      193,
+      84,
+      255
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Antwerp"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Cahokia": {
+    "adjective": [
+      "Cahokian"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Cahokia"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Colombo": {
+    "adjective": [
+      "Colomboan"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      167,
+      162,
+      216
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Colombo"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Genoa": {
+    "adjective": [
+      "Genoese"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      0,
+      163,
+      181
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Genoa"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Hong Kong": {
+    "adjective": [
+      "Hongkonger",
+      "Hongkongese"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      52,
+      97,
+      242
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Hong Kong"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Singapore": {
+    "adjective": [
+      "Singaporean"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      246,
+      253,
+      160
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Singapore"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Tyre": {
+    "adjective": [
+      "Tyrian"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      121,
+      226,
+      0
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Tyre"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Zanzibar": {
+    "adjective": [
+      "Zanzibari"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      127,
+      177,
+      236
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Zanzibar"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Zurich": {
+    "adjective": [
+      "Zuricher"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      172,
+      172,
+      172
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Zurich"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Almaty": {
+    "adjective": [
+      "Almatinian"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      217,
+      158,
+      78
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Almaty"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Belgrade": {
+    "adjective": [
+      "Belgradian"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      121,
+      226,
+      0
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Belgrade"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Budapest": {
+    "adjective": [
+      "Budapester",
+      "Budapesti"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      217,
+      158,
+      78
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Budapest"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Dublin": {
+    "adjective": [
+      "Dubliner"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      211,
+      180,
+      113
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Dublin"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Edinburgh": {
+    "adjective": [
+      "Edinburghensian"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      0,
+      102,
+      102
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Edinburgh"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Hanoi": {
+    "adjective": [
+      "Hanoian"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      167,
+      162,
+      216
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Hanoi"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "M'Banza-Kongo": {
+    "adjective": [
+      "Angolan"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      18,
+      188,
+      221
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "M'Banza-Kongo"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Sidon": {
+    "adjective": [
+      "Sidonian"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      186,
+      18,
+      202
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Sidon"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Valletta": {
+    "adjective": [
+      "Beltin"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      222,
+      237,
+      59
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Valletta"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Bratislava": {
+    "adjective": [
+      "Bratislavan"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Bratislava"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Geneva": {
+    "adjective": [
+      "Genevan",
+      "Genevese"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      51,
+      97,
+      242
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Geneva"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Jerusalem": {
+    "adjective": [
+      "Jerusalemite"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Jerusalem"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "La Venta": {
+    "adjective": [
+      "La Venta"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      18,
+      188,
+      221
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "La Venta"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Lhasa": {
+    "adjective": [
+      "Tibetano"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      113,
+      227,
+      114
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Lhasa"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Vatican City": {
+    "adjective": [
+      "Vaticano"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      246,
+      253,
+      160
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Vatican City"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Wittenberg": {
+    "adjective": [
+      "Wittenberger"
+    ],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      167,
+      162,
+      216
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [
+      "Wittenberg"
+    ],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Barbarians": {
+    "adjective": [],
+    "startBias": [],
+    "preferredVictoryType": "",
+    "personality": "",
+    "agenda": "",
+    "hiddenAgendas": [],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      185,
+      12,
+      12
+    ],
+    "favoredReligion": "",
+    "uniqueName": "",
+    "cities": [],
+    "spyNames": [],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Australia": {
+    "adjective": [
+      "Australian"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "John Curtin",
+    "agenda": "Militaristic",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Cultured"
+    ],
+    "outerColor": [
+      0,
+      0,
+      0
+    ],
+    "innerColor": [
+      0,
+      102,
+      179
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Land Down Under",
+    "cities": [
+      "Canberra",
+      "Sydney",
+      "Melbourne",
+      "Brisbane",
+      "Perth",
+      "Adelaide",
+      "Gold Coast",
+      "Newcastle",
+      "Hobart",
+      "Darwin",
+      "Wollongong",
+      "Geelong",
+      "Townsville",
+      "Cairns",
+      "Toowoomba",
+      "Ballarat",
+      "Bendigo",
+      "Albury",
+      "Launceston",
+      "Mackay",
+      "Rockhampton",
+      "Bunbury",
+      "Bundaberg",
+      "Coffs Harbour",
+      "Wagga Wagga",
+      "Hervey Bay",
+      "Mildura",
+      "Gladstone",
+      "Tweed Heads",
+      "Burnie"
+    ],
+    "spyNames": [
+      "Jack",
+      "Mary",
+      "Tom",
+      "Edith",
+      "Henry",
+      "Rose",
+      "Frank",
+      "Ivy",
+      "Bert",
+      "Nell"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Poland": {
+    "adjective": [
+      "Polish"
+    ],
+    "startBias": [
+      "Grassland"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Jadwiga",
+    "agenda": "Piety",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Nature Lover"
+    ],
+    "outerColor": [
+      220,
+      20,
+      60
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Golden Liberty",
+    "cities": [
+      "Krakow",
+      "Warsaw",
+      "Poznan",
+      "Gdansk",
+      "Wroclaw",
+      "Lodz",
+      "Lublin",
+      "Szczecin",
+      "Bydgoszcz",
+      "Katowice",
+      "Czestochowa",
+      "Torun",
+      "Bialystok",
+      "Gdynia",
+      "Radom",
+      "Sosnowiec",
+      "Kielce",
+      "Rzeszow",
+      "Gliwice",
+      "Olsztyn",
+      "Zielona Gora",
+      "Opole",
+      "Bytom",
+      "Bielsko-Biala",
+      "Zabrze",
+      "Tarnow",
+      "Kalisz",
+      "Legnica",
+      "Elblag",
+      "Koszalin"
+    ],
+    "spyNames": [
+      "Mikolaj",
+      "Jadwiga",
+      "Stanislaw",
+      "Anna",
+      "Kazimierz",
+      "Zofia",
+      "Piotr",
+      "Elzbieta",
+      "Jan",
+      "Katarzyna"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": [
+      "Stronghold"
+    ]
+  },
+  "Nubia": {
+    "adjective": [
+      "Nubian"
+    ],
+    "startBias": [
+      "Avoid [Tundra]"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Amanitore",
+    "agenda": "Nature Lover",
+    "hiddenAgendas": [
+      "Cultured",
+      "Piety",
+      "Warmonger Hater"
+    ],
+    "outerColor": [
+      192,
+      134,
+      46
+    ],
+    "innerColor": [
+      0,
+      48,
+      32
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Ta-Seti",
+    "cities": [
+      "Meroe",
+      "Napata",
+      "Kerma",
+      "Dongola",
+      "Kush",
+      "Soleb",
+      "Sedeinga",
+      "Gebel Barkal",
+      "Sanam",
+      "Karima",
+      "Shendi",
+      "Atbara",
+      "Berber",
+      "Ed-Dammer",
+      "Dabarosa",
+      "Hassaia",
+      "Kadero",
+      "Mograt",
+      "Tabo",
+      "Jebel Qeili",
+      "Musawwarat",
+      "Naqa",
+      "Basnaq",
+      "Umm Ruweim",
+      "ferke",
+      "Sai",
+      "Sudinga",
+      "Dangeil",
+      "Wad Ban Naga",
+      "el-Hobagi"
+    ],
+    "spyNames": [
+      "Amani",
+      "Aset",
+      "Khabash",
+      "Nasalsa",
+      "Arikepiankhi",
+      "Malaqaye",
+      "Talakhidamani",
+      "Amanikhalika",
+      "Yesebokheamani",
+      "Amanitaraqide"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Khmer": {
+    "adjective": [
+      "Khmer"
+    ],
+    "startBias": [
+      "Jungle"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Jayavarman VII",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Nature Lover",
+      "Piety",
+      "Warmonger Hater"
+    ],
+    "outerColor": [
+      12,
+      97,
+      45
+    ],
+    "innerColor": [
+      247,
+      211,
+      52
+    ],
+    "favoredReligion": "Buddhism",
+    "uniqueName": "Grand Baray",
+    "cities": [
+      "Angkor",
+      "YaÅ›odharapura",
+      "Chok Gargyar",
+      "Koh Ker",
+      "Banteay Srei",
+      "Preah Khan",
+      "Neak Pean",
+      "Ta Prohm",
+      "Beng Mealea",
+      "Kampong Thom",
+      "Sambor Prei Kuk",
+      "Phnom Penh",
+      "Battambang",
+      "Siem Reap",
+      "Kratie",
+      "Takeo",
+      "Pursat",
+      "Kampot",
+      "Svay Rieng",
+      "Prey Veng",
+      "Kompong Cham",
+      "Oddar Meanchey",
+      "Pailin",
+      "Ratanakiri",
+      "Mondulkiri",
+      "Stung Treng",
+      "Koh Kong",
+      "Sihanoukville",
+      "Kep",
+      "Banteay Meanchey"
+    ],
+    "spyNames": [
+      "Jayavarman",
+      "Indradevi",
+      "Tep",
+      "Suryakumari",
+      "Rajendravarman",
+      "Kamrateng",
+      "Sikhara",
+      "Cham",
+      "Vrah",
+      "Naga"
+    ],
+    "uniqueBuildings": [
+      "Prasat"
+    ],
+    "uniqueDistricts": []
+  },
+  "Indonesia": {
+    "adjective": [
+      "Indonesian"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Gitarja",
+    "agenda": "Nature Lover",
+    "hiddenAgendas": [
+      "Cultured",
+      "Piety",
+      "Warmonger Hater"
+    ],
+    "outerColor": [
+      206,
+      24,
+      31
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Islam",
+    "uniqueName": "Nusantara",
+    "cities": [
+      "Majapahit",
+      "Yogyakarta",
+      "Jakarta",
+      "Surabaya",
+      "Bandung",
+      "Medan",
+      "Semarang",
+      "Palembang",
+      "Makassar",
+      "Denpasar",
+      "Padang",
+      "Pontianak",
+      "Balikpapan",
+      "Banjarmasin",
+      "Manado",
+      "Ambon",
+      "Kupang",
+      "Samarinda",
+      "Jayapura",
+      "Banda Aceh",
+      "Mataram",
+      "Cirebon",
+      "Banten",
+      "Cilacap",
+      "Ternate",
+      "Tidore",
+      "Singaraja",
+      "Solo",
+      "Ciamis",
+      "Kediri"
+    ],
+    "spyNames": [
+      "Gajah",
+      "Sari",
+      "Wijaya",
+      "Dewi",
+      "Kenanga",
+      "Puspita",
+      "Bayu",
+      "Ratih",
+      "Teja",
+      "Kusuma"
+    ],
+    "uniqueBuildings": [
+      "Kampung"
+    ],
+    "uniqueDistricts": []
+  },
+  "Cree": {
+    "adjective": [
+      "Cree"
+    ],
+    "startBias": [
+      "Plains"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Poundmaker",
+    "agenda": "Nature Lover",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Piety"
+    ],
+    "outerColor": [
+      198,
+      137,
+      41
+    ],
+    "innerColor": [
+      0,
+      71,
+      49
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Nihithaw",
+    "cities": [
+      "Saskatoon",
+      "Edmonton",
+      "Regina",
+      "Calgary",
+      "Winnipeg",
+      "Prince Albert",
+      "Battleford",
+      "Lloydminster",
+      "North Battleford",
+      "Red Deer",
+      "Medicine Hat",
+      "Moose Jaw",
+      "Swift Current",
+      "Yorkton",
+      "Brandon",
+      "Thompson",
+      "The Pas",
+      "Flin Flon",
+      "Cold Lake",
+      "Lloyd",
+      "Wetaskiwin",
+      "Camrose",
+      "Vermilion",
+      "Wainwright",
+      "St. Paul",
+      "Bonnyville",
+      "High Level",
+      "Peace River",
+      "Fort McMurray",
+      "Lac La Biche"
+    ],
+    "spyNames": [
+      "Pisim",
+      "Kohkuminaw",
+      "Nimosom",
+      "Wapan",
+      "Okosis",
+      "Nikawiy",
+      "Maskwa",
+      "Mahihkan",
+      "Piyesiw",
+      "Waskweyaw"
+    ],
+    "uniqueBuildings": [
+      "Mekewap"
+    ],
+    "uniqueDistricts": []
+  },
+  "Georgia": {
+    "adjective": [
+      "Georgian"
+    ],
+    "startBias": [
+      "Hill"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Tamar",
+    "agenda": "Piety",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Nature Lover"
+    ],
+    "outerColor": [
+      157,
+      0,
+      39
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Protector of the Georgian People",
+    "cities": [
+      "Tbilisi",
+      "Kutaisi",
+      "Batumi",
+      "Rustavi",
+      "Sokhumi",
+      "Zugdidi",
+      "Gori",
+      "Poti",
+      "Telavi",
+      "Akhaltsikhe",
+      "Mtskheta",
+      "Kvareli",
+      "Signagi",
+      "Borjomi",
+      "Ozurgeti",
+      "Marneuli",
+      "Kazbegi",
+      "Anaklia",
+      "Akhalkalaki",
+      "Tsaghveri",
+      "Stepantsminda",
+      "Kaspi",
+      "Dusheti",
+      "Lagodekhi",
+      "Abastumani",
+      "Ninotsminda",
+      "Tskhinvali",
+      "Oni",
+      "Ambrolauri",
+      "Chiatura"
+    ],
+    "spyNames": [
+      "Davit",
+      "Ketevan",
+      "Giorgi",
+      "Nino",
+      "Irakli",
+      "Tamar",
+      "Bagrat",
+      "Rusudan",
+      "Vakhtang",
+      "Mariam"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Hungary": {
+    "adjective": [
+      "Hungarian"
+    ],
+    "startBias": [
+      "Grassland"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Matthias Corvinus",
+    "agenda": "Militaristic",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Piety"
+    ],
+    "outerColor": [
+      188,
+      0,
+      45
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Raven King",
+    "cities": [
+      "Buda",
+      "Pest",
+      "Esztergom",
+      "Szekesfehervar",
+      "Debrecen",
+      "Szeged",
+      "Gyor",
+      "Miskolc",
+      "Pecs",
+      "Nyiregyhaza",
+      "Kecskemet",
+      "Szombathely",
+      "Szolnok",
+      "Tatabanya",
+      "Kaposvar",
+      "Veszprem",
+      "Bekescsaba",
+      "Zalaegerszeg",
+      "Eger",
+      "Nagykanizsa",
+      "Dunaujvaros",
+      "Hodmezovasarhely",
+      "Sopron",
+      "Mosonmagyarovar",
+      "Godollo",
+      "Keszthely",
+      "Vac",
+      "Salgotarjan",
+      "Ozd",
+      "Papa"
+    ],
+    "spyNames": [
+      "Matyas",
+      "Beatrix",
+      "Janos",
+      "Erzsebet",
+      "Istvan",
+      "Katalin",
+      "Laszlo",
+      "Anna",
+      "Miklos",
+      "Zsofia"
+    ],
+    "uniqueBuildings": [
+      "Thermal Bath"
+    ],
+    "uniqueDistricts": []
+  },
+  "Macedonia": {
+    "adjective": [
+      "Macedonian"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Alexander the Great",
+    "agenda": "Militaristic",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Piety"
+    ],
+    "outerColor": [
+      70,
+      2,
+      118
+    ],
+    "innerColor": [
+      240,
+      199,
+      0
+    ],
+    "favoredReligion": "Hellenism",
+    "uniqueName": "Hellenistic Fusion",
+    "cities": [
+      "Pella",
+      "Aigai",
+      "Amphipolis",
+      "Thessaloniki",
+      "Dion",
+      "Vergina",
+      "Edessa",
+      "Philippi",
+      "Olynthos",
+      "Potidaea",
+      "Pydna",
+      "Methone",
+      "Abdera",
+      "Maroneia",
+      "Kassandreia",
+      "Demetrias",
+      "Larissa",
+      "Pharsalos",
+      "Krannon",
+      "Gyrton",
+      "Atrax",
+      "Pherae",
+      "Lamia",
+      "Herakleia",
+      "Chalkis",
+      "Oreus",
+      "Histiaia",
+      "Akanthos",
+      "Stageira",
+      "Stagira"
+    ],
+    "spyNames": [
+      "Hephaestion",
+      "Parmenion",
+      "Craterus",
+      "Ptolemy",
+      "Seleucus",
+      "Perdiccas",
+      "Lysimachus",
+      "Cassander",
+      "Antipater",
+      "Roxana"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Chile": {
+    "adjective": [
+      "Chilean"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Bernardo O'Higgins",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      0,
+      57,
+      166
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Libertador",
+    "cities": [
+      "Santiago",
+      "Valparaiso",
+      "Concepcion",
+      "La Serena",
+      "Antofagasta",
+      "Temuco",
+      "Rancagua",
+      "Talca",
+      "Arica",
+      "Puerto Montt",
+      "Copiapo",
+      "Iquique",
+      "Chillan",
+      "Calama",
+      "Osorno",
+      "QuilpuÃ©",
+      "Valdivia",
+      "Punta Arenas",
+      "Coquimbo",
+      "Puerto Natales",
+      "San Felipe",
+      "Curico",
+      "Los Angeles",
+      "Rengo",
+      "Linares",
+      "Villa Alemana",
+      "ViÃ±a del Mar",
+      "Talagante",
+      "Melipilla",
+      "San Antonio"
+    ],
+    "spyNames": [
+      "Manuel",
+      "Javiera",
+      "Diego",
+      "Camila",
+      "Jose",
+      "Rosario",
+      "Ramon",
+      "Mercedes",
+      "Pedro",
+      "Isabel"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Canada": {
+    "adjective": [
+      "Canadian"
+    ],
+    "startBias": [
+      "Tundra"
+    ],
+    "preferredVictoryType": "Diplomatic",
+    "personality": "Wilfrid Laurier",
+    "agenda": "Nature Lover",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Piety"
+    ],
+    "outerColor": [
+      255,
+      0,
+      0
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Peacekeeper",
+    "cities": [
+      "Ottawa",
+      "Toronto",
+      "Montreal",
+      "Vancouver",
+      "Calgary",
+      "Edmonton",
+      "Quebec City",
+      "Winnipeg",
+      "Hamilton",
+      "Kitchener",
+      "London",
+      "Halifax",
+      "Victoria",
+      "Oshawa",
+      "Windsor",
+      "Saskatoon",
+      "Regina",
+      "St. John's",
+      "Sherbrooke",
+      "Trois-Rivieres",
+      "Barrie",
+      "Kelowna",
+      "Sudbury",
+      "Kingston",
+      "Abbotsford",
+      "Thunder Bay",
+      "Saguenay",
+      "Guelph",
+      "Moncton",
+      "Brampton"
+    ],
+    "spyNames": [
+      "Wilfrid",
+      "Jeanne",
+      "Henri",
+      "Marie",
+      "George",
+      "Claire",
+      "Thomas",
+      "Lucie",
+      "Robert",
+      "Helene"
+    ],
+    "uniqueBuildings": [
+      "Ice Hockey Rink"
+    ],
+    "uniqueDistricts": []
+  },
+  "Romania": {
+    "adjective": [
+      "Romanian"
+    ],
+    "startBias": [
+      "Hill"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Vlad the Impaler",
+    "agenda": "Warmonger Hater",
+    "hiddenAgendas": [
+      "Militaristic",
+      "Piety",
+      "Cultured"
+    ],
+    "outerColor": [
+      206,
+      17,
+      38
+    ],
+    "innerColor": [
+      253,
+      253,
+      200
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Tepes",
+    "cities": [
+      "Bucharest",
+      "Cluj-Napoca",
+      "Timisoara",
+      "Iasi",
+      "Constanta",
+      "Craiova",
+      "Brasov",
+      "Galati",
+      "Ploiesti",
+      "Oradea",
+      "Satu Mare",
+      "Bacau",
+      "Baia Mare",
+      "Arad",
+      "Piatra Neamt",
+      "Sibiu",
+      "Targu Mures",
+      "Buzau",
+      "Botosani",
+      "Suceava",
+      "Targu Jiu",
+      "Drobeta-Turnu Severin",
+      "Focsani",
+      "Tulcea",
+      "Bistrita",
+      "Deva",
+      "Alba Iulia",
+      "Pitesti",
+      "Slatina",
+      "Vaslui"
+    ],
+    "spyNames": [
+      "Vlad",
+      "Radu",
+      "Mircea",
+      "Elena",
+      "Stefan",
+      "Doamna",
+      "Neagoe",
+      "Cali",
+      "Dan",
+      "Marga"
+    ],
+    "uniqueBuildings": [
+      "Dacian Fort"
+    ],
+    "uniqueDistricts": []
+  },
+  "Vietnam": {
+    "adjective": [
+      "Vietnamese"
+    ],
+    "startBias": [
+      "Jungle"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Ba Trieu",
+    "agenda": "Militaristic",
+    "hiddenAgendas": [
+      "Nature Lover",
+      "Cultured",
+      "Warmonger Hater"
+    ],
+    "outerColor": [
+      218,
+      36,
+      28
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Buddhism",
+    "uniqueName": "Hai Ba Trung",
+    "cities": [
+      "Hanoi",
+      "Ho Chi Minh City",
+      "Hai Phong",
+      "Da Nang",
+      "Hue",
+      "Can Tho",
+      "Nha Trang",
+      "Bien Hoa",
+      "Hue",
+      "Vinh",
+      "Qui Nhon",
+      "Nam Dinh",
+      "Thai Nguyen",
+      "Vung Tau",
+      "Dong Hoi",
+      "Ha Long",
+      "Cam Ranh",
+      "Rach Gia",
+      "My Tho",
+      "Long Xuyen",
+      "Ben Tre",
+      "Tuy Hoa",
+      "Phan Thiet",
+      "Dong Nai",
+      "Bac Ninh",
+      "Thanh Hoa",
+      "Hoa Binh",
+      "Lao Cai",
+      "Son La",
+      "Ca Mau"
+    ],
+    "spyNames": [
+      "Trieu",
+      "Trung",
+      "Nhac",
+      "Phung",
+      "Le",
+      "Nguyen",
+      "Tran",
+      "Pham",
+      "Hoang",
+      "Vo"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": [
+      "Thành"
+    ]
+  },
+  "Phoenicia": {
+    "adjective": [
+      "Phoenician"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Dido",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      220,
+      170,
+      40
+    ],
+    "innerColor": [
+      43,
+      20,
+      90
+    ],
+    "favoredReligion": "Canaanite",
+    "uniqueName": "Mediterranean Expansion",
+    "cities": [
+      "Tyre",
+      "Sidon",
+      "Byblos",
+      "Berytus",
+      "Arwad",
+      "Tripoli",
+      "Ugarit",
+      "Sarepta",
+      "Acre",
+      "Akko",
+      "Simyra",
+      "Aradus",
+      "Carthage",
+      "Gades",
+      "Utica",
+      "Lixus",
+      "Malaca",
+      "Motya",
+      "Panormus",
+      "Soluntum",
+      "Tharros",
+      "Karalis",
+      "Sulci",
+      "Heras",
+      "Tingis",
+      "Rusaddir",
+      "Sabratha",
+      "Lepcis",
+      "Oea",
+      "Ptolemais"
+    ],
+    "spyNames": [
+      "Hiram",
+      "Elissa",
+      "Mattan",
+      "Azemilcus",
+      "Pummay",
+      "Bodashtart",
+      "Yatonmilk",
+      "Gerashtart",
+      "Baal",
+      "Astarte"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": [
+      "Cothon"
+    ]
+  },
+  "Gaul": {
+    "adjective": [
+      "Gallic"
+    ],
+    "startBias": [
+      "Forest"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Ambiorix",
+    "agenda": "Militaristic",
+    "hiddenAgendas": [
+      "Nature Lover",
+      "Warmonger Hater",
+      "Cultured"
+    ],
+    "outerColor": [
+      0,
+      90,
+      156
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Druidism",
+    "uniqueName": "Vercingetorix",
+    "cities": [
+      "Gergovia",
+      "Alesia",
+      "Bibracte",
+      "Cenabum",
+      "Noviodunum",
+      "Durocotorum",
+      "Divodurum",
+      "Lugdunum",
+      "Avaricum",
+      "Gesocribate",
+      "Condevincum",
+      "Namnetum",
+      "Darioritum",
+      "Vorgium",
+      "Condate",
+      "Ratos",
+      "Corstopitum",
+      "Lemonum",
+      "Augustoritum",
+      "Argentomagus",
+      "Autricum",
+      "Cenomani",
+      "Andecavi",
+      "Veneti",
+      "Osismi",
+      "Redones",
+      "Curiosolites",
+      "Lexovii",
+      "Unelli",
+      "Abrincatui"
+    ],
+    "spyNames": [
+      "Vercingetorix",
+      "Critognatus",
+      "Sedullos",
+      "Epasnactos",
+      "Litaviccos",
+      "Cotuatus",
+      "Commius",
+      "Dumnorix",
+      "Diviciacus",
+      "Cardelios"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": [
+      "Oppidum"
+    ]
+  },
+  "Maya": {
+    "adjective": [
+      "Maya"
+    ],
+    "startBias": [
+      "Jungle"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Lady Six Sky",
+    "agenda": "Nature Lover",
+    "hiddenAgendas": [
+      "Cultured",
+      "Piety",
+      "Warmonger Hater"
+    ],
+    "outerColor": [
+      198,
+      141,
+      99
+    ],
+    "innerColor": [
+      24,
+      63,
+      66
+    ],
+    "favoredReligion": "Mayan",
+    "uniqueName": "Ix Mutal",
+    "cities": [
+      "Naranjo",
+      "Tikal",
+      "Chichen Itza",
+      "Uxmal",
+      "Tulum",
+      "Copan",
+      "Coba",
+      "El Mirador",
+      "Calakmul",
+      "Edzna",
+      "Lamanai",
+      "Izapa",
+      "Uaxactun",
+      "Comalcalco",
+      "Piedras Negras",
+      "Cancuen",
+      "Yaxha",
+      "Quirigua",
+      "Q'umarkaj",
+      "Nakbe",
+      "Cerros",
+      "Xunantunich",
+      "Takalik Abaj",
+      "Cival",
+      "San Bartolo",
+      "Altar de Sacrificios",
+      "Seibal",
+      "Caracol"
+    ],
+    "spyNames": [
+      "Camazotz",
+      "Coyopa",
+      "Gukumatz",
+      "Hunahpu",
+      "Huracan",
+      "Ixchel",
+      "Ixtab",
+      "Kukulkï¿½n",
+      "Xbalanque",
+      "Zipacna"
+    ],
+    "uniqueBuildings": [
+      "Pyramid"
+    ],
+    "uniqueDistricts": []
+  },
+  "Gran Colombia": {
+    "adjective": [
+      "Colombian"
+    ],
+    "startBias": [
+      "Hill"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Simon Bolivar",
+    "agenda": "Militaristic",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Nature Lover"
+    ],
+    "outerColor": [
+      255,
+      204,
+      0
+    ],
+    "innerColor": [
+      0,
+      102,
+      153
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Ejercito Libertador",
+    "cities": [
+      "Bogota",
+      "Caracas",
+      "Quito",
+      "Medellin",
+      "Cali",
+      "Barranquilla",
+      "Cartagena",
+      "Cucuta",
+      "Bucaramanga",
+      "Pereira",
+      "Santa Marta",
+      "Ibague",
+      "Pasto",
+      "Manizales",
+      "Neiva",
+      "Villavicencio",
+      "Armenia",
+      "Popayan",
+      "Sincelejo",
+      "Monteria",
+      "Valledupar",
+      "Tunja",
+      "Giron",
+      "Bucaramanga",
+      "San Cristobal",
+      "Merida",
+      "Valencia",
+      "Maracaibo",
+      "Barinas",
+      "Guayaquil"
+    ],
+    "spyNames": [
+      "Simon",
+      "Manuela",
+      "Antonio",
+      "Francisco",
+      "Santander",
+      "Luisa",
+      "Daniel",
+      "Jose",
+      "Paez",
+      "Camilo"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Netherlands": {
+    "adjective": [
+      "Dutch"
+    ],
+    "startBias": [
+      "Grassland"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Wilhelmina",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      255,
+      102,
+      0
+    ],
+    "innerColor": [
+      0,
+      38,
+      102
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Polder",
+    "cities": [
+      "Amsterdam",
+      "Rotterdam",
+      "Utrecht",
+      "Groningen",
+      "Breda",
+      "Nijmegen",
+      "The Hague",
+      "Haarlem",
+      "Arnhem",
+      "Zutphen",
+      "Maastricht",
+      "Tilburg",
+      "Eindhoven",
+      "Dordrecht",
+      "Leiden",
+      "'s Hertogenbosch",
+      "Almere",
+      "Alkmaar",
+      "Brielle",
+      "Vlissingen",
+      "Apeldoorn",
+      "Enschede",
+      "Amersfoort",
+      "Zwolle",
+      "Venlo",
+      "Uden",
+      "Grave",
+      "Delft",
+      "Gouda",
+      "Nieuwstadt"
+    ],
+    "spyNames": [
+      "Joost",
+      "Hendrika",
+      "Marten",
+      "Anke",
+      "Guus",
+      "Willem",
+      "Thijs",
+      "Neef",
+      "Anna",
+      "Pieter"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": [
+      "Polder"
+    ]
+  },
+  "Portugal": {
+    "adjective": [
+      "Portuguese"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Joao III",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Piety",
+      "Nature Lover"
+    ],
+    "outerColor": [
+      0,
+      102,
+      0
+    ],
+    "innerColor": [
+      255,
+      204,
+      0
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Casa da Ãndia",
+    "cities": [
+      "Lisbon",
+      "Porto",
+      "Braga",
+      "Coimbra",
+      "Funchal",
+      "Evora",
+      "Setubal",
+      "Aveiro",
+      "Faro",
+      "Guarda",
+      "Leiria",
+      "Viseu",
+      "Viana do Castelo",
+      "Beja",
+      "Castelo Branco",
+      "Braganca",
+      "Portalegre",
+      "Santarem",
+      "Angra",
+      "Ponta Delgada",
+      "Horta",
+      "Tomar",
+      "Covilha",
+      "Elvas",
+      "Chaves",
+      "Lamego",
+      "Mirandela",
+      "Vila Real",
+      "Silves",
+      "Tavira"
+    ],
+    "spyNames": [
+      "Joao",
+      "Isabel",
+      "Afonso",
+      "Catarina",
+      "Manuel",
+      "Beatriz",
+      "Pedro",
+      "Leonor",
+      "Henrique",
+      "Filipa"
+    ],
+    "uniqueBuildings": [
+      "Feitoria"
+    ],
+    "uniqueDistricts": [
+      "Torre de Belém"
+    ]
+  },
+  "Sumeria": {
+    "adjective": [
+      "Sumerian"
+    ],
+    "startBias": [
+      "River"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Gilgamesh",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      180,
+      120,
+      30
+    ],
+    "innerColor": [
+      80,
+      40,
+      10
+    ],
+    "favoredReligion": "Sumerian",
+    "uniqueName": "Epic Quest",
+    "cities": [
+      "Uruk",
+      "Ur",
+      "Kish",
+      "Lagash",
+      "Nippur",
+      "Eridu",
+      "Eshnunna",
+      "Adab",
+      "Umma",
+      "Shuruppak",
+      "Bad-tibira",
+      "Sippar",
+      "Girsu",
+      "Isin",
+      "Larsa",
+      "Mari",
+      "Akshak",
+      "Hamazi",
+      "Aratta",
+      "Awan",
+      "Kutha",
+      "Borsippa",
+      "Dilbat",
+      "Kazallu",
+      "Der",
+      "Zabalam",
+      "Kes",
+      "Apiak",
+      "Puzrish-Dagan",
+      "Walla"
+    ],
+    "spyNames": [
+      "Enkidu",
+      "Shamhat",
+      "Utnapishtim",
+      "Siduri",
+      "Humbaba",
+      "Ishtar",
+      "Enlil",
+      "Ninsun",
+      "Tammuz",
+      "Lugulbanda"
+    ],
+    "uniqueBuildings": [
+      "Ziggurat"
+    ],
+    "uniqueDistricts": []
+  },
+  "America (Rough Rider Teddy)": {
+    "adjective": [
+      "American"
+    ],
+    "startBias": [
+      "Forest"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Theodore Roosevelt",
+    "agenda": "Militaristic",
+    "hiddenAgendas": [
+      "Nature Lover",
+      "Cultured",
+      "Warmonger Hater"
+    ],
+    "outerColor": [
+      28,
+      51,
+      119
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Rough Rider",
+    "cities": [
+      "Washington",
+      "New York",
+      "Boston",
+      "Philadelphia",
+      "Atlanta",
+      "Chicago",
+      "Seattle",
+      "San Francisco",
+      "Los Angeles",
+      "Houston",
+      "Portland",
+      "St. Louis",
+      "Miami",
+      "Buffalo",
+      "Detroit",
+      "New Orleans",
+      "Baltimore",
+      "Denver",
+      "Cincinnati",
+      "Dallas",
+      "Olympia",
+      "Tacoma",
+      "Spokane",
+      "Anchorage",
+      "Sacramento",
+      "Reno",
+      "Boise",
+      "Milwaukee",
+      "Phoenix",
+      "Albuquerque"
+    ],
+    "spyNames": [
+      "Theodore",
+      "Edith",
+      "Kermit",
+      "Alice",
+      "Quentin",
+      "Archibald",
+      "Ethel",
+      "Franklin",
+      "Leonard",
+      "Martha"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "France (Magnificence Catherine)": {
+    "adjective": [
+      "French"
+    ],
+    "startBias": [
+      "Grassland"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Catherine de Medici",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Piety",
+      "Nature Lover"
+    ],
+    "outerColor": [
+      38,
+      98,
+      255
+    ],
+    "innerColor": [
+      239,
+      236,
+      148
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Catherine's Court",
+    "cities": [
+      "Paris",
+      "Orleans",
+      "Lyon",
+      "Troyes",
+      "Tours",
+      "Marseille",
+      "Chartres",
+      "Avignon",
+      "Rouen",
+      "Grenoble",
+      "Dijon",
+      "Amiens",
+      "Cherbourg",
+      "Poitiers",
+      "Toulouse",
+      "Bayonne",
+      "Strasbourg",
+      "Brest",
+      "Bordeaux",
+      "Rennes",
+      "Nice",
+      "Saint Etienne",
+      "Nantes",
+      "Reims",
+      "Le Mans",
+      "Montpellier",
+      "Limoges",
+      "Nancy",
+      "Lille",
+      "Caen"
+    ],
+    "spyNames": [
+      "Catherine",
+      "Marie",
+      "Lorenzo",
+      "Cosimo",
+      "Marguerite",
+      "Henri",
+      "Diane",
+      "Francois",
+      "Renaud",
+      "VipÃ¨re"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Arabia (Sultan Saladin)": {
+    "adjective": [
+      "Arabian"
+    ],
+    "startBias": [
+      "Desert"
+    ],
+    "preferredVictoryType": "Religious",
+    "personality": "Saladin",
+    "agenda": "Piety",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Nature Lover"
+    ],
+    "outerColor": [
+      43,
+      88,
+      46
+    ],
+    "innerColor": [
+      146,
+      221,
+      10
+    ],
+    "favoredReligion": "Islam",
+    "uniqueName": "The Faith's Defender",
+    "cities": [
+      "Cairo",
+      "Damascus",
+      "Baghdad",
+      "Jerusalem",
+      "Aleppo",
+      "Mecca",
+      "Medina",
+      "Antioch",
+      "Mosul",
+      "Homs",
+      "Hama",
+      "Baalbek",
+      "Acre",
+      "Tyre",
+      "Sidon",
+      "Kerak",
+      "Edessa",
+      "Raqqa",
+      "Basra",
+      "Kufah",
+      "Najran",
+      "Yamama",
+      "Muscat",
+      "Aden",
+      "Sana'a",
+      "Shiraz",
+      "Isfahan",
+      "Nishapur",
+      "Merv",
+      "Balkh"
+    ],
+    "spyNames": [
+      "Salah",
+      "Imad",
+      "Nur",
+      "Shirkuh",
+      "Alaa",
+      "Qadi",
+      "Fatima",
+      "Jawhar",
+      "Tariq",
+      "Zahra"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Japan (Tokugawa)": {
+    "adjective": [
+      "Japanese"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Tokugawa Ieyasu",
+    "agenda": "Militaristic",
+    "hiddenAgendas": [
+      "Cultured",
+      "Nature Lover",
+      "Warmonger Hater"
+    ],
+    "outerColor": [
+      255,
+      255,
+      255
+    ],
+    "innerColor": [
+      184,
+      0,
+      0
+    ],
+    "favoredReligion": "Shinto",
+    "uniqueName": "Bakuhan",
+    "cities": [
+      "Edo",
+      "Kyoto",
+      "Osaka",
+      "Nagoya",
+      "Kanazawa",
+      "Sendai",
+      "Hiroshima",
+      "Fukuoka",
+      "Kagoshima",
+      "Nara",
+      "Nagasaki",
+      "Yokohama",
+      "Kobe",
+      "Sapporo",
+      "Hakodate",
+      "Takayama",
+      "Kumamoto",
+      "Matsue",
+      "Wakayama",
+      "Tsuruga",
+      "Toyama",
+      "Okayama",
+      "Himeji",
+      "Mito",
+      "Aizu",
+      "Akita",
+      "Aomori",
+      "Morioka",
+      "Utsunomiya",
+      "Otsu"
+    ],
+    "spyNames": [
+      "Ieyasu",
+      "Hidetada",
+      "Masamune",
+      "Hanzo",
+      "Tadakatsu",
+      "Naomasa",
+      "Yukimura",
+      "Masanori",
+      "Terumasa",
+      "Kiyomasa"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Persia (Nader Shah)": {
+    "adjective": [
+      "Persian"
+    ],
+    "startBias": [
+      "Desert"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Nader Shah",
+    "agenda": "Militaristic",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Piety"
+    ],
+    "outerColor": [
+      153,
+      5,
+      3
+    ],
+    "innerColor": [
+      244,
+      232,
+      54
+    ],
+    "favoredReligion": "Islam",
+    "uniqueName": "Persian Revival",
+    "cities": [
+      "Mashhad",
+      "Isfahan",
+      "Shiraz",
+      "Tehran",
+      "Tabriz",
+      "Kerman",
+      "Yazd",
+      "Qom",
+      "Hamadan",
+      "Kermanshah",
+      "Zanjan",
+      "Qazvin",
+      "Sari",
+      "Karaj",
+      "Arak",
+      "Borujerd",
+      "Sanandaj",
+      "Zahedan",
+      "Bandar Abbas",
+      "Kashan",
+      "Ghazvin",
+      "Nishapur",
+      "Sabzevar",
+      "Damghan",
+      "Semnan",
+      "Birjand",
+      "Gonabad",
+      "Torbat",
+      "Neyshabur",
+      "Shahrud"
+    ],
+    "spyNames": [
+      "Nader",
+      "Tahmasp",
+      "Reza",
+      "Fat'h",
+      "Ali",
+      "Mehdi",
+      "Karim",
+      "Agha",
+      "Lotf",
+      "Ziba"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "China (Yongle)": {
+    "adjective": [
+      "Chinese"
+    ],
+    "startBias": [
+      "Grassland"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Yongle",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Scientific",
+      "Piety",
+      "Warmonger Hater"
+    ],
+    "outerColor": [
+      200,
+      16,
+      16
+    ],
+    "innerColor": [
+      255,
+      222,
+      0
+    ],
+    "favoredReligion": "Taoism",
+    "uniqueName": "Treasure Fleet",
+    "cities": [
+      "Beijing",
+      "Nanjing",
+      "Xi'an",
+      "Hangzhou",
+      "Suzhou",
+      "Guangzhou",
+      "Chengdu",
+      "Kaifeng",
+      "Luoyang",
+      "Yangzhou",
+      "Ningbo",
+      "Baoding",
+      "Tianjin",
+      "Chongqing",
+      "Harbin",
+      "Dalian",
+      "Wuxi",
+      "Shaoxing",
+      "Quanzhou",
+      "Fuzhou",
+      "Xiamen",
+      "Wenzhou",
+      "Nantong",
+      "Weifang",
+      "Datong",
+      "Taiyuan",
+      "Kunming",
+      "Guilin",
+      "Lhasa",
+      "Lanzhou"
+    ],
+    "spyNames": [
+      "Zheng",
+      "Li",
+      "Chen",
+      "Zhang",
+      "Wang",
+      "Liu",
+      "Yang",
+      "Huang",
+      "Zhao",
+      "Zhou"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "China (Qin Shi Huang the Unifier)": {
+    "adjective": [
+      "Chinese"
+    ],
+    "startBias": [
+      "Grassland"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Qin Shi Huang",
+    "agenda": "Militaristic",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Piety"
+    ],
+    "outerColor": [
+      9,
+      112,
+      84
+    ],
+    "innerColor": [
+      255,
+      215,
+      0
+    ],
+    "favoredReligion": "Taoism",
+    "uniqueName": "The First Emperor",
+    "cities": [
+      "Xianyang",
+      "Xian",
+      "Luoyang",
+      "Handan",
+      "Linzi",
+      "Ying",
+      "Chenliu",
+      "Langya",
+      "Jicheng",
+      "Pingyang",
+      "Yong",
+      "Daliang",
+      "Shouchun",
+      "Wu",
+      "Chengdu",
+      "Jiangzhou",
+      "Ye",
+      "Guangzhou",
+      "Qufu",
+      "Zheng",
+      "Yangdi",
+      "Taiyuan",
+      "Yunzhong",
+      "Shangdang",
+      "Dingtao",
+      "Linzi",
+      "Xindu",
+      "Jinan",
+      "Liaodong",
+      "Yuzhou"
+    ],
+    "spyNames": [
+      "Li",
+      "Meng",
+      "Wei",
+      "Wang",
+      "Zhao",
+      "Chen",
+      "Zhang",
+      "Han",
+      "Liu",
+      "Xun"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Egypt (Ramses)": {
+    "adjective": [
+      "Egyptian"
+    ],
+    "startBias": [
+      "Avoid [Jungle]",
+      "Avoid [Forest]"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Ramses",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Piety",
+      "Warmonger Hater",
+      "Nature Lover"
+    ],
+    "outerColor": [
+      255,
+      252,
+      3
+    ],
+    "innerColor": [
+      83,
+      0,
+      208
+    ],
+    "favoredReligion": "Egyptian",
+    "uniqueName": "Monument Builder",
+    "cities": [
+      "Pi-Ramesses",
+      "Thebes",
+      "Memphis",
+      "Heliopolis",
+      "Elephantine",
+      "Alexandria",
+      "Giza",
+      "Byblos",
+      "Akhetaten",
+      "Hieraconpolis",
+      "Abydos",
+      "Asyut",
+      "Avaris",
+      "Lisht",
+      "Buto",
+      "Edfu",
+      "Pithom",
+      "Busiris",
+      "Kahun",
+      "Athribis",
+      "Mendes",
+      "Elashmunein",
+      "Tanis",
+      "Bubastis",
+      "Oryx",
+      "Sebennytus",
+      "Akhmin",
+      "Karnak",
+      "Luxor",
+      "El Kab"
+    ],
+    "spyNames": [
+      "Refaat",
+      "Heba",
+      "Salah",
+      "Ahmed",
+      "Zakaria",
+      "Bastet",
+      "Ma'at",
+      "Nebhet",
+      "Tefenet",
+      "Neuth"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Mali (Sundiata Keita)": {
+    "adjective": [
+      "Malian"
+    ],
+    "startBias": [
+      "Grassland"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Sundiata Keita",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      0,
+      80,
+      0
+    ],
+    "innerColor": [
+      255,
+      215,
+      0
+    ],
+    "favoredReligion": "Islam",
+    "uniqueName": "The Lion King",
+    "cities": [
+      "Niani",
+      "Timbuktu",
+      "Gao",
+      "Djenne",
+      "Kangaba",
+      "Walata",
+      "Tadmekka",
+      "Bambuk",
+      "KKouniakary",
+      "Nema",
+      "Mema",
+      "Diarra",
+      "Kumbi Saleh",
+      "Aoudaghost",
+      "Tegdaoust",
+      "Bamako",
+      "Segou",
+      "Sikasso",
+      "Mopti",
+      "Kayes",
+      "Kita",
+      "Macina",
+      "Massina",
+      "Hombori",
+      "Douentza",
+      "Bandiagara",
+      "Dori",
+      "Ouagadougou",
+      "Bobo-Dioulasso",
+      "Koudougou"
+    ],
+    "spyNames": [
+      "Sundiata",
+      "Balla",
+      "Fakoli",
+      "Sogolon",
+      "Moussa",
+      "Nyakhalen",
+      "Fran",
+      "Mbaye",
+      "Kemoko",
+      "Awa"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Byzantium (Theodora)": {
+    "adjective": [
+      "Byzantine"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Theodora",
+    "agenda": "Piety",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Nature Lover"
+    ],
+    "outerColor": [
+      114,
+      162,
+      233
+    ],
+    "innerColor": [
+      61,
+      0,
+      109
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Patriarchate",
+    "cities": [
+      "Constantinople",
+      "Adrianople",
+      "Nicaea",
+      "Antioch",
+      "Varna",
+      "Ohrid",
+      "Nicomedia",
+      "Trebizond",
+      "Cherson",
+      "Sardica",
+      "Ani",
+      "Dyrrachium",
+      "Edessa",
+      "Chalcedon",
+      "Naissus",
+      "Bari",
+      "Iconium",
+      "Prilep",
+      "Samosata",
+      "Kars",
+      "Nicopolis",
+      "Theodosiopolis",
+      "Tyana",
+      "Gaza",
+      "Kerkyra",
+      "Phoenice",
+      "Selymbria",
+      "Sillyon",
+      "Chrysopolis",
+      "Vodena"
+    ],
+    "spyNames": [
+      "Basil",
+      "Nikophoros",
+      "Demetrios",
+      "Philippos",
+      "Theophylaktos",
+      "Simonis",
+      "Zoe",
+      "Ioanno",
+      "Xene",
+      "Euphrosyne"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Korea (Sejong)": {
+    "adjective": [
+      "Korean"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Sejong",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Scientific",
+      "Piety",
+      "Nature Lover"
+    ],
+    "outerColor": [
+      27,
+      33,
+      96
+    ],
+    "innerColor": [
+      255,
+      0,
+      0
+    ],
+    "favoredReligion": "Confucianism",
+    "uniqueName": "Jade Hall",
+    "cities": [
+      "Seoul",
+      "Busan",
+      "Jeonju",
+      "Daegu",
+      "Pyongyang",
+      "Kaesong",
+      "Suwon",
+      "Gwangju",
+      "Gangneung",
+      "Hamhung",
+      "Wonju",
+      "Ulsan",
+      "Changwon",
+      "Andong",
+      "Gongju",
+      "Haeju",
+      "Cheongju",
+      "Mokpo",
+      "Dongducheon",
+      "Geoje",
+      "Suncheon",
+      "Jinju",
+      "Sangju",
+      "Rason",
+      "Gyeongju",
+      "Chungju",
+      "Sacheon",
+      "Gimje",
+      "Anju",
+      "Incheon"
+    ],
+    "spyNames": [
+      "Kim",
+      "Park",
+      "Han",
+      "Na",
+      "Kong",
+      "Yu",
+      "Ahn",
+      "Da",
+      "Eun",
+      "Yoon"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Germany (Ludwig II)": {
+    "adjective": [
+      "German"
+    ],
+    "startBias": [
+      "Hill"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Ludwig II",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Piety",
+      "Nature Lover"
+    ],
+    "outerColor": [
+      0,
+      47,
+      105
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Fairy Tale King",
+    "cities": [
+      "Munich",
+      "Nuremberg",
+      "Augsburg",
+      "Wurzburg",
+      "Regensburg",
+      "Bamberg",
+      "Wiesbaden",
+      "Passau",
+      "Bayreuth",
+      "Ingolstadt",
+      "Aschaffenburg",
+      "Furth",
+      "Erlangen",
+      "Kempten",
+      "Neu-Ulm",
+      "Landshut",
+      "Straubing",
+      "Hof",
+      "Schweinfurt",
+      "Rosenheim",
+      "Freising",
+      "Dachau",
+      "Memmingen",
+      "Coburg",
+      "Ansbach",
+      "Schwabach",
+      "Weiden",
+      "Amberg",
+      "Kaufbeuren",
+      "Donauworth"
+    ],
+    "spyNames": [
+      "Ludwig",
+      "Sisi",
+      "Richard",
+      "Cosima",
+      "Heinrich",
+      "Sophie",
+      "Otto",
+      "Emilie",
+      "Max",
+      "Lola"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "England (Elizabeth I)": {
+    "adjective": [
+      "English"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Elizabeth I",
+    "agenda": "Militaristic",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Piety"
+    ],
+    "outerColor": [
+      109,
+      2,
+      0
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "The Virgin Queen",
+    "cities": [
+      "London",
+      "York",
+      "Nottingham",
+      "Hastings",
+      "Canterbury",
+      "Coventry",
+      "Warwick",
+      "Newcastle",
+      "Oxford",
+      "Liverpool",
+      "Dover",
+      "Brighton",
+      "Norwich",
+      "Leeds",
+      "Reading",
+      "Birmingham",
+      "Richmond",
+      "Exeter",
+      "Cambridge",
+      "Gloucester",
+      "Manchester",
+      "Bristol",
+      "Leicester",
+      "Carlisle",
+      "Ipswich",
+      "Portsmouth",
+      "Berwick",
+      "Bath",
+      "Southampton",
+      "Plymouth"
+    ],
+    "spyNames": [
+      "James",
+      "Scarlett",
+      "Mycroft",
+      "Charlotte",
+      "Gwendolyn",
+      "Andrew",
+      "Scott",
+      "Anne",
+      "Walter",
+      "Francis"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": [
+      "Royal Navy Dockyard"
+    ]
+  },
+  "Norway (Harald Hardrada)": {
+    "adjective": [
+      "Norwegian"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Harald Hardrada",
+    "agenda": "Militaristic",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Nature Lover"
+    ],
+    "outerColor": [
+      0,
+      82,
+      147
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Last Viking",
+    "cities": [
+      "Oslo",
+      "Bergen",
+      "Trondheim",
+      "Stavanger",
+      "Tromso",
+      "Drammen",
+      "Fredrikstad",
+      "Kristiansand",
+      "Skien",
+      "Arendal",
+      "Molde",
+      "Bodo",
+      "Tonsberg",
+      "Sarpsborg",
+      "Haugesund",
+      "Sandnes",
+      "Larvik",
+      "Halden",
+      "Kongsberg",
+      "Moss",
+      "Sortland",
+      "Narvik",
+      "Hammerfest",
+      "Alta",
+      "Vardo",
+      "Kirkenes",
+      "Lillehammer",
+      "Gjovik",
+      "Steinkjer",
+      "Floro"
+    ],
+    "spyNames": [
+      "Harald",
+      "Olaf",
+      "Sigrid",
+      "Ragnar",
+      "Ingrid",
+      "Bjorn",
+      "Astrid",
+      "Leif",
+      "Torstein",
+      "Gunhild"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "England (Victoria â€” Age of Steam)": {
+    "adjective": [
+      "English"
+    ],
+    "startBias": [
+      "Coast"
+    ],
+    "preferredVictoryType": "Domination",
+    "personality": "Victoria",
+    "agenda": "Militaristic",
+    "hiddenAgendas": [
+      "Cultured",
+      "Warmonger Hater",
+      "Piety"
+    ],
+    "outerColor": [
+      109,
+      2,
+      0
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Empress of India",
+    "cities": [
+      "London",
+      "Manchester",
+      "Liverpool",
+      "Birmingham",
+      "Leeds",
+      "Glasgow",
+      "Sheffield",
+      "Bristol",
+      "Edinburgh",
+      "Cardiff",
+      "Newcastle",
+      "Belfast",
+      "Nottingham",
+      "Leicester",
+      "Coventry",
+      "Hull",
+      "Bradford",
+      "Portsmouth",
+      "Southampton",
+      "Plymouth",
+      "Derby",
+      "Brighton",
+      "Middlesbrough",
+      "Bolton",
+      "Bournemouth",
+      "Norwich",
+      "Swansea",
+      "Reading",
+      "Dudley",
+      "Wolverhampton"
+    ],
+    "spyNames": [
+      "Albert",
+      "Alice",
+      "Edward",
+      "Beatrice",
+      "Arthur",
+      "Helena",
+      "Leopold",
+      "Vicky",
+      "George",
+      "Louise"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": [
+      "Royal Navy Dockyard"
+    ]
+  },
+  "America (Abraham Lincoln)": {
+    "adjective": [
+      "American"
+    ],
+    "startBias": [
+      "Grassland"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Abraham Lincoln",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      28,
+      51,
+      119
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "The Great Emancipator",
+    "cities": [
+      "Washington",
+      "Springfield",
+      "Gettysburg",
+      "Richmond",
+      "Chicago",
+      "New York",
+      "Boston",
+      "Philadelphia",
+      "Atlanta",
+      "Houston",
+      "St. Louis",
+      "Cincinnati",
+      "Cleveland",
+      "Pittsburgh",
+      "Louisville",
+      "Indianapolis",
+      "Columbus",
+      "Kansas City",
+      "Denver",
+      "Omaha",
+      "Topeka",
+      "Des Moines",
+      "Madison",
+      "Lincoln",
+      "Jackson",
+      "Nashville",
+      "Charleston",
+      "Sacramento",
+      "Salt Lake City",
+      "Boise"
+    ],
+    "spyNames": [
+      "Abraham",
+      "Mary",
+      "Robert",
+      "Willie",
+      "Tad",
+      "Ulysses",
+      "Edwin",
+      "William",
+      "Joshua",
+      "Thaddeus"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Kongo (Nzinga Mbande)": {
+    "adjective": [
+      "Kongolese"
+    ],
+    "startBias": [
+      "Jungle"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Nzinga Mbande",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      184,
+      13,
+      13
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Ngola",
+    "cities": [
+      "Mbanza Kongo",
+      "Luanda",
+      "Ndongo",
+      "Matamba",
+      "Kabasa",
+      "Pungo Andongo",
+      "Massangano",
+      "Mbingo",
+      "Ambaca",
+      "Kissanje",
+      "Kasange",
+      "Wamba",
+      "Dondo",
+      "Cambambe",
+      "Golungo Alto",
+      "Cazengo",
+      "Samba",
+      "Quiculungo",
+      "Bengo",
+      "Kwanza",
+      "Libolo",
+      "Seles",
+      "Sumbe",
+      "Porto Amboim",
+      "Nobi",
+      "Cassua",
+      "Cazengo",
+      "Tala Mugongo",
+      "Humpata",
+      "Huila"
+    ],
+    "spyNames": [
+      "Nzinga",
+      "Kambu",
+      "Mukumbu",
+      "Kalandula",
+      "Ngola",
+      "Kimpa",
+      "Kazenga",
+      "Mwana",
+      "Kasenda",
+      "Tumba"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  },
+  "Egypt (Ptolemaic Cleopatra)": {
+    "adjective": [
+      "Egyptian"
+    ],
+    "startBias": [
+      "Avoid [Jungle]",
+      "Avoid [Forest]"
+    ],
+    "preferredVictoryType": "Cultural",
+    "personality": "Cleopatra",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Diplomatic",
+      "Piety",
+      "Warmonger Hater"
+    ],
+    "outerColor": [
+      255,
+      252,
+      3
+    ],
+    "innerColor": [
+      83,
+      0,
+      208
+    ],
+    "favoredReligion": "Egyptian",
+    "uniqueName": "Mediterranean's Bride",
+    "cities": [
+      "Alexandria",
+      "Memphis",
+      "Thebes",
+      "Heliopolis",
+      "Elephantine",
+      "Pi-Ramesses",
+      "Giza",
+      "Byblos",
+      "Akhetaten",
+      "Hieraconpolis",
+      "Abydos",
+      "Asyut",
+      "Avaris",
+      "Lisht",
+      "Buto",
+      "Edfu",
+      "Pithom",
+      "Busiris",
+      "Kahun",
+      "Athribis",
+      "Mendes",
+      "Elashmunein",
+      "Tanis",
+      "Bubastis",
+      "Oryx",
+      "Sebennytus",
+      "Akhmin",
+      "Karnak",
+      "Luxor",
+      "El Kab"
+    ],
+    "spyNames": [
+      "Cleopatra",
+      "Caesarion",
+      "Arsinoe",
+      "Pothinus",
+      "Charmian",
+      "Iras",
+      "Apollodorus",
+      "Mark",
+      "Olympias",
+      "Berenice"
+    ],
+    "uniqueBuildings": [],
+    "uniqueDistricts": []
+  }
+}

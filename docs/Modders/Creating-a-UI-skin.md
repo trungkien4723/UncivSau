@@ -54,6 +54,12 @@ These shapes are used all over Unciv and can be replaced to make a lot of UI ele
 | CityScreen/CityStatsTable/ | InnerTable | null | |
 | CityScreen/ConstructionInfoTable/ | Background | null | |
 | CityScreen/ConstructionInfoTable/ | SelectedConstructionTable | null | |
+| CivicPickerScreen/ | Background | null | |
+| CivicPickerScreen/ | BottomTable | null | |
+| CivicPickerScreen/ | CurrentCivicColor | 72, 147, 175 | |
+| CivicPickerScreen/ | QueuedCivicColor | 7*2, 46*2, 43*2 | |
+| CivicPickerScreen/ | ResearchableCivicColor | 28, 170, 0 | |
+| CivicPickerScreen/ | ResearchedCivicColor | 255, 215, 0 | |
 | CivilopediaScreen/ | EntryButton | null | |
 | DiplomacyScreen/ | LeftSide | null | |
 | DiplomacyScreen/ | RightSide | null | |
@@ -138,6 +144,7 @@ These shapes are used all over Unciv and can be replaced to make a lot of UI ele
 | WorldScreen/ | AirUnitTable | null | |
 | WorldScreen/ | BattleTable | null | |
 | WorldScreen/ | Notification | roundedEdgeRectangle | |
+| WorldScreen/ | PickCivicButton | roundedEdgeRectangle | |
 | WorldScreen/ | PickTechButton | roundedEdgeRectangle | |
 | WorldScreen/ | TileInfoTable | null | |
 | WorldScreen/ | TutorialTaskTable | null | |

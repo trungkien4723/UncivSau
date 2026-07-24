@@ -24,6 +24,7 @@ import yairm210.purity.annotations.Readonly
 class Building : RulesetStatsObject(), INonPerpetualConstruction {
 
     override var requiredTech: String? = null
+    var requiredCivic: String? = null
     override var cost: Int = -1
 
     private var percentStatBonus: Stats? = null
@@ -375,6 +376,9 @@ class Building : RulesetStatsObject(), INonPerpetualConstruction {
             if (!civ.tech.isResearched(requiredTech))
                 yield(RejectionReasonType.RequiresTech.toInstance("$requiredTech not researched!"))
 
+        if (requiredCivic != null && !civ.civics.isResearched(requiredCivic!!))
+            yield(RejectionReasonType.RequiresCivic.toInstance("$requiredCivic not researched!"))
+
         // All Wonders
         if(isAnyWonder()) {
             if (civ.cities.any { it != cityConstructions.city && it.cityConstructions.isBeingConstructedOrEnqueued(name) })
@@ -559,6 +563,8 @@ class Building : RulesetStatsObject(), INonPerpetualConstruction {
     }
     
     @Readonly fun hasCreateOneImprovementUnique() = improvementToCreate != null
+
+    @Readonly fun hasCreateOneDistrictUnique() = getDistrictToCreateName() != null
 
     @Readonly
     private fun getDistrictToCreateName(): String? {

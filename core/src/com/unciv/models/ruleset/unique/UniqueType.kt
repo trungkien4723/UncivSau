@@ -411,6 +411,7 @@ enum class UniqueType(
     // TODO: Should be replaced by "Can instantly construct a [] improvement <by consuming this unit>"
     CreateWaterImprovements("May create improvements on water resources", UniqueTarget.Unit),
     BuildImprovements("Can build [improvementFilter/terrainFilter] improvements on tiles", UniqueTarget.Unit),
+    BuildDistricts("Can build [districtFilter] districts on tiles", UniqueTarget.Unit),
     CanSpreadReligion("Can Spread Religion", UniqueTarget.UnitAction),
     CanRemoveHeresy("Can remove other religions from cities", UniqueTarget.UnitAction),
     MayFoundReligion("May found a religion", UniqueTarget.UnitAction),

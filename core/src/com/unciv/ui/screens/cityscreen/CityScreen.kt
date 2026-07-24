@@ -13,6 +13,7 @@ import com.unciv.logic.map.tile.Tile
 import com.unciv.models.TutorialTrigger
 import com.unciv.models.UncivSound
 import com.unciv.models.ruleset.Building
+import com.unciv.models.ruleset.District
 import com.unciv.models.ruleset.IConstruction
 import com.unciv.models.ruleset.tile.TileImprovement
 import com.unciv.models.ruleset.unique.UniqueType
@@ -123,6 +124,14 @@ class CityScreen(
         val buyStat: Stat
     )
 
+    /** Support for [UniqueType.CreatesOneDistrict] - need user to pick a tile */
+    class PickTileForDistrictData (
+        val building: Building,
+        val district: District,
+        val isBuying: Boolean,
+        val buyStat: Stat
+    )
+
     // The following fields control what the user selects
     var selectedConstruction: IConstruction? = initSelectedConstruction
         private set
@@ -130,6 +139,8 @@ class CityScreen(
         private set
     /** If set, we are waiting for the user to pick a tile for [UniqueType.CreatesOneImprovement] */
     var pickTileData: PickTileForImprovementData? = null
+    /** If set, we are waiting for the user to pick a tile for [UniqueType.CreatesOneDistrict] */
+    var pickDistrictData: PickTileForDistrictData? = null
     /** A [Building] with [UniqueType.CreatesOneImprovement] has been selected _in the queue_: show the tile it will place the improvement on */
     private var selectedQueueEntryTargetTile: Tile? = null
     var selectedQueueEntry
@@ -262,6 +273,14 @@ class CityScreen(
             }
         }
 
+        fun getPickDistrictColor(tile: Tile): Pair<Color, Float> {
+            val districtToPlace = pickDistrictData!!.district
+            return when {
+                city.cityConstructions.canPlaceCreateOneDistrictOn(districtToPlace, tile) -> Color.GREEN to 0.5f
+                else -> Color.RED to 0.4f
+            }
+        }
+
         for (tileGroup in tileGroups) {
             tileGroup.update(selectedCiv)
             tileGroup.layerMisc.removeHexOutline()
@@ -278,6 +297,9 @@ class CityScreen(
                     tileGroup.layerMisc.addHexOutline(Color.BROWN)
                 pickTileData != null && tileGroup.tile.getCity() == city && tileGroup.tile in city.tilesInRange ->
                     getPickImprovementColor(tileGroup.tile).run {
+                        tileGroup.layerMisc.addHexOutline(first.cpy().apply { this.a = second }) }
+                pickDistrictData != null && tileGroup.tile.getCity() == city && tileGroup.tile in city.tilesInRange ->
+                    getPickDistrictColor(tileGroup.tile).run {
                         tileGroup.layerMisc.addHexOutline(first.cpy().apply { this.a = second }) }
             }
         }
@@ -509,6 +531,23 @@ class CityScreen(
             return
         }
 
+        /** [UniqueType.CreatesOneDistrict] support - select tile for district */
+        if (pickDistrictData != null) {
+            val pickDistrictData = this.pickDistrictData!!
+            this.pickDistrictData = null
+            val district = pickDistrictData.district
+            if (city.cityConstructions.canPlaceCreateOneDistrictOn(district, tileInfo)) {
+                
+                if (pickDistrictData.isBuying) {
+                    BuyButtonFactory(this).askToBuyConstruction(pickDistrictData.building, pickDistrictData.buyStat, tileInfo)
+                } else {
+                    city.cityConstructions.addToQueue(pickDistrictData.building, tile = tileInfo)
+                }
+            }
+            update()
+            return
+        }
+
         selectTile(tileInfo)
         update()
     }
@@ -529,9 +568,14 @@ class CityScreen(
             val improvement = newConstruction.getImprovementToCreate(city.getRuleset(), city.civ)
             selectedQueueEntryTargetTile = if (improvement == null) null
                 else city.cityConstructions.getTileForImprovement(improvement.name)
+        } else if (newConstruction is Building && newConstruction.hasCreateOneDistrictUnique()) {
+            val district = newConstruction.getDistrictToCreate(city.getRuleset())
+            selectedQueueEntryTargetTile = if (district == null) null
+                else city.cityConstructions.getTileForDistrict(district.name)
         } else {
             selectedQueueEntryTargetTile = null
             pickTileData = null
+            pickDistrictData = null
         }
         selectedTile = null
     }
@@ -539,6 +583,7 @@ class CityScreen(
         selectedConstruction = null
         selectedQueueEntryTargetTile = null
         pickTileData = null
+        pickDistrictData = null
         selectedTile = newTile
     }
     fun clearSelection() = selectTile(null)
@@ -552,6 +597,18 @@ class CityScreen(
     fun stopPickTileForCreatesOneImprovement() {
         if (pickTileData == null) return
         pickTileData = null
+        updateTileGroups()
+    }
+
+    fun startPickTileForCreatesOneDistrict(construction: Building, stat: Stat, isBuying: Boolean) {
+        val district = construction.getDistrictToCreate(city.getRuleset()) ?: return
+        pickDistrictData = PickTileForDistrictData(construction, district, isBuying, stat)
+        updateTileGroups()
+        ToastPopup("Please select a tile for this building's [${district.name}]", this)
+    }
+    fun stopPickTileForCreatesOneDistrict() {
+        if (pickDistrictData == null) return
+        pickDistrictData = null
         updateTileGroups()
     }
 

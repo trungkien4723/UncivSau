@@ -82,6 +82,7 @@ object UnitActions {
         UnitActionType.Guard to UnitActionsFromUniques::getGuardActions,
         UnitActionType.FoundCity to UnitActionsFromUniques::getFoundCityActions,
         UnitActionType.ConstructImprovement to UnitActionsFromUniques::getBuildingImprovementsActions,
+        UnitActionType.BuildDistrict to UnitActionsFromUniques::getBuildDistrictActions,
         UnitActionType.ConnectRoad to UnitActionsFromUniques::getConnectRoadActions,
         UnitActionType.Repair to UnitActionsFromUniques::getRepairActions,
         UnitActionType.HurryResearch to UnitActionsGreatPerson::getHurryResearchActions,

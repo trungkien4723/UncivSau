@@ -15,6 +15,7 @@ import com.unciv.models.Counter
 import com.unciv.models.UncivSound
 import com.unciv.models.UnitAction
 import com.unciv.models.UnitActionType
+import com.unciv.models.ruleset.District
 import com.unciv.models.ruleset.unique.GameContext
 import com.unciv.models.ruleset.unique.UniqueTarget
 import com.unciv.models.ruleset.unique.UniqueTriggerActivation
@@ -26,6 +27,7 @@ import com.unciv.models.translations.tr
 import com.unciv.ui.components.fonts.Fonts
 import com.unciv.ui.popups.ConfirmPopup
 import com.unciv.ui.screens.pickerscreens.ImprovementPickerScreen
+import com.unciv.ui.screens.pickerscreens.DistrictPickerScreen
 import com.unciv.ui.screens.worldscreen.unit.actions.UnitActionModifiers.getUseFrequency
 import yairm210.purity.annotations.Readonly
 
@@ -551,4 +553,48 @@ object UnitActionsFromUniques {
             }.takeIf { couldConstruct }
         )
     }
+
+internal fun getBuildDistrictActions(unit: MapUnit, tile: Tile) = sequence {
+    val unique = unit.getMatchingUniques(UniqueType.BuildDistricts).firstOrNull()
+    val useFrequency = getUseFrequency(unit, unique, 85f)
+
+    val city = tile.getCity()
+    val couldConstruct = unique != null
+        && unit.hasMovement()
+        && !tile.isCityCenter()
+        && tile.district == null
+        && city?.civ == unit.civ
+        && city?.tilesInRange?.contains(tile) == true
+        && unit.civ.gameInfo.ruleset.districts.values.any { canBuildDistrictOnTile(it, tile, unit) }
+
+    yield(UnitAction(UnitActionType.BuildDistrict, useFrequency,
+        action = {
+            val currentCity = tile.getCity()
+            if (currentCity != null) {
+                GUI.pushScreen(DistrictPickerScreen(tile, unit) { district, targetTile ->
+                    currentCity.cityConstructions.buildDistrict(district, targetTile)
+                    if (GUI.getSettings().autoUnitCycle)
+                        GUI.getWorldScreen().switchToNextUnit()
+                })
+            }
+        }.takeIf { couldConstruct }
+    ))
+}
+
+    private fun canBuildDistrictOnTile(district: District, tile: Tile, unit: MapUnit): Boolean {
+    val city = tile.getCity() ?: return false
+    if (city.civ != unit.civ) return false
+    if (tile !in city.tilesInRange) return false
+    if (tile.isCityCenter()) return false
+    if (tile.district != null) return false
+    if (tile.districtToCreate != null) return false
+    if (city.getDistrictsCount() >= city.getDistrictCapacity()) return false
+    if (district.onlyBuildableOn.isNotEmpty() && !tile.matchesFilter(district.onlyBuildableOn, unit.civ)) return false
+
+    val requiredTech = district.requiredTech
+    if (requiredTech != null && !unit.civ.tech.isResearched(requiredTech)) return false
+    val requiredCivic = district.requiredCivic
+    if (requiredCivic != null && !unit.civ.civics.isResearched(requiredCivic)) return false
+    return true
+}
 }

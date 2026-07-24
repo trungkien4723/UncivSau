@@ -101,6 +101,8 @@ class TileImprovement : RulesetStatsObject() {
             "Improvement" -> true // For situations involving tileFilter
             "All Road" -> isRoad()
             "Great Improvement", "Great" -> isGreatImprovement()
+            "Land" -> "Land" in terrainsCanBeBuiltOn
+            "Water" -> "Water" in terrainsCanBeBuiltOn
             else -> filter == name || filter == replaces // 2 string equalities is better than hashmap lookup
         }
     }

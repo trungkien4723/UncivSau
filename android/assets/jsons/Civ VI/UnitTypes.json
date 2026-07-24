@@ -92,6 +92,28 @@
 
     // Deprecated unit types required for mods without a UnitTypes.json file to work
 
+    // Civ VI unit types
+    {
+        "name": "Horse",
+        "movementType": "Land"
+    },
+    {
+        "name": "NavalMelee",
+        "movementType": "Water"
+    },
+    {
+        "name": "NavalRanged",
+        "movementType": "Water"
+    },
+    {
+        "name": "Religious",
+        "movementType": "Land"
+    },
+    {
+        "name": "Support",
+        "movementType": "Land"
+    },
+
     {
         "name": "Melee",
         "movementType": "Land"
