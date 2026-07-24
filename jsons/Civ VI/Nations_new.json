@@ -1,0 +1,1680 @@
+[
+  {
+    "name": "Spectator",
+    "outerColor": [
+      255,
+      255,
+      255
+    ]
+  },
+  {
+    "name": "America",
+    "leaderName": "Abraham Lincoln",
+    "adjective": [
+      "America"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Abraham Lincoln",
+    "agenda": "Emancipation Proclamation",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "American unique Atomic era air unit that replaces [ Fighter.  Gains [\\+5] Combat Strength against fighter aircraft, has [\\+2] flight range, and gains [[\\+5] 0]% experience.< Advanced Flight >",
+      "American unique Atomic era air unit that replaces [ Fighter.  Gains [\\+5] Combat Strength against fighter aircraft, has [\\+2] flight range, and gains [[\\+5] 0]% experience.< Advanced Flight >",
+      "American unique Industrial era unit when Teddy Roosevelt is their leader that replaces [ Cuirassiers.Culture is earned from kills on theirCapital's continent. [\\+10] Combat Strength when fighting on Hills. Lower maintenance cost.< Ballistics >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Arabia",
+    "leaderName": "Saladin (Vizier)",
+    "adjective": [
+      "Arabia"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Saladin (Vizier)",
+    "agenda": "Righteousness of the Faith",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Arabian unique Medieval era unit that replaces [ Knight. Heals at the end of every turn, even after moving or attacking.< Stirrups >",
+      "Arabian unique Medieval era unit that replaces [ Knight. Heals at the end of every turn, even after moving or attacking.< Stirrups >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Australia",
+    "leaderName": "John Curtin",
+    "adjective": [
+      "Australia"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "John Curtin",
+    "agenda": "Citadel of Civilization",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct an Outback Station, unique to Australia.[\\+1] Food and [\\+1] Production. [\\+1] Food for each adjacent Pasture. AdditionalFood andProduction as you advance through the > and > Tree for adjacent Outback Stations and Pastures. Can only be built in Desert, Desert Hills, Grassland, and Plains tiles.",
+      "Australian unique Modern era unit that replaces Infantry. [\\+10] Combat Strength when fighting on Coastal tiles. [\\+5] Combat Strength when fighting on Neutral or Foreign Territory.< Replaceable Parts >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Aztec",
+    "leaderName": "Montezuma",
+    "adjective": [
+      "Aztec"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Montezuma",
+    "agenda": "Legend of the Five Suns",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Aztec unique Ancient era unit that replaces [ Warrior.  Has a chance to capture other civilization's military units by turning them into Builders."
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Babylon",
+    "leaderName": "Hammurabi",
+    "adjective": [
+      "Babylon"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Hammurabi",
+    "agenda": "Nebuchadnezzar II",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Babylonian unique Ancient era melee unit. [\\+17] Combat Strength against Heavy and Light Cavalry promotion class units. This unit has 3Movement and sight."
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Brazil",
+    "leaderName": "Pedro II",
+    "adjective": [
+      "Brazil"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Pedro II",
+    "agenda": "Magnanimous",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Brazilian unique Industrial era unit that replaces [ Battleship. Stronger than the Battleship. < Nationalism.< Nationalism >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Byzantium",
+    "leaderName": "Basil II",
+    "adjective": [
+      "Byzantium"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Basil II",
+    "agenda": "Bannockburn",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Basil II's unique Medieval era unit that replaces [ Knight. Land units within 1 tile of the Tagma receive [\\+4] Combat Strength orReligious Strength.< Divine Right >",
+      "Byzantine unique Classical era unit that replaces [ Quadrireme that has additional range and receives [\\+10] Combat Strength against units.< Shipbuilding >"
+    ],
+    "cities": [],
+    "spyNames": [],
+    "uniqueBuildings": [
+      "Classical Era"
+    ]
+  },
+  {
+    "name": "Canada",
+    "leaderName": "Wilfrid Laurier",
+    "adjective": [
+      "Canada"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Wilfrid Laurier",
+    "agenda": "Four Faces of Peace",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct an Ice Hockey Rink, unique to Canada.[\\+1] Amenity. [\\+1] Culture for each adjacent Tundra, Tundra Hills, Snow, and Snow Hills tile. ProvidesTourism from Culture once Flight is unlocked. [\\+2] Food andProduction once the Professional Sports civic is unlocked. [\\+4] Culture if adjacent to a Stadium building. Can be built on Tundra, Tundra Hills, Snow, and Snow Hills. One per city. [\\+2] Appeal.",
+      "Canadian unique Modern era unit. Can create 2 National Parks. [\\+5] Combat Strength when fighting within 2 tiles of a National Park. Additional [\\+5] Combat Strength when fighting within 2 tiles of a National Park you own.< Conservation >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "China",
+    "leaderName": "Kublai Khan (China)",
+    "adjective": [
+      "China"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Gandhi",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct the Great Wall, unique to China.[\\+2] Gold. Provides an increase toDefense. Bonus toGold if adjacent to other segments. AdditionalCulture andTourism as you advance through the > Tree for adjacent segments. Must be built in a line along the borders of your empire. Can only be pillaged (never destroyed) by natural disasters.",
+      "Chinese unique Medieval era unit. Ranged unit with aRange of 1 and high combat strength.< Machinery >",
+      "Unlocks the Builder ability to construct the Great Wall, unique to China.[\\+2] Gold. Provides an increase toDefense. Bonus toGold if adjacent to other segments. AdditionalCulture andTourism as you advance through the > Tree for adjacent segments. Must be built in a line along the borders of your empire. Can only be pillaged (never destroyed) by natural disasters.",
+      "Chinese unique Medieval era unit. Ranged unit with aRange of 1 and high combat strength.< Machinery >",
+      "Unlocks the Builder ability to construct the Great Wall, unique to China.[\\+2] Gold. Provides an increase toDefense. Bonus toGold if adjacent to other segments. AdditionalCulture andTourism as you advance through the > Tree for adjacent segments. Must be built in a line along the borders of your empire. Can only be pillaged (never destroyed) by natural disasters.",
+      "Chinese unique Medieval era unit. Ranged unit with aRange of 1 and high combat strength.< Machinery >",
+      "Unlocks the Builder ability to construct the Great Wall, unique to China.[\\+2] Gold. Provides an increase toDefense. Bonus toGold if adjacent to other segments. AdditionalCulture andTourism as you advance through the > Tree for adjacent segments. Must be built in a line along the borders of your empire. Can only be pillaged (never destroyed) by natural disasters.",
+      "Chinese unique Medieval era unit. Ranged unit with aRange of 1 and high combat strength.< Machinery >",
+      "Unlocks the Builder ability to construct the Great Wall, unique to China.[\\+2] Gold. Provides an increase toDefense. Bonus toGold if adjacent to other segments. AdditionalCulture andTourism as you advance through the > Tree for adjacent segments. Must be built in a line along the borders of your empire. Can only be pillaged (never destroyed) by natural disasters.",
+      "Chinese unique Medieval era unit. Ranged unit with aRange of 1 and high combat strength.< Machinery >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Cree",
+    "leaderName": "Poundmaker",
+    "adjective": [
+      "Cree"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Gandhi",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct a Mekewap, unique to Cree.Provides [\\+1] Production and [\\+1] Housing. [\\+1] Gold if adjacent to a Luxury resource.  For every 2 adjacent Bonus Resources [\\+1] Food.  AdditionalProduction,Gold,Food, andHousing as you advance through the >s and > Tree. Must be placed adjacent to a Bonus or Luxury resource. Cannot be built adjacent to another Mekewap.",
+      "Cree unique Ancient era unit that replaces [ Scout. Strong reconnaissance unit. Starts with 1 free promotion."
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Egypt",
+    "leaderName": "Cleopatra (Egyptian)",
+    "adjective": [
+      "Egypt"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Gandhi",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct a Sphinx, unique to Egypt.[\\+1] Faith and [\\+1] Culture. [\\+2] Appeal. [\\+2] Faith if next to a wonder. [\\+1] Culture if built on Floodplains. AdditionalCulture once Natural History is discovered. ProvidesTourism after researching Flight. Cannot be built next to another Sphinx. Cannot be built on Snow or Snow Hills.",
+      "Egyptian unique Ancient era ranged unit. 4Movement when starting in open terrain.< Wheel >",
+      "Unlocks the Builder ability to construct a Sphinx, unique to Egypt.[\\+1] Faith and [\\+1] Culture. [\\+2] Appeal. [\\+2] Faith if next to a wonder. [\\+1] Culture if built on Floodplains. AdditionalCulture once Natural History is discovered. ProvidesTourism after researching Flight. Cannot be built next to another Sphinx. Cannot be built on Snow or Snow Hills.",
+      "Egyptian unique Ancient era ranged unit. 4Movement when starting in open terrain.< Wheel >",
+      "Unlocks the Builder ability to construct a Sphinx, unique to Egypt.[\\+1] Faith and [\\+1] Culture. [\\+2] Appeal. [\\+2] Faith if next to a wonder. [\\+1] Culture if built on Floodplains. AdditionalCulture once Natural History is discovered. ProvidesTourism after researching Flight. Cannot be built next to another Sphinx. Cannot be built on Snow or Snow Hills.",
+      "Egyptian unique Ancient era ranged unit. 4Movement when starting in open terrain.< Wheel >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "England",
+    "leaderName": "Eleanor of Aquitaine (England)",
+    "adjective": [
+      "England"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Eleanor of Aquitaine (England)",
+    "agenda": "Court of Love",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "English unique Renaissance era naval unit that replaces [ Privateer. Has a chance to capture defeated enemy ships. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.< Mercantilism >",
+      "English unique Renaissance era naval unit that replaces [ Privateer. Has a chance to capture defeated enemy ships. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.< Mercantilism >",
+      "English unique Renaissance era naval unit that replaces [ Privateer. Has a chance to capture defeated enemy ships. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.< Mercantilism >",
+      "English unique Renaissance era naval unit that replaces [ Privateer. Has a chance to capture defeated enemy ships. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.< Mercantilism >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Ethiopia",
+    "leaderName": "Menelik II",
+    "adjective": [
+      "Ethiopia"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Menelik II",
+    "agenda": "Cradle of Humanity",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct a Rock-Hewn Church, unique to Ethiopia.[\\+1] Faith. [\\+1] Faith for every adjacent Mountain and Hills tile. ProvidesTourism fromFaith, after researching Flight. [\\+1] Appeal. Can only be pillaged (never destroyed) by natural disasters. Can only be built on Hills or Volcanic Soil not adjacent to another Rock-Hewn Church.",
+      "Ethiopian unique Medieval era light cavalry unit. Stronger and greater sight than the Courser that it replaces. Receives noMovement penalty from moving in Hills.< Castles >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "France",
+    "leaderName": "Catherine de Medici (Black Queen)",
+    "adjective": [
+      "France"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Catherine de Medici (Black Queen)",
+    "agenda": "Black Queen",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct a Château, unique to France.[\\+2] Culture and [\\+1] Gold. [\\+1] Appeal. [\\+1] Culture for every adjacent wonder (becomes [\\+2] after researching Flight). [\\+2] Gold if on a tile containing a River edge. ProvidesTourism fromCulture after researching Flight. Must be placed adjacent to a Bonus or Luxury resource. Cannot be built adjacent to another Château.",
+      "French unique Industrial era melee unit that replaces [ Line Infantry. [\\+10] Combat Strength when fighting on your capital's continent.Great General points for killing units.< Military Science >",
+      "Unlocks the Builder ability to construct a Château, unique to France.[\\+2] Culture and [\\+1] Gold. [\\+1] Appeal. [\\+1] Culture for every adjacent wonder (becomes [\\+2] after researching Flight). [\\+2] Gold if on a tile containing a River edge. ProvidesTourism fromCulture after researching Flight. Must be placed adjacent to a Bonus or Luxury resource. Cannot be built adjacent to another Château.",
+      "French unique Industrial era melee unit that replaces [ Line Infantry. [\\+10] Combat Strength when fighting on your capital's continent.Great General points for killing units.< Military Science >",
+      "Unlocks the Builder ability to construct a Château, unique to France.[\\+2] Culture and [\\+1] Gold. [\\+1] Appeal. [\\+1] Culture for every adjacent wonder (becomes [\\+2] after researching Flight). [\\+2] Gold if on a tile containing a River edge. ProvidesTourism fromCulture after researching Flight. Must be placed adjacent to a Bonus or Luxury resource. Cannot be built adjacent to another Château.",
+      "French unique Industrial era melee unit that replaces [ Line Infantry. [\\+10] Combat Strength when fighting on your capital's continent.Great General points for killing units.< Military Science >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Gaul",
+    "leaderName": "Ambiorix",
+    "adjective": [
+      "Gaul"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Ambiorix",
+    "agenda": "King of the Eburones",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Gallic unique Ancient era unit that replaces [ Warrior. This unit has increased cost and receives [\\+10] Combat Strength when fighting units with a higher base Combat Strength. [\\+5] Combat Strength vs. district defenses."
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Georgia",
+    "leaderName": "Tamar",
+    "adjective": [
+      "Georgia"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Tamar",
+    "agenda": "Golden Age",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Georgian unique Medieval Era unit that replaces [ Man-At-Arms. [\\+7] Combat Strength bonus when fighting in hill terrain. NoMovement penalty in hill terrain.< Military Tactics >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Germany",
+    "leaderName": "Frederick Barbarossa",
+    "adjective": [
+      "Germany"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Frederick Barbarossa",
+    "agenda": "Free Imperial Cities",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "German unique Modern era naval unit that replaces [ Submarine. Cheaper to produce, [\\+1] Sight, and [\\+10] Combat Strength when fighting on Ocean tiles. Able to reveal other stealthed units.< Electricity >",
+      "German unique Modern era naval unit that replaces [ Submarine. Cheaper to produce, [\\+1] Sight, and [\\+10] Combat Strength when fighting on Ocean tiles. Able to reveal other stealthed units.< Electricity >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Gran",
+    "leaderName": "Colombia Simón Bolívar",
+    "adjective": [
+      "Gran"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Gandhi",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Gran Colombian Industrial era unique unit that replaces [ Cavalry. Low maintenance cost. [\\+2] Combat Strength for every adjacent Llanero. Fully heals when in range of a Comandante General that activates its retire ability.< Military Science >",
+      "A special type of Great Person only available to Simón Bolívar. Each has unique abilities, including a passive effect, and a Retire effect."
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Greece",
+    "leaderName": "Gorgo",
+    "adjective": [
+      "Greece"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Gorgo",
+    "agenda": "Delian League",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Greek unique Ancient era anti-cavalry unit that replaces [ Spearman. [\\+10] Combat Strength if there is at least one adjacent Hoplite unit.< Bronze Working >",
+      "Greek unique Ancient era anti-cavalry unit that replaces [ Spearman. [\\+10] Combat Strength if there is at least one adjacent Hoplite unit.< Bronze Working >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Hungary",
+    "leaderName": "Matthias Corvinus",
+    "adjective": [
+      "Hungary"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Matthias Corvinus",
+    "agenda": "Black Army",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Levied units gain an ability giving them [\\+2] Movement and [\\+5] Combat Strength. It costs [75]% lessGold and resources to upgrade Levied units. If you Levy troops from a City-State receive 2Envoys with that City-State. Gain the Black Army unique unit when the Castles technology is researched.",
+      "Hungarian unique Industrial era unit that replaces Cavalry. [\\+3] Combat Strength for every active Alliance.< Military Science >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Inca",
+    "leaderName": "Pachacuti",
+    "adjective": [
+      "Inca"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Pachacuti",
+    "agenda": "Sapa Inca",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct a Terrace Farm, unique to the Inca.[\\+1] Food. Provides [\\+1] Housing. [\\+1] Food for each adjacent Mountain Tile. Gain [\\+2] Production for each adjacent Aqueduct district. Receive [\\+1] Production if adjacent to Fresh Water and not an Aqueduct district. AdditionalFood as you advance through the >s and > Tree for adjacency with other Terrace Farms. Can be placed on Grassland Hills, Plains Hills, and Desert Hills.",
+      "Incan unique Medieval Era unit that replaces [ Skirmisher. Stronger at ranged combat than the Skirmisher and [\\+1] additional attack per turn.< Machinery >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "India",
+    "leaderName": "Chandragupta",
+    "adjective": [
+      "India"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Chandragupta",
+    "agenda": "Arthashastra",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct a Stepwell, unique to India.[\\+1] Food and [\\+1] Housing. [\\+1] Faith if adjacent to a Holy Site district. [\\+1] Food if adjacent to a Farm. AdditionalHousing,Faith, andFood as you advance through the > and >s Tree. PreventsFood loss during Drought. Cannot be built on Hills or adjacent to another Stepwell.",
+      "Indian unique Classical era heavy cavalry unit.  Adjacent enemy units receive -5Combat Strength.< Horseback Riding >",
+      "Unlocks the Builder ability to construct a Stepwell, unique to India.[\\+1] Food and [\\+1] Housing. [\\+1] Faith if adjacent to a Holy Site district. [\\+1] Food if adjacent to a Farm. AdditionalHousing,Faith, andFood as you advance through the > and >s Tree. PreventsFood loss during Drought. Cannot be built on Hills or adjacent to another Stepwell.",
+      "Indian unique Classical era heavy cavalry unit.  Adjacent enemy units receive -5Combat Strength.< Horseback Riding >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Indonesia",
+    "leaderName": "Gitarja",
+    "adjective": [
+      "Indonesia"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Gitarja",
+    "agenda": "Exalted Goddess of the Three Worlds",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct a Kampung, unique to Indonesia.[\\+1] Production and [\\+1] Housing. [\\+1] Food for each adjacent Fishing Boat. AdditionalProduction,Housing, andTourism as you advance through the > and >s Tree. Must be placed on a Coast or Lake tile adjacent to a sea resource.",
+      "Indonesian unique Medieval era naval unit that replaces [ Frigate. Formation units all inherit escort'sMovement speed and [\\+5] Combat Strength when in a formation.< Mercenaries >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Japan",
+    "leaderName": "Hojo Tokimune",
+    "adjective": [
+      "Japan"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Hojo Tokimune",
+    "agenda": "Meiji Restoration",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Japanese unique Medieval era melee unit that replaces [ Man-At-Arms. Does not suffer combat penalties when damaged.< Feudalism >",
+      "Japanese unique Medieval era melee unit that replaces [ Man-At-Arms. Does not suffer combat penalties when damaged.< Feudalism >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Khmer",
+    "leaderName": "Jayavarman VII",
+    "adjective": [
+      "Khmer"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Jayavarman VII",
+    "agenda": "Monasteries of the King",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Khmer unique Medieval era siege unit that replaces [ Trebuchet. This unit has a higherMelee and Range Strength than the Trebuchet. It can move and shoot in the same turn and exerts zone of control.< Military Engineering >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Kongo",
+    "leaderName": "Mvemba a Nzinga",
+    "adjective": [
+      "Kongo"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Mvemba a Nzinga",
+    "agenda": "Enthusiastic Disciple",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Kongo unique Classical era unit that replaces [ Swordsman. [\\+10] Combat Strength when defending against ranged attacks. Can move and see through Woods and Rainforest.< Iron Working >",
+      "Kongo unique Classical era unit that replaces [ Swordsman. [\\+10] Combat Strength when defending against ranged attacks. Can move and see through Woods and Rainforest.< Iron Working >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Korea",
+    "leaderName": "Sejong",
+    "adjective": [
+      "Korea"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Sejong",
+    "agenda": "Hangul",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Korean unique Renaissance Era unit that replaces [ Field Cannon. HighRanged Attack Strength. Cannot move and attack in the same turn.< Gunpowder >",
+      "Korean unique Renaissance Era unit that replaces [ Field Cannon. HighRanged Attack Strength. Cannot move and attack in the same turn.< Gunpowder >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Macedon",
+    "leaderName": "Alexander",
+    "adjective": [
+      "Macedon"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Alexander",
+    "agenda": "Short Life of Glory",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Macedonian unique melee unit that replaces [ Swordsman. [\\+5] Combat Strength when besieging districts. [50]% Additional Support Bonus.< Iron Working >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Mali",
+    "leaderName": "Mansa Musa",
+    "adjective": [
+      "Mali"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Mansa Musa",
+    "agenda": "Sahel Merchants",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Mali unique Medieval Era unit that replaces [ Knight. Trader units are immune to being plundered if they are within 4 tiles of a Mandekalu Cavalry and on a land tile. Combat victories provideGold equal to [100]% of that unit's baseCombat Strength (on Standard Speed).< Stirrups >",
+      "Mali unique Medieval Era unit that replaces [ Knight. Trader units are immune to being plundered if they are within 4 tiles of a Mandekalu Cavalry and on a land tile. Combat victories provideGold equal to [100]% of that unit's baseCombat Strength (on Standard Speed).< Stirrups >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Mapuche",
+    "leaderName": "Lautaro",
+    "adjective": [
+      "Mapuche"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Lautaro",
+    "agenda": "Toqui",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct a Chemamull, unique to Mapuche.[\\+1] Production. ProvidesCulture equal to [75]% of the tile's Appeal. AdditionalTourism after researching Flight. Minimum Appeal of Breathtaking.",
+      "Mapuche unique Renaissance Era unit. [\\+5] Combat Strength bonus if within 4 hexes of friendly territory. Pillaging costs 1Movement.< Gunpowder >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Maya",
+    "leaderName": "Lady Six Sky",
+    "adjective": [
+      "Maya"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Lady Six Sky",
+    "agenda": "Lady of the Sky",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Mayan unique Ancient Era ranged unit that replaces [ Archer. Strong ranged attack. [\\+5] Combat Strength when fighting a wounded opponent.< Archery >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Mongolia",
+    "leaderName": "Genghis Khan",
+    "adjective": [
+      "Mongolia"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Genghis Khan",
+    "agenda": "Mongol Horde",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "A building unique to Mongolia. Grants an ability that gives [\\+1] Movement to Heavy and Light Cavalry trained in this city. [[\\+2] 5]% combat experience for all cavalry and siege class units trained in this city.Strategic Resource Stockpiles increased [\\+1] 0 (on Standard Speed).May not be built in an Encampment district that already has a Barracks.",
+      "Mongolian unique Medieval Era Ranged Cavalry unit. Can escort moving civilian and support units at their higherMovement speed.< Stirrups >",
+      "A building unique to Mongolia. Grants an ability that gives [\\+1] Movement to Heavy and Light Cavalry trained in this city. [[\\+2] 5]% combat experience for all cavalry and siege class units trained in this city.Strategic Resource Stockpiles increased [\\+1] 0 (on Standard Speed).May not be built in an Encampment district that already has a Barracks.",
+      "Mongolian unique Medieval Era Ranged Cavalry unit. Can escort moving civilian and support units at their higherMovement speed.< Stirrups >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Māori",
+    "leaderName": "Kupe",
+    "adjective": [
+      "Māori"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Kupe",
+    "agenda": "Kupe's Voyage",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Toa ability to construct a Pā, unique to Māori.Occupying unit receives [\\+4] Defense Strength, and automatically gains 2 turns of fortification. A Māori unit occupying a Pā heals even if they just moved or attacked. Must be built on a Hill tile.",
+      "Māori unique Classical era melee unit. Adjacent enemy units receive -5Combat Strength. Can build the unique Pā improvement.< Construction >"
+    ],
+    "cities": [],
+    "spyNames": [],
+    "uniqueBuildings": [
+      "Classical Era"
+    ]
+  },
+  {
+    "name": "Netherlands",
+    "leaderName": "Wilhelmina",
+    "adjective": [
+      "Netherlands"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Wilhelmina",
+    "agenda": "Radio Oranje",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct a Polder, unique to Netherlands.[\\+1] Food, [\\+1] Production, and +0.5Housing. [\\+1] Food if adjacent to a Polder improvement. AdditionalProduction,Gold, andFood  as you advance through the >s and > Tree. Must be placed on a Coast or Lake tile adjacent to 3 or more passable land tiles. IncreasesMovement Cost of tile to 3.",
+      "Netherlands unique Renaissance Era unit that replaces [ Frigate. [\\+7] Combat Strength when attacking defensible districts.< Square Rigging >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Norway",
+    "leaderName": "Harald Hardrada (Varangian)",
+    "adjective": [
+      "Norway"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Harald Hardrada (Varangian)",
+    "agenda": "Varangian Guard",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Units gain the ability to enter Ocean tiles after researching the Shipbuilding technology. Naval melee units heal in neutral territory. Units ignore additionalMovement costs from embarking and disembarking.",
+      "Norwegian unique Medieval era melee unit that replaces [ Man-At-Arms. 4Movement if this unit starts in enemy territory. [\\+10] Combat Strength when attacking and -5Combat Strength when defending against melee attacks.< Military Tactics >",
+      "Norwegian unique Ancient era naval unit that replaces [ Galley. Can pillage enemy coastal lands and capture civilians if adjacent using its coastal raiding ability. 4Movement while in coastal waters.< Sailing >",
+      "Norwegian unique Ancient era naval unit that replaces [ Galley. Can pillage enemy coastal lands and capture civilians if adjacent using its coastal raiding ability. 4Movement while in coastal waters.< Sailing >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Nubia",
+    "leaderName": "Amanitore",
+    "adjective": [
+      "Nubia"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Amanitore",
+    "agenda": "Kandake of Meroë",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "The Craftsmanship civic unlocks the Builder ability to construct a Nubian Pyramid, unique to Nubia.[\\+1] Food and [\\+2] Faith.Receives additional yields from adjacent districts:[\\+2] Food for the City Center,[\\+2] Science per adjacent Campus,[\\+2] Production per adjacent Industrial Zone,[\\+2] Culture per adjacent Theater Square,[\\+2] Faith per adjacent Holy Site,[\\+2] Gold per adjacent Commercial Hub and Harbor.Must be built on Desert, Desert Hills, Floodplains, Plains, or Grassland. Cannot be built next to another Nubian Pyramid.",
+      "Nubian unique Ancient era unit that replaces [ Archer. Stronger than the Archer with extraMovement. Upgrades to Crossbowman.< Archery >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Ottomans",
+    "leaderName": "Suleiman (Kanuni)",
+    "adjective": [
+      "Ottomans"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Suleiman (Kanuni)",
+    "agenda": "Lawgiver",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Ottoman unique Renaissance Era unit that replaces [ Musketman. Starts with a free promotion. Stronger and cheaper than the Musketman. To train a Janissary a city must have a population of at least 2. If a city is founded by the Ottomans and trains a Janissary it loses a population.< Gunpowder >",
+      "Ottoman unique Medieval era naval unit that replaces [ Privateer. It costs noMovement to coastal raid. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.< Medieval Faires >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Persia",
+    "leaderName": "Cyrus",
+    "adjective": [
+      "Persia"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Cyrus",
+    "agenda": "Fall of Babylon",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct a Pairidaeza, unique to Persia.[\\+1] Culture and [\\+2] Gold. [\\+1] Appeal. [\\+1] Culture for each adjacent Holy Site and Theater Square. [\\+1] Gold for each adjacent Commercial Hub and City Center. AdditionalCulture andTourism as you advance through the > and >s Tree. Cannot be built on Snow, Tundra, Snow Hills, or Tundra Hills or adjacent to another Pairidaeza.",
+      "Persian unique melee unit that replaces [ Swordsman. Melee class unit with a ranged attack,Range 2. Strong defense strength.< Iron Working >",
+      "Unlocks the Builder ability to construct a Pairidaeza, unique to Persia.[\\+1] Culture and [\\+2] Gold. [\\+1] Appeal. [\\+1] Culture for each adjacent Holy Site and Theater Square. [\\+1] Gold for each adjacent Commercial Hub and City Center. AdditionalCulture andTourism as you advance through the > and >s Tree. Cannot be built on Snow, Tundra, Snow Hills, or Tundra Hills or adjacent to another Pairidaeza.",
+      "Persian unique melee unit that replaces [ Swordsman. Melee class unit with a ranged attack,Range 2. Strong defense strength.< Iron Working >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Phoenicia",
+    "leaderName": "Dido",
+    "adjective": [
+      "Phoenicia"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Dido",
+    "agenda": "Phoenician Trade",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Phoenician unique Ancient Era unit that replaces [ Galley. IncreasedCombat Strength andMovement. Trader units are immune to being plundered if they are within 4 tiles of a Bireme and on a water tile.< Sailing >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Poland",
+    "leaderName": "Jadwiga",
+    "adjective": [
+      "Poland"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Jadwiga",
+    "agenda": "Golden Liberty",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Polish unique Renaissance era unit that replaces [ Cuirassier. Pushes defending enemy units back from their hex in any battle where they score more damage. Defenders that cannot retreat suffer additional damage.< Mercantilism >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Portugal",
+    "leaderName": "João III",
+    "adjective": [
+      "Portugal"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Gandhi",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Nau ability to construct a Feitoria, unique to Portugal.Provides [\\+4] Gold and [\\+1] Production. Trade routes sent to this city from Portugal gain [\\+4] Gold and [\\+1] Production. Can only be built adjacent to Luxury or Bonus resources in territory belonging to other Civilizations or City-States that you have Open Borders with. Must be built on a Coast or Lake tile adjacent to land and not adjacent to another Feitoria. Feitorias cannot be removed.",
+      "Portuguese unique naval melee unit that replaces [ Caravel. Starts with 1 free Promotion and is less maintenance. Has two charges to build Feitorias.< Cartography >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Rome",
+    "leaderName": "Julius Caesar",
+    "adjective": [
+      "Rome"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Julius Caesar",
+    "agenda": "Veni Vidi Vici",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Roman unique Classical era melee unit that replaces [ Swordsman. Can build a Roman Fort.< Iron Working >",
+      "Roman unique Classical era melee unit that replaces [ Swordsman. Can build a Roman Fort.< Iron Working >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Russia",
+    "leaderName": "Peter",
+    "adjective": [
+      "Russia"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Peter",
+    "agenda": "Westernizer",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Russian unique Industrial era unit that replaces Cavalry. Stronger than Cavalry, and gains [\\+5] Combat Strength when fighting in or adjacent to its home territory. Can move after attacking ifMovement points remain.< Military Science >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Scotland",
+    "leaderName": "Robert the Bruce",
+    "adjective": [
+      "Scotland"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Robert the Bruce",
+    "agenda": "Flower of Scotland",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct a Golf Course, unique to Scotland.[\\+2] Amenities and [\\+2] Gold. [\\+1] Culture if adjacent to a City Center district and [\\+1] Culture if adjacent to an Entertainment Complex district. AdditionalTourism andHousing as you advance through the >s and > Tree. Cannot be placed on Desert or Desert Hills. One per city. Tiles with Golf Courses cannot be swapped. [\\+1] Appeal.",
+      "Scottish unique Industrial Era unit that replaces [ Ranger. Strong reconnaissance unit. [\\+5] Combat Strength bonus when fighting in Hill and Forest terrain.< Rifling >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Scythia",
+    "leaderName": "Tomyris",
+    "adjective": [
+      "Scythia"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Tomyris",
+    "agenda": "Massagetae",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct a Kurgan, unique to Scythia.[\\+1] Faith and [\\+3] Gold. [\\+1] Faith for each adjacent Pasture (becomes [\\+2] after researching Stirrups). ProvidesTourism fromFaith after researching Flight. Cannot be built on Hills.",
+      "Scythian unique Classical era unit. Ranged unit with 4Movement with aRange of 1.< Horseback Riding >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Spain",
+    "leaderName": "Philip II",
+    "adjective": [
+      "Spain"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Philip II",
+    "agenda": "Counter Reformer",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct a Mission, unique to Spain.[\\+2] Faith. [\\+2] Faith, [\\+1] Production, and [\\+1] Food if on a different continent than yourCapital. [\\+1] Science for every adjacent Campus and Holy Site district. AdditionalScience once Cultural Heritage is discovered. [\\+2] Loyalty per turn for cities with a Mission improvement adjacent to the City Center and not on your originalCapital's continent.",
+      "Spanish unique Renaissance era unit that replaces [ Musketman. [\\+10] Combat Strength when there is a religious unit within one hex. If this unit captures a city or is adjacent to a city when it is captured, the city will automatically adopt the Conquistador player's Religion as the dominant Religion.< Gunpowder >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Sumeria",
+    "leaderName": "Gilgamesh",
+    "adjective": [
+      "Sumeria"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Gilgamesh",
+    "agenda": "Adventures with Enkidu",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct a Ziggurat, unique to Sumeria.[\\+2] Science. [\\+1] Culture if next to River. Cannot be built on Hills but may be built on Floodplains.",
+      "Sumerian unique Ancient era unit. Stronger than all other starting units. No penalties against anti-cavalry units. 4Movement if this unit starts in open terrain."
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Sweden",
+    "leaderName": "Kristina",
+    "adjective": [
+      "Sweden"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Gandhi",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Unlocks the Builder ability to construct an Open-Air Museum, unique to Sweden.Provides [\\+2] Loyalty per turn in this city. [\\+2] Culture and [\\+2] Tourism for each type of terrain (Snow, Tundra, Desert, Plains or Grassland) in which at least one Swedish city is founded. One per city. Tiles with Open-Air Museums cannot be swapped.",
+      "Swedish unique Renaissance Era unit that replaces [ Pike and Shot. Faster than the Pike and Shot. [\\+3] Combat Strength per unusedMovement.< Metal Casting >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Vietnam",
+    "leaderName": "Bà Triệu",
+    "adjective": [
+      "Vietnam"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Gandhi",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Vietnamese unique Medieval era ranged unit that replaces [ Crossbowman. These units have additional movement and can move after attacking. They are also stronger when defending, more expensive, and have greater sight.< Machinery >"
+    ],
+    "cities": [],
+    "spyNames": []
+  },
+  {
+    "name": "Zulu",
+    "leaderName": "Shaka",
+    "adjective": [
+      "Zulu"
+    ],
+    "preferredVictoryType": "Scientific",
+    "personality": "Gandhi",
+    "agenda": "Cultured",
+    "hiddenAgendas": [
+      "Warmonger Hater",
+      "Nature Lover",
+      "Piety"
+    ],
+    "outerColor": [
+      128,
+      128,
+      128
+    ],
+    "innerColor": [
+      255,
+      255,
+      255
+    ],
+    "favoredReligion": "Christianity",
+    "uniqueName": "Unique Ability",
+    "uniques": [
+      "Zulu unique Medieval Era unit that replaces [ Pikeman. Increased Flanking bonus, low cost and low maintenance. Earns XP faster.< Military Tactics >"
+    ],
+    "cities": [],
+    "spyNames": []
+  }
+]

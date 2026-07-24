@@ -1,0 +1,2438 @@
+[
+  {
+    "name": "Missionary",
+    "unitType": "Religious",
+    "baseUnit": "Missionary",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Cost: 75",
+      "Maintenance Cost: 0Per Turn",
+      "100Religious Strength",
+      "3Spread Charges",
+      "2Line of Sight",
+      "May convertCitizens to their Religion. May not initiate theological combat with units of other Religions (but can defend)."
+    ]
+  },
+  {
+    "name": "Apostle",
+    "unitType": "Religious",
+    "baseUnit": "Apostle",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Cost: 200",
+      "Maintenance Cost: 0Per Turn",
+      "110Religious Strength",
+      "3Spread Charges",
+      "2Line of Sight",
+      "May convertCitizens to their Religion and initiate theological combat with units of other Religions. Once per game may Launch Inquisition to allow the purchase of Inquisitors. Once per game may Evangelize Belief to add an additional Belief to their Religion. These uses consume the Apostle."
+    ]
+  },
+  {
+    "name": "Inquisitor",
+    "unitType": "Religious",
+    "baseUnit": "Inquisitor",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Cost: 75",
+      "Maintenance Cost: 0Per Turn",
+      "75Religious Strength",
+      "3Spread Charges",
+      "2Line of Sight",
+      "May reduce the presence of other Religions in their territory by 75%, and initiate theological combat with units of other Religions."
+    ]
+  },
+  {
+    "name": "Guru",
+    "unitType": "Religious",
+    "baseUnit": "Guru",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Cost: 120",
+      "Maintenance Cost: 0Per Turn",
+      "90Religious Strength",
+      "3Heal Charges",
+      "2Line of Sight",
+      "May use a charge to heal itself and all adjacent friendly religious units. May not initiate theological combat with units of other Religions (but can defend)."
+    ]
+  },
+  {
+    "name": "Sabum Kibittum",
+    "unitType": "Melee",
+    "baseUnit": "Sabum Kibittum",
+    "movement": 3,
+    "strength": 17,
+    "rangedStrength": null,
+    "cost": 17,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 0Per Turn",
+      "17Melee Strength",
+      "3Line of Sight"
+    ]
+  },
+  {
+    "name": "Warrior",
+    "unitType": "Melee",
+    "baseUnit": "Warrior",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 20,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 0Per Turn",
+      "20Melee Strength",
+      "2Line of Sight",
+      "Weak Ancient era melee unit."
+    ]
+  },
+  {
+    "name": "Gaesatae",
+    "unitType": "Melee",
+    "baseUnit": "Gaesatae",
+    "movement": 2,
+    "strength": 10,
+    "rangedStrength": null,
+    "cost": 30,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 0Per Turn",
+      "20Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Eagle Warrior",
+    "unitType": "Melee",
+    "baseUnit": "Builders.",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 32,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": "Aztec unique Ancient era unit that replaces the Warrior.  Has a chance to capture other civilization's military units by turning them into Builders.",
+    "uniques": [
+      "Maintenance Cost: 0Per Turn",
+      "28Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Swordsman",
+    "unitType": "Melee",
+    "baseUnit": "Swordsman",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 45,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "7",
+      "Maintenance Cost: 2Per Turn",
+      "36Melee Strength",
+      "2Line of Sight",
+      "Strong Classical era melee unit."
+    ]
+  },
+  {
+    "name": "Immortal",
+    "unitType": "Melee",
+    "baseUnit": "strength.",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": 25,
+    "cost": 50,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": "Persian unique melee unit that replaces the Swordsman. Melee class unit with a ranged attack,Range 2. Strong defense strength.",
+    "uniques": [
+      "5",
+      "Maintenance Cost: 2Per Turn",
+      "36Melee Strength",
+      "2Range",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Ngao Mbeba",
+    "unitType": "Melee",
+    "baseUnit": "Ngao Mbeba",
+    "movement": 2,
+    "strength": 10,
+    "rangedStrength": null,
+    "cost": 55,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 2Per Turn",
+      "38Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Hypaspist",
+    "unitType": "Melee",
+    "baseUnit": "Hypaspist",
+    "movement": 2,
+    "strength": 10,
+    "rangedStrength": null,
+    "cost": 50,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 2Per Turn",
+      "38Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Toa",
+    "unitType": "Melee",
+    "baseUnit": "Toa",
+    "movement": 2,
+    "strength": 5,
+    "rangedStrength": null,
+    "cost": 60,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 0Per Turn",
+      "38Melee Strength",
+      "1Build Charges",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Legion",
+    "unitType": "Melee",
+    "baseUnit": "Fort.",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 55,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": "Roman unique Classical era melee unit that replaces the Swordsman. Has 1charge to build a Roman Fort.",
+    "uniques": [
+      "5",
+      "Maintenance Cost: 2Per Turn",
+      "40Melee Strength",
+      "1Build Charges",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Berserker",
+    "unitType": "Melee",
+    "baseUnit": "Berserker",
+    "movement": 2,
+    "strength": 2,
+    "rangedStrength": null,
+    "cost": 80,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 3Per Turn",
+      "40Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Man-At-Arms",
+    "unitType": "Melee",
+    "baseUnit": "Man-At-Arms",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 80,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "7",
+      "Maintenance Cost: 3Per Turn",
+      "46Melee Strength",
+      "2Line of Sight",
+      "Medieval Era melee unit."
+    ]
+  },
+  {
+    "name": "Samurai",
+    "unitType": "Melee",
+    "baseUnit": "damaged.",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 80,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": "Japanese unique Medieval era melee unit that replaces the Man-At-Arms. Does not suffer combat penalties when damaged.",
+    "uniques": [
+      "5",
+      "Maintenance Cost: 3Per Turn",
+      "48Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Khevsur",
+    "unitType": "Melee",
+    "baseUnit": "Khevsur",
+    "movement": 2,
+    "strength": 7,
+    "rangedStrength": null,
+    "cost": 80,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 3Per Turn",
+      "48Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Musketman",
+    "unitType": "Melee",
+    "baseUnit": "Musketman",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 110,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "7",
+      "Maintenance Cost: 4Per Turn",
+      "55Melee Strength",
+      "2Line of Sight",
+      "Renaissance era melee unit."
+    ]
+  },
+  {
+    "name": "Conquistador",
+    "unitType": "Melee",
+    "baseUnit": "Conquistador",
+    "movement": 2,
+    "strength": 5,
+    "rangedStrength": null,
+    "cost": 125,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 4Per Turn",
+      "58Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Janissary",
+    "unitType": "Melee",
+    "baseUnit": "population.",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 60,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": "Ottoman unique Renaissance Era unit that replaces the Musketman. Starts with afree promotion. Stronger and cheaper than the Musketman. To train a Janissary a city must have a population of at least 2. If a city is founded by the Ottomans and trains a Janissary it loses a population.",
+    "uniques": [
+      "5",
+      "Maintenance Cost: 4Per Turn",
+      "60Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Line Infantry",
+    "unitType": "Melee",
+    "baseUnit": "Line Infantry",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 165,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "7",
+      "Maintenance Cost: 5Per Turn",
+      "65Melee Strength",
+      "2Line of Sight",
+      "Industrial Era melee unit."
+    ]
+  },
+  {
+    "name": "Redcoat",
+    "unitType": "Melee",
+    "baseUnit": "Redcoat",
+    "movement": 2,
+    "strength": 5,
+    "rangedStrength": null,
+    "cost": 180,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 5Per Turn",
+      "70Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Garde Impériale",
+    "unitType": "Melee",
+    "baseUnit": "Garde Impériale",
+    "movement": 2,
+    "strength": 5,
+    "rangedStrength": null,
+    "cost": 180,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 5Per Turn",
+      "70Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Infantry",
+    "unitType": "Melee",
+    "baseUnit": "Infantry",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 215,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 6, 1Per Turn",
+      "80Melee Strength",
+      "2Line of Sight",
+      "Modern era melee unit."
+    ]
+  },
+  {
+    "name": "Digger",
+    "unitType": "Melee",
+    "baseUnit": "Digger",
+    "movement": 3,
+    "strength": 10,
+    "rangedStrength": null,
+    "cost": 215,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 6, 1Per Turn",
+      "83Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Mechanized Infantry",
+    "unitType": "Melee",
+    "baseUnit": "Mechanized Infantry",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 325,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 8, 1Per Turn",
+      "90Melee Strength",
+      "2Line of Sight",
+      "Information era melee unit."
+    ]
+  },
+  {
+    "name": "Anti Cavalry",
+    "unitType": "Melee",
+    "baseUnit": "Anti Cavalry",
+    "movement": null,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": []
+  },
+  {
+    "name": "Spearman",
+    "unitType": "Melee",
+    "baseUnit": "Spearman",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 32,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 1Per Turn",
+      "25Melee Strength",
+      "2Line of Sight",
+      "Ancient era anti-cavalry unit."
+    ]
+  },
+  {
+    "name": "Hoplite",
+    "unitType": "Melee",
+    "baseUnit": "Hoplite",
+    "movement": 2,
+    "strength": 7,
+    "rangedStrength": null,
+    "cost": 32,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 1Per Turn",
+      "28Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Pikeman",
+    "unitType": "Melee",
+    "baseUnit": "Pikeman",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 100,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 2Per Turn",
+      "45Melee Strength",
+      "2Line of Sight",
+      "Medieval era anti-cavalry unit."
+    ]
+  },
+  {
+    "name": "Impi",
+    "unitType": "Melee",
+    "baseUnit": "faster.",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 62,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": "Zulu unique Medieval Era unit that replaces the Pikeman. Increased Flanking bonus, low cost and low maintenance. Earns XP faster.",
+    "uniques": [
+      "Maintenance Cost: 1Per Turn",
+      "45Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Pike and Shot",
+    "unitType": "Melee",
+    "baseUnit": "Pike and Shot",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 145,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 4Per Turn",
+      "55Melee Strength",
+      "2Line of Sight",
+      "Late Renaissance era anti-cavalry unit."
+    ]
+  },
+  {
+    "name": "Carolean",
+    "unitType": "Melee",
+    "baseUnit": "Carolean",
+    "movement": 3,
+    "strength": 3,
+    "rangedStrength": null,
+    "cost": 125,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 3Per Turn",
+      "55Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "AT Crew",
+    "unitType": "Melee",
+    "baseUnit": "AT Crew",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 200,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 4Per Turn",
+      "80Melee Strength",
+      "2Line of Sight",
+      "Modern era counter to cavalry class units."
+    ]
+  },
+  {
+    "name": "Modern AT",
+    "unitType": "Melee",
+    "baseUnit": "Modern AT",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 290,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 8Per Turn",
+      "90Melee Strength",
+      "2Line of Sight",
+      "Information era counter to cavalry class units."
+    ]
+  },
+  {
+    "name": "Slinger",
+    "unitType": "Ranged",
+    "baseUnit": "Slinger",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": 15,
+    "cost": 17,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 0Per Turn",
+      "5Melee Strength",
+      "1Range",
+      "2Line of Sight",
+      "Weak Ancient era ranged unit. Better on attack than defense."
+    ]
+  },
+  {
+    "name": "Archer",
+    "unitType": "Ranged",
+    "baseUnit": "Archer",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": 25,
+    "cost": 30,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 1Per Turn",
+      "15Melee Strength",
+      "2Range",
+      "2Line of Sight",
+      "First Ancient era ranged unit with aRange of 2."
+    ]
+  },
+  {
+    "name": "Hul'che",
+    "unitType": "Ranged",
+    "baseUnit": "Hul'che",
+    "movement": 2,
+    "strength": 5,
+    "rangedStrength": 28,
+    "cost": 30,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 1Per Turn",
+      "15Melee Strength",
+      "2Range",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Pítati Archer",
+    "unitType": "Ranged",
+    "baseUnit": "Pítati Archer",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": 30,
+    "cost": 35,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 1Per Turn",
+      "17Melee Strength",
+      "2Range",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Saka Horse Archer",
+    "unitType": "Ranged",
+    "baseUnit": "Saka Horse Archer",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": 25,
+    "cost": 35,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 2Per Turn",
+      "20Melee Strength",
+      "2Range",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Maryannu Chariot Archer",
+    "unitType": "Ranged",
+    "baseUnit": "Maryannu Chariot Archer",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": 35,
+    "cost": 45,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 1Per Turn",
+      "25Melee Strength",
+      "2Range",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Crossbowman",
+    "unitType": "Ranged",
+    "baseUnit": "Crossbowman",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": 40,
+    "cost": 90,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 3Per Turn",
+      "30Melee Strength",
+      "2Range",
+      "2Line of Sight",
+      "Medieval era ranged unit."
+    ]
+  },
+  {
+    "name": "Crouching Tiger",
+    "unitType": "Ranged",
+    "baseUnit": "Crouching Tiger",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": 7,
+    "cost": 85,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 3Per Turn",
+      "30Melee Strength",
+      "2Range",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Keshig",
+    "unitType": "Ranged",
+    "baseUnit": "Keshig",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": 40,
+    "cost": 90,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 3Per Turn",
+      "35Melee Strength",
+      "2Range",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Voi Chiến",
+    "unitType": "Ranged",
+    "baseUnit": "Voi Chiến",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": 40,
+    "cost": 100,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 3Per Turn",
+      "35Melee Strength",
+      "2Range",
+      "3Line of Sight"
+    ]
+  },
+  {
+    "name": "Hwacha",
+    "unitType": "Ranged",
+    "baseUnit": "turn.",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": 60,
+    "cost": 125,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": "Korean unique Renaissance Era unit that replaces the Field Cannon. HighRanged Attack Strength. Cannot move and attack in the same turn.",
+    "uniques": [
+      "Maintenance Cost: 3Per Turn",
+      "45Melee Strength",
+      "2Range",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Field Cannon",
+    "unitType": "Ranged",
+    "baseUnit": "Field Cannon",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": 60,
+    "cost": 165,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 5Per Turn",
+      "50Melee Strength",
+      "2Range",
+      "2Line of Sight",
+      "Industrial era ranged unit."
+    ]
+  },
+  {
+    "name": "Machine Gun",
+    "unitType": "Ranged",
+    "baseUnit": "Machine Gun",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": 85,
+    "cost": 270,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 6Per Turn",
+      "70Melee Strength",
+      "2Range",
+      "2Line of Sight",
+      "Atomic era ranged unit."
+    ]
+  },
+  {
+    "name": "Catapult",
+    "unitType": "Siege",
+    "baseUnit": "Catapult",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 60,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 2Per Turn",
+      "25Melee Strength",
+      "2Range",
+      "35Bombard Strength",
+      "2Line of Sight",
+      "Classical era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
+    ]
+  },
+  {
+    "name": "Trebuchet",
+    "unitType": "Siege",
+    "baseUnit": "Trebuchet",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 100,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 3Per Turn",
+      "35Melee Strength",
+      "2Range",
+      "45Bombard Strength",
+      "2Line of Sight",
+      "Medieval era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
+    ]
+  },
+  {
+    "name": "Domrey",
+    "unitType": "Siege",
+    "baseUnit": "control.",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 100,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": "Khmer unique Medieval era siege unit that replaces the Trebuchet. This unit has a higherMelee and Range Strength than the Trebuchet. It can move and shoot in the same turn and exerts zone of control.",
+    "uniques": [
+      "Maintenance Cost: 3Per Turn",
+      "40Melee Strength",
+      "2Range",
+      "50Bombard Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Bombard",
+    "unitType": "Siege",
+    "baseUnit": "Bombard",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 140,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "10",
+      "Maintenance Cost: 4Per Turn",
+      "45Melee Strength",
+      "2Range",
+      "55Bombard Strength",
+      "2Line of Sight",
+      "Renaissance era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
+    ]
+  },
+  {
+    "name": "Artillery",
+    "unitType": "Siege",
+    "baseUnit": "Artillery",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 215,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 6, 1Per Turn",
+      "60Melee Strength",
+      "2Range",
+      "80Bombard Strength",
+      "2Line of Sight",
+      "Modern era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
+    ]
+  },
+  {
+    "name": "Rocket Artillery",
+    "unitType": "Siege",
+    "baseUnit": "Rocket Artillery",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 340,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 8, 1Per Turn",
+      "70Melee Strength",
+      "3Range",
+      "100Bombard Strength",
+      "3Line of Sight",
+      "Information era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
+    ]
+  },
+  {
+    "name": "Light Cavalry",
+    "unitType": "Siege",
+    "baseUnit": "Light Cavalry",
+    "movement": null,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": []
+  },
+  {
+    "name": "Horseman",
+    "unitType": "Siege",
+    "baseUnit": "Horseman",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 40,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "10",
+      "Maintenance Cost: 2Per Turn",
+      "36Melee Strength",
+      "2Line of Sight",
+      "Fast-moving Classical era light cavalry unit."
+    ]
+  },
+  {
+    "name": "Courser",
+    "unitType": "Siege",
+    "baseUnit": "Courser",
+    "movement": 5,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 90,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "10",
+      "Maintenance Cost: 3Per Turn",
+      "46Melee Strength",
+      "2Line of Sight",
+      "Medieval Era light cavalry unit."
+    ]
+  },
+  {
+    "name": "Malón Raider",
+    "unitType": "Siege",
+    "baseUnit": "Malón Raider",
+    "movement": 1,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 115,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "10",
+      "Maintenance Cost: 3Per Turn",
+      "48Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Oromo Cavalry",
+    "unitType": "Siege",
+    "baseUnit": "Oromo Cavalry",
+    "movement": 5,
+    "strength": 1,
+    "rangedStrength": null,
+    "cost": 100,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 3Per Turn",
+      "48Melee Strength",
+      "3Line of Sight"
+    ]
+  },
+  {
+    "name": "Black Army",
+    "unitType": "Siege",
+    "baseUnit": "Black Army",
+    "movement": 5,
+    "strength": 2,
+    "rangedStrength": null,
+    "cost": 102,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 3Per Turn",
+      "49Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Cossack",
+    "unitType": "Cavalry",
+    "baseUnit": "Cossack",
+    "movement": 5,
+    "strength": 5,
+    "rangedStrength": null,
+    "cost": 170,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 5Per Turn",
+      "62Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Llanero",
+    "unitType": "Cavalry",
+    "baseUnit": "Llanero",
+    "movement": 5,
+    "strength": 2,
+    "rangedStrength": null,
+    "cost": 165,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "10",
+      "Maintenance Cost: 2Per Turn",
+      "62Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Huszár",
+    "unitType": "Cavalry",
+    "baseUnit": "Huszár",
+    "movement": 5,
+    "strength": 2,
+    "rangedStrength": null,
+    "cost": 167,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 5Per Turn",
+      "65Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Mountie",
+    "unitType": "Cavalry",
+    "baseUnit": "Mountie",
+    "movement": 5,
+    "strength": 4,
+    "rangedStrength": null,
+    "cost": 180,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 3Per Turn",
+      "70Melee Strength",
+      "4Line of Sight"
+    ]
+  },
+  {
+    "name": "Helicopter",
+    "unitType": "Cavalry",
+    "baseUnit": "Helicopter",
+    "movement": 5,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 300,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 7, 1Per Turn",
+      "86Melee Strength",
+      "3Line of Sight",
+      "Fast-moving Atomic era light cavalry unit."
+    ]
+  },
+  {
+    "name": "Heavy Cavalry",
+    "unitType": "Cavalry",
+    "baseUnit": "Heavy Cavalry",
+    "movement": null,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": []
+  },
+  {
+    "name": "War-Cart",
+    "unitType": "Cavalry",
+    "baseUnit": "War-Cart",
+    "movement": 3,
+    "strength": 4,
+    "rangedStrength": null,
+    "cost": 20,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 0Per Turn",
+      "20Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Heavy Chariot",
+    "unitType": "Cavalry",
+    "baseUnit": "Heavy Chariot",
+    "movement": 1,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 32,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 1Per Turn",
+      "28Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Hetairoi",
+    "unitType": "Cavalry",
+    "baseUnit": "Hetairoi",
+    "movement": 4,
+    "strength": 5,
+    "rangedStrength": null,
+    "cost": 50,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 2Per Turn",
+      "36Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Varu",
+    "unitType": "Cavalry",
+    "baseUnit": "Varu",
+    "movement": 2,
+    "strength": 3,
+    "rangedStrength": null,
+    "cost": 60,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 2Per Turn",
+      "40Melee Strength",
+      "3Line of Sight"
+    ]
+  },
+  {
+    "name": "Knight",
+    "unitType": "Cavalry",
+    "baseUnit": "Knight",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 100,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "10",
+      "Maintenance Cost: 4Per Turn",
+      "50Melee Strength",
+      "2Line of Sight",
+      "Hard-hitting, Medieval era heavy cavalry unit."
+    ]
+  },
+  {
+    "name": "Tagma",
+    "unitType": "Cavalry",
+    "baseUnit": "Tagma",
+    "movement": 4,
+    "strength": 1,
+    "rangedStrength": null,
+    "cost": 110,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 4Per Turn",
+      "50Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Mamluk",
+    "unitType": "Cavalry",
+    "baseUnit": "attacking.",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 110,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": "Arabian unique Medieval era unit that replaces the Knight. Heals at the end of every turn, even after moving or attacking.",
+    "uniques": [
+      "5",
+      "Maintenance Cost: 4Per Turn",
+      "53Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Mandekalu Cavalry",
+    "unitType": "Cavalry",
+    "baseUnit": "Mandekalu Cavalry",
+    "movement": 4,
+    "strength": 4,
+    "rangedStrength": null,
+    "cost": 110,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 4Per Turn",
+      "53Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Winged Hussar",
+    "unitType": "Cavalry",
+    "baseUnit": "damage.",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 165,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": "Polish unique Renaissance era unit that replaces the Cuirassier. Pushes defending enemy units back from their hex in any battle where they score more damage. Defenders that cannot retreat suffer additional damage.",
+    "uniques": [
+      "5",
+      "Maintenance Cost: 5Per Turn",
+      "64Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Cuirassier",
+    "unitType": "Cavalry",
+    "baseUnit": "Cuirassier",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 165,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "10",
+      "Maintenance Cost: 5Per Turn",
+      "64Melee Strength",
+      "2Line of Sight",
+      "Industrial Era heavy cavalry unit."
+    ]
+  },
+  {
+    "name": "Rough Rider",
+    "unitType": "Cavalry",
+    "baseUnit": "Rough Rider",
+    "movement": 5,
+    "strength": 25,
+    "rangedStrength": null,
+    "cost": 192,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 2Per Turn",
+      "64Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Tank",
+    "unitType": "Cavalry",
+    "baseUnit": "Tank",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 240,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 6, 1Per Turn",
+      "85Melee Strength",
+      "2Line of Sight",
+      "Fast-moving Modern era heavy cavalry unit that ignores zone of control."
+    ]
+  },
+  {
+    "name": "Modern Armor",
+    "unitType": "Cavalry",
+    "baseUnit": "Modern Armor",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 340,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 8, 1Per Turn",
+      "95Melee Strength",
+      "2Line of Sight",
+      "Information era heavy cavalry unit that is fast and strong."
+    ]
+  },
+  {
+    "name": "Recon",
+    "unitType": "Cavalry",
+    "baseUnit": "Recon",
+    "movement": null,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": []
+  },
+  {
+    "name": "Scout",
+    "unitType": "Cavalry",
+    "baseUnit": "Scout",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 15,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 0Per Turn",
+      "10Melee Strength",
+      "2Line of Sight",
+      "Fast-moving Ancient era recon unit."
+    ]
+  },
+  {
+    "name": "Okihtcitaw",
+    "unitType": "Cavalry",
+    "baseUnit": "Okihtcitaw",
+    "movement": 3,
+    "strength": 5,
+    "rangedStrength": null,
+    "cost": 20,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 0Per Turn",
+      "15Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Skirmisher",
+    "unitType": "Cavalry",
+    "baseUnit": "Skirmisher",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": 35,
+    "cost": 75,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 2Per Turn",
+      "25Melee Strength",
+      "1Range",
+      "3Line of Sight",
+      "Medieval Era recon unit."
+    ]
+  },
+  {
+    "name": "Warak’aq",
+    "unitType": "Cavalry",
+    "baseUnit": "turn.",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": 40,
+    "cost": 82,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": "Incan unique Medieval Era unit that replaces the Skirmisher. Stronger at ranged combat than the Skirmisher and +1 additional attack per turn.",
+    "uniques": [
+      "Maintenance Cost: 2Per Turn",
+      "25Melee Strength",
+      "1Range",
+      "3Line of Sight"
+    ]
+  },
+  {
+    "name": "Ranger",
+    "unitType": "Cavalry",
+    "baseUnit": "Ranger",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": 65,
+    "cost": 190,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 5Per Turn",
+      "55Melee Strength",
+      "1Range",
+      "4Line of Sight",
+      "Fast-moving Industrial era recon unit."
+    ]
+  },
+  {
+    "name": "Highlander",
+    "unitType": "Cavalry",
+    "baseUnit": "Highlander",
+    "movement": 3,
+    "strength": 5,
+    "rangedStrength": 70,
+    "cost": 190,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 5Per Turn",
+      "65Melee Strength",
+      "1Range",
+      "3Line of Sight"
+    ]
+  },
+  {
+    "name": "Spec Ops",
+    "unitType": "Cavalry",
+    "baseUnit": "Spec Ops",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": 75,
+    "cost": 260,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 7Per Turn",
+      "65Melee Strength",
+      "2Range",
+      "4Line of Sight",
+      "Atomic Era reconnaissance unit. Paradrop ability allows movement from friendly tile to location 7 tiles away (12 if starting from Aerodrome or Airstrip). Can attack support units directly without having to eliminate the combat unit first."
+    ]
+  },
+  {
+    "name": "Battering Ram",
+    "unitType": "Support",
+    "baseUnit": "Battering Ram",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 32,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 1Per Turn",
+      "2Line of Sight",
+      "Ancient era support unit. When adjacent to a city, attacking melee and anti-cavalry units do full damage to the city’s Walls. Does not affect cities with Medieval or Renaissance Walls. Ineffective against Urban Defenses."
+    ]
+  },
+  {
+    "name": "Siege Tower",
+    "unitType": "Support",
+    "baseUnit": "Siege Tower",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 50,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 2Per Turn",
+      "2Line of Sight",
+      "Medieval era support unit. When adjacent to a city, attacking melee and anti-cavalry units ignore Walls and immediately assault the city. Does not affect cities with Renaissance Walls. Ineffective against Urban Defenses."
+    ]
+  },
+  {
+    "name": "Military Engineer",
+    "unitType": "Support",
+    "baseUnit": "Military Engineer",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 85,
+    "requiredTech": "Medieval era support unit. Requires an Armory to produce. Can construct Roads, Railroads, Forts, Airstrips, Missile Silos, and Mountain Tunnel improvements. One of their build charges can also be used to complete 20% of a Canal, Dam or Aqueduct district or a Flood Barrier building.",
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 2Per Turn",
+      "3Build Charges",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Medic",
+    "unitType": "Support",
+    "baseUnit": "Medic",
+    "movement": 1,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 150,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 5Per Turn",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Observation Balloon",
+    "unitType": "Support",
+    "baseUnit": "Observation Balloon",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 120,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 2Per Turn",
+      "3Line of Sight",
+      "Modern era support unit. Grants +1Range to Siege class units within 1 hex."
+    ]
+  },
+  {
+    "name": "Anti-Air Gun",
+    "unitType": "Support",
+    "baseUnit": "Anti-Air Gun",
+    "movement": 2,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 227,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 2Per Turn",
+      "1Range",
+      "90Anti-air Strength",
+      "2Line of Sight",
+      "Modern era anti-air support unit. Provides cover from air attacks up to 1 hex away from the weapon."
+    ]
+  },
+  {
+    "name": "Mobile SAM",
+    "unitType": "Support",
+    "baseUnit": "Mobile SAM",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 295,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 4Per Turn",
+      "1Range",
+      "110Anti-air Strength",
+      "2Line of Sight",
+      "Information era anti-air support unit. Provides cover from air and nuclear attacks up to 1 hex away from the weapon."
+    ]
+  },
+  {
+    "name": "Drone",
+    "unitType": "Support",
+    "baseUnit": "Drone",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 210,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 3Per Turn",
+      "5Line of Sight",
+      "Atomic era support unit. Adds +1Range and +5Bombard Strength to Siege class units within 1 hex."
+    ]
+  },
+  {
+    "name": "Supply Convoy",
+    "unitType": "Support",
+    "baseUnit": "Supply Convoy",
+    "movement": 1,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 225,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 2Per Turn",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Galley",
+    "unitType": "Naval Melee",
+    "baseUnit": "Galley",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 32,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 1Per Turn",
+      "30Melee Strength",
+      "2Line of Sight",
+      "Ancient era melee naval combat unit. Can only operate on Coastal waters until Cartography is researched."
+    ]
+  },
+  {
+    "name": "Viking Longship",
+    "unitType": "Naval Melee",
+    "baseUnit": "Viking Longship",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 32,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 1Per Turn",
+      "35Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Bireme",
+    "unitType": "Naval Melee",
+    "baseUnit": "Bireme",
+    "movement": 4,
+    "strength": 4,
+    "rangedStrength": null,
+    "cost": 32,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 1Per Turn",
+      "35Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Caravel",
+    "unitType": "Naval Melee",
+    "baseUnit": "Caravel",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 120,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 4Per Turn",
+      "55Melee Strength",
+      "3Line of Sight",
+      "Fast Renaissance era exploration melee naval unit."
+    ]
+  },
+  {
+    "name": "Nau",
+    "unitType": "Naval Melee",
+    "baseUnit": "Feitorias.",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 120,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": "Portuguese unique naval melee unit that replaces the Caravel. Starts withfree Promotion and is less maintenance. Has 2charge to build Feitorias.",
+    "uniques": [
+      "Maintenance Cost: 2Per Turn",
+      "55Melee Strength",
+      "2Build Charges",
+      "3Line of Sight"
+    ]
+  },
+  {
+    "name": "Ironclad",
+    "unitType": "Naval Melee",
+    "baseUnit": "Ironclad",
+    "movement": 5,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 190,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 5, 1Per Turn",
+      "70Melee Strength",
+      "3Line of Sight",
+      "Powerful Industrial era armored melee naval unit."
+    ]
+  },
+  {
+    "name": "Destroyer",
+    "unitType": "Naval Melee",
+    "baseUnit": "Destroyer",
+    "movement": 6,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 270,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 7, 1Per Turn",
+      "90Melee Strength",
+      "90Anti-air Strength",
+      "3Line of Sight",
+      "Strongest melee naval unit. Reveals Naval Raiders within sight range."
+    ]
+  },
+  {
+    "name": "Quadrireme",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Quadrireme",
+    "movement": 3,
+    "strength": null,
+    "rangedStrength": 25,
+    "cost": 60,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 2Per Turn",
+      "20Melee Strength",
+      "1Range",
+      "2Line of Sight",
+      "Classical era ranged naval unit withRange of 1. Can only operate on Coastal waters until Cartography is researched."
+    ]
+  },
+  {
+    "name": "Dromon",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Dromon",
+    "movement": 3,
+    "strength": 5,
+    "rangedStrength": 25,
+    "cost": 60,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 2Per Turn",
+      "20Melee Strength",
+      "2Range",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Frigate",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Frigate",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": 55,
+    "cost": 140,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "10",
+      "Maintenance Cost: 5Per Turn",
+      "45Melee Strength",
+      "2Range",
+      "2Line of Sight",
+      "Renaissance era ranged naval unit withRange of 2."
+    ]
+  },
+  {
+    "name": "Jong",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Jong",
+    "movement": 5,
+    "strength": 5,
+    "rangedStrength": 55,
+    "cost": 150,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 5Per Turn",
+      "45Melee Strength",
+      "2Range",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "De Zeven Provinciën",
+    "unitType": "Naval Ranged",
+    "baseUnit": "De Zeven Provinciën",
+    "movement": 4,
+    "strength": 7,
+    "rangedStrength": 60,
+    "cost": 140,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "5",
+      "Maintenance Cost: 5Per Turn",
+      "50Melee Strength",
+      "2Range",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Battleship",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Battleship",
+    "movement": 5,
+    "strength": null,
+    "rangedStrength": 75,
+    "cost": 215,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 6, 1Per Turn",
+      "65Melee Strength",
+      "3Range",
+      "90Anti-air Strength",
+      "2Line of Sight",
+      "Modern era naval ranged unit withRange of 3. Provides cover from air and nuclear attacks up to 1 tile away."
+    ]
+  },
+  {
+    "name": "Minas Geraes",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Minas Geraes",
+    "movement": 5,
+    "strength": null,
+    "rangedStrength": 80,
+    "cost": 215,
+    "requiredTech": "Brazilian unique Industrial era unit that replaces the Battleship. Stronger than the Battleship. Unlocked by Nationalism.",
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 6, 1Per Turn",
+      "70Melee Strength",
+      "3Range",
+      "95Anti-air Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Missile Cruiser",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Missile Cruiser",
+    "movement": 5,
+    "strength": null,
+    "rangedStrength": 90,
+    "cost": 340,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 8, 1Per Turn",
+      "75Melee Strength",
+      "4Range",
+      "110Anti-air Strength",
+      "3Line of Sight",
+      "Information era ranged naval unit withRange of 4. Provides cover from air and nuclear attacks up to 1 tile away."
+    ]
+  },
+  {
+    "name": "Naval Raider",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Naval Raider",
+    "movement": null,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": []
+  },
+  {
+    "name": "Privateer",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Privateer",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": 50,
+    "cost": 140,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 4Per Turn",
+      "40Melee Strength",
+      "2Range",
+      "2Line of Sight",
+      "Renaissance era ranged naval unit with the ability to coastal raid.Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range."
+    ]
+  },
+  {
+    "name": "Sea Dog",
+    "unitType": "Naval Ranged",
+    "baseUnit": "range.",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": 53,
+    "cost": 140,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": "English unique Renaissance era naval unit that replaces the Privateer. Has a chance to capture defeated enemy ships. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range.",
+    "uniques": [
+      "Maintenance Cost: 4Per Turn",
+      "40Melee Strength",
+      "2Range",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Barbary Corsair",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Barbary Corsair",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": 50,
+    "cost": 120,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 3Per Turn",
+      "40Melee Strength",
+      "2Range",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Submarine",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Submarine",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": 75,
+    "cost": 240,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 6Per Turn",
+      "65Melee Strength",
+      "2Range",
+      "2Line of Sight",
+      "Modern era ranged raiding naval unit. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range."
+    ]
+  },
+  {
+    "name": "U-Boat",
+    "unitType": "Naval Ranged",
+    "baseUnit": "U-Boat",
+    "movement": 4,
+    "strength": 1,
+    "rangedStrength": 75,
+    "cost": 215,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 6Per Turn",
+      "65Melee Strength",
+      "2Range",
+      "3Line of Sight"
+    ]
+  },
+  {
+    "name": "Nuclear Submarine",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Nuclear Submarine",
+    "movement": 4,
+    "strength": null,
+    "rangedStrength": 85,
+    "cost": 340,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 8Per Turn",
+      "80Melee Strength",
+      "2Range",
+      "2Line of Sight",
+      "Highly advanced Information era ranged raiding naval unit that can be armed with nuclear weapons. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range."
+    ]
+  },
+  {
+    "name": "Naval Carrier",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Naval Carrier",
+    "movement": null,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": []
+  },
+  {
+    "name": "Aircraft Carrier",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Aircraft Carrier",
+    "movement": 5,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 270,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 7Per Turn",
+      "80Melee Strength",
+      "2Line of Sight",
+      "Atomic era melee naval unit that can transport air units."
+    ]
+  },
+  {
+    "name": "Nihang",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Nihang",
+    "movement": null,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": []
+  },
+  {
+    "name": "Nihang",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Nihang",
+    "movement": 2,
+    "strength": 15,
+    "rangedStrength": null,
+    "cost": 50,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 2Per Turn",
+      "28Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Warrior Monk",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Warrior Monk",
+    "movement": null,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": []
+  },
+  {
+    "name": "Warrior Monk",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Warrior Monk",
+    "movement": 3,
+    "strength": 1,
+    "rangedStrength": null,
+    "cost": 30,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "Maintenance Cost: 2Per Turn",
+      "28Melee Strength",
+      "2Line of Sight"
+    ]
+  },
+  {
+    "name": "Air Fighter",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Air Fighter",
+    "movement": null,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": []
+  },
+  {
+    "name": "Biplane",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Biplane",
+    "movement": 6,
+    "strength": null,
+    "rangedStrength": 70,
+    "cost": 215,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 6, 1Per Turn",
+      "75Melee Strength",
+      "4Range",
+      "4Line of Sight",
+      "First air combat unit, available in the Modern era."
+    ]
+  },
+  {
+    "name": "Fighter",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Fighter",
+    "movement": 8,
+    "strength": null,
+    "rangedStrength": 95,
+    "cost": 260,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 7, 1Per Turn",
+      "95Melee Strength",
+      "5Range",
+      "4Line of Sight",
+      "Atomic era Biplane upgrade."
+    ]
+  },
+  {
+    "name": "P-51 Mustang",
+    "unitType": "Naval Ranged",
+    "baseUnit": "P-51 Mustang",
+    "movement": 10,
+    "strength": 5,
+    "rangedStrength": 95,
+    "cost": 260,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 7, 1Per Turn",
+      "95Melee Strength",
+      "5Range",
+      "4Line of Sight"
+    ]
+  },
+  {
+    "name": "Jet Fighter",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Jet Fighter",
+    "movement": 10,
+    "strength": null,
+    "rangedStrength": 105,
+    "cost": 325,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 8, 1Per Turn",
+      "105Melee Strength",
+      "6Range",
+      "5Line of Sight",
+      "Information era Fighter upgrade."
+    ]
+  },
+  {
+    "name": "Air Bomber",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Air Bomber",
+    "movement": null,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": []
+  },
+  {
+    "name": "Bomber",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Bomber",
+    "movement": 10,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 280,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 7, 1Per Turn",
+      "80Melee Strength",
+      "10Range",
+      "105Bombard Strength",
+      "4Line of Sight",
+      "First bomber unit, available in the Atomic era."
+    ]
+  },
+  {
+    "name": "Jet Bomber",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Jet Bomber",
+    "movement": 15,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": 350,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 8, 1Per Turn",
+      "85Melee Strength",
+      "15Range",
+      "115Bombard Strength",
+      "5Line of Sight",
+      "Information era Bomber upgrade."
+    ]
+  },
+  {
+    "name": "GDR",
+    "unitType": "Naval Ranged",
+    "baseUnit": "GDR",
+    "movement": null,
+    "strength": null,
+    "rangedStrength": null,
+    "cost": null,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": []
+  },
+  {
+    "name": "Giant Death Robot",
+    "unitType": "Naval Ranged",
+    "baseUnit": "Giant Death Robot",
+    "movement": 5,
+    "strength": null,
+    "rangedStrength": 120,
+    "cost": 750,
+    "requiredTech": null,
+    "upgradesTo": null,
+    "uniqueTo": null,
+    "uniques": [
+      "1",
+      "Maintenance Cost: 15, 2Per Turn",
+      "140Melee Strength",
+      "3Range",
+      "120Anti-air Strength",
+      "3Line of Sight",
+      "Information Era Super-Unit. Able to move and fight in water. Resistant to Weapons of Mass Destruction. Combat abilities can be upgraded by researching future technologies."
+    ]
+  }
+]

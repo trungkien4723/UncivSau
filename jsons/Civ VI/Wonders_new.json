@@ -1,0 +1,654 @@
+[
+  {
+    "name": "Ancient Era",
+    "cost": null,
+    "era": null,
+    "requires": null,
+    "placement": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Etemenanki",
+    "cost": 110,
+    "era": null,
+    "requires": "Unlocked by Writing Technology",
+    "placement": "+1Science and +1Production to all Marsh tiles in your empire. +1Production on all Floodplains in this city.  +1Science on Floodplains improved with a Farm for this city.Must be built on Floodplains or Marsh.",
+    "stats": {},
+    "uniques": [
+      "+2Science"
+    ]
+  },
+  {
+    "name": "Great Bath",
+    "cost": 90,
+    "era": null,
+    "requires": "Unlocked by Pottery Technology",
+    "placement": "The Floodplains tiles along the river containing the Great Bath are now immune to Flood damage (thoughFood andProduction bonuses from flooding drop by 50%). Floodplains tiles belonging to this city gain +1Faith for each time Flood damage is mitigated.Must be built on a Floodplains tile.",
+    "stats": {},
+    "uniques": [
+      "+3Housing",
+      "+1Amenities"
+    ]
+  },
+  {
+    "name": "Hanging Gardens",
+    "cost": 90,
+    "era": null,
+    "requires": "Unlocked by Irrigation Technology",
+    "placement": "Increases growth by 15% in all cities. +2Housing in the city in which this wonder is built and +1Housing in all other cities within 6 tiles.Must be built next to a river.",
+    "stats": {},
+    "uniques": [
+      "+1Housing"
+    ]
+  },
+  {
+    "name": "Oracle",
+    "cost": 145,
+    "era": null,
+    "requires": "Unlocked by Mysticism Civic",
+    "placement": "Patronage of Great People costs 25% lessFaith. Districts in this city provide +2Great Person points of their type (for example,Great Writer points from the Theater Square district). Must be built on Hills.",
+    "stats": {},
+    "uniques": [
+      "+1Culture",
+      "+1Faith"
+    ]
+  },
+  {
+    "name": "Pyramids",
+    "cost": 110,
+    "era": null,
+    "requires": "Unlocked by Masonry Technology",
+    "placement": "Grants a free Builder and +1charge for all existing and new Builders.Must be built on flat Desert tile (including Floodplains).",
+    "stats": {},
+    "uniques": [
+      "+2Culture"
+    ]
+  },
+  {
+    "name": "Stonehenge",
+    "cost": 90,
+    "era": null,
+    "requires": "Unlocked by Astrology Technology",
+    "placement": "Grants a freeGreat Prophet.Great Prophets may found a Religion on Stonehenge instead of a Holy Site. Must be adjacent toStone and on flat land.",
+    "stats": {},
+    "uniques": [
+      "+2Faith"
+    ]
+  },
+  {
+    "name": "Temple of Artemis",
+    "cost": 90,
+    "era": null,
+    "requires": "Unlocked by Archery Technology",
+    "placement": "Each Camp, Pasture, and Plantation improvement within 4 tiles of this wonder provides +1Amenity. Must be placed adjacent to a Camp improvement.",
+    "stats": {},
+    "uniques": [
+      "+3Food",
+      "+2Housing"
+    ]
+  },
+  {
+    "name": "Classical Era",
+    "cost": null,
+    "era": null,
+    "requires": null,
+    "placement": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Apadana",
+    "cost": 200,
+    "era": null,
+    "requires": "Unlocked by Political Philosophy Civic",
+    "placement": "+1Envoy when you build a wonder, including Apadana, in this city.Must be built adjacent to yourCapital.",
+    "stats": {},
+    "uniques": [
+      "2 Great Work slots (holds any type)"
+    ]
+  },
+  {
+    "name": "Colosseum",
+    "cost": 200,
+    "era": null,
+    "requires": "Unlocked by Games and Recreation Civic",
+    "placement": "+1Culture, +2 Loyalty, +2Amenities to each your City Center within 6 tiles.Must be built on flat land adjacent to an Entertainment Complex with an Arena.",
+    "stats": {},
+    "uniques": [
+      "+1Culture",
+      "+2Amenities"
+    ]
+  },
+  {
+    "name": "Colossus",
+    "cost": 200,
+    "era": null,
+    "requires": "Unlocked by Shipbuilding Technology",
+    "placement": "+1Trade Route capacity. Grants a Trader unit. Must be built on the Coast, adjacent to land and a Harbor district.",
+    "stats": {},
+    "uniques": [
+      "+3Gold",
+      "1Great Admiral point per turn."
+    ]
+  },
+  {
+    "name": "Great Library",
+    "cost": 200,
+    "era": null,
+    "requires": "Unlocked by Drama and Poetry Civic",
+    "placement": "Receive boosts to all Ancient and Classical era technologies. Receive a random tech boost after another player recruits aGreat Scientist. Must be built on flat land adjacent to a Campus district with a Library.",
+    "stats": {},
+    "uniques": [
+      "+2Science",
+      "1Great Scientist point per turn.",
+      "2Great Works of Writing slots",
+      "1Great Writer point per turn."
+    ]
+  },
+  {
+    "name": "Great Lighthouse",
+    "cost": 145,
+    "era": null,
+    "requires": "Unlocked by Celestial Navigation Technology",
+    "placement": "+1Movement for all naval unitsMust be built on the Coast, and adjacent to land and a Harbor district with a Lighthouse.",
+    "stats": {},
+    "uniques": [
+      "+3Gold",
+      "1Great Admiral point per turn."
+    ]
+  },
+  {
+    "name": "Mausoleum at Halicarnassus",
+    "cost": 200,
+    "era": null,
+    "requires": "Unlocked by Defensive Tactics Civic",
+    "placement": "+1Science, +1Faith, and +1Culture on all Coast tiles for this city.Great Engineers have an additional charge. Must be built adjacent to a Harbor district.",
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Jebel Barkal",
+    "cost": 200,
+    "era": null,
+    "requires": "Unlocked by Iron Working Technology",
+    "placement": "Awards 4Iron per turn. +4Faith to each your City Center within 6 tiles.Must be built on Desert Hills.",
+    "stats": {},
+    "uniques": [
+      "+4Faith"
+    ]
+  },
+  {
+    "name": "Machu Picchu",
+    "cost": 200,
+    "era": null,
+    "requires": "Unlocked by Engineering Technology",
+    "placement": "Mountain tiles provide a standard adjacency bonus to Commercial Hub, Theater Square, and Industrial Zone districts in all cities.Must be built on a Mountain tile that does not contain a Volcano.",
+    "stats": {},
+    "uniques": [
+      "+4Gold"
+    ]
+  },
+  {
+    "name": "Mahabodhi Temple",
+    "cost": 200,
+    "era": null,
+    "requires": "Unlocked by Theology Civic",
+    "placement": "+2 Diplomatic Victory Points and grants 2 Apostles when built.Must be built on Woods adjacent to a Holy Site district with a Temple, and you must have founded a Religion.",
+    "stats": {},
+    "uniques": [
+      "+4Faith"
+    ]
+  },
+  {
+    "name": "Petra",
+    "cost": 200,
+    "era": null,
+    "requires": "Unlocked by Mathematics Technology",
+    "placement": "+2Food, +2Gold, and +1Production on all Desert tiles for this city (non-Floodplains). Must be built on Desert or Desert Floodplains without Hills.",
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Statue of Zeus",
+    "cost": 200,
+    "era": null,
+    "requires": "Unlocked by Military Training Civic",
+    "placement": "Grants 3 Archers, 3 Spearmen, and a Battering Ram. +35%Production towards anti-cavalry units.Must be built on flat land adjacent to an Encampment district with a Barracks.",
+    "stats": {},
+    "uniques": [
+      "+3Gold"
+    ]
+  },
+  {
+    "name": "Terracotta Army",
+    "cost": 200,
+    "era": null,
+    "requires": "Unlocked by Construction Technology",
+    "placement": "All current units gain apromotion level. All Archaeologists from the owner may enter foreign lands without Open Borders.Must be built on flat Grassland or Plains adjacent to an Encampment district with a Barracks or Stable.",
+    "stats": {},
+    "uniques": [
+      "1Great General point per turn."
+    ]
+  },
+  {
+    "name": "Medieval Era",
+    "cost": null,
+    "era": null,
+    "requires": null,
+    "placement": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Alhambra",
+    "cost": 355,
+    "era": null,
+    "requires": "Unlocked by Castles Technology",
+    "placement": "+1 Military policy slotProvides the same defensive bonuses as the Fort improvement. Must be built on Hills adjacent to an Encampment district.",
+    "stats": {},
+    "uniques": [
+      "+2Amenities",
+      "2Great General points per turn."
+    ]
+  },
+  {
+    "name": "Angkor Wat",
+    "cost": 355,
+    "era": null,
+    "requires": "Unlocked by Medieval Faires Civic",
+    "placement": "+1Population  in all Current Cities when built. +1Housing in all cities.Must be built adjacent to an Aqueduct district.",
+    "stats": {},
+    "uniques": [
+      "+2Faith"
+    ]
+  },
+  {
+    "name": "Chichen Itza",
+    "cost": 355,
+    "era": null,
+    "requires": "Unlocked by Guilds Civic",
+    "placement": "+1Culture and +1Production to all Rainforest tiles in your empire.Must be built on Rainforest.",
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Hagia Sophia",
+    "cost": 355,
+    "era": null,
+    "requires": "Unlocked by Buttress Technology",
+    "placement": "+2Movement for Missionaries, Apostles and Gurus. Missionaries and Apostles can spread Religion 1 extra time. Missionaries are 25% cheaper to purchase.Must be built on flat land adjacent to a Holy Site district, and you must have founded a Religion.",
+    "stats": {},
+    "uniques": [
+      "+4Faith"
+    ]
+  },
+  {
+    "name": "Huey Teocalli",
+    "cost": 355,
+    "era": null,
+    "requires": "Unlocked by Military Tactics Technology",
+    "placement": "+1Amenity from entertainment for each Lake tile within one tile of Huey Teocalli. +1Food, +1Production, +2Culture for each Lake tile in your empire.Must be built on a Lake tile adjacent to land.",
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Kilwa Kisiwani",
+    "cost": 355,
+    "era": null,
+    "requires": "Unlocked by Machinery Technology",
+    "placement": "+3Envoys when built. When you are the Suzerain of a City-State this city receives a +15% boost to the Type bonuses provided by that City-State. If you are the Suzerain to 2 or more City-States of that type an additional +15% boost is given to all your cities. Must be built on a flat tile adjacent to Coast.",
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Kotoku-in",
+    "cost": 355,
+    "era": null,
+    "requires": "Unlocked by Divine Right Civic",
+    "placement": "+20%Faith in this city. Grants 4 Warrior Monks. Allows purchasing of Warrior Monks in this city regardless of city's Religion.Must be built adjacent to a Holy Site district with a Temple.",
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Meenakshi Temple",
+    "cost": 355,
+    "era": null,
+    "requires": "Unlocked by Civil Service Civic",
+    "placement": "Grants 2 Apostles. Apostles and Gurus are 25% cheaper to purchase. Religious units adjacent to Gurus receive +5Religious Strength in Theological Combat and +1Movement.Must be built adjacent to a Holy Site and you must have founded a Religion.",
+    "stats": {},
+    "uniques": [
+      "+3Faith"
+    ]
+  },
+  {
+    "name": "Mont St. Michel",
+    "cost": 355,
+    "era": null,
+    "requires": "Unlocked by Divine Right Civic",
+    "placement": "+1Culture and +1Food to all Floodplains tiles in your empire. All Apostles you create gain the Martyr ability in addition to a second ability you chose normally.Must be built on Floodplains or Marsh.",
+    "stats": {},
+    "uniques": [
+      "+2Faith",
+      "2Relic slots"
+    ]
+  },
+  {
+    "name": "University of Sankore",
+    "cost": 355,
+    "era": null,
+    "requires": "Unlocked by Education Technology",
+    "placement": "+1Trade Route capacity. All your Trade Routes provide +1Science and +2Gold.Must be built on the Desert or Desert Hills, and adjacent to a Campus district with a University.",
+    "stats": {},
+    "uniques": [
+      "+1Faith",
+      "+3Science",
+      "2Great Scientist points per turn."
+    ]
+  },
+  {
+    "name": "Renaissance Era",
+    "cost": null,
+    "era": null,
+    "requires": null,
+    "placement": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Casa de Contratación",
+    "cost": 460,
+    "era": null,
+    "requires": "Unlocked by Cartography Technology",
+    "placement": "Gain 3Governor promotions.  All your cities not on your originalCapital's continent with aGovernor gain +15%Production, +15%Faith and +15%Gold. Must be built adjacent to a Government Plaza.",
+    "stats": {},
+    "uniques": [
+      "3Great Merchant points per turn."
+    ]
+  },
+  {
+    "name": "Forbidden City",
+    "cost": 460,
+    "era": null,
+    "requires": "Unlocked by Printing Technology",
+    "placement": "+1 Wildcard policy slotMust be built on flat land adjacent to the City Center.",
+    "stats": {},
+    "uniques": [
+      "+5Culture"
+    ]
+  },
+  {
+    "name": "Great Zimbabwe",
+    "cost": 460,
+    "era": null,
+    "requires": "Unlocked by Banking Technology",
+    "placement": "+2Trade Route capacity and +2Traders. YourTrade Routes from this city get +2Gold for every Bonus resource within 3 tiles of the city and in this city's territory.Must be built adjacent to a Commercial Hub district with a Market and adjacent toCattle.",
+    "stats": {},
+    "uniques": [
+      "+5Gold",
+      "2Great Merchant points per turn."
+    ]
+  },
+  {
+    "name": "Potala Palace",
+    "cost": 530,
+    "era": null,
+    "requires": "Unlocked by Astronomy Technology",
+    "placement": "+1 Diplomatic policy slot.  +1 Diplomatic Victory point.Must be built on a Hill adjacent to a Mountain.",
+    "stats": {},
+    "uniques": [
+      "+2Culture",
+      "+3Faith"
+    ]
+  },
+  {
+    "name": "St. Basil's Cathedral",
+    "cost": 460,
+    "era": null,
+    "requires": "Unlocked by Reformed Church Civic",
+    "placement": "Awards 1Relic. +100%Religious Tourism from this city. +1Food, +1Production, and +1Culture on all Tundra tiles for this city.Must be built adjacent to a City Center.",
+    "stats": {},
+    "uniques": [
+      "3Relic slots"
+    ]
+  },
+  {
+    "name": "Taj Mahal",
+    "cost": 460,
+    "era": "+1Era Score from Historic Moment earned after this wonder is complete if that Moment is usually worth 2 or moreEra Score. All your cities gain +10%Gold when you are inGolden orHeroic Age.Must be built next to a River.",
+    "requires": "Unlocked by Humanism Civic",
+    "placement": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Torre de Belém",
+    "cost": 460,
+    "era": null,
+    "requires": "Unlocked by Mercantilism Civic",
+    "placement": "InternationalTrade Routes receive +2Gold for every Luxury Resource at the destination. When the Torre de Belém is constructed, all cities not on your home continent receive the lowestProduction cost City Center building they can currently construct.Must be built on a Coast tile that is adjacent to a Harbor district.",
+    "stats": {},
+    "uniques": [
+      "+5Gold",
+      "1Great Admiral point per turn."
+    ]
+  },
+  {
+    "name": "Venetian Arsenal",
+    "cost": 460,
+    "era": null,
+    "requires": "Unlocked by Mass Production Technology",
+    "placement": "+75%Production towards naval units in all cities.Must be built on a Coast tile that is adjacent to an Industrial Zone district.",
+    "stats": {},
+    "uniques": [
+      "2Great Engineer points per turn."
+    ]
+  },
+  {
+    "name": "Industrial Era",
+    "cost": null,
+    "era": null,
+    "requires": null,
+    "placement": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Big Ben",
+    "cost": 725,
+    "era": null,
+    "requires": "Unlocked by Economics Technology",
+    "placement": "+1 Economic policy slotImmediately after constructionGold in treasury is increased by 50%. Must be built next to a River adjacent to a Commercial Hub district with a Bank.",
+    "stats": {},
+    "uniques": [
+      "+6Gold",
+      "3Great Merchant points per turn."
+    ]
+  },
+  {
+    "name": "Bolshoi Theatre",
+    "cost": 620,
+    "era": null,
+    "requires": "Unlocked by Opera and Ballet Civic",
+    "placement": "Awards 2 randomly-chosen free civics when completed. Must be built on flat land adjacent to a Theater Square district.",
+    "stats": {},
+    "uniques": [
+      "2Great Musician points per turn.",
+      "1Great Work of Music slot",
+      "1Great Work of Writing slot",
+      "2Great Writer points per turn."
+    ]
+  },
+  {
+    "name": "Hermitage",
+    "cost": 725,
+    "era": null,
+    "requires": "Unlocked by Natural History Civic",
+    "placement": "Great works stored in this wonder become automatically themed when full.Must be built along a River.",
+    "stats": {},
+    "uniques": [
+      "3Great Artist points per turn.",
+      "4Great Works of Art slots"
+    ]
+  },
+  {
+    "name": "Országház",
+    "cost": 460,
+    "era": null,
+    "requires": "Unlocked by Sanitation Technology",
+    "placement": "Additional +3Diplomatic Favor per City-state you are the Suzerain of.Must be built on a River.",
+    "stats": {},
+    "uniques": [
+      "+4Culture"
+    ]
+  },
+  {
+    "name": "Oxford University",
+    "cost": 620,
+    "era": null,
+    "requires": "Unlocked by Urbanization Civic",
+    "placement": "+20%Science in this city, and awards 2 randomly-chosen free technologies when completed. Must be built on Grassland or Plains adjacent to a Campus district with a University.",
+    "stats": {},
+    "uniques": [
+      "3Great Scientist points per turn.",
+      "2Great Works of Writing slots"
+    ]
+  },
+  {
+    "name": "Panama Canal",
+    "cost": 460,
+    "era": null,
+    "requires": "Unlocked by Steam Power Technology",
+    "placement": "Upon completion 1 or 2 adjacent Canal districts are automatically constructed. The Canal wonder tile can now be crossed by naval units.Trade Routes traveling through it can multiply theGold they get from districts at their destination.Must be built on a flat land tile where there are two adjacent tiles directly across the build tile from one another that meet the following criteria: one adjacent tile must be able to legally hold a Canal district connecting into the Panama Canal construction tile; the other must be either a city, a water tile, or be another tile that can hold a connecting Canal.",
+    "stats": {},
+    "uniques": [
+      "+10Gold"
+    ]
+  },
+  {
+    "name": "Ruhr Valley",
+    "cost": 620,
+    "era": null,
+    "requires": "Unlocked by Industrialization Technology",
+    "placement": "+20%Production in this city, and +1Production for each Mine and Quarry in this city. Must be built along a River adjacent to an Industrial Zone district with a Factory.",
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Statue of Liberty",
+    "cost": 620,
+    "era": null,
+    "requires": "Unlocked by Civil Engineering Civic",
+    "placement": "+3 Diplomatic Victory Points when built. All your cities within 6 tiles are always 100% Loyal.Must be built on the Coast, adjacent to land and a Harbor district.",
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Modern Era",
+    "cost": null,
+    "era": null,
+    "requires": null,
+    "placement": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Broadway",
+    "cost": 810,
+    "era": null,
+    "requires": "Unlocked by Mass Media Civic",
+    "placement": "+20%Culture in this city. 1 free random Atomic era civic boost. Must be built on flat land adjacent to a Theater Square district.",
+    "stats": {},
+    "uniques": [
+      "3Great Musician points per turn.",
+      "2Great Works of Music slots",
+      "1Great Work of Writing slot",
+      "3Great Writer points per turn."
+    ]
+  },
+  {
+    "name": "Cristo Redentor",
+    "cost": 610,
+    "era": null,
+    "requires": "Unlocked by Mass Media Civic",
+    "placement": "Awards 1 Relic. Holy City andRelicTourism is not diminished by other civilizations who have researched The Enlightenment civic. +75%Tourism from Seaside Resorts across your civilization.Must be built on Hills.",
+    "stats": {},
+    "uniques": [
+      "+4Culture"
+    ]
+  },
+  {
+    "name": "Eiffel Tower",
+    "cost": 810,
+    "era": null,
+    "requires": "Unlocked by Steel Technology",
+    "placement": "All tiles in your civilization gain +2 Appeal. Must be built on flat land adjacent to the City Center.",
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Golden Gate Bridge",
+    "cost": 810,
+    "era": null,
+    "requires": "Unlocked by Combustion Technology",
+    "placement": "Land units can cross without needing to embark. Acts as Modern Road and creates Modern Roads (if not present) in land tiles on either end. City gains +3Amenities. All tiles in this city +4 Appeal. +100%Tourism from improvements and National Parks in this city.Trade Routes traveling through it can multiply theGold they get from districts at their destination.Must be built on a Coast tile. The bridge must run straight across the hex between two land tiles directly opposite one another. At least one water tile must be present on both the left and right sides of the bridge.",
+    "stats": {},
+    "uniques": [
+      "+3Amenities"
+    ]
+  },
+  {
+    "name": "Atomic Era",
+    "cost": null,
+    "era": null,
+    "requires": null,
+    "placement": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Amundsen-Scott Research Station",
+    "cost": 810,
+    "era": null,
+    "requires": "Unlocked by Rapid Deployment Civic",
+    "placement": "+20%Science and +10%Production in all cities. If there are 5 Tundra or Tundra Hills tiles within 3 tiles of a city and owned by this player these yields are doubled.Must be built next to a Campus with a Research Lab on a Tundra or Snow tile.",
+    "stats": {},
+    "uniques": [
+      "5Great Scientist points per turn."
+    ]
+  },
+  {
+    "name": "Biosphère",
+    "cost": 810,
+    "era": null,
+    "requires": "Unlocked by Synthetic Materials Technology",
+    "placement": "+200%Power for all Offshore Windfarms, Solar Farms, Wind Farms, Geothermal Plants, and Hydroelectric Dams. This building and these improvements provideTourism equal to theirPower. +1 Appeal to tiles adjacent to Rainforest and Marsh in your empire. Must be built along a River adjacent to a Neighborhood district.",
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Estádio do Maracanã",
+    "cost": 870,
+    "era": null,
+    "requires": "Unlocked by Professional Sports Civic",
+    "placement": "+2Amenities in each city in your civilization. Must be built on flat land adjacent to an Entertainment Complex district with a Stadium.",
+    "stats": {},
+    "uniques": [
+      "+6Culture",
+      "+2Amenities"
+    ]
+  },
+  {
+    "name": "Sydney Opera House",
+    "cost": 925,
+    "era": null,
+    "requires": "Unlocked by Cultural Heritage Civic",
+    "placement": "Must be built on the Coast, adjacent to land and a Harbor district.",
+    "stats": {},
+    "uniques": [
+      "+8Culture",
+      "5Great Musician points per turn.",
+      "3Great Works of Music slots"
+    ]
+  }
+]

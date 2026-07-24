@@ -1,0 +1,51 @@
+[
+    {
+        "name": "Reyna",
+        "loyaltyBonus": 3,
+        "uniques": [
+            "[+3] [Gold] [in this city]"
+        ]
+    },
+    {
+        "name": "Liang",
+        "loyaltyBonus": 4,
+        "uniques": [
+            "[+2] [Production] [in this city]"
+        ]
+    },
+    {
+        "name": "Pingala",
+        "loyaltyBonus": 3,
+        "uniques": [
+            "[+2] [Science] [in this city]"
+        ]
+    },
+    {
+        "name": "Magnus",
+        "loyaltyBonus": 3,
+        "uniques": [
+            "[+2] [Food] [in this city]"
+        ]
+    },
+    {
+        "name": "Victor",
+        "loyaltyBonus": 5,
+        "uniques": [
+            "[+2] [Production] [in this city]"
+        ]
+    },
+    {
+        "name": "Amani",
+        "loyaltyBonus": 4,
+        "uniques": [
+            "[+2] [Culture] [in this city]"
+        ]
+    },
+    {
+        "name": "Moksha",
+        "loyaltyBonus": 4,
+        "uniques": [
+            "[+2] [Faith] [in this city]"
+        ]
+    }
+]

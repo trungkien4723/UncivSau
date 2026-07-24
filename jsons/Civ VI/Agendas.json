@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Warmonger Hater",
+        "dislikes": "Major",
+        "uniques": []
+    },
+    {
+        "name": "Nature Lover",
+        "likes": "CityState",
+        "uniques": []
+    },
+    {
+        "name": "Cultured",
+        "likes": "Major",
+        "uniques": []
+    },
+    {
+        "name": "Piety",
+        "likes": "Major",
+        "uniques": []
+    },
+    {
+        "name": "Militaristic",
+        "likes": "Major",
+        "uniques": ["Wants to be at war with a civilization that is not at war with any other civilization", "Unhappy if not at war with any civilization", "Will never give up pursuing a city of another major civilization that is closer to its capital than to that civilization's capital"]
+    },
+    {
+        "name": "Diplomatic",
+        "likes": "CityState",
+        "uniques": ["Wants to be friends with all civilizations", "Unhappy if not allied with at least [1] City-State"]
+    },
+    {
+        "name": "Scientific",
+        "likes": "Major",
+        "uniques": ["Wants to be the first to discover a technology", "Unhappy if another civilization has researched more technologies"]
+    }
+]

@@ -254,13 +254,13 @@ class TechPickerScreen(
 
         for (tech in ruleset.technologies.values) {
             if (!techNameToButton.containsKey(tech.name)) {
-                ToastPopup("Tech ${tech.name} appears to be missing - perhaps two techs have the same row & column", this)
+                ToastPopup("Tech ${tech.name} is missing from tech tree - likely two techs share the same row & column!", this)
                 continue
             }
             val techButton = techNameToButton[tech.name]!!
             for (prerequisite in tech.prerequisites) {
                 if (!techNameToButton.containsKey(prerequisite)) {
-                    ToastPopup("Tech $prerequisite. prerequisite of ${tech.name}, appears to be missing - perhaps two techs have the same row & column", this)
+                    ToastPopup("Tech $prerequisite (prerequisite of ${tech.name}) is missing from tech tree - likely two techs share the same row & column!", this)
                     continue
                 }
                 val prerequisiteButton = techNameToButton[prerequisite]!!

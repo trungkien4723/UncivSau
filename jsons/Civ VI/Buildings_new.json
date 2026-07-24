@@ -1,0 +1,664 @@
+[
+  {
+    "name": "Palace",
+    "district": "City Center",
+    "cost": null,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Monument",
+    "district": "City Center",
+    "cost": 30,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Granary",
+    "district": "City Center",
+    "cost": 32,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Water Mill",
+    "district": "City Center",
+    "cost": 40,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Flood Barrier",
+    "district": "City Center",
+    "cost": 40,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Palgum",
+    "district": "City Center",
+    "cost": 40,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Ancient Walls",
+    "district": "City Center",
+    "cost": 50,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Tsikhe",
+    "district": "City Center",
+    "cost": 50,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Medieval Walls",
+    "district": "City Center",
+    "cost": 100,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Sewer",
+    "district": "City Center",
+    "cost": 100,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Renaissance Walls",
+    "district": "City Center",
+    "cost": 150,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Ordu",
+    "district": "Encampment",
+    "cost": 30,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": [
+      "A building unique to Mongolia. Grants an ability that gives +1Movement to Heavy and Light Cavalry trained in this city. +25% combat experience for all cavalry and siege class units trained in this city.Strategic Resource Stockpiles increased +10 (on Standard Speed).May not be built in an Encampment district that already has a Barracks."
+    ]
+  },
+  {
+    "name": "Barracks",
+    "district": "Encampment",
+    "cost": 45,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Basilikoi Paides",
+    "district": "Encampment",
+    "cost": 45,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Stable",
+    "district": "Encampment",
+    "cost": 60,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Armory",
+    "district": "Encampment",
+    "cost": 97,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Military Academy",
+    "district": "Encampment",
+    "cost": 165,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Shrine",
+    "district": "Holy Site",
+    "cost": 35,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Temple",
+    "district": "Holy Site",
+    "cost": 60,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Stave Church",
+    "district": "Holy Site",
+    "cost": 60,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Prasat",
+    "district": "Holy Site",
+    "cost": 60,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Cathedral",
+    "district": "Holy Site",
+    "cost": 95,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Gurdwara",
+    "district": "Holy Site",
+    "cost": 95,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Meeting House",
+    "district": "Holy Site",
+    "cost": 95,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Mosque",
+    "district": "Holy Site",
+    "cost": 95,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Pagoda",
+    "district": "Holy Site",
+    "cost": 95,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Synagogue",
+    "district": "Holy Site",
+    "cost": 95,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Wat",
+    "district": "Holy Site",
+    "cost": 95,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Stupa",
+    "district": "Holy Site",
+    "cost": 95,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Dar-e Mehr",
+    "district": "Holy Site",
+    "cost": 95,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Library",
+    "district": "Campus",
+    "cost": 45,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "University",
+    "district": "Campus",
+    "cost": 125,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Madrasa",
+    "district": "Campus",
+    "cost": 125,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Navigation School",
+    "district": "Campus",
+    "cost": 125,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Research Lab",
+    "district": "Campus",
+    "cost": 220,
+    "maintenance": 3,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Tlachtli",
+    "district": "Entertainment Complex",
+    "cost": 50,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Arena",
+    "district": "Entertainment Complex",
+    "cost": 75,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Zoo",
+    "district": "Entertainment Complex",
+    "cost": 180,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Thermal Bath",
+    "district": "Entertainment Complex",
+    "cost": 180,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Stadium",
+    "district": "Entertainment Complex",
+    "cost": 240,
+    "maintenance": 3,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Lighthouse",
+    "district": "Harbor",
+    "cost": 60,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Shipyard",
+    "district": "Harbor",
+    "cost": 145,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Seaport",
+    "district": "Harbor",
+    "cost": 220,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Market",
+    "district": "Commercial Hub",
+    "cost": 60,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Sukiennice",
+    "district": "Commercial Hub",
+    "cost": 60,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Grand Bazaar",
+    "district": "Commercial Hub",
+    "cost": 110,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Bank",
+    "district": "Commercial Hub",
+    "cost": 145,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Stock Exchange",
+    "district": "Commercial Hub",
+    "cost": 165,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Amphitheater",
+    "district": "Theater Square",
+    "cost": 75,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Marae",
+    "district": "Theater Square",
+    "cost": 75,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Art Museum",
+    "district": "Theater Square",
+    "cost": 145,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Archaeological Museum",
+    "district": "Theater Square",
+    "cost": 145,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Broadcast Center",
+    "district": "Theater Square",
+    "cost": 220,
+    "maintenance": 3,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Film Studio",
+    "district": "Theater Square",
+    "cost": 220,
+    "maintenance": 3,
+    "stats": {},
+    "uniques": [
+      "A building unique to America. +30%Tourism pressure from this city towards other civilizations who reached the Modern era."
+    ]
+  },
+  {
+    "name": "Audience Chamber",
+    "district": "Government Plaza",
+    "cost": 75,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Ancestral Hall",
+    "district": "Government Plaza",
+    "cost": 75,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Warlord's Throne",
+    "district": "Government Plaza",
+    "cost": 75,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Queen's Bibliotheque",
+    "district": "Government Plaza",
+    "cost": 108,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": [
+      "A building unique to Sweden. Provides 2 slots ofWriting,Music, and any type ofArt. This building is not mutually exclusive with other buildings in Government Plaza.Awards +1Governor Title."
+    ]
+  },
+  {
+    "name": "Foreign Ministry",
+    "district": "Government Plaza",
+    "cost": 145,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Intelligence Agency",
+    "district": "Government Plaza",
+    "cost": 145,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Grand Master's Chapel",
+    "district": "Government Plaza",
+    "cost": 145,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "War Department",
+    "district": "Government Plaza",
+    "cost": 220,
+    "maintenance": 3,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "National History Museum",
+    "district": "Government Plaza",
+    "cost": 220,
+    "maintenance": 3,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Royal Society",
+    "district": "Government Plaza",
+    "cost": 220,
+    "maintenance": 3,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Grove",
+    "district": "Preserve",
+    "cost": 75,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Sanctuary",
+    "district": "Preserve",
+    "cost": 220,
+    "maintenance": null,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Consulate",
+    "district": "Diplomatic Quarter",
+    "cost": 75,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Chancery",
+    "district": "Diplomatic Quarter",
+    "cost": 145,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Workshop",
+    "district": "Industrial Zone",
+    "cost": 80,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Factory",
+    "district": "Industrial Zone",
+    "cost": 145,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Electronics Factory",
+    "district": "Industrial Zone",
+    "cost": 145,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Coal Power Plant",
+    "district": "Industrial Zone",
+    "cost": 165,
+    "maintenance": 3,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Oil Power Plant",
+    "district": "Industrial Zone",
+    "cost": 180,
+    "maintenance": 3,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Nuclear Power Plant",
+    "district": "Industrial Zone",
+    "cost": 240,
+    "maintenance": 3,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Ferris Wheel",
+    "district": "Water Park",
+    "cost": 145,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Aquarium",
+    "district": "Water Park",
+    "cost": 180,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Aquatics Center",
+    "district": "Water Park",
+    "cost": 240,
+    "maintenance": 3,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Hangar",
+    "district": "Aerodrome",
+    "cost": 160,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Airport",
+    "district": "Aerodrome",
+    "cost": 200,
+    "maintenance": 2,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Food Market",
+    "district": "Neighborhood",
+    "cost": 190,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Shopping Mall",
+    "district": "Neighborhood",
+    "cost": 220,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  },
+  {
+    "name": "Hydroelectric Dam",
+    "district": "Dam",
+    "cost": 220,
+    "maintenance": 1,
+    "stats": {},
+    "uniques": []
+  }
+]

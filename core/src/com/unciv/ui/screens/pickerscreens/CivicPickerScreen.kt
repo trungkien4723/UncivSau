@@ -217,13 +217,13 @@ class CivicPickerScreen(
 
         for (civic in ruleset.civics.values) {
             if (!civicNameToButton.containsKey(civic.name)) {
-                ToastPopup("Civic ${civic.name} appears to be missing - perhaps two civics have the same row & column", this)
+                ToastPopup("Civic ${civic.name} is missing from civic tree - likely two civics share the same row & column!", this)
                 continue
             }
             val civicButton = civicNameToButton[civic.name]!!
             for (prerequisite in civic.prerequisites) {
                 if (!civicNameToButton.containsKey(prerequisite)) {
-                    ToastPopup("Civic $prerequisite. prerequisite of ${civic.name}, appears to be missing - perhaps two civics have the same row & column", this)
+                    ToastPopup("Civic $prerequisite (prerequisite of ${civic.name}) is missing from civic tree - likely two civics share the same row & column!", this)
                     continue
                 }
                 val prerequisiteButton = civicNameToButton[prerequisite]!!
