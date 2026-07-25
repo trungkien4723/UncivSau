@@ -162,7 +162,7 @@
             "text": "Enabled builders to embark on water and allowed coastal city founding with fishing boats and galley units."
           },
           {
-            "text": "Unlocks: Fishing Boats (improvement), Galley (unit); enables Shipbuilding and Celestial Navigation; builders can embark."
+            "text": "Unlocks: Fishing Boats (improvement), Galley (unit), Lighthouse (building), Harbor (district), Shipyard (building), Royal Navy Dockyard (district); enables Shipbuilding and Celestial Navigation; builders can embark."
           }
         ],
         "column": {
@@ -310,7 +310,7 @@
             "text": "Enabled traders to embark on sea voyages, harvesting fish from ocean resources. Also unlocked the Royal Navy Dockyard."
           },
           {
-            "text": "Unlocks: Lighthouse (building), Great Lighthouse (wonder), Royal Navy Dockyard (district); Traders can embark; boosted by improving 2 sea resources."
+            "text": "Unlocks: Great Lighthouse (wonder); Traders can embark; boosted by improving 2 sea resources."
           }
         ],
         "column": {
@@ -1454,7 +1454,7 @@
             "text": "Controlled cooling technology enabling food preservation, climate-controlled buildings, and industrial cold chains."
           },
           {
-            "text": "Unlocks: Neighborhood (district) housing bonus; enables other modern technologies. (Gathering Storm)"
+            "text": "Enables other modern technologies. (Gathering Storm)"
           }
         ],
         "column": {

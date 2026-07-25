@@ -1,67 +1,73 @@
 [
     {
         "name": "Campus",
-        "cost": 36,
+        "cost": 60,
         "requiredTech": "Writing",
         "uniques": [
             "Unbuildable",
-            "Creates a [Campus] district on a specific tile"
+            "Creates a [Campus] district on a specific tile",
+            "Shows when unbuildable"
         ],
         "maintenance": 0,
         "district": "Campus"
     },
     {
         "name": "Theater Square",
-        "cost": 36,
+        "cost": 60,
         "requiredCivic": "Drama and Poetry",
         "uniques": [
             "Unbuildable",
-            "Creates a [Theater Square] district on a specific tile"
+            "Creates a [Theater Square] district on a specific tile",
+            "Shows when unbuildable"
         ],
         "maintenance": 0,
         "district": "Theater Square"
     },
     {
         "name": "Holy Site",
-        "cost": 36,
+        "cost": 60,
         "requiredTech": "Astrology",
         "uniques": [
             "Unbuildable",
-            "Creates a [Holy Site] district on a specific tile"
+            "Creates a [Holy Site] district on a specific tile",
+            "Shows when unbuildable"
         ],
         "maintenance": 0,
         "district": "Holy Site"
     },
     {
         "name": "Commercial Hub",
-        "cost": 36,
+        "cost": 60,
         "requiredTech": "Currency",
         "uniques": [
             "Unbuildable",
-            "Creates a [Commercial Hub] district on a specific tile"
+            "Creates a [Commercial Hub] district on a specific tile",
+            "Shows when unbuildable"
         ],
         "maintenance": 0,
         "district": "Commercial Hub"
     },
     {
         "name": "Industrial Zone",
-        "cost": 36,
+        "cost": 60,
         "requiredTech": "Apprenticeship",
         "uniques": [
             "Unbuildable",
-            "Creates a [Industrial Zone] district on a specific tile"
+            "Creates a [Industrial Zone] district on a specific tile",
+            "Shows when unbuildable"
         ],
         "maintenance": 0,
         "district": "Industrial Zone"
     },
     {
         "name": "Neighborhood",
-        "cost": 36,
+        "cost": 60,
         "requiredTech": "Sanitation",
         "uniques": [
             "Unbuildable",
             "Creates a [Neighborhood] district on a specific tile",
-            "Housing based on tile appeal"
+            "Housing based on tile appeal",
+            "Shows when unbuildable"
         ],
         "maintenance": 0,
         "district": "Neighborhood",
@@ -457,11 +463,12 @@
         "hurryCostModifier": 0,
         "uniques": [
             "Unbuildable",
-            "Creates a [Aqueduct] district on a specific tile"
+            "Creates a [Aqueduct] district on a specific tile",
+            "Shows when unbuildable"
         ],
         "requiredTech": "Engineering",
         "district": "Aqueduct",
-        "cost": 36,
+        "cost": 60,
         "housing": 2
     },
     {
@@ -631,15 +638,16 @@
     },
     {
         "name": "Harbor",
-        "cost": 36,
+        "cost": 60,
         "maintenance": 0,
         "hurryCostModifier": 25,
         "uniques": [
             "Unbuildable",
             "Creates a [Harbor] district on a specific tile",
-            "Must be next to [Coast]"
+            "Must be next to [Coast]",
+            "Shows when unbuildable"
         ],
-        "requiredTech": "Celestial Navigation",
+        "requiredTech": "Sailing",
         "district": "Harbor"
     },
     {
@@ -1488,21 +1496,23 @@
     },
     {
         "name": "Encampment",
-        "cost": 36,
+        "cost": 60,
         "requiredTech": "Bronze Working",
         "uniques": [
             "Unbuildable",
-            "Creates a [Encampment] district on a specific tile"
+            "Creates a [Encampment] district on a specific tile",
+            "Shows when unbuildable"
         ],
         "maintenance": 0,
         "district": "Encampment"
     },
     {
         "name": "Entertainment Complex",
-        "cost": 36,
+        "cost": 60,
         "uniques": [
             "Unbuildable",
-            "Creates a [Entertainment Complex] district on a specific tile"
+            "Creates a [Entertainment Complex] district on a specific tile",
+            "Shows when unbuildable"
         ],
         "requiredCivic": "Games and Recreation",
         "maintenance": 0,
@@ -1510,11 +1520,12 @@
     },
     {
         "name": "Water Entertainment Complex",
-        "cost": 36,
+        "cost": 60,
         "uniques": [
             "Unbuildable",
             "Creates a [Water Entertainment Complex] district on a specific tile",
-            "Requires [Coastal]"
+            "Requires [Coastal]",
+            "Shows when unbuildable"
         ],
         "requiredCivic": "Games and Recreation",
         "maintenance": 0,
@@ -1526,19 +1537,21 @@
         "requiredTech": "Rocketry",
         "uniques": [
             "Unbuildable",
-            "Creates a [Spaceport] district on a specific tile"
+            "Creates a [Spaceport] district on a specific tile",
+            "Shows when unbuildable"
         ],
         "maintenance": 0,
         "district": "Spaceport"
     },
     {
         "name": "Government Plaza",
-        "cost": 36,
+        "cost": 60,
         "uniques": [
             "Unbuildable",
-            "Creates a [Government Plaza] district on a specific tile"
+            "Creates a [Government Plaza] district on a specific tile",
+            "Shows when unbuildable"
         ],
-        "requiredCivic": "Political Philosophy",
+        "requiredCivic": "State Workforce",
         "maintenance": 0,
         "district": "Government Plaza"
     },
@@ -2793,158 +2806,216 @@
     },
     {
         "name": "Acropolis",
-        "district": "Theater Square",
-        "cost": 36,
+        "district": "Acropolis",
+        "cost": 60,
         "requiredCivic": "Drama and Poetry",
         "maintenance": 0,
         "uniques": [
             "Unbuildable",
-            "Creates a [Theater Square] district on a specific tile",
+            "Creates a [Acropolis] district on a specific tile",
             "Must be on a Hill",
-            "Provides +1 Culture for each adjacent district"
-        ]
+            "Provides +1 Culture for each adjacent district",
+            "Shows when unbuildable"
+        ],
+        "uniqueTo": "Greece",
+        "replaces": "Theater Square"
     },
     {
         "name": "Lavra",
-        "district": "Holy Site",
-        "cost": 36,
+        "district": "Lavra",
+        "cost": 60,
         "requiredTech": "Astrology",
         "maintenance": 0,
         "uniques": [
             "Unbuildable",
-            "Creates a [Holy Site] district on a specific tile",
+            "Creates a [Lavra] district on a specific tile",
             "Provides +1 Great Prophet point per turn",
-            "+1 Culture for each adjacent district"
-        ]
+            "+1 Culture for each adjacent district",
+            "Shows when unbuildable"
+        ],
+        "uniqueTo": "Russia",
+        "replaces": "Holy Site"
     },
     {
         "name": "Stronghold",
-        "district": "Encampment",
-        "cost": 36,
+        "district": "Stronghold",
+        "cost": 60,
         "requiredTech": "Bronze Working",
         "maintenance": 0,
         "uniques": [
             "Unbuildable",
-            "Creates a [Encampment] district on a specific tile",
+            "Creates a [Stronghold] district on a specific tile",
             "Provides +2 Housing",
-            "+2 Production"
-        ]
+            "+2 Production",
+            "Shows when unbuildable"
+        ],
+        "uniqueTo": "Poland",
+        "replaces": "Encampment"
     },
     {
         "name": "Seowon",
-        "district": "Campus",
-        "cost": 36,
+        "district": "Seowon",
+        "cost": 60,
         "requiredTech": "Writing",
         "maintenance": 0,
         "uniques": [
             "Unbuildable",
-            "Creates a [Campus] district on a specific tile",
+            "Creates a [Seowon] district on a specific tile",
             "Must be on a Hill",
             "Base Science: +4",
-            "Adjacency bonus: +2 Science for each adjacent Mine, +1 for each adjacent Farm/Plantation/Lumber mill"
-        ]
+            "Adjacency bonus: +2 Science for each adjacent Mine, +1 for each adjacent Farm/Plantation/Lumber mill",
+            "Shows when unbuildable"
+        ],
+        "uniqueTo": "Korea",
+        "replaces": "Campus"
     },
     {
         "name": "Oppidum",
-        "district": "Encampment",
-        "cost": 36,
+        "district": "Oppidum",
+        "cost": 60,
         "requiredTech": "Bronze Working",
         "maintenance": 0,
         "uniques": [
             "Unbuildable",
-            "Creates a [Encampment] district on a specific tile",
+            "Creates a [Oppidum] district on a specific tile",
             "Provides +2 Housing",
-            "+1 Great General point per turn"
-        ]
+            "+1 Great General point per turn",
+            "Shows when unbuildable"
+        ],
+        "uniqueTo": "Gaul",
+        "replaces": "Encampment"
+    },
+    {
+        "name": "Thành",
+        "cost": 30,
+        "requiredTech": "Bronze Working",
+        "replaces": "Encampment",
+        "uniqueTo": "Vietnam",
+        "uniques": [
+            "Unbuildable",
+            "Creates a [Thành] district on a specific tile",
+            "Shows when unbuildable"
+        ],
+        "maintenance": 0,
+        "district": "Thành"
+    },
+    {
+        "name": "Ikanda",
+        "cost": 30,
+        "requiredTech": "Bronze Working",
+        "replaces": "Encampment",
+        "uniqueTo": "Zulu",
+        "uniques": [
+            "Unbuildable",
+            "Creates a [Ikanda] district on a specific tile",
+            "Shows when unbuildable"
+        ],
+        "maintenance": 0,
+        "district": "Ikanda"
     },
     {
         "name": "Hansa",
-        "district": "Industrial Zone",
-        "cost": 36,
+        "district": "Hansa",
+        "cost": 60,
         "requiredTech": "Apprenticeship",
         "maintenance": 0,
         "uniques": [
             "Unbuildable",
-            "Creates a [Industrial Zone] district on a specific tile",
+            "Creates a [Hansa] district on a specific tile",
             "+2 Production per adjacent Commercial Hub/Market/Bank/Stock Exchange",
             "+1 Production per adjacent resource",
-            "+2 Production per adjacent Aqueduct/Dam/Canal"
-        ]
+            "+2 Production per adjacent Aqueduct/Dam/Canal",
+            "Shows when unbuildable"
+        ],
+        "uniqueTo": "Germany",
+        "replaces": "Industrial Zone"
     },
     {
         "name": "Royal Navy Dockyard",
-        "district": "Harbor",
-        "cost": 36,
-        "requiredTech": "Celestial Navigation",
+        "district": "Royal Navy Dockyard",
+        "cost": 60,
+        "requiredTech": "Sailing",
         "maintenance": 0,
         "uniques": [
             "Unbuildable",
-            "Creates a [Harbor] district on a specific tile",
+            "Creates a [Royal Navy Dockyard] district on a specific tile",
             "Must be on Coast",
             "+2 Gold per adjacent district",
             "+1 Trade Route capacity",
-            "Naval units get +1 Movement"
-        ]
+            "Naval units get +1 Movement",
+            "Shows when unbuildable"
+        ],
+        "uniqueTo": "England",
+        "replaces": "Harbor"
     },
     {
         "name": "Cothon",
-        "district": "Harbor",
-        "cost": 36,
-        "requiredTech": "Celestial Navigation",
+        "district": "Cothon",
+        "cost": 60,
+        "requiredTech": "Sailing",
         "maintenance": 0,
         "uniques": [
             "Unbuildable",
-            "Creates a [Harbor] district on a specific tile",
+            "Creates a [Cothon] district on a specific tile",
             "Must be on Coast",
             "+50% Production towards Settlers",
-            "Naval units heal +20 HP/turn"
-        ]
+            "Naval units heal +20 HP/turn",
+            "Shows when unbuildable"
+        ],
+        "uniqueTo": "Phoenicia",
+        "replaces": "Harbor"
     },
     {
         "name": "Suguba",
-        "district": "Commercial Hub",
-        "cost": 36,
+        "district": "Suguba",
+        "cost": 60,
         "requiredTech": "Currency",
         "maintenance": 0,
         "uniques": [
             "Unbuildable",
-            "Creates a [Commercial Hub] district on a specific tile",
+            "Creates a [Suguba] district on a specific tile",
             "+2 Gold per adjacent Holy Site/Shrine/Temple",
             "+1 Gold per adjacent River tile",
-            "-20% Production cost for Commercial Hub buildings"
-        ]
+            "-20% Production cost for Commercial Hub buildings",
+            "Shows when unbuildable"
+        ],
+        "uniqueTo": "Mali",
+        "replaces": "Commercial Hub"
     },
     {
         "name": "Aerodrome",
         "district": "Aerodrome",
-        "cost": 36,
+        "cost": 60,
         "requiredTech": "Flight",
         "maintenance": 0,
         "uniques": [
             "Unbuildable",
-            "Creates a [Aerodrome] district on a specific tile"
+            "Creates a [Aerodrome] district on a specific tile",
+            "Shows when unbuildable"
         ]
     },
     {
         "name": "Preserve",
         "district": "Preserve",
-        "cost": 36,
+        "cost": 60,
         "requiredCivic": "Conservation",
         "maintenance": 0,
         "uniques": [
             "Unbuildable",
-            "Creates a [Preserve] district on a specific tile"
+            "Creates a [Preserve] district on a specific tile",
+            "Shows when unbuildable"
         ]
     },
     {
         "name": "Diplomatic Quarter",
         "district": "Diplomatic Quarter",
-        "cost": 36,
+        "cost": 60,
         "requiredCivic": "Diplomatic Service",
         "maintenance": 0,
         "uniques": [
             "Unbuildable",
-            "Creates a [Diplomatic Quarter] district on a specific tile"
+            "Creates a [Diplomatic Quarter] district on a specific tile",
+            "Shows when unbuildable"
         ]
     },
     {
@@ -3049,5 +3120,28 @@
         "requiredCivic": "Professional Sports",
         "culture": 6,
         "amenities": 2
+    },
+    {
+        "name": "Feitoria",
+        "uniqueTo": "Portugal",
+        "uniques": [
+            "Unbuildable",
+            "Excluded from map editor"
+        ],
+        "maintenance": 0
+    },
+    {
+        "name": "Golf Course",
+        "cost": 36,
+        "requiredCivic": "Games and Recreation",
+        "replaces": "Entertainment Complex",
+        "uniqueTo": "Scotland",
+        "uniques": [
+            "Unbuildable",
+            "Creates a [Golf Course] district on a specific tile",
+            "Shows when unbuildable"
+        ],
+        "maintenance": 0,
+        "district": "Golf Course"
     }
 ]
