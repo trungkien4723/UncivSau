@@ -654,11 +654,15 @@ class CityConstructionsTable(private val cityScreen: CityScreen) {
     private fun isSelectedQueueEntry(): Boolean = selectedQueueEntry >= 0
 
     private fun cannotAddConstructionToQueue(construction: IConstruction, city: City, cityConstructions: CityConstructions): Boolean {
+        val canBeBuilt: Boolean = if (construction is Building && construction.hasCreateOneDistrictUnique())
+            false
+        else
+            !construction.isBuildable(cityConstructions)
         return cityConstructions.isQueueFull()
-                || !construction.isBuildable(cityConstructions)
-                || !cityScreen.canChangeState
-                || construction is PerpetualConstruction && cityConstructions.isBeingConstructedOrEnqueued(construction.name)
-                || city.isPuppet
+            || canBeBuilt
+            || !cityScreen.canChangeState
+            || construction is PerpetualConstruction && cityConstructions.isBeingConstructedOrEnqueued(construction.name)
+            || city.isPuppet
     }
 
     private fun addConstructionToQueue(construction: IConstruction, cityConstructions: CityConstructions) {

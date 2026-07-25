@@ -50,6 +50,7 @@ class BaseUnit : RulesetObject(), INonPerpetualConstruction {
     val type by lazy { ruleset.unitTypes[unitType]
         ?: throw Exception("Unit $name has unit type $unitType which is not present in ruleset!") }
     override var requiredTech: String? = null
+    var requiredCivic: String? = null
     var requiredResource: String? = null
 
     override fun getUniqueTarget() = UniqueTarget.Unit
@@ -211,6 +212,13 @@ class BaseUnit : RulesetObject(), INonPerpetualConstruction {
     }
 
     override fun getRejectionReasons(cityConstructions: CityConstructions): Sequence<RejectionReason> =
+        getRejectionReasons(cityConstructions.city.civ, cityConstructions.city, Counter.ZERO)
+
+    @Readonly
+    fun getRejectionReasons(
+        cityConstructions: CityConstructions,
+        allowDistrictRequirements: Boolean
+    ): Sequence<RejectionReason> =
         getRejectionReasons(cityConstructions.city.civ, cityConstructions.city)
 
     @Readonly
@@ -242,6 +250,9 @@ class BaseUnit : RulesetObject(), INonPerpetualConstruction {
         for (requiredTech: String in requiredTechs())
             if (!civ.tech.isResearched(requiredTech))
                 yield(RejectionReasonType.RequiresTech.toInstance("$requiredTech not researched"))
+
+        if (requiredCivic != null && !civ.civics.isResearched(requiredCivic!!))
+            yield(RejectionReasonType.RequiresCivic.toInstance("$requiredCivic not researched"))
         
         for (obsoleteTech: String in techsAtWhichNoLongerAvailable())
             if (civ.tech.isResearched(obsoleteTech))
@@ -350,8 +361,11 @@ class BaseUnit : RulesetObject(), INonPerpetualConstruction {
 
     @Readonly fun isBuildable(civInfo: Civilization) = getRejectionReasons(civInfo).none()
 
-    override fun isBuildable(cityConstructions: CityConstructions): Boolean =
-            getRejectionReasons(cityConstructions).none()
+    @Readonly
+    override fun isBuildable(cityConstructions: CityConstructions, allowDistrictRequirements: Boolean): Boolean =
+            getRejectionReasons(cityConstructions, allowDistrictRequirements).none()
+
+    override fun isBuildable(cityConstructions: CityConstructions): Boolean = isBuildable(cityConstructions, false)
 
     fun construct(cityConstructions: CityConstructions, boughtWith: Stat?): MapUnit? {
         val civInfo = cityConstructions.city.civ

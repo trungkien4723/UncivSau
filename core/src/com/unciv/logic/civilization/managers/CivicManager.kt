@@ -87,7 +87,7 @@ class CivicManager : IsPartOfGameInfoSerialization {
             .count { it.isMajorCiv() && it.civics.isResearched(civicName) }
         val numberOfCivsRemaining = civInfo.gameInfo.civilizations
             .count { it.isMajorCiv() && !it.isDefeated() }
-        return 1 + numberOfCivsResearchedThisCivic / numberOfCivsRemaining.toFloat() * 0.3f
+        return if (numberOfCivsRemaining == 0) 1f else 1 + numberOfCivsResearchedThisCivic / numberOfCivsRemaining.toFloat() * 0.3f
     }
 
     @Readonly private fun getRuleset() = civInfo.gameInfo.ruleset

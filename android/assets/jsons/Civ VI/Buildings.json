@@ -200,19 +200,9 @@
         },
         "requiredTech": "Wheel"
     },
-    {
-        "name": "Walls",
-        "cityStrength": 5,
-        "cityHealth": 50,
-        "hurryCostModifier": 25,
-        "requiredTech": "Masonry",
-        "uniques": [
-            "Destroyed when the city is captured"
-        ]
-    },
-    {
+{
         "name": "Walls of Babylon",
-        "replaces": "Walls",
+        "replaces": "Ancient Walls",
         "cost": 65,
         "uniqueTo": "Babylon",
         "cityStrength": 6,
@@ -685,7 +675,7 @@
         "cityStrength": 7,
         "cityHealth": 25,
         "hurryCostModifier": 25,
-        "requiredBuilding": "Walls",
+        "requiredBuilding": "Ancient Walls",
         "requiredTech": "Machinery",
         "uniques": [
             "Destroyed when the city is captured"
@@ -700,7 +690,7 @@
         "cityHealth": 25,
         "culture": 2,
         "hurryCostModifier": 25,
-        "requiredBuilding": "Walls",
+        "requiredBuilding": "Ancient Walls",
         "uniques": [
             "[+1 Gold] [in this city] <after discovering [Flight]>",
             "Destroyed when the city is captured"

@@ -148,7 +148,7 @@ class TechManager : IsPartOfGameInfoSerialization {
             .count { it.isMajorCiv() && it.tech.isResearched(techName) }
         val numberOfCivsRemaining = civInfo.gameInfo.civilizations
             .count { it.isMajorCiv() && !it.isDefeated() }
-        return 1 + numberOfCivsResearchedThisTech / numberOfCivsRemaining.toFloat() * 0.3f
+        return if (numberOfCivsRemaining == 0) 1f else 1 + numberOfCivsResearchedThisTech / numberOfCivsRemaining.toFloat() * 0.3f
     }
 
     @Readonly private fun getRuleset() = civInfo.gameInfo.ruleset

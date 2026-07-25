@@ -1525,6 +1525,7 @@
         "unitType": "Siege",
         "strength": 35,
         "cost": 100,
+        "requiredTech": "Military Engineering",
         "uniques": [
             "45Bombard Strength",
             "Medieval era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."

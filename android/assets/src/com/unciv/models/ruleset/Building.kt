@@ -274,10 +274,17 @@ class Building : RulesetStatsObject(), INonPerpetualConstruction {
                 return false
         }
 
-        val rejectionReasons = getRejectionReasons(cityConstructions)
+        val rejectionReasons = if (hasCreateOneDistrictUnique())
+            getRejectionReasons(cityConstructions, true)
+        else
+            getRejectionReasons(cityConstructions)
 
         if (hasUnique(UniqueType.ShowsWhenUnbuilable, cityConstructions.city.state) &&
-            rejectionReasons.none { it.isNeverVisible() })
+            rejectionReasons.all {
+                it.type == RejectionReasonType.Unbuildable
+                    || it.type == RejectionReasonType.RequiresTech
+                    || it.type == RejectionReasonType.RequiresCivic
+            })
             return true
 
         if (rejectionReasons.any { it.type == RejectionReasonType.RequiresBuildingInSomeCities }
@@ -287,10 +294,10 @@ class Building : RulesetStatsObject(), INonPerpetualConstruction {
         if (rejectionReasons.none { !it.shouldShow }) return true
 
         if (hasCreateOneDistrictUnique()
-            && rejectionReasons.all {
-                it.type == RejectionReasonType.Unbuildable
-                    || it.type == RejectionReasonType.RequiresTech
+            && rejectionReasons.none {
+                it.type == RejectionReasonType.RequiresTech
                     || it.type == RejectionReasonType.RequiresCivic
+                    || it.type == RejectionReasonType.UniqueToOtherNation
             })
             return true
 
@@ -298,7 +305,10 @@ class Building : RulesetStatsObject(), INonPerpetualConstruction {
                 && rejectionReasons.all { it.type == RejectionReasonType.Unbuildable }
     }
 
-    override fun getRejectionReasons(cityConstructions: CityConstructions): Sequence<RejectionReason> = sequence {
+    override fun getRejectionReasons(cityConstructions: CityConstructions): Sequence<RejectionReason> = getRejectionReasons(cityConstructions, false)
+
+    @Readonly
+    fun getRejectionReasons(cityConstructions: CityConstructions, allowDistrictRequirements: Boolean): Sequence<RejectionReason> = sequence {
         val city = cityConstructions.city
         val cityCenter = city.getCenterTile()
         val civ = city.civ
@@ -435,9 +445,22 @@ class Building : RulesetStatsObject(), INonPerpetualConstruction {
             yield(RejectionReasonType.RequiresBuildingInThisCity.toInstance("Requires a [${civ.getEquivalentBuilding(requiredBuilding!!)}] in this city"))
         }
 
-        if (district != null && !cityConstructions.city.hasDistrict(district!!)) {
-            if (!hasCreateOneDistrictUnique() || getDistrictToCreateName() != district)
-                yield(RejectionReasonType.RequiresDistrictInThisCity.toInstance("Requires a [$district] district in this city"))
+        // For district replacements (e.g., Acropolis replaces Theater Square), check parent district
+        // Skip district check for buildings that CREATE a district (CreatesOneDistrict unique)
+        if (!hasCreateOneDistrictUnique()) {
+            val districtToCheck = if (replaces != null && district != null && replaces != district) {
+                // Get the district of the replaced building
+                val replacedBuilding = civ.gameInfo.ruleset.buildings[replaces]
+                replacedBuilding?.district ?: district
+            } else {
+                district
+            }
+
+            if (districtToCheck != null && !cityConstructions.city.hasDistrict(districtToCheck!!)) {
+                if (!hasCreateOneDistrictUnique() || getDistrictToCreateName() != districtToCheck)
+                    if (!allowDistrictRequirements)
+                        yield(RejectionReasonType.RequiresDistrictInThisCity.toInstance("Requires a [$districtToCheck] district in this city"))
+            }
         }
 
         for ((resourceName, requiredAmount) in getResourceRequirementsPerTurn(stateForConditionals)) {
@@ -522,8 +545,11 @@ class Building : RulesetStatsObject(), INonPerpetualConstruction {
         }
     }
 
-    override fun isBuildable(cityConstructions: CityConstructions): Boolean =
-            getRejectionReasons(cityConstructions).none()
+    @Readonly
+    override fun isBuildable(cityConstructions: CityConstructions, allowDistrictRequirements: Boolean): Boolean =
+            getRejectionReasons(cityConstructions, allowDistrictRequirements).none()
+
+    override fun isBuildable(cityConstructions: CityConstructions): Boolean = isBuildable(cityConstructions, false)
 
     fun construct(cityConstructions: CityConstructions) {
         val civInfo = cityConstructions.city.civ

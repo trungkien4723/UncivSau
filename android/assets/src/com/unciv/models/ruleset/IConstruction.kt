@@ -18,6 +18,7 @@ import kotlin.math.pow
 
 interface IConstruction : INamed {
     @Readonly fun isBuildable(cityConstructions: CityConstructions): Boolean
+    @Readonly fun isBuildable(cityConstructions: CityConstructions, allowDistrictRequirements: Boolean): Boolean = isBuildable(cityConstructions)
     @Readonly fun shouldBeDisplayed(cityConstructions: CityConstructions): Boolean
     
     /** Gets *per turn* resource requirements - does not include immediate costs for stockpiled resources.
