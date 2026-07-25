@@ -778,13 +778,13 @@
     ]
   },
   {
-    "columnNumber": 12,
+    "columnNumber": 13,
     "era": "Information era",
-    "civicCost": 1400,
+    "civicCost": 1900,
     "civics": [
       {
         "name": "Cultural Hegemony",
-        "row": 6,
+        "row": 2,
         "prerequisites": [
           "Smart Power Doctrine"
         ],
@@ -792,16 +792,9 @@
           "Inspiration: [40]% of the cost of this civic <upon gaining a [Great Writer] unit>"
         ],
         "column": {
-          "columnNumber": 12
+          "columnNumber": 13
         }
-      }
-    ]
-  },
-  {
-    "columnNumber": 13,
-    "era": "Information era",
-    "civicCost": 1900,
-    "civics": [
+      },
       {
         "name": "Future Civic",
         "row": 3,

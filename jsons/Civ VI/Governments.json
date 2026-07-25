@@ -29,8 +29,8 @@
     {
         "name": "Oligarchy",
         "requiredCivic": "Political Philosophy",
-        "militarySlots": 1,
-        "economicSlots": 2,
+        "militarySlots": 2,
+        "economicSlots": 1,
         "diplomaticSlots": 0,
         "wildcardSlots": 1,
         "uniques": ["StatsFromTiles(\"+1 [Production] from [Mine] tiles [in all cities]\")", "StatsFromTiles(\"+1 [Production] from [Lumber Mill] tiles [in all cities]\")"]

@@ -607,8 +607,9 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
     // for performance reasons we don't want to call this every time we want to see if a unit can move through a tile
     fun updateHasOpenBorders() {
         // City-states can enter ally's territory (the opposite is true anyway even without open borders)
-        val hasMilitaryAlliance = civInfo.isMajorCiv() && otherCiv.isMajorCiv()
-                && (hasFlag(DiplomacyFlags.MilitaryAlliance) || otherCivDiplomacy().hasFlag(DiplomacyFlags.MilitaryAlliance))
+        val reciprocal = otherCiv.getDiplomacyManager(civInfo)
+        val hasMilitaryAlliance = reciprocal != null && civInfo.isMajorCiv() && otherCiv.isMajorCiv()
+                && (hasFlag(DiplomacyFlags.MilitaryAlliance) || reciprocal.hasFlag(DiplomacyFlags.MilitaryAlliance))
         val newHasOpenBorders = civInfo.allyCiv == otherCiv
                 || hasMilitaryAlliance
                 || trades.flatMap { it.theirOffers }.any { it.name == Constants.openBorders && it.duration > 0 }
