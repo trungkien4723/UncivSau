@@ -882,11 +882,11 @@
           "columnNumber": 8
         }
       },
-      {
+       {
         "name": "Siege Tactics",
         "row": 4,
         "prerequisites": [
-          "Military Training"
+          "Banking"
         ],
         "uniques": [
           "Eureka: [40]% of the cost of this technology <upon constructing a [Siege Workshop] building>"
@@ -1415,12 +1415,12 @@
           "columnNumber": 13
         }
       },
-      {
+       {
         "name": "Atomic Theory",
         "row": 4,
         "prerequisites": [
           "Plastics",
-          "Electronics"
+          "Electricity"
         ],
         "uniques": [
           "[+100]% weight to this choice for AI decisions"

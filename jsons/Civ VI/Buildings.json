@@ -1365,8 +1365,8 @@
     {
         "name": "Parliament House",
         "cost": 250,
+        "requiredCivic": "Diplomatic Service",
         "maintenance": 3,
-        "requiredTech": "Diplomatic History",
         "uniques": [
             "EraScore: [4]",
             "DiplomaticFavor: 3",
@@ -1649,8 +1649,8 @@
         "greatPersonPoints": {
             "Great Artist": 2
         },
-        "requiredTech": "Mass Media",
-        "quote": "'The Bolshoi is the soul of Russia.' - Unknown"
+        "quote": "'The Bolshoi is the soul of Russia.' - Unknown",
+        "requiredCivic": "Mass Media"
     },
     {
         "name": "Broadway",
@@ -2521,7 +2521,7 @@
         "uniques": [
             "A building unique to America. +30%Tourism pressure from this city towards other civilizations who reached the Modern era."
         ],
-        "requiredTech": "Mass Media"
+        "requiredCivic": "Mass Media"
     },
     {
         "name": "Audience Chamber",

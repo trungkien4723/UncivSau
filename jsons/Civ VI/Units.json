@@ -1006,13 +1006,13 @@
         "unitType": "Civilian",
         "movement": 3,
         "cost": 180,
-        "requiredTech": "Mass Media",
         "uniques": [
             "Can perform a [Rock] action <by consuming this unit>",
             "Pillaging this unit yields approximately [+60 Gold]",
             "Can move after performing an action",
             "Unbuildable"
-        ]
+        ],
+        "requiredCivic": ""
     },
     {
         "name": "Missionary",
@@ -1525,7 +1525,6 @@
         "unitType": "Siege",
         "strength": 35,
         "cost": 100,
-        "requiredTech": "Physics",
         "uniques": [
             "45Bombard Strength",
             "Medieval era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
@@ -1772,8 +1771,8 @@
         "movement": 4,
         "strength": 64,
         "cost": 165,
-        "requiredTech": "Mercenaries",
-        "uniqueTo": "Poland"
+        "uniqueTo": "Poland",
+        "requiredCivic": "Mercenaries"
     },
     {
         "name": "Cuirassier",
@@ -1925,7 +1924,7 @@
         "unitType": "Support",
         "movement": 3,
         "cost": 85,
-        "requiredTech": "Medieval era support unit. Requires an Armory to produce. Can construct Roads, Railroads, Forts, Airstrips, Missile Silos, and Mountain Tunnel improvements. One of their build charges can also be used to complete 20% of a Canal, Dam or Aqueduct district or a Flood Barrier building.",
+        "requiredTech": "Military Engineering",
         "uniques": [
             "3Build Charges"
         ]
@@ -2102,8 +2101,8 @@
         "strength": 45,
         "rangedStrength": 55,
         "cost": 150,
-        "requiredTech": "Mercantilism",
-        "uniqueTo": "Indonesia"
+        "uniqueTo": "Indonesia",
+        "requiredCivic": "Mercantilism"
     },
     {
         "name": "De Zeven Provinciën",
@@ -2135,11 +2134,11 @@
         "strength": 70,
         "rangedStrength": 80,
         "cost": 215,
-        "requiredTech": "Nationalism",
         "uniqueTo": "Brazil",
         "uniques": [
             "95Anti-air Strength"
-        ]
+        ],
+        "requiredCivic": "Nationalism"
     },
     {
         "name": "Missile Cruiser",
@@ -2161,10 +2160,10 @@
         "strength": 40,
         "rangedStrength": 50,
         "cost": 140,
-        "requiredTech": "Mercantilism",
         "uniques": [
             "Renaissance era ranged naval unit with the ability to coastal raid.Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range."
-        ]
+        ],
+        "requiredCivic": "Mercantilism"
     },
     {
         "name": "Sea Dog",
@@ -2173,8 +2172,8 @@
         "strength": 40,
         "rangedStrength": 53,
         "cost": 140,
-        "requiredTech": "Mercantilism",
-        "uniqueTo": "England"
+        "uniqueTo": "England",
+        "requiredCivic": "Mercantilism"
     },
     {
         "name": "Barbary Corsair",
@@ -2183,7 +2182,7 @@
         "strength": 40,
         "rangedStrength": 50,
         "cost": 120,
-        "requiredTech": "Mercantilism"
+        "requiredCivic": "Mercantilism"
     },
     {
         "name": "Submarine",
@@ -2334,7 +2333,7 @@
         "strength": 140,
         "rangedStrength": 120,
         "cost": 750,
-        "requiredTech": "Future Technology",
+        "requiredTech": "Future Tech",
         "uniques": [
             "120Anti-air Strength",
             "Information Era Super-Unit. Able to move and fight in water. Resistant to Weapons of Mass Destruction. Combat abilities can be upgraded by researching future technologies."
