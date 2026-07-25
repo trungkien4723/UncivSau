@@ -16,6 +16,7 @@ import com.unciv.ui.screens.pickerscreens.DiplomaticVotePickerScreen
 import com.unciv.ui.screens.pickerscreens.PantheonPickerScreen
 import com.unciv.ui.screens.pickerscreens.PolicyPickerScreen
 import com.unciv.ui.screens.pickerscreens.ReligiousBeliefsPickerScreen
+import com.unciv.ui.screens.pickerscreens.CivicPickerScreen
 import com.unciv.ui.screens.pickerscreens.TechPickerScreen
 import com.unciv.ui.screens.worldscreen.WorldScreen
 import com.unciv.utils.Concurrency
@@ -59,6 +60,14 @@ enum class NextTurnAction(protected val text: String, val color: Color) {
         override fun action(worldScreen: WorldScreen) =
             worldScreen.game.pushScreen(
                 TechPickerScreen(worldScreen.viewingCiv, null)
+            )
+    },
+    PickCivic("Pick a civic", Color.TEAL) {
+        override fun isChoice(worldScreen: WorldScreen) =
+            worldScreen.viewingCiv.shouldOpenCivicPicker()
+        override fun action(worldScreen: WorldScreen) =
+            worldScreen.game.pushScreen(
+                CivicPickerScreen(worldScreen.viewingCiv, null)
             )
     },
     PickPolicy("Pick a policy", Color.VIOLET) {

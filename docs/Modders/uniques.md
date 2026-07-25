@@ -2260,6 +2260,9 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Can generate a large amount of culture"
 	Applicable to: Unit
 
+??? example  "Can create Great Work"
+	Applicable to: Unit
+
 ??? example  "Can undertake a trade mission with City-State, giving a large sum of gold and [amount] Influence"
 	Example: "Can undertake a trade mission with City-State, giving a large sum of gold and [3] Influence"
 
@@ -4193,6 +4196,9 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: TriggerCondition
 
 ??? example  "&lt;upon declaring a defensive pact&gt;"
+	Applicable to: TriggerCondition
+
+??? example  "&lt;upon signing an alliance&gt;"
 	Applicable to: TriggerCondition
 
 ??? example  "&lt;upon entering a Golden Age&gt;"

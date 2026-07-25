@@ -792,6 +792,12 @@ class Civilization : IsPartOfGameInfoSerialization {
         return tech.currentTechnology() == null && cities.isNotEmpty()
     }
 
+    fun shouldOpenCivicPicker(): Boolean {
+        if (!civics.canResearchCivic()) return false
+        if (civics.freeCivics != 0) return true
+        return civics.currentCivic() == null
+    }
+
     @Readonly
     fun getEquivalentBuilding(buildingName: String): Building {
         val building = gameInfo.ruleset.buildings[buildingName]
