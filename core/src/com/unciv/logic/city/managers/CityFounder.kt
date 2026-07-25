@@ -53,8 +53,10 @@ class CityFounder {
         })
             tile.removeTerrainFeature(terrainFeature)
 
-        if (civInfo.gameInfo.ruleset.tileImprovements.containsKey(Constants.cityCenter))
+        if (civInfo.gameInfo.ruleset.tileImprovements.containsKey(Constants.cityCenter)) {
             tile.setImprovement(Constants.cityCenter, civInfo)
+            city.districts[tile.position] = "City Center"
+        }
         tile.stopWorkingOnImprovement()
 
         val ruleset = civInfo.gameInfo.ruleset

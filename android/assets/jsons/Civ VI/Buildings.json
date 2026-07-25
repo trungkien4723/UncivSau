@@ -234,23 +234,6 @@
         "cost": 185
     },
     {
-        "name": "Mausoleum of Halicarnassus",
-        "culture": 1,
-        "greatPersonPoints": {
-            "Great Merchant": 1
-        },
-        "isWonder": true,
-        "uniques": [
-            "EraScore: [4]",
-            "Gain [100] [Gold] <upon expending a [Great Person] unit> <(modified by game speed)>",
-            "[+2 Gold] from [Marble] tiles [in this city]",
-            "[+2 Gold] from [Stone] tiles [in this city]"
-        ],
-        "requiredTech": "Masonry",
-        "quote": "'The whole earth is the tomb of heroic men and their story is not given only on stone over their clay but abides everywhere without visible symbol woven into the stuff of other men's lives.' - Pericles",
-        "cost": 250
-    },
-    {
         "name": "Krepost",
         "replaces": "Barracks",
         "uniqueTo": "Russia",
@@ -1374,7 +1357,6 @@
     {
         "name": "Parliament House",
         "cost": 250,
-        "isWonder": true,
         "maintenance": 3,
         "requiredTech": "Diplomatic History",
         "uniques": [
@@ -1387,7 +1369,6 @@
     {
         "name": "Globalization Tech",
         "cost": 500,
-        "isWonder": true,
         "maintenance": 4,
         "requiredCivic": "Globalization",
         "uniques": [
@@ -1681,17 +1662,6 @@
         "quote": "'Home of the legend of Dracula.' - Unknown"
     },
     {
-        "name": "Casa de Contratacion",
-        "cost": 400,
-        "isWonder": true,
-        "gold": 6,
-        "greatPersonPoints": {
-            "Great Merchant": 2
-        },
-        "requiredCivic": "Mercantilism",
-        "quote": "'The House of Trade governed the riches of the New World.' - Unknown"
-    },
-    {
         "name": "Channel",
         "cost": 480,
         "isWonder": true,
@@ -1792,7 +1762,6 @@
     {
         "name": "Mbanza",
         "cost": 300,
-        "isWonder": true,
         "food": 4,
         "gold": 4,
         "requiredCivic": "Medieval Faires",
@@ -1810,22 +1779,12 @@
     {
         "name": "Moai",
         "cost": 440,
-        "isWonder": true,
         "culture": 5,
         "greatPersonPoints": {
             "Great Artist": 2
         },
         "requiredCivic": "Humanism",
         "quote": "'The silent stone watchers of Rapa Nui.' - Unknown"
-    },
-    {
-        "name": "Mont St Michel",
-        "cost": 420,
-        "isWonder": true,
-        "faith": 5,
-        "culture": 2,
-        "requiredCivic": "Divine Right",
-        "quote": "'The island abbey that defied the tides.' - Unknown"
     },
     {
         "name": "Ruhr Valley",
@@ -2008,7 +1967,6 @@
     },
     {
         "name": "Palace",
-        "district": "City Center",
         "cost": 0,
         "maintenance": 0,
         "uniques": [
@@ -2021,7 +1979,6 @@
     },
     {
         "name": "Monument",
-        "district": "City Center",
         "cost": 60,
         "maintenance": 1,
         "uniques": [],
@@ -2030,7 +1987,6 @@
     },
     {
         "name": "Granary",
-        "district": "City Center",
         "cost": 65,
         "maintenance": 1,
         "uniques": [],
@@ -2040,7 +1996,6 @@
     },
     {
         "name": "Water Mill",
-        "district": "City Center",
         "cost": 100,
         "maintenance": 0,
         "uniques": [],
@@ -2051,7 +2006,6 @@
     },
     {
         "name": "Flood Barrier",
-        "district": "City Center",
         "cost": 40,
         "maintenance": 1,
         "uniques": [],
@@ -2059,7 +2013,6 @@
     },
     {
         "name": "Palgum",
-        "district": "City Center",
         "cost": 40,
         "maintenance": 0,
         "uniques": [],
@@ -2067,7 +2020,6 @@
     },
     {
         "name": "Ancient Walls",
-        "district": "City Center",
         "cost": 100,
         "maintenance": 0,
         "uniques": [
@@ -2080,7 +2032,6 @@
     },
     {
         "name": "Tsikhe",
-        "district": "City Center",
         "cost": 50,
         "maintenance": 0,
         "uniques": [],
@@ -2088,7 +2039,6 @@
     },
     {
         "name": "Medieval Walls",
-        "district": "City Center",
         "cost": 185,
         "maintenance": 0,
         "uniques": [
@@ -2101,7 +2051,6 @@
     },
     {
         "name": "Sewer",
-        "district": "City Center",
         "cost": 185,
         "maintenance": 2,
         "uniques": [],
@@ -2110,7 +2059,6 @@
     },
     {
         "name": "Renaissance Walls",
-        "district": "City Center",
         "cost": 300,
         "maintenance": 0,
         "uniques": [
@@ -3015,45 +2963,6 @@
         "requiredTech": "Pottery",
         "housing": 3,
         "amenities": 1
-    },
-    {
-        "name": "Oracle",
-        "isWonder": true,
-        "cost": 145,
-        "uniques": [],
-        "requiredCivic": "Mysticism",
-        "culture": 1,
-        "faith": 1
-    },
-    {
-        "name": "Pyramids",
-        "isWonder": true,
-        "cost": 110,
-        "uniques": [],
-        "requiredTech": "Masonry",
-        "culture": 2
-    },
-    {
-        "name": "Great Library",
-        "isWonder": true,
-        "cost": 200,
-        "uniques": [
-            "1Great Scientist point per turn.",
-            "2Great Works of Writing slots",
-            "1Great Writer point per turn."
-        ],
-        "requiredCivic": "Drama and Poetry",
-        "science": 2
-    },
-    {
-        "name": "Great Lighthouse",
-        "isWonder": true,
-        "cost": 145,
-        "uniques": [
-            "1Great Admiral point per turn."
-        ],
-        "requiredTech": "Celestial Navigation",
-        "gold": 3
     },
     {
         "name": "Mausoleum at Halicarnassus",

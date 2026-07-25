@@ -1,5 +1,12 @@
 [
     {
+        "name": "City Center",
+        "uniques": [
+            "Unbuildable",
+            "Irremovable"
+        ]
+    },
+    {
         "name": "Campus",
         "cost": 36,
         "requiredTech": "Writing",
