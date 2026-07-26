@@ -1,6 +1,7 @@
 package com.unciv.ui.objectdescriptions
 
 import com.unciv.logic.civilization.Civilization
+import com.unciv.models.ruleset.Building
 import com.unciv.models.ruleset.Ruleset
 import com.unciv.models.ruleset.civic.Civic
 import com.unciv.models.ruleset.unique.UniqueType
@@ -9,13 +10,8 @@ import com.unciv.ui.components.fonts.Fonts
 import com.unciv.ui.screens.civilopediascreen.FormattedLine
 
 object CivicDescriptions {
-    //region Methods called from Civic
-
-    /**
-     * Textual description used in CivicPickerScreen and AlertPopup(AlertType.CivicResearched) -
-     * Civilization always known and description tailored to it.
-     */
     fun getDescription(civic: Civic, viewingCiv: Civilization): String = civic.run {
+        val ruleset = viewingCiv.gameInfo.ruleset
         val lineList = ArrayList<String>()
 
         for (pediaText in civic.civilopediaText) {
@@ -24,6 +20,42 @@ object CivicDescriptions {
         }
 
         uniquesToDescription(lineList)
+
+        val enabledUnits = getEnabledUnits(name, ruleset, viewingCiv)
+        if (enabledUnits.any()) {
+            lineList += "{Units enabled}: "
+            for (unit in enabledUnits)
+                lineList += " • ${unit.name.tr()} (${unit.getShortDescription()})\n"
+        }
+
+        val (wonders, regularBuildings) = getEnabledBuildings(name, ruleset, viewingCiv)
+            .partition { it.isAnyWonder() }
+
+        if (regularBuildings.isNotEmpty()) {
+            lineList += "{Buildings enabled}: "
+            for (building in regularBuildings)
+                lineList += " • ${building.name.tr()} (${building.getShortDescription()})\n"
+        }
+
+        if (wonders.isNotEmpty()) {
+            lineList += "{Wonders enabled}: "
+            for (wonder in wonders)
+                lineList += " • ${wonder.name.tr()} (${wonder.getShortDescription()})\n"
+        }
+
+        val enabledDistricts = ruleset.districts.values.asSequence()
+            .filter { it.requiredCivic == name }
+            .toList()
+        if (enabledDistricts.isNotEmpty()) {
+            lineList += "{Districts enabled}: " + enabledDistricts.joinToString { it.name.tr() }
+        }
+
+        val enabledGovernments = ruleset.governments.values.asSequence()
+            .filter { it.requiredCivic == name }
+            .toList()
+        if (enabledGovernments.isNotEmpty()) {
+            lineList += "{Governments enabled}: " + enabledGovernments.joinToString { it.name.tr() }
+        }
 
         // Civ VI Inspiration status
         if (civic.hasUnique(UniqueType.Inspiration)) {
@@ -35,9 +67,6 @@ object CivicDescriptions {
         return lineList.joinToString("\n") { it.tr() }
     }
 
-    /**
-     *  Implementation of ICivilopediaText.getCivilopediaTextLines
-     */
     fun getCivilopediaTextLines(civic: Civic, ruleset: Ruleset): List<FormattedLine> = civic.run {
         val lineList = ArrayList<FormattedLine>()
 
@@ -73,8 +102,67 @@ object CivicDescriptions {
 
         uniquesToCivilopediaTextLines(lineList)
 
+        val enabledUnits = getEnabledUnits(name, ruleset, null)
+        if (enabledUnits.any()) {
+            lineList += FormattedLine()
+            lineList += FormattedLine("{Units enabled}:")
+            for (unit in enabledUnits)
+                lineList += FormattedLine(unit.name.tr(true) + " (" + unit.getShortDescription() + ")", link = unit.makeLink())
+        }
+
+        val (wonders, regularBuildings) = getEnabledBuildings(name, ruleset, null)
+            .partition { it.isAnyWonder() }
+
+        if (regularBuildings.isNotEmpty()) {
+            lineList += FormattedLine()
+            lineList += FormattedLine("{Buildings enabled}:")
+            for (building in regularBuildings)
+                lineList += FormattedLine(building.name.tr(true) + " (" + building.getShortDescription() + ")", link = building.makeLink())
+        }
+
+        if (wonders.isNotEmpty()) {
+            lineList += FormattedLine()
+            lineList += FormattedLine("{Wonders enabled}:")
+            for (wonder in wonders)
+                lineList += FormattedLine(wonder.name.tr(true) + " (" + wonder.getShortDescription() + ")", link = wonder.makeLink())
+        }
+
+        val enabledDistricts = ruleset.districts.values.asSequence()
+            .filter { it.requiredCivic == name }
+            .toList()
+        if (enabledDistricts.isNotEmpty()) {
+            lineList += FormattedLine()
+            lineList += FormattedLine("{Districts enabled}:")
+            for (district in enabledDistricts)
+                lineList += FormattedLine(district.name, link = district.makeLink())
+        }
+
+        val enabledGovernments = ruleset.governments.values.asSequence()
+            .filter { it.requiredCivic == name }
+            .toList()
+        if (enabledGovernments.isNotEmpty()) {
+            lineList += FormattedLine()
+            lineList += FormattedLine("{Governments enabled}:")
+            for (government in enabledGovernments)
+                lineList += FormattedLine(government.name, link = government.makeLink())
+        }
+
         return lineList
     }
 
-    //endregion
+    private fun getEnabledBuildings(civicName: String, ruleset: Ruleset, civInfo: Civilization?): Sequence<Building> {
+        return ruleset.buildings.values.asSequence()
+            .filter {
+                it.requiredCivic == civicName
+                && (it.uniqueTo == null || civInfo?.matchesFilter(it.uniqueTo!!) == true)
+            }
+    }
+
+    private fun getEnabledUnits(civicName: String, ruleset: Ruleset, civInfo: Civilization?): Sequence<com.unciv.models.ruleset.unit.BaseUnit> {
+        return ruleset.units.values.asSequence()
+            .filter {
+                it.requiredCivic == civicName
+                && (it.uniqueTo == null || civInfo?.matchesFilter(it.uniqueTo!!) == true)
+            }
+    }
 }

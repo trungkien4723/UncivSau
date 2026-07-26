@@ -18,7 +18,7 @@ import com.unciv.ui.components.extensions.setFontSize
 import com.unciv.ui.components.extensions.toLabel
 
 class CivicButton(
-    civicName: String,
+    private val civicName: String,
     private val civicManager: CivicManager,
     isWorldScreen: Boolean = true
 ) : Table(BaseScreen.skin) {
@@ -51,8 +51,16 @@ class CivicButton(
 
         pad(5f, 5f, 5f, 0f)
 
-        add(ImageGetter.getConstructionPortrait(civicName, 60f))
-            .padRight(5f).padLeft(2f).left()
+        val iconStack = Table()
+        iconStack.add(ImageGetter.getConstructionPortrait(civicName, 60f)).size(60f)
+        if (civicName in civicManager.inspirationsTriggered) {
+            val inspirationIcon = ImageGetter.getImage("OtherIcons/Star")
+            inspirationIcon.setSize(22f, 22f)
+            inspirationIcon.color = Color.YELLOW
+            iconStack.addActor(inspirationIcon)
+            inspirationIcon.setPosition(38f, 38f)
+        }
+        add(iconStack).padRight(5f).padLeft(2f).left()
 
         if (isWorldScreen) {
             val civicCost = civicManager.costOfCivic(civicName)

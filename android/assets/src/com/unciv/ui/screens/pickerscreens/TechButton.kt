@@ -19,7 +19,7 @@ import com.unciv.ui.components.extensions.setFontSize
 import com.unciv.ui.components.extensions.toLabel
 
 class TechButton(
-    techName: String,
+    private val techName: String,
     private val techManager: TechManager,
     isWorldScreen: Boolean = true
 ) : Table(BaseScreen.skin) {
@@ -52,8 +52,16 @@ class TechButton(
 
         pad(5f, 5f, 5f, 0f)
 
-        add(ImageGetter.getTechIconPortrait(techName, 46f))
-            .padRight(5f).padLeft(2f).left()
+        val iconStack = Table()
+        iconStack.add(ImageGetter.getTechIconPortrait(techName, 46f)).size(46f)
+        if (techName in techManager.eurekasTriggered) {
+            val eurekaIcon = ImageGetter.getImage("OtherIcons/Star")
+            eurekaIcon.setSize(18f, 18f)
+            eurekaIcon.color = Color.YELLOW
+            iconStack.addActor(eurekaIcon)
+            eurekaIcon.setPosition(28f, 28f)
+        }
+        add(iconStack).padRight(5f).padLeft(2f).left()
 
         if (isWorldScreen) {
             val techCost = techManager.costOfTech(techName)
