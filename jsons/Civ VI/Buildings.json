@@ -9,7 +9,12 @@
             "Shows when unbuildable"
         ],
         "maintenance": 0,
-        "district": "Campus"
+        "district": "Campus",
+        "civilopediaText": [
+            {
+                "text": "A district dedicated to scientific research. Contains the Library, University, and Research Lab."
+            }
+        ]
     },
     {
         "name": "Theater Square",
@@ -21,7 +26,12 @@
             "Shows when unbuildable"
         ],
         "maintenance": 0,
-        "district": "Theater Square"
+        "district": "Theater Square",
+        "civilopediaText": [
+            {
+                "text": "A district dedicated to culture and the arts. Contains the Amphitheater, Museum, and Broadcast Center."
+            }
+        ]
     },
     {
         "name": "Holy Site",
@@ -33,7 +43,12 @@
             "Shows when unbuildable"
         ],
         "maintenance": 0,
-        "district": "Holy Site"
+        "district": "Holy Site",
+        "civilopediaText": [
+            {
+                "text": "A district dedicated to faith and worship. Contains the Shrine, Temple, and Cathedral."
+            }
+        ]
     },
     {
         "name": "Commercial Hub",
@@ -45,7 +60,12 @@
             "Shows when unbuildable"
         ],
         "maintenance": 0,
-        "district": "Commercial Hub"
+        "district": "Commercial Hub",
+        "civilopediaText": [
+            {
+                "text": "A district dedicated to trade and commerce. Contains the Market, Bank, and Stock Exchange."
+            }
+        ]
     },
     {
         "name": "Industrial Zone",
@@ -57,7 +77,12 @@
             "Shows when unbuildable"
         ],
         "maintenance": 0,
-        "district": "Industrial Zone"
+        "district": "Industrial Zone",
+        "civilopediaText": [
+            {
+                "text": "A district dedicated to production and manufacturing. Contains the Workshop, Factory, and Power Plant."
+            }
+        ]
     },
     {
         "name": "Neighborhood",
@@ -71,7 +96,12 @@
         ],
         "maintenance": 0,
         "district": "Neighborhood",
-        "housing": 2
+        "housing": 2,
+        "civilopediaText": [
+            {
+                "text": "A residential district that provides housing based on the appeal of its tile."
+            }
+        ]
     },
     {
         "name": "Stele",
@@ -115,7 +145,12 @@
         ],
         "requiredTech": "Archery",
         "quote": "'It is not so much for its beauty that the forest makes a claim upon men's hearts, as for that subtle something, that quality of air, that emanation from old trees, that so wonderfully changes and renews a weary spirit.' - Robert Louis Stevenson",
-        "cost": 185
+        "cost": 185,
+        "civilopediaText": [
+            {
+                "text": "A wonder dedicated to the hunt. Provides bonus Food and Production from Camps near the city."
+            }
+        ]
     },
     {
         "name": "Stone Works",
@@ -143,7 +178,12 @@
         },
         "requiredTech": "Calendar",
         "quote": "'Time crumbles things; everything grows old and is forgotten under the power of time' - Aristotle",
-        "cost": 185
+        "cost": 185,
+        "civilopediaText": [
+            {
+                "text": "A mysterious stone circle. Grants a free Great Prophet and generates Faith."
+            }
+        ]
     },
     {
         "name": "Paper Maker",
@@ -171,7 +211,12 @@
             "Gain a free [Library] [in this city]"
         ],
         "quote": "'Libraries are as the shrine where all the relics of the ancient saints, full of true virtue, and all that without delusion or imposture are preserved and reposed.' - Sir Francis Bacon",
-        "cost": 185
+        "cost": 185,
+        "civilopediaText": [
+            {
+                "text": "Houses the accumulated knowledge of the ancient world. Grants a free Technology and a free Library."
+            }
+        ]
     },
     {
         "name": "Circus",
@@ -200,7 +245,7 @@
         },
         "requiredTech": "Wheel"
     },
-{
+    {
         "name": "Walls of Babylon",
         "replaces": "Ancient Walls",
         "cost": 65,
@@ -227,7 +272,12 @@
         ],
         "requiredTech": "Masonry",
         "quote": "'O, let not the pains of death which come upon thee enter into my body. I am the god Tem, and I am the foremost part of the sky, and the power which protecteth me is that which is with all the gods forever.' - The Book of the Dead, translated by Sir Ernest Alfred Wallis Budge",
-        "cost": 185
+        "cost": 185,
+        "civilopediaText": [
+            {
+                "text": "The grand tombs of Egyptian pharaohs. All workers receive an additional build charge."
+            }
+        ]
     },
     {
         "name": "Krepost",
@@ -253,7 +303,12 @@
         ],
         "requiredTech": "Bronze Working",
         "quote": "'He spoke, the son of Kronos, and nodded his head with the dark brows, and the immortally anointed hair of the great god swept from his divine head, and all Olympos was shaken' - The Iliad",
-        "cost": 185
+        "cost": 185,
+        "civilopediaText": [
+            {
+                "text": "A monument to the king of the gods. Reduces the Production cost of anti-cavalry units."
+            }
+        ]
     },
     {
         "name": "The Great Lighthouse",
@@ -271,7 +326,12 @@
             "Gain a free [Lighthouse] [in this city]"
         ],
         "requiredTech": "Sailing",
-        "quote": "'They that go down to the sea in ships, that do business in great waters; these see the works of the Lord, and his wonders in the deep.' - The Bible, Psalms 107:23-24"
+        "quote": "'They that go down to the sea in ships, that do business in great waters; these see the works of the Lord, and his wonders in the deep.' - The Bible, Psalms 107:23-24",
+        "civilopediaText": [
+            {
+                "text": "Guides ships safely to harbor. Increases Movement and Sight for naval units."
+            }
+        ]
     },
     {
         "name": "Circus Maximus",
@@ -283,7 +343,12 @@
             "Only available <if [Colosseum] is constructed in all [non-[Puppeted]] cities>",
             "Cost increases by [30] per owned city"
         ],
-        "requiredTech": "Horseback Riding"
+        "requiredTech": "Horseback Riding",
+        "civilopediaText": [
+            {
+                "text": "A massive chariot racing stadium in Rome. Provides Amenities to all cities."
+            }
+        ]
     },
     {
         "name": "Courthouse",
@@ -309,7 +374,12 @@
             "Gain a free [Garden] [in this city]"
         ],
         "quote": "'I think that if ever a mortal heard the word of God it would be in a garden at the cool of the day.' - F. Frankfort Moore",
-        "cost": 185
+        "cost": 185,
+        "civilopediaText": [
+            {
+                "text": "A lush green oasis in the desert. Increases Growth in all cities."
+            }
+        ]
     },
     {
         "name": "Colosseum",
@@ -327,7 +397,12 @@
         },
         "requiredTech": "Construction",
         "quote": "'Regard your soldiers as your children, and they will follow you into the deepest valleys; look on them as your own beloved sons, and they will stand by you even unto death.' - Sun Tzu",
-        "cost": 185
+        "cost": 185,
+        "civilopediaText": [
+            {
+                "text": "An army of clay warriors guarding the emperor's tomb. Grants a copy of each military land unit you own."
+            }
+        ]
     },
     {
         "name": "Burial Tomb",
@@ -355,21 +430,6 @@
         "requiredCivic": "Political Philosophy"
     },
     {
-        "name": "National College",
-        "cost": 125,
-        "science": 3,
-        "culture": 1,
-        "isNationalWonder": true,
-        "percentStatBonus": {
-            "science": 50
-        },
-        "uniques": [
-            "Only available <if [Library] is constructed in all [non-[Puppeted]] cities>",
-            "Cost increases by [30] per owned city"
-        ],
-        "requiredCivic": "Political Philosophy"
-    },
-    {
         "name": "The Oracle",
         "culture": 3,
         "greatPersonPoints": {
@@ -382,19 +442,12 @@
         ],
         "requiredCivic": "Political Philosophy",
         "quote": "'The ancient Oracle said that I was the wisest of all the Greeks. It is because I alone, of all the Greeks, know that I know nothing' - Socrates",
-        "cost": 185
-    },
-    {
-        "name": "National Epic",
-        "cost": 125,
-        "culture": 1,
-        "isNationalWonder": true,
-        "uniques": [
-            "Only available <if [Monument] is constructed in all [non-[Puppeted]] cities>",
-            "[+25]% Great Person generation [in this city]",
-            "Cost increases by [30] per owned city"
-        ],
-        "requiredCivic": "Drama and Poetry"
+        "cost": 185,
+        "civilopediaText": [
+            {
+                "text": "A sacred site for divine prophecy. Grants bonus Great Person points."
+            }
+        ]
     },
     {
         "name": "Bazaar",
@@ -445,7 +498,12 @@
         ],
         "requiredTech": "Currency",
         "quote": "'...who drinks the water I shall give him, says the Lord, will have a spring inside him welling up for eternal life. Let them bring me to your holy mountain in the place where you dwell. Across the desert and through the mountain to the Canyon of the Crescent Moon...' - Indiana Jones",
-        "cost": 250
+        "cost": 250,
+        "civilopediaText": [
+            {
+                "text": "A city carved from rose-red stone. Transforms Deserts into thriving hubs of Food and Production."
+            }
+        ]
     },
     {
         "name": "Aqueduct",
@@ -459,7 +517,12 @@
         "requiredTech": "Engineering",
         "district": "Aqueduct",
         "cost": 60,
-        "housing": 2
+        "housing": 2,
+        "civilopediaText": [
+            {
+                "text": "An engineering district that carries fresh water into the city, providing housing."
+            }
+        ]
     },
     {
         "name": "Great Wall",
@@ -475,19 +538,12 @@
         ],
         "requiredTech": "Engineering",
         "quote": "'The art of war teaches us to rely not on the likelihood of the enemy's not attacking, but rather on the fact that we have made our position unassailable.' - Sun Tzu",
-        "cost": 185
-    },
-    {
-        "name": "Heroic Epic",
-        "cost": 125,
-        "culture": 1,
-        "isNationalWonder": true,
-        "uniques": [
-            "Only available <if [Barracks] is constructed in all [non-[Puppeted]] cities>",
-            "All newly-trained [non-[Air]] units [in this city] receive the [Morale] promotion",
-            "Cost increases by [30] per owned city"
-        ],
-        "requiredTech": "Iron Working"
+        "cost": 185,
+        "civilopediaText": [
+            {
+                "text": "A massive defensive fortification. Provides Gold and Tourism, and damages enemies in adjacent tiles."
+            }
+        ]
     },
     {
         "name": "Colossus",
@@ -504,7 +560,12 @@
             "[+1 Gold] from [Water] tiles [in this city]"
         ],
         "requiredTech": "Iron Working",
-        "quote": "'Why man, he doth bestride the narrow world like a colossus, and we petty men walk under his huge legs, and peep about to find ourselves dishonorable graves.' - William Shakespeare, Julius Caesar"
+        "quote": "'Why man, he doth bestride the narrow world like a colossus, and we petty men walk under his huge legs, and peep about to find ourselves dishonorable graves.' - William Shakespeare, Julius Caesar",
+        "civilopediaText": [
+            {
+                "text": "A giant bronze statue overlooking the harbor. Provides Gold and a Trade Route capacity."
+            }
+        ]
     },
     {
         "name": "Garden",
@@ -531,7 +592,12 @@
         ],
         "requiredCivic": "Theology",
         "quote": "'For it soars to a height to match the sky, and as if surging up from among the other buildings it stands on high and looks down upon the remainder of the city, adorning it, because it is a part of it, but glorying in its own beauty' - Procopius, De Aedificis",
-        "cost": 250
+        "cost": 250,
+        "civilopediaText": [
+            {
+                "text": "A masterpiece of Byzantine architecture. Missionaries and Apostles gain extra spread charges."
+            }
+        ]
     },
     {
         "name": "Great Mosque of Djenne",
@@ -550,23 +616,12 @@
         ],
         "requiredCivic": "Theology",
         "quote": "'With the magnificence of eternity before us, let time, with all its fluctuations, dwindle into its own littleness.' - Thomas Chalmers",
-        "cost": 250
-    },
-    {
-        "name": "Grand Temple",
-        "cost": 125,
-        "culture": 1,
-        "faith": 8,
-        "uniques": [
-            "Only available <if [Temple] is constructed in all [non-[Puppeted]] cities>",
-            "Cost increases by [30] per owned city",
-            "[+100]% Natural religion spread [in this city]",
-            "Only available <when religion is enabled>",
-            "Can only be built <in [Holy] cities>"
-        ],
-        "requiredCivic": "Theology",
-        "isNationalWonder": true,
-        "district": "Holy Site"
+        "cost": 250,
+        "civilopediaText": [
+            {
+                "text": "A grand mud-brick mosque in West Africa. Missionaries and Apostles spread religion at reduced cost."
+            }
+        ]
     },
     {
         "name": "Chichen Itza",
@@ -582,19 +637,12 @@
         ],
         "requiredTech": "Education",
         "quote": "'The katun is established at Chichen Itza. The settlement of the Itza shall take place there. The quetzal shall come, the green bird shall come. Ah Kantenal shall come. It is the word of God. The Itza shall come.' - The Books of Chilam Balam",
-        "cost": 250
-    },
-    {
-        "name": "National Treasury",
-        "cost": 125,
-        "gold": 8,
-        "culture": 1,
-        "isNationalWonder": true,
-        "uniques": [
-            "Only available <if [Market] is constructed in all [non-[Puppeted]] cities>",
-            "Cost increases by [30] per owned city"
-        ],
-        "requiredCivic": "Guilds"
+        "cost": 250,
+        "civilopediaText": [
+            {
+                "text": "A Mayan city of pyramids and temples. Provides bonus Faith and Culture."
+            }
+        ]
     },
     {
         "name": "Machu Picchu",
@@ -611,7 +659,12 @@
         ],
         "requiredCivic": "Guilds",
         "quote": "'Few romances can ever surpass that of the granite citadel on top of the beetling precipices of Machu Picchu, the crown of Inca Land.' - Hiram Bingham",
-        "cost": 250
+        "cost": 250,
+        "civilopediaText": [
+            {
+                "text": "An Incan citadel high in the Andes. Provides bonus Production and Gold from Mountains."
+            }
+        ]
     },
     {
         "name": "Forge",
@@ -638,21 +691,12 @@
             "Shows when unbuildable"
         ],
         "requiredTech": "Sailing",
-        "district": "Harbor"
-    },
-    {
-        "name": "Oxford University",
-        "cost": 125,
-        "science": 3,
-        "culture": 1,
-        "isNationalWonder": true,
-        "uniques": [
-            "Only available <if [University] is constructed in all [non-[Puppet]] cities>",
-            "Free Technology",
-            "Cost increases by [30] per owned city"
-        ],
-        "requiredTech": "Education",
-        "district": "Campus"
+        "district": "Harbor",
+        "civilopediaText": [
+            {
+                "text": "A coastal district for naval units and sea trade. Contains the Lighthouse, Shipyard, and Seaport."
+            }
+        ]
     },
     {
         "name": "Angkor Wat",
@@ -668,7 +712,12 @@
         ],
         "requiredTech": "Education",
         "quote": "'The temple is like no other building in the world. It has towers and decoration and all the refinements which the human genius can conceive of.' - Antonio da Magdalena",
-        "cost": 250
+        "cost": 250,
+        "civilopediaText": [
+            {
+                "text": "A vast temple complex in Cambodia. Increases Population growth and provides Faith."
+            }
+        ]
     },
     {
         "name": "Castle",
@@ -714,19 +763,12 @@
         ],
         "requiredTech": "Machinery",
         "quote": "'Justice is an unassailable fortress, built on the brow of a mountain which cannot be overthrown by the violence of torrents, nor demolished by the force of armies.' - Joseph Addison",
-        "cost": 250
-    },
-    {
-        "name": "Ironworks",
-        "cost": 125,
-        "production": 8,
-        "culture": 1,
-        "isNationalWonder": true,
-        "uniques": [
-            "Only available <if [Workshop] is constructed in all [non-[Puppeted]] cities>",
-            "Cost increases by [30] per owned city"
-        ],
-        "requiredTech": "Machinery"
+        "cost": 250,
+        "civilopediaText": [
+            {
+                "text": "A fortress palace in Spain. Provides Housing and Culture."
+            }
+        ]
     },
     {
         "name": "Notre Dame",
@@ -738,33 +780,11 @@
         "isWonder": true,
         "requiredTech": "Machinery",
         "quote": "'Architecture has recorded the great ideas of the human race. Not only every religious symbol, but every human thought has its page in that vast book.' - Victor Hugo",
-        "cost": 250
-    },
-    {
-        "name": "Observatory",
-        "maintenance": 0,
-        "hurryCostModifier": 15,
-        "percentStatBonus": {
-            "science": 50
-        },
-        "requiredBuilding": "Library",
-        "uniques": [
-            "Must be next to [Mountain]"
-        ],
-        "requiredTech": "Astronomy"
-    },
-    {
-        "name": "Opera House",
-        "culture": 4,
-        "specialistSlots": {
-            "Artist": 1
-        },
-        "hurryCostModifier": 10,
-        "requiredBuilding": "Amphitheater",
-        "maintenance": 2,
-        "requiredTech": "Education",
-        "uniques": [
-            "Destroyed when the city is captured"
+        "cost": 250,
+        "civilopediaText": [
+            {
+                "text": "A Gothic cathedral in Paris. Provides Faith and Amenities to nearby cities."
+            }
         ]
     },
     {
@@ -780,7 +800,12 @@
         ],
         "requiredTech": "Education",
         "quote": "'I live and love in God's peculiar light.' - Michelangelo Buonarroti",
-        "cost": 300
+        "cost": 300,
+        "civilopediaText": [
+            {
+                "text": "A chapel adorned with Michelangelo's masterpieces. Provides Culture and Great Artist points."
+            }
+        ]
     },
     {
         "name": "Satrap's Court",
@@ -799,17 +824,6 @@
         "requiredTech": "Banking"
     },
     {
-        "name": "Constabulary",
-        "cost": 160,
-        "maintenance": 1,
-        "hurryCostModifier": 10,
-        "uniques": [
-            "Only available <when espionage is enabled>",
-            "[-25]% enemy spy effectiveness [in this city]"
-        ],
-        "requiredTech": "Banking"
-    },
-    {
         "name": "Forbidden Palace",
         "culture": 1,
         "isWonder": true,
@@ -822,17 +836,12 @@
         ],
         "requiredTech": "Banking",
         "quote": "'Most of us can, as we choose, make of this world either a palace or a prison' - John Lubbock",
-        "cost": 300
-    },
-    {
-        "name": "Theatre",
-        "amenities": 3,
-        "hurryCostModifier": 10,
-        "maintenance": 2,
-        "requiredBuilding": "Colosseum",
-        "requiredTech": "Printing",
-        "district": "Theater Square",
-        "cost": 310
+        "cost": 300,
+        "civilopediaText": [
+            {
+                "text": "The imperial palace of China's Ming dynasty. Provides an extra Wildcard policy slot."
+            }
+        ]
     },
     {
         "name": "Leaning Tower of Pisa",
@@ -848,7 +857,12 @@
         ],
         "requiredTech": "Printing",
         "quote": "'Don't clap too hard - it's a very old building.' - John Osbourne",
-        "cost": 300
+        "cost": 300,
+        "civilopediaText": [
+            {
+                "text": "A bell tower that defies gravity. Grants a free Great Person."
+            }
+        ]
     },
     {
         "name": "Himeji Castle",
@@ -864,21 +878,12 @@
         ],
         "requiredTech": "Gunpowder",
         "quote": "'Bushido is realized in the presence of death. This means choosing death whenever there is a choice between life and death. There is no other reasoning.' - Yamamoto Tsunetomo",
-        "cost": 300
-    },
-    {
-        "name": "Hermitage",
-        "cost": 125,
-        "percentStatBonus": {
-            "culture": 50
-        },
-        "culture": 5,
-        "isNationalWonder": true,
-        "uniques": [
-            "Only available <if [Opera House] is constructed in all [non-[Puppeted]] cities>",
-            "Cost increases by [30] per owned city"
-        ],
-        "requiredTech": "Economics"
+        "cost": 300,
+        "civilopediaText": [
+            {
+                "text": "A stunning Japanese castle. Provides defensive bonuses and Culture."
+            }
+        ]
     },
     {
         "name": "Taj Mahal",
@@ -894,7 +899,12 @@
         ],
         "requiredTech": "Economics",
         "quote": "'The Taj Mahal rises above the banks of the river like a solitary tear suspended on the cheek of time.' - Rabindranath Tagore",
-        "cost": 300
+        "cost": 300,
+        "civilopediaText": [
+            {
+                "text": "A magnificent mausoleum of white marble. Grants bonus Amenities and Tourism."
+            }
+        ]
     },
     {
         "name": "Porcelain Tower",
@@ -910,21 +920,12 @@
         ],
         "requiredTech": "Economics",
         "quote": "'Things always seem fairer when we look back at them, and it is out of that inaccessible tower of the past that Longing leans and beckons.' - James Russell Lowell",
-        "cost": 300
-    },
-    {
-        "name": "Windmill",
-        "production": 2,
-        "specialistSlots": {
-            "Engineer": 1
-        },
-        "hurryCostModifier": 25,
-        "maintenance": 2,
-        "uniques": [
-            "Must not be on [Hill]",
-            "[+10]% Production when constructing [All] buildings [in this city]"
-        ],
-        "requiredTech": "Economics"
+        "cost": 300,
+        "civilopediaText": [
+            {
+                "text": "A towering Nanjing pagoda covered in porcelain. Provides Faith and Great Merchant points."
+            }
+        ]
     },
     {
         "name": "Arsenal",
@@ -952,7 +953,12 @@
         ],
         "requiredTech": "Steel",
         "quote": "'The Kremlin is constantly changing the rules of the game to suit its purposes. We are not playing chess, we're playing roulette.' - Garry Kasparov",
-        "cost": 400
+        "cost": 400,
+        "civilopediaText": [
+            {
+                "text": "A fortified complex in Moscow. Provides Production towards defensive buildings and units."
+            }
+        ]
     },
     {
         "name": "Museum",
@@ -960,7 +966,7 @@
         "specialistSlots": {
             "Artist": 2
         },
-        "requiredBuilding": "Opera House",
+        "requiredBuilding": "Amphitheater",
         "maintenance": 3,
         "hurryCostModifier": 0,
         "requiredTech": "Scientific Theory",
@@ -981,21 +987,12 @@
         ],
         "requiredTech": "Scientific Theory",
         "quote": "'Every genuine work of art has as much reason for being as the earth and the sun' - Ralph Waldo Emerson",
-        "cost": 400
-    },
-    {
-        "name": "Public School",
-        "science": 3,
-        "specialistSlots": {
-            "Scientist": 1
-        },
-        "requiredBuilding": "University",
-        "maintenance": 3,
-        "hurryCostModifier": 0,
-        "uniques": [
-            "[+1 Science] per [2] population [in this city]"
-        ],
-        "requiredTech": "Scientific Theory"
+        "cost": 400,
+        "civilopediaText": [
+            {
+                "text": "The world's largest art museum. Provides Culture, Tourism, and Great Artist points."
+            }
+        ]
     },
     {
         "name": "Big Ben",
@@ -1011,7 +1008,12 @@
         ],
         "requiredTech": "Industrialization",
         "quote": "'To achieve great things, two things are needed: a plan, and not quite enough time.' - Leonard Bernstein",
-        "cost": 400
+        "cost": 400,
+        "civilopediaText": [
+            {
+                "text": "London's iconic clock tower. Provides Gold and bonus Great Merchant points."
+            }
+        ]
     },
     {
         "name": "Brandenburg Gate",
@@ -1027,15 +1029,12 @@
         ],
         "requiredTech": "Military Science",
         "quote": "'Pale Death beats equally at the poor man's gate and at the palaces of kings.' - Horace",
-        "cost": 400
-    },
-    {
-        "name": "Hospital",
-        "food": 5,
-        "requiredBuilding": "Aqueduct",
-        "maintenance": 2,
-        "hurryCostModifier": 0,
-        "requiredTech": "Scientific Theory"
+        "cost": 400,
+        "civilopediaText": [
+            {
+                "text": "A neoclassical triumphal arch in Berlin. Grants a free Great General."
+            }
+        ]
     },
     {
         "name": "Hydro Plant",
@@ -1046,18 +1045,6 @@
             "Must be on [River]",
             "[+1 Production] from [River] tiles [in this city]"
         ],
-        "requiredTech": "Electricity"
-    },
-    {
-        "name": "Police Station",
-        "cost": 300,
-        "maintenance": 1,
-        "hurryCostModifier": 10,
-        "uniques": [
-            "Only available <when espionage is enabled>",
-            "[-25]% enemy spy effectiveness [in this city]"
-        ],
-        "requiredBuilding": "Constabulary",
         "requiredTech": "Electricity"
     },
     {
@@ -1087,33 +1074,11 @@
         ],
         "requiredTech": "Radio",
         "quote": "'We live only to discover beauty, all else is a form of waiting' - Kahlil Gibran",
-        "cost": 500
-    },
-    {
-        "name": "National Intelligence Agency",
-        "cost": 120,
-        "culture": 1,
-        "isNationalWonder": true,
-        "uniques": [
-            "Only available <when espionage is enabled>",
-            "New spies start with [1] level(s)",
-            "Promotes all spies [1] time(s)",
-            "Gain an extra spy",
-            "[-15]% enemy spy effectiveness [in this city]",
-            "Only available <if [Police Station] is constructed in all [non-[Puppeted]] cities>",
-            "Cost increases by [30] per owned city"
-        ],
-        "requiredTech": "Radio"
-    },
-    {
-        "name": "Military Base",
-        "cityStrength": 12,
-        "cityHealth": 25,
-        "hurryCostModifier": 25,
-        "requiredBuilding": "Arsenal",
-        "requiredTech": "Replaceable Parts",
-        "uniques": [
-            "Destroyed when the city is captured"
+        "cost": 500,
+        "civilopediaText": [
+            {
+                "text": "Paris's iconic iron lattice tower. Increases Tourism and provides bonus Culture."
+            }
         ]
     },
     {
@@ -1129,7 +1094,12 @@
         ],
         "requiredTech": "Replaceable Parts",
         "quote": "'Give me your tired, your poor, your huddled masses yearning to breathe free, the wretched refuse of your teeming shore. Send these, the homeless, tempest-tossed to me, I lift my lamp beside the golden door!' - Emma Lazarus",
-        "cost": 500
+        "cost": 500,
+        "civilopediaText": [
+            {
+                "text": "A symbol of freedom and democracy. Provides bonus Production and Immigration."
+            }
+        ]
     },
     {
         "name": "Neuschwanstein",
@@ -1147,7 +1117,12 @@
         ],
         "requiredTech": "Railroads",
         "quote": "'...the location is one of the most beautiful to be found, holy and unapproachable, a worthy temple for the divine friend who has brought salvation and true blessing to the world.' - King Ludwig II of Bavaria",
-        "cost": 400
+        "cost": 400,
+        "civilopediaText": [
+            {
+                "text": "A fairy-tale castle in the Bavarian Alps. Provides Culture and Tourism from Mountains."
+            }
+        ]
     },
     {
         "name": "Climate Research Station",
@@ -1174,15 +1149,11 @@
         ],
         "requiredTech": "Plastics",
         "quote": "'Come to me, all who labor and are heavy burdened, and I will give you rest.' - New Testament, Matthew 11:28",
-        "cost": 500
-    },
-    {
-        "name": "Medical Lab",
-        "requiredBuilding": "Hospital",
-        "maintenance": 3,
-        "requiredTech": "Pharmaceuticals",
-        "uniques": [
-            "[25]% Food is carried over after population increases [in this city]"
+        "cost": 500,
+        "civilopediaText": [
+            {
+                "text": "The statue of Christ overlooking Rio de Janeiro. Provides Tourism and Culture to nearby cities."
+            }
         ]
     },
     {
@@ -1194,7 +1165,12 @@
             "Triggers a global alert upon completion",
             "Cannot be hurried"
         ],
-        "requiredTech": "Atomic Theory"
+        "requiredTech": "Atomic Theory",
+        "civilopediaText": [
+            {
+                "text": "A secret program to develop nuclear weapons. Enables the construction of Nuclear Devices."
+            }
+        ]
     },
     {
         "name": "Pentagon",
@@ -1209,7 +1185,12 @@
         ],
         "requiredTech": "Combined Arms",
         "quote": "'In preparing for battle I have always found that plans are useless, but planning is indispensable.' - Dwight D. Eisenhower",
-        "cost": 600
+        "cost": 600,
+        "civilopediaText": [
+            {
+                "text": "The headquarters of the US Department of Defense. Reduces the cost of upgrading units."
+            }
+        ]
     },
     {
         "name": "Solar Plant",
@@ -1305,7 +1286,12 @@
         ],
         "requiredTech": "Ecology",
         "quote": "'Those who lose dreaming are lost.' - Australian Aboriginal saying",
-        "cost": 600
+        "cost": 600,
+        "civilopediaText": [
+            {
+                "text": "An architectural marvel of Australia. Provides Culture, Tourism, and Great Artist points."
+            }
+        ]
     },
     {
         "name": "Nuclear Plant",
@@ -1340,6 +1326,23 @@
         ]
     },
     {
+        "name": "Utopia Project",
+        "cost": 1500,
+        "isNationalWonder": true,
+        "uniques": [
+            "Triggers a global alert upon build start",
+            "Triggers a Cultural Victory upon completion",
+            "Only available <when [Cultural] Victory is enabled>",
+            "Cannot be hurried"
+        ],
+        "requiredCivic": "Future Civic",
+        "civilopediaText": [
+            {
+                "text": "A grand project to create a perfect society. Required for a Cultural Victory."
+            }
+        ]
+    },
+    {
         "name": "Great Firewall",
         "isWonder": true,
         "uniques": [
@@ -1350,7 +1353,12 @@
         ],
         "requiredTech": "Telecommunications",
         "quote": "'Distrust and caution are the parents of security.' - Benjamin Franklin",
-        "cost": 600
+        "cost": 600,
+        "civilopediaText": [
+            {
+                "text": "A digital defense system. Protects against enemy spy attacks and cyber warfare."
+            }
+        ]
     },
     {
         "name": "Parliament House",
@@ -1400,17 +1408,11 @@
         ],
         "requiredTech": "Telecommunications",
         "quote": "'Nothing travels faster than light with the possible exception of bad news, which obeys its own special rules.' - Douglas Adams",
-        "cost": 600
-    },
-    {
-        "name": "Bomb Shelter",
-        "cost": 300,
-        "maintenance": 1,
-        "requiredTech": "Telecommunications",
-        "uniques": [
-            "Population loss from nuclear attacks [-75]% [in this city]",
-            "Damage to garrison from nuclear attacks [-75]% [in this city]",
-            "Only available <when nuclear weapons are enabled> <hidden from users>"
+        "cost": 600,
+        "civilopediaText": [
+            {
+                "text": "A communications tower in Toronto. Provides Gold, Culture, and Tourism."
+            }
         ]
     },
     {
@@ -1427,7 +1429,12 @@
         ],
         "requiredTech": "Satellites",
         "quote": "'The wonder is, not that the field of stars is so vast, but that man has measured it.' - Anatole France",
-        "cost": 600
+        "cost": 600,
+        "civilopediaText": [
+            {
+                "text": "An orbiting observatory. Provides Science and a free Technology."
+            }
+        ]
     },
     {
         "name": "Spaceship Factory",
@@ -1456,20 +1463,12 @@
             "Triggers a global alert upon completion"
         ],
         "quote": "'More than ever before in human history, we share a common destiny. We can master it only if we face it together. And that is why we have the United Nations.' - Kofi Annan",
-        "cost": 600
-    },
-    {
-        "name": "Utopia Project",
-        "cost": 1500,
-        "isNationalWonder": true,
-        "uniques": [
-            "Unavailable <when number of [Completed Policy branches] is less than [5]>",
-            "Triggers a global alert upon build start",
-            "Triggers a Cultural Victory upon completion",
-            "Only available <when [Cultural] Victory is enabled>",
-            "Cannot be hurried"
-        ],
-        "requiredCivic": "Future Civic"
+        "cost": 600,
+        "civilopediaText": [
+            {
+                "text": "A global diplomatic organization. Provides Diplomacy bonuses and Great Diplomat points."
+            }
+        ]
     },
     {
         "name": "Monastery",
@@ -1494,7 +1493,12 @@
             "Shows when unbuildable"
         ],
         "maintenance": 0,
-        "district": "Encampment"
+        "district": "Encampment",
+        "civilopediaText": [
+            {
+                "text": "A military district for training and garrisoning units. Contains the Barracks, Stable, Armory, and Military Academy."
+            }
+        ]
     },
     {
         "name": "Entertainment Complex",
@@ -1506,7 +1510,12 @@
         ],
         "requiredCivic": "Games and Recreation",
         "maintenance": 0,
-        "district": "Entertainment Complex"
+        "district": "Entertainment Complex",
+        "civilopediaText": [
+            {
+                "text": "A district dedicated to amenities and leisure. Contains the Arena, Zoo, and Stadium."
+            }
+        ]
     },
     {
         "name": "Water Entertainment Complex",
@@ -1519,7 +1528,12 @@
         ],
         "requiredCivic": "Games and Recreation",
         "maintenance": 0,
-        "district": "Water Entertainment Complex"
+        "district": "Water Entertainment Complex",
+        "civilopediaText": [
+            {
+                "text": "A coastal entertainment district providing amenities. Requires a coastal city."
+            }
+        ]
     },
     {
         "name": "Spaceport",
@@ -1531,7 +1545,12 @@
             "Shows when unbuildable"
         ],
         "maintenance": 0,
-        "district": "Spaceport"
+        "district": "Spaceport",
+        "civilopediaText": [
+            {
+                "text": "A district for spaceflight and scientific victory projects. Contains the Spaceship Factory."
+            }
+        ]
     },
     {
         "name": "Government Plaza",
@@ -1543,7 +1562,12 @@
         ],
         "requiredCivic": "State Workforce",
         "maintenance": 0,
-        "district": "Government Plaza"
+        "district": "Government Plaza",
+        "civilopediaText": [
+            {
+                "text": "The administrative center of your civilization. Contains government buildings and provides a Governor title."
+            }
+        ]
     },
     {
         "name": "Bath",
@@ -1614,7 +1638,12 @@
             "Must be built on [Snow]"
         ],
         "requiredTech": "Satellites",
-        "quote": "'The South Pole is not a place for humans. It is a place for robots.' - Kiso K.awahara"
+        "quote": "'The South Pole is not a place for humans. It is a place for robots.' - Kiso K.awahara",
+        "civilopediaText": [
+            {
+                "text": "A research base at the South Pole. Provides bonus Science and Production in all cities."
+            }
+        ]
     },
     {
         "name": "Apadana",
@@ -1629,7 +1658,12 @@
             "Must be built adjacent to [City Center]"
         ],
         "requiredCivic": "State Workforce",
-        "quote": "'This was the palace of the Persian kings, where the king of kings received his guests.' - Unknown"
+        "quote": "'This was the palace of the Persian kings, where the king of kings received his guests.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "The great audience hall of Persepolis. Provides Culture and Gold."
+            }
+        ]
     },
     {
         "name": "Bolshoi Theatre",
@@ -1640,7 +1674,12 @@
             "Great Artist": 2
         },
         "quote": "'The Bolshoi is the soul of Russia.' - Unknown",
-        "requiredCivic": "Mass Media"
+        "requiredCivic": "Mass Media",
+        "civilopediaText": [
+            {
+                "text": "Moscow's premier ballet and opera house. Provides Culture, Great Musician points, and a free Great Musician."
+            }
+        ]
     },
     {
         "name": "Broadway",
@@ -1651,7 +1690,12 @@
             "Great Artist": 2
         },
         "requiredCivic": "Class Struggle",
-        "quote": "'The lights of Broadway shine brightest when the world is darkest.' - Unknown"
+        "quote": "'The lights of Broadway shine brightest when the world is darkest.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "New York's legendary theater district. Provides Culture, Tourism, and Great Musician points."
+            }
+        ]
     },
     {
         "name": "Bran Castle",
@@ -1662,7 +1706,12 @@
             "Great Merchant": 1
         },
         "requiredCivic": "Humanism",
-        "quote": "'Home of the legend of Dracula.' - Unknown"
+        "quote": "'Home of the legend of Dracula.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "The legendary home of Dracula in Transylvania. Provides defensive bonuses and Culture."
+            }
+        ]
     },
     {
         "name": "Channel",
@@ -1675,7 +1724,12 @@
             "Must be next to [Coast]"
         ],
         "requiredTech": "Steam Power",
-        "quote": "'The channel links the seas.' - Unknown"
+        "quote": "'The channel links the seas.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "An underwater tunnel connecting England and France. Provides Gold from Trade Routes."
+            }
+        ]
     },
     {
         "name": "Crac des Chevaliers",
@@ -1684,7 +1738,12 @@
         "cityStrength": 10,
         "cityHealth": 200,
         "requiredTech": "Castles",
-        "quote": "'The greatest of the Crusader castles.' - Unknown"
+        "quote": "'The greatest of the Crusader castles.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "A Crusader fortress in Syria. Provides defensive bonuses and Housing."
+            }
+        ]
     },
     {
         "name": "Forbidden City",
@@ -1695,7 +1754,12 @@
             "Great Engineer": 2
         },
         "requiredCivic": "Theology",
-        "quote": "'The forbidden city housed the emperors of China for five centuries.' - Unknown"
+        "quote": "'The forbidden city housed the emperors of China for five centuries.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "The imperial palace of the Ming and Qing dynasties. Provides an extra Wildcard policy slot."
+            }
+        ]
     },
     {
         "name": "Golden Gate Bridge",
@@ -1708,7 +1772,12 @@
             "Must be next to [Coast]"
         ],
         "requiredTech": "Telecommunications",
-        "quote": "'The bridge that spans the golden gate.' - Unknown"
+        "quote": "'The bridge that spans the golden gate.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "San Francisco's iconic suspension bridge. Provides Gold and Tourism."
+            }
+        ]
     },
     {
         "name": "Great Zimbabwe",
@@ -1720,7 +1789,12 @@
             "Must be built adjacent to [Commercial Hub] district"
         ],
         "requiredCivic": "State Workforce",
-        "quote": "'The great stone enclosures of the Zimbabwe plateau.' - Unknown"
+        "quote": "'The great stone enclosures of the Zimbabwe plateau.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "A ruined city in Zimbabwe. Provides Gold from Trade Routes."
+            }
+        ]
     },
     {
         "name": "Jebel Barkal",
@@ -1732,7 +1806,12 @@
             "Must be built on [Desert]"
         ],
         "requiredCivic": "Theology",
-        "quote": "'The holy mountain of the Nubian kings.' - Unknown"
+        "quote": "'The holy mountain of the Nubian kings.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "A sacred mountain in Sudan. Provides Faith and Culture."
+            }
+        ]
     },
     {
         "name": "Kilwa Kisiwani",
@@ -1743,7 +1822,12 @@
             "Great Merchant": 1
         },
         "requiredCivic": "Mercantilism",
-        "quote": "'The island city of the Swahili coast.' - Unknown"
+        "quote": "'The island city of the Swahili coast.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "A Swahili city-state and trading hub. Provides Gold and Trade Route bonuses."
+            }
+        ]
     },
     {
         "name": "Kotoku-in",
@@ -1751,7 +1835,12 @@
         "isWonder": true,
         "faith": 5,
         "requiredCivic": "Theology",
-        "quote": "'The great bronze Buddha of Kamakura.' - Unknown"
+        "quote": "'The great bronze Buddha of Kamakura.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "The Great Buddha of Kamakura. Provides Faith and Tourism."
+            }
+        ]
     },
     {
         "name": "Mahabodhi Temple",
@@ -1760,7 +1849,12 @@
         "faith": 5,
         "culture": 2,
         "requiredCivic": "Theology",
-        "quote": "'The site of the Buddha's enlightenment.' - Unknown"
+        "quote": "'The site of the Buddha's enlightenment.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "The temple marking where Buddha attained enlightenment. Provides Faith and a free Great Prophet."
+            }
+        ]
     },
     {
         "name": "Mbanza",
@@ -1777,7 +1871,12 @@
         "faith": 5,
         "culture": 4,
         "requiredCivic": "Theology",
-        "quote": "'The temple of the fish-eyed goddess.' - Unknown"
+        "quote": "'The temple of the fish-eyed goddess.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "A stunning Hindu temple in Madurai. Provides Faith and Culture."
+            }
+        ]
     },
     {
         "name": "Moai",
@@ -1799,7 +1898,12 @@
             "Must be built adjacent to [Industrial Zone] district"
         ],
         "requiredTech": "Industrialization",
-        "quote": "'The forge of the German industrial heartland.' - Unknown"
+        "quote": "'The forge of the German industrial heartland.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "A German industrial heartland. Provides massive Production bonuses in the city."
+            }
+        ]
     },
     {
         "name": "St. Basil's Cathedral",
@@ -1808,7 +1912,12 @@
         "faith": 5,
         "culture": 3,
         "requiredCivic": "Theology",
-        "quote": "'The cathedral of the intercession on the moat.' - Unknown"
+        "quote": "'The cathedral of the intercession on the moat.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "The iconic colorful cathedral in Moscow. Provides Culture and Tourism."
+            }
+        ]
     },
     {
         "name": "Venetian Arsenal",
@@ -1820,7 +1929,12 @@
             "Must be next to [Coast]"
         ],
         "requiredTech": "Military Engineering",
-        "quote": "'The arsenal that built the galleys of Venice.' - Unknown"
+        "quote": "'The arsenal that built the galleys of Venice.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "Venice's legendary shipyard. Provides Production towards naval units and a free naval unit."
+            }
+        ]
     },
     {
         "name": "Wallace Monument",
@@ -1831,7 +1945,12 @@
             "[+10]% Strength <for [All] units> <when defending>"
         ],
         "requiredCivic": "Nationalism",
-        "quote": "'The monument to the guardian of Scotland.' - Unknown"
+        "quote": "'The monument to the guardian of Scotland.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "A tower commemorating William Wallace. Provides Culture and a free Great General."
+            }
+        ]
     },
     {
         "name": "Hoover Dam",
@@ -1844,7 +1963,12 @@
             "Must be next to [River]"
         ],
         "requiredTech": "Refining",
-        "quote": "'The dam that tamed the Colorado.' - Unknown"
+        "quote": "'The dam that tamed the Colorado.' - Unknown",
+        "civilopediaText": [
+            {
+                "text": "A massive dam on the Colorado River. Provides Power and Production to nearby cities."
+            }
+        ]
     },
     {
         "name": "Ziggurat",
@@ -2808,7 +2932,12 @@
             "Shows when unbuildable"
         ],
         "uniqueTo": "Greece",
-        "replaces": "Theater Square"
+        "replaces": "Theater Square",
+        "civilopediaText": [
+            {
+                "text": "A Greek unique district replacing the Theater Square. Must be built on a Hill and provides bonus Culture from adjacent districts."
+            }
+        ]
     },
     {
         "name": "Lavra",
@@ -2824,7 +2953,12 @@
             "Shows when unbuildable"
         ],
         "uniqueTo": "Russia",
-        "replaces": "Holy Site"
+        "replaces": "Holy Site",
+        "civilopediaText": [
+            {
+                "text": "A Russian unique district replacing the Holy Site. Generates Great Prophet points and bonus Culture from adjacent districts."
+            }
+        ]
     },
     {
         "name": "Stronghold",
@@ -2840,7 +2974,12 @@
             "Shows when unbuildable"
         ],
         "uniqueTo": "Poland",
-        "replaces": "Encampment"
+        "replaces": "Encampment",
+        "civilopediaText": [
+            {
+                "text": "A Polish unique district replacing the Encampment. Provides additional Housing and Production."
+            }
+        ]
     },
     {
         "name": "Seowon",
@@ -2857,7 +2996,12 @@
             "Shows when unbuildable"
         ],
         "uniqueTo": "Korea",
-        "replaces": "Campus"
+        "replaces": "Campus",
+        "civilopediaText": [
+            {
+                "text": "A Korean unique district replacing the Campus. Provides strong base Science and adjacency bonuses from Mines and Farms."
+            }
+        ]
     },
     {
         "name": "Oppidum",
@@ -2873,7 +3017,12 @@
             "Shows when unbuildable"
         ],
         "uniqueTo": "Gaul",
-        "replaces": "Encampment"
+        "replaces": "Encampment",
+        "civilopediaText": [
+            {
+                "text": "A Gaulish unique district replacing the Encampment. Provides Housing and Great General points."
+            }
+        ]
     },
     {
         "name": "Thành",
@@ -2887,7 +3036,12 @@
             "Shows when unbuildable"
         ],
         "maintenance": 0,
-        "district": "Thành"
+        "district": "Thành",
+        "civilopediaText": [
+            {
+                "text": "A Vietnamese unique district replacing the Encampment. Cheaper to build than the standard Encampment."
+            }
+        ]
     },
     {
         "name": "Ikanda",
@@ -2901,7 +3055,12 @@
             "Shows when unbuildable"
         ],
         "maintenance": 0,
-        "district": "Ikanda"
+        "district": "Ikanda",
+        "civilopediaText": [
+            {
+                "text": "A Zulu unique district replacing the Encampment. Cheaper to build and enables powerful military bonuses."
+            }
+        ]
     },
     {
         "name": "Hansa",
@@ -2918,7 +3077,12 @@
             "Shows when unbuildable"
         ],
         "uniqueTo": "Germany",
-        "replaces": "Industrial Zone"
+        "replaces": "Industrial Zone",
+        "civilopediaText": [
+            {
+                "text": "A German unique district replacing the Industrial Zone. Gains strong Production adjacency bonuses from Commercial Hubs, resources, and Aqueducts."
+            }
+        ]
     },
     {
         "name": "Royal Navy Dockyard",
@@ -2936,7 +3100,12 @@
             "Shows when unbuildable"
         ],
         "uniqueTo": "England",
-        "replaces": "Harbor"
+        "replaces": "Harbor",
+        "civilopediaText": [
+            {
+                "text": "An English unique district replacing the Harbor. Provides Gold from adjacent districts, extra Trade Route capacity, and faster naval units."
+            }
+        ]
     },
     {
         "name": "Cothon",
@@ -2953,7 +3122,12 @@
             "Shows when unbuildable"
         ],
         "uniqueTo": "Phoenicia",
-        "replaces": "Harbor"
+        "replaces": "Harbor",
+        "civilopediaText": [
+            {
+                "text": "A Phoenician unique district replacing the Harbor. Boosts Settler production and heals naval units faster."
+            }
+        ]
     },
     {
         "name": "Suguba",
@@ -2970,7 +3144,12 @@
             "Shows when unbuildable"
         ],
         "uniqueTo": "Mali",
-        "replaces": "Commercial Hub"
+        "replaces": "Commercial Hub",
+        "civilopediaText": [
+            {
+                "text": "A Malian unique district replacing the Commercial Hub. Gains Gold from adjacent Holy Sites and rivers, and reduces Commercial Hub building costs."
+            }
+        ]
     },
     {
         "name": "Aerodrome",
@@ -2982,6 +3161,11 @@
             "Unbuildable",
             "Creates a [Aerodrome] district on a specific tile",
             "Shows when unbuildable"
+        ],
+        "civilopediaText": [
+            {
+                "text": "An aviation district for air units. Contains the Hangar and Airport."
+            }
         ]
     },
     {
@@ -2994,6 +3178,11 @@
             "Unbuildable",
             "Creates a [Preserve] district on a specific tile",
             "Shows when unbuildable"
+        ],
+        "civilopediaText": [
+            {
+                "text": "A district dedicated to nature and appeal. Contains the Grove and Sanctuary."
+            }
         ]
     },
     {
@@ -3006,6 +3195,11 @@
             "Unbuildable",
             "Creates a [Diplomatic Quarter] district on a specific tile",
             "Shows when unbuildable"
+        ],
+        "civilopediaText": [
+            {
+                "text": "A district dedicated to diplomacy and espionage. Contains the Consulate and Chancery."
+            }
         ]
     },
     {
@@ -3014,7 +3208,12 @@
         "cost": 110,
         "uniques": [],
         "requiredTech": "Writing",
-        "science": 2
+        "science": 2,
+        "civilopediaText": [
+            {
+                "text": "The ziggurat of Babylon, the house of the foundation of heaven and earth. Provides bonus Science and Great Scientist points."
+            }
+        ]
     },
     {
         "name": "Great Bath",
@@ -3023,21 +3222,36 @@
         "uniques": [],
         "requiredTech": "Pottery",
         "housing": 3,
-        "amenities": 1
+        "amenities": 1,
+        "civilopediaText": [
+            {
+                "text": "The world's first public bathhouse from Mohenjo-daro. Provides Housing, Faith, and prevents Flood damage."
+            }
+        ]
     },
     {
         "name": "Mausoleum at Halicarnassus",
         "isWonder": true,
         "cost": 200,
         "uniques": [],
-        "requiredCivic": "Defensive Tactics"
+        "requiredCivic": "Defensive Tactics",
+        "civilopediaText": [
+            {
+                "text": "The grand tomb of Mausolus. Provides bonus Great Engineer points and extends their benefits."
+            }
+        ]
     },
     {
         "name": "Huey Teocalli",
         "isWonder": true,
         "cost": 355,
         "uniques": [],
-        "requiredTech": "Military Tactics"
+        "requiredTech": "Military Tactics",
+        "civilopediaText": [
+            {
+                "text": "The great temple of Tenochtitlan. Provides Culture, Faith, and Lake adjacency bonuses."
+            }
+        ]
     },
     {
         "name": "Mont St. Michel",
@@ -3047,7 +3261,12 @@
             "2Relic slots"
         ],
         "requiredCivic": "Divine Right",
-        "faith": 2
+        "faith": 2,
+        "civilopediaText": [
+            {
+                "text": "A medieval abbey on a tidal island in Normandy. Provides Faith and +1 charge for Apostles and Missionaries."
+            }
+        ]
     },
     {
         "name": "University of Sankore",
@@ -3058,7 +3277,12 @@
         ],
         "requiredTech": "Education",
         "faith": 1,
-        "science": 3
+        "science": 3,
+        "civilopediaText": [
+            {
+                "text": "A historic center of learning in Timbuktu. Provides Science and Great Scientist points."
+            }
+        ]
     },
     {
         "name": "Casa de Contratación",
@@ -3067,7 +3291,12 @@
         "uniques": [
             "3Great Merchant points per turn."
         ],
-        "requiredTech": "Cartography"
+        "requiredTech": "Cartography",
+        "civilopediaText": [
+            {
+                "text": "The Spanish House of Trade in Seville. Provides Gold and Great Merchant points."
+            }
+        ]
     },
     {
         "name": "Torre de Belém",
@@ -3077,7 +3306,12 @@
             "1Great Admiral point per turn."
         ],
         "requiredCivic": "Mercantilism",
-        "gold": 5
+        "gold": 5,
+        "civilopediaText": [
+            {
+                "text": "A fortified tower on the Lisbon coastline. Provides Gold, Great Admiral points, and Trade Route bonuses."
+            }
+        ]
     },
     {
         "name": "Országház",
@@ -3085,7 +3319,12 @@
         "cost": 460,
         "uniques": [],
         "requiredTech": "Sanitation",
-        "culture": 4
+        "culture": 4,
+        "civilopediaText": [
+            {
+                "text": "The Hungarian Parliament Building in Budapest. Provides Culture and Gold."
+            }
+        ]
     },
     {
         "name": "Panama Canal",
@@ -3093,14 +3332,24 @@
         "cost": 460,
         "uniques": [],
         "requiredTech": "Steam Power",
-        "gold": 10
+        "gold": 10,
+        "civilopediaText": [
+            {
+                "text": "A ship canal connecting the Atlantic and Pacific. Ships may traverse between two bodies of water."
+            }
+        ]
     },
     {
         "name": "Biosphère",
         "isWonder": true,
         "cost": 810,
         "uniques": [],
-        "requiredTech": "Synthetic Materials"
+        "requiredTech": "Synthetic Materials",
+        "civilopediaText": [
+            {
+                "text": "A geodesic dome in Montreal dedicated to environmental science. Provides Science and Environmental bonuses."
+            }
+        ]
     },
     {
         "name": "Estádio do Maracanã",
@@ -3109,7 +3358,12 @@
         "uniques": [],
         "requiredCivic": "Professional Sports",
         "culture": 6,
-        "amenities": 2
+        "amenities": 2,
+        "civilopediaText": [
+            {
+                "text": "Rio de Janeiro's legendary football stadium. Provides Culture, Amenities, and Tourism."
+            }
+        ]
     },
     {
         "name": "Feitoria",
@@ -3132,6 +3386,11 @@
             "Shows when unbuildable"
         ],
         "maintenance": 0,
-        "district": "Golf Course"
+        "district": "Golf Course",
+        "civilopediaText": [
+            {
+                "text": "A Scottish unique district replacing the Entertainment Complex. Cheaper to build and provides amenities."
+            }
+        ]
     }
 ]

@@ -5,6 +5,9 @@
         "cost": 50,
         "uniques": [
             "Can instantly construct a [{All} {non-[Great]}] improvement <[3] times> <after which this unit is consumed> <for all movement>",
+            "May travel on Water tiles without embarking <after discovering [Shipbuilding]>",
+            "May create improvements on water resources",
+            "Cannot enter ocean tiles",
             "Automation is a primary action"
         ],
         "movement": 2
@@ -59,19 +62,6 @@
         "upgradesTo": "Composite Bowman",
         "uniqueTo": "Maya",
         "movement": 2
-    },
-    {
-        "name": "Work Boats",
-        "unitType": "Civilian Water",
-        "movement": 4,
-        "cost": 30,
-        "requiredTech": "Sailing",
-        "uniques": [
-            "Cannot enter ocean tiles <before discovering [Astronomy]>",
-            "May create improvements on water resources",
-            "Uncapturable",
-            "Automation is a primary action"
-        ]
     },
     {
         "name": "Trireme",

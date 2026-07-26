@@ -177,7 +177,7 @@
     {
         "name": "Religious Art",
         "type": "Follower",
-        "uniques": ["[+8 Culture] from every [Hermitage]"]
+        "uniques": ["[+2 Culture] from every [Temple]"]
     },
     {
         "name": "Religious Center",
