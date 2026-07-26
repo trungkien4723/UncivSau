@@ -44,31 +44,38 @@ class TileLayerTerrain(tileGroup: TileGroup, size: Float) : TileLayer(tileGroup,
     private fun getDistrictImageName(districtName: String): String? {
         val districtImage = when (districtName) {
             "Campus" -> "Academy"
-            "Harbor" -> "Harbor"
-            "Theater Square" -> "Theater"
-            "Commercial Hub" -> "Market"
-            "Industrial Zone" -> "Manufactory"
-            "Entertainment Complex" -> "Amphitheater"
-            "Aqueduct" -> "Aqueduct"
-            "Stadium" -> "Stadium"
-            "Colosseum" -> "Colosseum"
-            "Airport" -> "Airport"
-            "Space Port" -> "Space Port"
             "University" -> "Academy"
-            "Market" -> "Market"
-            "Shopping Center" -> "Shopping"
-            "Museum" -> "Museum"
-            "Bank" -> "Bank"
-            "Water Park" -> "Landmark"
-            "Grand Canal" -> "Landmark"
-            "Lighthouse" -> "Lighthouse"
-            "Seaport" -> "Seaport"
-            "Ruhr" -> "Ruhr"
+            "Industrial Zone" -> "Manufactory"
             "Power Plant" -> "Manufactory"
             "Holy Site" -> "Holy site"
+            "Commercial Hub" -> "Customs house"
+            "Market" -> "Customs house"
+            "Harbor" -> "Offshore Platform"
+            "Lighthouse" -> "Offshore Platform"
+            "Seaport" -> "Offshore Platform"
+            "Encampment" -> "Citadel"
+            "Theater Square" -> "Landmark"
+            "Entertainment Complex" -> "Landmark"
+            "Water Park" -> "Landmark"
+            "Grand Canal" -> "Landmark"
+            "Water Entertainment Complex" -> "Landmark"
+            "Aqueduct" -> "Landmark"
+            "Stadium" -> "Landmark"
+            "Colosseum" -> "Landmark"
+            "Airport" -> "Landmark"
+            "Space Port" -> "Landmark"
+            "Spaceport" -> "Landmark"
+            "Shopping Center" -> "Landmark"
+            "Museum" -> "Landmark"
+            "Bank" -> "Landmark"
+            "Ruhr" -> "Landmark"
+            "Government Plaza" -> "Landmark"
+            "Diplomatic Quarter" -> "Landmark"
             else -> districtName
         }
-        return if (ImageGetter.imageExists(strings.getTile(districtImage))) districtImage else null
+        return if (ImageGetter.imageExists(strings.getTile(districtImage))) districtImage
+            else if (districtImage != "Landmark" && ImageGetter.imageExists(strings.getTile("Landmark"))) "Landmark"
+            else null
     }
 
     private fun getTileBaseImageLocations(viewingCiv: Civilization?): List<String> {
