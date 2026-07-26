@@ -8,6 +8,7 @@ import com.unciv.logic.city.City
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.map.tile.Tile
 import com.unciv.models.stats.Stat
+import com.unciv.models.stats.Stats
 import com.unciv.models.translations.tr
 import com.unciv.ui.images.ImageGetter
 import com.unciv.ui.components.extensions.addToCenter
@@ -26,6 +27,8 @@ enum class CityTileState {
 class CityTileGroup(val city: City, tile: Tile, tileSetStrings: TileSetStrings, private val nightMode: Boolean, private val isSpying: Boolean = false) : TileGroup(tile, tileSetStrings) {
 
     var tileState = CityTileState.NONE
+    /** Preview of district adjacency yields shown during tile pick mode */
+    var districtPreviewStats: Stats? = null
 
     init {
         // layerMisc is no longer a Group actor; touch handling is managed at the TileMapLayer level.

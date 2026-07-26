@@ -282,6 +282,11 @@ class CityScreen(
         }
 
         for (tileGroup in tileGroups) {
+            tileGroup.districtPreviewStats = if (pickDistrictData != null
+                    && tileGroup.tile.getCity() == city
+                    && tileGroup.tile in city.tilesInRange)
+                city.cityStats.getDistrictAdjacencyStats(tileGroup.tile, pickDistrictData!!.district)
+            else null
             tileGroup.update(selectedCiv)
             tileGroup.layerMisc.removeHexOutline()
             if (isSpying) continue // the rest is only for own cities

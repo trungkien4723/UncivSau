@@ -83,9 +83,14 @@ class TileLayerYield(tileGroup: TileGroup, size: Float) : TileLayer(tileGroup, s
         y.isVisible = false
         y.run {
             // Update YieldGroup Icon
-            if (tileGroup is CityTileGroup)
-                setStats(tile.stats.getTileStats(tileGroup.city, viewingCiv))
-            else
+            if (tileGroup is CityTileGroup) {
+                val baseStats = tile.stats.getTileStats(tileGroup.city, viewingCiv)
+                val previewStats = tileGroup.districtPreviewStats
+                if (previewStats != null && !previewStats.isEmpty())
+                    setStats(baseStats + previewStats)
+                else
+                    setStats(baseStats)
+            } else
                 setStats(tile.stats.getTileStats(viewingCiv))
             toFront()
             // Centre horizontally; recalculate Y now that height is known after setStats

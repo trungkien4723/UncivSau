@@ -459,6 +459,22 @@ class City : IsPartOfGameInfoSerialization, INamed {
         cityConstructions.setTransients()
         espionage.setTransients(this)
         loyalty.city = this
+        validateDistricts()
+    }
+
+    private fun validateDistricts() {
+        val invalidEntries = districts.asSequence().filter { (pos, name) ->
+            val tile = tileMap[pos]
+            tile == null || tile.district != name || civ.gameInfo.ruleset.districts[name] == null
+        }.toList()
+        for ((pos, _) in invalidEntries) {
+            val tile = tileMap[pos]
+            if (tile != null && tile.district != null) {
+                tile.district = null
+                tile.districtIsPillaged = false
+            }
+            districts.remove(pos)
+        }
     }
 
     fun setFlag(flag: CityFlags, amount: Int, adjustWithGameSpeed: Boolean = false) {
