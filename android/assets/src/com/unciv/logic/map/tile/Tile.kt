@@ -255,7 +255,9 @@ class Tile : IsPartOfGameInfoSerialization {
         toReturn.improvementIsPillaged = improvementIsPillaged
         toReturn.roadStatus = roadStatus
         toReturn.roadIsPillaged = roadIsPillaged
+        toReturn.district = district
         toReturn.districtIsPillaged = districtIsPillaged
+        toReturn.districtToCreate = districtToCreate
         toReturn.roadOwner = roadOwner
         toReturn.hasBottomLeftRiver = hasBottomLeftRiver
         toReturn.hasBottomRightRiver = hasBottomRightRiver
@@ -840,8 +842,7 @@ class Tile : IsPartOfGameInfoSerialization {
     @Readonly fun isMarkedForCreatesOneDistrict(district: String) =
         districtToCreate == district
 
-    /** Transient marker: name of the district a queued building will create here. Cleared on completion. */
-    @Transient
+    /** Name of the district a queued building will create here. Cleared on completion. */
     var districtToCreate: String? = null
 
     @Readonly
