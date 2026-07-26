@@ -255,6 +255,7 @@ class Tile : IsPartOfGameInfoSerialization {
         toReturn.improvementIsPillaged = improvementIsPillaged
         toReturn.roadStatus = roadStatus
         toReturn.roadIsPillaged = roadIsPillaged
+        toReturn.district = district
         toReturn.districtIsPillaged = districtIsPillaged
         toReturn.districtToCreate = districtToCreate
         toReturn.roadOwner = roadOwner
