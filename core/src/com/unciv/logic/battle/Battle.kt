@@ -589,10 +589,10 @@ object Battle {
         
         if (attacker.isAirUnit()) addXp(4, 2)
         else if (attacker.isRanged()) { // ranged attack
-            if (defender.isCity()) addXp(3,2)
-            else addXp(2, 2)
+            if (defender.isCity()) addXp(3, 2)
+            else addXp(3, 2)
         } else if (!defender.isCivilian()) // Captured units don't grant XP
-            addXp(5, 4)
+            addXp(5, 2)
     }
     
     // XP!

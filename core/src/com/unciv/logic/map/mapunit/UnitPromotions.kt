@@ -51,7 +51,7 @@ class UnitPromotions : IsPartOfGameInfoSerialization {
         this.unit = unit
     }
 
-    /** @return the XP points needed to "buy" the next promotion. 10, 30, 60, 100, 150,... */
+    /** @return the XP points needed to "buy" the next promotion. 25, 60, 105, 160, 225,... */
     @Readonly fun xpForNextPromotion(): Int = xpCostForPromotionNumber(numberOfPromotions + 1)
 
     /** @return the XP points needed to "buy" the next [count] promotions. */
@@ -63,7 +63,7 @@ class UnitPromotions : IsPartOfGameInfoSerialization {
     /** @return the final XP cost for a specific promotion number, including modifiers and rounding */
     @Readonly
     private fun xpCostForPromotionNumber(promotionNumber: Int): Int {
-        val baseXpForPromotion = promotionNumber * 10
+        val baseXpForPromotion = 15 + promotionNumber * 10
         return (baseXpForPromotion * promotionCostModifier()).toInt()
     }
 
@@ -78,7 +78,7 @@ class UnitPromotions : IsPartOfGameInfoSerialization {
     }
     
     /** @return Total XP including that already "spent" on promotions */
-    @Readonly fun totalXpProduced() = XP + (numberOfPromotions * (numberOfPromotions + 1)) * 5
+    @Readonly fun totalXpProduced() = XP + numberOfPromotions * (5 * numberOfPromotions + 20)
 
     /**
      * @return Combined value of all promotions and XP = Number of promotions if all xp is spent + number of free promotions + progress to next promotion
@@ -128,6 +128,8 @@ class UnitPromotions : IsPartOfGameInfoSerialization {
             if (!promotion.hasUnique(UniqueType.FreePromotion)) {
                 XP -= xpForNextPromotion()
                 numberOfPromotions++
+                if (!promotion.hasUnique(UniqueType.SkipPromotion))
+                    unit.healBy(50)
             }
 
             for (unique in unit.getTriggeredUniques(UniqueType.TriggerUponPromotion))
