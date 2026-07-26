@@ -1518,7 +1518,7 @@ StatIcons/Happiness
   index: -1
 StatIcons/Housing
   rotate: false
-  xy: 1384, 1818
+  xy: 860, 0
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
