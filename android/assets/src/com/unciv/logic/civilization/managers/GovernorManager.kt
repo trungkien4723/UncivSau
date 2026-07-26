@@ -35,7 +35,8 @@ class GovernorManager : IsPartOfGameInfoSerialization {
     fun getMaxGovernors(): Int {
         val all = civInfo.gameInfo.ruleset.governors.size
         if (all == 0) return 0
-        // Start with one governor, unlock an additional one for every 7 civics researched.
+        if (!civInfo.civics.isResearched("Early Empire")) return 0
+        // First governor unlocked by Early Empire, +1 for every 7 civics researched.
         val fromCivics = 1 + civInfo.civics.getNumberOfCivicsResearched() / 7
         return minOf(fromCivics, all)
     }
