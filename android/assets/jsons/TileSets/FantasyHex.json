@@ -18,6 +18,26 @@
         "Tundra+Forest": ["Tundra","TundraForest"],
         "Tundra+Hill+Forest": ["Tundra","Hill","TundraForest"],
 
+        //Districts - using existing images as placeholders
+        "Grassland+Academy": ["Grassland","Academy"],
+        "Plains+Academy": ["Plains","Academy"],
+        "Tundra+Academy": ["Tundra","Academy"],
+        "Desert+Academy": ["Desert","Academy"],
+        "Hills+Academy": ["Grassland","Hill","Academy"],
+        
+        "Grassland+Holy site": ["Grassland","Holy site"],
+        "Plains+Holy site": ["Plains","Holy site"],
+        "Tundra+Holy site": ["Tundra","Holy site"],
+        "Desert+Holy site": ["Desert","Holy site"],
+        
+        "Grassland+Manufactory": ["Grassland","Manufactory"],
+        "Plains+Manufactory": ["Plains","Manufactory"],
+        "Hills+Manufactory": ["Grassland","Hill","Manufactory"],
+        
+        "Grassland+Landmark": ["Grassland","Landmark"],
+        "Plains+Landmark": ["Plains","Landmark"],
+        "Hills+Landmark": ["Grassland","Hill","Landmark"],
+
         //Snow improvements for Tundra and Snow
             //TODO hill and forest variants + new images for Landmark, etc.
         "Tundra+Barbarian encampment": ["Tundra","Barbarian encampment-Snow"],
@@ -113,4 +133,5 @@
         "Grassland+Sheep+Ancient ruins": ["Grassland","Ancient ruins","Sheep"],
         "Coast+Oil+Oil well": ["Coast","Offshore Platform"]
     }
+}
 }

@@ -91,6 +91,7 @@ class CityDistrictsTable(private val cityScreen: CityScreen) {
     private fun canBuildDistrict(district: District, ruleset: Ruleset, civ: Civilization): Boolean {
         if (city.getDistrictsCount() >= city.getDistrictCapacity()) return false
         if (district.name == "City Center") return false
+        if (district.name in city.districts.values) return false
 
         val requiredTech = district.requiredTech
         if (requiredTech != null && !civ.tech.isResearched(requiredTech)) return false
@@ -118,7 +119,8 @@ class CityDistrictsTable(private val cityScreen: CityScreen) {
         val buildingsInDistrict = city.cityConstructions.getBuiltBuildings()
             .filter { it.district == district.name }
         if (buildingsInDistrict.none())
-            row.add("[${district.name}] (empty)".toLabel().apply { color = BaseScreen.skinStrings.skinConfig.baseColor })
+            row.add(ImageGetter.getConstructionPortrait(district.name, 24f)).size(24f).padRight(3f)
+                .add("[${district.name}] (empty)".toLabel().apply { color = BaseScreen.skinStrings.skinConfig.baseColor })
         else
             for (building in buildingsInDistrict)
                 row.add(ImageGetter.getConstructionPortrait(building.name, 24f)).size(24f).padRight(3f)

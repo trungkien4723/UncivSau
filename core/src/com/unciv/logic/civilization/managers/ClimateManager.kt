@@ -74,6 +74,9 @@ class ClimateManager : IsPartOfGameInfoSerialization {
                         val capital = civInfo.getCapital()
                         if (capital != null && !capital.cityConstructions.getBuiltBuildings().any { it.name == "Flood Barrier" }) {
                             destroyedDistricts.add(districtKey)
+                            val owningCity = tile.getCity()
+                            if (owningCity != null)
+                                owningCity.districts.remove(tile.position)
                             tile.district = null
                         }
                     }

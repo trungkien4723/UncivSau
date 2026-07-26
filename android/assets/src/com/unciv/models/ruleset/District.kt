@@ -28,6 +28,9 @@ class District : RulesetStatsObject() {
     /** Optional terrain/feature filter restricting where the district may be placed. */
     var onlyBuildableOn: String = ""
 
+    /** Optional icon filename for district portrayal. */
+    var icon: String? = null
+
     fun matchesFilter(filter: String): Boolean {
         return filter == name || filter == "all districts"
     }

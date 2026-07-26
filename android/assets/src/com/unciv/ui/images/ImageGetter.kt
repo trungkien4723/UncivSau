@@ -259,6 +259,9 @@ object ImageGetter {
         if (ruleset.units.containsKey(construction)) {
             return PortraitUnit(construction, size)
         }
+        if (ruleset.districts.containsKey(construction)) {
+            return PortraitDistrict(construction, size)
+        }
         if (PerpetualConstruction.perpetualConstructionsMap.containsKey(construction))
             return getImage("OtherIcons/Convert$construction").toGroup(size)
         return getStatIcon(construction).surroundWithCircle(size).surroundWithThinCircle()

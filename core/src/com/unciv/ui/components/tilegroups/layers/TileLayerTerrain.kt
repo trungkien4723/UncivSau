@@ -41,6 +41,36 @@ class TileLayerTerrain(tileGroup: TileGroup, size: Float) : TileLayer(tileGroup,
         return ImageGetter.imageExists(strings.getTile("$shownImprovement-Pillaged"))
     }
 
+    private fun getDistrictImageName(districtName: String): String? {
+        val districtImage = when (districtName) {
+            "Campus" -> "Academy"
+            "Harbor" -> "Harbor"
+            "Theater Square" -> "Theater"
+            "Commercial Hub" -> "Market"
+            "Industrial Zone" -> "Manufactory"
+            "Entertainment Complex" -> "Amphitheater"
+            "Aqueduct" -> "Aqueduct"
+            "Stadium" -> "Stadium"
+            "Colosseum" -> "Colosseum"
+            "Airport" -> "Airport"
+            "Space Port" -> "Space Port"
+            "University" -> "Academy"
+            "Market" -> "Market"
+            "Shopping Center" -> "Shopping"
+            "Museum" -> "Museum"
+            "Bank" -> "Bank"
+            "Water Park" -> "Landmark"
+            "Grand Canal" -> "Landmark"
+            "Lighthouse" -> "Lighthouse"
+            "Seaport" -> "Seaport"
+            "Ruhr" -> "Ruhr"
+            "Power Plant" -> "Manufactory"
+            "Holy Site" -> "Holy site"
+            else -> districtName
+        }
+        return if (ImageGetter.imageExists(strings.getTile(districtImage))) districtImage else null
+    }
+
     private fun getTileBaseImageLocations(viewingCiv: Civilization?): List<String> {
 
         val isForceVisible = tileGroup.isForceVisible
@@ -56,7 +86,11 @@ class TileLayerTerrain(tileGroup: TileGroup, size: Float) : TileLayer(tileGroup,
         val shouldShowResource = UncivGame.Current.settings.showPixelImprovements && tile.resource != null &&
                 (isForceVisible || viewingCiv == null || viewingCiv.canSeeResource(tile.tileResource))
 
-        val resourceAndImprovementSequence = if (!shouldShowResource && !shouldShowImprovement)
+        val shouldShowDistrict = UncivGame.Current.settings.showPixelImprovements && tile.district != null
+
+        val shouldShowDistrictConstructing = UncivGame.Current.settings.showPixelImprovements && tile.districtToCreate != null
+
+        val resourceAndImprovementSequence = if (!shouldShowResource && !shouldShowImprovement && !shouldShowDistrict && !shouldShowDistrictConstructing)
             emptySequence()
         else sequence {
             if (shouldShowResource)  yield(tile.resource!!)
@@ -64,6 +98,19 @@ class TileLayerTerrain(tileGroup: TileGroup, size: Float) : TileLayer(tileGroup,
                 if (usePillagedImprovementImage(tile, viewingCiv))
                     yield("$shownImprovement-Pillaged")
                 else yield(shownImprovement!!)
+            }
+            if (shouldShowDistrict) {
+                val districtImage = getDistrictImageName(tile.district!!)
+                if (districtImage != null) yield(districtImage)
+            }
+            if (shouldShowDistrictConstructing) {
+                val districtImage = getDistrictImageName(tile.districtToCreate!!)
+                val constructingImage = if (districtImage != null) "$districtImage-Construction" else null
+                if (constructingImage != null && ImageGetter.imageExists(strings.getTile(constructingImage))) {
+                    yield(constructingImage)
+                } else if (districtImage != null) {
+                    yield(districtImage)
+                }
             }
         }
 

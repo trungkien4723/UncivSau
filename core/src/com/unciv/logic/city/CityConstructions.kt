@@ -422,6 +422,24 @@ class CityConstructions : IsPartOfGameInfoSerialization {
         }
         chooseNextConstruction()
         validateCreatesOneImprovementMarkers()
+        validateCreatesOneDistrictMarkers()
+    }
+
+    /** Remove orphaned [UniqueType.CreatesOneDistrict] markers whose queue entry was removed elsewhere. */
+    private fun validateCreatesOneDistrictMarkers() {
+        val markedTiles = city.getTiles()
+            .filter { it.districtToCreate != null }
+            .toList()
+        if (markedTiles.isEmpty()) return
+
+        val districtsInQueue = constructionQueue.asSequence()
+            .mapNotNull { getConstruction(it) as? Building }
+            .mapNotNullTo(hashSetOf()) { it.getDistrictToCreate(city.getRuleset())?.name }
+
+        for (tile in markedTiles) {
+            if (tile.districtToCreate !in districtsInQueue)
+                tile.districtToCreate = null
+        }
     }
 
     /** Remove orphaned [UniqueType.CreatesOneImprovement] markers whose queue entry was removed elsewhere. */
@@ -888,6 +906,7 @@ class CityConstructions : IsPartOfGameInfoSerialization {
             && tile.district == null
             && tile.districtToCreate == null
             && city.getDistrictsCount() < city.getDistrictCapacity()
+            && district.name !in city.districts.values
             && (techRequired == null || city.civ.tech.isResearched(techRequired))
             && (civicRequired == null || city.civ.civics.isResearched(civicRequired))
             && (district.onlyBuildableOn.isEmpty() || tile.matchesFilter(district.onlyBuildableOn, city.civ))
@@ -918,8 +937,8 @@ class CityConstructions : IsPartOfGameInfoSerialization {
     fun tryPlaceCreateOneDistrictMarker(district: District, tile: Tile): Boolean {
         if (tile.getCity() == city && tile.districtToCreate == district.name)
             return true
-        if (district.name !in city.districts.values && city.districts.values.count { it == district.name } >= 1)
-            return false // one of each district type per city
+        if (district.name in city.districts.values)
+            return false
         if (!canPlaceCreateOneDistrictOn(district, tile))
             return false
         tile.districtToCreate = district.name
@@ -1122,7 +1141,9 @@ class CityConstructions : IsPartOfGameInfoSerialization {
      */
     private fun applyCreateOneDistrict(building: Building, removeOnly: Boolean = false) {
         val district = building.getDistrictToCreate(city.getRuleset()) ?: return
-        val tileForDistrict = getTileForDistrict(district.name) ?: return
+        val tileForDistrict = getTileForDistrict(district.name)
+            ?: Automation.getTileForDistrict(city, district)
+            ?: return
         tileForDistrict.districtToCreate = null
         if (removeOnly) return
         city.districts[tileForDistrict.position] = district.name
