@@ -67,6 +67,10 @@ class Tile : IsPartOfGameInfoSerialization {
 
     /** Whether the [district] on this tile has been pillaged (loses its yields until repaired). */
     var districtIsPillaged = false
+
+    /** Map Pin label for player planning (Civ VI style). Non-null means a pin exists on this tile. */
+    var mapPin: String? = null
+
     internal class ImprovementQueueEntry(
         val improvement: String, turnsToImprovement: Int
     ) : IsPartOfGameInfoSerialization {
@@ -264,6 +268,7 @@ class Tile : IsPartOfGameInfoSerialization {
         toReturn.hasBottomRiver = hasBottomRiver
         toReturn.continent = continent
         toReturn.exploredBy = exploredBy
+        toReturn.mapPin = mapPin
         toReturn.history = history.clone()
         // Setting even though it's transient - where it's needed, it's a real performance saver
         toReturn.tileResourceCache = tileResourceCache

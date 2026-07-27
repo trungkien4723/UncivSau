@@ -4,7 +4,17 @@ import com.unciv.logic.IsPartOfGameInfoSerialization
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.models.Counter
+import com.unciv.models.ruleset.unique.UniqueType
 import yairm210.purity.annotations.Readonly
+
+/** Represents a single World Congress session: a set of resolutions to vote on */
+class WorldCongressSession : IsPartOfGameInfoSerialization {
+    var proposals = mutableListOf<String>()
+    var resolutionVotes = HashMap<String, Counter<String>>() // resolution -> (civID -> favorSpent)
+    var resolutionOutcomes = mutableMapOf<String, Boolean>() // resolution -> passed?
+    var isDiplomaticVictorySession = false
+    var sessionNumber = 0
+}
 
 class WorldCongressManager : IsPartOfGameInfoSerialization {
     @Transient
@@ -14,7 +24,11 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
         this.civInfo = civInfo
     }
 
-    var diplomaticFavor = 0
+    // Use Civilization's diplomaticFavor instead of local field
+    val diplomaticFavor: Int
+        get() = civInfo.diplomaticFavor
+        set(value) { civInfo.diplomaticFavor = value }
+
     var votesCast = HashMap<String, String?>()
     var activeResolutions = mutableSetOf<String>()
     var activeEmergencies = mutableSetOf<String>()
@@ -22,8 +36,21 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
     var congressSession = 0
     var hasDiplomaticVictory = false
 
+    /** Current session being voted on (set globally when congress is in session) */
+    var currentSession: WorldCongressSession? = null
+
     companion object {
         const val DIPLOMATIC_VICTORY_THRESHOLD = 300
+        const val FAVOR_COST_PER_VOTE = 10
+
+        val AVAILABLE_RESOLUTIONS = listOf(
+            "World Religion",
+            "Global Ban on Nuclear Weapons",
+            "Global Trade Agreements",
+            "International Space Station",
+            "Universal Human Rights",
+            "City of a Thousand Domes"
+        )
     }
 
     fun clone(): WorldCongressManager {
@@ -35,6 +62,7 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
         toReturn.emergencyDataList.addAll(emergencyDataList.map { it.copy() })
         toReturn.congressSession = congressSession
         toReturn.hasDiplomaticVictory = hasDiplomaticVictory
+        toReturn.currentSession = currentSession
         return toReturn
     }
 
@@ -62,43 +90,95 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
 
     fun startCongressSession() {
         congressSession++
+        val session = WorldCongressSession()
+        session.sessionNumber = congressSession
+        session.isDiplomaticVictorySession = (congressSession % 3 == 0)
+
+        // Pick 2 random resolutions for this session
+        val chosen = AVAILABLE_RESOLUTIONS.shuffled().take(2)
+        session.proposals.addAll(chosen)
+
+        currentSession = session
         votesCast.clear()
     }
 
-    fun endCongressSession() {
-        resolveResolutions()
+    fun endCongressSession(): WorldCongressSession? {
+        val session = currentSession ?: return null
+        resolveResolutions(session)
+        currentSession = null
+        return session
+    }
+
+    private fun resolveResolutions(session: WorldCongressSession) {
+        for (proposal in session.proposals) {
+            val votes = session.resolutionVotes[proposal] ?: Counter()
+            val forVotes = votes.values.sum()
+            val againstVotes = votes.values.filter { it < 0 }.sum().let { -it }
+            val passed = forVotes > againstVotes && forVotes > 0
+            session.resolutionOutcomes[proposal] = passed
+
+            if (passed) {
+                applyResolutionEffects(proposal)
+                for (civ in civInfo.gameInfo.civilizations) {
+                    if (!civ.isDefeated() && !civ.isBarbarian)
+                        civ.addNotification("[${proposal}] has been passed by the World Congress!",
+                            NotificationCategory.Diplomacy)
+                }
+            } else {
+                for (civ in civInfo.gameInfo.civilizations) {
+                    if (!civ.isDefeated() && !civ.isBarbarian)
+                        civ.addNotification("[${proposal}] has been rejected by the World Congress.",
+                            NotificationCategory.Diplomacy)
+                }
+            }
+        }
+
+        // Award favor to all participants
+        val voters = session.resolutionVotes.flatMap { it.value.keys }.toSet()
+        for (civId in voters) {
+            val civ = civInfo.gameInfo.getCivilization(civId)
+            if (civ != null) {
+                civ.worldCongress.addDiplomaticFavor(5)
+            }
+        }
+    }
+
+    /** AI auto-votes on all active resolutions in the current session */
+    fun aiAutoVote() {
+        val session = currentSession ?: return
+        if (civInfo.isDefeated() || civInfo.isBarbarian || civInfo.isSpectator()) return
+
+        for (proposal in session.proposals) {
+            // AI votes For if it likes the resolution, Against otherwise
+            // Simple heuristic: always vote For if we can afford it
+            if (diplomaticFavor >= FAVOR_COST_PER_VOTE) {
+                voteOnResolution(civInfo, proposal, FAVOR_COST_PER_VOTE, support = true)
+            }
+        }
+    }
+
+    fun voteOnResolution(voter: Civilization, resolution: String, favorAmount: Int, support: Boolean) {
+        if (favorAmount <= 0) return
+        if (!spendDiplomaticFavor(favorAmount)) return
+        val session = currentSession ?: return
+        if (resolution !in session.proposals) return
+
+        val voteMap = session.resolutionVotes.getOrPut(resolution) { Counter() }
+        val signedAmount = if (support) favorAmount else -favorAmount
+        voteMap.add(voter.civID, signedAmount)
     }
 
     fun processEmergenciesEachTurn() {
         val currentTurn = civInfo.gameInfo.turns
-
-        // Check for new emergency triggers
         checkEmergencyTriggers(currentTurn)
 
-        // Process active emergencies
         for (emergencyData in emergencyDataList.toList()) {
             if (emergencyData.isResolved) continue
-
             val turnsActive = currentTurn - emergencyData.triggerTurn
             if (turnsActive >= emergencyData.duration) {
                 resolveSingleEmergency(emergencyData)
             }
         }
-    }
-
-    private fun resolveResolutions() {
-        for (resolution in activeResolutions.toList()) {
-            if (shouldResolutionPass(resolution)) {
-                applyResolutionEffects(resolution)
-            }
-            activeResolutions.remove(resolution)
-        }
-    }
-
-    private fun shouldResolutionPass(resolution: String): Boolean {
-        val target = votesCast.values.count { it == "Pass" }
-        val oppose = votesCast.values.count { it == "Oppose" }
-        return target > oppose
     }
 
     private fun applyResolutionEffects(resolution: String) {
@@ -109,9 +189,7 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
                 }
             }
             "Global Ban on Nuclear Weapons" -> {
-                for (civ in civInfo.gameInfo.civilizations) {
-                    civ.gameInfo.gameParameters.nuclearWeaponsEnabled = false
-                }
+                civInfo.gameInfo.gameParameters.nuclearWeaponsEnabled = false
             }
             "Global Trade Agreements" -> {
                 for (civ in civInfo.gameInfo.civilizations) {
@@ -138,13 +216,11 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
 
     private fun checkEmergencyTriggers(currentTurn: Int) {
         if (emergencyDataList.any { !it.isResolved }) return
-
         val aliveMajorCivs = civInfo.gameInfo.civilizations.filter { it.isMajorCiv() && !it.isDefeated() }
         if (aliveMajorCivs.size < 3) return
 
         for (civ in aliveMajorCivs) {
             if (civ == civInfo) continue
-
             val recentCaptures = civ.cities.count { city ->
                 city.foundingCivObject != null && city.foundingCivObject != civ
                         && city.foundingCivObject != civInfo
@@ -160,7 +236,6 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
                 )
                 emergencyDataList.add(emergency)
                 activeEmergencies.add("Military_${civ.civID}")
-
                 for (participant in participants) {
                     participant.addNotification("A Military Emergency has been declared against [${civ.civName}]! Join the war to earn rewards!",
                         NotificationCategory.Diplomacy, civ.civName)
@@ -202,12 +277,10 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
     private fun resolveSingleEmergency(emergencyData: EmergencyData) {
         emergencyData.isResolved = true
         activeEmergencies.remove("${emergencyData.type}_${emergencyData.targetCivId}")
-
         val targetCiv = civInfo.gameInfo.getCivilization(emergencyData.targetCivId) ?: return
 
         when (emergencyData.type) {
             EmergencyType.Military -> {
-                // Participants who went to war with target get rewards
                 for (participantId in emergencyData.participantCivIds) {
                     val participant = civInfo.gameInfo.getCivilization(participantId)
                     if (participant.isAtWarWith(targetCiv)) {
@@ -266,18 +339,14 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
             EmergencyType.Climate -> {
                 for (participantId in emergencyData.participantCivIds) {
                     val participant = civInfo.gameInfo.getCivilization(participantId)
-                    val co2Reduced = 50
-                    participant.climateManager.addCO2(-co2Reduced)
-                    val reward = 20
-                    participant.worldCongress.addDiplomaticFavor(reward)
-                    participant.addNotification("Climate Emergency resolved! You helped reduce CO2 and earned [$reward] Diplomatic Favor!",
+                    participant.worldCongress.addDiplomaticFavor(20)
+                    participant.addNotification("Climate Emergency resolved! You earned [20] Diplomatic Favor!",
                         NotificationCategory.Diplomacy)
                 }
             }
         }
     }
 
-    /** Called when a civ uses a nuclear weapon */
     fun triggerNuclearEmergency(attackerCiv: Civilization) {
         if (emergencyDataList.any { it.type == EmergencyType.Nuclear && !it.isResolved }) return
         val participants = civInfo.gameInfo.civilizations.filter {
@@ -299,7 +368,6 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
         }
     }
 
-    /** Called when a major natural disaster occurs */
     fun triggerAidRequestEmergency(targetCiv: Civilization) {
         if (emergencyDataList.any { it.type == EmergencyType.AidRequest && !it.isResolved }) return
         val participants = civInfo.gameInfo.civilizations.filter {
@@ -388,7 +456,6 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
     }
 
     fun getResolutionsCount(): Int = activeResolutions.size
-
     fun getEmergenciesCount(): Int = activeEmergencies.size
 
     fun canProposeResolution(resolution: String): Boolean {
@@ -404,6 +471,49 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
     }
 
     fun isEmergencyActive(emergency: String): Boolean = activeEmergencies.contains(emergency)
-
     fun isResolutionActive(resolution: String): Boolean = activeResolutions.contains(resolution)
+
+    /** Get the current session's proposals for a player's pick screen */
+    @Readonly
+    fun getCurrentProposals(): List<String> = currentSession?.proposals?.toList() ?: emptyList()
+
+    /** Check if this civ has voted on all resolutions in the current session */
+    @Readonly
+    fun hasVotedOnAllResolutions(): Boolean {
+        val session = currentSession ?: return true
+        if (session.proposals.isEmpty()) return true
+        return session.proposals.all { proposal ->
+            val votes = session.resolutionVotes[proposal] ?: return@all false
+            civInfo.civID in votes
+        }
+    }
+
+    /** Check if all major civs have voted */
+    @Readonly
+    fun allMajorCivsHaveVoted(): Boolean {
+        val session = currentSession ?: return true
+        val majorCivs = civInfo.gameInfo.civilizations.filter { it.isMajorCiv() && !it.isDefeated() }
+        return majorCivs.all { civ ->
+            session.proposals.all { proposal ->
+                val votes = session.resolutionVotes[proposal]
+                votes != null && civ.civID in votes
+            }
+        }
+    }
+
+    fun getFavorForResolution(resolution: String): Int {
+        val votes = currentSession?.resolutionVotes?.get(resolution) ?: return 0
+        return votes.values.sum()
+    }
+
+    fun getFavorForAgainst(resolution: String): Pair<Int, Int> {
+        val votes = currentSession?.resolutionVotes?.get(resolution) ?: return 0 to 0
+        var forFavor = 0
+        var againstFavor = 0
+        for ((_, amount) in votes) {
+            if (amount > 0) forFavor += amount
+            else againstFavor += -amount
+        }
+        return forFavor to againstFavor
+    }
 }

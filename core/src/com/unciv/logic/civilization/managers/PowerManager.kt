@@ -33,6 +33,7 @@ class PowerManager : IsPartOfGameInfoSerialization {
     fun calculatePower() {
         powerProduction = 0
         powerConsumption = 0
+        totalCO2 = 0 // Reset and recalculate CO2
         for (city in civInfo.cities) {
             for (building in city.cityConstructions.getBuiltBuildings()) {
                 for (unique in building.uniqueObjects) {
@@ -40,6 +41,8 @@ class PowerManager : IsPartOfGameInfoSerialization {
                         powerProduction += unique.params[1].toInt()
                     } else if (unique.type == UniqueType.PowerConsumption) {
                         powerConsumption += unique.params[1].toInt()
+                    } else if (unique.type == UniqueType.CO2Emission) {
+                        totalCO2 += unique.params[1].toInt()
                     }
                 }
             }

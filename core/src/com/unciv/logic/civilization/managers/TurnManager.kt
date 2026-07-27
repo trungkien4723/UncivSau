@@ -6,6 +6,7 @@ import com.unciv.logic.automation.civilization.NextTurnAutomation
 import com.unciv.logic.city.managers.CityTurnManager
 import com.unciv.logic.civilization.*
 import com.unciv.logic.civilization.diplomacy.DiplomacyTurnManager.nextTurn
+import com.unciv.logic.civilization.diplomacy.DiplomaticStatus
 import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.mapunit.UnitTurnManager
 import com.unciv.logic.map.tile.Tile
@@ -44,6 +45,26 @@ class TurnManager(val civInfo: Civilization) {
         civInfo.attacksSinceTurnStart.clear()
         civInfo.updateStatsForNextTurn() // for things that change when turn passes e.g. golden age, city state influence
         civInfo.powerManager.calculatePower() // Update power production/consumption
+        civInfo.climateManager.updateClimate() // Update climate/sea level
+        civInfo.secretSocietyManager.onTurnEnd() // Secret society XP
+        civInfo.disasterManager.calculatePower() // Disaster effects
+
+        // Generate Diplomatic Favor per turn
+        // Base: +1 per turn
+        civInfo.addDiplomaticFavor(1)
+        // +1 per Alliance
+        val alliances = civInfo.diplomacy.values.count { it.diplomaticStatus == DiplomaticStatus.Alliance && !it.otherCiv.isDefeated() }
+        civInfo.addDiplomaticFavor(alliances)
+        // +1 per City-State Suzerainty
+        val suzerainties = civInfo.diplomacy.values.count { it.otherCiv.isCityState && it.diplomaticStatus == DiplomaticStatus.Suzerain }
+        civInfo.addDiplomaticFavor(suzerainties)
+        // +1 per Government Plaza building (Audience Chamber, Foreign Ministry, etc.)
+        val govPlazaBuildings = civInfo.cities.sumOf { city ->
+            city.cityConstructions.getBuiltBuildings().count { building ->
+                building.district == "Government Plaza" && building.uniques.any { it == "[1] Governor Title" }
+            }
+        }
+        civInfo.addDiplomaticFavor(govPlazaBuildings)
 
         // Do this after updateStatsForNextTurn but before cities.startTurn
         if (civInfo.playerType == PlayerType.AI && civInfo.gameInfo.ruleset.modOptions.hasUnique(UniqueType.ConvertGoldToScience))
@@ -142,13 +163,18 @@ class TurnManager(val civInfo: Civilization) {
     }
 
     private fun handleDiplomaticVictoryFlags() {
+        // Phase 1: Reset - clean up after a completed voting cycle
         if (civInfo.flagsCountdown[CivFlags.ShouldResetDiplomaticVotes.name] == 0) {
+            val session = civInfo.worldCongress.endCongressSession()
             civInfo.gameInfo.diplomaticVictoryVotesCast.clear()
             civInfo.removeFlag(CivFlags.ShowDiplomaticVotingResults.name)
             civInfo.removeFlag(CivFlags.ShouldResetDiplomaticVotes.name)
+            civInfo.removeFlag(CivFlags.ShouldShowWorldCongress.name)
         }
 
-        if (civInfo.flagsCountdown[CivFlags.ShowDiplomaticVotingResults.name] == 0) {
+        // Phase 2: Results - show results after voting is done
+        if (civInfo.flagsCountdown[CivFlags.ShowDiplomaticVotingResults.name] == 0
+            && civInfo.worldCongress.currentSession == null) {
             civInfo.gameInfo.processDiplomaticVictory()
             if (civInfo.gameInfo.civilizations.any { it.victoryManager.hasWon() } ) {
                 civInfo.removeFlag(CivFlags.TurnsTillNextDiplomaticVote.name)
@@ -158,8 +184,18 @@ class TurnManager(val civInfo: Civilization) {
             }
         }
 
-        if (civInfo.flagsCountdown[CivFlags.TurnsTillNextDiplomaticVote.name] == 0) {
-            civInfo.addFlag(CivFlags.ShowDiplomaticVotingResults.name, 1)
+        // Phase 3: Start a new session - only if no session is currently active
+        if (civInfo.worldCongress.currentSession == null
+            && civInfo.flagsCountdown[CivFlags.TurnsTillNextDiplomaticVote.name] == 0) {
+            civInfo.worldCongress.startCongressSession()
+            if (!civInfo.isHuman()) {
+                // AI auto-votes immediately
+                civInfo.worldCongress.aiAutoVote()
+                civInfo.addFlag(CivFlags.ShowDiplomaticVotingResults.name, 1)
+            } else {
+                // Human player: show the World Congress screen
+                civInfo.addFlag(CivFlags.ShouldShowWorldCongress.name, 1)
+            }
         }
     }
 
@@ -347,8 +383,34 @@ class TurnManager(val civInfo: Civilization) {
         civInfo.worldCongress.processEmergenciesEachTurn()
 
         civInfo.goldenAges.endTurn()
+        civInfo.climateManager.updateClimate()
+        civInfo.secretSocietyManager.onTurnEnd()
+        civInfo.powerManager.calculatePower()
+        
+        // Check for climate phase change and notify
+        val climatePhase = civInfo.climateManager.getClimatePhase()
+        val previousPhase = civInfo.getTemporaryUnique("lastClimatePhase") ?: ""
+        if (climatePhase.name != previousPhase) {
+            if (previousPhase != "") {
+                civInfo.addNotification("The climate has changed! We are now in ${civInfo.climateManager.getPhaseDescription()}",
+                    NotificationCategory.General, "StatIcons/ClimateChange")
+            }
+            civInfo.setTemporaryUnique("lastClimatePhase", climatePhase.name)
+        }
         civInfo.units.getCivUnits().forEach { UnitTurnManager(it).endTurn() }  // This is the most expensive part of endTurn
         civInfo.diplomacy.values.toList().forEach { it.nextTurn() } // we copy the diplomacy values so if it changes in-loop we won't crash
+
+        // War Weariness (Civ VI style): increases by number of active wars per turn, decreases by 1 when at peace
+        if (civInfo.isAtWar()) {
+            val activeWars = civInfo.diplomacy.values.count { it.diplomaticStatus == DiplomaticStatus.War && !it.otherCiv.isDefeated() }
+            civInfo.warWeariness += activeWars
+        } else {
+            civInfo.warWeariness = max(0, civInfo.warWeariness - 1)
+        }
+        if (civInfo.warWeariness > 0 && civInfo.warWeariness % 10 == 1) {
+            civInfo.addNotification("War weariness has reached [${civInfo.warWeariness}]", NotificationCategory.General, NotificationIcon.WarWeariness)
+        }
+
         civInfo.cache.updateHasActiveEnemyMovementPenalty()
 
         civInfo.resetMilitaryMightCache()

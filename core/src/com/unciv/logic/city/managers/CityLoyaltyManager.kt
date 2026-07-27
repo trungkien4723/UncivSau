@@ -101,6 +101,16 @@ class CityLoyaltyManager : IsPartOfGameInfoSerialization {
             pressure -= maxEnemy.coerceAtMost(8)
         }
 
+        // Climate phase penalty - higher climate phases reduce loyalty
+        val climatePhase = civ.climateManager.getClimatePhase()
+        when (climatePhase) {
+            com.unciv.logic.civilization.managers.ClimatePhase.PHASE_I -> pressure -= 1
+            com.unciv.logic.civilization.managers.ClimatePhase.PHASE_II -> pressure -= 2
+            com.unciv.logic.civilization.managers.ClimatePhase.PHASE_III -> pressure -= 3
+            com.unciv.logic.civilization.managers.ClimatePhase.PHASE_IV -> pressure -= 5
+            else -> {}
+        }
+
         return pressure
     }
 

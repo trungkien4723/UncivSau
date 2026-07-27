@@ -154,7 +154,13 @@
         "cost": 30,
         "requiredCivic": "State Workforce",
         "uniques": [
-            "[+1 Production] [in this city]"
+            "[+1 Production] [in this city]",
+            "[+1 Production] for each adjacent [District]",
+            "[+1 Science] for each adjacent [District]",
+            "[+1 Culture] for each adjacent [District]",
+            "[+1 Faith] for each adjacent [District]",
+            "[+1 Gold] for each adjacent [District]",
+            "[+2 Amenities] [in this city]"
         ]
     },
     {

@@ -132,6 +132,7 @@ object UnitActionsGreatPerson {
             unit.isGreatPersonOfType("Writer") -> GreatWorkType.Writing
             unit.isGreatPersonOfType("Artist") -> GreatWorkType.Art
             unit.isGreatPersonOfType("Musician") -> GreatWorkType.Music
+            unit.isGreatPersonOfType("Archaeologist") -> GreatWorkType.Artifact
             else -> null
         }
     }

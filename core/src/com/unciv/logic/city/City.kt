@@ -429,6 +429,10 @@ class City : IsPartOfGameInfoSerialization, INamed {
             .filter { it.params[1] == "Air" }
             .sumOf { it.params[0].toInt() }
 
+    /** Gets max air units that can be stationed on an Aerodrome district tile in this city */
+    @Readonly fun getMaxAirUnitsForAerodrome(): Int =
+        getMatchingUniques(UniqueType.AirUnitCapacity).sumOf { it.params[0].toInt() }
+
     override fun toString() = name // for debug
 
     @Readonly fun isHolyCity(): Boolean = religion.religionThisIsTheHolyCityOf != null && !religion.isBlockedHolyCity

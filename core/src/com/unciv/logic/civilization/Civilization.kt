@@ -131,8 +131,32 @@ class Civilization : IsPartOfGameInfoSerialization {
     var gold = 0
         private set
 
+    /** Civ VI: Diplomatic Favor — used in World Congress voting. */
+    var diplomaticFavor = 0
+        private set
+
+    /** Add Diplomatic Favor */
+    fun addDiplomaticFavor(amount: Int) {
+        diplomaticFavor += amount
+        cache.updateCivResources()
+    }
+
+    /** Civ VI: Governor XP — used for governor promotions. */
+    var governorXP = 0
+        private set
+
+    /** Add Governor XP */
+    fun addGovernorXP(amount: Int) {
+        governorXP += amount
+        cache.updateCivResources()
+    }
+
     /** Accumulated Tourism for Cultural Victory (Civ VI style) */
     var storedTourism = 0
+
+    /** War Weariness (Civ VI style) — increases during wartime, decreases during peace.
+     *  Causes unhappiness equivalent to a negative amenities effect. */
+    var warWeariness = 0
 
     /** The Civ's name
      *
@@ -165,6 +189,7 @@ class Civilization : IsPartOfGameInfoSerialization {
     var powerManager = PowerManager()
     var climateManager = ClimateManager()
     var disasterManager = DisasterManager()
+    var secretSocietyManager = SecretSocietyManager()
     var worldCongress = WorldCongressManager()
     var gameModes = GameModesManager()
     var diplomacy = HashMap<String, DiplomacyManager>()
@@ -303,6 +328,8 @@ class Civilization : IsPartOfGameInfoSerialization {
     fun clone(): Civilization {
         val toReturn = Civilization()
         toReturn.gold = gold
+        toReturn.diplomaticFavor = diplomaticFavor
+        toReturn.governorXP = governorXP
         toReturn.storedTourism = storedTourism
         toReturn.playerType = playerType
         toReturn.playerId = playerId
@@ -326,6 +353,7 @@ class Civilization : IsPartOfGameInfoSerialization {
         toReturn.powerManager = powerManager.clone()
         toReturn.climateManager = climateManager.clone()
         toReturn.disasterManager = disasterManager.clone()
+        toReturn.secretSocietyManager = secretSocietyManager.clone()
         toReturn.worldCongress = worldCongress.clone()
         toReturn.gameModes = gameModes.clone()
         toReturn.allyCivName = allyCivName
@@ -506,6 +534,8 @@ class Civilization : IsPartOfGameInfoSerialization {
         for (city in cities) {
             totalAmenities += city.cityStats.amenitiesList["Total"] ?: 0f
         }
+        // War Weariness causes unhappiness (Civ VI style)
+        if (warWeariness > 0) totalAmenities -= warWeariness / 15f
         return totalAmenities
     }
     
@@ -1021,6 +1051,7 @@ class Civilization : IsPartOfGameInfoSerialization {
         ruinsManager.setTransients(this)
         espionageManager.setTransients(this)
         governorManager.setTransients(this)
+        secretSocietyManager.setTransients(this)
         worldCongress.setTransients(this)
         victoryManager.civInfo = this
         powerManager.civInfo = this
@@ -1077,6 +1108,27 @@ class Civilization : IsPartOfGameInfoSerialization {
          flagsCountdown[CivFlags.ShowDiplomaticVotingResults.name] == 0
          && gameInfo.civilizations.any { it.isMajorCiv() && !it.isDefeated() && it != this }
 
+    /** Check if the World Congress screen should be shown this turn */
+    @Readonly
+    fun shouldShowWorldCongressScreen(): Boolean {
+        if (isDefeated() || isBarbarian || isSpectator()) return false
+        return flagsCountdown[CivFlags.ShouldShowWorldCongress.name] == 0
+    }
+
+    /** Record a resolution vote for World Congress */
+    fun worldCongressVoteOnResolution(resolution: String, favorAmount: Int, support: Boolean) {
+        worldCongress.voteOnResolution(this, resolution, favorAmount, support)
+    }
+
+    /** Check if this civ can vote in the current World Congress session */
+    @Readonly
+    fun canVoteInWorldCongress(): Boolean {
+        return worldCongress.currentSession != null
+                && !isDefeated()
+                && !isBarbarian
+                && !isSpectator()
+                && worldCongress.diplomaticFavor >= WorldCongressManager.FAVOR_COST_PER_VOTE
+    }
 
     /** Modify gold by a given amount making sure it does neither overflow nor underflow.
      * @param delta the amount to add (can be negative)
@@ -1087,6 +1139,15 @@ class Civilization : IsPartOfGameInfoSerialization {
             delta > 0 && gold > Int.MAX_VALUE - delta -> Int.MAX_VALUE
             delta < 0 && gold < Int.MIN_VALUE - delta -> Int.MIN_VALUE
             else -> gold + delta
+        }
+    }
+
+    /** Modify diplomatic favor by a given amount */
+    fun addDiplomaticFavor(delta: Int) {
+        diplomaticFavor = when {
+            delta > 0 && diplomaticFavor > Int.MAX_VALUE - delta -> Int.MAX_VALUE
+            delta < 0 && diplomaticFavor < Int.MIN_VALUE - delta -> Int.MIN_VALUE
+            else -> diplomaticFavor + delta
         }
     }
 
@@ -1112,6 +1173,8 @@ class Civilization : IsPartOfGameInfoSerialization {
             Stat.Faith -> { religionManager.storedFaith += amount
                             if(amount > 0) totalFaithForContests += amount }
             Stat.Tourism -> storedTourism += amount
+            Stat.DiplomaticFavor -> addDiplomaticFavor(amount)
+            Stat.GovernorXP -> addGovernorXP(amount)
             else -> {}
             // Food and Production wouldn't make sense to be added nationwide
             // Happiness cannot be added as it is recalculated again, use a unique instead
@@ -1128,6 +1191,8 @@ class Civilization : IsPartOfGameInfoSerialization {
             Stat.Faith -> { religionManager.storedFaith += amount
                 if (amount > 0) totalFaithForContests += amount }
             Stat.Tourism -> storedTourism += amount
+            Stat.DiplomaticFavor -> addDiplomaticFavor(amount)
+            Stat.GovernorXP -> addGovernorXP(amount)
             SubStat.GoldenAgePoints -> goldenAges.addEraPoints(amount)
             else -> {}
             // Food and Production wouldn't make sense to be added nationwide
@@ -1141,6 +1206,7 @@ class Civilization : IsPartOfGameInfoSerialization {
             is TileResource -> getResourceAmount(gameResource)
             is Stat -> getStatReserve(gameResource)
             SubStat.GoldenAgePoints -> goldenAges.storedEraPoints
+            SubStat.GovernorXP -> governorXP
             else -> throw Exception("Unrecognized gameResource ${gameResource.name}")
         }
     }
@@ -1161,7 +1227,9 @@ class Civilization : IsPartOfGameInfoSerialization {
             Stat.Gold -> gold
             Stat.Faith -> religionManager.storedFaith
             Stat.Tourism -> storedTourism
-            else -> 0
+            Stat.DiplomaticFavor -> diplomaticFavor
+            Stat.GovernorXP -> governorXP
+            else -> throw Exception("Unrecognized stat ${stat.name}")
         }
     }
 
@@ -1387,4 +1455,6 @@ enum class CivFlags {
     RecentlyBullied,
     TurnsTillCallForBarbHelp,
     RevoltSpawning,
+    WorldCongressInSession,
+    ShouldShowWorldCongress,
 }

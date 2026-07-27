@@ -182,6 +182,10 @@ class CityConquestFunctions(val city: City) {
         oldCiv.getDiplomacyManager(conqueringCiv)!!
                 .addModifier(DiplomaticModifiers.CapturedOurCities, -aggroGenerated)
 
+        // Civ VI Grievances: extra grievances for capturing the original capital
+        if (city.isOriginalCapital)
+            oldCiv.getDiplomacyManager(conqueringCiv)!!.addGrievances((aggroGenerated * 2).toInt())
+
         for (thirdPartyCiv in conqueringCiv.getKnownCivs().filter { it.isMajorCiv() }) {
             val aggroGeneratedForOtherCivs = (aggroGenerated / 10).roundToInt().toFloat()
             if (thirdPartyCiv.isAtWarWith(oldCiv)) // Shared Enemies should like us more

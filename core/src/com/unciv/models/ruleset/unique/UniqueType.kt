@@ -732,6 +732,11 @@ enum class UniqueType(
         docDescription = "This is offered as an alternative to the improvedBy field of a resource." +
             " The result will be cached within the resource definition when loading a game, without knowledge about terrain, cities, civs, units or time." +
             " Therefore, most conditionals will not work, only those **not** dependent on game state."),
+    CanConnectToAnotherTile("Can connect to another tile", UniqueTarget.Improvement),
+    IgnoresTerrainCostsOnTile("Units ignore terrain costs when moving in or out of this tile", UniqueTarget.Improvement),
+    NationalPark("National Park", UniqueTarget.Improvement),
+    Airlift("Allows airlifting units between cities", UniqueTarget.Building),
+    AirUnitCapacity("Air unit capacity: [amount]", UniqueTarget.Building),
     //endregion
 
     /////////////////////////////////// region 07 PERSONALITY UNIQUES ////////////////////////////////////////
@@ -899,6 +904,8 @@ enum class UniqueType(
     OneTimeEnterGoldenAge("Empire enters golden age", UniqueTarget.Triggerable),  // used in Policies, Buildings
     OneTimeEnterGoldenAgeTurns("Empire enters a [positiveAmount]-turn Golden Age", UniqueTarget.Triggerable),
     EraScore("[amount] Era Score", UniqueTarget.Global),  // Civ VI Historic Moments - gained on completion of the object
+    AwardsGovernorTitle("[amount] Governor Title", UniqueTarget.Building),  // Civ VI - Government Plaza buildings grant governor titles
+    GovernorXP("[amount] Governor XP", UniqueTarget.Building, UniqueTarget.Policy),  // Civ VI - grants XP to appointed governors
     OneTimeGainEraScore("Gain [amount] Era Score", UniqueTarget.Triggerable),  // Civ VI - triggerable Era Score gain
     OneTimeFreeGreatPerson("Free Great Person", UniqueTarget.Triggerable),  // used in Policies, Buildings
     OneTimeGainPopulation("[amount] population [cityFilter]", UniqueTarget.Triggerable),  // used in CN tower
@@ -1027,6 +1034,12 @@ enum class UniqueType(
     TriggerUponFoundingReligion("upon founding a Religion", UniqueTarget.TriggerCondition),
     TriggerUponEnhancingReligion("upon enhancing a Religion", UniqueTarget.TriggerCondition),
 
+    TriggerUponEnteringClimatePhase("upon entering climate [climatePhase]", UniqueTarget.TriggerCondition),
+    TriggerUponClimatePhaseChange("upon climate phase change", UniqueTarget.TriggerCondition),
+    TriggerUponNaturalDisaster("upon natural disaster [disasterType]", UniqueTarget.TriggerCondition),
+    TriggerUponJoiningSecretSociety("upon joining [secretSociety]", UniqueTarget.TriggerCondition),
+    TriggerUponSocietyRankUp("upon reaching [societyRank] in [secretSociety]", UniqueTarget.TriggerCondition),
+
     //endregion
 
 
@@ -1120,6 +1133,10 @@ enum class UniqueType(
     CorporationAction("[corporation] action available", UniqueTarget.Global),
     MonopolyAction("[resource] monopoly action available", UniqueTarget.Global),
     SecretSocietyGain("[society] society member", UniqueTarget.Global),
+    SecretSocietyRank("[rank] rank in [society] society", UniqueTarget.Global),
+    SecretSocietyXP("[amount] XP for [society] society", UniqueTarget.Global),
+    SecretSocietyJoin("Join [society] society", UniqueTarget.Triggerable),
+    SecretSocietyRankUp("Rank up in [society] society", UniqueTarget.Triggerable),
     Zombie("[zombie] unit", UniqueTarget.Global),
     Apocalypse("[disaster] apocalypse", UniqueTarget.Global),
     RockBandPerform("[rock] action", UniqueTarget.Unit),
@@ -1138,6 +1155,8 @@ enum class UniqueType(
         docDescription = "Buildings that produce electricity (Wind Farm, Solar Plant, Power Plant)."),
     ClimateChange("CO2: [positiveAmount]", UniqueTarget.Global,
         docDescription = "Accumulated CO2 contributes to Climate Change. Triggers sea level rise at certain thresholds."),
+    CO2Emission("[positiveAmount] CO2 per turn", UniqueTarget.Building,
+        docDescription = "Buildings that emit CO2 per turn (Coal Power Plant, Oil Power Plant). Contributes to Climate Change."),
     NaturalDisaster("[disasterType]", UniqueTarget.Global,
         docDescription = "Natural disasters can pillage/improve tiles and districts. Types: Flood, Volcano, Storm, Drought."),
 

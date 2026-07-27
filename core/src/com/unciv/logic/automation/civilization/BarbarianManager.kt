@@ -172,6 +172,9 @@ class BarbarianManager : IsPartOfGameInfoSerialization {
         newCamp.gameInfo = gameInfo
         if (gameInfo.getBarbarianCivilization().gameModes.isBarbarianClans) {
             newCamp.clansConversionTurns = 30 + rng.nextInt(20)
+            // Assign a random clan type matching city-state types
+            val clanTypes = listOf("Scientific", "Cultured", "Maritime", "Mercantile", "Militaristic", "Religious")
+            newCamp.clanType = clanTypes.random(rng)
         }
         encampments.add(newCamp)
     }

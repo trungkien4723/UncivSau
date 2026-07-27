@@ -693,6 +693,19 @@ class CityConstructions : IsPartOfGameInfoSerialization {
                 city.civ.worldCongress.addDiplomaticFavor(unique.params[0].toInt())
             }
         }
+
+        // Civ VI: Governor titles from Government Plaza buildings
+        for (unique in building.uniqueObjects) {
+            if (unique.type == UniqueType.AwardsGovernorTitle) {
+                city.civ.governorManager.addGovernorTitle(unique.params[0].toInt())
+            }
+            if (unique.type == UniqueType.GovernorXP) {
+                city.civ.governorManager.addGovernorXP(city, unique.params[0].toInt())
+            }
+        }
+
+        // Civ VI: Governor XP from building completion (default 2)
+        city.civ.governorManager.addGovernorXP(city, 2)
     }
 
     fun removeBuilding(buildingName: String) {
@@ -1155,6 +1168,9 @@ class CityConstructions : IsPartOfGameInfoSerialization {
         }) {
             UniqueTriggerActivation.triggerUnique(unique, city.civ, tile = tileForDistrict)
         }
+
+        // Civ VI: Governor XP from district completion
+        city.civ.governorManager.addGovernorXP(city, 3)
     }
 
     /** Support for [UniqueType.CreatesOneImprovement]:

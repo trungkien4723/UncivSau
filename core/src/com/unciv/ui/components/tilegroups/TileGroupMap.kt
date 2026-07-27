@@ -120,6 +120,7 @@ class TileGroupMap<T: TileGroup>(
         val yieldMapLayer       = TileMapLayer<TileLayerYield>(numberOfTilegroups)
         val unitSpriteMapLayer  = TileMapLayer<TileLayerUnitSprite>(numberOfTilegroups)
         val overlayMapLayer     = TileMapLayer<TileLayerOverlay>(numberOfTilegroups)
+        val pinMapLayer         = TileMapLayer<TileLayerPin>(numberOfTilegroups)
         // TileGroups themselves provide click detection; not TileLayer subclasses so plain Group
         val tileGroupLayer      = object: Group(){
             init {
@@ -154,6 +155,7 @@ class TileGroupMap<T: TileGroup>(
             yieldMapLayer.add(group.layerYield, group.x, group.y)
             unitSpriteMapLayer.add(group.layerUnitArt, group.x, group.y)
             overlayMapLayer.add(group.layerOverlay, group.x, group.y)
+            pinMapLayer.add(group.layerPin, group.x, group.y)
             unitFlagMapLayer.add(group.layerUnitFlag, group.x, group.y)
             cityButtonMapLayer.add(group.layerCityButton, group.x, group.y)
         }
@@ -174,6 +176,7 @@ class TileGroupMap<T: TileGroup>(
             yieldMapLayer,
             unitSpriteMapLayer,
             overlayMapLayer,
+            pinMapLayer,          // map pin markers
             unitFlagMapLayer,
             cityButtonMapLayer
         )

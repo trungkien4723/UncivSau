@@ -22,13 +22,15 @@ enum class Stat(
     Faith(NotificationIcon.Faith, UncivSound.Choir, Fonts.faith, colorFromHex(0xcbdfff)),
     Housing(NotificationIcon.Housing, UncivSound.Click, 'H', colorFromHex(0x00bcd4)),
     Amenities(NotificationIcon.Amenities, UncivSound.Click, 'A', colorFromHex(0xe91e63)),
-    Tourism(NotificationIcon.Tourism, UncivSound.Chimes, 'T', colorFromHex(0xff6f00))
+    Tourism(NotificationIcon.Tourism, UncivSound.Chimes, 'T', colorFromHex(0xff6f00)),
+    DiplomaticFavor(NotificationIcon.DiplomaticFavor, UncivSound.Click, 'D', colorFromHex(0x9c27b0)),
+    GovernorXP(NotificationIcon.GovernorXP, UncivSound.Click, 'G', colorFromHex(0xff9800))
     ;
     val isCityWide by lazy { this !in statsWithCivWideField }
 
     companion object {
         @Immutable val statsUsableToBuy = setOf(Gold, Food, Science, Culture, Faith)
-        val statsWithCivWideField = setOf(Gold, Science, Culture, Faith, Tourism)
+        val statsWithCivWideField = setOf(Gold, Science, Culture, Faith, Tourism, DiplomaticFavor, GovernorXP)
         @Immutable private val valuesAsMap = entries.associateBy { it.name }
         @Pure fun safeValueOf(name: String) = valuesAsMap[name]
         @Pure fun isStat(name: String) = name in valuesAsMap

@@ -57,6 +57,9 @@ class WorldMapHolder(
     /** Holds buttons created by [OverlayButtonData] implementations */
     internal val unitActionOverlays: ArrayList<Actor> = ArrayList()
 
+    /** Map Pin mode: when enabled, clicking tiles places/removes map pins */
+    var isPinMode = false
+
     internal val unitMovementPaths: HashMap<MapUnit, ArrayList<Tile>> = HashMap()
 
     internal val unitConnectRoadPaths: HashMap<MapUnit, List<Tile>> = HashMap()
@@ -163,6 +166,12 @@ class WorldMapHolder(
                 && tile.neighbors.all { worldScreen.viewingCiv.hasExplored(it) })
             return // This tile doesn't exist for you
 
+        // Map pin mode: place/remove pins instead of normal tile actions
+        if (isPinMode) {
+            handlePinClick(tile)
+            return
+        }
+
         removeUnitActionOverlay()
         selectedTile = tile
         unitMovementPaths.clear()
@@ -222,6 +231,33 @@ class WorldMapHolder(
             }
         }
         worldScreen.shouldUpdate = true
+    }
+
+    /** Handle tile click in pin mode: add/remove map pins */
+    private fun handlePinClick(tile: Tile) {
+        if (tile.mapPin != null) {
+            tile.mapPin = null
+            worldScreen.shouldUpdate = true
+            return
+        }
+
+        // Show a simple popup to enter pin text
+        val popup = com.unciv.ui.popups.Popup(worldScreen)
+        popup.addGoodSizedLabel("Enter map pin label:")
+
+        val textField = com.unciv.ui.components.widgets.UncivTextField("")
+        popup.add(textField).pad(10f).row()
+
+        popup.addButton("Place Pin") {
+            val label = textField.text.trim()
+            if (label.isNotEmpty()) {
+                tile.mapPin = label
+                worldScreen.shouldUpdate = true
+            }
+            popup.close()
+        }
+        popup.addButton("Cancel") { popup.close() }
+        popup.open()
     }
 
     private fun onTileRightClicked(unit: MapUnit, tile: Tile) {

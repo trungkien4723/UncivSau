@@ -13,6 +13,7 @@ import com.unciv.ui.popups.ConfirmPopup
 import com.unciv.ui.screens.cityscreen.CityScreen
 import com.unciv.ui.screens.overviewscreen.EspionageOverviewScreen
 import com.unciv.ui.screens.pickerscreens.DiplomaticVotePickerScreen
+import com.unciv.ui.screens.pickerscreens.WorldCongressScreen
 import com.unciv.ui.screens.pickerscreens.PantheonPickerScreen
 import com.unciv.ui.screens.pickerscreens.PolicyPickerScreen
 import com.unciv.ui.screens.pickerscreens.ReligiousBeliefsPickerScreen
@@ -123,8 +124,13 @@ enum class NextTurnAction(protected val text: String, val color: Color) {
     WorldCongressVote("Vote for World Leader", Color.MAROON) {
         override fun isChoice(worldScreen: WorldScreen) =
             worldScreen.viewingCiv.mayVoteForDiplomaticVictory()
-        override fun action(worldScreen: WorldScreen) =
-            worldScreen.game.pushScreen(DiplomaticVotePickerScreen(worldScreen.viewingCiv))
+                    || worldScreen.viewingCiv.shouldShowWorldCongressScreen()
+        override fun action(worldScreen: WorldScreen) {
+            if (worldScreen.viewingCiv.shouldShowWorldCongressScreen())
+                worldScreen.game.pushScreen(WorldCongressScreen(worldScreen.viewingCiv))
+            else
+                worldScreen.game.pushScreen(DiplomaticVotePickerScreen(worldScreen.viewingCiv))
+        }
     },
     NextUnit("Next unit", Color.LIGHT_GRAY) {
         override fun isChoice(worldScreen: WorldScreen) =

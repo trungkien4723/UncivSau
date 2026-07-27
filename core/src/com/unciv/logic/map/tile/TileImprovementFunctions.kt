@@ -370,4 +370,49 @@ class TileImprovementFunctions(val tile: Tile) {
         if (removeConstruction)
             tile.owningCity?.cityConstructions?.removeCreateOneImprovementConstruction(improvementInProgress)
     }
+
+    /** Find the 4 tiles of a National Park diamond with [topTile] as the top (Naturalist's position).
+     *  Returns the 4 tiles in order [top, middleLeft, middleRight, bottom], or null if not a valid diamond. */
+    fun getNationalParkDiamondTiles(topTile: Tile = tile): List<Tile>? {
+        val topNeighbors = topTile.neighbors.toList()
+        for (middleLeft in topNeighbors) {
+            for (middleRight in topNeighbors) {
+                if (middleLeft == middleRight) continue
+                if (!middleLeft.neighbors.contains(middleRight)) continue
+                val bottom = middleLeft.neighbors.firstOrNull { n ->
+                    n != topTile && n != middleLeft && n != middleRight
+                        && middleRight.neighbors.contains(n)
+                        && !topTile.neighbors.contains(n)
+                } ?: continue
+                return listOf(topTile, middleLeft, middleRight, bottom)
+            }
+        }
+        return null
+    }
+
+    /** Validate that a National Park can be created with [topTile] as the top tile.
+     *  Checks: diamond shape, all tiles owned by same city, Charming+ appeal, no districts, no existing park. */
+    fun canCreateNationalPark(topTile: Tile = tile, civInfo: Civilization): Boolean {
+        val diamond = getNationalParkDiamondTiles(topTile) ?: return false
+        val owningCity = topTile.getCity() ?: return false
+        if (owningCity.civ != civInfo) return false
+
+        for (t in diamond) {
+            if (t.tileImprovement?.hasUnique(UniqueType.NationalPark) == true) return false
+            if (t.isCityCenter()) return false
+            if (t.getCity() != owningCity) return false
+            if (t.district != null) return false
+            if (t.tileImprovement?.hasUnique(UniqueType.Irremovable) == true) return false
+            if (TileAppeal.getAppeal(t, civInfo) < 2) return false
+        }
+        return true
+    }
+
+    /** Place the National Park improvement on all 4 diamond tiles, consuming the unit. */
+    fun createNationalPark(improvement: TileImprovement, civInfo: Civilization, unit: MapUnit?) {
+        val diamond = getNationalParkDiamondTiles() ?: return
+        for (t in diamond) {
+            t.improvementFunctions.setImprovement(improvement, civInfo, unit)
+        }
+    }
 }

@@ -178,7 +178,18 @@ class WorldScreenTopBar(internal val worldScreen: WorldScreen) : Table() {
                 worldScreen.openEmpireOverview()
             }
 
+            val mapPinButton = ImageGetter.getImage("OtherIcons/Circle").apply {
+                color = Color.GREEN
+                setSize(20f, 20f)
+            }
+            mapPinButton.onClick {
+                worldScreen.mapHolder.isPinMode = !worldScreen.mapHolder.isPinMode
+                mapPinButton.color = if (worldScreen.mapHolder.isPinMode) Color.RED else Color.GREEN
+                worldScreen.shouldUpdate = true
+            }
+
             unitSupplyCell = add()
+            add(mapPinButton).pad(10f)
             add(overviewButton).pad(10f)
             pack()
         }

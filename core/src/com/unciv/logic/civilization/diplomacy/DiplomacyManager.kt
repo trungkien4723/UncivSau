@@ -171,6 +171,9 @@ enum class DiplomaticModifiers(val text: String) {
     SignedAllianceWithOurEnemies("You have signed an alliance with our enemy!"),
     SignedAllianceWithOurAllies("You have signed an alliance with our ally"),
 
+    // Civ VI Grievances - track grievances between civilizations
+    Grievances("We hold grievances against you."),
+
     // Civ VI Leader Agendas - opinion shifts driven by a civ's historical/hidden agenda
     AgendaLike("We like your kind!"),
     AgendaDislike("We dislike your kind!");
@@ -481,6 +484,18 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
     fun setEnvoys(amount: Int) {
         envoys = amount.coerceAtLeast(0)
         civInfo.cityStateFunctions.updateAllyCivForCityState()
+    }
+
+    /** Civ VI Grievances: adds [amount] grievances against the other civ */
+    fun addGrievances(amount: Int) {
+        if (amount <= 0) return
+        addModifier(DiplomaticModifiers.Grievances, amount.toFloat())
+    }
+
+    /** Civ VI Grievances: called when declaring war */
+    fun addWarDeclarationGrievances(casusBelli: CasusBelli?) {
+        val grievanceAmount = casusBelli?.grievanceCost ?: CasusBelli.SurpriseWar.grievanceCost
+        addGrievances(grievanceAmount)
     }
 
     @VisibleForTesting

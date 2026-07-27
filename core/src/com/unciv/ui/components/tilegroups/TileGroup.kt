@@ -46,6 +46,7 @@ open class TileGroup(
     @Suppress("LeakingThis") val layerOverlay = TileLayerOverlay(this, groupSize)
     @Suppress("LeakingThis") val layerUnitArt = TileLayerUnitSprite(this, groupSize)
     @Suppress("LeakingThis") val layerUnitFlag = TileLayerUnitFlag(this, groupSize)
+    @Suppress("LeakingThis") val layerPin = TileLayerPin(this, groupSize)
     @Suppress("LeakingThis") val layerCityButton = TileLayerCityButton(this, groupSize)
 
     private val allLayers = listOf(
@@ -57,6 +58,7 @@ open class TileGroup(
         layerMisc, // yields, citizens, arrows, starting locations (editor)
         layerYield,
         layerOverlay, // highlight, fog, crosshair
+        layerPin, // map pins
         layerUnitArt,
         layerUnitFlag,
         layerCityButton

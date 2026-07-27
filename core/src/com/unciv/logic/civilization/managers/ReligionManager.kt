@@ -333,6 +333,9 @@ class ReligionManager : IsPartOfGameInfoSerialization {
         if (numberOfBeliefsAvailable(BeliefType.Enhancer) == 0)
             return false // Mod maker did not provide enough enhancer beliefs
 
+        if (numberOfBeliefsAvailable(BeliefType.Reformation) == 0)
+            return false // Mod maker did not provide enough reformation beliefs
+
         return true
     }
 
@@ -392,6 +395,7 @@ class ReligionManager : IsPartOfGameInfoSerialization {
 
         if (enhancingReligion) {
             chooseBeliefToAdd(BeliefType.Enhancer, 1)
+            chooseBeliefToAdd(BeliefType.Reformation, 1)
         }
         else {
             chooseBeliefToAdd(BeliefType.Founder, 1)

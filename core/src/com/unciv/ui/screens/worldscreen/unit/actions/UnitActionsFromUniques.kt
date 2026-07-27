@@ -353,6 +353,8 @@ object UnitActionsFromUniques {
                     continue
                 }
 
+                val isNationalPark = improvement.hasUnique(UniqueType.NationalPark)
+
                 yield(UnitAction(UnitActionType.CreateImprovement, useFrequency,
                     title = UnitActionModifiers.actionTextWithSideEffects(
                         "Create [${improvement.name}]",
@@ -361,16 +363,22 @@ object UnitActionsFromUniques {
                     ),
                     associatedUnique = unique,
                     action = {
-                        val unitTile = unit.getTile()
-                        unitTile.setImprovement(improvement, unit.civ, unit)
-
+                        if (isNationalPark) {
+                            tile.improvementFunctions.createNationalPark(improvement, unit.civ, unit)
+                        } else {
+                            val unitTile = unit.getTile()
+                            unitTile.setImprovement(improvement, unit.civ, unit)
+                        }
                         unit.civ.cache.updateViewableTiles() // to update 'last seen improvement'
 
                         UnitActionModifiers.activateSideEffects(unit, unique)
                     }.takeIf {
                         resourcesAvailable
                             && unit.hasMovement()
-                            && tile.improvementFunctions.canBuildImprovement(improvement, unit.cache.state)
+                            && if (isNationalPark)
+                                tile.improvementFunctions.canCreateNationalPark(civInfo = unit.civ)
+                            else
+                                tile.improvementFunctions.canBuildImprovement(improvement, unit.cache.state)
                             // Next test is to prevent interfering with UniqueType.CreatesOneImprovement -
                             // not pretty, but users *can* remove the building from the city queue an thus clear this:
                             && !tile.isMarkedForCreatesOneImprovement()

@@ -3,6 +3,7 @@ package com.unciv.logic.automation.civilization
 import com.unciv.logic.GameInfo
 import com.unciv.logic.IsPartOfGameInfoSerialization
 import com.unciv.logic.map.HexCoord
+import com.unciv.logic.map.tile.Tile
 
 class BarbarianEncampment() : IsPartOfGameInfoSerialization {
     var position = HexCoord()
@@ -10,6 +11,9 @@ class BarbarianEncampment() : IsPartOfGameInfoSerialization {
     var spawnedUnits = -1
     var destroyed = false // destroyed encampments haunt the vicinity for 15 turns preventing new spawns
     var clansConversionTurns = 0 // Barbarian Clans mode: turns until camp converts to city-state
+
+    // Barbarian Clans mode: clan type (Scientific, Cultured, Maritime, Mercantile, Militaristic, Religious)
+    var clanType: String? = null
 
     @Transient
     lateinit var gameInfo: GameInfo
@@ -24,6 +28,7 @@ class BarbarianEncampment() : IsPartOfGameInfoSerialization {
         toReturn.spawnedUnits = spawnedUnits
         toReturn.destroyed = destroyed
         toReturn.clansConversionTurns = clansConversionTurns
+        toReturn.clanType = clanType
         return toReturn
     }
 
@@ -57,10 +62,17 @@ class BarbarianEncampment() : IsPartOfGameInfoSerialization {
         tile.setImprovement(null)
         destroyed = true
 
+        val clanTypeName = clanType ?: "Cultured"
+        // Create actual city-state with the clan type
+        val barbarianCiv = gameInfo.getBarbarianCivilization()
+        val cityState = barbarianCiv.cityStateFunctions.createCityStateFromBarbarianCamp(tile, clanTypeName)
+
         for (civ in gameInfo.civilizations.filter { it.isMajorCiv() && !it.isDefeated() }) {
             if (civ.hasExplored(tile)) {
-                civ.addNotification("A barbarian camp has become an independent settlement! (+50 Gold, +20 Culture)",
-                    tile.position, com.unciv.logic.civilization.NotificationCategory.Diplomacy,
+                civ.addNotification(
+                    "A barbarian camp has become the [${cityState.civName}] city-state! (+50 Gold, +20 Culture)",
+                    tile.position,
+                    com.unciv.logic.civilization.NotificationCategory.Diplomacy,
                     com.unciv.logic.civilization.NotificationIcon.Gold)
                 civ.addGold(50)
                 civ.addStat(com.unciv.models.stats.Stat.Culture, 20)

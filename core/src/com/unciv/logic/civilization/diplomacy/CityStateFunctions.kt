@@ -3,8 +3,12 @@ package com.unciv.logic.civilization.diplomacy
 import com.unciv.Constants
 import com.unciv.logic.automation.civilization.NextTurnAutomation
 import com.unciv.logic.battle.CityCombatant
+import com.unciv.logic.city.City
+import com.unciv.logic.city.managers.CityFounder
 import com.unciv.logic.city.managers.SpyFleeReason
 import com.unciv.logic.civilization.*
+import com.unciv.logic.map.HexCoord
+import com.unciv.logic.map.tile.Tile
 import com.unciv.models.Spy
 import com.unciv.models.SpyAction
 import com.unciv.models.ruleset.Ruleset
@@ -16,6 +20,7 @@ import com.unciv.models.ruleset.unique.Unique
 import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.models.ruleset.unit.BaseUnit
 import com.unciv.models.stats.Stat
+import com.unciv.models.stats.Stats
 import com.unciv.ui.screens.victoryscreen.RankingType
 import com.unciv.utils.randomWeighted
 import yairm210.purity.annotations.Readonly
@@ -70,6 +75,89 @@ class CityStateFunctions(val civInfo: Civilization) {
         // TODO: Return false if attempting to put a religious city-state in a game without religion
 
         return true
+    }
+
+    return true
+    }
+
+    /** Creates a new city-state civilization from a barbarian camp tile. */
+    fun createCityStateFromBarbarianCamp(tile: Tile, clanType: String): Civilization {
+        // Select a random city-state type matching the clan type
+        val cityStateTypes = civInfo.gameInfo.ruleset.cityStateTypes.values.filter { it.name == clanType }
+        val cityStateType = cityStateTypes.randomOrNull(civInfo.gameInfo.getBarbarianCivilization().state.stateBasedRandom("CityStateFunctions.createCityStateFromBarbarianCamp"))
+            ?: civInfo.gameInfo.ruleset.cityStateTypes.values.random(civInfo.gameInfo.getBarbarianCivilization().state.stateBasedRandom("CityStateFunctions.createCityStateFromBarbarianCamp"))
+
+        // Select a random nation of the matching city-state type
+        val nationsOfType = civInfo.gameInfo.ruleset.nations.values
+            .filter { it.cityStateType == cityStateType.name && !it.isMajorCiv }
+            .filterNot { n -> civInfo.gameInfo.civilizations.any { it.nation == n } }
+
+        val nation = nationsOfType.random(civInfo.gameInfo.getBarbarianCivilization().state.stateBasedRandom("CityStateFunctions.createCityStateFromBarbarianCamp"))
+            ?: throw Exception("No available nations for city-state type ${cityStateType.name}")
+
+        // Create the city-state civilization
+        val cityStateCiv = Civilization(nation)
+        cityStateCiv.cityStateFunctions.initCityState(
+            civInfo.gameInfo.ruleset,
+            civInfo.gameInfo.gameParameters.startingEra,
+            emptySet(),
+            civInfo.gameInfo.getBarbarianCivilization().state.stateBasedRandom("CityStateFunctions.createCityStateFromBarbarianCamp")
+        )
+        civInfo.gameInfo.civilizations.add(cityStateCiv)
+
+        // Found the city on the tile using CityFounder
+        val cityFounder = CityFounder()
+        val city = cityFounder.foundCity(cityStateCiv, tile.position)
+
+        // Add basic units for the new city-state
+        cityStateCiv.cityStateFunctions.addStartingUnits()
+
+        return cityStateCiv
+    }
+
+    // Add basic units for the new city-state
+        addStartingUnits()
+
+        return cityStateCiv
+    }
+
+    /** Add starting units for a city-state created from a barbarian camp. */
+    fun addStartingUnits() {
+        val ruleSet = civInfo.gameInfo.ruleset
+        val tileMap = civInfo.gameInfo.tileMap
+        
+        val cityCenterMinStats = sequenceOf(ruleSet.tileImprovements[Constants.cityCenter])
+            .filterNotNull()
+            .flatMap { it.getMatchingUniques(UniqueType.EnsureMinimumStats, GameContext.IgnoreConditionals) }
+            .firstOrNull()
+            ?.stats ?: Stats.DefaultCityCenterMinimum
+
+        // Find the capital tile
+        val capital = civInfo.getCapital() ?: return
+        val startingLocation = capital.location
+
+        val startingEra = civInfo.gameInfo.gameParameters.startingEra
+        val startingUnits = ruleSet.eras[startingEra]?.getStartingUnits(ruleSet)?.toMutableList() ?: mutableListOf()
+
+        // Adjust for city states (no military units unless they have the unique)
+        if (!ruleSet.modOptions.hasUnique(UniqueType.AllowCityStatesSpawnUnits)) {
+            val settlerLikeUnits = ruleSet.units.filter { it.value.isCityFounder() }.toMap()
+            val startingSettlers = startingUnits.filter { settlerLikeUnits.contains(it) }
+            
+            startingUnits.clear()
+            if (startingSettlers.isNotEmpty()) {
+                startingUnits.add(startingSettlers.random(civInfo.state.stateBasedRandom("CityStateFunctions.addStartingUnits")))
+            }
+        }
+
+        // Place units near the capital
+        for (unitName in startingUnits) {
+            val unit = ruleSet.units[unitName] ?: continue
+            val unitToAdd = civInfo.units.getEquivalentUnit(unit, ruleSet.eras[startingEra]!!.startingMilitaryUnit)
+            if (unitToAdd != null) {
+                civInfo.units.placeUnitNearTile(startingLocation, unitToAdd)
+            }
+        }
     }
 
     fun holdElections() {

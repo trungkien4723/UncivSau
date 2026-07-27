@@ -232,6 +232,9 @@ object DeclareWar {
             }
         }
 
+        // Civ VI Grievances: the defender holds grievances against the attacker
+        otherCivDiplomacy.addWarDeclarationGrievances(casusBelli)
+
         // Apply shared enemy modifiers
         for (thirdCiv in diplomacyManager.getCommonKnownCivs()) {
             if ((thirdCiv.isAtWarWith(otherCiv) || thirdCiv == declareWarReason.allyCiv) && !thirdCiv.isAtWarWith(civInfo)) {

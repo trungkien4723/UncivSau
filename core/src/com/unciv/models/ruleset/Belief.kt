@@ -118,6 +118,7 @@ enum class BeliefType(val color: String, val isFollower: Boolean = false, val is
     Founder("#c00000", isFounder = true),
     Follower("#ccaa44", isFollower = true),
     Enhancer("#72cc45", isFounder = true),
+    Reformation("#a020f0", isFounder = true),
     Any("") {
         override fun getSubCategory() = null
     },

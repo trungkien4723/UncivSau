@@ -1,8 +1,12 @@
 package com.unciv.ui.screens.diplomacyscreen
 
+import com.badlogic.gdx.graphics.Color
+import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.unciv.Constants
 import com.unciv.logic.civilization.Civilization
+import com.unciv.logic.civilization.NotificationCategory
+import com.unciv.logic.civilization.NotificationIcon
 import com.unciv.logic.trade.TradeLogic
 import com.unciv.logic.trade.TradeRequest
 import com.unciv.logic.trade.TradeOfferType
@@ -22,10 +26,22 @@ class TradeTable(
     // This is so that after a trade has been traded, we can switch out the offersToDisplay to start anew - this is the easiest way
     private val offerColumnsTableWrapper = Table()
 
-    val offerTradeText = "{Offer trade}\n({They'll decide on their turn})"
+    val offerTradeText = "{Offer trade}"
     private val offerButton = offerTradeText.toTextButton()
+    private val tradeEvaluationLabel = Label("", BaseScreen.skin)
 
     private fun isTradeOffered() = otherCivilization.tradeRequests.any { it.requestingCiv == civ.civID }
+
+    private fun updateTradeEvaluation() {
+        if (tradeLogic.currentTrade.theirOffers.size == 0 && tradeLogic.currentTrade.ourOffers.size == 0) {
+            tradeEvaluationLabel.setText("")
+            return
+        }
+        val evaluation = tradeLogic.evaluateCurrentTrade()
+        val text = if (evaluation.first) "{AI will accept this trade}" else "{AI will reject this trade}"
+        tradeEvaluationLabel.setText(text.tr())
+        tradeEvaluationLabel.color = if (evaluation.first) Color.GREEN else Color.RED
+    }
 
     private fun retractOffer() {
         otherCivilization.tradeRequests.removeAll { it.requestingCiv == civ.civID }
@@ -44,6 +60,7 @@ class TradeTable(
             tradeLogic.currentTrade.set(existingOffer.trade.reverse())
             offerColumnsTable.update()
         }
+        updateTradeEvaluation()
 
         if (isTradeOffered()) offerButton.setText("Retract offer".tr())
         else offerButton.apply { isEnabled = false }.setText(offerTradeText.tr())
@@ -74,12 +91,21 @@ class TradeTable(
                 }
             }
 
-            otherCivilization.tradeRequests.add(TradeRequest(civ.civID, tradeLogic.currentTrade.reverse()))
+            val evaluation = tradeLogic.evaluateCurrentTrade()
+            if (evaluation.first) {
+                tradeLogic.acceptTrade()
+                civ.addNotification("[${otherCivilization.civName}] has accepted your trade offer", NotificationCategory.Trade, otherCivilization.civName, NotificationIcon.Trade)
+                offerButton.setText("Retract offer".tr())
+            } else {
+                otherCivilization.tradeRequests.add(TradeRequest(civ.civID, tradeLogic.currentTrade.reverse()))
+                civ.addNotification("[${otherCivilization.civName}] has rejected your trade offer", NotificationCategory.Trade, otherCivilization.civName, NotificationIcon.Trade)
+                offerButton.setText("Retract offer".tr())
+            }
             civ.cache.updateCivResources()
-            offerButton.setText("Retract offer".tr())
         }
 
-        lowerTable.add(offerButton)
+        lowerTable.add(offerButton).row()
+        lowerTable.add(tradeEvaluationLabel).row()
 
         lowerTable.pack()
         lowerTable.y = 10f
@@ -91,6 +117,7 @@ class TradeTable(
         offerColumnsTable.update()
         retractOffer()
         offerButton.isEnabled = !(tradeLogic.currentTrade.theirOffers.size == 0 && tradeLogic.currentTrade.ourOffers.size == 0)
+        updateTradeEvaluation()
     }
 
     fun enableOfferButton(isEnabled: Boolean) {

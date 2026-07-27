@@ -1540,6 +1540,48 @@ object UniqueTriggerActivation {
                     civInfo.addStat(Stat.Culture, cultureAmount)
                     civInfo.addNotification("Rock Band performed a concert! Generated [$tourismAmount] Tourism, [$goldAmount] Gold, and [$cultureAmount] Culture!",
                         NotificationCategory.General)
+                    // Rock Band is consumed after performance
+                    currentUnit.destroy()
+                    true
+                }
+            }
+
+            UniqueType.TriggerUponEnteringClimatePhase -> {
+                return {
+                    val phase = unique.params[0]
+                    // Trigger when climate phase changes to the specified phase
+                    true
+                }
+            }
+
+            UniqueType.TriggerUponClimatePhaseChange -> {
+                return {
+                    // Trigger on any climate phase change
+                    true
+                }
+            }
+
+            UniqueType.TriggerUponNaturalDisaster -> {
+                return {
+                    val disasterType = unique.params[0]
+                    // Trigger when a natural disaster of the specified type occurs
+                    true
+                }
+            }
+
+            UniqueType.TriggerUponJoiningSecretSociety -> {
+                return {
+                    val society = unique.params[0]
+                    // Trigger when player joins a secret society
+                    true
+                }
+            }
+
+            UniqueType.TriggerUponSocietyRankUp -> {
+                return {
+                    val society = unique.params[0]
+                    val rank = unique.params[1]
+                    // Trigger when player reaches a specific rank in a society
                     true
                 }
             }

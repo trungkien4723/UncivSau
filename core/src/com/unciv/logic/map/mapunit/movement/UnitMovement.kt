@@ -733,8 +733,19 @@ class UnitMovement(val unit: MapUnit) {
         if (tile.isCityCenter()) {
             if (tile.airUnits.filter { !it.isTransported }.size < tile.getCity()!!.getMaxAirUnits() && tile.getCity()?.civ == unit.civ)
                 return null // if city is free - no problem, get in
-        } // let's check whether it enters city on carrier now...
+        }
 
+        // landing on Aerodrome district with Hangar/Airport
+        if (tile.district == "Aerodrome" && tile.getOwner() == unit.civ) {
+            val city = tile.getCity()
+            if (city != null) {
+                val airCapacity = city.getMaxAirUnitsForAerodrome()
+                if (tile.airUnits.filter { !it.isTransported }.size < airCapacity)
+                    return null
+            }
+        }
+
+        // let's check whether it enters city on carrier now...
         if (tile.militaryUnit != null) {
             val unitAtDestination = tile.militaryUnit!!
             if (unitAtDestination.canTransport(unit)) return null
@@ -777,16 +788,18 @@ class UnitMovement(val unit: MapUnit) {
     @Readonly
     fun cannotPassThroughReason(tile: Tile, includeOtherEscortUnit: Boolean = true): CannotMoveToReason? {
         if (tile.isImpassible()) {
-            // special exception - ice tiles are technically impassible, but some units can move through them anyway
-            // helicopters can pass through impassable tiles like mountains
-            if (!unit.cache.canPassThroughImpassableTiles && !(unit.cache.canEnterIceTiles && tile.terrainFeatureObjects.any { it.isIce })
+            // Tunnel improvement allows passage through impassable terrain (e.g. mountains)
+            if (tile.getUnpillagedTileImprovement()?.hasUnique(UniqueType.IgnoresTerrainCostsOnTile) == true) {
+                // Tunnel allows passage
+            } else if (!unit.cache.canPassThroughImpassableTiles && !(unit.cache.canEnterIceTiles && tile.terrainFeatureObjects.any { it.isIce })
                 // carthage-like uniques sometimes allow passage through impassible tiles
                 && !(unit.civ.passThroughImpassableUnlocked && unit.civ.passableImpassables.contains(tile.lastTerrain.name)))
                 return CannotMoveToReason.TerrainImpassable
         }
         if (tile.isLand
             && unit.baseUnit.isWaterUnit
-            && !tile.isCityCenter())
+            && !tile.isCityCenter()
+            && tile.getUnpillagedTileImprovement()?.hasUnique(UniqueType.CanConnectToAnotherTile) != true)
             return CannotMoveToReason.BoatCannotGoOnLand
 
         val unitSpecificAllowOcean: Boolean by lazy {

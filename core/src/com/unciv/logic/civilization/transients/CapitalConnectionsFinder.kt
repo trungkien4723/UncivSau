@@ -24,6 +24,9 @@ class CapitalConnectionsFinder(private val civInfo: Civilization) {
         Harbor,
         HarborFromRoad(RoadStatus.Road),
         HarborFromRailroad(RoadStatus.Railroad, true),
+        Canal,
+        CanalFromRoad(RoadStatus.Road),
+        CanalFromRailroad(RoadStatus.Railroad, true),
     }
 
     private var citiesToCheck = listOfNotNull(civInfo.getCapital()).toMutableList()
@@ -42,6 +45,11 @@ class CapitalConnectionsFinder(private val civInfo: Civilization) {
     private val railroadIsResearched = ruleset.tileImprovements[RoadStatus.Railroad.name].let {
         it != null && (it.techRequired==null || civInfo.tech.isResearched(it.techRequired!!)) }
 
+    private val hasCanalTech: Boolean by lazy {
+        val canalImprovement = ruleset.tileImprovements.values.firstOrNull { it.hasUnique(UniqueType.CanConnectToAnotherTile) }
+        canalImprovement != null && (canalImprovement.techRequired == null || civInfo.tech.isResearched(canalImprovement.techRequired!!))
+    }
+
     fun find(): Map<City, EnumSet<CapitalConnectionMedium>> = timeThis("CapitalConnectionsFinder.find") {
         // We map which cities we've reached, to the mediums they've been reached by -
         // this is so we know that if we've seen which cities can be connected by port A, and one
@@ -53,6 +61,9 @@ class CapitalConnectionsFinder(private val civInfo: Civilization) {
             for (cityToConnectFrom in citiesToCheck) {
                 if (cityToConnectFrom.containsHarbor()) {
                     checkHarbor(cityToConnectFrom)
+                }
+                if (hasCanalTech) {
+                    checkCanal(cityToConnectFrom)
                 }
                 if (railroadIsResearched) {
                     val mediumsReached = citiesReachedToMediums[cityToConnectFrom]!!
@@ -93,6 +104,19 @@ class CapitalConnectionsFinder(private val civInfo: Civilization) {
             overridingTransportType = CapitalConnectionMedium.HarborFromRailroad,
             tileFilter = { tile -> tile.isWater },
             cityFilter = { city -> city.civ == civInfo && city.containsHarbor() && !city.isBlockaded() } // use only own harbors
+        )
+    }
+
+    private fun checkCanal(cityToConnectFrom: City):Unit = timeThis("CapitalConnectionsFinder.checkCanal") {
+        check(
+            cityToConnectFrom,
+            transportType = if (cityToConnectFrom.wasPreviouslyReached(CapitalConnectionMedium.Railroad, null))
+                CapitalConnectionMedium.CanalFromRailroad else CapitalConnectionMedium.CanalFromRoad,
+            overridingTransportType = CapitalConnectionMedium.CanalFromRailroad,
+            tileFilter = { tile ->
+                tile.isWater || tile.getUnpillagedTileImprovement()?.hasUnique(UniqueType.CanConnectToAnotherTile) == true
+            },
+            cityFilter = { city -> city.civ == civInfo && !city.isBlockaded() }
         )
     }
 

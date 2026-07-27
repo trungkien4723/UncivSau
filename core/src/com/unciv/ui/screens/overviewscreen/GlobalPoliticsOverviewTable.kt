@@ -359,7 +359,10 @@ class GlobalPoliticsOverviewTable(
             else viewingPlayer.calculateTotalScore().toInt().tr()
         add(scoreText.toLabel()).left().row()
         val turnsTillNextDiplomaticVote = viewingPlayer.getTurnsTillNextDiplomaticVote() ?: return
-        add("Turns until the next\ndiplomacy victory vote: [$turnsTillNextDiplomaticVote]".toLabel()).colspan(columns).row()
+        add("Turns until next World Congress: [$turnsTillNextDiplomaticVote]".toLabel()).colspan(columns).row()
+        val diplomacyFavor = viewingPlayer.worldCongress.diplomaticFavor
+        add("Diplomatic Favor: [$diplomacyFavor]".toLabel()).colspan(columns).row()
+        add("Session: [${viewingPlayer.worldCongress.congressSession}]".toLabel()).colspan(columns).row()
     }
 
     private fun Table.addCivsCategory(columns: Int, aliveOrDefeated: String, civs: List<Civilization>) {

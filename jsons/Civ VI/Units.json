@@ -992,17 +992,33 @@
         "movement": 2
     },
     {
+        "name": "Archaeologist",
+        "unitType": "Civilian",
+        "cost": -1,
+        "uniques": [
+            "Can create Great Work",
+            "Is part of Great Person group [Great Person]",
+            "[This Unit] gets a name from the [Archaeologist] group",
+            "Great Person - [Culture]",
+            "Unbuildable",
+            "Uncapturable"
+        ],
+        "movement": 2
+    },
+    {
         "name": "Rock Band",
         "unitType": "Civilian",
         "movement": 3,
         "cost": 180,
         "uniques": [
-            "Can perform a [Rock] action <by consuming this unit>",
+            "Can perform a [Rock Concert] action <by consuming this unit>",
             "Pillaging this unit yields approximately [+60 Gold]",
             "Can move after performing an action",
-            "Unbuildable"
+            "Unbuildable",
+            "Provides [+25] [Tourism] to foreign civilizations",
+            "[+10] [Great Musician] points per turn [in this city]"
         ],
-        "requiredCivic": ""
+        "requiredCivic": "Mass Media"
     },
     {
         "name": "Missionary",

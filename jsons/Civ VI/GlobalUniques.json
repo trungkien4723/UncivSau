@@ -10,19 +10,23 @@
         "Rebel units may spawn <when below [-20] [Happiness]>",
         "[-1] Sight <for [Embarked] units>",
 
-        // TODO: Implement the uniques below
-        // "[+20]% [Culture] [in all cities] <during a golden age>",
-        // "[+20]% [Production] [in all cities] <during a golden age>",
+        "[+20]% [Culture] [in all cities] <during a golden age>",
+        "[+10]% [Tourism] [in all cities] <during a golden age>",
+        "[+15]% [Gold] from [Trade Routes] [in all cities] <when at [Golden Age]>",
+        "[+10]% [Growth] [in all cities] <during We Love The King Day>",
+        "Nullifies All Yield <while is in resistance>",
+        "[-25]% [Science] [in pupetted cities]" -- Imo cityFilters should ideally become conditionals anyway
+        "[-25]% [Culture] [in pupetted cities]",
+        "[+20]% [Production] [in cities connected via railroad]",
+        "Great People can be hired for [Gold] [in all cities] <when at war>",
+        "[+15]% [Tourism] from [this city] to foreign civilizations",
 
-        // "[+10]% growth [in all cities] <during We Love The King Day>",
-
-        // "Nullifies All Yield <while is in resistance>",
-
-        // "[-25]% [Science] [in pupetted cities]" -- Imo cityFilters should ideally become conditionals anyway
-        // "[-25]% [Culture] [in pupetted cities]"
-
-        // "[+20]% [Production] [in cities connected via railroad]"
-        // something something unit supply
+        "[+1] [Diplomatic Favor] per turn [in all cities]",
+        "[+5] [Diplomatic Favor] from [City-State] suzerainty",
+        "[+2] [Diplomatic Favor] per [Alliance] level",
+        "Can spend [Diplomatic Favor] to increase [World Congress] voting weight",
+        "Emergency Aid provides [+10] [Diplomatic Favor] when helping [City-State]",
+        "World Congress resolutions grant [Diplomatic Favor] based on participation"
     ],
     "civilopediaText": [
         {"text": "Global uniques are ruleset-wide modifiers that apply to all civilizations."}

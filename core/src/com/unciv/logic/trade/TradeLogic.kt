@@ -306,4 +306,10 @@ class TradeLogic(val ourCivilization: Civilization, val otherCivilization: Civil
         otherCivilization.cache.updateCivResources()
         otherCivilization.updateStatsForNextTurn()
     }
+
+    /** Evaluates the current trade from the AI's perspective for immediate feedback (Civ 6 style). */
+    fun evaluateCurrentTrade(): Pair<Boolean, Int> {
+        val value = TradeEvaluation().getTradeAcceptability(currentTrade.reverse(), otherCivilization, ourCivilization)
+        return Pair(value >= 0, value)
+    }
 }

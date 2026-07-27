@@ -34,6 +34,9 @@ class TileInfoTable(private val worldScreen: WorldScreen) : Table(BaseScreen.ski
 
         if (tile != null && (DebugUtils.VISIBLE_MAP || selectedCiv.hasExplored(tile)) ) {
             add(getStatsTable(tile)).left().row()
+            if (tile.mapPin != null) {
+                add("Pin: [${tile.mapPin}]".toLabel()).padTop(3f).row()
+            }
             add(MarkupRenderer.render(TileDescription.toMarkup(tile, selectedCiv), padding = 0f, iconDisplay = IconDisplay.None) {
                 worldScreen.openCivilopedia(it)
             } ).padTop(5f).row()

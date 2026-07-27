@@ -125,6 +125,9 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
         if (source.isNotEmpty()) {
             civInfo.addNotification("You earned [$amount] Era Score from [$source]!",
                 NotificationCategory.General, "StatIcons/EraScore")
+        } else {
+            civInfo.addNotification("You earned [$amount] Era Score!",
+                NotificationCategory.General, "StatIcons/EraScore")
         }
     }
 

@@ -82,6 +82,16 @@ object MovementCost {
         if (areConnectedByRoad && (!areConnectedByRiver || civ.tech.roadsConnectAcrossRivers))
             return unit.civ.tech.movementSpeedOnRoads + extraCost
 
+        // Canal: water units move cheaply through canal tiles
+        if (unit.baseUnit.isWaterUnit && to.isLand
+            && to.getUnpillagedTileImprovement()?.hasUnique(UniqueType.CanConnectToAnotherTile) == true)
+            return 1f + extraCost
+
+        // Tunnel: units ignore terrain costs when moving in/out of tunnel tiles
+        if (from.getUnpillagedTileImprovement()?.hasUnique(UniqueType.IgnoresTerrainCostsOnTile) == true
+            || to.getUnpillagedTileImprovement()?.hasUnique(UniqueType.IgnoresTerrainCostsOnTile) == true)
+            return 1f + extraCost
+
         if (unit.cache.ignoresTerrainCost) return 1f + extraCost
         if (areConnectedByRiver) return 100f  // Rivers take the entire turn to cross
 
