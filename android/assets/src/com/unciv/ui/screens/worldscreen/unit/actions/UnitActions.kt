@@ -100,7 +100,8 @@ object UnitActions {
         UnitActionType.AddInCapital to UnitActionsFromUniques::getAddInCapitalActions,
         UnitActionType.GiftUnit to UnitActions::getGiftActions,
         UnitActionType.FormCorps to UnitActionsCombine::getFormCorpsActions,
-        UnitActionType.FormArmy to UnitActionsCombine::getFormArmyActions
+        UnitActionType.FormArmy to UnitActionsCombine::getFormArmyActions,
+        UnitActionType.CreateTradeRoute to UnitActionsFromUniques::getCreateTradeRouteActions
     )
 
     /** Gets the preferred "page" to display a [UnitAction] of type [unitActionType] on, possibly dynamic depending on the state or situation [unit] is in. */

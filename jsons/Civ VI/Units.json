@@ -1009,6 +1009,7 @@
         "unitType": "Religious",
         "movement": 4,
         "cost": -1,
+        "religiousStrength": 100,
         "uniques": [
             "Unbuildable",
             "May convert Citizens to their Religion. Can only Spread Religion in cities that do not have a majority Religion. Religion spreads inland from coastal cities. Can Spread Religion. Religious units can enter other civilizations' territory without an open border agreement.",
@@ -1020,6 +1021,7 @@
         "unitType": "Religious",
         "movement": 4,
         "cost": -1,
+        "religiousStrength": 100,
         "uniques": [
             "Unbuildable",
             "May convert Citizens to their Religion. Can only Spread Religion in cities that do not have a majority Religion. Religion spreads inland from coastal cities. Can Spread Religion.",
@@ -1034,6 +1036,7 @@
         "unitType": "Religious",
         "movement": 4,
         "cost": -1,
+        "religiousStrength": 100,
         "uniques": [
             "Unbuildable",
             "May convert Citizens to their Religion. Can only Spread Religion in cities that do not have a majority Religion. Religion spreads inland from coastal cities. Can Spread Religion.",
@@ -1048,6 +1051,7 @@
         "unitType": "Religious",
         "movement": 4,
         "cost": -1,
+        "religiousStrength": 100,
         "uniques": [
             "Unbuildable",
             "3Heal Charges",

@@ -117,17 +117,17 @@ class CityStats(val city: City) {
             }
         }
         
-        // Civ VI: Check for international trade route
-        if (city.tradeRoutes.hasInternationalRoute()) {
-            val sourceCivName = city.tradeRoutes.internationalRouteFrom
+        // Civ VI: Check for international trade routes
+        for ((sourceCivName, turns) in city.tradeRoutes.internationalRoutes) {
+            if (turns <= 0) continue
             val sourceCiv = city.civ.gameInfo.getCivilization(sourceCivName)
             if (sourceCiv != null) {
                 val sourcePopulation = sourceCiv.getCapital()?.population?.population ?: 0
-                stats.gold = sourcePopulation.toFloat() * 2f
-                stats.science = sourcePopulation.toFloat() * 0.5f
+                stats.gold += sourcePopulation.toFloat() * 2f
+                stats.science += sourcePopulation.toFloat() * 0.5f
             }
         }
-        
+
         // Legacy: Fall back to capital connection if no trade routes set
         if (stats.isEmpty()) {
             if (city.isCapital()) return stats

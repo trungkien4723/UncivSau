@@ -4,6 +4,11 @@
         "loyaltyBonus": 3,
         "uniques": [
             "[+3] [Gold] [in this city]"
+        ],
+        "promotions": [
+            ["[+1] [Trade Route] capacity [in this city]"],
+            ["[+50]% [Gold] from [Trade Routes] to [this city]"],
+            ["[+2] [Great Merchant] points per turn [in this city]"]
         ]
     },
     {
@@ -11,6 +16,11 @@
         "loyaltyBonus": 4,
         "uniques": [
             "[+2] [Production] [in this city]"
+        ],
+        "promotions": [
+            ["[+10]% [Production] towards [Builders] [in this city]"],
+            ["Builders can construct improvements on [this city]'s tiles without consuming charges"],
+            ["[+1] Builder charge [in this city]"]
         ]
     },
     {
@@ -18,6 +28,11 @@
         "loyaltyBonus": 3,
         "uniques": [
             "[+2] [Science] [in this city]"
+        ],
+        "promotions": [
+            ["[+1] Citizen slot for [Specialists] [in this city]"],
+            ["[+50]% [Science] from [Campus] and [University] [in this city]"],
+            ["[+2] [Great Scientist] points per turn [in this city]"]
         ]
     },
     {
@@ -25,6 +40,11 @@
         "loyaltyBonus": 3,
         "uniques": [
             "[+2] [Food] [in this city]"
+        ],
+        "promotions": [
+            ["[+10]% [Production] towards [Settlers] [in this city]"],
+            ["[Settlers] trained in [this city] don't consume population"],
+            ["[+1] Population when training [Settler] [in this city]"]
         ]
     },
     {
@@ -32,6 +52,11 @@
         "loyaltyBonus": 5,
         "uniques": [
             "[+2] [Production] [in this city]"
+        ],
+        "promotions": [
+            ["[+5] Combat Strength to [City Defense] [in this city]"],
+            ["[+50]% [Production] towards [Walls] [in this city]"],
+            ["[+2] Loyalty per turn [in this city]"]
         ]
     },
     {
@@ -39,6 +64,11 @@
         "loyaltyBonus": 4,
         "uniques": [
             "[+2] [Culture] [in this city]"
+        ],
+        "promotions": [
+            ["[+2] Envoys to [City-States] this city has [Trade Routes] to"],
+            ["[+2] Envoys to all [City-States]"],
+            ["[This city] exerts Loyalty pressure on nearby foreign cities"]
         ]
     },
     {
@@ -46,6 +76,11 @@
         "loyaltyBonus": 4,
         "uniques": [
             "[+2] [Faith] [in this city]"
+        ],
+        "promotions": [
+            ["[+10]% [Production] towards [Holy Site] buildings [in this city]"],
+            ["[+1] Spread Religion charge for [Missionaries] and [Apostles] [in this city]"],
+            ["[+100]% Religious pressure from [this city]"]
         ]
     }
 ]

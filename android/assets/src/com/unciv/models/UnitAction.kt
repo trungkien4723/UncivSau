@@ -229,6 +229,8 @@ enum class UnitActionType(
         { ImageGetter.getUnitActionPortrait("Upgrade") }, UncivSound.Upgrade, defaultPage = 1),
     FormArmy("Form Army",
         { ImageGetter.getUnitActionPortrait("Upgrade") }, UncivSound.Upgrade, defaultPage = 1),
+    CreateTradeRoute("Create Trade Route",
+        { ImageGetter.getUnitActionPortrait("TradeRoute") }, defaultPage = 1),
     ;
 
     // Allow shorter initializations

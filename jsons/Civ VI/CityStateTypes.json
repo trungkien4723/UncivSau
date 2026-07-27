@@ -1,5 +1,18 @@
 [
     {
+        "name": "Scientific",
+        "friendBonusUniques": [
+            "[+2 Science] [in capital]",
+            "+1 [Great Scientist] point per turn"
+        ],
+        "allyBonusUniques": [
+            "[+4 Science] [in capital]",
+            "[+2 Science] [in all cities]",
+            "+2 [Great Scientist] points per turn"
+        ],
+        "color": [155, 190, 255]
+    },
+    {
         "name": "Cultured",
         "friendBonusUniques": [
             "[+3 Culture] <before the [Medieval era]>",

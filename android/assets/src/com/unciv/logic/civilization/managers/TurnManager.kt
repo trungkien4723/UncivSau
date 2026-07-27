@@ -312,6 +312,24 @@ class TurnManager(val civInfo: Civilization) {
         civInfo.religionManager.endTurn(nextTurnStats.faith.toInt())
         civInfo.totalFaithForContests += nextTurnStats.faith.toInt()
 
+        civInfo.storedTourism += nextTurnStats.tourism.toInt()
+
+        // Trade route duration decay — routes expire after their duration
+        for (city in civInfo.cities) {
+            val routes = city.tradeRoutes
+            if (routes.domesticRouteTurns > 0) {
+                routes.domesticRouteTurns--
+                if (routes.domesticRouteTurns <= 0) routes.domesticRouteTo = ""
+            }
+            val toRemove = mutableListOf<String>()
+            for ((civName, turns) in routes.internationalRoutes) {
+                val newTurns = turns - 1
+                if (newTurns <= 0) toRemove.add(civName)
+                else routes.internationalRoutes[civName] = newTurns
+            }
+            for (civName in toRemove) routes.internationalRoutes.remove(civName)
+        }
+
         civInfo.espionageManager.endTurn()
 
         if (civInfo.isMajorCiv()) // City-states don't get great people!

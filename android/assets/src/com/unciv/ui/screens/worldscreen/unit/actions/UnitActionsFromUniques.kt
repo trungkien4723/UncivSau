@@ -608,4 +608,36 @@ internal fun getBuildDistrictActions(unit: MapUnit, tile: Tile) = sequence {
     if (requiredCivic != null && !unit.civ.civics.isResearched(requiredCivic)) return false
     return true
 }
+
+    /**
+     * Sets up a trade route between two cities when a Trader unit is consumed.
+     * Domestic routes connect same-civ cities; international routes connect cross-civ.
+     */
+    internal fun getCreateTradeRouteActions(unit: MapUnit, tile: Tile): Sequence<UnitAction> {
+        if (unit.name != "Trader") return emptySequence()
+        val city = tile.getCity() ?: return emptySequence()
+
+        val useFrequency = 70f
+
+        return sequenceOf(UnitAction(UnitActionType.CreateTradeRoute, useFrequency,
+            action = {
+                val sourceCity = unit.civ.getCapital() ?: return@UnitAction
+                if (city.civ == unit.civ) {
+                    // Domestic route
+                    sourceCity.tradeRoutes.domesticRouteTo = city.name
+                    sourceCity.tradeRoutes.domesticRouteTurns = Constants.tradeRouteDuration
+                    unit.civ.addNotification(
+                        "Established a domestic trade route from [${sourceCity.name}] to [${city.name}]!",
+                        com.unciv.logic.civilization.NotificationCategory.Trade, "TradeRoute")
+                } else if (!city.civ.isBarbarian) {
+                    // International route
+                    city.tradeRoutes.internationalRoutes[unit.civ.civName] = Constants.tradeRouteDuration
+                    unit.civ.addNotification(
+                        "Established an international trade route from [${sourceCity.name}] to [${city.name}]!",
+                        com.unciv.logic.civilization.NotificationCategory.Trade, "TradeRoute")
+                }
+                unit.destroy()
+            }.takeIf { unit.hasMovement() }
+        ))
+    }
 }

@@ -150,7 +150,8 @@
             {
                 "text": "A wonder dedicated to the hunt. Provides bonus Food and Production from Camps near the city."
             }
-        ]
+        ],
+        "tourism": 2
     },
     {
         "name": "Stone Works",
@@ -183,7 +184,8 @@
             {
                 "text": "A mysterious stone circle. Grants a free Great Prophet and generates Faith."
             }
-        ]
+        ],
+        "tourism": 2
     },
     {
         "name": "Paper Maker",
@@ -216,7 +218,8 @@
             {
                 "text": "Houses the accumulated knowledge of the ancient world. Grants a free Technology and a free Library."
             }
-        ]
+        ],
+        "tourism": 2
     },
     {
         "name": "Circus",
@@ -277,7 +280,8 @@
             {
                 "text": "The grand tombs of Egyptian pharaohs. All workers receive an additional build charge."
             }
-        ]
+        ],
+        "tourism": 2
     },
     {
         "name": "Krepost",
@@ -308,7 +312,8 @@
             {
                 "text": "A monument to the king of the gods. Reduces the Production cost of anti-cavalry units."
             }
-        ]
+        ],
+        "tourism": 2
     },
     {
         "name": "The Great Lighthouse",
@@ -331,7 +336,8 @@
             {
                 "text": "Guides ships safely to harbor. Increases Movement and Sight for naval units."
             }
-        ]
+        ],
+        "tourism": 2
     },
     {
         "name": "Circus Maximus",
@@ -379,14 +385,16 @@
             {
                 "text": "A lush green oasis in the desert. Increases Growth in all cities."
             }
-        ]
+        ],
+        "tourism": 2
     },
     {
         "name": "Colosseum",
         "maintenance": 1,
         "amenities": 2,
         "hurryCostModifier": 25,
-        "requiredTech": "Construction"
+        "requiredTech": "Construction",
+        "tourism": 3
     },
     {
         "name": "Terracotta Army",
@@ -402,7 +410,8 @@
             {
                 "text": "An army of clay warriors guarding the emperor's tomb. Grants a copy of each military land unit you own."
             }
-        ]
+        ],
+        "tourism": 2
     },
     {
         "name": "Burial Tomb",
@@ -447,7 +456,8 @@
             {
                 "text": "A sacred site for divine prophecy. Grants bonus Great Person points."
             }
-        ]
+        ],
+        "tourism": 2
     },
     {
         "name": "Bazaar",
@@ -503,7 +513,8 @@
             {
                 "text": "A city carved from rose-red stone. Transforms Deserts into thriving hubs of Food and Production."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Aqueduct",
@@ -543,7 +554,8 @@
             {
                 "text": "A massive defensive fortification. Provides Gold and Tourism, and damages enemies in adjacent tiles."
             }
-        ]
+        ],
+        "tourism": 2
     },
     {
         "name": "Colossus",
@@ -565,7 +577,8 @@
             {
                 "text": "A giant bronze statue overlooking the harbor. Provides Gold and a Trade Route capacity."
             }
-        ]
+        ],
+        "tourism": 2
     },
     {
         "name": "Garden",
@@ -597,7 +610,8 @@
             {
                 "text": "A masterpiece of Byzantine architecture. Missionaries and Apostles gain extra spread charges."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Great Mosque of Djenne",
@@ -621,7 +635,8 @@
             {
                 "text": "A grand mud-brick mosque in West Africa. Missionaries and Apostles spread religion at reduced cost."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Chichen Itza",
@@ -642,7 +657,8 @@
             {
                 "text": "A Mayan city of pyramids and temples. Provides bonus Faith and Culture."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Machu Picchu",
@@ -664,7 +680,8 @@
             {
                 "text": "An Incan citadel high in the Andes. Provides bonus Production and Gold from Mountains."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Forge",
@@ -717,7 +734,8 @@
             {
                 "text": "A vast temple complex in Cambodia. Increases Population growth and provides Faith."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Castle",
@@ -768,7 +786,8 @@
             {
                 "text": "A fortress palace in Spain. Provides Housing and Culture."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Notre Dame",
@@ -785,7 +804,8 @@
             {
                 "text": "A Gothic cathedral in Paris. Provides Faith and Amenities to nearby cities."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Sistine Chapel",
@@ -805,7 +825,8 @@
             {
                 "text": "A chapel adorned with Michelangelo's masterpieces. Provides Culture and Great Artist points."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Satrap's Court",
@@ -841,7 +862,8 @@
             {
                 "text": "The imperial palace of China's Ming dynasty. Provides an extra Wildcard policy slot."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Leaning Tower of Pisa",
@@ -862,7 +884,8 @@
             {
                 "text": "A bell tower that defies gravity. Grants a free Great Person."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Himeji Castle",
@@ -883,7 +906,8 @@
             {
                 "text": "A stunning Japanese castle. Provides defensive bonuses and Culture."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Taj Mahal",
@@ -904,7 +928,8 @@
             {
                 "text": "A magnificent mausoleum of white marble. Grants bonus Amenities and Tourism."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Porcelain Tower",
@@ -925,7 +950,8 @@
             {
                 "text": "A towering Nanjing pagoda covered in porcelain. Provides Faith and Great Merchant points."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Arsenal",
@@ -958,7 +984,8 @@
             {
                 "text": "A fortified complex in Moscow. Provides Production towards defensive buildings and units."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Museum",
@@ -992,7 +1019,8 @@
             {
                 "text": "The world's largest art museum. Provides Culture, Tourism, and Great Artist points."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Big Ben",
@@ -1013,7 +1041,8 @@
             {
                 "text": "London's iconic clock tower. Provides Gold and bonus Great Merchant points."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Brandenburg Gate",
@@ -1034,7 +1063,8 @@
             {
                 "text": "A neoclassical triumphal arch in Berlin. Grants a free Great General."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Hydro Plant",
@@ -1079,7 +1109,8 @@
             {
                 "text": "Paris's iconic iron lattice tower. Increases Tourism and provides bonus Culture."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Statue of Liberty",
@@ -1099,7 +1130,8 @@
             {
                 "text": "A symbol of freedom and democracy. Provides bonus Production and Immigration."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Neuschwanstein",
@@ -1122,7 +1154,8 @@
             {
                 "text": "A fairy-tale castle in the Bavarian Alps. Provides Culture and Tourism from Mountains."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Climate Research Station",
@@ -1154,7 +1187,8 @@
             {
                 "text": "The statue of Christ overlooking Rio de Janeiro. Provides Tourism and Culture to nearby cities."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Manhattan Project",
@@ -1190,7 +1224,8 @@
             {
                 "text": "The headquarters of the US Department of Defense. Reduces the cost of upgrading units."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Solar Plant",
@@ -1291,7 +1326,8 @@
             {
                 "text": "An architectural marvel of Australia. Provides Culture, Tourism, and Great Artist points."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Nuclear Plant",
@@ -1358,7 +1394,8 @@
             {
                 "text": "A digital defense system. Protects against enemy spy attacks and cyber warfare."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Parliament House",
@@ -1413,7 +1450,8 @@
             {
                 "text": "A communications tower in Toronto. Provides Gold, Culture, and Tourism."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Hubble Space Telescope",
@@ -1434,7 +1472,8 @@
             {
                 "text": "An orbiting observatory. Provides Science and a free Technology."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Spaceship Factory",
@@ -1468,7 +1507,8 @@
             {
                 "text": "A global diplomatic organization. Provides Diplomacy bonuses and Great Diplomat points."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Monastery",
@@ -1643,7 +1683,8 @@
             {
                 "text": "A research base at the South Pole. Provides bonus Science and Production in all cities."
             }
-        ]
+        ],
+        "tourism": 5
     },
     {
         "name": "Apadana",
@@ -1663,7 +1704,8 @@
             {
                 "text": "The great audience hall of Persepolis. Provides Culture and Gold."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Bolshoi Theatre",
@@ -1679,7 +1721,8 @@
             {
                 "text": "Moscow's premier ballet and opera house. Provides Culture, Great Musician points, and a free Great Musician."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Broadway",
@@ -1695,7 +1738,8 @@
             {
                 "text": "New York's legendary theater district. Provides Culture, Tourism, and Great Musician points."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Bran Castle",
@@ -1711,7 +1755,8 @@
             {
                 "text": "The legendary home of Dracula in Transylvania. Provides defensive bonuses and Culture."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Channel",
@@ -1729,7 +1774,8 @@
             {
                 "text": "An underwater tunnel connecting England and France. Provides Gold from Trade Routes."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Crac des Chevaliers",
@@ -1743,7 +1789,8 @@
             {
                 "text": "A Crusader fortress in Syria. Provides defensive bonuses and Housing."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Forbidden City",
@@ -1759,7 +1806,8 @@
             {
                 "text": "The imperial palace of the Ming and Qing dynasties. Provides an extra Wildcard policy slot."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Golden Gate Bridge",
@@ -1777,7 +1825,8 @@
             {
                 "text": "San Francisco's iconic suspension bridge. Provides Gold and Tourism."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Great Zimbabwe",
@@ -1794,7 +1843,8 @@
             {
                 "text": "A ruined city in Zimbabwe. Provides Gold from Trade Routes."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Jebel Barkal",
@@ -1811,7 +1861,8 @@
             {
                 "text": "A sacred mountain in Sudan. Provides Faith and Culture."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Kilwa Kisiwani",
@@ -1827,7 +1878,8 @@
             {
                 "text": "A Swahili city-state and trading hub. Provides Gold and Trade Route bonuses."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Kotoku-in",
@@ -1840,7 +1892,8 @@
             {
                 "text": "The Great Buddha of Kamakura. Provides Faith and Tourism."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Mahabodhi Temple",
@@ -1854,7 +1907,8 @@
             {
                 "text": "The temple marking where Buddha attained enlightenment. Provides Faith and a free Great Prophet."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Mbanza",
@@ -1876,7 +1930,8 @@
             {
                 "text": "A stunning Hindu temple in Madurai. Provides Faith and Culture."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Moai",
@@ -1903,7 +1958,8 @@
             {
                 "text": "A German industrial heartland. Provides massive Production bonuses in the city."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "St. Basil's Cathedral",
@@ -1917,7 +1973,8 @@
             {
                 "text": "The iconic colorful cathedral in Moscow. Provides Culture and Tourism."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Venetian Arsenal",
@@ -1934,7 +1991,8 @@
             {
                 "text": "Venice's legendary shipyard. Provides Production towards naval units and a free naval unit."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Wallace Monument",
@@ -1950,7 +2008,8 @@
             {
                 "text": "A tower commemorating William Wallace. Provides Culture and a free Great General."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Hoover Dam",
@@ -1968,7 +2027,8 @@
             {
                 "text": "A massive dam on the Colorado River. Provides Power and Production to nearby cities."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Ziggurat",
@@ -2462,7 +2522,8 @@
         "cost": 75,
         "maintenance": 1,
         "uniques": [],
-        "requiredCivic": "Games and Recreation"
+        "requiredCivic": "Games and Recreation",
+        "tourism": 1
     },
     {
         "name": "Zoo",
@@ -2470,7 +2531,8 @@
         "cost": 180,
         "maintenance": 2,
         "uniques": [],
-        "requiredCivic": "Games and Recreation"
+        "requiredCivic": "Games and Recreation",
+        "tourism": 1
     },
     {
         "name": "Thermal Bath",
@@ -2486,7 +2548,8 @@
         "cost": 240,
         "maintenance": 3,
         "uniques": [],
-        "requiredTech": "Refrigeration"
+        "requiredTech": "Refrigeration",
+        "tourism": 2
     },
     {
         "name": "Lighthouse",
@@ -2587,7 +2650,8 @@
         "cost": 75,
         "maintenance": 1,
         "uniques": [],
-        "requiredCivic": "Drama and Poetry"
+        "requiredCivic": "Drama and Poetry",
+        "tourism": 1
     },
     {
         "name": "Marae",
@@ -2603,7 +2667,8 @@
         "cost": 145,
         "maintenance": 2,
         "uniques": [],
-        "requiredTech": "Astronomy"
+        "requiredTech": "Astronomy",
+        "tourism": 2
     },
     {
         "name": "Archaeological Museum",
@@ -2611,7 +2676,8 @@
         "cost": 145,
         "maintenance": 2,
         "uniques": [],
-        "requiredTech": "Writing"
+        "requiredTech": "Writing",
+        "tourism": 2
     },
     {
         "name": "Broadcast Center",
@@ -2625,7 +2691,8 @@
         "culture": 4,
         "greatPersonPoints": {
             "Great Musician": 1
-        }
+        },
+        "tourism": 4
     },
     {
         "name": "Film Studio",
@@ -2845,7 +2912,8 @@
         "cost": 145,
         "maintenance": 1,
         "uniques": [],
-        "requiredCivic": "Games and Recreation"
+        "requiredCivic": "Games and Recreation",
+        "tourism": 1
     },
     {
         "name": "Aquarium",
@@ -2853,7 +2921,8 @@
         "cost": 180,
         "maintenance": 2,
         "uniques": [],
-        "requiredCivic": "Games and Recreation"
+        "requiredCivic": "Games and Recreation",
+        "tourism": 2
     },
     {
         "name": "Aquatics Center",
@@ -2861,7 +2930,8 @@
         "cost": 240,
         "maintenance": 3,
         "uniques": [],
-        "requiredCivic": "Games and Recreation"
+        "requiredCivic": "Games and Recreation",
+        "tourism": 2
     },
     {
         "name": "Hangar",
@@ -2900,7 +2970,8 @@
         "cost": 220,
         "maintenance": 1,
         "uniques": [],
-        "requiredCivic": "Capitalism"
+        "requiredCivic": "Capitalism",
+        "tourism": 2
     },
     {
         "name": "Hydroelectric Dam",
@@ -3213,7 +3284,8 @@
             {
                 "text": "The ziggurat of Babylon, the house of the foundation of heaven and earth. Provides bonus Science and Great Scientist points."
             }
-        ]
+        ],
+        "tourism": 2
     },
     {
         "name": "Great Bath",
@@ -3227,7 +3299,8 @@
             {
                 "text": "The world's first public bathhouse from Mohenjo-daro. Provides Housing, Faith, and prevents Flood damage."
             }
-        ]
+        ],
+        "tourism": 2
     },
     {
         "name": "Mausoleum at Halicarnassus",
@@ -3239,7 +3312,8 @@
             {
                 "text": "The grand tomb of Mausolus. Provides bonus Great Engineer points and extends their benefits."
             }
-        ]
+        ],
+        "tourism": 2
     },
     {
         "name": "Huey Teocalli",
@@ -3251,7 +3325,8 @@
             {
                 "text": "The great temple of Tenochtitlan. Provides Culture, Faith, and Lake adjacency bonuses."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Mont St. Michel",
@@ -3266,7 +3341,8 @@
             {
                 "text": "A medieval abbey on a tidal island in Normandy. Provides Faith and +1 charge for Apostles and Missionaries."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "University of Sankore",
@@ -3282,7 +3358,8 @@
             {
                 "text": "A historic center of learning in Timbuktu. Provides Science and Great Scientist points."
             }
-        ]
+        ],
+        "tourism": 3
     },
     {
         "name": "Casa de Contratación",
@@ -3296,7 +3373,8 @@
             {
                 "text": "The Spanish House of Trade in Seville. Provides Gold and Great Merchant points."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Torre de Belém",
@@ -3311,7 +3389,8 @@
             {
                 "text": "A fortified tower on the Lisbon coastline. Provides Gold, Great Admiral points, and Trade Route bonuses."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Országház",
@@ -3324,7 +3403,8 @@
             {
                 "text": "The Hungarian Parliament Building in Budapest. Provides Culture and Gold."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Panama Canal",
@@ -3337,7 +3417,8 @@
             {
                 "text": "A ship canal connecting the Atlantic and Pacific. Ships may traverse between two bodies of water."
             }
-        ]
+        ],
+        "tourism": 4
     },
     {
         "name": "Biosphère",
@@ -3349,7 +3430,8 @@
             {
                 "text": "A geodesic dome in Montreal dedicated to environmental science. Provides Science and Environmental bonuses."
             }
-        ]
+        ],
+        "tourism": 5
     },
     {
         "name": "Estádio do Maracanã",
@@ -3363,7 +3445,8 @@
             {
                 "text": "Rio de Janeiro's legendary football stadium. Provides Culture, Amenities, and Tourism."
             }
-        ]
+        ],
+        "tourism": 5
     },
     {
         "name": "Feitoria",
