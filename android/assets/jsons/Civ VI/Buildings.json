@@ -697,10 +697,8 @@
         ]
     },
     {
-        "name": "Harbor",
-        "cost": 60,
-        "maintenance": 0,
-        "hurryCostModifier": 25,
+        "name": "Bath",
+        "cost": 100,
         "uniques": [
             "Unbuildable",
             "Creates a [Harbor] district on a specific tile",
@@ -1240,8 +1238,9 @@
             "Must be next to [Desert]",
             "Only available <in cities without a [Nuclear Plant]>",
             "[4] Power [Industrial] buildings produce"
-            ]
-        },
+        ]
+    },
+    {
         "name": "Wind Farm",
         "production": 4,
         "percentStatBonus": {
@@ -1253,8 +1252,9 @@
         "uniques": [
             "Must be on [Plains] or [Grassland]",
             "[3] Power [Industrial] buildings produce"
-            ]
-        },
+        ]
+    },
+    {
         "name": "Power Plant",
         "percentStatBonus": {
             "production": 10
@@ -1266,10 +1266,11 @@
             "[6] Power [Industrial] buildings produce",
             "Consumes [1] [Coal]",
             "Regional effect: +4 Production to all cities within 6 tiles"
-            ],
-            "cost": 235,
-            "production": 4
-        },
+        ],
+        "cost": 235,
+        "production": 4
+    },
+    {
         "name": "Weather Control Station",
         "production": 5,
         "maintenance": 4,
@@ -1339,8 +1340,9 @@
         "uniques": [
             "Only available <in cities without a [Solar Plant]>",
             "[4] Power [Industrial] buildings produce"
-            ]
-        },
+        ]
+    },
+    {
         "name": "Apollo Program",
         "cost": 750,
         "isNationalWonder": true,
@@ -1594,7 +1596,8 @@
         "uniques": [
             "Unbuildable",
             "Creates a [Government Plaza] district on a specific tile",
-            "Shows when unbuildable"
+            "Shows when unbuildable",
+            "[1] Governor Title"
         ],
         "requiredCivic": "State Workforce",
         "maintenance": 0,
@@ -1626,6 +1629,14 @@
         "requiredBuilding": "Government Plaza",
         "culture": 2,
         "amenities": 1,
+        "uniques": [
+            "[1] Governor Title",
+            "Limited to [1] per Civilization",
+            "Governor XP: [5]"
+        ],
+        "greatPersonPoints": {
+            "Great Engineer": 2
+        },
         "district": "Government Plaza",
         "requiredCivic": "Civil Service"
     },
@@ -1635,6 +1646,14 @@
         "requiredBuilding": "Government Plaza",
         "culture": 3,
         "amenities": 1,
+        "uniques": [
+            "[1] Governor Title",
+            "Limited to [1] per Civilization",
+            "Governor XP: [5]"
+        ],
+        "greatPersonPoints": {
+            "Great Diplomat": 2
+        },
         "district": "Government Plaza",
         "requiredCivic": "Diplomatic Service"
     },
@@ -1643,8 +1662,17 @@
         "cost": 120,
         "requiredBuilding": "Government Plaza",
         "gold": 4,
+        "uniques": [
+            "[1] Governor Title",
+            "Limited to [1] per Civilization",
+            "Governor XP: [5]"
+        ],
+        "greatPersonPoints": {
+            "Great Engineer": 2
+        },
         "district": "Government Plaza",
-        "requiredCivic": "Ideology"
+        "requiredCivic": "Ideology",
+        "amenities": 1
     },
     {
         "name": "Grand Archive",
@@ -1652,8 +1680,17 @@
         "requiredBuilding": "Government Plaza",
         "culture": 4,
         "science": 2,
+        "uniques": [
+            "[1] Governor Title",
+            "Limited to [1] per Civilization",
+            "GovernorXP: [2]"
+        ],
+        "greatPersonPoints": {
+            "Great Scientist": 2
+        },
         "district": "Government Plaza",
-        "requiredCivic": "Recorded History"
+        "requiredCivic": "Recorded History",
+        "amenities": 1
     },
     {
         "name": "Avatar of the State",
@@ -1661,8 +1698,17 @@
         "requiredBuilding": "Government Plaza",
         "culture": 2,
         "faith": 2,
+        "uniques": [
+            "[1] Governor Title",
+            "Limited to [1] per Civilization",
+            "GovernorXP: [2]"
+        ],
+        "greatPersonPoints": {
+            "Great General": 2
+        },
         "district": "Government Plaza",
-        "requiredCivic": "Totalitarianism"
+        "requiredCivic": "Totalitarianism",
+        "amenities": 1
     },
     {
         "name": "Amundsen-Scott Research Station",
@@ -2149,9 +2195,9 @@
         ]
     },
     {
-        "name": "Palace",
-        "cost": 0,
-        "maintenance": 0,
+        "name": "Bath",
+        "cost": 100,
+        "hurryCostModifier": 25,
         "uniques": [
             "Indicates the capital city"
         ],
@@ -2647,7 +2693,10 @@
         "maintenance": 1,
         "uniques": [],
         "requiredCivic": "Drama and Poetry",
-        "tourism": 1
+        "tourism": 1,
+        "greatWorkSlots": {
+            "Writing": 1
+        }
     },
     {
         "name": "Marae",
@@ -2664,7 +2713,10 @@
         "maintenance": 2,
         "uniques": [],
         "requiredTech": "Astronomy",
-        "tourism": 2
+        "tourism": 2,
+        "greatWorkSlots": {
+            "Art": 3
+        }
     },
     {
         "name": "Archaeological Museum",
@@ -2673,7 +2725,10 @@
         "maintenance": 2,
         "uniques": [],
         "requiredTech": "Writing",
-        "tourism": 2
+        "tourism": 2,
+        "greatWorkSlots": {
+            "Artifact": 3
+        }
     },
     {
         "name": "Broadcast Center",
@@ -2705,24 +2760,49 @@
         "district": "Government Plaza",
         "cost": 75,
         "maintenance": 1,
-        "uniques": [],
-        "requiredCivic": "Civil Service"
+        "uniques": [
+            "[1] Governor Title",
+            "Limited to [1] per Civilization",
+            "GovernorXP: [2]"
+        ],
+        "greatPersonPoints": {
+            "Great Diplomat": 2
+        },
+        "requiredCivic": "Civil Service",
+        "amenities": 1
     },
     {
         "name": "Ancestral Hall",
         "district": "Government Plaza",
         "cost": 75,
         "maintenance": 1,
-        "uniques": [],
-        "requiredCivic": "State Workforce"
+        "uniques": [
+            "[50]% Production when constructing [Settler] units [in this city]",
+            "[1] Governor Title",
+            "Limited to [1] per Civilization",
+            "GovernorXP: [2]"
+        ],
+        "greatPersonPoints": {
+            "Great Engineer": 2
+        },
+        "requiredCivic": "State Workforce",
+        "amenities": 1
     },
     {
         "name": "Warlord's Throne",
         "district": "Government Plaza",
         "cost": 75,
         "maintenance": 1,
-        "uniques": [],
-        "requiredCivic": "State Workforce"
+        "uniques": [
+            "[1] Governor Title",
+            "Limited to [1] per Civilization",
+            "GovernorXP: [2]"
+        ],
+        "greatPersonPoints": {
+            "Great General": 2
+        },
+        "requiredCivic": "State Workforce",
+        "amenities": 1
     },
     {
         "name": "Queen's Bibliotheque",
@@ -2730,57 +2810,113 @@
         "cost": 108,
         "maintenance": 2,
         "uniques": [
-            "A building unique to Sweden. Provides 2 slots ofWriting,Music, and any type ofArt. This building is not mutually exclusive with other buildings in Government Plaza.Awards +1Governor Title."
+            "A building unique to Sweden.",
+            "Provides 1 slot of Writing, Music, and any type of Art.",
+            "This building is not mutually exclusive with other buildings in Government Plaza.",
+            "[1] Governor Title",
+            "Limited to [1] per Civilization"
         ],
-        "requiredCivic": "Recorded History"
+        "greatPersonPoints": {
+            "Great Scientist": 2
+        },
+        "requiredCivic": "Recorded History",
+        "amenities": 1
     },
     {
         "name": "Foreign Ministry",
         "district": "Government Plaza",
         "cost": 145,
         "maintenance": 2,
-        "uniques": [],
-        "requiredCivic": "Diplomatic Service"
+        "uniques": [
+            "+1 Diplomatic Favor per turn",
+            "[1] Governor Title",
+            "Limited to [1] per Civilization"
+        ],
+        "greatPersonPoints": {
+            "Great Diplomat": 2
+        },
+        "requiredCivic": "Diplomatic Service",
+        "amenities": 1
     },
     {
         "name": "Intelligence Agency",
         "district": "Government Plaza",
         "cost": 145,
         "maintenance": 2,
-        "uniques": [],
-        "requiredCivic": "Diplomatic Service"
+        "uniques": [
+            "+1 Spy capacity",
+            "[1] Governor Title",
+            "Limited to [1] per Civilization"
+        ],
+        "greatPersonPoints": {
+            "Great Merchant": 2
+        },
+        "requiredCivic": "Diplomatic Service",
+        "amenities": 1
     },
     {
         "name": "Grand Master's Chapel",
         "district": "Government Plaza",
         "cost": 145,
         "maintenance": 2,
-        "uniques": [],
-        "requiredCivic": "Theology"
+        "uniques": [
+            "Faith may be used to purchase land and naval units",
+            "[1] Governor Title",
+            "Limited to [1] per Civilization"
+        ],
+        "greatPersonPoints": {
+            "Great Merchant": 2
+        },
+        "requiredCivic": "Theology",
+        "amenities": 1
     },
     {
         "name": "War Department",
         "district": "Government Plaza",
         "cost": 220,
         "maintenance": 3,
-        "uniques": [],
-        "requiredCivic": "Military Training"
+        "uniques": [
+            "+5 Combat Strength to [land] units",
+            "[1] Governor Title",
+            "Limited to [1] per Civilization"
+        ],
+        "greatPersonPoints": {
+            "Great General": 2
+        },
+        "requiredCivic": "Military Training",
+        "amenities": 1
     },
     {
         "name": "National History Museum",
         "district": "Government Plaza",
         "cost": 220,
         "maintenance": 3,
-        "uniques": [],
-        "requiredCivic": "Natural History"
+        "uniques": [
+            "+1 Tourism from Great Works",
+            "[1] Governor Title",
+            "Limited to [1] per Civilization"
+        ],
+        "greatPersonPoints": {
+            "Great Artist": 2
+        },
+        "requiredCivic": "Natural History",
+        "amenities": 1
     },
     {
         "name": "Royal Society",
         "district": "Government Plaza",
         "cost": 220,
         "maintenance": 3,
-        "uniques": [],
-        "requiredTech": "Education"
+        "uniques": [
+            "+10% Science",
+            "[1] Governor Title",
+            "Limited to [1] per Civilization"
+        ],
+        "greatPersonPoints": {
+            "Great Scientist": 2
+        },
+        "requiredTech": "Education",
+        "amenities": 1
     },
     {
         "name": "Grove",
@@ -2938,6 +3074,20 @@
         "maintenance": 1,
         "uniques": [],
         "requiredTech": "Flight"
+    },
+    {
+        "name": "Aircraft Factory",
+        "district": "Aerodrome",
+        "cost": 225,
+        "maintenance": 2,
+        "uniques": [
+            "+2 [Great Engineer] points per turn",
+            "+1 [Production]"
+        ],
+        "requiredTech": "Flight",
+        "greatPersonPoints": {
+            "Great Engineer": 2
+        }
     },
     {
         "name": "Airport",

@@ -292,6 +292,12 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 	Applicable to: Triggerable
 
+??? example  "Join [society] society"
+	Applicable to: Triggerable
+
+??? example  "Rank up in [society] society"
+	Applicable to: Triggerable
+
 ??? example  "Suppress warning [validationWarning]"
 	Allows suppressing specific validation warnings. Errors, deprecation warnings, or warnings about untyped and non-filtering uniques should be heeded, not suppressed, and are therefore not accepted. Note that this can be used in ModOptions, in the uniques a warning is about, or as modifier on the unique triggering a warning - but you still need to be specific. Even in the modifier case you will need to specify a sufficiently selective portion of the warning text as parameter.
 
@@ -1282,6 +1288,12 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "[society] society member"
 	Applicable to: Global
 
+??? example  "[rank] rank in [society] society"
+	Applicable to: Global
+
+??? example  "[amount] XP for [society] society"
+	Applicable to: Global
+
 ??? example  "[zombie] unit"
 	Applicable to: Global
 
@@ -1462,6 +1474,11 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Meant to be used together with conditionals, like "Unavailable &lt;after generating a Great Prophet&gt;".
 
 	Applicable to: Tech, Policy, FounderBelief, FollowerBelief, Building, Unit, Promotion, Improvement, Ruins, Event, EventChoice
+
+??? example  "[amount] Governor XP"
+	Example: "[3] Governor XP"
+
+	Applicable to: Policy, Building
 
 ??? example  "[relativeAmount]% weight to this choice for AI decisions"
 	Example: "[+20]% weight to this choice for AI decisions"
@@ -2033,6 +2050,24 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Cannot be hurried"
 	Applicable to: Tech, Building
 
+??? example  "Allows airlifting units between cities"
+	Applicable to: Building
+
+??? example  "Air unit capacity: [amount]"
+	Example: "Air unit capacity: [3]"
+
+	Applicable to: Building
+
+??? example  "[amount] Governor Title"
+	Example: "[3] Governor Title"
+
+	Applicable to: Building
+
+??? example  "[amount] Governor XP"
+	Example: "[3] Governor XP"
+
+	Applicable to: Policy, Building
+
 ??? example  "[relativeAmount]% weight to this choice for AI decisions"
 	Example: "[+20]% weight to this choice for AI decisions"
 
@@ -2066,6 +2101,13 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Buildings that produce electricity (Wind Farm, Solar Plant, Power Plant).
 
 	Applicable to: Building, Terrain
+
+??? example  "[positiveAmount] CO2 per turn"
+	Buildings that emit CO2 per turn (Coal Power Plant, Oil Power Plant). Contributes to Climate Change.
+
+	Example: "[3] CO2 per turn"
+
+	Applicable to: Building
 
 ## UnitAction uniques
 !!! note ""
@@ -3247,6 +3289,15 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 	Applicable to: Improvement
 
+??? example  "Can connect to another tile"
+	Applicable to: Improvement
+
+??? example  "Units ignore terrain costs when moving in or out of this tile"
+	Applicable to: Improvement
+
+??? example  "National Park"
+	Applicable to: Improvement
+
 ??? example  "Will not be displayed in Civilopedia"
 	This unique is automatically hidden from users.
 
@@ -4204,6 +4255,12 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "&lt;upon entering a Golden Age&gt;"
 	Applicable to: TriggerCondition
 
+??? example  "&lt;upon entering a Dark Age&gt;"
+	Applicable to: TriggerCondition
+
+??? example  "&lt;upon entering a Heroic Age&gt;"
+	Applicable to: TriggerCondition
+
 ??? example  "&lt;upon ending a Golden Age&gt;"
 	Applicable to: TriggerCondition
 
@@ -4260,6 +4317,21 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: TriggerCondition
 
 ??? example  "&lt;upon enhancing a Religion&gt;"
+	Applicable to: TriggerCondition
+
+??? example  "&lt;upon entering climate [climatePhase]&gt;"
+	Applicable to: TriggerCondition
+
+??? example  "&lt;upon climate phase change&gt;"
+	Applicable to: TriggerCondition
+
+??? example  "&lt;upon natural disaster [disasterType]&gt;"
+	Applicable to: TriggerCondition
+
+??? example  "&lt;upon joining [secretSociety]&gt;"
+	Applicable to: TriggerCondition
+
+??? example  "&lt;upon reaching [societyRank] in [secretSociety]&gt;"
 	Applicable to: TriggerCondition
 
 ??? example  "&lt;upon expending a [mapUnitFilter] unit&gt;"

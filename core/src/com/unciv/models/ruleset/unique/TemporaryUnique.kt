@@ -6,8 +6,8 @@ import yairm210.purity.annotations.Readonly
 class TemporaryUnique() : IsPartOfGameInfoSerialization {
 
     constructor(uniqueObject: Unique, turns: Int) : this() {
-        val turnsText = uniqueObject.getModifiers(UniqueType.ConditionalTimedUnique).first().text
-        unique = uniqueObject.text.replaceFirst("<$turnsText>", "").trim()
+        val turnsText = uniqueObject.getModifiers(UniqueType.ConditionalTimedUnique).firstOrNull()?.text ?: "turns"
+        unique = uniqueObject.text.replaceFirst("<\$turnsText>", "").trim()
         sourceObjectType = uniqueObject.sourceObjectType
         sourceObjectName = uniqueObject.sourceObjectName
         turnsLeft = turns

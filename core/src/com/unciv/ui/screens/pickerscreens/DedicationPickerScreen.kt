@@ -53,7 +53,7 @@ class DedicationPickerScreen(
                 val desc = getDedicationDescription(dedicationName)
                 val descLabel = desc.toLabel()
                 descLabel.wrap = true
-                dedicationList.add(descLabel).colspan(2).padBottom(12f).row()
+                dedicationList.add(descLabel).colspan(2).width(400f).padBottom(12f).row()
             }
         }
 
