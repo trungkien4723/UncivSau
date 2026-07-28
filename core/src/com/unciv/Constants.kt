@@ -59,9 +59,13 @@ object Constants {
     
     // Agreements
     const val openBorders = "Open Borders"
+    const val delegation = "Delegation"
+    const val embassy = "Embassy"
     
     // Other trade items
     const val acceptEmbassy = "Accept Embassy"
+    const val acceptDelegation = "Accept Delegation"
+    const val delegationCost = "Delegation Cost"
     const val goldPerTurn = "Gold per turn"
     const val flatGold = "Gold"
     const val tradeRouteDuration = 30

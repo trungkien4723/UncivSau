@@ -258,6 +258,14 @@ class CivicManager : IsPartOfGameInfoSerialization {
         if (isNewCivic)
             civInfo.popupAlerts.add(PopupAlert(AlertType.CivicResearched, civicName))
 
+        // Civ 6: Check if this civic unlocks a new government
+        val newlyUnlockedGovs = getRuleset().governments.values
+            .filter { it.requiredCivic == civicName }
+            .filter { civInfo.government.isGovernmentAvailable(it) }
+        if (newlyUnlockedGovs.isNotEmpty()) {
+            civInfo.shouldOpenGovernmentPicker = true
+        }
+
         val triggerNotificationText = "due to adopting [$civicName]"
         for (unique in newCivic.uniqueObjects) {
             if (!unique.isTriggerable || unique.hasTriggerConditional() || !unique.conditionalsApply(civInfo.state))

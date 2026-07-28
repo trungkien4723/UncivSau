@@ -22,6 +22,12 @@ class GovernmentManager : IsPartOfGameInfoSerialization {
     /** Names of policy cards currently assigned to slots, in slot order. Serialized. */
     var assignedCards = ArrayList<String>()
 
+    /** Civ 6: Whether to open the government picker (e.g., after unlocking a new government via civic) */
+    var shouldOpenGovernmentPicker = false
+
+    /** Used by NextTurnAction.PickGovernment.isChoice */
+    @Readonly fun shouldShowGovernmentPicker(): Boolean = shouldOpenGovernmentPicker
+
     fun clone(): GovernmentManager {
         val toReturn = GovernmentManager()
         toReturn.currentGovernment = currentGovernment

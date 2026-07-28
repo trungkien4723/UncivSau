@@ -19,6 +19,7 @@ import com.unciv.ui.screens.pickerscreens.PolicyPickerScreen
 import com.unciv.ui.screens.pickerscreens.ReligiousBeliefsPickerScreen
 import com.unciv.ui.screens.pickerscreens.CivicPickerScreen
 import com.unciv.ui.screens.pickerscreens.TechPickerScreen
+import com.unciv.ui.screens.pickerscreens.GovernmentPickerScreen
 import com.unciv.ui.screens.worldscreen.WorldScreen
 import com.unciv.utils.Concurrency
 import com.unciv.utils.launchOnGLThread
@@ -73,10 +74,18 @@ enum class NextTurnAction(protected val text: String, val color: Color) {
     },
     PickPolicy("Pick a policy", Color.VIOLET) {
         override fun isChoice(worldScreen: WorldScreen) =
-            worldScreen.viewingCiv.policies.shouldShowPolicyPicker()
+            worldScreen.viewingCiv.policies.freePolicies > 0
         override fun action(worldScreen: WorldScreen) {
             worldScreen.game.pushScreen(PolicyPickerScreen(worldScreen.selectedCiv, worldScreen.canChangeState))
             worldScreen.viewingCiv.policies.shouldOpenPolicyPicker = false
+        }
+    },
+    PickGovernment("Pick a Government", Color.GREEN) {
+        override fun isChoice(worldScreen: WorldScreen) =
+            worldScreen.viewingCiv.government.shouldShowGovernmentPicker()
+        override fun action(worldScreen: WorldScreen) {
+            worldScreen.game.pushScreen(GovernmentPickerScreen(worldScreen.viewingCiv))
+            worldScreen.viewingCiv.government.shouldOpenGovernmentPicker = false
         }
     },
     MoveSpies("Move Spies", Color.WHITE) {

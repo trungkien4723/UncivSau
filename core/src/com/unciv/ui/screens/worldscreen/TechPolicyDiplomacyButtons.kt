@@ -227,7 +227,8 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
 
     private fun updatePolicyButton() {
         // Don't show policies until they become relevant
-        if (viewingCiv.policies.adoptedPolicies.isNotEmpty() || viewingCiv.policies.canAdoptPolicy()) {
+        // In Civ 6, you can only change policies when you have a free policy slot (from completing a civic or changing government)
+        if (viewingCiv.policies.freePolicies > 0) {
             policyButtonHolder.touchable = Touchable.enabled
             policyButtonHolder.actor = policyScreenButton
         } else {

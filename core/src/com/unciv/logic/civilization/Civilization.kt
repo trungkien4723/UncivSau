@@ -208,6 +208,9 @@ class Civilization : IsPartOfGameInfoSerialization {
         var notifications = ArrayList<Notification>()
     }
 
+    /** Civ 6: Whether to open the government picker (e.g., after unlocking a new government via civic) */
+    var shouldOpenGovernmentPicker = false
+
     /** for trades here, ourOffers is the current civ's offers, and theirOffers is what the requesting civ offers  */
     val tradeRequests = ArrayList<TradeRequest>()
 

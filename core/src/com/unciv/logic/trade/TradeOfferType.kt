@@ -6,6 +6,7 @@ package com.unciv.logic.trade
  */
 @Suppress("EnumEntryName")  // We do want the underscores in our names
 enum class TradeOfferType(val numberType: TradeTypeNumberType, val isImmediate: Boolean) {
+    Delegation           (TradeTypeNumberType.Gold, true),
     Embassy              (TradeTypeNumberType.None, true),
     Gold                (TradeTypeNumberType.Gold, true),
     Gold_Per_Turn       (TradeTypeNumberType.Gold, false),

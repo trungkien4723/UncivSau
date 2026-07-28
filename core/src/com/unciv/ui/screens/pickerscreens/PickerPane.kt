@@ -1,5 +1,6 @@
 package com.unciv.ui.screens.pickerscreens
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.ui.Button
 import com.badlogic.gdx.scenes.scene2d.ui.Label
@@ -51,7 +52,7 @@ class PickerPane(
 
         descriptionLabel.wrap = true
         val descriptionWithPad = Table()
-        descriptionWithPad.add(descriptionLabel).pad(10f).grow()
+        descriptionWithPad.add(descriptionLabel).pad(10f).grow().prefWidth(Gdx.graphics.width * 0.4f)
         descriptionScroll = AutoScrollPane(descriptionWithPad, BaseScreen.skin)
         bottomTable.add(descriptionScroll).grow()
 

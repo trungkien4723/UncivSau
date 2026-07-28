@@ -162,8 +162,6 @@ class PolicyPickerScreen(
     private var selectedPolicyButton: PolicyButton? = null
 
     init {
-        val branchToGroup = HashMap<String, BranchGroup>()
-
         val policies = viewingCiv.policies
         displayTutorial(TutorialTrigger.CultureAndPolicies)
 
@@ -182,10 +180,12 @@ class PolicyPickerScreen(
             confirmAction()
         }
 
-        if (!canChangeState)
+        if (!canChangeState || policies.freePolicies == 0)
             rightSideButton.disable()
 
         topTable.row()
+
+        val branchToGroup = HashMap<String, BranchGroup>()
 
         val branches = viewingCiv.gameInfo.ruleset.policyBranches
         val branchesPerRow: Int

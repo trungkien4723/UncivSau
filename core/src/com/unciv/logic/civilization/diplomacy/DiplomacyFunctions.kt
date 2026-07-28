@@ -99,6 +99,42 @@ class DiplomacyFunctions(val civInfo: Civilization) {
     }
 
     /**
+     * Basic check if we can trade delegations
+     */
+    @Readonly
+    private fun canTradeDelegations(): Boolean {
+        return civInfo.isMajorCiv()
+    }
+
+    /**
+     * Test if we can offer our delegation to [otherCiv]
+     */
+    @Readonly
+    fun canOfferDelegationTo(otherCiv: Civilization): Boolean {
+        if (!canTradeDelegations() || !otherCiv.isMajorCiv() || civInfo.getCapital() == null)
+            return false
+
+        val theirDiploManager = otherCiv.getDiplomacyManager(civInfo)!!
+        return !civInfo.isAtWarWith(otherCiv) && !isDenouncedThisTurn(theirDiploManager)
+            && !theirDiploManager.hasModifier(DiplomaticModifiers.Delegation)
+            && !theirDiploManager.hasModifier(DiplomaticModifiers.SharedDelegation)
+    }
+
+    /**
+     * Test if we can establish delegation in [otherCiv] capital
+     */
+    @Readonly
+    fun canEstablishDelegationWith(otherCiv: Civilization): Boolean {
+        if (!canTradeDelegations() || !otherCiv.isMajorCiv() || otherCiv.getCapital() == null)
+            return false
+
+        val ourDiploManager = civInfo.getDiplomacyManager(otherCiv)!!
+        return !civInfo.isAtWarWith(otherCiv) && !isDenouncedThisTurn(ourDiploManager)
+            && !ourDiploManager.hasModifier(DiplomaticModifiers.Delegation)
+            && !ourDiploManager.hasModifier(DiplomaticModifiers.SharedDelegation)
+    }
+
+    /**
      * Basic check if we can trade embassies, does not check all prerequisities
      * Use [canOfferEmbassyTo] and [canEstablishEmbassyWith] instead
      */

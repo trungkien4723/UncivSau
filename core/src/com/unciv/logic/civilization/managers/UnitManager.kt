@@ -101,7 +101,7 @@ class UnitManager(val civInfo: Civilization) {
      * @param baseUnit [BaseUnit] to create and place
      * @return created [MapUnit] or null if no suitable location was found
      * */
-    fun placeUnitNearTile(location: HexCoord, baseUnit: BaseUnit, unitId: Int? = null, copiedFrom: MapUnit? = null): MapUnit? {
+    fun placeUnitNearTile(location: HexCoord, baseUnit: BaseUnit, unitId: Int? = null, copiedFrom: MapUnit? = null, isStartingUnit: Boolean = false): MapUnit? {
         val unit = civInfo.gameInfo.tileMap.placeUnitNearTile(location, baseUnit, civInfo, unitId)
 
         if (unit == null) return unit
@@ -122,9 +122,11 @@ class UnitManager(val civInfo: Civilization) {
             }
         }
 
-        for (unique in civInfo.getTriggeredUniques(UniqueType.TriggerUponGainingUnit, unit.cache.state) 
-                { unit.matchesFilter(it.params[0]) })
-            UniqueTriggerActivation.triggerUnique(unique, unit, triggerNotificationText = triggerNotificationText)
+        if (!isStartingUnit) {
+            for (unique in civInfo.getTriggeredUniques(UniqueType.TriggerUponGainingUnit, unit.cache.state) 
+                    { unit.matchesFilter(it.params[0]) })
+                UniqueTriggerActivation.triggerUnique(unique, unit, triggerNotificationText = triggerNotificationText)
+        }
 
         if (unit.getResourceRequirementsPerTurn().isNotEmpty())
             civInfo.cache.updateCivResources()

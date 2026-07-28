@@ -113,7 +113,8 @@ internal class WorldScreenTopBarStats(topbar: WorldScreenTopBar) : ScalingTableW
 
         addStat("Culture", cultureLabel) {
             if (worldScreen.gameInfo.ruleset.policyBranches.isEmpty()) null
-            else PolicyPickerScreen(worldScreen.selectedCiv, worldScreen.canChangeState)
+            else if (worldScreen.selectedCiv.policies.freePolicies > 0) PolicyPickerScreen(worldScreen.selectedCiv, worldScreen.canChangeState)
+            else null
         }
 
         addStat("Tourism", tourismLabel, false) {

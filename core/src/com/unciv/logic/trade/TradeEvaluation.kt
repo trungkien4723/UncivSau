@@ -32,10 +32,11 @@ class TradeEvaluation {
         if ((offerer.hasEverOwnedOriginalCapital && trade.ourOffers.count { it.type == TradeOfferType.City } == offerer.cities.size)
             || (tradePartner.hasEverOwnedOriginalCapital && trade.theirOffers.count { it.type == TradeOfferType.City } == tradePartner.cities.size)) {
             return false
-        }
-        
+}
+
         // No way to tell who offers what in isOfferValid()
         val embassyOffer = TradeOffer(Constants.acceptEmbassy, TradeOfferType.Embassy, speed = offerer.gameInfo.speed)
+        val delegationOffer = TradeOffer(Constants.acceptDelegation, TradeOfferType.Delegation, speed = offerer.gameInfo.speed)
         val theirDiploManager = tradePartner.getDiplomacyManager(offerer)!!
         val ourDiploManager = offerer.getDiplomacyManager(tradePartner)!!
 
@@ -49,6 +50,18 @@ class TradeEvaluation {
             && (tradePartner.getCapital() == null
             || ourDiploManager.hasModifier(DiplomaticModifiers.EstablishedEmbassy)
             || ourDiploManager.hasModifier(DiplomaticModifiers.SharedEmbassies)))
+            return false
+
+        if (trade.ourOffers.contains(delegationOffer)
+            && (offerer.getCapital() == null
+            || theirDiploManager.hasModifier(DiplomaticModifiers.Delegation)
+            || theirDiploManager.hasModifier(DiplomaticModifiers.SharedDelegation)))
+            return false
+
+        if (trade.theirOffers.contains(delegationOffer)
+            && (tradePartner.getCapital() == null
+            || ourDiploManager.hasModifier(DiplomaticModifiers.Delegation)
+            || ourDiploManager.hasModifier(DiplomaticModifiers.SharedDelegation)))
             return false
 
         for (offer in trade.ourOffers)
@@ -73,6 +86,7 @@ class TradeEvaluation {
         }
 
         return when (tradeOffer.type) {
+            TradeOfferType.Delegation -> true // Already checked
             TradeOfferType.Embassy -> true // Already checked
             // if they go a little negative it's okay, but don't allowing going overboard (promising same gold to many)
             TradeOfferType.Gold -> tradeOffer.amount * 0.9f < offerer.gold
@@ -150,6 +164,7 @@ class TradeEvaluation {
     @Readonly
     private fun evaluateBuyCost(offer: TradeOffer, civInfo: Civilization, tradePartner: Civilization, trade: Trade): Int {
         when (offer.type) {
+            TradeOfferType.Delegation -> return (25 * civInfo.gameInfo.speed.goldCostModifier).toInt()
             TradeOfferType.Embassy -> return (30 * civInfo.gameInfo.speed.goldCostModifier).toInt()
             TradeOfferType.Gold -> return offer.amount
             // GPT loses value for each 'future' turn, meaning: gold now is more valuable than gold in the future
@@ -354,6 +369,15 @@ class TradeEvaluation {
     @Readonly
     private fun evaluateSellCost(offer: TradeOffer, civInfo: Civilization, tradePartner: Civilization, trade: Trade): Int {
         when (offer.type) {
+            TradeOfferType.Delegation -> {
+                val tradePartnerDiplo = civInfo.getDiplomacyManager(tradePartner)!!
+                val baseSellCost = when {
+                    tradePartnerDiplo.isRelationshipLevelLE(RelationshipLevel.Enemy) -> 300 // arbitrarily chosen
+                    tradePartnerDiplo.isRelationshipLevelLE(RelationshipLevel.Competitor) -> 60
+                    else -> 30 // 30 is Civ V default (on standard only?)
+                }
+                return (baseSellCost * civInfo.gameInfo.speed.goldCostModifier).toInt()
+            }
             TradeOfferType.Embassy -> {
                 val tradePartnerDiplo = civInfo.getDiplomacyManager(tradePartner)!!
                 val baseSellCost = when {

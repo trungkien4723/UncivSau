@@ -531,7 +531,7 @@ class GameStarter private constructor(
     private fun placeStartingUnits(civ: Civilization, startingLocation: Tile, startingUnits: MutableList<String>, eraUnitReplacement: String, settlerLikeUnits: Map<String, BaseUnit>) {
         for (unit in startingUnits) {
             val unitToAdd = getEquivalentUnit(civ, unit, eraUnitReplacement, settlerLikeUnits)
-            if (unitToAdd != null) civ.units.placeUnitNearTile(startingLocation.position, unitToAdd)
+            if (unitToAdd != null) civ.units.placeUnitNearTile(startingLocation.position, unitToAdd, isStartingUnit = true)
         }
     }
 
