@@ -386,16 +386,20 @@ class TurnManager(val civInfo: Civilization) {
         civInfo.climateManager.updateClimate()
         civInfo.secretSocietyManager.onTurnEnd()
         civInfo.powerManager.calculatePower()
+        civInfo.zombieManager.processZombieRevival()
+        civInfo.corporationManager.onTurnEnd()
+        civInfo.heroesManager.onTurnEnd()
+        civInfo.emergenciesManager.processEmergenciesEachTurn()
         
         // Check for climate phase change and notify
-        val climatePhase = civInfo.climateManager.getClimatePhase()
-        val previousPhase = civInfo.getTemporaryUnique("lastClimatePhase") ?: ""
-        if (climatePhase.name != previousPhase) {
-            if (previousPhase != "") {
+        val climatePhase = civInfo.climateManager.getClimatePhase().name
+        val previousPhase = civInfo.getTemporaryUniqueValue("lastClimatePhase")
+        if (climatePhase != previousPhase) {
+            if (previousPhase.isNotEmpty()) {
                 civInfo.addNotification("The climate has changed! We are now in ${civInfo.climateManager.getPhaseDescription()}",
                     NotificationCategory.General, "StatIcons/ClimateChange")
             }
-            civInfo.setTemporaryUnique("lastClimatePhase", climatePhase.name)
+            civInfo.addTemporaryUniqueValue("lastClimatePhase", climatePhase)
         }
         civInfo.units.getCivUnits().forEach { UnitTurnManager(it).endTurn() }  // This is the most expensive part of endTurn
         civInfo.diplomacy.values.toList().forEach { it.nextTurn() } // we copy the diplomacy values so if it changes in-loop we won't crash

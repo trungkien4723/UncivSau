@@ -43,6 +43,7 @@ import com.unciv.ui.screens.mainmenuscreen.MainMenuScreen
 import com.unciv.ui.screens.newgamescreen.NewGameScreen
 import com.unciv.ui.screens.overviewscreen.EmpireOverviewCategories
 import com.unciv.ui.screens.overviewscreen.EmpireOverviewScreen
+import com.unciv.ui.screens.pickerscreens.DedicationPickerScreen
 import com.unciv.ui.screens.pickerscreens.DiplomaticVoteResultScreen
 import com.unciv.ui.screens.pickerscreens.WorldCongressScreen
 import com.unciv.ui.screens.pickerscreens.GreatPersonPickerScreen
@@ -441,6 +442,12 @@ class WorldScreen(
                     game.pushScreen(VictoryScreen(this))
                 viewingCiv.greatPeople.freeGreatPeople > 0 ->
                     game.pushScreen(GreatPersonPickerScreen(this, viewingCiv))
+                viewingCiv.goldenAges.pendingDedicationSelection -> {
+                    viewingCiv.goldenAges.pendingDedicationSelection = false
+                    game.pushScreen(DedicationPickerScreen(viewingCiv) { dedicationName ->
+                        viewingCiv.goldenAges.selectDedication(dedicationName)
+                    })
+                }
                 viewingCiv.popupAlerts.any() -> AlertPopup(this, viewingCiv.popupAlerts.first())
                 viewingCiv.tradeRequests.isNotEmpty() -> {
                     // In the meantime this became invalid, perhaps because we accepted previous trades

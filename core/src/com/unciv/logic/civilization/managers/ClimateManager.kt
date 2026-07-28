@@ -2,10 +2,11 @@ package com.unciv.logic.civilization.managers
 
 import com.unciv.logic.IsPartOfGameInfoSerialization
 import com.unciv.logic.civilization.Civilization
+import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.logic.city.City
 import com.unciv.logic.map.tile.Tile
-import com.unciv.logic.civilization.NotificationCategory
 import yairm210.purity.annotations.Readonly
+import kotlin.math.max
 
 enum class ClimatePhase {
     NONE,       // Pre-industrial
@@ -37,25 +38,34 @@ class ClimateManager : IsPartOfGameInfoSerialization {
         return toReturn
     }
 
+    fun setTransients(civInfo: Civilization) {
+        this.civInfo = civInfo
+    }
+
     /** Update climate based on global CO2 from power plants */
     fun updateClimate() {
         currentYear++
         val totalCO2 = civInfo.powerManager.totalCO2
+        val isApocalypse = civInfo.gameModes.isApocalypseModeActive()
+
+        val thresholdMod = if (isApocalypse) 0.5f else 1.0f
+        val adjustedCO2 = (totalCO2 * thresholdMod).toInt()
+
         when {
-            totalCO2 >= 1000 -> {
-                seaLevelRise = 3
+            adjustedCO2 >= 1000 -> {
+                seaLevelRise = if (isApocalypse) 5 else 3
                 climatePhase = ClimatePhase.PHASE_IV
             }
-            totalCO2 >= 750 -> {
-                seaLevelRise = 2
+            adjustedCO2 >= 750 -> {
+                seaLevelRise = if (isApocalypse) 3 else 2
                 climatePhase = ClimatePhase.PHASE_III
             }
-            totalCO2 >= 500 -> {
-                seaLevelRise = 2
+            adjustedCO2 >= 500 -> {
+                seaLevelRise = if (isApocalypse) 3 else 2
                 climatePhase = ClimatePhase.PHASE_II
             }
-            totalCO2 >= 250 -> {
-                seaLevelRise = 1
+            adjustedCO2 >= 250 -> {
+                seaLevelRise = if (isApocalypse) 2 else 1
                 climatePhase = ClimatePhase.PHASE_I
             }
             else -> {
@@ -63,43 +73,42 @@ class ClimateManager : IsPartOfGameInfoSerialization {
                 climatePhase = ClimatePhase.NONE
             }
         }
-        
-        // Trigger climate-driven disasters
+
         triggerClimateDisasters()
     }
 
     /** Trigger climate-phase driven natural disasters */
     private fun triggerClimateDisasters() {
         val multiplier = getDisasterFrequencyMultiplier()
-        if (multiplier <= 1.0f) return
-        
-        // Roll for climate-driven disasters
+        val isApocalypse = civInfo.gameModes.isApocalypseModeActive()
+        if (multiplier <= 1.0f && !isApocalypse) return
+
         val random = kotlin.random.Random
-        if (random.nextFloat() < 0.1f * multiplier) {
-            // Trigger climate-driven disaster
-            val disasterTypes = listOf("Flood", "Storm", "Drought")
+        val baseChance = if (isApocalypse) 0.15f else 0.1f
+        if (random.nextFloat() < baseChance * multiplier) {
+            val disasterTypes = mutableListOf("Flood", "Storm", "Drought")
+            if (isApocalypse) {
+                disasterTypes.addAll(listOf("Solar Flare", "Tornado", "Blizzard"))
+            }
             val disaster = disasterTypes.random()
-            civInfo.disasterManager.triggerDisaster(disaster)
-            civInfo.disasterManager.applyDisasterEffects(disaster)
+            val targetCity = civInfo.cities.randomOrNull()
+            val targetTile = targetCity?.getCenterTile()
+            civInfo.disasterManager.triggerDisaster(disaster, targetTile)
             accumulatedDisasters++
-            
-            // Notify player
+
             civInfo.addNotification(
-                "Climate change has triggered a ${disaster.toLowerCase()}!",
-                NotificationCategory.Diplomacy, "StatIcons/Disaster"
+                "Climate change has triggered a ${disaster.lowercase()}!",
+                NotificationCategory.General, "StatIcons/Disaster"
             )
         }
     }
 
-    /** Get total CO2 from power manager */
     @Readonly
     fun getCO2Level(): Int = civInfo.powerManager.totalCO2
 
-    /** Get current climate phase */
     @Readonly
     fun getClimatePhase(): ClimatePhase = climatePhase
 
-    /** Get phase description for UI */
     @Readonly
     fun getPhaseDescription(): String = when (climatePhase) {
         ClimatePhase.NONE -> "Pre-Industrial Climate"
@@ -109,19 +118,18 @@ class ClimateManager : IsPartOfGameInfoSerialization {
         ClimatePhase.PHASE_IV -> "Phase IV: Runaway Climate - Catastrophic sea rise"
     }
 
-    /** Check if climate phase should trigger more disasters */
     @Readonly
-    fun getDisasterFrequencyMultiplier(): Float = when (climatePhase) {
-        ClimatePhase.NONE -> 1.0f
-        ClimatePhase.PHASE_I -> 1.25f
-        ClimatePhase.PHASE_II -> 1.5f
-        ClimatePhase.PHASE_III -> 2.0f
-        ClimatePhase.PHASE_IV -> 3.0f
+    fun getDisasterFrequencyMultiplier(): Float {
+        val base = when (climatePhase) {
+            ClimatePhase.NONE -> 1.0f
+            ClimatePhase.PHASE_I -> 1.25f
+            ClimatePhase.PHASE_II -> 1.5f
+            ClimatePhase.PHASE_III -> 2.0f
+            ClimatePhase.PHASE_IV -> 3.0f
+        }
+        val apocalypseMult = if (civInfo.gameModes.isApocalypseModeActive()) 2.0f else 1.0f
+        return base * apocalypseMult
     }
-
-    /** Get total CO2 from power manager */
-    @Readonly
-    fun getCO2Level(): Int = civInfo.powerManager.totalCO2
 
     fun isTileFloodProne(tile: Tile): Boolean {
         if (seaLevelRise == 0) return false
@@ -130,26 +138,29 @@ class ClimateManager : IsPartOfGameInfoSerialization {
 
     fun getFloodRiskTiles(cities: Set<City>): Set<Tile> {
         if (seaLevelRise == 0) return emptySet()
-        return cities.flatMap { city -> city.tilesInRange.asSequence().filter { isTileFloodProne(it) }.toSet() }.toSet()
+        return cities.flatMap { city ->
+            city.tilesInRange.asSequence().filter { isTileFloodProne(it) }.toSet()
+        }.toSet()
     }
 
     fun applyFloodEffects() {
         if (seaLevelRise == 0) return
-        
+
         for (city in civInfo.cities) {
             for (tile in city.tilesInRange) {
                 if (!isTileFloodProne(tile)) continue
                 val tileKey = tile.position.toString()
                 if (tileKey in _floodedTiles) continue
-                
+
                 _floodedTiles.add(tileKey)
-                
+
                 if (tile.district != null) {
                     val district = tile.district!!
                     val districtKey = "$tileKey|$district"
                     if (districtKey !in destroyedDistricts) {
                         val capital = civInfo.getCapital()
-                        if (capital != null && !capital.cityConstructions.getBuiltBuildings().any { it.name == "Flood Barrier" }) {
+                        if (capital != null &&
+                            !capital.cityConstructions.getBuiltBuildings().any { it.name == "Flood Barrier" }) {
                             destroyedDistricts.add(districtKey)
                             val owningCity = tile.getCity()
                             if (owningCity != null)
@@ -167,14 +178,13 @@ class ClimateManager : IsPartOfGameInfoSerialization {
 
     @Readonly
     fun getFloodDamageModifier(): Float = when (seaLevelRise) {
+        5 -> 0.3f
+        4 -> 0.4f
         3 -> 0.5f
         2 -> 0.7f
         1 -> 0.9f
         else -> 1.0f
     }
-
-    @Readonly
-    fun getCO2Level(): Int = civInfo.powerManager.totalCO2
 
     @Readonly
     fun getFloodedTiles(): Set<String> = _floodedTiles

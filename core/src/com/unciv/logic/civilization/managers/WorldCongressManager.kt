@@ -4,6 +4,8 @@ import com.unciv.logic.IsPartOfGameInfoSerialization
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.models.Counter
+import com.unciv.models.ruleset.unique.Unique
+import com.unciv.models.ruleset.unique.TemporaryUnique
 import com.unciv.models.ruleset.unique.UniqueType
 import yairm210.purity.annotations.Readonly
 
@@ -182,35 +184,42 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
     }
 
     private fun applyResolutionEffects(resolution: String) {
-        when (resolution) {
-            "World Religion" -> {
-                for (civ in civInfo.gameInfo.civilizations) {
-                    civ.worldCongress.addDiplomaticFavor(10)
-                }
+        val duration = 60 // lasts until next world congress
+        val globalUniques = getResolutionUniques(resolution)
+
+        for (civ in civInfo.gameInfo.civilizations) {
+            if (civ.isDefeated() || civ.isBarbarian) continue
+            for (uniqueString in globalUniques) {
+                val unique = Unique(uniqueString)
+                civ.temporaryUniques.add(TemporaryUnique(unique, duration))
             }
-            "Global Ban on Nuclear Weapons" -> {
-                civInfo.gameInfo.gameParameters.nuclearWeaponsEnabled = false
-            }
-            "Global Trade Agreements" -> {
-                for (civ in civInfo.gameInfo.civilizations) {
-                    civ.worldCongress.addDiplomaticFavor(5)
-                }
-            }
-            "International Space Station" -> {
-                for (civ in civInfo.gameInfo.civilizations) {
-                    civ.worldCongress.addDiplomaticFavor(8)
-                }
-            }
-            "Universal Human Rights" -> {
-                for (civ in civInfo.gameInfo.civilizations) {
-                    civ.worldCongress.addDiplomaticFavor(6)
-                }
-            }
-            "City of a Thousand Domes" -> {
-                for (civ in civInfo.gameInfo.civilizations) {
-                    civ.worldCongress.addDiplomaticFavor(7)
-                }
-            }
+            civ.worldCongress.addDiplomaticFavor(10)
+        }
+    }
+
+    private fun getResolutionUniques(resolution: String): List<String> {
+        return when (resolution) {
+            "World Religion" -> listOf(
+                "[+5] [Faith] from every [Holy Site]",
+                "[+5] Religious Strength <for [All] units>"
+            )
+            "Global Ban on Nuclear Weapons" -> listOf(
+                "Cannot build [Nuclear] units"
+            )
+            "Global Trade Agreements" -> listOf(
+                "[+3] [Gold] from [Trade Routes]"
+            )
+            "International Space Station" -> listOf(
+                "[+15]% [Science] [in all cities]"
+            )
+            "Universal Human Rights" -> listOf(
+                "[+1] [Amenities] [in all cities]",
+                "[+10]% [Culture] [in all cities]"
+            )
+            "City of a Thousand Domes" -> listOf(
+                "[+4] [Housing] [in all cities]"
+            )
+            else -> emptyList()
         }
     }
 

@@ -166,9 +166,32 @@ object BattleDamage {
                 }
             }
 
+            // Civ VI support units: check for friendly Battering Ram / Siege Tower adjacent to defender
+            if (defender.isCity()) {
+                val supportBonus = getSupportUnitBonus(attacker, defender)
+                if (supportBonus != null) {
+                    modifiers[supportBonus.first] = supportBonus.second
+                }
+            }
+
         }
 
         return modifiers
+    }
+
+    @Readonly
+    private fun getSupportUnitBonus(attacker: ICombatant, defender: ICombatant): Pair<String, Int>? {
+        if (attacker !is MapUnitCombatant || !attacker.isMelee()) return null
+
+        val defenderTile = defender.getTile()
+        for (neighbor in defenderTile.neighbors) {
+            for (unit in neighbor.getUnits()) {
+                if (unit.civ != attacker.getCivInfo() || unit.isDestroyed()) continue
+                if (unit.name == "Battering Ram") return Pair("Ram support", 50)
+                if (unit.name == "Siege Tower") return Pair("Tower support", 100)
+            }
+        }
+        return null
     }
 
     @Readonly

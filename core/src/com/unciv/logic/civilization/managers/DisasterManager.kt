@@ -2,8 +2,10 @@ package com.unciv.logic.civilization.managers
 
 import com.unciv.logic.IsPartOfGameInfoSerialization
 import com.unciv.logic.civilization.Civilization
-import com.unciv.models.ruleset.unit.GreatPersonType
+import com.unciv.logic.civilization.NotificationCategory
+import com.unciv.logic.map.tile.Tile
 import yairm210.purity.annotations.Readonly
+import kotlin.math.max
 
 class DisasterManager : IsPartOfGameInfoSerialization {
     @Transient
@@ -12,97 +14,6 @@ class DisasterManager : IsPartOfGameInfoSerialization {
     var disasterCount = 0
     var floodCount = 0
     var volcanoCount = 0
-
-    fun clone(): DisasterManager {
-        val toReturn = DisasterManager()
-        toReturn.disasterCount = disasterCount
-        toReturn.floodCount = floodCount
-        toReturn.volcanoCount = volcanoCount
-        return toReturn
-    }
-
-    fun getDisasterFrequencyMultiplier(): Float {
-        val climatePhase = civInfo.climateManager.getClimatePhase()
-        return when (climatePhase) {
-            com.unciv.logic.civilization.managers.ClimatePhase.NONE -> 1.0f
-            com.unciv.logic.civilization.managers.ClimatePhase.PHASE_I -> 1.25f
-            com.unciv.logic.civilization.managers.ClimatePhase.PHASE_II -> 1.5f
-            com.unciv.logic.civilization.managers.ClimatePhase.PHASE_III -> 2.0f
-            com.unciv.logic.civilization.managers.ClimatePhase.PHASE_IV -> 3.0f
-        }
-    }
-
-    fun triggerDisaster(disasterType: String) {
-        disasterCount++
-        when (disasterType) {
-            "Flood" -> floodCount++
-            "Volcano" -> volcanoCount++
-            "Storm" -> stormCount++
-            "Drought" -> droughtCount++
-        }
-    }
-
-    fun applyDisasterEffects(disasterType: String) {
-        when (disasterType) {
-            "Flood" -> applyFloodEffects()
-            "Volcano" -> applyVolcanoEffects()
-            "Storm" -> applyStormEffects()
-            "Drought" -> applyDroughtEffects()
-        }
-    }
-
-    fun applyFloodEffects() {
-        // Flood effects on tiles and cities
-        civInfo.cities.forEach { city ->
-            // Flood causes -1 population in affected cities
-            if (city.populated) {
-                city.population.population--
-            }
-            // Flood can damage units
-        }
-        // Flood affects river tiles
-    }
-
-    fun applyVolcanoEffects() {
-        // Volcanic effects
-        civInfo.cities.forEach { city ->
-            // Volcano causes -5 population in affected cities
-            if (city.populated && city.population.population >= 5) {
-                city.population.population -= 5
-            }
-            // Create volcanic soil
-        }
-    }
-
-    fun applyStormEffects() {
-        // Storm effects on units and tiles
-        civInfo.units.forEach { unit ->
-            // Storm causes unit damage
-            // Storm reduces movement speed by 80%
-        }
-    }
-
-    fun applyDroughtEffects() {
-        // Drought effects on growth
-        civInfo.cities.forEach { city ->
-            // Drought reduces food from plains and grassland by 50%
-            city.cityStats.update()
-        }
-    }
-
-    fun isTileFloodAffected(): Boolean = floodCount > 0
-    fun isTileVolcanoAffected(): Boolean = volcanoCount > 0
-    fun isTileStormAffected(): Boolean = stormCount > 0
-    fun isTileDroughtAffected(): Boolean = droughtCount > 0
-
-    fun clearDisasterEffects() {
-        floodCount = 0
-        volcanoCount = 0
-        stormCount = 0
-        droughtCount = 0
-    }
-
-    // Additional disaster types
     var stormCount = 0
     var droughtCount = 0
 
@@ -115,64 +26,219 @@ class DisasterManager : IsPartOfGameInfoSerialization {
         toReturn.droughtCount = droughtCount
         return toReturn
     }
-}
 
-object DisasterEffects {
-    fun applyFloodEffects(civInfo: Civilization, tile: Tile) {
-        // Flood affects river tiles and damage units
-        tile.tileObject?.construction?.let { construction ->
-            construction.destroysOnTile() // Pillage construction
-        }
-        
-        tile.improvement?.let { improvement ->
-            // Flood pillages tile improvements
-        }
-        
-        civInfo.unitsOnTile(tile).forEach { unit ->
-            // Flood can damage units
-        }
+    fun setTransients(civInfo: Civilization) {
+        this.civInfo = civInfo
     }
 
-    fun applyVolcanoEffects(civInfo: Civilization, tile: Tile) {
-        // Volcanic ash destroys terrain, creates volcanic soil
-        tile.setTerrainType("Volcanic Soil")
-        
-        tile.tileObject?.terrain?.let { terrain ->
-            terrain.applyDamage() // Destroy terrain
+    @Readonly
+    fun getDisasterFrequencyMultiplier(): Float {
+        val climatePhase = civInfo.climateManager.getClimatePhase()
+        val baseMultiplier = when (climatePhase) {
+            ClimatePhase.NONE -> 1.0f
+            ClimatePhase.PHASE_I -> 1.25f
+            ClimatePhase.PHASE_II -> 1.5f
+            ClimatePhase.PHASE_III -> 2.0f
+            ClimatePhase.PHASE_IV -> 3.0f
         }
-        
-        civInfo.unitsOnTile(tile).forEach { unit ->
-            if (!unit.isAirUnit()) {
-                // Volcano damages non-air units
+        val apocalypseMultiplier = if (civInfo.gameModes.isApocalypseModeActive()) 2.0f else 1.0f
+        return baseMultiplier * apocalypseMultiplier
+    }
+
+    @Readonly
+    fun getDisasterDamageMultiplier(): Float {
+        return if (civInfo.gameModes.isApocalypseModeActive()) 1.5f else 1.0f
+    }
+
+    @Readonly
+    fun getDisasterRadiusMultiplier(): Int {
+        return if (civInfo.gameModes.isApocalypseModeActive()) 2 else 1
+    }
+
+    fun triggerDisaster(disasterType: String, targetTile: Tile? = null) {
+        disasterCount++
+        when (disasterType) {
+            "Flood" -> { floodCount++; applyFloodEffects(targetTile) }
+            "Volcano" -> { volcanoCount++; applyVolcanoEffects(targetTile) }
+            "Storm" -> { stormCount++; applyStormEffects(targetTile) }
+            "Drought" -> { droughtCount++; applyDroughtEffects(targetTile) }
+            "Tornado" -> applyTornadoEffects(targetTile)
+            "Blizzard" -> applyBlizzardEffects(targetTile)
+            "Solar Flare" -> applySolarFlareEffects()
+        }
+
+        civInfo.addNotification(
+            "A [$disasterType] has occurred!",
+            if (targetTile != null) targetTile.position else null,
+            NotificationCategory.General,
+            "StatIcons/Disaster"
+        )
+    }
+
+    private fun applyFloodEffects(targetTile: Tile? = null) {
+        val damageMult = getDisasterDamageMultiplier()
+        val radius = getDisasterRadiusMultiplier()
+
+        val tilesToAffect = if (targetTile != null)
+            targetTile.getTilesInDistance(radius)
+        else
+            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }.toList()
+
+        for (tile in tilesToAffect) {
+            if (!tile.isAdjacentToRiver() && !tile.isAdjacentToCoast()) continue
+
+            tile.improvement = null
+            tile.resource = null
+
+            tile.getUnits().forEach { unit ->
+                unit.health = max(0, unit.health - (20 * damageMult).toInt())
+            }
+
+            val city = tile.getCity()
+            if (city != null && city.civ == civInfo) {
+                city.population.population = max(1, city.population.population - (1 * damageMult).toInt())
             }
         }
     }
 
-    fun applyStormEffects(civInfo: Civilization, tile: Tile) {
-        // Storm reduces movement speed and sight
-        civInfo.unitsOnTile(tile).forEach { unit ->
-            if (!unit.isAirUnit()) {
-                unit.movement.currentMovement = 0
-                unit.sight = max(0, unit.sight - 4)
+    private fun applyVolcanoEffects(targetTile: Tile? = null) {
+        val damageMult = getDisasterDamageMultiplier()
+        val radius = getDisasterRadiusMultiplier()
+
+        val tilesToAffect = if (targetTile != null)
+            targetTile.getTilesInDistance(radius)
+        else
+            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }.toList()
+
+        for (tile in tilesToAffect) {
+            tile.getUnits().forEach { unit ->
+                unit.health = max(0, unit.health - (50 * damageMult).toInt())
             }
-        }
-        
-        // Scatter Great Person points
-        if (tile.improvement?.uniqueObject?.contains("Great Person") == true) {
-            tile.improvement?.uniqueObject = "" // Clear GP from tile
-            civInfo.addGreatPersonPointsToRandomCity(GreatPersonType.General, 1)
+
+            val city = tile.getCity()
+            if (city != null && city.civ == civInfo) {
+                city.population.population = max(1, city.population.population - (3 * damageMult).toInt())
+            }
         }
     }
 
-    fun applyDroughtEffects(civInfo: Civilization, tile: Tile) {
-        // Expand deserts and reduce food
-        when (tile.terrainType) {
-            "Plains", "Grassland" -> tile.setTerrainType("Desert")
-            else -> { }
+    private fun applyStormEffects(targetTile: Tile? = null) {
+        val damageMult = getDisasterDamageMultiplier()
+        val radius = getDisasterRadiusMultiplier()
+
+        val tilesToAffect = if (targetTile != null)
+            targetTile.getTilesInDistance(radius)
+        else
+            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }.toList()
+
+        for (tile in tilesToAffect) {
+            tile.getUnits().forEach { unit ->
+                if (!unit.baseUnit.isAirUnit()) {
+                    unit.health = max(0, unit.health - (15 * damageMult).toInt())
+                    unit.currentMovement = max(0f, unit.currentMovement - 1f)
+                }
+            }
         }
-        
-        tile.tileObject?.improvement?.let { improvement ->
-            improvement.destroysOnTile() // Drought pillages
+    }
+
+    private fun applyDroughtEffects(targetTile: Tile? = null) {
+        val damageMult = getDisasterDamageMultiplier()
+
+        val tilesToAffect = if (targetTile != null)
+            listOf(targetTile)
+        else
+            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }.toList()
+
+        for (tile in tilesToAffect) {
+            tile.improvement = null
+
+            val city = tile.getCity()
+            if (city != null && city.civ == civInfo) {
+                city.population.foodStored = max(0f, city.population.foodStored - (10 * damageMult))
+            }
+        }
+    }
+
+    private fun applyTornadoEffects(targetTile: Tile? = null) {
+        if (targetTile == null) return
+        val damageMult = getDisasterDamageMultiplier()
+        val radius = getDisasterRadiusMultiplier()
+
+        val tilesToAffect = targetTile.getTilesInDistance(radius)
+        for (tile in tilesToAffect) {
+            tile.improvement = null
+            tile.resource = null
+
+            tile.getUnits().forEach { unit ->
+                unit.health = max(0, unit.health - (40 * damageMult).toInt())
+            }
+
+            val city = tile.getCity()
+            if (city != null && city.civ == civInfo) {
+                city.population.population = max(1, city.population.population - (2 * damageMult).toInt())
+            }
+        }
+    }
+
+    private fun applyBlizzardEffects(targetTile: Tile? = null) {
+        val damageMult = getDisasterDamageMultiplier()
+        val radius = getDisasterRadiusMultiplier()
+
+        val tilesToAffect = if (targetTile != null)
+            targetTile.getTilesInDistance(radius)
+        else
+            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }.toList()
+
+        for (tile in tilesToAffect) {
+            tile.getUnits().forEach { unit ->
+                unit.health = max(0, unit.health - (25 * damageMult).toInt())
+                unit.currentMovement = max(0f, unit.currentMovement - 2f)
+            }
+
+            val city = tile.getCity()
+            if (city != null && city.civ == civInfo) {
+                city.population.foodStored = max(0f, city.population.foodStored - (15 * damageMult))
+            }
+        }
+    }
+
+    private fun applySolarFlareEffects() {
+        for (unit in civInfo.units.getCivUnits()) {
+            unit.health = max(0, unit.health - 30)
+        }
+    }
+
+    @Readonly
+    fun isTileFloodAffected(): Boolean = floodCount > 0
+    @Readonly
+    fun isTileVolcanoAffected(): Boolean = volcanoCount > 0
+    @Readonly
+    fun isTileStormAffected(): Boolean = stormCount > 0
+    @Readonly
+    fun isTileDroughtAffected(): Boolean = droughtCount > 0
+
+    fun clearDisasterEffects() {
+        floodCount = 0
+        volcanoCount = 0
+        stormCount = 0
+        droughtCount = 0
+    }
+
+    fun calculatePower() {
+        val frequencyMult = getDisasterFrequencyMultiplier()
+        if (frequencyMult <= 1.0f) return
+
+        val random = kotlin.random.Random
+        val disasterChance = 0.05f * frequencyMult
+        if (random.nextFloat() < disasterChance) {
+            val disasterTypes = mutableListOf("Flood", "Volcano", "Storm", "Drought")
+            if (civInfo.gameModes.isApocalypseModeActive()) {
+                disasterTypes.addAll(listOf("Tornado", "Blizzard", "Solar Flare"))
+            }
+            val disaster = disasterTypes.random()
+            val targetCity = civInfo.cities.randomOrNull()
+            val targetTile = targetCity?.getCenterTile()
+            triggerDisaster(disaster, targetTile)
         }
     }
 }

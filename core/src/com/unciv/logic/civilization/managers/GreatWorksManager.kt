@@ -75,4 +75,19 @@ class GreatWorksManager : IsPartOfGameInfoSerialization {
     @Readonly fun hasAvailableSlot(type: GreatWorkType): Boolean {
         return getAvailableSlots(type) > 0
     }
+
+    /**
+     * Theming bonus for a given type: returns additional [Stats] bonus if all great works
+     * slots of this type are fully filled.
+     * Bonus: +1 extra Culture and +1 extra Tourism per great work of the themed type.
+     */
+    @Readonly fun getThemingStats(type: GreatWorkType): Stats {
+        val totalSlots = civInfo.cities.sumOf { city ->
+            city.cityConstructions.getBuiltBuildings().sumOf { it.greatWorkSlots[type.name] ?: 0 }
+        }
+        val totalWorks = greatWorks.values.count { it.type == type }
+        if (totalSlots == 0 || totalWorks < totalSlots || totalSlots == 0) return Stats()
+
+        return Stats(culture = totalWorks.toFloat(), tourism = totalWorks.toFloat())
+    }
 }

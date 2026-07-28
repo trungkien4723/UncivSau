@@ -49,9 +49,9 @@ class PowerManager : IsPartOfGameInfoSerialization {
     @Readonly
     fun getPowerConsumption(buildingName: String): Int {
         val buildingInfo = civInfo.gameInfo.ruleset.buildings[buildingName] ?: return 0
-        for (unique in buildingInfo.uniques) {
-            if (unique.startsWith("PowerConsumption:")) {
-                return unique.substringAfter(":").toInt()
+        for (unique in buildingInfo.uniqueObjects) {
+            if (unique.type == UniqueType.PowerConsumption && unique.params.size >= 2) {
+                return unique.params[1].toInt()
             }
         }
         return 0
@@ -60,9 +60,9 @@ class PowerManager : IsPartOfGameInfoSerialization {
     @Readonly
     fun getPowerProduction(buildingName: String): Int {
         val buildingInfo = civInfo.gameInfo.ruleset.buildings[buildingName] ?: return 0
-        for (unique in buildingInfo.uniques) {
-            if (unique.startsWith("PowerProduction:")) {
-                return unique.substringAfter(":").toInt()
+        for (unique in buildingInfo.uniqueObjects) {
+            if (unique.type == UniqueType.PowerProduction && unique.params.size >= 2) {
+                return unique.params[1].toInt()
             }
         }
         return 0

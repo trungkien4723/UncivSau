@@ -130,6 +130,13 @@ class GameStarter private constructor(
             addCivPolicies()
         }
 
+        runAndMeasure("TechShuffle") {
+            val firstMajorCiv = gameInfo.civilizations.firstOrNull { it.isMajorCiv() }
+            if (firstMajorCiv != null && firstMajorCiv.gameModes.isTechShuffle) {
+                firstMajorCiv.tech.applyTechShuffle()
+            }
+        }
+
         runAndMeasure("Techs and Stats") {
             addCivTechs()
         }

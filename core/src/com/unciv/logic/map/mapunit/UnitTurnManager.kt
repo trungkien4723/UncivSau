@@ -66,8 +66,22 @@ class UnitTurnManager(val unit: MapUnit) {
 
 
     private fun healUnit() {
-        val amountToHealBy = unit.getHealAmountForCurrentTile()
-        if (amountToHealBy == 0) return
+        val baseAmount = unit.getHealAmountForCurrentTile()
+        if (baseAmount == 0) return
+
+        var amountToHealBy = baseAmount
+        // Civ VI Medic support: +5 HP per turn when adjacent to a friendly Medic
+        if (unit.currentTile != null) {
+            for (neighbor in unit.currentTile.neighbors) {
+                for (medicUnit in neighbor.getUnits()) {
+                    if (medicUnit.civ == unit.civ && !medicUnit.isDestroyed
+                        && medicUnit.name == "Medic") {
+                        amountToHealBy += 5
+                        break
+                    }
+                }
+            }
+        }
 
         unit.healBy(amountToHealBy)
     }

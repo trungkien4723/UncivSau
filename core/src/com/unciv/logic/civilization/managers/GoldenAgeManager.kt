@@ -7,6 +7,7 @@ import com.unciv.logic.civilization.CivilopediaAction
 import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.logic.civilization.PopupAlert
 import com.unciv.models.ruleset.unique.Unique
+import com.unciv.models.ruleset.unique.TemporaryUnique
 import com.unciv.models.ruleset.unique.UniqueTriggerActivation
 import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.ui.components.extensions.toPercent
@@ -137,13 +138,19 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
      * Returns the chosen age so the caller can fire UI/triggers.
      */
     fun onEraTransition(newEraNumber: Int): String {
+        val isDramaticAges = civInfo.gameModes.isDramaticAgesModeActive()
+        
         // Thresholds scale with era number (Civ VI-like): Golden if score >= 2*era, Dark if < era.
-        val goldenThreshold = 2 * newEraNumber.coerceAtLeast(1)
+        val goldenThreshold = if (isDramaticAges)
+            (3 * newEraNumber.coerceAtLeast(1)) // Higher threshold in Dramatic Ages
+        else
+            2 * newEraNumber.coerceAtLeast(1)
         val darkThreshold = newEraNumber.coerceAtLeast(1)
         
         val age = when {
             eraScore >= goldenThreshold -> "Golden"
             eraScore < darkThreshold -> "Dark"
+            isDramaticAges -> "Dark" // No Normal age in Dramatic Ages
             else -> "Normal"
         }
         
@@ -158,6 +165,7 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
         eraScore = 0  // reset for the new era
         
         currentDedication = null // Reset dedication for new age
+        civInfo.temporaryUniques.clear() // Clear old dedication effects
         
         // Generate available dedications for the new age
         availableDedications = generateDedicationsForAge(finalAge).toMutableList()
@@ -190,49 +198,67 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
         return finalAge
     }
 
-    /** Select a dedication for the new age. */
+    /** Select a dedication for the new age and apply its effects. */
     fun selectDedication(dedicationName: String) {
         if (dedicationName in availableDedications) {
             currentDedication = dedicationName
+            applyDedicationEffects(dedicationName)
         }
-}
+    }
 
-    private fun generateDedicationsForAge(age: String): List<String> {
-        val allDedications = mutableMapOf<String, List<String>>(
-            "Dark" to listOf(
-                "Exodus of the Evangelists",
-                "Penitent",
-                "Commune",
-                "Inquisition"
-            ),
-            "Normal" to listOf(
-                "Heartbeat of Steam",
-                "To Arms!",
-                "Monumentality",
-                "Free Inquiry",
-                "Bodyguard of Lies"
-            ),
-            "Golden" to listOf(
-                "Hic Sunt Dracones",
-                "Wonders of the Ancient World",
-                "Civic Pride",
-                "Bodyguard of Lies"
-            ),
-            "Heroic" to listOf(
-                "Heroic Epic",
-                "Age of Discovery",
-                "Monumentality",
-                "Free Inquiry"
+    private fun applyDedicationEffects(dedicationName: String) {
+        val uniques = getDedicationUniques(dedicationName)
+        val duration = 60
+        for (uniqueString in uniques) {
+            val unique = Unique(uniqueString)
+            civInfo.temporaryUniques.add(TemporaryUnique(unique, duration))
+        }
+        civInfo.addNotification("You have adopted the [$dedicationName] dedication!",
+            NotificationCategory.General, "StatIcons/EraScore")
+    }
+
+    private fun getDedicationUniques(dedicationName: String): List<String> {
+        return when (dedicationName) {
+            "Exodus of the Evangelists" -> listOf(
+                "[+1] Movement <for [All] units>",
+                "[+5] Religious Strength <for [All] units>"
             )
-        )
-        return allDedications[age] ?: allDedications["Normal"]!!
+            "Penitent" -> listOf("[+50]% [Faith] [in all cities]")
+            "Commune" -> listOf("[+1] [Housing] [in all cities]")
+            "Inquisition" -> listOf("[+30]% [Production] [in all cities]")
+            "Heartbeat of Steam" -> listOf(
+                "[+20]% [Production] [in all cities] <when building [Industrial] buildings>"
+            )
+            "To Arms!" -> listOf(
+                "[+20]% [Production] [in all cities] <when building [Military] units>"
+            )
+            "Monumentality" -> listOf(
+                "May buy [Civilian] units for [Faith] [in all cities]",
+                "[-50]% [Faith] cost of units [in all cities]"
+            )
+            "Free Inquiry" -> listOf("[+10]% [Science] [in all cities]")
+            "Bodyguard of Lies" -> listOf("[+2] Spy capacity", "[+10]% Spy effectiveness")
+            "Hic Sunt Dracones" -> listOf(
+                "[+3] Movement <for [Land] units>",
+                "[+50]% Gold from pillaging [in all cities]"
+            )
+            "Wonders of the Ancient World" -> listOf(
+                "[+50]% [Production] [in all cities] <when building [Wonder] buildings>"
+            )
+            "Civic Pride" -> listOf(
+                "[+2] [Culture] from every [Monument]",
+                "[+1] [Production] from every [Monument]"
+            )
+            "Heroic Epic" -> listOf("[+10]% Strength <for [All] units>")
+            "Age of Discovery" -> listOf("[+50]% [Science] from [Trade Routes]")
+            else -> emptyList()
+        }
     }
 
     @Readonly
     fun getDedicationBonus(): List<Unique> {
         return if (currentDedication != null) {
-            // Convert dedication name to uniques
-            listOf(Unique("$currentDedication dedication"))
+            getDedicationUniques(currentDedication!!).map { Unique(it) }
         } else emptyList()
     }
 
@@ -294,6 +320,35 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
     /** Get available dedications for current age. */
     fun getDedicationsForAge(): List<String> {
         return generateDedicationsForAge(currentAge)
+    }
+    
+    private fun generateDedicationsForAge(age: String): List<String> {
+        val darkAgeDedications = listOf(
+            "Exodus of the Evangelists",
+            "Penitent",
+            "Commune",
+            "Inquisition",
+            "Heartbeat of Steam"
+        )
+        val normalAgeDedications = listOf(
+            "Civic Pride",
+            "Heroic Epic",
+            "Age of Discovery",
+            "To Arms!"
+        )
+        val goldenAgeDedications = listOf(
+            "Monumentality",
+            "Free Inquiry",
+            "Bodyguard of Lies",
+            "Hic Sunt Dracones",
+            "Wonders of the Ancient World"
+        )
+        return when (age) {
+            "Dark" -> darkAgeDedications
+            "Golden" -> goldenAgeDedications
+            "Heroic" -> darkAgeDedications + goldenAgeDedications
+            else -> normalAgeDedications
+        }
     }
     
     /** Get era score thresholds for UI. */

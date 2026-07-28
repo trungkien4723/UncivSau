@@ -192,6 +192,10 @@ class Civilization : IsPartOfGameInfoSerialization {
     var secretSocietyManager = SecretSocietyManager()
     var worldCongress = WorldCongressManager()
     var gameModes = GameModesManager()
+    var zombieManager = ZombieManager()
+    var corporationManager = CorporationManager()
+    var heroesManager = HeroesManager()
+    var emergenciesManager = EmergenciesManager()
     var diplomacy = HashMap<String, DiplomacyManager>()
     var proximity = HashMap<String, Proximity>()
 
@@ -215,6 +219,7 @@ class Civilization : IsPartOfGameInfoSerialization {
 
     /** See DiplomacyManager.flagsCountdown for why this does not map Enums to ints */
     var flagsCountdown = HashMap<String, Int>()
+    var tempStringValues = HashMap<String, String>() // For storing temporary string values
 
     var resourceStockpiles = Counter<String>()
 
@@ -356,6 +361,10 @@ class Civilization : IsPartOfGameInfoSerialization {
         toReturn.secretSocietyManager = secretSocietyManager.clone()
         toReturn.worldCongress = worldCongress.clone()
         toReturn.gameModes = gameModes.clone()
+        toReturn.zombieManager = zombieManager.clone()
+        toReturn.corporationManager = corporationManager.clone()
+        toReturn.heroesManager = heroesManager.clone()
+        toReturn.emergenciesManager = emergenciesManager.clone()
         toReturn.allyCivName = allyCivName
         for (diplomacyManager in diplomacy.values.map { it.clone() })
             toReturn.diplomacy[diplomacyManager.otherCivName] = diplomacyManager
@@ -378,6 +387,7 @@ class Civilization : IsPartOfGameInfoSerialization {
         toReturn.cityStateResource = cityStateResource
         toReturn.cityStateUniqueUnit = cityStateUniqueUnit
         toReturn.flagsCountdown.putAll(flagsCountdown)
+        toReturn.tempStringValues.putAll(tempStringValues)
         toReturn.temporaryUniques.addAll(temporaryUniques)
         toReturn.hasEverOwnedOriginalCapital = hasEverOwnedOriginalCapital
         toReturn.passableImpassables.addAll(passableImpassables)
@@ -1055,6 +1065,12 @@ class Civilization : IsPartOfGameInfoSerialization {
         worldCongress.setTransients(this)
         victoryManager.civInfo = this
         powerManager.civInfo = this
+        climateManager.setTransients(this)
+        disasterManager.setTransients(this)
+        zombieManager.setTransients(this)
+        corporationManager.setTransients(this)
+        heroesManager.setTransients(this)
+        emergenciesManager.setTransients(this)
 
         for (diplomacyManager in diplomacy.values) {
             diplomacyManager.civInfo = this
@@ -1082,6 +1098,10 @@ class Civilization : IsPartOfGameInfoSerialization {
     fun addFlag(flag: String, count: Int) = flagsCountdown.set(flag, count)
     fun removeFlag(flag: String) = flagsCountdown.remove(flag)
     @Readonly fun hasFlag(flag: String) = flagsCountdown.contains(flag)
+
+    fun addTemporaryUniqueValue(key: String, value: String) { tempStringValues[key] = value }
+    fun getTemporaryUniqueValue(key: String): String = tempStringValues[key] ?: ""
+    fun removeTemporaryUniqueValue(key: String) { tempStringValues.remove(key) }
 
     @Readonly fun getTurnsBetweenDiplomaticVotes() = (15 * gameInfo.speed.modifier).toInt() // Dunno the exact calculation, hidden in Lua files
     @Readonly fun getTurnsTillNextDiplomaticVote() = flagsCountdown[CivFlags.TurnsTillNextDiplomaticVote.name]

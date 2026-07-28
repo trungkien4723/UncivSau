@@ -904,6 +904,30 @@ class MapUnit : IsPartOfGameInfoSerialization {
     }
 
     fun destroy(destroyTransportedUnit: Boolean = true) {
+        // Heroes & Legends mode: hero units are defeated instead of destroyed
+        if (civ.heroesManager.isHeroUnit(this)) {
+            civ.heroesManager.defeatHero(this)
+            civ.units.removeUnit(this)
+            if (::currentTile.isInitialized) {
+                removeFromTile()
+            }
+            isDestroyed = true
+            return
+        }
+
+        // Zombie Defense mode: down instead of destroy for zombie units
+        if (civ.gameModes.isZombieModeActive() && name.contains("Zombie", ignoreCase = true)) {
+            if (::currentTile.isInitialized) {
+                civ.zombieManager.downZombie(this)
+            }
+            civ.units.removeUnit(this)
+            if (::currentTile.isInitialized) {
+                removeFromTile()
+            }
+            isDestroyed = true
+            return
+        }
+
         stopEscorting()
         currentMovement = 0f
         civ.units.removeUnit(this)
@@ -917,6 +941,10 @@ class MapUnit : IsPartOfGameInfoSerialization {
                 currentTile.getUnits().filter { it.isTransported && isTransportTypeOf(it) }
                         .toList() // because we're changing the list
                         .forEach { unit -> unit.destroy() }
+            }
+            // Zombie Defense mode: spawn zombie on non-zombie unit death
+            if (civ.gameModes.isZombieModeActive()) {
+                civ.zombieManager.onUnitKilled(this, currentTile)
             }
         }
 

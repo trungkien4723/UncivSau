@@ -794,6 +794,17 @@
                         "Pillaging this improvement yields approximately [+10 Gold]"
                     ],
         "shortcutKey":  "S"
+    },
+    {
+        "name":  "Antiquity Site",
+        "terrainsCanBeBuiltOn":  [
+                                     "Land"
+                                 ],
+        "uniques":  [
+                        "Unbuildable",
+                        "Irremovable",
+                        "Provides [1] [Artifact]"
+                    ]
     }
 ]
 

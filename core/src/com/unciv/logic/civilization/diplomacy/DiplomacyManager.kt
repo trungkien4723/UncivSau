@@ -15,6 +15,8 @@ import com.unciv.logic.trade.TradeOffer
 import com.unciv.logic.trade.TradeOfferType
 import com.unciv.models.ruleset.tile.ResourceSupplyList
 import com.unciv.models.ruleset.unique.GameContext
+import com.unciv.models.ruleset.unique.Unique
+import com.unciv.models.ruleset.unique.TemporaryUnique
 import com.unciv.models.ruleset.unique.UniqueTriggerActivation
 import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.models.ruleset.nation.Agenda
@@ -940,6 +942,14 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
         setFlag(flag, duration)
         otherCivDiplomacy().setFlag(flag, duration)
 
+        // Apply alliance-specific bonuses as temporary uniques
+        val bonuses = getAllianceBonuses(allianceType)
+        for (uniqueString in bonuses) {
+            val unique = Unique(uniqueString)
+            civInfo.temporaryUniques.add(TemporaryUnique(unique, duration))
+            otherCiv.temporaryUniques.add(TemporaryUnique(unique, duration))
+        }
+
         for (thirdCiv in getCommonKnownCivsWithSpectators()) {
             thirdCiv.addNotification("[${civInfo.civName}] and [${otherCiv.civName}] have signed a [$allianceType]!",
                 NotificationCategory.Diplomacy, civInfo.civName, NotificationIcon.Diplomacy, otherCiv.civName)
@@ -952,6 +962,31 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
             UniqueTriggerActivation.triggerUnique(unique, civInfo)
         for (unique in otherCiv.getTriggeredUniques(UniqueType.TriggerUponSigningAlliance, GameContext.IgnoreConditionals))
             UniqueTriggerActivation.triggerUnique(unique, otherCiv)
+    }
+
+    private fun getAllianceBonuses(allianceType: String): List<String> {
+        return when (allianceType) {
+            Constants.researchAlliance -> listOf(
+                "[+10]% [Science] [in all cities]",
+                "Reveals the entire map"
+            )
+            Constants.militaryAlliance -> listOf(
+                "[+5] Strength <for [All] units>",
+                "Grants open borders to allied civilizations"
+            )
+            Constants.economicAlliance -> listOf(
+                "[+5] [Gold] from [Trade Routes]"
+            )
+            Constants.culturalAlliance -> listOf(
+                "[+10]% [Culture] [in all cities]",
+                "[+10]% [Tourism] [in all cities]"
+            )
+            Constants.religiousAlliance -> listOf(
+                "[+10]% [Faith] [in all cities]",
+                "[+5] Religious Strength <for [All] units>"
+            )
+            else -> emptyList()
+        }
     }
 
     internal fun setAllianceBasedModifier() {

@@ -1156,14 +1156,14 @@
         "tourism":  3
     },
     {
-        "name":  "Climate Research Station",
-        "science":  3,
-        "maintenance":  2,
-        "requiredBuilding":  "University",
-        "requiredTech":  "Predictive Systems",
-        "uniques":  [
-                        "PowerConsumption: 1",
-                        "[+3] [Science] [in this city]",
+		"name":  "Climate Research Station",
+		"science":  3,
+		"maintenance":  2,
+		"requiredBuilding":  "University",
+		"requiredTech":  "Predictive Systems",
+		"uniques":  [
+						"[1] Power [Industrial] buildings consume",
+						"[+3] [Science] [in this city]",
                         "Detects [Flood] risk tiles in your territory"
                     ]
     },
@@ -1234,11 +1234,11 @@
         "requiredBuilding":  "Factory",
         "maintenance":  3,
         "requiredTech":  "Ecology",
-        "uniques":  [
-                        "Must be next to [Desert]",
-                        "Only available \u003cin cities without a [Nuclear Plant]\u003e",
-                        "PowerProduction: 4"
-                    ]
+		"uniques":  [
+						"Must be next to [Desert]",
+						"Only available \u003cin cities without a [Nuclear Plant]\u003e",
+						"[4] Power [Industrial] buildings produce"
+					]
     },
     {
         "name":  "Wind Farm",
@@ -1249,10 +1249,10 @@
         "requiredBuilding":  "Factory",
         "maintenance":  2,
         "requiredTech":  "Electricity",
-        "uniques":  [
-                        "Must be on [Plains] or [Grassland]",
-                        "PowerProduction: 3"
-                    ]
+		"uniques":  [
+						"Must be on [Plains] or [Grassland]",
+						"[3] Power [Industrial] buildings produce"
+					]
     },
     {
         "name":  "Power Plant",
@@ -1262,11 +1262,11 @@
         "requiredBuilding":  "Factory",
         "maintenance":  3,
         "requiredTech":  "Electricity",
-        "uniques":  [
-                        "PowerProduction: 6",
-                        "Requires Coal",
-                        "Regional effect: +4 Production to all cities within 6 tiles"
-                    ],
+		"uniques":  [
+						"[6] Power [Industrial] buildings produce",
+						"Consumes [1] [Coal]",
+						"Regional effect: +4 Production to all cities within 6 tiles"
+					],
         "cost":  235,
         "production":  4
     },
@@ -1276,21 +1276,21 @@
         "maintenance":  4,
         "requiredBuilding":  "Campus",
         "requiredTech":  "Predictive Systems",
-        "uniques":  [
-                        "PowerConsumption: 2",
-                        "[+1] [Science] for each [District] in this city",
+		"uniques":  [
+						"[2] Power [Industrial] buildings consume",
+						"[+1] [Science] for each [District] in this city",
                         "Reduces [Co2] emissions by [2] per turn"
                     ]
     },
     {
-        "name":  "Greenhouse Gas Analyzer",
-        "production":  3,
-        "maintenance":  2,
-        "requiredBuilding":  "Research Lab",
-        "requiredTech":  "Predictive Systems",
-        "uniques":  [
-                        "PowerConsumption: 1",
-                        "[+2] [Science] [in this city]",
+		"name":  "Greenhouse Gas Analyzer",
+		"production":  3,
+		"maintenance":  2,
+		"requiredBuilding":  "Research Lab",
+		"requiredTech":  "Predictive Systems",
+		"uniques":  [
+						"[1] Power [Industrial] buildings consume",
+						"[+2] [Science] [in this city]",
                         "Detects [Flood] risk tiles in your territory"
                     ]
     },
@@ -1337,10 +1337,10 @@
         "maintenance":  3,
         "requiredResource":  "Uranium",
         "requiredTech":  "Nuclear Fission",
-        "uniques":  [
-                        "Only available \u003cin cities without a [Solar Plant]\u003e",
-                        "PowerProduction: 4"
-                    ]
+		"uniques":  [
+						"Only available \u003cin cities without a [Solar Plant]\u003e",
+						"[4] Power [Industrial] buildings produce"
+					]
     },
     {
         "name":  "Apollo Program",
@@ -3071,30 +3071,30 @@
         "district":  "Industrial Zone",
         "cost":  235,
         "maintenance":  3,
-        "uniques":  [
-                        "PowerProduction: 6",
-                        "Requires Coal",
-                        "Regional effect: +4 Production to all cities within 6 tiles",
-                        "CO2Emission: 3"
-                    ],
-        "requiredTech":  "Electricity",
-        "requiredBuilding":  "Factory",
-        "production":  4,
-        "percentStatBonus":  {
-                             "production":  10
-                         }
-    },
+		"uniques":  [
+						"[6] Power [Industrial] buildings produce",
+						"Consumes [1] [Coal]",
+						"Regional effect: +4 Production to all cities within 6 tiles",
+						"[3] CO2 per turn"
+					],
+		"requiredTech":  "Electricity",
+		"requiredBuilding":  "Factory",
+		"production":  4,
+		"percentStatBonus":  {
+							 "production":  10
+						 }
+	},
 {
-        "name":  "Oil Power Plant",
+		"name":  "Oil Power Plant",
         "district":  "Industrial Zone",
         "cost":  235,
         "maintenance":  3,
-        "uniques":  [
-                        "PowerProduction: 6",
-                        "Requires Oil",
-                        "Regional effect: +4 Production to all cities within 6 tiles",
-                        "CO2Emission: 2"
-                    ],
+		"uniques":  [
+						"[6] Power [Industrial] buildings produce",
+						"Consumes [1] [Oil]",
+						"Regional effect: +4 Production to all cities within 6 tiles",
+						"[2] CO2 per turn"
+					],
         "requiredTech":  "Combustion",
         "requiredBuilding":  "Factory",
         "production":  4,
@@ -3107,11 +3107,11 @@
         "district":  "Industrial Zone",
         "cost":  310,
         "maintenance":  3,
-        "uniques":  [
-                        "PowerProduction: 6",
-                        "Requires Uranium",
-                        "Regional effect: +6 Production to all cities within 6 tiles"
-                    ],
+		"uniques":  [
+						"[6] Power [Industrial] buildings produce",
+						"Consumes [1] [Uranium]",
+						"Regional effect: +6 Production to all cities within 6 tiles"
+					],
         "requiredTech":  "Nuclear Fusion",
         "requiredBuilding":  "Factory",
         "production":  4,
@@ -3203,11 +3203,11 @@
         "district":  "Dam",
         "cost":  310,
         "maintenance":  2,
-        "uniques":  [
-                        "PowerProduction: 6",
-                        "Must be adjacent to River",
-                        "Regional effect: +6 Production to all cities within 6 tiles"
-                    ],
+		"uniques":  [
+						"[6] Power [Industrial] buildings produce",
+						"Must be adjacent to River",
+						"Regional effect: +6 Production to all cities within 6 tiles"
+					],
         "requiredTech":  "Electricity",
         "production":  6,
         "percentStatBonus":  {

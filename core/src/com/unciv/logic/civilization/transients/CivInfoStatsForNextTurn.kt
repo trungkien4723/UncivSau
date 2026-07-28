@@ -7,6 +7,7 @@ import com.unciv.logic.civilization.PlayerType
 import com.unciv.logic.civilization.diplomacy.RelationshipLevel
 import com.unciv.logic.map.tile.RoadStatus
 import com.unciv.models.ruleset.Policy
+import com.unciv.models.ruleset.GreatWorkType
 import com.unciv.models.ruleset.tile.ResourceType
 import com.unciv.models.ruleset.tile.TileImprovement
 import com.unciv.models.ruleset.unique.GameContext
@@ -317,6 +318,12 @@ class CivInfoStatsForNextTurn(val civInfo: Civilization) {
         val greatWorksStats = civInfo.greatWorks.getTotalStats()
         if (!greatWorksStats.isEmpty())
             statMap.add("Great Works", greatWorksStats)
+
+        for (type in GreatWorkType.entries) {
+            val themingStats = civInfo.greatWorks.getThemingStats(type)
+            if (!themingStats.isEmpty())
+                statMap.add("Theming Bonus (${type.name})", themingStats)
+        }
 
         return statMap
     }

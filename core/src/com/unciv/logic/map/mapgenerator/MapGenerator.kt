@@ -228,6 +228,7 @@ class MapGenerator(val ruleset: Ruleset, private val coroutineScope: CoroutineSc
             runAndMeasure("spreadResources") { spreadResources(map) }
         }
         runAndMeasure("spreadAncientRuins") { spreadAncientRuins(map) }
+        runAndMeasure("spreadAntiquitySites") { spreadAntiquitySites(map) }
 
         if (isMapEditor)
             mirror(map)
@@ -311,6 +312,7 @@ class MapGenerator(val ruleset: Ruleset, private val coroutineScope: CoroutineSc
                 }
                 MapGeneratorSteps.Resources -> spreadResources(map)
                 MapGeneratorSteps.AncientRuins -> spreadAncientRuins(map)
+                MapGeneratorSteps.AntiquitySites -> spreadAntiquitySites(map)
             }
         }
     }
@@ -438,6 +440,22 @@ class MapGenerator(val ruleset: Ruleset, private val coroutineScope: CoroutineSc
             val rng = GameContext(tile = tile).stateBasedRandom("MapGenerator.spreadAncientRuins")
             val ruins = ruinsEquivalents.values.filter { isPlaceable(it, tile) }.random(rng)
             tile.setImprovementBasic(ruins)
+        }
+    }
+
+    private fun spreadAntiquitySites(map: TileMap) {
+        val antiquitySiteImprovement = ruleset.tileImprovements["Antiquity Site"] ?: return
+
+        fun isPlaceable(tile: Tile) =
+            tile.improvementFunctions.canImprovementBeBuiltHere(antiquitySiteImprovement, gameContext = GameContext.IgnoreConditionals)
+
+        val suitableTiles = map.values.filter { it.isLand && !it.isImpassible() && isPlaceable(it) }
+        val locations = randomness.chooseSpreadOutLocations(
+                (suitableTiles.size * ruleset.modOptions.constants.ancientRuinCountMultiplier).roundToInt() / 4,
+                suitableTiles,
+                map.mapParameters.mapSize.radius)
+        for (tile in locations) {
+            tile.setImprovementBasic(antiquitySiteImprovement)
         }
     }
 

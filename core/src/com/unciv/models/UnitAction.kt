@@ -237,6 +237,8 @@ enum class UnitActionType(
         { ImageGetter.getUnitActionPortrait("RockBand") }, UncivSound.Chimes, defaultPage = 1),
     CreateTradeRoute("Create Trade Route",
         { ImageGetter.getUnitActionPortrait("TradeRoute") }, defaultPage = 1),
+    ExcavateAntiquitySite("Excavate",
+        { ImageGetter.getUnitActionPortrait("CreateGreatWork") }, UncivSound.Chimes, defaultPage = 1),
     ;
 
     // Allow shorter initializations

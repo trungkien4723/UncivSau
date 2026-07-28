@@ -50,5 +50,12 @@ class GreatWorksOverviewTab(
         val totalStats = greatWorks.getTotalStats()
         val totalLabel = "Total: +${totalStats.tourism.toInt()} Tourism, +${totalStats.culture.toInt()} Culture".toLabel()
         add(totalLabel).pad(10f).colspan(2).row()
+
+        for (type in GreatWorkType.entries) {
+            val themingStats = greatWorks.getThemingStats(type)
+            if (!themingStats.isEmpty()) {
+                add("Theming Bonus (+${themingStats.tourism.toInt()} Tourism, +${themingStats.culture.toInt()} Culture)".toLabel()).padLeft(30f).row()
+            }
+        }
     }
 }

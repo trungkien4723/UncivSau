@@ -137,6 +137,26 @@ object UnitActionsGreatPerson {
         }
     }
 
+    internal fun getExcavateAntiquitySiteActions(unit: MapUnit, tile: Tile) = sequence {
+        if (tile.improvement != "Antiquity Site") return@sequence
+        if (!unit.isGreatPersonOfType("Archaeologist")) return@sequence
+        val greatWorksManager = unit.civ.greatWorks
+        if (!greatWorksManager.hasAvailableSlot(GreatWorkType.Artifact)) return@sequence
+
+        val useFrequency = 70f
+        yield(UnitAction(
+            UnitActionType.ExcavateAntiquitySite, useFrequency,
+            title = "Excavate Antiquity Site",
+            action = {
+                tile.removeImprovement()
+                greatWorksManager.addGreatWork(GreatWorkType.Artifact, "Antiquity Artifact", unit.name, unit.civ.getEra().name)
+                unit.civ.addNotification("Excavated Antiquity Site - Artifact created!",
+                    tile.position, NotificationCategory.General, NotificationIcon.Tourism)
+                unit.consume()
+            }.takeIf { unit.hasMovement() }
+        ))
+    }
+
     internal fun getConductTradeMissionActions(unit: MapUnit, tile: Tile) = sequence {
         val canConductTradeMission = tile.owningCity?.civ?.isCityState == true
             && tile.owningCity?.civ != unit.civ

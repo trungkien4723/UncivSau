@@ -1548,32 +1548,39 @@ object UniqueTriggerActivation {
 
             UniqueType.TriggerUponEnteringClimatePhase -> {
                 return {
-                    val phase = unique.params[0]
-                    // Trigger when climate phase changes to the specified phase
-                    true
+                    val currentPhase = civInfo.climateManager.getClimatePhase().name
+                    val targetPhase = unique.params[0]
+                    if (currentPhase == targetPhase) true else false
                 }
             }
 
             UniqueType.TriggerUponClimatePhaseChange -> {
                 return {
-                    // Trigger on any climate phase change
-                    true
+                    val previousPhase = civInfo.getTemporaryUnique("lastClimatePhase") ?: ""
+                    val currentPhase = civInfo.climateManager.getClimatePhase().name
+                    if (previousPhase.isNotEmpty() && currentPhase != previousPhase) true else false
                 }
             }
 
             UniqueType.TriggerUponNaturalDisaster -> {
                 return {
                     val disasterType = unique.params[0]
-                    // Trigger when a natural disaster of the specified type occurs
-                    true
+                    val hasDisaster = when (disasterType.lowercase()) {
+                        "flood" -> civInfo.disasterManager.floodCount > 0
+                        "volcano" -> civInfo.disasterManager.volcanoCount > 0
+                        "storm" -> civInfo.disasterManager.stormCount > 0
+                        "drought" -> civInfo.disasterManager.droughtCount > 0
+                        else -> civInfo.disasterManager.disasterCount > 0
+                    }
+                    hasDisaster
                 }
             }
 
             UniqueType.TriggerUponJoiningSecretSociety -> {
                 return {
                     val society = unique.params[0]
-                    // Trigger when player joins a secret society
-                    true
+                    val joinedSociety = civInfo.secretSocietyManager.getSocietyName()
+                    if (joinedSociety == society && civInfo.secretSocietyManager.isMember()) true else false
                 }
             }
 
@@ -1581,8 +1588,9 @@ object UniqueTriggerActivation {
                 return {
                     val society = unique.params[0]
                     val rank = unique.params[1]
-                    // Trigger when player reaches a specific rank in a society
-                    true
+                    val joinedSociety = civInfo.secretSocietyManager.getSocietyName()
+                    val currentRank = civInfo.secretSocietyManager.getRankName()
+                    if (joinedSociety == society && currentRank == rank) true else false
                 }
             }
 

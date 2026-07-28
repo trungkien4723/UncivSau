@@ -91,6 +91,7 @@ object UnitActions {
         UnitActionType.HurryBuilding to UnitActionsGreatPerson::getHurryBuildingActions,
         UnitActionType.ConductTradeMission to UnitActionsGreatPerson::getConductTradeMissionActions,
         UnitActionType.CreateGreatWork to UnitActionsGreatPerson::getCreateGreatWorkActions,
+        UnitActionType.ExcavateAntiquitySite to UnitActionsGreatPerson::getExcavateAntiquitySiteActions,
         UnitActionType.FoundReligion to UnitActionsReligion::getFoundReligionActions,
         UnitActionType.EnhanceReligion to UnitActionsReligion::getEnhanceReligionActions,
         UnitActionType.CreateImprovement to UnitActionsFromUniques::getImprovementCreationActions,
