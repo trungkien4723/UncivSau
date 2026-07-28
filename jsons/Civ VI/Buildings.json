@@ -3163,6 +3163,20 @@
         "requiredTech":  "Flight"
     },
     {
+        "name":  "Aircraft Factory",
+        "district":  "Aerodrome",
+        "cost":  225,
+        "maintenance":  2,
+        "uniques":  [
+                        "+2 [Great Engineer] points per turn",
+                        "+1 [Production]"
+                    ],
+        "requiredTech":  "Flight",
+        "greatPersonPoints":  {
+                                  "Great Engineer":  2
+                              }
+    },
+    {
         "name":  "Airport",
         "district":  "Aerodrome",
         "cost":  310,

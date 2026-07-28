@@ -380,7 +380,7 @@ class TechManager : IsPartOfGameInfoSerialization {
         // Civ VI Climate Change: add CO2 when researching relevant techs
         for (unique in newTech.uniqueObjects) {
             if (unique.type == UniqueType.ClimateChange) {
-                civInfo.climateManager.addCO2(unique.params[0].toInt())
+                civInfo.powerManager.addCO2(unique.params[0].toInt())
             }
         }
 
@@ -390,7 +390,7 @@ class TechManager : IsPartOfGameInfoSerialization {
                 val match = Regex("""CO2:\s*\[([+-]?\d+)\]""").find(unique)
                 if (match != null) {
                     val amount = match.groupValues[1].toInt()
-                    civInfo.climateManager.addCO2(amount)
+                    civInfo.powerManager.addCO2(amount)
                 }
             }
         }

@@ -9,9 +9,9 @@ import kotlin.math.max
 
 data class HeroData(
     val heroName: String,
-    val turnsUntilRetirement: Int,
-    val cooldownTurns: Int = 0,
-    val isRetired: Boolean = false
+    var turnsUntilRetirement: Int,
+    var cooldownTurns: Int = 0,
+    var isRetired: Boolean = false
 ) : IsPartOfGameInfoSerialization
 
 class HeroesManager : IsPartOfGameInfoSerialization {

@@ -186,7 +186,7 @@ object BattleDamage {
         val defenderTile = defender.getTile()
         for (neighbor in defenderTile.neighbors) {
             for (unit in neighbor.getUnits()) {
-                if (unit.civ != attacker.getCivInfo() || unit.isDestroyed()) continue
+                if (unit.civ != attacker.getCivInfo() || unit.isDestroyed) continue
                 if (unit.name == "Battering Ram") return Pair("Ram support", 50)
                 if (unit.name == "Siege Tower") return Pair("Tower support", 100)
             }

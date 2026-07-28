@@ -1,3 +1,14 @@
+## 4.21.3
+
+Added missing Civ VI natural wonders (Grand Canyon, Nile River) - By unciv-loof
+Added Aircraft Factory building to Aerodrome district - By unciv-loof
+Added Goody Hut tile improvement with ruin reward system reuse - By unciv-loof
+Added Antiquity Site system (map spawning, Archaeologist excavation, Artifact creation) - By unciv-loof
+Added Museum Theming Bonuses (+1 Culture/Tourism per great work when all slots filled) - By unciv-loof
+Fixed Medic adjacent healing (+5 HP/turn from friendly Medic) - By unciv-loof
+Fixed Battering Ram (+50% vs cities) and Siege Tower (+100% vs cities) support unit bonuses - By unciv-loof
+Built Green: Configured Gradle to use JDK 21 (fixes Kotlin compiler Java 25 version parsing error) - By unciv-loof
+
 ## 4.21.2
 
 Disable constructions per city/game instead of client wide - By unciv-loof

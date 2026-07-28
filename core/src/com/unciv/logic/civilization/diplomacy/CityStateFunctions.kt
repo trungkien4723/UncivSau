@@ -77,9 +77,6 @@ class CityStateFunctions(val civInfo: Civilization) {
         return true
     }
 
-    return true
-    }
-
     /** Creates a new city-state civilization from a barbarian camp tile. */
     fun createCityStateFromBarbarianCamp(tile: Tile, clanType: String): Civilization {
         // Select a random city-state type matching the clan type
@@ -100,7 +97,7 @@ class CityStateFunctions(val civInfo: Civilization) {
         cityStateCiv.cityStateFunctions.initCityState(
             civInfo.gameInfo.ruleset,
             civInfo.gameInfo.gameParameters.startingEra,
-            emptySet(),
+            emptySequence<Nation>(),
             civInfo.gameInfo.getBarbarianCivilization().state.stateBasedRandom("CityStateFunctions.createCityStateFromBarbarianCamp")
         )
         civInfo.gameInfo.civilizations.add(cityStateCiv)
@@ -111,12 +108,6 @@ class CityStateFunctions(val civInfo: Civilization) {
 
         // Add basic units for the new city-state
         cityStateCiv.cityStateFunctions.addStartingUnits()
-
-        return cityStateCiv
-    }
-
-    // Add basic units for the new city-state
-        addStartingUnits()
 
         return cityStateCiv
     }
@@ -153,7 +144,7 @@ class CityStateFunctions(val civInfo: Civilization) {
         // Place units near the capital
         for (unitName in startingUnits) {
             val unit = ruleSet.units[unitName] ?: continue
-            val unitToAdd = civInfo.units.getEquivalentUnit(unit, ruleSet.eras[startingEra]!!.startingMilitaryUnit)
+            val unitToAdd = civInfo.getEquivalentUnit(unit)
             if (unitToAdd != null) {
                 civInfo.units.placeUnitNearTile(startingLocation, unitToAdd)
             }

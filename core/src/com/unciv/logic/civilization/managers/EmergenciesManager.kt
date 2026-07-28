@@ -21,14 +21,6 @@ data class Emergency(
     var isFailed: Boolean = false
 ) : IsPartOfGameInfoSerialization
 
-enum class EmergencyType {
-    Military,
-    Religious,
-    AidRequest,
-    Nuclear,
-    Climate
-}
-
 class EmergenciesManager : IsPartOfGameInfoSerialization {
     @Transient
     lateinit var civInfo: Civilization

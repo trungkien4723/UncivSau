@@ -87,7 +87,7 @@ class CorporationManager : IsPartOfGameInfoSerialization {
 
             val totalWorld = civInfo.gameInfo.getCivResourcesTotal(name)
             if (totalWorld <= 0) continue
-            val controlled = civInfo.getResourceQuantity(name)
+            val controlled = civInfo.getResourceAmount(name)
             val percentage = controlled.toFloat() / totalWorld.toFloat()
 
             if (percentage >= 0.5f) {

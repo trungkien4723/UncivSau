@@ -26,11 +26,6 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
         this.civInfo = civInfo
     }
 
-    // Use Civilization's diplomaticFavor instead of local field
-    val diplomaticFavor: Int
-        get() = civInfo.diplomaticFavor
-        set(value) { civInfo.diplomaticFavor = value }
-
     var votesCast = HashMap<String, String?>()
     var activeResolutions = mutableSetOf<String>()
     var activeEmergencies = mutableSetOf<String>()
@@ -57,7 +52,7 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
 
     fun clone(): WorldCongressManager {
         val toReturn = WorldCongressManager()
-        toReturn.diplomaticFavor = diplomaticFavor
+        // Don't copy diplomaticFavor - it comes from civInfo
         toReturn.votesCast.putAll(votesCast)
         toReturn.activeResolutions.addAll(activeResolutions)
         toReturn.activeEmergencies.addAll(activeEmergencies)
@@ -69,12 +64,12 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
     }
 
     fun addDiplomaticFavor(amount: Int) {
-        diplomaticFavor += amount
+        civInfo.addDiplomaticFavor(amount)
     }
 
     fun spendDiplomaticFavor(amount: Int): Boolean {
-        if (diplomaticFavor < amount) return false
-        diplomaticFavor -= amount
+        if (civInfo.diplomaticFavor < amount) return false
+        civInfo.addDiplomaticFavor(-amount)
         return true
     }
 
@@ -153,7 +148,7 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
         for (proposal in session.proposals) {
             // AI votes For if it likes the resolution, Against otherwise
             // Simple heuristic: always vote For if we can afford it
-            if (diplomaticFavor >= FAVOR_COST_PER_VOTE) {
+            if (civInfo.diplomaticFavor >= FAVOR_COST_PER_VOTE) {
                 voteOnResolution(civInfo, proposal, FAVOR_COST_PER_VOTE, support = true)
             }
         }
@@ -423,7 +418,7 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
     fun getDiplomaticVictoryProgress(): Int {
         var totalFavor = 0
         for (civ in civInfo.gameInfo.civilizations) {
-            totalFavor += civ.worldCongress.diplomaticFavor
+            totalFavor += civ.diplomaticFavor
         }
         return totalFavor
     }
@@ -438,17 +433,17 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
     }
 
     @Readonly
-    fun getTotalDiplomaticFavor(): Int = diplomaticFavor
+    fun getTotalDiplomaticFavor(): Int = civInfo.diplomaticFavor
 
-    fun canSpendDiplomaticFavor(amount: Int): Boolean = diplomaticFavor >= amount
+    fun canSpendDiplomaticFavor(amount: Int): Boolean = civInfo.diplomaticFavor >= amount
 
     fun getVotingPower(civID: String): Int {
         val civ = civInfo.gameInfo.getCivilization(civID) ?: return 0
-        return civ.worldCongress.diplomaticFavor
+        return civ.diplomaticFavor
     }
 
     fun totalVotingPower(): Int {
-        return civInfo.gameInfo.civilizations.sumOf { it.worldCongress.diplomaticFavor }
+        return civInfo.gameInfo.civilizations.sumOf { it.diplomaticFavor }
     }
 
     fun resetEmergency(emergency: String) {
@@ -468,7 +463,7 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
     fun getEmergenciesCount(): Int = activeEmergencies.size
 
     fun canProposeResolution(resolution: String): Boolean {
-        return diplomaticFavor >= 5
+        return civInfo.diplomaticFavor >= 5
     }
 
     fun spendFavorForVote(amount: Int): Boolean {

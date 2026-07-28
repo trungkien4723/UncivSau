@@ -805,6 +805,19 @@
                         "Irremovable",
                         "Provides [1] [Artifact]"
                     ]
+    },
+    {
+        "name":  "Goody Hut",
+        "terrainsCanBeBuiltOn":  [
+                                      "Land"
+                                  ],
+        "uniques":  [
+                        "Provides a random bonus when entered",
+                        "Unbuildable",
+                        "Irremovable",
+                        "Does not need removal of [Forest]",
+                        "Does not need removal of [Jungle]"
+                    ]
     }
 ]
 

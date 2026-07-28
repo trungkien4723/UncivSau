@@ -61,8 +61,8 @@
 | Campus buildings (Research Lab, etc.) | `[x]` | |
 | Theater Square buildings (Broadcast Center, etc.) | `[x]` | |
 | Industrial Zone buildings (Power Plant, etc.) | `[x]` | Power Plant resource consumption done |
-| **Canal as district** | `[ ]` | Currently tile improvement only |
-| **Dam as district** | `[ ]` | Currently tile improvement only |
+| **Canal as district** | `[~]` | Tile improvement; also a wonder exists |
+| **Dam as district** | `[~]` | Tile improvement; also a wonder exists |
 | District placement UI | `[x]` | DistrictPickerScreen |
 | District pillaging | `[x]` | DistrictPillageTests pass |
 | District capacity formula `(pop-1)/3 + 1` | `[x]` | |
@@ -271,7 +271,7 @@
 | Industrial Zone buildings (Workshop, Factory, Power Plant) | `[x]` | Power Plant resource consumption done |
 | Harbor buildings (Lighthouse, Shipyard, Seaport) | `[x]` | |
 | Encampment buildings (Barracks, Stable, Armory) | `[x]` | |
-| **Aircraft Factory** | `[ ]` | **MISSING** - Aerodrome district building |
+| **Aircraft Factory** | `[x]` | Added to Aerodrome district |
 | Government Plaza buildings (complete set) | `[x]` | |
 | Entertainment buildings (Arena, Stadium, Zoo) | `[x]` | |
 
@@ -298,8 +298,8 @@
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Natural Wonders (~14 of 16) | `[~]` | Maybe missing Grand Canyon, Nile River |
-| **Goody Huts** | `[ ]` | **MISSING** - no goody hut data or code |
+| Natural Wonders (~14 of 16) | `[x]` | Added Grand Canyon, Nile River; all major NWs present |
+| **Goody Huts** | `[x]` | Added tile improvement, spawns at game start, reuses ruins reward system |
 | Ancient Ruins | `[x]` | |
 | **Barbarian encampments** | `[x]` | |
 | Resources (bonus, luxury, strategic) | `[x]` | |
@@ -387,15 +387,11 @@
 
 ### Critical Missing (blocks full Civ VI experience)
 1. **Spy unit** - No spy in ruleset JSON, espionage mechanics incomplete
-2. **Goody Huts** - Completely absent (no data or code)
-3. **Canal/Dam as districts** - Still tile improvements only
-4. **Aircraft Factory** - Missing Aerodrome building
-5. **Natural Wonders** - ~2 missing (Grand Canyon, Nile River)
-6. **City-State nation entries** - Dynamic generation, may not work fully
+2. **Canal/Dam as districts** - Still tile improvements; also wonders exist as districts
 
 ### Significant Gaps (reduced depth)
-7. **District adjacency system** - Basic, not fully Civ VI-style
-8. **War Support mechanic** - Not fully implemented (uses old War Weariness)
+3. **District adjacency system** - Basic, not fully Civ VI-style
+4. **War Support mechanic** - Not fully implemented (uses old War Weariness)
 9. **Trade route nuances** - Basic implementation
 10. **Great Works placement** - Global pool, no per-building assignment
 11. **Theming bonus per individual museum** - Global only, not per-building
@@ -427,10 +423,16 @@
 - [x] **Archaeologist excavation** action (ExcavateAntiquitySite)
 - [x] **Artifact creation** from Antiquity Sites
 - [x] **Museum Theming Bonuses** (getThemingStats, stat map integration)
-- [x] World Congress / Diplomatic Victory (already fully implemented)
+
+### Easy Additions (this session)
+- [x] **Goody Huts** — tile improvement reusing ruins reward system, spawns at map generation
+- [x] **Aircraft Factory** — added to Aerodrome district (Building JSON)
+- [x] **Grand Canyon** — Natural Wonder added to Terrains.json
+- [x] **Nile River** — Natural Wonder added to Terrains.json
 
 ### Build Environment
 - [x] Gradle JDK configuration: set `org.gradle.java.home` to JDK 21 in `gradle.properties`
+- [x] World Congress / Diplomatic Victory (already fully implemented in prior sessions)
   (Resolves Kotlin compiler error with Java 25 version string "25.0.3")
 
 ---

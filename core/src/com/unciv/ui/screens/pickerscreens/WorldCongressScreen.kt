@@ -63,7 +63,7 @@ class WorldCongressScreen(private val viewingCiv: Civilization) : PickerScreen()
     }
 
     private fun updateDescription() {
-        val favor = congressManager.diplomaticFavor
+        val favor = viewingCiv.diplomaticFavor
         descriptionLabel.setText("Your Diplomatic Favor: [$favor]".tr())
     }
 
@@ -77,7 +77,7 @@ class WorldCongressScreen(private val viewingCiv: Civilization) : PickerScreen()
             "Vote For ([${WorldCongressManager.FAVOR_COST_PER_VOTE}] favor)".tr(), skin
         )
         forButton.onClick {
-            if (congressManager.diplomaticFavor < WorldCongressManager.FAVOR_COST_PER_VOTE) {
+            if (viewingCiv.diplomaticFavor < WorldCongressManager.FAVOR_COST_PER_VOTE) {
                 descriptionLabel.setText("Not enough favor! Need [${WorldCongressManager.FAVOR_COST_PER_VOTE}].".tr())
                 return@onClick
             }
@@ -91,7 +91,7 @@ class WorldCongressScreen(private val viewingCiv: Civilization) : PickerScreen()
             "Vote Against ([${WorldCongressManager.FAVOR_COST_PER_VOTE}] favor)".tr(), skin
         )
         againstButton.onClick {
-            if (congressManager.diplomaticFavor < WorldCongressManager.FAVOR_COST_PER_VOTE) {
+            if (viewingCiv.diplomaticFavor < WorldCongressManager.FAVOR_COST_PER_VOTE) {
                 descriptionLabel.setText("Not enough favor! Need [${WorldCongressManager.FAVOR_COST_PER_VOTE}].".tr())
                 return@onClick
             }

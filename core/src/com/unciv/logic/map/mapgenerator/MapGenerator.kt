@@ -229,6 +229,7 @@ class MapGenerator(val ruleset: Ruleset, private val coroutineScope: CoroutineSc
         }
         runAndMeasure("spreadAncientRuins") { spreadAncientRuins(map) }
         runAndMeasure("spreadAntiquitySites") { spreadAntiquitySites(map) }
+        runAndMeasure("spreadGoodyHuts") { spreadGoodyHuts(map) }
 
         if (isMapEditor)
             mirror(map)
@@ -313,6 +314,7 @@ class MapGenerator(val ruleset: Ruleset, private val coroutineScope: CoroutineSc
                 MapGeneratorSteps.Resources -> spreadResources(map)
                 MapGeneratorSteps.AncientRuins -> spreadAncientRuins(map)
                 MapGeneratorSteps.AntiquitySites -> spreadAntiquitySites(map)
+                MapGeneratorSteps.GoodyHuts -> spreadGoodyHuts(map)
             }
         }
     }
@@ -456,6 +458,22 @@ class MapGenerator(val ruleset: Ruleset, private val coroutineScope: CoroutineSc
                 map.mapParameters.mapSize.radius)
         for (tile in locations) {
             tile.setImprovementBasic(antiquitySiteImprovement)
+        }
+    }
+
+    private fun spreadGoodyHuts(map: TileMap) {
+        val goodyHutImprovement = ruleset.tileImprovements["Goody Hut"] ?: return
+
+        fun isPlaceable(tile: Tile) =
+            tile.improvementFunctions.canImprovementBeBuiltHere(goodyHutImprovement, gameContext = GameContext.IgnoreConditionals)
+
+        val suitableTiles = map.values.filter { it.isLand && !it.isImpassible() && isPlaceable(it) }
+        val locations = randomness.chooseSpreadOutLocations(
+                (suitableTiles.size * ruleset.modOptions.constants.ancientRuinCountMultiplier).roundToInt(),
+                suitableTiles,
+                map.mapParameters.mapSize.radius)
+        for (tile in locations) {
+            tile.setImprovementBasic(goodyHutImprovement)
         }
     }
 

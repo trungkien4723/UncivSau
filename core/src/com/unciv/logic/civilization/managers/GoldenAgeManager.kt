@@ -217,6 +217,7 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
             NotificationCategory.General, "StatIcons/EraScore")
     }
 
+    @Readonly
     private fun getDedicationUniques(dedicationName: String): List<String> {
         return when (dedicationName) {
             "Exodus of the Evangelists" -> listOf(

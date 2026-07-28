@@ -360,7 +360,7 @@ class GlobalPoliticsOverviewTable(
         add(scoreText.toLabel()).left().row()
         val turnsTillNextDiplomaticVote = viewingPlayer.getTurnsTillNextDiplomaticVote() ?: return
         add("Turns until next World Congress: [$turnsTillNextDiplomaticVote]".toLabel()).colspan(columns).row()
-        val diplomacyFavor = viewingPlayer.worldCongress.diplomaticFavor
+        val diplomacyFavor = viewingPlayer.diplomaticFavor
         add("Diplomatic Favor: [$diplomacyFavor]".toLabel()).colspan(columns).row()
         add("Session: [${viewingPlayer.worldCongress.congressSession}]".toLabel()).colspan(columns).row()
     }

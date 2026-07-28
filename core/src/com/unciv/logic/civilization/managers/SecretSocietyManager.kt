@@ -112,6 +112,7 @@ class SecretSocietyManager : IsPartOfGameInfoSerialization {
             SecretSociety.OWLS_OF_MINERVA -> applyOwlsOfMinervaBonuses()
             SecretSociety.SANGUINE_PACT -> applySanguinePactBonuses()
             SecretSociety.VOID_SINGERS -> applyVoidSingersBonuses()
+            else -> {} // NONE or unassigned
         }
     }
 

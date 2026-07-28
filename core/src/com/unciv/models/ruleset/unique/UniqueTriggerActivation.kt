@@ -1548,7 +1548,7 @@ object UniqueTriggerActivation {
 
             UniqueType.TriggerUponEnteringClimatePhase -> {
                 return {
-                    val currentPhase = civInfo.climateManager.getClimatePhase().name
+                    val currentPhase = civInfo.climateManager.climatePhase.name
                     val targetPhase = unique.params[0]
                     if (currentPhase == targetPhase) true else false
                 }
@@ -1556,8 +1556,8 @@ object UniqueTriggerActivation {
 
             UniqueType.TriggerUponClimatePhaseChange -> {
                 return {
-                    val previousPhase = civInfo.getTemporaryUnique("lastClimatePhase") ?: ""
-                    val currentPhase = civInfo.climateManager.getClimatePhase().name
+                    val previousPhase = civInfo.getTemporaryUniqueValue("lastClimatePhase")
+                    val currentPhase = civInfo.climateManager.climatePhase.name
                     if (previousPhase.isNotEmpty() && currentPhase != previousPhase) true else false
                 }
             }

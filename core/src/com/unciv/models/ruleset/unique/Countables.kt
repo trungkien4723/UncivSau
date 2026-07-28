@@ -420,6 +420,9 @@ enum class Countables(
                 Stat.Housing -> speed.modifier
                 Stat.Amenities -> speed.modifier
                 Stat.Tourism -> speed.modifier
+                Stat.DiplomaticFavor -> speed.modifier
+                Stat.GovernorXP -> speed.modifier
+                else -> speed.modifier
             }
             return modifier.times(100).toInt()
         }

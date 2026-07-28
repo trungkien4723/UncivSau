@@ -46,6 +46,7 @@ enum class MapGeneratorSteps(
     NaturalWonders("Place Natural Wonders"),
     Rivers("Let the rivers flow"),
     Resources("Spread Resources", MapGeneratorStepsHelpers.applyResources),
-    AncientRuins("Create ancient ruins"),
-    AntiquitySites("Create antiquity sites"),
+     AncientRuins("Create ancient ruins"),
+     AntiquitySites("Create antiquity sites"),
+     GoodyHuts("Create goody huts"),
 }

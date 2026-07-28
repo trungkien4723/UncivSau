@@ -3,6 +3,7 @@ package com.unciv.logic.civilization.managers
 import com.unciv.logic.IsPartOfGameInfoSerialization
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.civilization.NotificationCategory
+import com.unciv.logic.map.HexCoord
 import com.unciv.logic.map.tile.Tile
 import yairm210.purity.annotations.Readonly
 import kotlin.math.max
@@ -33,13 +34,14 @@ class DisasterManager : IsPartOfGameInfoSerialization {
 
     @Readonly
     fun getDisasterFrequencyMultiplier(): Float {
-        val climatePhase = civInfo.climateManager.getClimatePhase()
+        val climatePhase = civInfo.climateManager.climatePhase
         val baseMultiplier = when (climatePhase) {
             ClimatePhase.NONE -> 1.0f
             ClimatePhase.PHASE_I -> 1.25f
             ClimatePhase.PHASE_II -> 1.5f
             ClimatePhase.PHASE_III -> 2.0f
             ClimatePhase.PHASE_IV -> 3.0f
+            else -> 1.0f
         }
         val apocalypseMultiplier = if (civInfo.gameModes.isApocalypseModeActive()) 2.0f else 1.0f
         return baseMultiplier * apocalypseMultiplier
@@ -69,7 +71,7 @@ class DisasterManager : IsPartOfGameInfoSerialization {
 
         civInfo.addNotification(
             "A [$disasterType] has occurred!",
-            if (targetTile != null) targetTile.position else null,
+            targetTile?.position ?: HexCoord(0, 0),
             NotificationCategory.General,
             "StatIcons/Disaster"
         )
@@ -79,16 +81,16 @@ class DisasterManager : IsPartOfGameInfoSerialization {
         val damageMult = getDisasterDamageMultiplier()
         val radius = getDisasterRadiusMultiplier()
 
-        val tilesToAffect = if (targetTile != null)
+        val tilesToAffect: Sequence<Tile> = if (targetTile != null)
             targetTile.getTilesInDistance(radius)
         else
-            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }.toList()
+            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }
 
         for (tile in tilesToAffect) {
             if (!tile.isAdjacentToRiver() && !tile.isAdjacentToCoast()) continue
 
             tile.improvement = null
-            tile.resource = null
+            tile.setTileResource(null)
 
             tile.getUnits().forEach { unit ->
                 unit.health = max(0, unit.health - (20 * damageMult).toInt())
@@ -96,7 +98,8 @@ class DisasterManager : IsPartOfGameInfoSerialization {
 
             val city = tile.getCity()
             if (city != null && city.civ == civInfo) {
-                city.population.population = max(1, city.population.population - (1 * damageMult).toInt())
+                val newPop = max(1, city.population.population - (1 * damageMult).toInt())
+                city.population.setPopulation(newPop)
             }
         }
     }
@@ -105,10 +108,10 @@ class DisasterManager : IsPartOfGameInfoSerialization {
         val damageMult = getDisasterDamageMultiplier()
         val radius = getDisasterRadiusMultiplier()
 
-        val tilesToAffect = if (targetTile != null)
+        val tilesToAffect: Sequence<Tile> = if (targetTile != null)
             targetTile.getTilesInDistance(radius)
         else
-            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }.toList()
+            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }
 
         for (tile in tilesToAffect) {
             tile.getUnits().forEach { unit ->
@@ -117,7 +120,8 @@ class DisasterManager : IsPartOfGameInfoSerialization {
 
             val city = tile.getCity()
             if (city != null && city.civ == civInfo) {
-                city.population.population = max(1, city.population.population - (3 * damageMult).toInt())
+                val newPop = max(1, city.population.population - (3 * damageMult).toInt())
+                city.population.setPopulation(newPop)
             }
         }
     }
@@ -126,10 +130,10 @@ class DisasterManager : IsPartOfGameInfoSerialization {
         val damageMult = getDisasterDamageMultiplier()
         val radius = getDisasterRadiusMultiplier()
 
-        val tilesToAffect = if (targetTile != null)
+        val tilesToAffect: Sequence<Tile> = if (targetTile != null)
             targetTile.getTilesInDistance(radius)
         else
-            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }.toList()
+            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }
 
         for (tile in tilesToAffect) {
             tile.getUnits().forEach { unit ->
@@ -144,17 +148,17 @@ class DisasterManager : IsPartOfGameInfoSerialization {
     private fun applyDroughtEffects(targetTile: Tile? = null) {
         val damageMult = getDisasterDamageMultiplier()
 
-        val tilesToAffect = if (targetTile != null)
-            listOf(targetTile)
+        val tilesToAffect: Sequence<Tile> = if (targetTile != null)
+            sequenceOf(targetTile)
         else
-            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }.toList()
+            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }
 
         for (tile in tilesToAffect) {
             tile.improvement = null
 
             val city = tile.getCity()
             if (city != null && city.civ == civInfo) {
-                city.population.foodStored = max(0f, city.population.foodStored - (10 * damageMult))
+                city.population.foodStored = max(0, city.population.foodStored - (10 * damageMult).toInt())
             }
         }
     }
@@ -167,7 +171,7 @@ class DisasterManager : IsPartOfGameInfoSerialization {
         val tilesToAffect = targetTile.getTilesInDistance(radius)
         for (tile in tilesToAffect) {
             tile.improvement = null
-            tile.resource = null
+            tile.setTileResource(null)
 
             tile.getUnits().forEach { unit ->
                 unit.health = max(0, unit.health - (40 * damageMult).toInt())
@@ -175,7 +179,8 @@ class DisasterManager : IsPartOfGameInfoSerialization {
 
             val city = tile.getCity()
             if (city != null && city.civ == civInfo) {
-                city.population.population = max(1, city.population.population - (2 * damageMult).toInt())
+                val newPop = max(1, city.population.population - (2 * damageMult).toInt())
+                city.population.setPopulation(newPop)
             }
         }
     }
@@ -184,10 +189,10 @@ class DisasterManager : IsPartOfGameInfoSerialization {
         val damageMult = getDisasterDamageMultiplier()
         val radius = getDisasterRadiusMultiplier()
 
-        val tilesToAffect = if (targetTile != null)
+        val tilesToAffect: Sequence<Tile> = if (targetTile != null)
             targetTile.getTilesInDistance(radius)
         else
-            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }.toList()
+            civInfo.cities.asSequence().flatMap { it.getTiles().asSequence() }
 
         for (tile in tilesToAffect) {
             tile.getUnits().forEach { unit ->
@@ -197,7 +202,7 @@ class DisasterManager : IsPartOfGameInfoSerialization {
 
             val city = tile.getCity()
             if (city != null && city.civ == civInfo) {
-                city.population.foodStored = max(0f, city.population.foodStored - (15 * damageMult))
+                city.population.foodStored = max(0, city.population.foodStored - (15 * damageMult).toInt())
             }
         }
     }

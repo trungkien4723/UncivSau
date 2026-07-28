@@ -107,9 +107,6 @@ class ClimateManager : IsPartOfGameInfoSerialization {
     fun getCO2Level(): Int = civInfo.powerManager.totalCO2
 
     @Readonly
-    fun getClimatePhase(): ClimatePhase = climatePhase
-
-    @Readonly
     fun getPhaseDescription(): String = when (climatePhase) {
         ClimatePhase.NONE -> "Pre-Industrial Climate"
         ClimatePhase.PHASE_I -> "Phase I: Rising Seas - Minor coastal flooding"

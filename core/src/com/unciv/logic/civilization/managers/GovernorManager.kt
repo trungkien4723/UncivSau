@@ -3,7 +3,9 @@ package com.unciv.logic.civilization.managers
 import com.unciv.logic.IsPartOfGameInfoSerialization
 import com.unciv.logic.city.City
 import com.unciv.logic.civilization.Civilization
+import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.models.ruleset.Governor
+import com.unciv.models.ruleset.unique.UniqueTriggerActivation
 import yairm210.purity.annotations.Readonly
 
 /**
@@ -138,7 +140,7 @@ class GovernorManager : IsPartOfGameInfoSerialization {
         
         // Apply the promotion's unique effects
         val promotion = governor.promotionObjects[currentLevel]
-        promotion.uniques.forEach { unique ->
+        promotion.forEach { unique ->
             UniqueTriggerActivation.triggerUnique(unique, city.civ, city)
         }
         

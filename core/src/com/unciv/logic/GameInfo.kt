@@ -587,6 +587,11 @@ class GameInfo : IsPartOfGameInfoSerialization, HasGameInfoSerializationVersion 
         return true
     }
 
+    /** Get the total amount of a resource across all civilizations (including city-states) */
+    fun getCivResourcesTotal(resourceName: String): Int {
+        return civilizations.asSequence().sumOf { it.getResourceAmount(resourceName) }
+    }
+
     /** Generate a notification pointing out resources. Only researched Resources are considered.
      * @param maxDistance from next City, default removes distance limitation.
      * @param filter optional tile filter predicate, e.g. to exclude foreign territory.

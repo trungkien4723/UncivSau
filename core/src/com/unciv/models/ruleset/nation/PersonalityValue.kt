@@ -50,6 +50,8 @@ enum class PersonalityValue(
                 Stat.Housing -> Housing
                 Stat.Amenities -> Amenities
                 Stat.Tourism -> Culture // Treat Tourism like Culture for personality
+                Stat.DiplomaticFavor -> Production // Treat like Production
+                Stat.GovernorXP -> Production // Treat like Production
             }
         }
     }

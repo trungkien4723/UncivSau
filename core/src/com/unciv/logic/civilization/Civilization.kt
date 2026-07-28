@@ -135,12 +135,6 @@ class Civilization : IsPartOfGameInfoSerialization {
     var diplomaticFavor = 0
         private set
 
-    /** Add Diplomatic Favor */
-    fun addDiplomaticFavor(amount: Int) {
-        diplomaticFavor += amount
-        cache.updateCivResources()
-    }
-
     /** Civ VI: Governor XP — used for governor promotions. */
     var governorXP = 0
         private set
@@ -1147,7 +1141,7 @@ class Civilization : IsPartOfGameInfoSerialization {
                 && !isDefeated()
                 && !isBarbarian
                 && !isSpectator()
-                && worldCongress.diplomaticFavor >= WorldCongressManager.FAVOR_COST_PER_VOTE
+                && diplomaticFavor >= WorldCongressManager.FAVOR_COST_PER_VOTE
     }
 
     /** Modify gold by a given amount making sure it does neither overflow nor underflow.

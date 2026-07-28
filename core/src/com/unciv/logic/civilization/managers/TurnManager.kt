@@ -18,6 +18,7 @@ import com.unciv.models.stats.Stats
 import com.unciv.ui.components.MayaCalendar
 import com.unciv.ui.screens.worldscreen.status.NextTurnProgress
 import com.unciv.utils.Log
+import kotlin.math.max
 import yairm210.purity.annotations.Readonly
 import kotlin.math.min
 import kotlin.random.Random
@@ -53,10 +54,10 @@ class TurnManager(val civInfo: Civilization) {
         // Base: +1 per turn
         civInfo.addDiplomaticFavor(1)
         // +1 per Alliance
-        val alliances = civInfo.diplomacy.values.count { it.diplomaticStatus == DiplomaticStatus.Alliance && !it.otherCiv.isDefeated() }
+        val alliances = civInfo.getKnownCivs().count { it.isCityState || it.isMajorCiv() && civInfo.getDiplomacyManager(it)?.hasAlliance() == true }
         civInfo.addDiplomaticFavor(alliances)
         // +1 per City-State Suzerainty
-        val suzerainties = civInfo.diplomacy.values.count { it.otherCiv.isCityState && it.diplomaticStatus == DiplomaticStatus.Suzerain }
+        val suzerainties = civInfo.getKnownCivs().count { it.isCityState && it.allyCiv == civInfo }
         civInfo.addDiplomaticFavor(suzerainties)
         // +1 per Government Plaza building (Audience Chamber, Foreign Ministry, etc.)
         val govPlazaBuildings = civInfo.cities.sumOf { city ->
@@ -392,7 +393,7 @@ class TurnManager(val civInfo: Civilization) {
         civInfo.emergenciesManager.processEmergenciesEachTurn()
         
         // Check for climate phase change and notify
-        val climatePhase = civInfo.climateManager.getClimatePhase().name
+        val climatePhase = civInfo.climateManager.climatePhase.name
         val previousPhase = civInfo.getTemporaryUniqueValue("lastClimatePhase")
         if (climatePhase != previousPhase) {
             if (previousPhase.isNotEmpty()) {
