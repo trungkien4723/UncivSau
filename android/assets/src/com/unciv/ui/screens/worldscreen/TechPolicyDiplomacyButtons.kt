@@ -210,6 +210,12 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
             governmentButtonHolder.actor = null
             return
         }
+        val gov = viewingCiv.government
+        if (!gov.isGovernmentAdopted() && !gov.shouldShowGovernmentPicker()) {
+            governmentButtonHolder.touchable = Touchable.disabled
+            governmentButtonHolder.actor = null
+            return
+        }
         governmentButtonHolder.touchable = Touchable.enabled
         governmentButtonHolder.actor = governmentScreenButton
     }

@@ -73,19 +73,19 @@ class GovernmentPickerScreen(
             val card = if (cardName.isEmpty()) null else ruleset.policyCards[cardName]
             val cell = Table().apply {
                 background = skinStrings.getUiBackground("General/Border", tintColor = BaseScreen.skinStrings.skinConfig.baseColor)
-                setSize(70f, 70f)
+                setSize(600f, 600f)
                 if (card == null) {
-                    add("($slotType)".toLabel()).pad(2f).row()
-                    add("empty".toLabel()).pad(2f)
+                    add("($slotType)".toLabel(fontSize = 40)).pad(20f).row()
+                    add("empty".toLabel(fontSize = 30)).pad(20f)
                 } else {
-                    add(card.name.toLabel()).pad(2f).row()
+                    add(card.name.toLabel(fontSize = 30)).pad(10f).row()
                     val descText = card.getCivilopediaTextLines(ruleset)
                         .drop(1)
                         .joinToString("\n") { it.text }
                     if (descText.isNotEmpty()) {
-                        add(descText.toLabel()).pad(2f)
+                        add(descText.toLabel(fontSize = 16)).pad(10f)
                     } else {
-                        add("($slotType slot)".toLabel()).pad(2f)
+                        add("($slotType slot)".toLabel(fontSize = 20)).pad(10f)
                     }
                 }
             }
@@ -106,6 +106,9 @@ class GovernmentPickerScreen(
         }.sortedBy { it.name }
         if (available.isEmpty()) popup.add("No available cards".toLabel()).row()
         for (card in available) {
+            val descText = card.getCivilopediaTextLines(ruleset)
+                .drop(1)
+                .joinToString("\n") { it.text }
             popup.add(card.name.toTextButton().apply {
                 onClick {
                     selectedCards.addOrReplaceAt(slotIndex, card.name)
@@ -113,6 +116,9 @@ class GovernmentPickerScreen(
                     rebuildSlotTable()
                 }
             }).row()
+            if (descText.isNotEmpty()) {
+                popup.add(descText.toLabel(fontSize = 20)).padLeft(30f).padBottom(10f).row()
+            }
         }
         popup.addCloseButton()
         popup.open()
