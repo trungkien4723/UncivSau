@@ -1,7 +1,7 @@
 [
     {
         "name": "God King",
-        "slotType": "Wildcard",
+        "slotType": "Economic",
         "requiredCivic": "Code of Laws",
         "uniques": ["StatsPerCity(\"+1 [Faith] [in all cities]\")"]
     },
@@ -61,13 +61,13 @@
     },
     {
         "name": "Recorded History",
-        "slotType": "Wildcard",
+        "slotType": "Diplomatic",
         "requiredCivic": "Recorded History",
         "uniques": ["StatsPerCity(\"+1 [Culture] [in all cities]\")"]
     },
     {
         "name": "Insulae",
-        "slotType": "Wildcard",
+        "slotType": "Economic",
         "requiredCivic": "Drama and Poetry",
         "uniques": ["StatsPerCity(\"+2 [Gold] [in all cities]\")"]
     },
