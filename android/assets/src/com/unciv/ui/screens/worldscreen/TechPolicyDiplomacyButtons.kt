@@ -98,7 +98,7 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
             game.pushScreen(CivicPickerScreen(viewingCiv))
         }
 
-        governmentScreenButton.add(ImageGetter.getImage("OtherIcons/Government")).size(30f).pad(15f)
+        governmentScreenButton.add(ImageGetter.getImage("OtherIcons/Politics")).size(30f).pad(15f)
         governmentButtonHolder.onActivation {
             game.pushScreen(GovernmentPickerScreen(viewingCiv))
         }

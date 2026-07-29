@@ -71,11 +71,23 @@ class GovernmentPickerScreen(
             val slotType = slots[i]
             val cardName = selectedCards.getOrNull(i) ?: ""
             val card = if (cardName.isEmpty()) null else ruleset.policyCards[cardName]
-            val cellText = if (card != null) "[${card.name}]" else "($slotType slot - empty)"
             val cell = Table().apply {
                 background = skinStrings.getUiBackground("General/Border", tintColor = BaseScreen.skinStrings.skinConfig.baseColor)
-                add("$slotType".toLabel()).pad(2f).row()
-                add(cellText.toLabel()).pad(2f)
+                setSize(70f, 70f)
+                if (card == null) {
+                    add("($slotType)".toLabel()).pad(2f).row()
+                    add("empty".toLabel()).pad(2f)
+                } else {
+                    add(card.name.toLabel()).pad(2f).row()
+                    val descText = card.getCivilopediaTextLines(ruleset)
+                        .drop(1)
+                        .joinToString("\n") { it.text }
+                    if (descText.isNotEmpty()) {
+                        add(descText.toLabel()).pad(2f)
+                    } else {
+                        add("($slotType slot)".toLabel()).pad(2f)
+                    }
+                }
             }
             cell.onClick { openCardChooser(i, slotType) }
             table.add(cell).pad(4f)
