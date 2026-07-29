@@ -8,9 +8,6 @@
         "name": "Code of Laws",
         "row": 3,
         "quote": "'Wherever law ends, tyranny begins.' - John Locke",
-        "uniques": [
-          "Starting civic"
-        ],
         "column": {
           "columnNumber": 0
         }
