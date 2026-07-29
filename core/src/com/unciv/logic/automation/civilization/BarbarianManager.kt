@@ -51,6 +51,15 @@ class BarbarianManager : IsPartOfGameInfoSerialization {
 
         for (camp in encampments)
             camp.gameInfo = gameInfo
+
+        // Place a few initial barbarian camps if none exist
+        if (encampments.isEmpty() && !gameInfo.gameParameters.noBarbarians) {
+            val random = gameInfo.getBarbarianCivilization()
+                .state.stateBasedRandom("BarbarianManager.setTransients")
+            for (i in 0 until 3) {
+                placeBarbarianEncampment(forTesting = false)
+            }
+        }
     }
 
     fun updateEncampments() {

@@ -67,6 +67,9 @@ class GovernmentManager : IsPartOfGameInfoSerialization {
         this.civInfo = civInfo
         if (currentGovernment.isEmpty()) {
             currentGovernment = getRuleset().governments.keys.firstOrNull() ?: ""
+            if (currentGovernment.isNotEmpty()) {
+                shouldOpenGovernmentPicker = true
+            }
         }
         rebuildTransients()
     }

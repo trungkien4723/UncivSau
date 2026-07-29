@@ -4,7 +4,7 @@
 > **Base engine:** Unciv (Civ V ruleset, Kotlin + LibGDX)  
 > **Ruleset data:** `jsons/Civ VI/`  
 > **Code changes:** `core/src/`  
-> **Last updated:** 2026-07-28
+> **Last updated:** 2026-07-29
 
 ---
 
@@ -147,9 +147,10 @@
 |------|--------|-------|
 | Civics.json (61 civics) | `[x]` | Full tree with prerequisites |
 | CivicPickerScreen | `[x]` | |
-| PolicyCards.json (84 cards) | `[x]` | 4 slot types: Military, Wildcard, Economic, Diplomatic |
+| PolicyCards.json (84 cards) | `[~]` | **Policies.json is empty `[]`** — no card effect data exists; only slot types render |
 | requiredCivic linking | `[x]` | |
 | Government types + Policy slot assignment | `[x]` | |
+| Policy cards never apply (bug) | `[x]` | **FIXED**: `shouldOpenGovernmentPicker` set in `GovernmentManager.setTransients()`, government unlock check in `CivicManager.addCivicSilently()` |
 | Inspiration system | `[x]` | Eureka / Inspiration for techs and civics |
 | **Theming bonus civic inspiration** | `[x]` | "Upon Theming a Museum" |
 | **Cultural Heritage civic** | `[x]` | Inspiration from themed museums |
@@ -195,7 +196,8 @@
 | Item | Status | Notes |
 |------|--------|-------|
 | CityStateTypes.json (6 types) | `[x]` | Scientific, Cultured, Maritime, Mercantile, Militaristic, Religious |
-| City-state generation | `[~]` | Dynamic, ruleset entries may be incomplete |
+| **City-state nations in Nations.json** | `[ ]` | **CRITICAL**: No nation has `cityStateType` set — `isCityState` is always `false`, so zero city-states are selected at game start |
+| City-state generation | `[ ]` | Blocked — no city-state nations defined in Nations.json |
 | City-state suzerain bonuses | `[~]` | Partial |
 | City-state gifts / quests | `[~]` | Basic |
 | City-State diplomatic marriage | `[~]` | Partial |
@@ -301,7 +303,7 @@
 | Natural Wonders (~14 of 16) | `[x]` | Added Grand Canyon, Nile River; all major NWs present |
 | **Goody Huts** | `[x]` | Added tile improvement, spawns at game start, reuses ruins reward system |
 | Ancient Ruins | `[x]` | |
-| **Barbarian encampments** | `[x]` | |
+| **Barbarian encampments** | `[x]` | **FIXED**: Initial camps now placed in `setTransients()` (was only running during turn automation) |
 | Resources (bonus, luxury, strategic) | `[x]` | |
 | Terrain types (Tundra, Desert, Plains, etc.) | `[x]` | |
 | Features (Forest, Jungle, etc.) | `[x]` | |
@@ -386,29 +388,44 @@
 ## 14. Missing Compared to Real Civ VI (Summary)
 
 ### Critical Missing (blocks full Civ VI experience)
-1. **Spy unit** - No spy in ruleset JSON, espionage mechanics incomplete
-2. **Canal/Dam as districts** - Still tile improvements; also wonders exist as districts
+1. **Policies.json is empty `[]`** — No policy card effect data at all. UI shows empty slots with no cards to fill them. Without this, the government/policy system is a hollow shell.
+2. **No city-state nations in Nations.json** — No nation has `cityStateType` set; `isCityState` is always `false`. Zero city-states are generated at game start. `CityStateTypes.json` exists with 6 types but no nations reference them.
+3. **Spy unit** — No Spy unit in ruleset JSON, espionage mechanics incomplete
+4. **Canal/Dam as districts** — Still tile improvements; also wonders exist as districts
 
 ### Significant Gaps (reduced depth)
-3. **District adjacency system** - Basic, not fully Civ VI-style
-4. **War Support mechanic** - Not fully implemented (uses old War Weariness)
-9. **Trade route nuances** - Basic implementation
-10. **Great Works placement** - Global pool, no per-building assignment
-11. **Theming bonus per individual museum** - Global only, not per-building
-12. **AI district placement intelligence** - Basic automation only
-13. **Leader Agendas** - Not fully implemented
+5. **District adjacency system** — Basic, not fully Civ VI-style
+6. **Governor/Title system** — Entirely missing: Liang, Magnus, Victor, Reyna, Moksha, Amani have no implementation
+7. **Power system (electricity grid)** — No power distribution from IZs to cities; no power requirements for buildings
+8. **Strategic Resource stockpiles** — Civ VI uses stockpile accumulation, not per-turn unlimited
+9. **Builder charges** — Builders do not have limited build charges (Civ VI core mechanic)
+10. **Loyalty/Pressure system** — No loyalty pressure; Dramatic Ages button exists but loyalty mechanics are absent
+11. **War Support mechanic** — Not fully implemented (uses old War Weariness)
+12. **Weather/Season system** — No hurricanes, blizzards, droughts, or seasonal effects
+13. **Trade route nuances** — Basic implementation
+14. **Great Works placement** — Global pool, no per-building assignment
+15. **Theming bonus per individual museum** — Global only, not per-building
+16. **AI district placement intelligence** — Basic automation only
+17. **Leader Agendas** — Not fully implemented (first agenda exists, second hidden agendas basic)
 
 ### Quality of Life / Polish
-14. **Zone of Control** - May not be fully Civ VI-style
-15. **City-state diplomatic marriage** - Incomplete
-16. **Suzerain bonus detail** - Many bonuses partial or missing
-17. **Era Score rewards** - Exists but could have more triggers
-18. **Natural Wonder variety** - Some missing or inconsistent
-19. **Policy tree layout** - No grid position data in JSON
+18. **Zone of Control** — May not be fully Civ VI-style
+19. **City-state diplomatic marriage** — Incomplete
+20. **Suzerain bonus detail** — Many bonuses partial or missing
+21. **Era Score rewards** — Exists but could have more triggers
+22. **Natural Wonder variety** — Some missing or inconsistent
+23. **Policy tree layout** — No grid position data in JSON
+24. **Golden Age Dedications** — Per-age policy-like bonuses exist but implementation may be basic
 
 ### Mod Content
-20. **Some DLC civilizations** - May be incomplete (e.g., Mapuche, Gran Colombia, Scythia details)
-21. **Leader personalities** - Basic agendas only
+25. **Some DLC civilizations** — May be incomplete (e.g., Mapuche, Gran Colombia, Scythia details)
+26. **Leader personalities** — Basic agendas only
+
+### Fixed Bugs (this session)
+- **Policy cards never apply** — Root cause: `shouldOpenGovernmentPicker` never true at game start. Fixed in `GovernmentManager.setTransients()` + `CivicManager.addCivicSilently()`.
+- **Barbarians not appearing** — Root cause: no initial encampment placement during game setup. Fixed by calling `placeBarbarianEncampment()` 3x in `BarbarianManager.setTransients()`.
+- **Code of Laws from turn 0** — Correct behavior (zero prerequisites). Government picker fix resolved perceived breakage.
+- **City-states not appearing** — Root cause identified (no city-state nations in Nations.json). Code fix not needed; data fix required.
 
 ---
 
@@ -436,6 +453,21 @@
   (Resolves Kotlin compiler error with Java 25 version string "25.0.3")
 
 ---
+
+## 16. Completed This Session (2026-07-29)
+
+### Bug Fixes Applied
+- [x] **Government picker now opens at game start** — `GovernmentManager.setTransients()` sets `shouldOpenGovernmentPicker = true` when first government (Chiefdom) is auto-assigned
+- [x] **Government unlock detection in addCivicSilently()** — `CivicManager.addCivicSilently()` now checks for newly unlocked governments, same as `addCivic()`
+- [x] **Initial barbarian encampment placement** — `BarbarianManager.setTransients()` now calls `placeBarbarianEncampment()` 3× at game setup if no camps exist
+
+### Investigated / Root Causes Found
+- [x] **City-states not appearing root cause** — No nation in `Nations.json` has `cityStateType` field; `isCityState` is always `false`
+- [x] **Policies.json is empty** — File exists but contains only `[]`; no policy card effect data to populate slots
+- [x] **Game mode defaults verified** — All modes (Zombie, Apocalypse, DramaticAges, BarbarianClans, TechShuffle) correctly default to `false`
+
+### Gaps Documented (newly discovered, not in prior Section 14)
+- [x] ~10 additional gaps identified: Governor system, Power grid, Strategic stockpiles, Builder charges, Loyalty system, Weather/Seasons, missing city-state nations, empty Policies.json, Golden Age Dedication depth, War Support incompleteness
 
 ## Changelog
 

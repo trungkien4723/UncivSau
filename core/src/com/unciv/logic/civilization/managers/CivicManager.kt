@@ -290,6 +290,13 @@ class CivicManager : IsPartOfGameInfoSerialization {
         researchedCivics = researchedCivics.withItem(newCivic)
         addCivicToTransients(newCivic)
         civicsResearched.add(civicName)
+        // Civ 6: Check if this civic unlocks a new government
+        val newlyUnlockedGovs = getRuleset().governments.values
+            .filter { it.requiredCivic == civicName }
+            .filter { civInfo.government.isGovernmentAvailable(it) }
+        if (newlyUnlockedGovs.isNotEmpty()) {
+            civInfo.shouldOpenGovernmentPicker = true
+        }
         updateResearchProgress()
     }
 
