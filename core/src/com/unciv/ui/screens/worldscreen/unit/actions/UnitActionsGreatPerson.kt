@@ -106,13 +106,14 @@ object UnitActionsGreatPerson {
 
     internal fun getCreateGreatWorkActions(unit: MapUnit, tile: Tile) = sequence {
         if (!tile.isCityCenter()) return@sequence
-        val city = tile.getCity() ?: return@sequence
         val greatWorkType = getGreatWorkType(unit) ?: return@sequence
-        val greatWorksManager = unit.civ.greatWorks
-        if (!greatWorksManager.hasAvailableSlot(greatWorkType)) return@sequence
 
+        if (!unit.civ.greatWorks.hasAvailableSlot(greatWorkType)) return@sequence
+
+        val greatWorksManager = unit.civ.greatWorks
         val greatPersonName = unit.name
         val eraName = unit.civ.getEra().name
+
         for (unique in unit.getMatchingUniques(UniqueType.CanCreateGreatWork)) {
             val useFrequency = getUseFrequency(unit, unique, 70f)
             yield(UnitAction(
@@ -137,12 +138,12 @@ object UnitActionsGreatPerson {
         }
     }
 
-    internal fun getExcavateAntiquitySiteActions(unit: MapUnit, tile: Tile) = sequence {
+internal fun getExcavateAntiquitySiteActions(unit: MapUnit, tile: Tile) = sequence {
         if (tile.improvement != "Antiquity Site") return@sequence
         if (!unit.isGreatPersonOfType("Archaeologist")) return@sequence
-        val greatWorksManager = unit.civ.greatWorks
-        if (!greatWorksManager.hasAvailableSlot(GreatWorkType.Artifact)) return@sequence
+        if (!unit.civ.greatWorks.hasAvailableSlot(GreatWorkType.Artifact)) return@sequence
 
+        val greatWorksManager = unit.civ.greatWorks
         val useFrequency = 70f
         yield(UnitAction(
             UnitActionType.ExcavateAntiquitySite, useFrequency,
@@ -151,7 +152,7 @@ object UnitActionsGreatPerson {
                 tile.removeImprovement()
                 greatWorksManager.addGreatWork(GreatWorkType.Artifact, "Antiquity Artifact", unit.name, unit.civ.getEra().name)
                 unit.civ.addNotification("Excavated Antiquity Site - Artifact created!",
-                    tile.position, NotificationCategory.General, NotificationIcon.Tourism)
+                    NotificationCategory.General, NotificationIcon.Tourism)
                 unit.consume()
             }.takeIf { unit.hasMovement() }
         ))

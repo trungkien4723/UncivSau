@@ -34,8 +34,8 @@ object DeclareWar {
 
         notifyOfWar(diplomacyManager, declareWarReason)
 
-        onWarDeclared(diplomacyManager, true, declareWarReason.warType)
-        onWarDeclared(otherCivDiplomacy, false, declareWarReason.warType)
+        onWarDeclared(diplomacyManager, true, declareWarReason.warType, declareWarReason.casusBelli)
+        onWarDeclared(otherCivDiplomacy, false, declareWarReason.warType, declareWarReason.casusBelli)
 
         changeOpinions(diplomacyManager, declareWarReason)
 
@@ -151,8 +151,14 @@ object DeclareWar {
         }
     }
 
+    private fun getInitialWarSupport(isOffensiveWar: Boolean, casusBelli: CasusBelli?): Int {
+        if (!isOffensiveWar) return 2  // Defender always starts with modest support
+        return casusBelli?.warSupportForAttacker ?: -3  // No justification = surprise war penalty
+    }
+
     /** Everything that happens to both sides equally when war is declared by one side on the other */
-    private fun onWarDeclared(diplomacyManager: DiplomacyManager, isOffensiveWar: Boolean, warType: WarType) {
+    private fun onWarDeclared(diplomacyManager: DiplomacyManager, isOffensiveWar: Boolean, warType: WarType,
+                              casusBelli: CasusBelli? = null) {
         // Cancel all trades.
         for (trade in diplomacyManager.trades)
             for (offer in trade.theirOffers.filter { it.duration > 0 && it.name != Constants.defensivePact})
@@ -172,7 +178,10 @@ object DeclareWar {
             removeDefensivePacts(diplomacyManager)
         }
         diplomacyManager.diplomaticStatus = DiplomaticStatus.War
-        
+        diplomacyManager.warSupport = getInitialWarSupport(isOffensiveWar, casusBelli)
+        diplomacyManager.otherCiv.getDiplomacyManager(diplomacyManager.civInfo)!!.warSupport =
+            getInitialWarSupport(!isOffensiveWar, casusBelli)
+
         val theirDiplomacy = diplomacyManager.otherCiv.getDiplomacyManager(diplomacyManager.civInfo)!!
         // if we broke our promise to not attack them
         if (isOffensiveWar

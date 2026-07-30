@@ -412,15 +412,30 @@ object Automation {
     private fun rankTileForDistrict(city: City, district: District, tile: Tile): Float {
         val civ = city.civ
         var rank = rankStatsValue(district.cloneStats(), civ)
+        
+        // District-to-district adjacency (StatsForAdjacentDistrict)
         for (unique in district.getMatchingUniques(UniqueType.StatsForAdjacentDistrict)) {
-            val adjacentSame = tile.neighbors.count { it.getDistrict()?.name == unique.params[1] }
-            rank += rankStatsValue(unique.stats, civ) * adjacentSame
+            val filter = unique.params[1].removePrefix("districtFilter: ")
+            val adjacent = tile.neighbors.count { neighbor ->
+                neighbor.getDistrict()?.name == filter
+                        || (filter == "District" && neighbor.getDistrict() != null)
+                        || neighbor.matchesFilter(filter, city.civ)
+            }
+            rank += rankStatsValue(unique.stats, civ) * adjacent
         }
-        // Reward adjacency to resource/terrain that Civ VI districts commonly benefit from
-        for (neighbor in tile.neighbors) {
-            if (neighbor.resource != null) rank += 1f
-            if (neighbor.terrainHasUnique(UniqueType.ProvidesResources)) rank += 0.5f
+        
+        // Terrain/resource-based adjacency (StatsFromTiles) - e.g., Campus + Mountain, Commercial Hub + River
+        for (unique in district.getMatchingUniques(UniqueType.StatsFromTiles)) {
+            val tileFilter = unique.params[1]
+            val cityFilter = unique.params[2]
+            // Check if city matches cityFilter (simplified - assume "in this city")
+            if (cityFilter.isNotBlank() && !cityFilter.contains("this city")) continue
+            val adjacent = tile.neighbors.count { neighbor ->
+                neighbor.matchesFilter(tileFilter, city.civ)
+            }
+            rank += rankStatsValue(unique.stats, civ) * adjacent
         }
+        
         // Penalize tiles that hold a valuable bonus resource we'd rather improve
         if (tile.resource != null) rank -= 4f
         // Slightly prefer tiles adjacent to the city center for compactness

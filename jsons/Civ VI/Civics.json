@@ -399,7 +399,8 @@
           "Reformed Church"
         ],
         "uniques": [
-          "Inspiration: [40]% of the cost of this civic <upon gaining a [Great Merchant] unit>"
+          "Inspiration: [40]% of the cost of this civic <upon gaining a [Great Merchant] unit>",
+          "Can spend Gold to annex or puppet a City-State that has been your Ally for [3] turns"
         ],
         "column": {
           "columnNumber": 8

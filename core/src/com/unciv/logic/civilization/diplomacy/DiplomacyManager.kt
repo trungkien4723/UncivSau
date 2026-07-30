@@ -241,6 +241,14 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
     var trades = ArrayList<Trade>()
     var diplomaticStatus = DiplomaticStatus.War
 
+    /**
+     * War Support (Civ VI) — combat modifier for ongoing wars.
+     * Range typically -3 to +3. Positive when attacking with a valid Casus Belli,
+     * negative for surprise wars. Decays toward 0 over time.
+     * Only meaningful when diplomaticStatus == War.
+     */
+    var warSupport = 0
+
     /** Contains various flags (declared war, promised to not settle, declined luxury trade) and the number of turns in which they will expire.
      *  The JSON serialize/deserialize REFUSES to deserialize hashmap keys as Enums, so I'm forced to use strings instead =(
      *  This is so sad Alexa play Despacito */
@@ -306,6 +314,7 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
         toReturn.totalOfScienceDuringRA = totalOfScienceDuringRA
         toReturn.smoothedOpinionOfOtherCiv = smoothedOpinionOfOtherCiv
         toReturn.cachedSmoothedOpinionOfOtherCiv = cachedSmoothedOpinionOfOtherCiv
+        toReturn.warSupport = warSupport
         return toReturn
     }
 

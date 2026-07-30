@@ -35,12 +35,12 @@
     {
         "name": "Mercantile",
         "friendBonusUniques": [
-            "[+2 Happiness] <before the [Medieval era]>",
-            "[+3 Happiness] <starting from the [Medieval era]>"
+            "[+2 Amenities] <before the [Medieval era]>",
+            "[+3 Amenities] <starting from the [Medieval era]>"
         ],
         "allyBonusUniques": [
-            "[+2 Happiness] <before the [Medieval era]>",
-            "[+3 Happiness] <starting from the [Medieval era]>",
+            "[+2 Amenities] <before the [Medieval era]>",
+            "[+3 Amenities] <starting from the [Medieval era]>",
             "Provides a unique luxury"
         ],
         "color": [255, 216, 0]
@@ -64,5 +64,29 @@
             "[+26 Faith] <starting from the [Industrial era]>"
         ],
         "color": [255, 255, 255]
+    },
+    {
+        "name": "Industrial",
+        "friendBonusUniques": [
+            "[+2 Production] [in capital]",
+            "+1 [Great Engineer] point per turn"
+        ],
+        "allyBonusUniques": [
+            "[+4 Production] [in capital]",
+            "[+2 Production] [in all cities]",
+            "+2 [Great Engineer] points per turn"
+        ],
+        "color": [255, 180, 100]
+    },
+    {
+        "name": "Entertainment",
+        "friendBonusUniques": [
+            "[+1 Amenities] [in capital]"
+        ],
+        "allyBonusUniques": [
+            "[+2 Amenities] [in capital]",
+            "[+1 Amenities] [in all cities]"
+        ],
+        "color": [255, 100, 255]
     }
 ]

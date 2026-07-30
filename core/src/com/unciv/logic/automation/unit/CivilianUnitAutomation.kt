@@ -32,7 +32,7 @@ object CivilianUnitAutomation {
                 .filter { unique -> !unique.hasModifier(UniqueType.UnitActionExtraLimitedTimes) }
                 .any { canUse(unit, it) }
         
-        val hasSettlerUnique = hasSettlerAction(UniqueType.FoundCity) || hasSettlerAction(UniqueType.FoundPuppetCity)
+        val hasSettlerUnique = hasSettlerAction(UniqueType.FoundCity)
         
         if (hasSettlerUnique && !(unit.civ.isCityState && unit.isMilitary()))
             return SpecificUnitAutomation.automateSettlerActions(unit, dangerousTiles)

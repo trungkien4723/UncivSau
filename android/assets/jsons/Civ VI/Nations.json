@@ -8,6 +8,21 @@
     ]
   },
   {
+    "name": "Barbarians",
+    "outerColor": [
+      139,
+      0,
+      0
+    ],
+    "innerColor": [
+      0,
+      0,
+      0
+    ],
+    "cities": [],
+    "spyNames": ["Barbarian"]
+  },
+  {
     "name": "America",
     "leaderName": "Abraham Lincoln",
     "adjective": [
@@ -4107,5 +4122,220 @@
       "Senzangakhona",
       "Mkabayi"
     ]
+  },
+  {
+    "name": "Geneva",
+    "cityStateType": "Scientific",
+    "outerColor": [200, 16, 46],
+    "innerColor": [255, 209, 0],
+    "cities": ["Geneva"],
+    "uniques": ["[+15]% [Science] [in capital] <when not at war>"],
+    "spyNames": ["Henri", "Marie", "Pierre", "Sophie"]
+  },
+  {
+    "name": "Seoul",
+    "cityStateType": "Scientific",
+    "outerColor": [0, 47, 135],
+    "innerColor": [255, 255, 255],
+    "cities": ["Seoul"],
+    "spyNames": ["Min-jun", "Soo-yeon", "Ji-ho", "Eun-ji"]
+  },
+  {
+    "name": "Stockholm",
+    "cityStateType": "Scientific",
+    "outerColor": [0, 64, 128],
+    "innerColor": [255, 204, 0],
+    "cities": ["Stockholm"],
+    "uniques": ["[+1] [Science] from [Mountain] tiles [in all cities]"],
+    "spyNames": ["Erik", "Anna", "Lars", "Ingrid"]
+  },
+  {
+    "name": "Buenos Aires",
+    "cityStateType": "Cultured",
+    "outerColor": [117, 170, 219],
+    "innerColor": [255, 255, 255],
+    "cities": ["Buenos Aires"],
+    "uniques": ["[+2] [Amenities] from [Luxury resource] tiles [in all cities]"],
+    "spyNames": ["Carlos", "Maria", "Jose", "Elena"]
+  },
+  {
+    "name": "Brussels",
+    "cityStateType": "Cultured",
+    "outerColor": [32, 32, 148],
+    "innerColor": [255, 200, 0],
+    "cities": ["Brussels"],
+    "uniques": ["[+15]% Production when constructing [Wonder] wonders [in all cities]"],
+    "spyNames": ["Jean", "Lucas", "Emma", "Hugo"]
+  },
+  {
+    "name": "Kumasi",
+    "cityStateType": "Cultured",
+    "outerColor": [218, 165, 32],
+    "innerColor": [0, 128, 0],
+    "cities": ["Kumasi"],
+    "uniques": ["[+1] [Culture] from [Rainforest] tiles [in all cities]"],
+    "spyNames": ["Kwame", "Ama", "Kofi", "Yaa"]
+  },
+  {
+    "name": "Lisbon",
+    "cityStateType": "Maritime",
+    "outerColor": [255, 0, 0],
+    "innerColor": [255, 255, 255],
+    "cities": ["Lisbon"],
+    "uniques": ["[+1] [Gold] from [Water resource] tiles [in all cities]"],
+    "spyNames": ["Manuel", "Isabel", "Pedro", "Filipa"]
+  },
+  {
+    "name": "Venice",
+    "cityStateType": "Maritime",
+    "outerColor": [218, 165, 32],
+    "innerColor": [0, 82, 136],
+    "cities": ["Venice"],
+    "uniques": ["[+25]% [Gold] from Trade Routes"],
+    "spyNames": ["Marco", "Lucia", "Antonio", "Giulia"]
+  },
+  {
+    "name": "Auckland",
+    "cityStateType": "Maritime",
+    "outerColor": [0, 128, 64],
+    "innerColor": [0, 0, 128],
+    "cities": ["Auckland"],
+    "uniques": ["[+2] [Production] from [Water] tiles [in all cities]"],
+    "spyNames": ["James", "Sarah", "Tom", "Emily"]
+  },
+  {
+    "name": "Amsterdam",
+    "cityStateType": "Mercantile",
+    "outerColor": [255, 102, 0],
+    "innerColor": [255, 255, 255],
+    "cities": ["Amsterdam"],
+    "uniques": ["[+25]% [Gold] from Trade Routes"],
+    "spyNames": ["Willem", "Sophie", "Jan", "Lotte"]
+  },
+  {
+    "name": "Zanzibar",
+    "cityStateType": "Mercantile",
+    "outerColor": [0, 128, 0],
+    "innerColor": [0, 0, 0],
+    "cities": ["Zanzibar"],
+    "uniques": ["[+1] [Gold] from [Luxury resource] tiles [in all cities]"],
+    "spyNames": ["Ali", "Fatima", "Hassan", "Zahara"]
+  },
+  {
+    "name": "Hong Kong",
+    "cityStateType": "Mercantile",
+    "outerColor": [255, 0, 0],
+    "innerColor": [255, 255, 255],
+    "cities": ["Hong Kong"],
+    "uniques": ["[+1] [Gold] from [Strategic resource] tiles [in all cities]"],
+    "spyNames": ["Wei", "Ling", "Chen", "Mei"]
+  },
+  {
+    "name": "Carthage",
+    "cityStateType": "Militaristic",
+    "outerColor": [128, 0, 128],
+    "innerColor": [255, 0, 0],
+    "cities": ["Carthage"],
+    "uniques": ["[+1] [Production] from [Bonus resource] tiles [in all cities]"],
+    "spyNames": ["Hannibal", "Dido", "Hasdrubal", "Sophonisba"]
+  },
+  {
+    "name": "Kabul",
+    "cityStateType": "Militaristic",
+    "outerColor": [0, 102, 0],
+    "innerColor": [255, 255, 255],
+    "cities": ["Kabul"],
+    "uniques": ["[+1] [Production] from [Strategic resource] tiles [in all cities]"],
+    "spyNames": ["Ahmad", "Zarina", "Rashid", "Laila"]
+  },
+  {
+    "name": "Valletta",
+    "cityStateType": "Militaristic",
+    "outerColor": [255, 255, 255],
+    "innerColor": [255, 0, 0],
+    "cities": ["Valletta"],
+    "uniques": ["[+1] [Faith] from [Mountain] tiles [in all cities]"],
+    "spyNames": ["Paolo", "Elena", "Matteo", "Carmen"]
+  },
+  {
+    "name": "Jerusalem",
+    "cityStateType": "Religious",
+    "outerColor": [218, 165, 32],
+    "innerColor": [255, 255, 255],
+    "cities": ["Jerusalem"],
+    "uniques": ["[+1] [Faith] from [Natural Wonder] tiles [in all cities]"],
+    "spyNames": ["David", "Rachel", "Yosef", "Miriam"]
+  },
+  {
+    "name": "Kandy",
+    "cityStateType": "Religious",
+    "outerColor": [0, 82, 136],
+    "innerColor": [255, 255, 0],
+    "cities": ["Kandy"],
+    "uniques": ["[+1] [Faith] from [Mountain] tiles [in all cities]"],
+    "spyNames": ["Rajitha", "Nadeeka", "Saman", "Anushka"]
+  },
+  {
+    "name": "Vatican City",
+    "cityStateType": "Religious",
+    "outerColor": [218, 165, 32],
+    "innerColor": [255, 255, 255],
+    "cities": ["Vatican City"],
+    "uniques": ["[+1] [Culture] from [Natural Wonder] tiles [in all cities]"],
+    "spyNames": ["Francesco", "Giovanni", "Paolo", "Angelo"]
+  },
+  {
+    "name": "Bradford",
+    "cityStateType": "Industrial",
+    "outerColor": [0, 82, 136],
+    "innerColor": [255, 255, 255],
+    "cities": ["Bradford"],
+    "uniques": ["[+1] [Production] from [Mine] tiles [in all cities]", "[+2] [Production] from [Quarry] tiles [in all cities]"],
+    "spyNames": ["Harold", "Clara", "Edwin", "Beatrice"]
+  },
+  {
+    "name": "Johannesburg",
+    "cityStateType": "Industrial",
+    "outerColor": [218, 165, 32],
+    "innerColor": [0, 0, 0],
+    "cities": ["Johannesburg"],
+    "uniques": ["[+1] [Production] from [Strategic resource] tiles [in all cities]"],
+    "spyNames": ["Thabo", "Zanele", "Sipho", "Nomsa"]
+  },
+  {
+    "name": "Monterrey",
+    "cityStateType": "Industrial",
+    "outerColor": [0, 128, 0],
+    "innerColor": [255, 255, 255],
+    "cities": ["Monterrey"],
+    "uniques": ["[+1] [Production] from [Strategic resource] tiles [in all cities]"],
+    "spyNames": ["Carlos", "Maria", "Jose", "Ana"]
+  },
+  {
+    "name": "Ayutthaya",
+    "cityStateType": "Entertainment",
+    "outerColor": [139, 96, 255],
+    "innerColor": [255, 255, 0],
+    "cities": ["Ayutthaya"],
+    "uniques": ["[+1] [Amenities] from [Luxury resource] tiles [in all cities]"],
+    "spyNames": ["Somchai", "Niran", "Prasert", "Siriporn"]
+  },
+  {
+    "name": "Mexico City",
+    "cityStateType": "Entertainment",
+    "outerColor": [0, 128, 0],
+    "innerColor": [255, 255, 255],
+    "cities": ["Mexico City"],
+    "uniques": ["[+1] [Faith] from [Natural Wonder] tiles [in all cities]"],
+    "spyNames": ["Fernando", "Lucia", "Diego", "Sofia"]
+  },
+  {
+    "name": "Monaco",
+    "cityStateType": "Entertainment",
+    "outerColor": [218, 165, 32],
+    "innerColor": [255, 255, 255],
+    "cities": ["Monaco"],
+    "uniques": ["[+15]% [Gold] [in capital]"],
+    "spyNames": ["Pierre", "Antoine", "Marie", "Camille"]
   }
 ]

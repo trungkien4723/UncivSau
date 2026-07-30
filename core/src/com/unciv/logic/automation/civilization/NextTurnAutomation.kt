@@ -235,6 +235,28 @@ object NextTurnAutomation {
         }
     }
 
+    private fun getTechWeightWithAgenda(tech: Technology, civInfo: Civilization, baseWeight: Float): Float {
+        var weight = baseWeight
+        val allAgendaNames = sequenceOf(civInfo.nation.agenda, civInfo.chosenHiddenAgenda)
+        for (agendaName in allAgendaNames) {
+            val agenda = civInfo.gameInfo.ruleset.agendas[agendaName] ?: continue
+            for (unique in agenda.uniques) {
+                when {
+                    unique.contains("Wants to be the first to discover a technology") -> {
+                        if (civInfo.gameInfo.civilizations.all { it == civInfo || it.isDefeated() || !it.tech.techsResearched.contains(tech.name) })
+                            weight *= 2f
+                    }
+                    unique.contains("Unhappy if another civilization has researched more technologies") -> {
+                        val myTechCount = civInfo.tech.techsResearched.size
+                        if (civInfo.gameInfo.civilizations.any { it != civInfo && !it.isDefeated() && it.tech.techsResearched.size > myTechCount })
+                            weight *= 1.5f
+                    }
+                }
+            }
+        }
+        return weight
+    }
+
     private fun chooseTechToResearch(civInfo: Civilization) {
         val rng = civInfo.state.stateBasedRandom("NextTurnAutomation.chooseTechToResearch")
 
@@ -254,9 +276,9 @@ object NextTurnAutomation {
             
             val mostExpensiveTechs = costs.lastOrNull{ 
                 // Ignore rows where all techs have 0 weight
-                it.any { it.getWeightForAiDecision(stateForConditionals) > 0 }
+                it.any { getTechWeightWithAgenda(it, civInfo, it.getWeightForAiDecision(stateForConditionals)) > 0 }
             } ?: costs.last()
-            val chosenTech = mostExpensiveTechs.randomWeighted(rng) { it.getWeightForAiDecision(stateForConditionals) }
+            val chosenTech = mostExpensiveTechs.randomWeighted(rng) { getTechWeightWithAgenda(it, civInfo, it.getWeightForAiDecision(stateForConditionals)) }
             civInfo.tech.getFreeTechnology(chosenTech.name)
         }
         if (civInfo.tech.techsToResearch.isEmpty()) {
@@ -265,15 +287,15 @@ object NextTurnAutomation {
 
             val cheapestTechs = costs.firstOrNull{
                 // Ignore rows where all techs have 0 weight
-                it.any { it.getWeightForAiDecision(stateForConditionals) > 0 } }?: costs.first()
+                it.any { getTechWeightWithAgenda(it, civInfo, it.getWeightForAiDecision(stateForConditionals)) > 0 } }?: costs.first()
             //Do not consider advanced techs if only one tech left in cheapest group
             val techToResearch: Technology =
                 if (cheapestTechs.size == 1 || costs.size == 1) {
-                    cheapestTechs.randomWeighted(rng) { it.getWeightForAiDecision(stateForConditionals) }
+                    cheapestTechs.randomWeighted(rng) { getTechWeightWithAgenda(it, civInfo, it.getWeightForAiDecision(stateForConditionals)) }
                 } else {
                     //Choose randomly between cheapest and second cheapest group
                     val techsAdvanced = costs[1]
-                    (cheapestTechs + techsAdvanced).randomWeighted(rng) { it.getWeightForAiDecision(stateForConditionals) }
+                    (cheapestTechs + techsAdvanced).randomWeighted(rng) { getTechWeightWithAgenda(it, civInfo, it.getWeightForAiDecision(stateForConditionals)) }
                 }
 
             civInfo.tech.techsToResearch.add(techToResearch.name)
@@ -574,23 +596,44 @@ object NextTurnAutomation {
         }
     }
 
+    private fun getExpansionistAgendaModifier(civInfo: Civilization): Float {
+        var modifier = 1f
+        val allAgendaNames = sequenceOf(civInfo.nation.agenda, civInfo.chosenHiddenAgenda)
+        for (agendaName in allAgendaNames) {
+            val agenda = civInfo.gameInfo.ruleset.agendas[agendaName] ?: continue
+            for (unique in agenda.uniques) {
+                when {
+                    unique.contains("Wants to have the most cities") -> modifier *= 2f
+                    unique.contains("Unhappy if another civilization has more cities") -> {
+                        val myCities = civInfo.cities.size
+                        val mostCities = civInfo.gameInfo.civilizations
+                            .filter { !it.isDefeated() && it.isMajorCiv() }
+                            .maxOfOrNull { it.cities.size } ?: return modifier
+                        if (myCities < mostCities) modifier *= 1.5f
+                    }
+                }
+            }
+        }
+        return modifier
+    }
+
     private fun trainSettler(civInfo: Civilization) {
         val personality = civInfo.getPersonality()
         if (civInfo.isCityState) return
         if (civInfo.isOneCityChallenger()) return
         if (civInfo.cities.none()) return
+        
+        val expansionModifier = getExpansionistAgendaModifier(civInfo)
+        
         if (CivilianUnitAutomation.isLateGame(civInfo)){
-            // all suitable land may be occupied already
-            // 10 tiles away and 6 "options" are heuristics based on nothing, feel free to change 
             val unoccupiedNearishTiles = civInfo.cities.asSequence()
                 .flatMap { it.getCenterTile().getTilesInDistance(10) }
                 .filter { it.owningCity == null && it.neighbors.all { it.owningCity == null } }
                 .count()
-            if (unoccupiedNearishTiles < 6) return
+            val minTiles = if (expansionModifier > 1f) 3 else 6
+            if (unoccupiedNearishTiles < minTiles) return
         } 
 
-        // This is a tough one - if we don't ignore conditionals we could have units that can found only on certain tiles that are ignored
-        // If we DO ignore conditionals we could get a unit that can only found if there's a certain tech, or something
         if (civInfo.units.getCivUnits().any { it.hasUnique(UniqueType.FoundCity, GameContext.IgnoreConditionals) }) return
         if (civInfo.cities.any {
                 val currentConstruction = it.cityConstructions.getCurrentConstruction()
@@ -602,13 +645,15 @@ object NextTurnAutomation {
                         .none { unique -> it.matchesFilter(unique.params[0], civInfo.state) } }
         if (settlerUnits.isEmpty()) return
 
-        if (civInfo.units.getCivUnits().count { it.isMilitary() } < civInfo.cities.size) return // We need someone to defend them first
+        if (civInfo.units.getCivUnits().count { it.isMilitary() } < civInfo.cities.size) return
 
+        val minPopulation = if (expansionModifier > 1f) 2 else 3
         val bestCity = civInfo.cities
-            .filterNot { it.isPuppet || it.population.population < 3 }
+            .filterNot { it.isPuppet || it.population.population < minPopulation }
             .maxByOrNull { it.cityStats.currentCityStats.production }
             ?: return
-        if (bestCity.cityConstructions.getBuiltBuildings().count() > 1) // 2 buildings or more, otherwise focus on self first
+        val minBuildings = if (expansionModifier > 1f) 0 else 1
+        if (bestCity.cityConstructions.getBuiltBuildings().count() > minBuildings)
             bestCity.cityConstructions.setCurrentConstruction(settlerUnits.minByOrNull { it.cost }!!.name)
     }
 

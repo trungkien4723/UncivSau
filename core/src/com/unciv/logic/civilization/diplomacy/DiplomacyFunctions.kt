@@ -345,6 +345,18 @@ class DiplomacyFunctions(val civInfo: Civilization) {
     }
 
     @Readonly
+    fun canDeclareRetributionWar(otherCiv: Civilization): Boolean {
+        // Can declare retribution war if the target has converted at least one of our cities
+        val ourReligion = civInfo.religionManager.religion
+        if (ourReligion == null) return false
+        return civInfo.cities.any { city ->
+            city.religion.getMajorityReligion() != null &&
+            city.religion.getMajorityReligion() != ourReligion &&
+            otherCiv.religionManager.religion == city.religion.getMajorityReligion()
+        }
+    }
+
+    @Readonly
     fun getAvailableCasusBelli(otherCiv: Civilization): List<CasusBelli> {
         return CasusBelli.getAvailableCasusBelli(civInfo, otherCiv)
     }

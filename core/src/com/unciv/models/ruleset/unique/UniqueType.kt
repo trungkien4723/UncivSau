@@ -66,7 +66,8 @@ enum class UniqueType(
     AllStatsPercentFromObject("[relativeAmount]% Yield from every [tileFilter/buildingFilter]", UniqueTarget.Global, UniqueTarget.FollowerBelief,
         docDescription = ADDITIVE_BONUS_EXPLANATION),
     StatPercentFromReligionFollowers("[relativeAmount]% [stat] from every follower, up to [relativeAmount]%", UniqueTarget.FollowerBelief, UniqueTarget.FounderBelief),
-    BonusStatsFromCityStates("[relativeAmount]% [stat] from City-States", UniqueTarget.Global),
+    BonusStatsFromCityStates("[relativeAmount]% [stat] from City-States", UniqueTarget.Global,
+        docDescription = "Bonus from being Suzerain of this City-State type"),
     StatPercentFromTradeRoutes("[relativeAmount]% [stat] from Trade Routes", UniqueTarget.Global),
 
     NullifiesStat("Nullifies [stat] [cityFilter]", UniqueTarget.Global),
@@ -86,26 +87,37 @@ enum class UniqueType(
 
     // region City-State related uniques
 
-    CityStateMilitaryUnits("Provides military units every ≈[positiveAmount] turns", UniqueTarget.CityState),
-    CityStateUniqueLuxury("Provides a unique luxury", UniqueTarget.CityState), // No conditional support as of yet
+    CityStateMilitaryUnits("Provides military units every ≈[positiveAmount] turns", UniqueTarget.CityState,
+        docDescription = "This City-State provides military units at this interval. Bonus units are gifted, not trained"),
+    CityStateUniqueLuxury("Provides a unique luxury", UniqueTarget.CityState, // No conditional support as of yet
+        docDescription = "City-State gives a unique luxury resource to the suzerain"),
 
     // Todo: Lowercase the 'U' of 'Units' in this unique
-    CityStateGiftedUnitsStartWithXp("Military Units gifted from City-States start with [positiveAmount] XP", UniqueTarget.Global),
-    CityStateMoreGiftedUnits("Militaristic City-States grant units [positiveAmount] times as fast when you are at war with a common nation", UniqueTarget.Global),
+    CityStateGiftedUnitsStartWithXp("Military Units gifted from City-States start with [positiveAmount] XP", UniqueTarget.Global,
+        docDescription = "Gifted military units receive bonus experience points"),
+    CityStateMoreGiftedUnits("Militaristic City-States grant units [positiveAmount] times as fast when you are at war with a common nation", UniqueTarget.Global,
+        docDescription = "Gifting units to militaristic City-States is multiplied by this factor during wartime"),
 
-    CityStateGoldGiftsProvideMoreInfluence("Gifts of Gold to City-States generate [relativeAmount]% more Influence", UniqueTarget.Global),
-    
-    
-    CityStateCanBeBoughtForGold("Can spend Gold to annex or puppet a City-State that has been your Ally for [nonNegativeAmount] turns", UniqueTarget.Global),
-    CityStateTerritoryAlwaysFriendly("City-State territory always counts as friendly territory", UniqueTarget.Global),
+    CityStateGoldGiftsProvideMoreInfluence("Gifts of Gold to City-States generate [relativeAmount]% more Influence", UniqueTarget.Global,
+        docDescription = "Gold gifts to City-States multiply influence gain by this percentage"),
 
-    CityStateCanGiftGreatPeople("Allied City-States will occasionally gift Great People", UniqueTarget.Global),  // used in Policy
-    CityStateInfluenceDegradation("[relativeAmount]% City-State Influence degradation", UniqueTarget.Global),
-    CityStateRestingPoint("Resting point for Influence with City-States is increased by [amount]", UniqueTarget.Global),
+    CityStateCanBeBoughtForGold("Can spend Gold to annex or puppet a City-State that has been your Ally for [nonNegativeAmount] turns", UniqueTarget.Global, docDescription = "Activated by researching a civic that grants this unique, such as Mercantilism"),
+    CityStateTerritoryAlwaysFriendly("City-State territory always counts as friendly territory", UniqueTarget.Global,
+        docDescription = "Treats City-State territory as friendly for movement and border purposes"),
 
-    CityStateStatPercent("Allied City-States provide [stat] equal to [relativeAmount]% of what they produce for themselves", UniqueTarget.Global),
-    CityStateResources("[relativeAmount]% resources gifted by City-States",  UniqueTarget.Global),
-    CityStateInfluenceRecoversTwiceNormalRate("City-State Influence recovers at twice the normal rate", UniqueTarget.Global),
+    CityStateCanGiftGreatPeople("Allied City-States will occasionally gift Great People", UniqueTarget.Global,  // used in Policy
+        docDescription = "Allied City-States may send Great People as periodic gifts"),
+    CityStateInfluenceDegradation("[relativeAmount]% City-State Influence degradation", UniqueTarget.Global,
+        docDescription = "Rate at which influence decays with this City-State, multiplied by this percentage"),
+    CityStateRestingPoint("Resting point for Influence with City-States is increased by [amount]", UniqueTarget.Global,
+        docDescription = "Higher resting point means you can accumulate more influence before decay accelerates"),
+
+    CityStateStatPercent("Allied City-States provide [stat] equal to [relativeAmount]% of what they produce for themselves", UniqueTarget.Global,
+        docDescription = "Allied City-States share a percentage of their produced stats with the suzerain"),
+    CityStateResources("[relativeAmount]% resources gifted by City-States", UniqueTarget.Global,
+        docDescription = "Resources gifted by City-States are multiplied by this percentage"),
+    CityStateInfluenceRecoversTwiceNormalRate("City-State Influence recovers at twice the normal rate", UniqueTarget.Global,
+        docDescription = "Influence with all City-States recovers twice as fast"),
 
     // endregion
 
@@ -258,9 +270,12 @@ enum class UniqueType(
     GreatPersonBoostWithFriendship("When declaring friendship, both parties gain a [relativeAmount]% boost to great person generation", UniqueTarget.Global),
 
     /// City State Influence
-    OtherCivsCityStateRelationsDegradeFaster("Influence of all other civilizations with all city-states degrades [relativeAmount]% faster", UniqueTarget.Global),
-    GainInfluenceWithUnitGiftToCityState("Gain [amount] Influence with a [baseUnitFilter] gift to a City-State", UniqueTarget.Global),
-    RestingPointOfCityStatesFollowingReligionChange("Resting point for Influence with City-States following this religion [amount]", UniqueTarget.Global),
+    OtherCivsCityStateRelationsDegradeFaster("Influence of all other civilizations with all city-states degrades [relativeAmount]% faster", UniqueTarget.Global,
+        docDescription = "Other civilizations lose influence with all City-States faster by this percentage"),
+    GainInfluenceWithUnitGiftToCityState("Gain [amount] Influence with a [baseUnitFilter] gift to a City-State", UniqueTarget.Global,
+        docDescription = "Gifting military units to City-States grants bonus influence"),
+    RestingPointOfCityStatesFollowingReligionChange("Resting point for Influence with City-States following this religion [amount]", UniqueTarget.Global,
+        docDescription = "City-States following this religion have their influence resting point increased"),
 
     /// Barbarian Encampments, Pillaging them & Converting Units
     NotifiedOfBarbarianEncampments("Notified of new Barbarian encampments", UniqueTarget.Global),
@@ -280,28 +295,43 @@ enum class UniqueType(
     FaithCostOfGreatProphetChange("[relativeAmount]% Faith cost of generating Great Prophet equivalents", UniqueTarget.Global),
 
     /// Espionage
-    SpyEffectiveness("[relativeAmount]% spy effectiveness [cityFilter]", UniqueTarget.Global),
-    EnemySpyEffectiveness("[relativeAmount]% enemy spy effectiveness [cityFilter]", UniqueTarget.Global),
-    SpyStartingLevel("New spies start with [amount] level(s)", UniqueTarget.Global),
+    SpyEffectiveness("[relativeAmount]% spy effectiveness [cityFilter]", UniqueTarget.Global,
+        docDescription = "Multiplies the effectiveness of your spies by this percentage"),
+    EnemySpyEffectiveness("[relativeAmount]% enemy spy effectiveness [cityFilter]", UniqueTarget.Global,
+        docDescription = "Reduces the effectiveness of enemy spies operating in your territory"),
+    SpyStartingLevel("New spies start with [amount] level(s)", UniqueTarget.Global,
+        docDescription = "All newly trained spies begin with this many promotion levels"),
 
     /// Things you get at the start of the game
-    StartingTech("Starting tech", UniqueTarget.Tech),
-    StartingCivic("Starting civic", UniqueTarget.Civic),
-    StartsWithTech("Starts with [tech]", UniqueTarget.Nation),
-    StartsWithPolicy("Starts with [policy] adopted", UniqueTarget.Nation),
+    StartingTech("Starting tech", UniqueTarget.Tech,
+        docDescription = "Tech that is available from the start of the game"),
+    StartingCivic("Starting civic", UniqueTarget.Civic,
+        docDescription = "Civic that is available from the start of the game"),
+    StartsWithTech("Starts with [tech]", UniqueTarget.Nation,
+        docDescription = "Civilization starts with this technology already researched"),
+    StartsWithPolicy("Starts with [policy] adopted", UniqueTarget.Nation,
+        docDescription = "Civilization starts with this policy already adopted"),
 
     /// Victory
-    TriggersVictory("Triggers victory", UniqueTarget.Global),
-    TriggersCulturalVictory("Triggers a Cultural Victory upon completion", UniqueTarget.Global),
+    TriggersVictory("Triggers victory", UniqueTarget.Global,
+        docDescription = "Completing this triggers a victory condition"),
+    TriggersCulturalVictory("Triggers a Cultural Victory upon completion", UniqueTarget.Global,
+        docDescription = "Completing this triggers a Cultural Victory"),
 
     /// Misc.
-    MayBuyConstructionsInPuppets("May buy items in puppet cities", UniqueTarget.Global),
-    MayNotAnnexCities("May not annex cities", UniqueTarget.Global),
-    BorrowsCityNames("\"Borrows\" city names from other civilizations in the game", UniqueTarget.Global),
-    CitiesAreRazedXTimesFaster("Cities are razed [amount] times as fast", UniqueTarget.Global),
+    MayBuyConstructionsInPuppets("May buy items in puppet cities", UniqueTarget.Global,
+        docDescription = "Allows purchasing buildings/units in puppet cities normally restricted"),
+    MayNotAnnexCities("May not annex cities", UniqueTarget.Global,
+        docDescription = "Prevents this civilization from annexing captured cities"),
+    BorrowsCityNames("\"Borrows\" city names from other civilizations in the game", UniqueTarget.Global,
+        docDescription = "City names are randomly selected from other civs' name pools"),
+    CitiesAreRazedXTimesFaster("Cities are razed [amount] times as fast", UniqueTarget.Global,
+        docDescription = "City razing progress is multiplied by this factor"),
 
-    TechBoostWhenScientificBuildingsBuiltInCapital("Receive a tech boost when scientific buildings/wonders are built in capital", UniqueTarget.Global),
-    ResearchableMultipleTimes("Can be continually researched", UniqueTarget.Tech),
+    TechBoostWhenScientificBuildingsBuiltInCapital("Receive a tech boost when scientific buildings/wonders are built in capital", UniqueTarget.Global,
+        docDescription = "Building a Library, University, Research Lab or scientific wonder in capital grants a tech boost"),
+    ResearchableMultipleTimes("Can be continually researched", UniqueTarget.Tech,
+        docDescription = "This technology can be researched repeatedly, granting effects each time (e.g., Future Tech)"),
 
     GoldenAgeLength("[relativeAmount]% Golden Age length", UniqueTarget.Global,
         docDescription = MULTIPLICATIVE_BONUS_EXPLANATION),
@@ -320,10 +350,14 @@ enum class UniqueType(
 
     Unbuildable("Unbuildable", UniqueTarget.Building, UniqueTarget.Unit, UniqueTarget.Improvement,
         docDescription = "Blocks from being built, possibly by conditional. However it can still appear in the menu and be bought with other means such as Gold or Faith"),
-    CannotBePurchased("Cannot be purchased", UniqueTarget.Building, UniqueTarget.Unit),
-    CanBePurchasedWithStat("Can be purchased with [stat] [cityFilter]", UniqueTarget.Building, UniqueTarget.Unit),
-    CanBePurchasedForAmountStat("Can be purchased for [amount] [stat] [cityFilter]", UniqueTarget.Building, UniqueTarget.Unit),
-    MaxNumberBuildable("Limited to [amount] per Civilization", UniqueTarget.Building, UniqueTarget.Unit),
+    CannotBePurchased("Cannot be purchased", UniqueTarget.Building, UniqueTarget.Unit,
+        docDescription = "Cannot be purchased with Gold or Faith, only produced normally"),
+    CanBePurchasedWithStat("Can be purchased with [stat] [cityFilter]", UniqueTarget.Building, UniqueTarget.Unit,
+        docDescription = "Allows purchasing this item using the specified yield (Gold, Faith, etc.)"),
+    CanBePurchasedForAmountStat("Can be purchased for [amount] [stat] [cityFilter]", UniqueTarget.Building, UniqueTarget.Unit,
+        docDescription = "Allows purchasing for a fixed amount of the specified yield"),
+    MaxNumberBuildable("Limited to [amount] per Civilization", UniqueTarget.Building, UniqueTarget.Unit,
+        docDescription = "Hard limit on how many of this item can exist per civilization"),
     
     /** A special unique, as it only activates [RejectionReasonType] when it has conditionals that *do not* apply.
      * Meant to be used together with conditionals, like `"Only available <after adopting [Piety]> <while the empire is happy>"`.
@@ -349,10 +383,13 @@ enum class UniqueType(
     ///////////////////////////////////////// region 03 BUILDING UNIQUES /////////////////////////////////////////
 
 
-    CostIncreasesPerCity("Cost increases by [amount] per owned city", UniqueTarget.Building, UniqueTarget.Unit),
-    CostIncreasesWhenBuilt("Cost increases by [amount] when built", UniqueTarget.Building, UniqueTarget.Unit),
+    CostIncreasesPerCity("Cost increases by [amount] per owned city", UniqueTarget.Building, UniqueTarget.Unit,
+        docDescription = "Construction cost scales with the number of cities in the civilization"),
+    CostIncreasesWhenBuilt("Cost increases by [amount] when built", UniqueTarget.Building, UniqueTarget.Unit,
+        docDescription = "Each time this item is built, its cost increases for subsequent builds"),
     CostPercentageChange("[amount]% production cost", UniqueTarget.Building, UniqueTarget.Unit,
-        docDescription = "Intended to be used with conditionals to dynamically alter construction costs. $MULTIPLICATIVE_BONUS_EXPLANATION"),
+        docDescription = "Intended to be used with conditionals to dynamically alter construction costs. " +
+                "$MULTIPLICATIVE_BONUS_EXPLANATION"),
 
     /** Triggers [RejectionReasonType] when any conditional does NOT apply.
      * Doesn't restrict Upgrade/Transform pathways.
@@ -406,8 +443,8 @@ enum class UniqueType(
     // Unit actions should look like: "Can {action description}, to allow them to be combined with modifiers
 
     FoundCity("Founds a new city", UniqueTarget.UnitAction),
-    FoundPuppetCity("Founds a new puppet city", UniqueTarget.UnitAction),
-    ConstructImprovementInstantly("Can instantly construct a [improvementFilter] improvement", UniqueTarget.UnitAction),
+    ConstructImprovementInstantly("Can instantly construct a [improvementFilter] improvement", UniqueTarget.UnitAction,
+        docDescription = "Instantly builds a specific improvement without consuming turns"),
     // TODO: Should be replaced by "Can instantly construct a [] improvement <by consuming this unit>"
     CreateWaterImprovements("May create improvements on water resources", UniqueTarget.Unit),
     BuildImprovements("Can build [improvementFilter/terrainFilter] improvements on tiles", UniqueTarget.Unit),
@@ -429,7 +466,8 @@ enum class UniqueType(
     CanHurryResearch("Can hurry technology research", UniqueTarget.Unit),
     CanHurryPolicy("Can generate a large amount of culture", UniqueTarget.Unit),
     CanCreateGreatWork("Can create Great Work", UniqueTarget.Unit),
-    CanTradeWithCityStateForGoldAndInfluence("Can undertake a trade mission with City-State, giving a large sum of gold and [amount] Influence", UniqueTarget.Unit),
+    CanTradeWithCityStateForGoldAndInfluence("Can undertake a trade mission with City-State, giving a large sum of gold and [amount] Influence", UniqueTarget.Unit,
+        docDescription = "Trade mission units can generate gold and influence when sent to a City-State"),
     CanTransform("Can transform to [unit]", UniqueTarget.UnitAction,
         docDescription = "By default consumes all movement"),
 
@@ -673,7 +711,8 @@ enum class UniqueType(
 
     /////// Resource uniques
     ResourceAmountOnTiles("Deposits in [tileFilter] tiles always provide [amount] resources", UniqueTarget.Resource),
-    CityStateOnlyResource("Can only be created by Mercantile City-States", UniqueTarget.Resource),
+    CityStateOnlyResource("Can only be created by Mercantile City-States", UniqueTarget.Resource,
+        docDescription = "This resource only spawns from Mercantile City-States' unique luxury bonus"),
     Stockpiled("Stockpiled", UniqueTarget.Resource,
         docDescription = "This resource is accumulated each turn, rather than having a set of producers and consumers at a given moment." +
                 "The current stockpiled amount can be affected with trigger uniques."),
@@ -737,6 +776,7 @@ enum class UniqueType(
     NationalPark("National Park", UniqueTarget.Improvement),
     Airlift("Allows airlifting units between cities", UniqueTarget.Building),
     AirUnitCapacity("Air unit capacity: [amount]", UniqueTarget.Building),
+    TradeRouteCapacity("[+amount] Trade Route capacity", UniqueTarget.Building, UniqueTarget.Global),
     //endregion
 
     /////////////////////////////////// region 07 PERSONALITY UNIQUES ////////////////////////////////////////
@@ -908,6 +948,7 @@ enum class UniqueType(
     GovernorXP("[amount] Governor XP", UniqueTarget.Building, UniqueTarget.Policy),  // Civ VI - grants XP to appointed governors
     OneTimeGainEraScore("Gain [amount] Era Score", UniqueTarget.Triggerable),  // Civ VI - triggerable Era Score gain
     OneTimeFreeGreatPerson("Free Great Person", UniqueTarget.Triggerable),  // used in Policies, Buildings
+    OneTimeJoinSecretSociety("Join a secret society", UniqueTarget.Triggerable),
     OneTimeGainPopulation("[amount] population [cityFilter]", UniqueTarget.Triggerable),  // used in CN tower
     OneTimeGainPopulationRandomCity("[amount] population in a random city", UniqueTarget.Triggerable),
     OneTimeDiscoverTech("Discover [tech]", UniqueTarget.Triggerable),

@@ -534,7 +534,7 @@
                         "National Park",
                         "Pillaging this improvement yields approximately [+20 Gold]"
                     ],
-        "techRequired":  "Conservation",
+        "requiredCivic":  "Conservation",
         "shortcutKey":  "N"
     },
     {
@@ -546,10 +546,10 @@
         "turnsToBuild":  8,
         "uniques":  [
                         "Can only be built on [Coastal] tiles",
-                        "[+2 Gold] \u003cafter discovering [Reforming the Coinage]\u003e",
+                        "[+2 Gold] \u003cafter discovering [Radio]\u003e",
                         "Pillaging this improvement yields approximately [+20 Gold]"
                     ],
-        "techRequired":  "Reforming the Coinage",
+        "requiredCivic":  "Conservation",
         "shortcutKey":  "S"
     },
     {
@@ -704,7 +704,7 @@
                         "Will not be replaced by automated units",
                         "Pillaging this improvement yields approximately [+20 Gold]"
                     ],
-        "techRequired":  "Nationalism",
+        "requiredCivic":  "Nationalism",
         "shortcutKey":  "G"
     },
     {

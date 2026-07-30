@@ -13,6 +13,7 @@ import com.unciv.logic.civilization.diplomacy.DiplomaticModifiers
 import com.unciv.logic.civilization.diplomacy.DiplomaticStatus
 import com.unciv.logic.civilization.diplomacy.RelationshipLevel
 import com.unciv.logic.trade.TradeEvaluation
+import kotlin.math.abs
 import com.unciv.logic.trade.TradeLogic
 import com.unciv.logic.trade.TradeOffer
 import com.unciv.logic.trade.TradeRequest
@@ -72,6 +73,25 @@ object DiplomacyAutomation {
 
         // Motivation should be constant as the number of civs changes
         var motivation = diploManager.opinionOfOtherCiv() - 40f
+
+        // Civ VI Agenda behavioral uniques
+        val allAgendaNames = sequenceOf(civInfo.nation.agenda, civInfo.chosenHiddenAgenda)
+        for (agendaName in allAgendaNames) {
+            val agenda = civInfo.gameInfo.ruleset.agendas[agendaName] ?: continue
+            for (unique in agenda.uniques) {
+                when {
+                    unique.contains("Wants to be friends with all civilizations") -> {
+                        motivation += 15f
+                    }
+                    unique.contains("Unhappy if not allied with at least") -> {
+                        val alliedCS = civInfo.gameInfo.civilizations.count {
+                            it.isCityState && it.allyCiv == civInfo
+                        }
+                        if (alliedCS < 1) motivation += 10f
+                    }
+                }
+            }
+        }
 
         // Warmongerers don't make good allies
         if (diploManager.hasModifier(DiplomaticModifiers.WarMongerer)) {

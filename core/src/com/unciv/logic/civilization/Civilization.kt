@@ -18,6 +18,7 @@ import com.unciv.logic.trade.TradeRequest
 import com.unciv.models.Counter
 import com.unciv.models.metadata.GameParameters
 import com.unciv.models.ruleset.Building
+import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.models.ruleset.Policy
 import com.unciv.models.ruleset.nation.CityStateType
 import com.unciv.models.ruleset.nation.Difficulty
@@ -688,6 +689,7 @@ class Civilization : IsPartOfGameInfoSerialization {
 
         yieldAll(civResourcesUniqueMap.getMatchingUniques(uniqueType, gameContext))
         yieldAll(gameInfo.getGlobalUniques().getMatchingUniques(uniqueType, gameContext))
+        yieldAll(secretSocietyManager.getMatchingUniques(uniqueType, gameContext))
     }
 
     @Readonly
@@ -705,6 +707,7 @@ class Civilization : IsPartOfGameInfoSerialization {
         religionManager.religion?.founderBeliefUniqueMap?.forEachMatchingUnique(uniqueType, gameContext, op)
         civResourcesUniqueMap.forEachMatchingUnique(uniqueType, gameContext, op)
         gameInfo.getGlobalUniques().forEachMatchingUnique(uniqueType, gameContext, op)
+        secretSocietyManager.forEachMatchingUnique(uniqueType, gameContext, op)
     }
 
     @Readonly
@@ -822,6 +825,18 @@ class Civilization : IsPartOfGameInfoSerialization {
             "Friendly" -> state?.civInfo?.let { it.civID == civID || (it.diplomacy[civID]?.isRelationshipLevelGE(RelationshipLevel.Friend) == true) } ?: false
             "Hostile" -> state?.civInfo?.let { isAtWarWith(it) } ?: false
             "Known" -> state?.civInfo?.let { it == this || knows(it) } ?: false
+            "At War" -> state?.civInfo?.let { isAtWarWith(it) } ?: false
+            "Not At War" -> state?.civInfo?.let { !isAtWarWith(it) } ?: false
+            "Same Religion" -> state?.civInfo?.let { religionManager.religion != null && religionManager.religion == it.religionManager.religion } ?: false
+            "Different Religion" -> state?.civInfo?.let { religionManager.religion != null && it.religionManager.religion != null && religionManager.religion != it.religionManager.religion } ?: false
+            "More Science" -> state?.civInfo?.let { stats.statsForNextTurn[Stat.Science] > it.stats.statsForNextTurn[Stat.Science] } ?: false
+            "More Culture" -> state?.civInfo?.let { stats.statsForNextTurn[Stat.Culture] > it.stats.statsForNextTurn[Stat.Culture] } ?: false
+            "More Faith" -> state?.civInfo?.let { stats.statsForNextTurn[Stat.Faith] > it.stats.statsForNextTurn[Stat.Faith] } ?: false
+            "More Cities" -> state?.civInfo?.let { cities.size > it.cities.size } ?: false
+            "Fewer Cities" -> state?.civInfo?.let { cities.size < it.cities.size } ?: false
+            "Same Government" -> state?.civInfo?.let { government.getGovernment()?.name == it.government.getGovernment()?.name } ?: false
+            "Different Government" -> state?.civInfo?.let { government.getGovernment()?.name != it.government.getGovernment()?.name } ?: false
+            "Has More Great People" -> state?.civInfo?.let { greatPeople.getGreatPeople().size > it.greatPeople.getGreatPeople().size } ?: false
             else -> nation.matchesFilter(filter, state, false)
         }
     }
@@ -1025,6 +1040,43 @@ class Civilization : IsPartOfGameInfoSerialization {
     }
 
     @Readonly fun calculateTotalScore() = calculateScoreBreakdown().values.sum()
+
+    // === Trade Route Capacity (Civ VI) ===
+
+    @Readonly
+    fun getMaxTradeRoutes(): Int {
+        var capacity = 1  // Base capacity: 1 trade route
+        for (city in cities) {
+            for (building in city.cityConstructions.getBuiltBuildings()) {
+                capacity += building.getMatchingUniques(UniqueType.TradeRouteCapacity)
+                    .sumOf { it.params[0].toInt() }
+            }
+        }
+        capacity += getMatchingUniques(UniqueType.TradeRouteCapacity)
+            .sumOf { it.params[0].toInt() }
+        return capacity
+    }
+
+    @Readonly
+    fun getActiveTradeRouteCount(): Int {
+        var count = 0
+        // Outgoing domestic routes (tracked on source city)
+        for (city in cities) {
+            if (city.tradeRoutes.domesticRouteTo != null) count++
+        }
+        // Outgoing international routes (tracked on destination city's internationalRoutes)
+        for (civ in gameInfo.civilizations) {
+            for (city in civ.cities) {
+                if (city.tradeRoutes.internationalRoutes.containsKey(civName)) count++
+            }
+        }
+        return count
+    }
+
+    @Readonly
+    fun hasAvailableTradeRouteCapacity(): Boolean {
+        return getActiveTradeRouteCount() < getMaxTradeRoutes()
+    }
 
     //endregion
 

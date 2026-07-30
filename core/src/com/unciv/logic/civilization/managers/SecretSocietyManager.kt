@@ -5,22 +5,25 @@ import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.city.City
 import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.models.Counter
+import com.unciv.models.ruleset.unique.Unique
+import com.unciv.models.ruleset.unique.UniqueMap
+import com.unciv.models.ruleset.unique.UniqueType
+import com.unciv.models.ruleset.unique.GameContext
 import yairm210.purity.annotations.Readonly
 
-/** Civ VI Secret Societies (Ethiopia Pack / Secret Societies Game Mode) */
 enum class SecretSociety {
     NONE,
-    HERMETIC_ORDER,     // Ley Lines - science/culture from tiles
-    OWLS_OF_MINERVA,    // Economic - trade routes, envoys, gold
-    SANGUINE_PACT,      // Vampires - combat units, governor manipulation
-    VOID_SINGERS        // Faith/culture, relics, old god obelisks
+    HERMETIC_ORDER,
+    OWLS_OF_MINERVA,
+    SANGUINE_PACT,
+    VOID_SINGERS
 }
 
 enum class SocietyRank {
-    UNASSIGNED,     // Not a member
-    INITIATE,       // Rank 1 - basic bonuses
-    ADEPT,          // Rank 2 - enhanced bonuses
-    MASTER          // Rank 3 - powerful unique abilities
+    UNASSIGNED,
+    INITIATE,
+    ADEPT,
+    MASTER
 }
 
 class SecretSocietyManager : IsPartOfGameInfoSerialization {
@@ -30,7 +33,13 @@ class SecretSocietyManager : IsPartOfGameInfoSerialization {
     var chosenSociety: SecretSociety = SecretSociety.NONE
     var currentRank: SocietyRank = SocietyRank.UNASSIGNED
     var societyXP: Int = 0
-    var societyFavor: Int = 0  // Separate from Diplomatic Favor
+    var societyFavor: Int = 0
+
+    @Transient
+    private var cachedUniques: List<String> = emptyList()
+
+    @Transient
+    private var cachedUniqueMap = UniqueMap()
 
     fun clone(): SecretSocietyManager {
         val toReturn = SecretSocietyManager()
@@ -43,6 +52,15 @@ class SecretSocietyManager : IsPartOfGameInfoSerialization {
 
     fun setTransients(civ: Civilization) {
         civInfo = civ
+        rebuildCache()
+    }
+
+    private fun rebuildCache() {
+        cachedUniques = generateSocietyUniques()
+        cachedUniqueMap = UniqueMap()
+        for (uniqueText in cachedUniques) {
+            cachedUniqueMap.addUnique(Unique(uniqueText))
+        }
     }
 
     @Readonly
@@ -71,11 +89,11 @@ class SecretSocietyManager : IsPartOfGameInfoSerialization {
         currentRank = SocietyRank.INITIATE
         societyXP = 0
         societyFavor = 0
-        
+
         civInfo.addNotification("You have joined the ${getSocietyName()}!",
             NotificationCategory.Diplomacy, "StatIcons/GreatPerson")
-        
-        applySocietyBonuses()
+
+        rebuildCache()
     }
 
     fun addSocietyXP(amount: Int) {
@@ -96,50 +114,108 @@ class SecretSocietyManager : IsPartOfGameInfoSerialization {
             societyXP >= 5 -> SocietyRank.INITIATE
             else -> SocietyRank.UNASSIGNED
         }
-        
+
         if (newRank != currentRank && newRank != SocietyRank.UNASSIGNED) {
-            val oldRank = currentRank
             currentRank = newRank
             civInfo.addNotification("You have advanced to ${newRank.name} in the ${getSocietyName()}!",
                 NotificationCategory.General, "StatIcons/GreatPerson")
-            applySocietyBonuses()
+            rebuildCache()
         }
     }
 
-    fun applySocietyBonuses() {
-        when (chosenSociety) {
-            SecretSociety.HERMETIC_ORDER -> applyHermeticOrderBonuses()
-            SecretSociety.OWLS_OF_MINERVA -> applyOwlsOfMinervaBonuses()
-            SecretSociety.SANGUINE_PACT -> applySanguinePactBonuses()
-            SecretSociety.VOID_SINGERS -> applyVoidSingersBonuses()
-            else -> {} // NONE or unassigned
+    @Readonly
+    private fun generateSocietyUniques(): List<String> {
+        if (!isMember()) return emptyList()
+
+        return when (chosenSociety) {
+            SecretSociety.HERMETIC_ORDER -> {
+                val list = mutableListOf<String>()
+                when (currentRank) {
+                    SocietyRank.INITIATE -> {
+                        list.add("[+2] [Science] [in all cities]")
+                        list.add("[+1] [Culture] [in all cities]")
+                    }
+                    SocietyRank.ADEPT -> {
+                        list.add("[+4] [Science] [in all cities]")
+                        list.add("[+2] [Culture] [in all cities]")
+                    }
+                    SocietyRank.MASTER -> {
+                        list.add("[+6] [Science] [in all cities]")
+                        list.add("[+4] [Culture] [in all cities]")
+                        list.add("[+2] [Science] from [Great Scientist] units")
+                    }
+                    else -> {}
+                }
+                list
+            }
+            SecretSociety.OWLS_OF_MINERVA -> {
+                val list = mutableListOf<String>()
+                when (currentRank) {
+                    SocietyRank.INITIATE -> list.add("[+1] Trade Route capacity")
+                    SocietyRank.ADEPT -> {
+                        list.add("[+2] Trade Route capacity")
+                        list.add("[+2] [Gold] from [Trade Routes]")
+                    }
+                    SocietyRank.MASTER -> {
+                        list.add("[+4] Trade Route capacity")
+                        list.add("[+5] [Gold] from [International] Trade Routes")
+                    }
+                    else -> {}
+                }
+                list
+            }
+            SecretSociety.SANGUINE_PACT -> {
+                val list = mutableListOf<String>()
+                when (currentRank) {
+                    SocietyRank.INITIATE -> list.add("[+10]% Strength <for [All] units>")
+                    SocietyRank.ADEPT -> {
+                        list.add("[+15]% Strength <for [All] units>")
+                        list.add("[+1] Movement <for [All] units>")
+                    }
+                    SocietyRank.MASTER -> {
+                        list.add("[+20]% Strength <for [All] units>")
+                        list.add("[+1] Movement <for [All] units>")
+                    }
+                    else -> {}
+                }
+                list
+            }
+            SecretSociety.VOID_SINGERS -> {
+                val list = mutableListOf<String>()
+                when (currentRank) {
+                    SocietyRank.INITIATE -> {
+                        list.add("[+4] [Faith] from [Monument] buildings")
+                        list.add("[+2] [Culture] from [Monument] buildings")
+                    }
+                    SocietyRank.ADEPT -> {
+                        list.add("[+8] [Faith] from [Monument] buildings")
+                        list.add("[+4] [Culture] from [Monument] buildings")
+                        list.add("[+2] [Faith] from [Relics]")
+                        list.add("[+2] [Culture] from [Relics]")
+                    }
+                    SocietyRank.MASTER -> {
+                        list.add("[+12] [Faith] from [Monument] buildings")
+                        list.add("[+6] [Culture] from [Monument] buildings")
+                        list.add("[+4] [Faith] from [Great Work of Writing]")
+                    }
+                    else -> {}
+                }
+                list
+            }
+            else -> emptyList()
         }
     }
 
-    private fun applyHermeticOrderBonuses() {
-        // Ley Lines: Science and Culture from adjacent districts
-        for (city in civInfo.cities) {
-            // Ley Line mechanics: science/culture from tile improvements
-        }
-    }
+    @Readonly
+    fun getMatchingUniques(uniqueType: UniqueType, gameContext: GameContext) =
+        cachedUniqueMap.getMatchingUniques(uniqueType, gameContext)
 
-    private fun applyOwlsOfMinervaBonuses() {
-        // Trade route capacity, envoy bonuses
-        for (city in civInfo.cities) {
-            // Trade route and envoy bonuses
-        }
-    }
-
-    private fun applySanguinePactBonuses() {
-        // Vampire units, governor manipulation
-    }
-
-    private fun applyVoidSingersBonuses() {
-        // Faith/culture from relics, old god obelisks
+    @Readonly
+    fun forEachMatchingUnique(uniqueType: UniqueType, gameContext: GameContext, op: (unique: Unique) -> Unit) {
+        cachedUniqueMap.forEachMatchingUnique(uniqueType, gameContext, op)
     }
 
     fun onTurnEnd() {
-        // Passive society XP gain
         if (isMember()) {
             societyXP += 1
             checkRankUp()

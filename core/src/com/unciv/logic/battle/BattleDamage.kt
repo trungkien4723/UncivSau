@@ -66,6 +66,15 @@ object BattleDamage {
                 (civInfo.gameInfo.getDifficulty().barbarianBonus * 100).toInt()
         }
 
+        // War Support (Civ VI) — combat modifier when at war
+        if (!civInfo.isBarbarian && !enemy.getCivInfo().isBarbarian
+            && civInfo.isAtWarWith(enemy.getCivInfo())) {
+            val warSupport = civInfo.getDiplomacyManager(enemy.getCivInfo())?.warSupport ?: 0
+            if (warSupport != 0) {
+                modifiers["War Support"] = warSupport * 5  // Each point = 5% combat strength
+            }
+        }
+
         return modifiers
     }
 

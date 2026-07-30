@@ -96,6 +96,10 @@ object ImprovementDescriptions {
             textList += FormattedLine()
             textList += FormattedLine("Required tech: [${improvement.techRequired}]", link="Technology/${improvement.techRequired}")
         }
+        if (improvement.requiredCivic != null) {
+            textList += FormattedLine()
+            textList += FormattedLine("Required civic: [${improvement.requiredCivic}]", link="Civic/${improvement.requiredCivic}")
+        }
 
         improvement.uniquesToCivilopediaTextLines(textList)
 
@@ -164,6 +168,7 @@ object ImprovementDescriptions {
             lines += "[${statsString}] <in [${resource.name}] tiles>".tr()
         }
         if (improvement.techRequired != null) lines += "Required tech: [${improvement.techRequired}]".tr()
+        if (improvement.requiredCivic != null) lines += "Required civic: [${improvement.requiredCivic}]".tr()
 
         improvement.uniquesToDescription(lines)
 

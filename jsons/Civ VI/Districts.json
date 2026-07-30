@@ -16,7 +16,8 @@
         ],
         "uniques": [
             "[+1 Science] [in this city]",
-            "[+1 Science] for each adjacent [Mountain]"
+            "[+1 Science] for each adjacent [Mountain]",
+            "[+1 Science] for each adjacent [Jungle]"
         ]
     },
     {
@@ -29,7 +30,9 @@
         ],
         "uniques": [
             "[+1 Culture] [in this city]",
-            "[+1 Culture] for each adjacent [Wonder]"
+            "[+1 Culture] for each adjacent [Wonder]",
+            "[+1 Culture] for each adjacent [Entertainment Complex] district",
+            "[+1 Culture] for each adjacent [Water Entertainment Complex] district"
         ]
     },
     {
@@ -57,7 +60,8 @@
         ],
         "uniques": [
             "[+2 Gold] [in this city]",
-            "[+1 Gold] for each adjacent [Harbor] district"
+            "[+1 Gold] for each adjacent [Harbor] district",
+            "[+2 Gold] for each adjacent [River]"
         ]
     },
     {
@@ -72,7 +76,10 @@
         "uniques": [
             "[+2 Production] [in this city]",
             "[+1 Production] for each adjacent [Aqueduct] district",
-            "[+1 Production] for each adjacent [Strategic] resource"
+            "[+1 Production] for each adjacent [Strategic] resource",
+            "[+1 Production] for each adjacent [Bonus] resource",
+            "[+1 Production] for each adjacent [Mine]",
+            "[+1 Production] for each adjacent [Quarry]"
         ]
     },
     {
@@ -80,7 +87,9 @@
         "cost": 30,
         "requiredTech": "Sanitation",
         "uniques": [
-            "[+2 Food] [in this city]"
+            "[+2 Food] [in this city]",
+            "[+1 Housing] for each adjacent [City Center]",
+            "[+1 Housing] for each adjacent [Entertainment Complex]"
         ]
     },
     {
@@ -94,7 +103,8 @@
             "Military Academy"
         ],
         "uniques": [
-            "[+1 Production] [in this city]"
+            "[+1 Production] [in this city]",
+            "[+1 Production] for each adjacent [Bonus] resource"
         ]
     },
     {
@@ -108,7 +118,11 @@
         ],
         "uniques": [
             "[+2 Gold] [in this city]",
-            "Requires [Coastal]"
+            "Requires [Coastal]",
+            "[+1 Gold] for each adjacent [City Center]",
+            "[+1 Gold] for each adjacent [Commercial Hub] district",
+            "[+1 Gold] for each adjacent [Water resource]",
+            "[+1 Gold] for each adjacent [River]"
         ]
     },
     {
@@ -129,7 +143,9 @@
             "Stadium"
         ],
         "uniques": [
-            "[+1 Amenities] [in this city]"
+            "[+1 Amenities] [in this city]",
+            "[+1 Culture] for each adjacent [Wonder]",
+            "[+1 Culture] for each adjacent [Theater Square] district"
         ]
     },
     {
@@ -138,7 +154,9 @@
         "requiredCivic": "Games and Recreation",
         "uniques": [
             "[+1 Amenities] [in this city]",
-            "Requires [Coastal]"
+            "Requires [Coastal]",
+            "[+1 Culture] for each adjacent [Wonder]",
+            "[+1 Culture] for each adjacent [Theater Square] district"
         ]
     },
     {
@@ -173,7 +191,9 @@
             "Hangar"
         ],
         "uniques": [
-            "[+1 Production] [in this city]"
+            "[+1 Production] [in this city]",
+            "[+1 Production] for each adjacent [Encampment] district",
+            "[+1 Production] for each adjacent [City Center]"
         ]
     },
     {
@@ -400,6 +420,29 @@
         "uniques": [
             "[+2 Gold] [in this city]",
             "[+1 Gold] for each adjacent [Holy Site] district"
+        ]
+    },
+    {
+        "name": "Canal",
+        "cost": 36,
+        "requiredTech": "Steam Power",
+        "uniques": [
+            "[+1 Gold] [in this city]",
+            "[+1 Gold] for each adjacent [Commercial Hub] district",
+            "[+1 Gold] for each adjacent [City Center]"
+        ]
+    },
+    {
+        "name": "Dam",
+        "cost": 36,
+        "requiredTech": "Engineering",
+        "buildings": [
+            "Hydroelectric Dam"
+        ],
+        "uniques": [
+            "[+1 Production] [in this city]",
+            "[+1 Production] for each adjacent [Industrial Zone] district",
+            "[+1 Production] for each adjacent [Aqueduct]"
         ]
     }
 ]

@@ -10,10 +10,13 @@ import com.unciv.GUI
 import com.unciv.UncivGame
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.civilization.NotificationIcon
+import com.unciv.logic.civilization.diplomacy.CasusBelli
+import com.unciv.logic.civilization.diplomacy.DeclareWarReason
 import com.unciv.logic.civilization.diplomacy.DiplomacyFlags
 import com.unciv.logic.civilization.diplomacy.DiplomacyManager
 import com.unciv.logic.civilization.diplomacy.DiplomaticStatus
 import com.unciv.logic.civilization.diplomacy.RelationshipLevel
+import com.unciv.logic.civilization.diplomacy.WarType
 import com.unciv.logic.trade.Trade
 import com.unciv.models.translations.tr
 import com.unciv.ui.audio.MusicMood
@@ -318,40 +321,40 @@ class DiplomacyScreen(
             declareWarButton.setText(declareWarButton.text.toString() + " (${turnsToPeaceTreaty.tr()}${Fonts.turn})")
         }
         declareWarButton.onClick {
-            ConfirmPopup(this, getDeclareWarButtonText(otherCiv), "Declare war") {
-                diplomacyManager.declareWar()
-                setRightSideFlavorText(otherCiv, otherCiv.nation.attacked, "Very well.")
-                updateLeftSideTable(otherCiv)
-                val music = UncivGame.Current.musicController
-                music.chooseTrack(otherCiv.civName, MusicMood.War, MusicTrackChooserFlags.setSpecific)
-                music.playVoice("${otherCiv.civName}.attacked")
-            }.open()
+            rightSideTable.clear()
+            rightSideTable.add(ScrollPane(getCasusBelliPicker(diplomacyManager, otherCiv))).height(stage.height)
         }
         if (isNotPlayersTurn()) declareWarButton.disable()
         return declareWarButton
     }
 
-    private fun getDeclareWarButtonText(otherCiv: Civilization): String {
-        val messageLines = arrayListOf<String>()
-        messageLines += "Declare war on [${otherCiv.civName}]?"
-        
-        if (otherCiv.getDiplomacyManager(viewingCiv)!!.hasFlag(DiplomacyFlags.AgreedToNotAttackUs))
-            messageLines += "This will break your promise to not attack them. Other leaders will view this unfavorably."
-        
-        // Tell the player who all will join the other side from defensive pacts
-        val otherCivDefensivePactList = otherCiv.diplomacy.values.filter {
-            otherCivDiploManager -> otherCivDiploManager.otherCiv != viewingCiv
-            && otherCivDiploManager.diplomaticStatus == DiplomaticStatus.DefensivePact
-            && !otherCivDiploManager.otherCiv.isAtWarWith(viewingCiv) }
-            .map { it.otherCiv }
+    /** Shows the Casus Belli justification picker when the player clicks "Declare war" */
+    private fun getCasusBelliPicker(
+        diplomacyManager: DiplomacyManager,
+        otherCiv: Civilization
+    ): Table {
+        val pickerTable = Table()
+        pickerTable.defaults().pad(8f)
 
-        // Defensive pact chains are not allowed now
+        pickerTable.add("Choose Justification for War against [${otherCiv.civName}]".toLabel(Color.GOLD)).row()
+        pickerTable.addSeparator()
+
+        if (otherCiv.getDiplomacyManager(viewingCiv)!!.hasFlag(DiplomacyFlags.AgreedToNotAttackUs)) {
+            pickerTable.add("This will break your promise to not attack them. Other leaders will view this unfavorably.".toLabel(Color.YELLOW)).pad(10f).row()
+            pickerTable.addSeparator()
+        }
+
+        // Tell the player who all will join the other side from defensive pacts
+        val otherCivDefensivePactList = otherCiv.diplomacy.values.filter { otherDiplo ->
+            otherDiplo.otherCiv != viewingCiv
+                && otherDiplo.diplomaticStatus == DiplomaticStatus.DefensivePact
+                && !otherDiplo.otherCiv.isAtWarWith(viewingCiv)
+        }.map { it.otherCiv }
+
         for (civ in otherCivDefensivePactList) {
-            messageLines += if (viewingCiv.knows(civ)) {
-                "[${civ.civName}] will also join them in the war"
-            } else {
-                "[An unknown civilization] will also join them in the war"
-            }
+            val text = if (viewingCiv.knows(civ)) "[${civ.civName}] will also join them in the war"
+            else "[An unknown civilization] will also join them in the war"
+            pickerTable.add(text.toLabel(Color.YELLOW)).pad(10f).row()
         }
 
         // Tell the player that their defensive pacts will be canceled.
@@ -359,10 +362,53 @@ class DiplomacyScreen(
             if (civDiploManager.otherCiv != otherCiv
                 && civDiploManager.diplomaticStatus == DiplomaticStatus.DefensivePact
                 && !otherCivDefensivePactList.contains(civDiploManager.otherCiv)) {
-                messageLines += "This will cancel your defensive pact with [${civDiploManager.otherCiv.civName}]"
+                pickerTable.add("This will cancel your defensive pact with [${civDiploManager.otherCiv.civName}]".toLabel(Color.YELLOW)).pad(2f).row()
             }
         }
-        return messageLines.joinToString("\n") { "{$it}" }
+
+        pickerTable.addSeparator()
+
+        val availableCasusBelli = CasusBelli.getAvailableCasusBelli(viewingCiv, otherCiv)
+
+        for (casusBelli in availableCasusBelli) {
+            val ws = casusBelli.warSupportForAttacker
+            val wsSign = if (ws > 0) "+" else ""
+            val text = "${casusBelli.displayName.tr()}  (War Support: $wsSign$ws)\n${casusBelli.getDescription(viewingCiv, otherCiv).tr()}"
+            val button = text.toTextButton()
+            button.onClick {
+                executeWarDeclaration(diplomacyManager, otherCiv, casusBelli)
+            }
+            pickerTable.add(button).fillX().pad(3f).row()
+        }
+
+        pickerTable.addSeparator()
+        pickerTable.add("Cancel".toTextButton().onClick { updateRightSide(otherCiv) })
+        return pickerTable
+    }
+
+    private fun warTypeForCasusBelli(casusBelli: CasusBelli): WarType = when (casusBelli) {
+        CasusBelli.SurpriseWar -> WarType.DirectWar
+        CasusBelli.FormalWar -> WarType.ConquestWar
+        CasusBelli.HolyWar -> WarType.HolyWar
+        CasusBelli.LiberationWar -> WarType.LiberationWar
+        CasusBelli.ReconquestWar -> WarType.ReconquestWar
+        CasusBelli.ProtectorateWar -> WarType.ProtectorateWar
+        CasusBelli.ColonialWar -> WarType.ColonialWar
+        CasusBelli.RetributionWar -> WarType.RetributionWar
+    }
+
+    private fun executeWarDeclaration(
+        diplomacyManager: DiplomacyManager,
+        otherCiv: Civilization,
+        casusBelli: CasusBelli?
+    ) {
+        val warType = if (casusBelli != null) warTypeForCasusBelli(casusBelli) else WarType.DirectWar
+        diplomacyManager.declareWar(DeclareWarReason(warType, casusBelli = casusBelli))
+        setRightSideFlavorText(otherCiv, otherCiv.nation.attacked, "Very well.")
+        updateLeftSideTable(otherCiv)
+        val music = UncivGame.Current.musicController
+        music.chooseTrack(otherCiv.civName, MusicMood.War, MusicTrackChooserFlags.setSpecific)
+        music.playVoice("${otherCiv.civName}.attacked")
     }
 
     //endregion

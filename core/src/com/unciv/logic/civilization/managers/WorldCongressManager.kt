@@ -46,7 +46,8 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
             "Global Trade Agreements",
             "International Space Station",
             "Universal Human Rights",
-            "City of a Thousand Domes"
+            "City of a Thousand Domes",
+            "Trade Embargo"
         )
     }
 
@@ -213,6 +214,9 @@ class WorldCongressManager : IsPartOfGameInfoSerialization {
             )
             "City of a Thousand Domes" -> listOf(
                 "[+4] [Housing] [in all cities]"
+            )
+            "Trade Embargo" -> listOf(
+                "[-30]% [Gold] from Trade Routes"
             )
             else -> emptyList()
         }

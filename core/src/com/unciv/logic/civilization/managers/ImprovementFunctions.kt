@@ -24,6 +24,8 @@ object ImprovementFunctions {
                 yield(ImprovementBuildingProblem.Replaced)
             if (improvement.techRequired != null && !civInfo.tech.isResearched(improvement.techRequired!!))
                 yield(ImprovementBuildingProblem.MissingTech)
+            if (improvement.requiredCivic != null && !civInfo.civics.isResearched(improvement.requiredCivic!!))
+                yield(ImprovementBuildingProblem.MissingTech)
             if (improvement.getMatchingUniques(UniqueType.Unbuildable, GameContext.IgnoreConditionals)
                     .any { it.modifiers.isEmpty() })
                 yield(ImprovementBuildingProblem.Unbuildable)

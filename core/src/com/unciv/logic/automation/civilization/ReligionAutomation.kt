@@ -19,6 +19,29 @@ object ReligionAutomation {
 
     // region faith spending
 
+    private fun getReligionAgendaModifier(civInfo: Civilization): Float {
+        var modifier = 1f
+        val allAgendaNames = sequenceOf(civInfo.nation.agenda, civInfo.chosenHiddenAgenda)
+        for (agendaName in allAgendaNames) {
+            val agenda = civInfo.gameInfo.ruleset.agendas[agendaName] ?: continue
+            for (unique in agenda.uniques) {
+                when {
+                    unique.contains("Wants other civilizations to follow its Religion") -> {
+                        modifier *= 2f
+                    }
+                    unique.contains("Unhappy if another civilization follows a Different Religion") -> {
+                        val myReligion = civInfo.religionManager.religion
+                        if (myReligion != null && civInfo.gameInfo.civilizations.any {
+                                it != civInfo && it.isMajorCiv() && !it.isDefeated()
+                                    && it.religionManager.religion != null && it.religionManager.religion != myReligion
+                            }) modifier *= 1.5f
+                    }
+                }
+            }
+        }
+        return modifier
+    }
+
     fun spendFaithOnReligion(civInfo: Civilization) {
         if (civInfo.cities.isEmpty()) return
 
@@ -66,7 +89,9 @@ object ReligionAutomation {
         }
         
         // Just buy missionaries to spread our religion outside of our civ
-        if (civInfo.units.getCivUnits().count { it.hasUnique(UniqueType.CanSpreadReligion) } < 4) {
+        val religionModifier = getReligionAgendaModifier(civInfo)
+        val maxMissionaries = (4f * religionModifier).toInt()
+        if (civInfo.units.getCivUnits().count { it.hasUnique(UniqueType.CanSpreadReligion) } < maxMissionaries) {
             buyMissionaryInAnyCity(civInfo)
             return
         }

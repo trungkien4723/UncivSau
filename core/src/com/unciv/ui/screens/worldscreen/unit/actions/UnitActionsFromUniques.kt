@@ -45,11 +45,8 @@ object UnitActionsFromUniques {
      * (no movement left, too close to another city).
      */
     internal fun getFoundCityAction(unit: MapUnit, tile: Tile): UnitAction? {
-        // FoundPuppetCity is to found a puppet city for modding.
         val unique = UnitActionModifiers.getUsableUnitActionUniques(unit,
-            UniqueType.FoundCity).firstOrNull() ?: 
-            UnitActionModifiers.getUsableUnitActionUniques(unit,
-            UniqueType.FoundPuppetCity).firstOrNull() ?: return null
+            UniqueType.FoundCity).firstOrNull() ?: return null
 
         if (tile.isWater || tile.isImpassible()) return null
         // Spain should still be able to build Conquistadors in a one city challenge - but can't settle them
@@ -626,6 +623,8 @@ internal fun getBuildDistrictActions(unit: MapUnit, tile: Tile) = sequence {
         val city = tile.getCity() ?: return emptySequence()
 
         val useFrequency = 70f
+
+        if (!unit.civ.hasAvailableTradeRouteCapacity()) return emptySequence()
 
         return sequenceOf(UnitAction(UnitActionType.CreateTradeRoute, useFrequency,
             action = {

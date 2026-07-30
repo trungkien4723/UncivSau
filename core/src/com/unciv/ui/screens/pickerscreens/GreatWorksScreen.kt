@@ -8,6 +8,7 @@ import com.unciv.ui.images.ImageGetter
 import com.unciv.ui.components.extensions.toLabel
 import com.unciv.ui.screens.basescreen.BaseScreen
 import com.unciv.ui.screens.worldscreen.WorldScreen
+import com.badlogic.gdx.graphics.Color
 
 class GreatWorksScreen(
     private val worldScreen: WorldScreen,
@@ -27,7 +28,7 @@ class GreatWorksScreen(
             val typeLabel = type.name.tr().toLabel()
 
             val header = Table()
-            header.add(icon).size(24f).padRight(5f)
+            header.add(ImageGetter.getStatIcon(type.name)).size(24f).padRight(5f)
             header.add(typeLabel)
             header.add(" (${worksOfType.size})".toLabel())
             topTable.add(header).pad(5f).left().row()
@@ -52,12 +53,5 @@ class GreatWorksScreen(
         val totalStats = greatWorks.getTotalStats()
         val totalLabel = "Total: +${totalStats.tourism.toInt()} Tourism, +${totalStats.culture.toInt()} Culture".toLabel()
         topTable.add(totalLabel).pad(10f).colspan(2).row()
-
-        for (type in GreatWorkType.entries) {
-            val themingStats = greatWorks.getThemingStats(type)
-            if (!themingStats.isEmpty()) {
-                topTable.add("Theming Bonus (+${themingStats.tourism.toInt()} Tourism, +${themingStats.culture.toInt()} Culture)".toLabel()).padLeft(30f).row()
-            }
-        }
     }
 }

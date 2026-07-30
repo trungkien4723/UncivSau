@@ -20,6 +20,7 @@ object DiplomacyTurnManager {
     fun DiplomacyManager.nextTurn():Unit = timeThis("DiplomacyManager.nextTurn") {
         nextTurnTrades()
         removeUntenableTrades()
+        nextTurnWarSupport()
         updateHasOpenBorders()
         nextTurnDiplomaticModifiers()
         nextTurnFlags()
@@ -28,6 +29,16 @@ object DiplomacyTurnManager {
         if (civInfo.isMajorCiv())
             saveSmoothedOpinionOfOtherCiv()
         processAllianceBonuses()
+    }
+
+    private fun DiplomacyManager.nextTurnWarSupport() {
+        if (diplomaticStatus != DiplomaticStatus.War) return
+        if (warSupport == 0) return
+        // Decay by 1 every ~10 turns, adjusted for game speed
+        val decayTurns = (10 * civInfo.gameInfo.speed.modifier).toInt().coerceAtLeast(1)
+        if (civInfo.gameInfo.turns % decayTurns == 0) {
+            warSupport += if (warSupport > 0) -1 else 1
+        }
     }
 
     private fun DiplomacyManager.removeUntenableTrades() {

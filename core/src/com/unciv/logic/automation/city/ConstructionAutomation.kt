@@ -259,8 +259,11 @@ class ConstructionAutomation(val cityConstructions: CityConstructions) {
         for (building in buildings.filterBuildable()) {
             if (building.isWonder && city.isPuppet) continue
             // We shouldn't try to build wonders in undeveloped cities and empires
-            if (building.isWonder && (!cityIsOverAverageProduction || civInfo.cities.sumOf { it.population.population } < 12)) continue
-            addChoice(relativeCostEffectiveness, building, getValueOfBuilding(building))
+            if (building.isWonder && (!cityIsOverAverageProduction || civInfo.cities.sumOf { it.population.population } < 8)) continue
+            var modifier = getValueOfBuilding(building)
+            // Boost wonder priority in high-production cities
+            if (building.isWonder && cityIsOverAverageProduction) modifier *= 1.5f
+            addChoice(relativeCostEffectiveness, building, modifier)
         }
     }
 
@@ -372,6 +375,33 @@ class ConstructionAutomation(val cityConstructions: CityConstructions) {
 
         for (stat in Stat.entries) {
             buildingStats[stat] *= personality.scaledFocus(PersonalityValue[stat])
+        }
+
+        // Civ VI Agenda-based stat focus
+        for (agendaName in sequenceOf(civInfo.nation.agenda, civInfo.chosenHiddenAgenda)) {
+            val agenda = civInfo.gameInfo.ruleset.agendas[agendaName] ?: continue
+            for (unique in agenda.uniques) {
+                when {
+                    unique.contains("Wants to have the most Science per turn") -> buildingStats.science *= 2f
+                    unique.contains("Unhappy if another civilization has more Science per turn") -> {
+                        val myScience = civInfo.stats.statsForNextTurn.science
+                        if (civInfo.gameInfo.civilizations.any { it != civInfo && !it.isDefeated() && it.stats.statsForNextTurn.science > myScience })
+                            buildingStats.science *= 1.5f
+                    }
+                    unique.contains("Wants to have the most Culture per turn") -> buildingStats.culture *= 2f
+                    unique.contains("Unhappy if another civilization has more Culture per turn") -> {
+                        val myCulture = civInfo.stats.statsForNextTurn.culture
+                        if (civInfo.gameInfo.civilizations.any { it != civInfo && !it.isDefeated() && it.stats.statsForNextTurn.culture > myCulture })
+                            buildingStats.culture *= 1.5f
+                    }
+                    unique.contains("Wants to have the most Faith per turn") -> buildingStats.faith *= 2f
+                    unique.contains("Unhappy if another civilization has more Faith per turn") -> {
+                        val myFaith = civInfo.stats.statsForNextTurn.faith
+                        if (civInfo.gameInfo.civilizations.any { it != civInfo && !it.isDefeated() && it.stats.statsForNextTurn.faith > myFaith })
+                            buildingStats.faith *= 1.5f
+                    }
+                }
+            }
         }
 
         return Automation.rankStatsValue(buildingStats.clone(), civInfo)

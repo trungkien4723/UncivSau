@@ -6,6 +6,7 @@ import com.unciv.logic.automation.civilization.NextTurnAutomation
 import com.unciv.logic.city.City
 import com.unciv.logic.civilization.*
 import com.unciv.logic.civilization.diplomacy.DiplomacyFlags
+import com.unciv.logic.civilization.managers.SecretSociety
 import com.unciv.logic.civilization.diplomacy.DiplomaticModifiers
 import com.unciv.logic.civilization.managers.PolicyManager
 import com.unciv.logic.civilization.managers.ReligionState
@@ -528,6 +529,19 @@ object UniqueTriggerActivation {
                     if (civInfo.isAI() || UncivGame.Current.worldScreen?.autoPlay?.isAutoPlayingAndFullAutoPlayAI() == true) {
                         NextTurnAutomation.chooseGreatPerson(civInfo)
                     }
+                    true
+                }
+            }
+
+            UniqueType.OneTimeJoinSecretSociety -> {
+                if (civInfo.isSpectator()) return null
+                if (civInfo.secretSocietyManager.isMember()) return null
+                val availableSocieties = SecretSociety.entries.filter { it != SecretSociety.NONE }
+                return {
+                    val society = availableSocieties.random(rng)
+                    civInfo.secretSocietyManager.joinSociety(society)
+                    if (notification != null)
+                        civInfo.addNotification(notification, NotificationCategory.Diplomacy)
                     true
                 }
             }

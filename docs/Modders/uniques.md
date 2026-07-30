@@ -69,6 +69,9 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Free Great Person"
 	Applicable to: Triggerable
 
+??? example  "Join a secret society"
+	Applicable to: Triggerable
+
 ??? example  "[amount] population [cityFilter]"
 	Example: "[3] population [in all cities]"
 
@@ -477,6 +480,8 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: Global, FollowerBelief
 
 ??? example  "[relativeAmount]% [stat] from City-States"
+	Bonus from being Suzerain of this City-State type
+
 	Example: "[+20]% [Culture] from City-States"
 
 	Applicable to: Global
@@ -533,52 +538,74 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: Global, Unit
 
 ??? example  "Military Units gifted from City-States start with [positiveAmount] XP"
+	Gifted military units receive bonus experience points
+
 	Example: "Military Units gifted from City-States start with [3] XP"
 
 	Applicable to: Global
 
 ??? example  "Militaristic City-States grant units [positiveAmount] times as fast when you are at war with a common nation"
+	Gifting units to militaristic City-States is multiplied by this factor during wartime
+
 	Example: "Militaristic City-States grant units [3] times as fast when you are at war with a common nation"
 
 	Applicable to: Global
 
 ??? example  "Gifts of Gold to City-States generate [relativeAmount]% more Influence"
+	Gold gifts to City-States multiply influence gain by this percentage
+
 	Example: "Gifts of Gold to City-States generate [+20]% more Influence"
 
 	Applicable to: Global
 
 ??? example  "Can spend Gold to annex or puppet a City-State that has been your Ally for [nonNegativeAmount] turns"
+	Activated by researching a civic that grants this unique, such as Mercantilism
+
 	Example: "Can spend Gold to annex or puppet a City-State that has been your Ally for [3] turns"
 
 	Applicable to: Global
 
 ??? example  "City-State territory always counts as friendly territory"
+	Treats City-State territory as friendly for movement and border purposes
+
 	Applicable to: Global
 
 ??? example  "Allied City-States will occasionally gift Great People"
+	Allied City-States may send Great People as periodic gifts
+
 	Applicable to: Global
 
 ??? example  "[relativeAmount]% City-State Influence degradation"
+	Rate at which influence decays with this City-State, multiplied by this percentage
+
 	Example: "[+20]% City-State Influence degradation"
 
 	Applicable to: Global
 
 ??? example  "Resting point for Influence with City-States is increased by [amount]"
+	Higher resting point means you can accumulate more influence before decay accelerates
+
 	Example: "Resting point for Influence with City-States is increased by [3]"
 
 	Applicable to: Global
 
 ??? example  "Allied City-States provide [stat] equal to [relativeAmount]% of what they produce for themselves"
+	Allied City-States share a percentage of their produced stats with the suzerain
+
 	Example: "Allied City-States provide [Culture] equal to [+20]% of what they produce for themselves"
 
 	Applicable to: Global
 
 ??? example  "[relativeAmount]% resources gifted by City-States"
+	Resources gifted by City-States are multiplied by this percentage
+
 	Example: "[+20]% resources gifted by City-States"
 
 	Applicable to: Global
 
 ??? example  "City-State Influence recovers at twice the normal rate"
+	Influence with all City-States recovers twice as fast
+
 	Applicable to: Global
 
 ??? example  "[relativeAmount]% growth [cityFilter]"
@@ -952,16 +979,22 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: Global
 
 ??? example  "Influence of all other civilizations with all city-states degrades [relativeAmount]% faster"
+	Other civilizations lose influence with all City-States faster by this percentage
+
 	Example: "Influence of all other civilizations with all city-states degrades [+20]% faster"
 
 	Applicable to: Global
 
 ??? example  "Gain [amount] Influence with a [baseUnitFilter] gift to a City-State"
+	Gifting military units to City-States grants bonus influence
+
 	Example: "Gain [3] Influence with a [Melee] gift to a City-State"
 
 	Applicable to: Global
 
 ??? example  "Resting point for Influence with City-States following this religion [amount]"
+	City-States following this religion have their influence resting point increased
+
 	Example: "Resting point for Influence with City-States following this religion [3]"
 
 	Applicable to: Global
@@ -1022,41 +1055,61 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: Global
 
 ??? example  "[relativeAmount]% spy effectiveness [cityFilter]"
+	Multiplies the effectiveness of your spies by this percentage
+
 	Example: "[+20]% spy effectiveness [in all cities]"
 
 	Applicable to: Global
 
 ??? example  "[relativeAmount]% enemy spy effectiveness [cityFilter]"
+	Reduces the effectiveness of enemy spies operating in your territory
+
 	Example: "[+20]% enemy spy effectiveness [in all cities]"
 
 	Applicable to: Global
 
 ??? example  "New spies start with [amount] level(s)"
+	All newly trained spies begin with this many promotion levels
+
 	Example: "New spies start with [3] level(s)"
 
 	Applicable to: Global
 
 ??? example  "Triggers victory"
+	Completing this triggers a victory condition
+
 	Applicable to: Global
 
 ??? example  "Triggers a Cultural Victory upon completion"
+	Completing this triggers a Cultural Victory
+
 	Applicable to: Global
 
 ??? example  "May buy items in puppet cities"
+	Allows purchasing buildings/units in puppet cities normally restricted
+
 	Applicable to: Global
 
 ??? example  "May not annex cities"
+	Prevents this civilization from annexing captured cities
+
 	Applicable to: Global
 
 ??? example  ""Borrows" city names from other civilizations in the game"
+	City names are randomly selected from other civs' name pools
+
 	Applicable to: Global
 
 ??? example  "Cities are razed [amount] times as fast"
+	City razing progress is multiplied by this factor
+
 	Example: "Cities are razed [3] times as fast"
 
 	Applicable to: Global
 
 ??? example  "Receive a tech boost when scientific buildings/wonders are built in capital"
+	Building a Library, University, Research Lab or scientific wonder in capital grants a tech boost
+
 	Applicable to: Global
 
 ??? example  "[relativeAmount]% Golden Age length"
@@ -1245,6 +1298,9 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 	Applicable to: Global, Unit
 
+??? example  "[+amount] Trade Route capacity"
+	Applicable to: Global, Building
+
 ??? example  "[amount] Era Score"
 	Example: "[3] Era Score"
 
@@ -1340,11 +1396,15 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 ## Nation uniques
 ??? example  "Starts with [tech]"
+	Civilization starts with this technology already researched
+
 	Example: "Starts with [Agriculture]"
 
 	Applicable to: Nation
 
 ??? example  "Starts with [policy] adopted"
+	Civilization starts with this policy already adopted
+
 	Example: "Starts with [Oligarchy] adopted"
 
 	Applicable to: Nation
@@ -1401,9 +1461,13 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 ## Tech uniques
 ??? example  "Starting tech"
+	Tech that is available from the start of the game
+
 	Applicable to: Tech
 
 ??? example  "Can be continually researched"
+	This technology can be researched repeatedly, granting effects each time (e.g., Future Tech)
+
 	Applicable to: Tech
 
 ??? example  "Only available"
@@ -1445,6 +1509,8 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 ## Civic uniques
 ??? example  "Starting civic"
+	Civic that is available from the start of the game
+
 	Applicable to: Civic
 
 ??? example  "Inspiration: [relativeAmount]% of the cost of this civic"
@@ -1896,19 +1962,27 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: Building, Unit, Improvement
 
 ??? example  "Cannot be purchased"
+	Cannot be purchased with Gold or Faith, only produced normally
+
 	Applicable to: Building, Unit
 
 ??? example  "Can be purchased with [stat] [cityFilter]"
+	Allows purchasing this item using the specified yield (Gold, Faith, etc.)
+
 	Example: "Can be purchased with [Culture] [in all cities]"
 
 	Applicable to: Building, Unit
 
 ??? example  "Can be purchased for [amount] [stat] [cityFilter]"
+	Allows purchasing for a fixed amount of the specified yield
+
 	Example: "Can be purchased for [3] [Culture] [in all cities]"
 
 	Applicable to: Building, Unit
 
 ??? example  "Limited to [amount] per Civilization"
+	Hard limit on how many of this item can exist per civilization
+
 	Example: "Limited to [3] per Civilization"
 
 	Applicable to: Building, Unit
@@ -1938,11 +2012,15 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: Building, Unit
 
 ??? example  "Cost increases by [amount] per owned city"
+	Construction cost scales with the number of cities in the civilization
+
 	Example: "Cost increases by [3] per owned city"
 
 	Applicable to: Building, Unit
 
 ??? example  "Cost increases by [amount] when built"
+	Each time this item is built, its cost increases for subsequent builds
+
 	Example: "Cost increases by [3] when built"
 
 	Applicable to: Building, Unit
@@ -2058,6 +2136,9 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 	Applicable to: Building
 
+??? example  "[+amount] Trade Route capacity"
+	Applicable to: Global, Building
+
 ??? example  "[amount] Governor Title"
 	Example: "[3] Governor Title"
 
@@ -2117,10 +2198,9 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 ??? example  "Founds a new city"
 	Applicable to: UnitAction
 
-??? example  "Founds a new puppet city"
-	Applicable to: UnitAction
-
 ??? example  "Can instantly construct a [improvementFilter] improvement"
+	Instantly builds a specific improvement without consuming turns
+
 	Example: "Can instantly construct a [All Road] improvement"
 
 	Applicable to: UnitAction
@@ -2197,19 +2277,27 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: Building, Unit, Improvement
 
 ??? example  "Cannot be purchased"
+	Cannot be purchased with Gold or Faith, only produced normally
+
 	Applicable to: Building, Unit
 
 ??? example  "Can be purchased with [stat] [cityFilter]"
+	Allows purchasing this item using the specified yield (Gold, Faith, etc.)
+
 	Example: "Can be purchased with [Culture] [in all cities]"
 
 	Applicable to: Building, Unit
 
 ??? example  "Can be purchased for [amount] [stat] [cityFilter]"
+	Allows purchasing for a fixed amount of the specified yield
+
 	Example: "Can be purchased for [3] [Culture] [in all cities]"
 
 	Applicable to: Building, Unit
 
 ??? example  "Limited to [amount] per Civilization"
+	Hard limit on how many of this item can exist per civilization
+
 	Example: "Limited to [3] per Civilization"
 
 	Applicable to: Building, Unit
@@ -2239,11 +2327,15 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: Building, Unit
 
 ??? example  "Cost increases by [amount] per owned city"
+	Construction cost scales with the number of cities in the civilization
+
 	Example: "Cost increases by [3] per owned city"
 
 	Applicable to: Building, Unit
 
 ??? example  "Cost increases by [amount] when built"
+	Each time this item is built, its cost increases for subsequent builds
+
 	Example: "Cost increases by [3] when built"
 
 	Applicable to: Building, Unit
@@ -2306,6 +2398,8 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: Unit
 
 ??? example  "Can undertake a trade mission with City-State, giving a large sum of gold and [amount] Influence"
+	Trade mission units can generate gold and influence when sent to a City-State
+
 	Example: "Can undertake a trade mission with City-State, giving a large sum of gold and [3] Influence"
 
 	Applicable to: Unit
@@ -3374,6 +3468,8 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 	Applicable to: Resource
 
 ??? example  "Can only be created by Mercantile City-States"
+	This resource only spawns from Mercantile City-States' unique luxury bonus
+
 	Applicable to: Resource
 
 ??? example  "Stockpiled"
@@ -3542,11 +3638,15 @@ Simple unique parameters are explained by mouseover. Complex parameters are expl
 
 ## CityState uniques
 ??? example  "Provides military units every ≈[positiveAmount] turns"
+	This City-State provides military units at this interval. Bonus units are gifted, not trained
+
 	Example: "Provides military units every ≈[3] turns"
 
 	Applicable to: CityState
 
 ??? example  "Provides a unique luxury"
+	City-State gives a unique luxury resource to the suzerain
+
 	Applicable to: CityState
 
 ## ModOptions uniques

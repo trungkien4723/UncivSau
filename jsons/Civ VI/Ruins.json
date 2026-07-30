@@ -88,5 +88,14 @@
             "Play [choir] sound"
         ],
 		"color": "#CDDDF4"
+    },
+    {
+        "name": "secret society",
+        "notification": "You have discovered a secret society!",
+        "uniques": [
+            "Join a secret society",
+            "Play [policy] sound"
+        ],
+        "color": "#a855f7"
     }
 ]

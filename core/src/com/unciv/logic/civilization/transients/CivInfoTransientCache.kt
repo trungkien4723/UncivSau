@@ -330,7 +330,12 @@ class CivInfoTransientCache(val civInfo: Civilization) {
             val cityState = diplomacyManager.otherCiv
             if (!cityState.isCityState || cityState.isDefeated()) continue
             val uniqueMap = when {
-                cityState.allyCiv == civInfo -> cityState.cityStateType.allyBonusUniqueMap
+                cityState.allyCiv == civInfo -> {
+                    val map = UniqueMap()
+                    map.addUniques(cityState.cityStateType.allyBonusUniqueMap.getAllUniques().toList())
+                    map.addUniques(cityState.nation.uniqueMap.getAllUniques().toList())
+                    map
+                }
                 cityState.getDiplomacyManager(civInfo)!!.getInfluence() >= 30 -> cityState.cityStateType.friendBonusUniqueMap
                 else -> continue
             }

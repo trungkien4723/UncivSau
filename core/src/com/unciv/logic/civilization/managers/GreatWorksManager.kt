@@ -86,7 +86,7 @@ class GreatWorksManager : IsPartOfGameInfoSerialization {
             city.cityConstructions.getBuiltBuildings().sumOf { it.greatWorkSlots[type.name] ?: 0 }
         }
         val totalWorks = greatWorks.values.count { it.type == type }
-        if (totalSlots == 0 || totalWorks < totalSlots || totalSlots == 0) return Stats()
+        if (totalSlots == 0 || totalWorks < totalSlots) return Stats()
 
         return Stats(culture = totalWorks.toFloat(), tourism = totalWorks.toFloat())
     }

@@ -128,6 +128,21 @@ object MotivationToAttackAutomation {
 
         modifiers.add(Pair("War with allies", getAlliedWarMotivation(civInfo, targetCiv)))
 
+        // Civ VI Agenda-based war motivation (from historical and hidden agendas)
+        for (agendaName in sequenceOf(civInfo.nation.agenda, civInfo.chosenHiddenAgenda)) {
+            val agenda = civInfo.gameInfo.ruleset.agendas[agendaName] ?: continue
+            for (unique in agenda.uniques) {
+                when {
+                    unique.contains("Wants to be at war") || unique.contains("Unhappy if not at war")
+                        -> modifiers.add(Pair("Agenda[$agendaName]: militaristic", 10f))
+                    unique.contains("Wants to maintain peace") || unique.contains("Unhappy if at war with any civilization")
+                        -> modifiers.add(Pair("Agenda[$agendaName]: peacekeeper", -10f))
+                    unique.contains("Will never give up pursuing a city")
+                        -> modifiers.add(Pair("Agenda[$agendaName]: persistent", 5f))
+                }
+            }
+        }
+
         // Purely for debugging, remove modifiers that don't have an effect
         modifiers.removeAll { it.second == 0f }
         var motivationSoFar = modifiers.map { it.second }.sum()

@@ -67,9 +67,17 @@ class CityStateDiplomacyTable(private val diplomacyScreen: DiplomacyScreen) {
 
         val diplomacyManager = viewingCiv.getDiplomacyManager(otherCiv)!!
         if (!viewingCiv.gameInfo.ruleset.modOptions.hasUnique(UniqueType.DiplomaticRelationshipsCannotChange)) {
-            if (viewingCiv.isAtWarWith(otherCiv))
+            if (viewingCiv.isAtWarWith(otherCiv)) {
                 diplomacyTable.add(getNegotiatePeaceCityStateButton(otherCiv, diplomacyManager)).row()
-            else diplomacyTable.add(diplomacyScreen.getDeclareWarButton(diplomacyManager, otherCiv)).row()
+                val warSupport = diplomacyManager.warSupport
+                val warSupportText = "War Support: [${if (warSupport > 0) "+" else ""}$warSupport]"
+                val color = when {
+                    warSupport > 0 -> Color.GREEN
+                    warSupport < 0 -> Color.RED
+                    else -> Color.WHITE
+                }
+                diplomacyTable.add(warSupportText.toLabel(color)).row()
+            } else diplomacyTable.add(diplomacyScreen.getDeclareWarButton(diplomacyManager, otherCiv)).row()
         }
 
         if (otherCiv.getCapital() != null && viewingCiv.hasExplored(otherCiv.getCapital()!!.getCenterTile()))
@@ -334,7 +342,7 @@ class CityStateDiplomacyTable(private val diplomacyScreen: DiplomacyScreen) {
         val diplomacyTable = getCityStateDiplomacyTableHeader(otherCiv)
         diplomacyTable.addSeparator()
 
-        for (giftAmount in listOf(250, 500, 1000)) {
+        for (giftAmount in listOf(250, 500, 1000, 2000)) {
             val influenceAmount = otherCiv.cityStateFunctions.influenceGainedByGift(viewingCiv, giftAmount)
             val giftButton =
                 "Gift [$giftAmount] gold (+[$influenceAmount] influence)".toTextButton()

@@ -6,6 +6,7 @@ import com.unciv.logic.civilization.AlertType
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.civilization.PlayerType
 import com.unciv.logic.civilization.PopupAlert
+import com.unciv.logic.civilization.managers.SecretSociety
 import com.unciv.logic.files.MapSaver
 import com.unciv.logic.map.HexMath
 import com.unciv.logic.map.TileMap
@@ -134,6 +135,18 @@ class GameStarter private constructor(
             val firstMajorCiv = gameInfo.civilizations.firstOrNull { it.isMajorCiv() }
             if (firstMajorCiv != null && firstMajorCiv.gameModes.isTechShuffle) {
                 firstMajorCiv.tech.applyTechShuffle()
+            }
+        }
+
+        runAndMeasure("SecretSocieties") {
+            val firstMajorCiv = gameInfo.civilizations.firstOrNull { it.isMajorCiv() }
+            if (firstMajorCiv != null && firstMajorCiv.gameModes.isTechShuffle) {
+                // Check if Secret Societes mode would be active - if not, still auto-assign for testing
+            }
+            // Auto-assign random secret societies to all major civs for testing
+            for (civ in gameInfo.civilizations.filter { it.isMajorCiv() && !it.isBarbarian }) {
+                val society = SecretSociety.entries.filter { it != SecretSociety.NONE }.random(rng)
+                civ.secretSocietyManager.joinSociety(society)
             }
         }
 

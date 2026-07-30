@@ -70,6 +70,14 @@ class MajorCivDiplomacyTable(private val diplomacyScreen: DiplomacyScreen) {
                 getNegotiatePeaceMajorCivButton(otherCiv, otherCivDiplomacyManager)
 
             diplomacyTable.add(negotiatePeaceButton).row()
+            val warSupport = diplomacyManager.warSupport
+            val warSupportText = "War Support: [${if (warSupport > 0) "+" else ""}$warSupport]"
+            val color = when {
+                warSupport > 0 -> Color.GREEN
+                warSupport < 0 -> Color.RED
+                else -> Color.WHITE
+            }
+            diplomacyTable.add(warSupportText.toLabel(color)).row()
         }
 
 

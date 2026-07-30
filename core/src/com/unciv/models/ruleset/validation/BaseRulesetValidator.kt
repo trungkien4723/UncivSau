@@ -132,6 +132,8 @@ internal class BaseRulesetValidator(
         for (improvement in ruleset.tileImprovements.values) {
             if (improvement.techRequired != null && !ruleset.technologies.containsKey(improvement.techRequired!!))
                 lines.add("${improvement.name} requires tech ${improvement.techRequired} which does not exist!", sourceObject = improvement)
+            if (improvement.requiredCivic != null && !ruleset.civics.containsKey(improvement.requiredCivic!!))
+                lines.add("${improvement.name} requires civic ${improvement.requiredCivic} which does not exist!", sourceObject = improvement)
             if (improvement.replaces != null && !ruleset.tileImprovements.containsKey(improvement.replaces))
                 lines.add("${improvement.name} replaces ${improvement.replaces} which does not exist!", sourceObject = improvement)
 
