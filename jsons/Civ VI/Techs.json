@@ -398,7 +398,8 @@
           "Sailing"
         ],
         "uniques": [
-          "Eureka: [40]% of the cost of this technology <upon improving [2] tiles with [Lumber Mill]>"
+          "Eureka: [40]% of the cost of this technology <upon improving [2] tiles with [Lumber Mill]>",
+          "Enables embarkation for land units"
         ],
         "quote": "'A ship is nothing but a floating piece of wood, but it carries the dreams of men.' - Unknown",
         "civilopediaText": [

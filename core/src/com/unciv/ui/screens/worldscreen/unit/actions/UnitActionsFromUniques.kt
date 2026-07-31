@@ -6,6 +6,7 @@ import com.unciv.UncivGame
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.civilization.PlayerType
 import com.unciv.logic.civilization.diplomacy.DiplomacyFlags
+import com.unciv.logic.civilization.managers.GameModesManager
 import com.unciv.logic.civilization.managers.ImprovementFunctions
 import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.tile.ImprovementBuildingProblem
@@ -649,6 +650,7 @@ internal fun getBuildDistrictActions(unit: MapUnit, tile: Tile) = sequence {
     }
 
     internal fun getPerformRockBandActions(unit: MapUnit, tile: Tile): Sequence<UnitAction> {
+        if (!unit.civ.gameModes.isGameModeEnabled(GameModesManager.ROCK_BANDS)) return emptySequence()
         if (unit.name != "Rock Band") return emptySequence()
         if (!unit.hasUnique(UniqueType.RockBandPerform)) return emptySequence()
 

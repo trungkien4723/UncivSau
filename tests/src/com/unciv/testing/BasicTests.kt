@@ -37,7 +37,7 @@ class BasicTests {
     fun loadRulesets() {
         if (RulesetCache.isEmpty())
             RulesetCache.loadRulesets(noMods = true)
-        ruleset = RulesetCache[BaseRuleset.Civ_V_Vanilla.fullName]!!
+        ruleset = RulesetCache[BaseRuleset.Civ_VI.fullName]!!
     }
 
     @Test
@@ -208,7 +208,7 @@ class BasicTests {
 
     @Test
     fun allBeliefRelatedUniquesHaveTheirUniqueTypes() {
-        val ruleset = RulesetCache[BaseRuleset.Civ_V_GnK.fullName]!!.clone() // vanilla doesn't have beliefs
+        val ruleset = RulesetCache[BaseRuleset.Civ_VI.fullName]!!.clone() // vanilla doesn't have beliefs
         val beliefs = ruleset.beliefs.values
         var allOK = true
         for (belief in beliefs) {
@@ -310,13 +310,15 @@ class BasicTests {
     fun statMathRandomResultTest() {
         val iterations = 42
         val expectedStats = Stats(
-            production = 212765.08f,
-            food = 776.8394f,
-            gold = -4987.297f,
-            science = 14880.18f,
-            culture = -49435.21f,
-            happiness = -13046.4375f,
-            faith = 7291.375f
+            production = 237056.25f,
+            food = -280917.66f,
+            gold = -18001.615f,
+            science = -167022.67f,
+            culture = 935658.0f,
+            faith = 170670.48f,
+            housing = -870611.1f,
+            amenities = 121664.83f,
+            tourism = 70229.24f
         )
         // This is dependent on iterator order, so when that changes the expected values must change too
         val stats = statMathRunner(iterations)

@@ -6,6 +6,7 @@ import com.unciv.logic.civilization.AlertType
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.civilization.PlayerType
 import com.unciv.logic.civilization.PopupAlert
+import com.unciv.logic.civilization.managers.GameModesManager
 import com.unciv.logic.civilization.managers.SecretSociety
 import com.unciv.logic.files.MapSaver
 import com.unciv.logic.map.HexMath
@@ -143,10 +144,12 @@ class GameStarter private constructor(
             if (firstMajorCiv != null && firstMajorCiv.gameModes.isTechShuffle) {
                 // Check if Secret Societes mode would be active - if not, still auto-assign for testing
             }
-            // Auto-assign random secret societies to all major civs for testing
-            for (civ in gameInfo.civilizations.filter { it.isMajorCiv() && !it.isBarbarian }) {
-                val society = SecretSociety.entries.filter { it != SecretSociety.NONE }.random(rng)
-                civ.secretSocietyManager.joinSociety(society)
+            // Auto-assign random secret societies to all major civs only if the Secret Societies game mode is enabled
+            if (firstMajorCiv != null && firstMajorCiv.gameModes.isGameModeEnabled(GameModesManager.SECRET_SOCIETIES)) {
+                for (civ in gameInfo.civilizations.filter { it.isMajorCiv() && !it.isBarbarian }) {
+                    val society = SecretSociety.entries.filter { it != SecretSociety.NONE }.random(rng)
+                    civ.secretSocietyManager.joinSociety(society)
+                }
             }
         }
 
@@ -400,6 +403,10 @@ class GameStarter private constructor(
             if (civ.isMajorCiv() && civ.nation.hiddenAgendas.isNotEmpty())
                 civ.chosenHiddenAgenda = civ.nation.hiddenAgendas.random(rng)
         }
+
+        // Civ VI: apply the game modes chosen in the map setup screen to every civilization
+        for (civ in gameInfo.civilizations)
+            civ.gameModes.setGameModes(newGameParameters.gameModes)
     }
 
     private fun addCivStartingUnits() {

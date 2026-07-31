@@ -551,7 +551,7 @@ class TranslationTests {
     fun listTranslatedNames() {
         loadTranslations()
         val languages = translations.getLanguages()
-        val ruleset = RulesetCache[BaseRuleset.Civ_V_GnK.fullName]!!
+        val ruleset = RulesetCache[BaseRuleset.Civ_VI.fullName]!!
         val parcours = listOf(
             "leader names" to ruleset.nations.values.asSequence().map { it.leaderName },
             "city names" to ruleset.nations.values.asSequence().flatMap { it.cities },

@@ -17,7 +17,7 @@ class TutorialTranslationTests {
     init {
          try {
              RulesetCache.loadRulesets(noMods = true)
-             tutorials = RulesetCache[BaseRuleset.Civ_V_GnK.fullName]!!.tutorials
+             tutorials = RulesetCache[BaseRuleset.Civ_VI.fullName]!!.tutorials
          } catch (ex: Throwable) {
              exception = ex
          }

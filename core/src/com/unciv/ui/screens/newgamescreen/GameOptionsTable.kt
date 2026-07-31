@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Align
 import com.unciv.Constants
 import com.unciv.UncivGame
 import com.unciv.logic.civilization.PlayerType
+import com.unciv.logic.civilization.managers.GameModesManager
 import com.unciv.models.metadata.GameParameters
 import com.unciv.models.metadata.Player
 import com.unciv.models.ruleset.Ruleset
@@ -151,10 +152,40 @@ class GameOptionsTable(
         }
         add(expander).pad(10f).row()
 
+        val gameModesExpander = ExpanderTab(
+            "Game Modes",
+            startsOutOpened = gameParameters.gameModes.isNotEmpty(),
+            persistenceID = "GameOptionsTable.GameModes"
+        ) {
+            it.defaults().pad(5f, 0f)
+            addGameModesCheckboxes(it)
+        }
+        add(gameModesExpander).pad(10f).row()
+
         if (!isPortrait)
             add(modCheckboxes).padTop(0f).row()
 
         pack()
+    }
+
+    private fun addGameModesCheckboxes(table: Table) {
+        val gameModes = listOf(
+            GameModesManager.BARBARIAN_CLANS to "Barbarian Clans",
+            GameModesManager.APOCALYPSE to "Apocalypse",
+            GameModesManager.DRAMATIC_AGES to "Dramatic Ages",
+            GameModesManager.HEROES to "Heroes & Legends",
+            GameModesManager.MONOPOLIES to "Monopolies & Corporations",
+            GameModesManager.ROCK_BANDS to "Rock Bands",
+            GameModesManager.SECRET_SOCIETIES to "Secret Societies",
+            GameModesManager.TECH_SHUFFLE to "Tech Shuffle",
+            GameModesManager.ZOMBIE to "Zombie Defense"
+        )
+        for ((mode, label) in gameModes) {
+            table.addCheckbox(label, mode in gameParameters.gameModes) {
+                if (it) gameParameters.gameModes.add(mode)
+                else gameParameters.gameModes.remove(mode)
+            }
+        }
     }
 
     private fun Table.addCheckbox(

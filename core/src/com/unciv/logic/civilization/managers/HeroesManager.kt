@@ -48,6 +48,7 @@ class HeroesManager : IsPartOfGameInfoSerialization {
     fun isHeroName(unitName: String): Boolean = heroes.any { it.heroName == unitName }
 
     fun recruitHero(heroUnitName: String): Boolean {
+        if (!civInfo.gameModes.isGameModeEnabled(GameModesManager.HEROES)) return false
         if (!canRecruitHero()) return false
         if (isHeroName(heroUnitName)) return false
 

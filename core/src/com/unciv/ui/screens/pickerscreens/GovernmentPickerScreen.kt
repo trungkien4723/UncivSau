@@ -10,6 +10,8 @@ import com.unciv.models.UncivSound
 import com.unciv.models.ruleset.government.Government
 import com.unciv.models.ruleset.government.PolicyCard
 import com.unciv.models.translations.tr
+import com.unciv.ui.components.extensions.disable
+import com.unciv.ui.components.extensions.enable
 import com.unciv.ui.components.extensions.toLabel
 import com.unciv.ui.components.extensions.toTextButton
 import com.unciv.ui.components.input.onClick
@@ -47,6 +49,7 @@ class GovernmentPickerScreen(
         topTable.add(governmentList)
         rightSideButton.setText("Adopt [${selectedGovernment}]".tr())
         rightSideButton.onClick(UncivSound.Paper) { adopt() }
+        rightSideButton.enable()
 
         selectGovernment(selectedGovernment)
     }

@@ -81,6 +81,7 @@ class CorporationManager : IsPartOfGameInfoSerialization {
     }
 
     fun checkAndEstablishMonopolies() {
+        if (!civInfo.gameModes.isGameModeEnabled(GameModesManager.MONOPOLIES)) return
         for (resource in civInfo.gameInfo.ruleset.tileResources.values) {
             val name = resource.name
             if (monopolies.any { it.resourceName == name }) continue
@@ -104,6 +105,7 @@ class CorporationManager : IsPartOfGameInfoSerialization {
     }
 
     fun foundCorporation(city: City, resourceName: String) {
+        if (!civInfo.gameModes.isGameModeEnabled(GameModesManager.CORPORATIONS)) return
         if (!hasMonopoly(resourceName)) return
         if (hasCorporation(resourceName)) return
 

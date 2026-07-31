@@ -5,8 +5,31 @@ import com.unciv.logic.civilization.Civilization
 import yairm210.purity.annotations.Readonly
 
 class GameModesManager : IsPartOfGameInfoSerialization {
+    companion object {
+        // Game mode keys, shared between GameParameters and this manager
+        const val ZOMBIE = "Zombie"
+        const val APOCALYPSE = "Apocalypse"
+        const val DRAMATIC_AGES = "DramaticAges"
+        const val BARBARIAN_CLANS = "BarbarianClans"
+        const val TECH_SHUFFLE = "TechShuffle"
+        const val SECRET_SOCIETIES = "SecretSocieties"
+        const val HEROES = "Heroes"
+        const val MONOPOLIES = "Monopolies"
+        const val CORPORATIONS = "Corporations"
+        const val ROCK_BANDS = "RockBands"
+
+        val allGameModes = listOf(
+            ZOMBIE, APOCALYPSE, DRAMATIC_AGES, BARBARIAN_CLANS, TECH_SHUFFLE,
+            SECRET_SOCIETIES, HEROES, MONOPOLIES, ROCK_BANDS
+        )
+    }
+
     @Transient
     lateinit var civInfo: Civilization
+
+    /** Game modes the player chose to enable at game start (or via an in-game option).
+     *  Content-driven modes only activate while their mode is listed here. */
+    var enabledGameModes = mutableSetOf<String>()
 
     var activeSecretSocieties = mutableSetOf<String>()
     var spawnedHeroes = mutableListOf<String>()
@@ -22,6 +45,7 @@ class GameModesManager : IsPartOfGameInfoSerialization {
 
     fun clone(): GameModesManager {
         val toReturn = GameModesManager()
+        toReturn.enabledGameModes.addAll(enabledGameModes)
         toReturn.activeSecretSocieties.addAll(activeSecretSocieties)
         toReturn.spawnedHeroes.addAll(spawnedHeroes)
         toReturn.activeRockBands.addAll(activeRockBands)
@@ -38,45 +62,73 @@ class GameModesManager : IsPartOfGameInfoSerialization {
 
     fun joinSecretSociety(society: String) {
         activeSecretSocieties.add(society)
+        enabledGameModes.add(SECRET_SOCIETIES)
     }
 
     fun spawnHero(hero: String) {
         if (spawnedHeroes.size < 3) {
             spawnedHeroes.add(hero)
+            enabledGameModes.add(HEROES)
         }
     }
 
     fun startRockBand(unitName: String) {
         activeRockBands.add(unitName)
+        enabledGameModes.add(ROCK_BANDS)
     }
 
     fun foundCorporation(resource: String) {
         activeCorporations.add(resource)
+        enabledGameModes.add(CORPORATIONS)
     }
 
     fun establishMonopoly(resource: String) {
         activeMonopolies.add(resource)
+        enabledGameModes.add(MONOPOLIES)
     }
 
     fun setZombieMode(enabled: Boolean) {
         isZombie = enabled
+        if (enabled) enabledGameModes.add(ZOMBIE) else enabledGameModes.remove(ZOMBIE)
     }
 
     fun setApocalypseMode(enabled: Boolean) {
         isApocalypse = enabled
+        if (enabled) enabledGameModes.add(APOCALYPSE) else enabledGameModes.remove(APOCALYPSE)
     }
 
     fun setDramaticAgesMode(enabled: Boolean) {
         isDramaticAges = enabled
+        if (enabled) enabledGameModes.add(DRAMATIC_AGES) else enabledGameModes.remove(DRAMATIC_AGES)
     }
 
     fun setBarbarianClansMode(enabled: Boolean) {
         isBarbarianClans = enabled
+        if (enabled) enabledGameModes.add(BARBARIAN_CLANS) else enabledGameModes.remove(BARBARIAN_CLANS)
     }
 
     fun setTechShuffleMode(enabled: Boolean) {
         isTechShuffle = enabled
+        if (enabled) enabledGameModes.add(TECH_SHUFFLE) else enabledGameModes.remove(TECH_SHUFFLE)
     }
+
+    /** Apply the game modes selected at game start (see [com.unciv.models.metadata.GameParameters.gameModes]). */
+    fun setGameModes(gameModes: Collection<String>) {
+        enabledGameModes.clear()
+        enabledGameModes.addAll(gameModes)
+        isZombie = ZOMBIE in gameModes
+        isApocalypse = APOCALYPSE in gameModes
+        isDramaticAges = DRAMATIC_AGES in gameModes
+        isBarbarianClans = BARBARIAN_CLANS in gameModes
+        isTechShuffle = TECH_SHUFFLE in gameModes
+    }
+
+    fun enableGameMode(mode: String) {
+        enabledGameModes.add(mode)
+    }
+
+    @Readonly
+    fun isGameModeEnabled(mode: String): Boolean = mode in enabledGameModes
 
     @Readonly
     fun hasSecretSociety(society: String): Boolean = activeSecretSocieties.contains(society)
@@ -134,17 +186,18 @@ class GameModesManager : IsPartOfGameInfoSerialization {
 
     @Readonly
     fun isGameModeActive(mode: String): Boolean {
+        if (mode !in enabledGameModes) return false
         return when (mode) {
-            "Zombie" -> isZombie
-            "Apocalypse" -> isApocalypse
-            "DramaticAges" -> isDramaticAges
-            "SecretSocieties" -> activeSecretSocieties.isNotEmpty()
-            "Heroes" -> spawnedHeroes.isNotEmpty()
-            "Monopolies" -> activeMonopolies.isNotEmpty()
-            "Corporations" -> activeCorporations.isNotEmpty()
-            "RockBands" -> activeRockBands.isNotEmpty()
-            "BarbarianClans" -> isBarbarianClans
-            "TechShuffle" -> isTechShuffle
+            ZOMBIE -> isZombie
+            APOCALYPSE -> isApocalypse
+            DRAMATIC_AGES -> isDramaticAges
+            SECRET_SOCIETIES -> activeSecretSocieties.isNotEmpty()
+            HEROES -> spawnedHeroes.isNotEmpty()
+            MONOPOLIES -> activeMonopolies.isNotEmpty()
+            CORPORATIONS -> activeCorporations.isNotEmpty()
+            ROCK_BANDS -> activeRockBands.isNotEmpty()
+            BARBARIAN_CLANS -> isBarbarianClans
+            TECH_SHUFFLE -> isTechShuffle
             else -> false
         }
     }
@@ -152,20 +205,21 @@ class GameModesManager : IsPartOfGameInfoSerialization {
     @Readonly
     fun getAllActiveGameModes(): List<String> {
         val modes = mutableListOf<String>()
-        if (isZombie) modes.add("Zombie")
-        if (isApocalypse) modes.add("Apocalypse")
-        if (isDramaticAges) modes.add("DramaticAges")
-        if (activeSecretSocieties.isNotEmpty()) modes.add("SecretSocieties")
-        if (spawnedHeroes.isNotEmpty()) modes.add("Heroes")
-        if (activeMonopolies.isNotEmpty()) modes.add("Monopolies")
-        if (activeCorporations.isNotEmpty()) modes.add("Corporations")
-        if (activeRockBands.isNotEmpty()) modes.add("RockBands")
-        if (isBarbarianClans) modes.add("BarbarianClans")
-        if (isTechShuffle) modes.add("TechShuffle")
-        return modes
+        if (isZombie) modes.add(ZOMBIE)
+        if (isApocalypse) modes.add(APOCALYPSE)
+        if (isDramaticAges) modes.add(DRAMATIC_AGES)
+        if (activeSecretSocieties.isNotEmpty()) modes.add(SECRET_SOCIETIES)
+        if (spawnedHeroes.isNotEmpty()) modes.add(HEROES)
+        if (activeMonopolies.isNotEmpty()) modes.add(MONOPOLIES)
+        if (activeCorporations.isNotEmpty()) modes.add(CORPORATIONS)
+        if (activeRockBands.isNotEmpty()) modes.add(ROCK_BANDS)
+        if (isBarbarianClans) modes.add(BARBARIAN_CLANS)
+        if (isTechShuffle) modes.add(TECH_SHUFFLE)
+        return modes.filter { it in enabledGameModes }
     }
 
     fun activateAllGameModes() {
+        enabledGameModes.addAll(allGameModes)
         isZombie = true
         isApocalypse = true
         isDramaticAges = true

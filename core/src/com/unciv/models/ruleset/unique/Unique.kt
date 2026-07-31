@@ -19,9 +19,22 @@ import kotlin.math.max
 class Unique(val text: String, val sourceObjectType: UniqueTarget? = null, val sourceObjectName: String? = null) {
     /** This is so the heavy regex-based parsing is only activated once per unique, instead of every time it's called
      *  - for instance, in the city screen, we call every tile unique for every tile, which can lead to ANRs */
-    val placeholderText = text.getPlaceholderText()
+
+    /**
+     * Resolve function-call syntax (e.g., StatsPerCity("...")) to the inner text.
+     * This handles legacy/third-party mod format where uniques are wrapped in FuncName("...").
+     */
+    private val resolvedText: String by lazy {
+        val trimmed = text.trim()
+        // Match FuncName("...") or FuncName('...') patterns
+        val funcCallRegex = Regex("""^(\w+)\(\s*[""]([^""]*)[""]\s*\)$""")
+        val match = funcCallRegex.find(trimmed)
+        if (match != null) match.groupValues[2] else trimmed
+    }
+
+    val placeholderText = resolvedText.getPlaceholderText()
     /** Does not include conditional params */
-    val params = text.getPlaceholderParameters()
+    val params = resolvedText.getPlaceholderParameters()
     val type = UniqueType.uniqueTypeMap[placeholderText]
     val deprecatedType: DeprecatedUniqueType? = if (type == null) DeprecatedUniqueType.uniqueTypeMap[placeholderText] else null
 
@@ -257,8 +270,8 @@ class Unique(val text: String, val sourceObjectType: UniqueTarget? = null, val s
 
     @Readonly
     fun getDisplayText(): String = when {
-        modifiers.none { it.isHiddenToUsers() } -> text
-        modifiers.all { it.isHiddenToUsers() } -> text.removeConditionals()
-        else -> text.removeConditionals() + modifiers.filter { !it.isHiddenToUsers() }.joinToString(" ", prefix = " ") { "<${it.text}>" }
+        modifiers.none { it.isHiddenToUsers() } -> resolvedText
+        modifiers.all { it.isHiddenToUsers() } -> resolvedText.removeConditionals()
+        else -> resolvedText.removeConditionals() + modifiers.filter { !it.isHiddenToUsers() }.joinToString(" ", prefix = " ") { "<${it.text}>" }
     }
 }

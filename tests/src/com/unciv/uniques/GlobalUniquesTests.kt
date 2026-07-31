@@ -50,7 +50,8 @@ class GlobalUniquesTests {
     fun statsHousingNotOnBuilding() {
         val civInfo = game.addCiv("[+7 Housing]")
         civInfo.updateStatsForNextTurn()
-        Assert.assertTrue(civInfo.stats.housing == civInfo.getDifficulty().baseHappiness + 7)
+        // No cities -> no housing (there is no difficulty base housing anymore)
+        Assert.assertTrue(civInfo.stats.housing == 0)
     }
 
 
@@ -280,9 +281,8 @@ class GlobalUniquesTests {
 
         civ1.updateStatsForNextTurn()
 
-        val baseHousing = civ1.getDifficulty().baseHappiness
-        // Since civ1 has no cities, there are no other housing sources
-        Assert.assertTrue(civ1.stats.housing == baseHousing + 42)
+        // civ1 has no cities, so the "for each global city" belief adds no housing
+        Assert.assertTrue(civ1.stats.housing == 0)
     }
 
     @Test

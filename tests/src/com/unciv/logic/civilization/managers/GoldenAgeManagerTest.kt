@@ -4,6 +4,7 @@ import com.unciv.logic.map.HexCoord
 import com.unciv.testing.GdxTestRunner
 import com.unciv.testing.TestGame
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -22,126 +23,108 @@ class GoldenAgeManagerTest {
     }
 
     @Test
-    fun `should gain golden age points when happy`() {
-        // when
-        goldenAgeManager.endTurn(10)
-
-        // then
-        assertEquals(10, goldenAgeManager.storedHappiness)
+    fun `starts in normal age`() {
+        assertTrue(goldenAgeManager.isNormalAge())
+        assertFalse(goldenAgeManager.isGoldenAge())
+        assertFalse(goldenAgeManager.isDarkAge())
     }
 
     @Test
-    fun `should lose golden age points when unhappy`() {
-        // given
-        goldenAgeManager.storedHappiness = 100
+    fun `should accumulate era score`() {
+        goldenAgeManager.addEraScore(10, "Test")
 
-        // when
-        goldenAgeManager.endTurn(-10)
-
-        // then
-        assertEquals(90, goldenAgeManager.storedHappiness)
+        assertEquals(10, goldenAgeManager.eraScore)
+        assertEquals(10, goldenAgeManager.totalEraScore)
     }
 
     @Test
-    fun `should not go into negative golden age points`() {
-        // given
-        goldenAgeManager.storedHappiness = 5
+    fun `should enter golden age`() {
+        goldenAgeManager.enterGoldenAge(10)
 
-        // when
-        goldenAgeManager.endTurn(-10)
-
-        // then
-        assertEquals(0, goldenAgeManager.storedHappiness)
-    }
-
-    @Test
-    fun `should not store excess happiness when already in golden age`() {
-        // given
-        goldenAgeManager.storedHappiness = 5
-        goldenAgeManager.enterGoldenAge()
-
-        // when
-        goldenAgeManager.endTurn(10)
-
-        // then
-        assertEquals(5, goldenAgeManager.storedHappiness)
+        assertTrue(goldenAgeManager.isGoldenAge())
+        assertEquals(10, goldenAgeManager.turnsLeftForCurrentGoldenAge)
     }
 
     @Test
     fun `should decrease golden age duration on next turn`() {
-        // given
         goldenAgeManager.enterGoldenAge(10)
 
-        // when
-        goldenAgeManager.endTurn(0)
+        goldenAgeManager.endTurn()
 
-        // then
         assertEquals(9, goldenAgeManager.turnsLeftForCurrentGoldenAge)
     }
 
     @Test
-    fun `should go in golden age with enough happiness`() {
-        // given
-        goldenAgeManager.storedHappiness = 700
+    fun `should enter dark age`() {
+        goldenAgeManager.enterDarkAge()
 
-        // when
-        goldenAgeManager.endTurn(0)
+        assertTrue(goldenAgeManager.isDarkAge())
+    }
 
-        // then
+    @Test
+    fun `should enter heroic age when golden follows dark`() {
+        goldenAgeManager.enterDarkAge()
+        goldenAgeManager.previousAge = "Dark"
+        goldenAgeManager.eraScore = 100
+
+        val age = goldenAgeManager.onEraTransition(2)
+
+        assertEquals("Heroic", age)
+        assertTrue(goldenAgeManager.isHeroicAge())
+    }
+
+    @Test
+    fun `should go into golden age with enough stored era points`() {
+        testGame.makeHexagonalMap(1)
+        testGame.addCity(civ, testGame.getTile(HexCoord.Zero), initialPopulation = 3)
+        // Leave plenty of headroom: negative amenities can consume 1 point per turn in endTurn()
+        goldenAgeManager.storedEraPoints = goldenAgeManager.eraPointsRequiredForNextGoldenAge() + 100
+
+        goldenAgeManager.endTurn()
+
         assertTrue(goldenAgeManager.isGoldenAge())
     }
 
     @Test
-    fun `should increase golden age cost each time is triggered by happiness`() {
-        // given
-        val happinessRequiredForFirstGoldenAge = goldenAgeManager.happinessRequiredForNextGoldenAge()
-        goldenAgeManager.storedHappiness = happinessRequiredForFirstGoldenAge
-
-        // when
-        goldenAgeManager.endTurn(10)
-
-        // then
-        assertTrue(goldenAgeManager.happinessRequiredForNextGoldenAge() > happinessRequiredForFirstGoldenAge)
-    }
-
-    @Test
-    fun `should not increase golden age cost when triggered by outside factors`() {
-        // given
-        val happinessRequiredForFirstGoldenAge = goldenAgeManager.happinessRequiredForNextGoldenAge()
-        goldenAgeManager.enterGoldenAge(10)
-
-        // when
-        goldenAgeManager.endTurn(10)
-
-        // then
-        assertEquals(happinessRequiredForFirstGoldenAge, goldenAgeManager.happinessRequiredForNextGoldenAge())
-    }
-
-    @Test
     fun `should increase golden age cost with more cities`() {
-        // given
         testGame.makeHexagonalMap(1)
         testGame.addCity(civ, testGame.getTile(HexCoord.Zero), initialPopulation = 10)
-        val happinessRequiredForGoldenAgeOneCity = goldenAgeManager.happinessRequiredForNextGoldenAge()
+        val eraPointsForOneCity = goldenAgeManager.eraPointsRequiredForNextGoldenAge()
 
-        // when
-        testGame.addCity(civ, testGame.getTile(1,0), initialPopulation = 10)
+        testGame.addCity(civ, testGame.getTile(1, 0), initialPopulation = 10)
 
-        // then
-        val happinessRequiredForGoldenAgeTwoCities = goldenAgeManager.happinessRequiredForNextGoldenAge()
-        assertTrue(happinessRequiredForGoldenAgeOneCity < happinessRequiredForGoldenAgeTwoCities)
+        assertTrue(goldenAgeManager.eraPointsRequiredForNextGoldenAge() > eraPointsForOneCity)
     }
 
     @Test
-    fun `should increase golden age lenght due to uniques`() {
-        // given
+    fun `loyalty modifier depends on age`() {
+        assertEquals(0, goldenAgeManager.getLoyaltyModifier())
+
+        goldenAgeManager.enterGoldenAge()
+        assertEquals(3, goldenAgeManager.getLoyaltyModifier())
+
+        goldenAgeManager.enterDarkAge()
+        assertEquals(-4, goldenAgeManager.getLoyaltyModifier())
+    }
+
+    @Test
+    fun `policy slot modifier depends on age`() {
+        assertEquals(0, goldenAgeManager.getPolicySlotModifier())
+
+        goldenAgeManager.enterGoldenAge()
+        assertEquals(1, goldenAgeManager.getPolicySlotModifier())
+
+        goldenAgeManager.enterDarkAge()
+        assertEquals(-1, goldenAgeManager.getPolicySlotModifier())
+    }
+
+    @Test
+    fun `should increase golden age length due to uniques`() {
         val civ = testGame.addCiv("[+50]% Golden Age length")
         goldenAgeManager.civInfo = civ
 
-        // when
         goldenAgeManager.enterGoldenAge(10)
 
-        // then
         assertEquals(15, goldenAgeManager.turnsLeftForCurrentGoldenAge)
     }
 }

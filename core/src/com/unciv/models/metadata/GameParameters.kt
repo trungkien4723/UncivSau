@@ -33,6 +33,9 @@ class GameParameters : IsPartOfGameInfoSerialization { // Default values are the
     var noStartBias = false
     var shufflePlayerOrder = false
 
+    /** Enabled game modes (Civ VI game modes), keys as in [com.unciv.logic.civilization.managers.GameModesManager]. */
+    var gameModes = LinkedHashSet<String>()
+
     var victoryTypes: ArrayList<String> = arrayListOf()
     var startingEra = "Ancient era"
 
@@ -92,6 +95,7 @@ class GameParameters : IsPartOfGameInfoSerialization { // Default values are the
         parameters.espionageEnabled = espionageEnabled
         parameters.noStartBias = noStartBias
         parameters.shufflePlayerOrder = shufflePlayerOrder
+        parameters.gameModes = LinkedHashSet(gameModes)
         parameters.victoryTypes = ArrayList(victoryTypes)
         parameters.startingEra = startingEra
         parameters.showCivilizationStats = showCivilizationStats
@@ -123,6 +127,7 @@ class GameParameters : IsPartOfGameInfoSerialization { // Default values are the
             if (oneCityChallenge) yield("OCC")
             if (!nuclearWeaponsEnabled) yield("No nukes")
             if (godMode) yield("God mode")
+            if (gameModes.isNotEmpty()) yield("Game modes: " + gameModes.joinToString())
             yield("Enabled Victories: " + victoryTypes.joinToString())
             yield(baseRuleset)
             yield(if (mods.isEmpty()) "no mods" else mods.joinToString(",", "mods=(", ")", 6) )
