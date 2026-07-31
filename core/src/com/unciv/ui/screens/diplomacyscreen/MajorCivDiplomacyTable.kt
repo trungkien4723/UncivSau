@@ -239,7 +239,7 @@ class MajorCivDiplomacyTable(private val diplomacyScreen: DiplomacyScreen) {
         for (agendaName in sequenceOf(historical, hidden)) {
             val agenda = otherCiv.gameInfo.ruleset.agendas[agendaName] ?: continue
             val label = buildAgendaLabel(agenda)
-            agendaTable.add(label).row()
+            agendaTable.add(label.toLabel()).row()
         }
         return agendaTable
     }
