@@ -162,7 +162,7 @@ class DiplomacyManagerTests {
         val cOpinionOfA = c.getDiplomacyManager(a)!!.opinionOfOtherCiv()
 
         assertEquals(0f, aOpinionOfB) // A shouldn't change its opinion of others
-        assertEquals(-85f, bOpinionOfA) // massive penality, conquered their city
+        assertEquals(-239f, bOpinionOfA) // -77 CapturedOurCities, -8 warmonger, -154 grievances (2x for original capital)
         assertEquals(-8f, cOpinionOfA) // warmonging penalty
     }
 
@@ -173,7 +173,7 @@ class DiplomacyManagerTests {
         meet(a, cityState)
 
         // when
-        cityState.getDiplomacyManager(a)!!.addInfluence(31f)
+        cityState.getDiplomacyManager(a)!!.addEnvoys(DiplomacyManager.friendThreshold)
 
         // then
         assertTrue(cityState.getDiplomacyManager(a)!!.isRelationshipLevelEQ(RelationshipLevel.Friend))
@@ -186,7 +186,7 @@ class DiplomacyManagerTests {
         meet(a, cityState)
 
         // when
-        cityState.getDiplomacyManager(a)!!.addInfluence(61f)
+        cityState.getDiplomacyManager(a)!!.addEnvoys(DiplomacyManager.allyThreshold)
 
         // then
         assertTrue(cityState.getDiplomacyManager(a)!!.isRelationshipLevelEQ(RelationshipLevel.Ally))
@@ -198,10 +198,10 @@ class DiplomacyManagerTests {
         val cityState = addCiv(cityStateType = "Militaristic")
         meet(a, cityState)
         meet(b, cityState)
-        cityState.getDiplomacyManager(a)!!.addInfluence(70f)
+        cityState.getDiplomacyManager(a)!!.addEnvoys(DiplomacyManager.allyThreshold)
 
         // when
-        cityState.getDiplomacyManager(b)!!.addInfluence(61f)
+        cityState.getDiplomacyManager(b)!!.addEnvoys(DiplomacyManager.allyThreshold - 1)
 
         // then
         assertTrue(cityState.getDiplomacyManager(a)!!.isRelationshipLevelEQ(RelationshipLevel.Ally))
@@ -214,10 +214,10 @@ class DiplomacyManagerTests {
         val cityState = addCiv(cityStateType = "Militaristic")
         meet(a, cityState)
         meet(b, cityState)
-        cityState.getDiplomacyManager(a)!!.addInfluence(61f)
+        cityState.getDiplomacyManager(a)!!.addEnvoys(DiplomacyManager.allyThreshold - 1)
 
         // when
-        cityState.getDiplomacyManager(b)!!.addInfluence(70f)
+        cityState.getDiplomacyManager(b)!!.addEnvoys(DiplomacyManager.allyThreshold)
 
         // then
         assertTrue(cityState.getDiplomacyManager(a)!!.isRelationshipLevelEQ(RelationshipLevel.Friend))
@@ -229,13 +229,13 @@ class DiplomacyManagerTests {
         // given
         val cityState = addCiv(cityStateType = "Militaristic")
         meet(a, cityState)
-        cityState.getDiplomacyManager(a)!!.addInfluence(61f)
+        cityState.getDiplomacyManager(a)!!.addEnvoys(DiplomacyManager.allyThreshold)
 
         // when
         a.getDiplomacyManager(cityState)!!.declareWar()
 
         // then
-        assertTrue(cityState.getDiplomacyManager(a)!!.isRelationshipLevelEQ(RelationshipLevel.Unforgivable))
+        assertTrue(cityState.getDiplomacyManager(a)!!.relationshipLevel() == RelationshipLevel.Unforgivable)
         assertEquals(-60f, cityState.getDiplomacyManager(a)!!.getInfluence())
     }
 
@@ -246,7 +246,7 @@ class DiplomacyManagerTests {
         val e = addCiv(defaultUnitTile = testGame.getTile(HexCoord(1,0)))
         meet(e, cityState)
         // we cannot be allied and simoultaneously having a city state declare indirect war on us
-        cityState.getDiplomacyManager(e)!!.addInfluence(31f)
+        cityState.getDiplomacyManager(e)!!.addEnvoys(DiplomacyManager.friendThreshold)
         cityState.getDiplomacyManager(e)!!.declareWar(DeclareWarReason(WarType.DefensivePactWar, a))
 
         // when
@@ -254,7 +254,7 @@ class DiplomacyManagerTests {
 
         // then
         assertTrue(cityState.getDiplomacyManager(e)!!.isRelationshipLevelEQ(RelationshipLevel.Friend))
-        assertEquals(31f, cityState.getDiplomacyManager(e)!!.getInfluence())
+        assertEquals(DiplomacyManager.friendThreshold.toFloat(), cityState.getDiplomacyManager(e)!!.getInfluence())
     }
 
     @Test
@@ -286,7 +286,8 @@ class DiplomacyManagerTests {
         cityState.getDiplomacyManager(a)!!.nextTurn()
 
         // then
-        assertEquals(28.5f, cityState.getDiplomacyManager(a)!!.getInfluence())
+        // 30 envoys - 1.5 hostile degradation = 28.5, truncated to an integer envoy count
+        assertEquals(28f, cityState.getDiplomacyManager(a)!!.getInfluence())
     }
 
     @Test
@@ -312,7 +313,8 @@ class DiplomacyManagerTests {
         cityState.getDiplomacyManager(a)!!.nextTurn()
 
         // then
-        assertEquals(29.25f, cityState.getDiplomacyManager(a)!!.getInfluence())
+        // 30 envoys - 0.75 degradation (sharing religion) = 29.25, truncated to an integer envoy count
+        assertEquals(29f, cityState.getDiplomacyManager(a)!!.getInfluence())
     }
 
     @Test
@@ -322,7 +324,7 @@ class DiplomacyManagerTests {
         cityState.cityStatePersonality = CityStatePersonality.Neutral
         meet(a, cityState)
 
-        cityState.getDiplomacyManager(a)!!.addInfluence(-30f)
+        cityState.getDiplomacyManager(a)!!.setInfluenceWithoutSideEffects(-30f)
 
         // when
         cityState.getDiplomacyManager(a)!!.nextTurn()
@@ -347,13 +349,14 @@ class DiplomacyManagerTests {
         religion.addBeliefs(listOf(belief))
         cityStateCapital.religion.addPressure(religion.name, 1000)
 
-        cityState.getDiplomacyManager(a)!!.addInfluence(-30f)
+        cityState.getDiplomacyManager(a)!!.setInfluenceWithoutSideEffects(-30f)
 
         // when
         cityState.getDiplomacyManager(a)!!.nextTurn()
 
         // then
-        assertEquals(-28.5f, cityState.getDiplomacyManager(a)!!.getInfluence())
+        // -30 + 1.5 recovery (sharing religion) = -28.5, truncated to an integer envoy count
+        assertEquals(-28f, cityState.getDiplomacyManager(a)!!.getInfluence())
     }
 
     @Test
@@ -364,7 +367,7 @@ class DiplomacyManagerTests {
         testGame.addCity(a, testGame.getTile(HexCoord.Zero), initialPopulation = 10)
         testGame.addCity(b, testGame.getTile(HexCoord(1,0)), initialPopulation = 20)
 
-        val expectedSciencePerTurnCivA = 13 // 10 pop, 3 palace. Smaller than 23 science per turn of civ B (20 pop, 3 palace)
+        val expectedSciencePerTurnCivA = 12 // 10 pop, Civ VI Palace (+2 Science). Smaller than 22 science per turn of civ B (20 pop, +2 Palace)
         val turns = 10
 
         // when

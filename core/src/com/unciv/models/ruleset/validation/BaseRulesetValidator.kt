@@ -65,7 +65,9 @@ internal class BaseRulesetValidator(
         for (resource in building.getResourceRequirementsPerTurn(GameContext.IgnoreConditionals).keys)
             if (!ruleset.tileResources.containsKey(resource))
                 lines.add("${building.name} requires resource $resource which does not exist!", sourceObject = building)
-        if (building.replaces != null && !ruleset.buildings.containsKey(building.replaces!!))
+        if (building.replaces != null &&
+            !ruleset.buildings.containsKey(building.replaces!!) &&
+            !ruleset.districts.containsKey(building.replaces!!))
             lines.add("${building.name} replaces ${building.replaces} which does not exist!", sourceObject = building)
         if (building.requiredBuilding != null && !ruleset.buildings.containsKey(building.requiredBuilding!!))
             lines.add("${building.name} requires ${building.requiredBuilding} which does not exist!", sourceObject = building)

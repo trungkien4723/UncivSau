@@ -25,8 +25,8 @@ class PowerTest {
     fun `should calculate power deficit when consumption exceeds production`() {
         testGame.makeHexagonalMap(1)
         val city = testGame.addCity(civ, testGame.getTile(HexCoord.Zero))
-        city.cityConstructions.addBuilding("Wind Farm")
-        city.cityConstructions.addBuilding("Coal Power Plant")
+        city.cityConstructions.addBuilding("Greenhouse Gas Analyzer")
+        city.cityConstructions.addBuilding("Weather Control Station")
 
         powerManager.calculatePower()
 
@@ -38,8 +38,12 @@ class PowerTest {
     fun `should calculate no power deficit when production meets consumption`() {
         testGame.makeHexagonalMap(1)
         val city = testGame.addCity(civ, testGame.getTile(HexCoord.Zero))
+        city.cityConstructions.addBuilding("Greenhouse Gas Analyzer")
         city.cityConstructions.addBuilding("Wind Farm")
-        city.cityConstructions.addBuilding("Coal Power Plant")
+
+        powerManager.calculatePower()
+
+        assertTrue(!powerManager.isPowerDeficit())
     }
 
     @Test

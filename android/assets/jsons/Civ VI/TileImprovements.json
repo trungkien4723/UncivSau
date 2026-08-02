@@ -1,6 +1,7 @@
 [
     {
         "name":  "Farm",
+        "techRequired":  "Pottery",
         "terrainsCanBeBuiltOn":  [
                                      "Plains",
                                      "Grassland",
@@ -172,14 +173,13 @@
     },
     {
         "name":  "Road",
+        "techRequired":  "Wheel",
         "terrainsCanBeBuiltOn":  [
                                      "Land"
                                  ],
         "turnsToBuild":  4,
-        "techRequired":  "Wheel",
         "uniques":  [
-                        "Can be built outside your borders",
-                        "Costs [1] [Gold] per turn"
+                        "Can be built outside your borders"
                     ],
         "shortcutKey":  "R",
         "civilopediaText":  [
@@ -202,10 +202,9 @@
                                      "Land"
                                  ],
         "turnsToBuild":  4,
-        "techRequired":  "Railroads",
+        "techRequired":  "Steam Power",
         "uniques":  [
-                        "Can be built outside your borders",
-                        "Costs [2] [Gold] per turn"
+                        "Can be built outside your borders"
                     ],
         "shortcutKey":  "R",
         "civilopediaText":  [
@@ -396,7 +395,7 @@
         "turnsToBuild":  4,
         "uniques":  [
                         "Can only be built on [Coastal] tiles",
-                        "[+1 Culture] for each adjacent [Moai]",
+                        "[+1 Culture] for each adjacent [Moai] tile",
                         "[+1 Gold] \u003cafter discovering [Flight]\u003e",
                         "Pillaging this improvement yields approximately [+10 Gold]"
                     ],
@@ -413,7 +412,7 @@
         "turnsToBuild":  7,
         "uniques":  [
                         "Cannot be built on [Bonus resource] tiles",
-                        "[+1 Food] for each adjacent [Mountain]",
+                        "[+1 Food] for each adjacent [Mountain] tile",
                         "[+1 Food] from [Fresh water] tiles \u003cafter discovering [Education]\u003e",
                         "[+1 Food] from [non-fresh water] tiles \u003cafter discovering [Chemistry]\u003e",
                         "Pillaging this improvement yields approximately [+18 Gold]"
@@ -507,7 +506,7 @@
         "name":  "Wood",
         "uniqueTo":  "Polynesia",
         "terrainsCanBeBuiltOn":  [
-                                     "Forest"
+                                     "Land"
                                  ],
         "turnsToBuild":  4,
         "uniques":  [
@@ -540,7 +539,7 @@
     {
         "name":  "Seaside Resort",
         "terrainsCanBeBuiltOn":  [
-                                     "Coast"
+                                     "Land"
                                  ],
         "gold":  2,
         "turnsToBuild":  8,
@@ -646,20 +645,6 @@
         "shortcutKey":  "U"
     },
     {
-        "name":  "Railroad",
-        "terrainsCanBeBuiltOn":  [
-                                     "Land"
-                                 ],
-        "turnsToBuild":  4,
-        "uniques":  [
-                        "Can be built outside your borders",
-                        "Provides [4] additional movement to units",
-                        "Costs [2] [Gold] per turn"
-                    ],
-        "techRequired":  "Railroads",
-        "shortcutKey":  "R"
-    },
-    {
         "name":  "Writers guild",
         "terrainsCanBeBuiltOn":  [
                                      "Land"
@@ -719,7 +704,6 @@
         "turnsToBuild":  8,
         "techRequired":  "Electricity",
         "uniques":  [
-                        "Can only be built on [Plains], [Grassland], [Hill], or [Tundra] tiles",
                         "[+1 Production] \u003cafter discovering [Industrialization]\u003e",
                         "Pillaging this improvement yields approximately [+20 Gold]"
                     ],
@@ -752,8 +736,8 @@
         "turnsToBuild":  8,
         "techRequired":  "Education",
         "uniques":  [
-                        "[+1 Gold] \u003cafter discovering [Renaissance]\u003e",
-                        "[+1 Culture] \u003cafter discovering [Renaissance]\u003e",
+                        "[+1 Gold] \u003cstarting from the [Renaissance era]\u003e",
+                        "[+1 Culture] \u003cstarting from the [Renaissance era]\u003e",
                         "Pillaging this improvement yields approximately [+20 Gold]"
                     ],
         "shortcutKey":  "C"
@@ -763,14 +747,14 @@
         "uniqueTo":  "Egypt",
         "terrainsCanBeBuiltOn":  [
                                      "Desert",
-                                     "Desert Hill"
+                                     "Hill"
                                  ],
         "culture":  3,
         "turnsToBuild":  10,
         "techRequired":  "Masonry",
         "uniques":  [
                         "[+2 Culture]",
-                        "[+1 Faith] \u003cafter discovering [Monumentality]\u003e",
+                        "[+1 Faith] \u003cstarting from the [Classical era]\u003e",
                         "Pillaging this improvement yields approximately [+20 Gold]"
                     ],
         "shortcutKey":  "S"
@@ -802,8 +786,7 @@
                                  ],
         "uniques":  [
                         "Unbuildable",
-                        "Irremovable",
-                        "Provides [1] [Artifact]"
+                        "Irremovable"
                     ]
     },
     {

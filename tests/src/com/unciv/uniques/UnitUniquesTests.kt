@@ -133,7 +133,7 @@ class UnitUniquesTests {
         val tree = PromotionTree(unit)
 
         Assert.assertFalse(tree.allNodes().any { !it.unreachable && tree.canBuyUpTo(it.promotion) })
-        unit.promotions.XP += 10
+        unit.promotions.XP += 25
         Assert.assertTrue(tree.allNodes().any { !it.unreachable && tree.canBuyUpTo(it.promotion) })
     }
 
@@ -160,18 +160,18 @@ class UnitUniquesTests {
 
         //Creating the promotions
         val promotionBranch1 = game.createUnitPromotion()
-        promotionBranch1.unitTypes = listOf("Scout")
+        promotionBranch1.unitTypes = listOf("Recon")
 
         val promotionBranch2 = game.createUnitPromotion()
-        promotionBranch2.unitTypes = listOf("Scout")
+        promotionBranch2.unitTypes = listOf("Recon")
 
         val promotionTestBranchA = game.createUnitPromotion()
-        promotionTestBranchA.unitTypes = listOf("Scout")
+        promotionTestBranchA.unitTypes = listOf("Recon")
         // intentional lists a promotion twice
         promotionTestBranchA.prerequisites = listOf(promotionBranch1.name, promotionBranch2.name, promotionBranch1.name)
 
         val promotionTestBranchB = game.createUnitPromotion()
-        promotionTestBranchB.unitTypes = listOf("Scout")
+        promotionTestBranchB.unitTypes = listOf("Recon")
         // intentional lists a promotion twice
         promotionTestBranchB.prerequisites = listOf(promotionBranch1.name, promotionTestBranchA.name, promotionBranch2.name, promotionBranch1.name)
 
@@ -182,7 +182,7 @@ class UnitUniquesTests {
         Assert.assertFalse("We shouldn't be able to get the promotion without XP",
             tree.canBuyUpTo(promotionTestBranchB))
 
-        unit.promotions.XP += 30
+        unit.promotions.XP += 60
         unit.promotions.addPromotion(promotionBranch1.name)
 
         // The Promotion tree needs to be refreshed to check it after gaining a promotion

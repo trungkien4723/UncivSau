@@ -248,11 +248,11 @@ object DeclareWar {
         for (thirdCiv in diplomacyManager.getCommonKnownCivs()) {
             if ((thirdCiv.isAtWarWith(otherCiv) || thirdCiv == declareWarReason.allyCiv) && !thirdCiv.isAtWarWith(civInfo)) {
                 // Improve our relations
-                if (thirdCiv.isCityState) thirdCiv.getDiplomacyManager(civInfo)!!.addInfluence(10f)
+                if (thirdCiv.isCityState) thirdCiv.getDiplomacyManager(civInfo)!!.addInfluence(1f)
                 else thirdCiv.getDiplomacyManager(civInfo)!!.addModifier(DiplomaticModifiers.SharedEnemy, 5f * civInfo.getPersonality().modifierFocus(PersonalityValue.Loyal, .3f))
             } else if (thirdCiv.isAtWarWith(civInfo)) {
                 // Improve their relations
-                if (thirdCiv.isCityState) thirdCiv.getDiplomacyManager(otherCiv)!!.addInfluence(10f)
+                if (thirdCiv.isCityState) thirdCiv.getDiplomacyManager(otherCiv)!!.addInfluence(1f)
                 else thirdCiv.getDiplomacyManager(otherCiv)!!.addModifier(DiplomaticModifiers.SharedEnemy, 5f * civInfo.getPersonality().modifierFocus(PersonalityValue.Loyal, .3f))
             }
         }

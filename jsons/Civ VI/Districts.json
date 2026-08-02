@@ -118,7 +118,7 @@
         ],
         "uniques": [
             "[+2 Gold] [in this city]",
-            "Requires [Coastal]",
+            "Requires [Coastal] to be built",
             "[+1 Gold] for each adjacent [City Center]",
             "[+1 Gold] for each adjacent [Commercial Hub] district",
             "[+1 Gold] for each adjacent [Water resource]",
@@ -154,7 +154,7 @@
         "requiredCivic": "Games and Recreation",
         "uniques": [
             "[+1 Amenities] [in this city]",
-            "Requires [Coastal]",
+            "Requires [Coastal] to be built",
             "[+1 Culture] for each adjacent [Wonder]",
             "[+1 Culture] for each adjacent [Theater Square] district"
         ]
@@ -300,7 +300,7 @@
         ],
         "uniques": [
             "[+2 Gold] [in this city]",
-            "Requires [Coastal]",
+            "Requires [Coastal] to be built",
             "[+1 Gold] for each adjacent [districtFilter: Royal Navy Dockyard]"
         ]
     },
@@ -317,7 +317,7 @@
         ],
         "uniques": [
             "[+2 Gold] [in this city]",
-            "Requires [Coastal]",
+            "Requires [Coastal] to be built",
             "[+2 Production] [in this city]"
         ]
     },

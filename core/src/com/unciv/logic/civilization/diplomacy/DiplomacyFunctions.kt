@@ -289,6 +289,8 @@ class DiplomacyFunctions(val civInfo: Civilization) {
         if (civInfo.isBarbarian && civInfo.gameInfo.turns >= civInfo.gameInfo.getDifficulty().turnBarbariansCanEnterPlayerTiles)
             return true
         val diplomacyManager = civInfo.getDiplomacyManager(otherCiv)
+        if (diplomacyManager != null && (diplomacyManager.hasOpenBorders || diplomacyManager.diplomaticStatus == DiplomaticStatus.War))
+            return true
         // Players can always pass through city-state tiles
         if (!civInfo.isAIOrAutoPlaying() && otherCiv.isCityState) return true
         return false

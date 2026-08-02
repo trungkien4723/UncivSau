@@ -145,6 +145,7 @@ class GovernmentPickerScreen(
             val cardName = selectedCards.getOrNull(i) ?: ""
             manager.assignCard(i, if (cardName.isEmpty()) null else cardName)
         }
+        manager.shouldOpenGovernmentPicker = false
         game.popScreen()
     }
 }

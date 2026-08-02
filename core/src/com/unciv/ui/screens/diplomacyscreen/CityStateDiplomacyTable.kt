@@ -136,12 +136,12 @@ class CityStateDiplomacyTable(private val diplomacyScreen: DiplomacyScreen) {
         otherCiv.cityStateFunctions.updateAllyCivForCityState()
         val ally = otherCiv.allyCiv
         if (ally != null) {
-            val allyInfluence = otherCiv.getDiplomacyManager(ally)!!.getInfluence().toInt()
+            val allyEnvoys = otherCiv.getDiplomacyManager(ally)!!.getEnvoys()
             val allyName = if (!viewingCiv.knows(ally) && ally != viewingCiv)
                 "Unknown civilization"
             else ally.civName
             diplomacyTable
-                .add("Ally: [$allyName] with [$allyInfluence] Influence".toLabel())
+                .add("Ally: [$allyName] with [$allyEnvoys] Envoys".toLabel())
                 .row()
         }
 
@@ -165,9 +165,9 @@ class CityStateDiplomacyTable(private val diplomacyScreen: DiplomacyScreen) {
 
         val nextLevelString = when {
             atWar -> ""
-            otherCivDiplomacyManager.getInfluence().toInt() < 30 -> "Reach 30 for friendship."
+            otherCivDiplomacyManager.getEnvoys() < DiplomacyManager.friendThreshold -> "Reach [${DiplomacyManager.friendThreshold}] Envoy for friendship."
             ally == viewingCiv -> ""
-            else -> "Reach highest influence above 60 for alliance."
+            else -> "Reach [${DiplomacyManager.allyThreshold}] Envoys for alliance."
         }
         diplomacyTable.add(diplomacyScreen.getRelationshipTable(otherCivDiplomacyManager)).row()
         if (nextLevelString.isNotEmpty()) {
@@ -315,7 +315,7 @@ class CityStateDiplomacyTable(private val diplomacyScreen: DiplomacyScreen) {
         }
 
 
-        if (diplomacyScreen.isNotPlayersTurn() || otherCivDiplomacyManager.getInfluence() < 60)
+        if (diplomacyScreen.isNotPlayersTurn() || otherCivDiplomacyManager.getEnvoys() < DiplomacyManager.allyThreshold)
             improveTileButton.disable()
         return improveTileButton
     }
@@ -345,7 +345,7 @@ class CityStateDiplomacyTable(private val diplomacyScreen: DiplomacyScreen) {
         for (giftAmount in listOf(250, 500, 1000, 2000)) {
             val influenceAmount = otherCiv.cityStateFunctions.influenceGainedByGift(viewingCiv, giftAmount)
             val giftButton =
-                "Gift [$giftAmount] gold (+[$influenceAmount] influence)".toTextButton()
+                "Gift [$giftAmount] gold (+[$influenceAmount] Envoys)".toTextButton()
             giftButton.onClick {
                 otherCiv.cityStateFunctions.receiveGoldGift(viewingCiv, giftAmount)
                 diplomacyScreen.updateLeftSideTable(otherCiv)
@@ -428,7 +428,7 @@ class CityStateDiplomacyTable(private val diplomacyScreen: DiplomacyScreen) {
         diplomacyTable.add("At least 0 to take gold, at least 30 and size 4 city for worker".toLabel()).row()
         diplomacyTable.addSeparator()
 
-        val demandGoldButton = "Take [${otherCiv.cityStateFunctions.goldGainedByTribute()}] gold (-15 Influence)".toTextButton()
+        val demandGoldButton = "Take [${otherCiv.cityStateFunctions.goldGainedByTribute()}] gold (-1 Envoy)".toTextButton()
         demandGoldButton.onClick {
             otherCiv.cityStateFunctions.tributeGold(viewingCiv)
             diplomacyScreen.rightSideTable.clear()
@@ -437,7 +437,7 @@ class CityStateDiplomacyTable(private val diplomacyScreen: DiplomacyScreen) {
         diplomacyTable.add(demandGoldButton).row()
         if (otherCiv.cityStateFunctions.getTributeWillingness(viewingCiv, demandingWorker = false) < 0)   demandGoldButton.disable()
 
-        val demandWorkerButton = "Take worker (-50 Influence)".toTextButton()
+        val demandWorkerButton = "Take worker (-3 Envoys)".toTextButton()
         demandWorkerButton.onClick {
             otherCiv.cityStateFunctions.tributeWorker(viewingCiv)
             diplomacyScreen.rightSideTable.clear()
@@ -462,7 +462,7 @@ class CityStateDiplomacyTable(private val diplomacyScreen: DiplomacyScreen) {
         val quest: Quest = assignedQuest.quest
         val remainingTurns: Int = assignedQuest.getRemainingTurns()
         val title = if (quest.influence > 0)
-            "[${quest.name}] (+[${quest.influence.toInt()}] influence)"
+            "[${quest.name}] (+[${quest.influence.toInt()}] Envoys)"
         else
             quest.name
         val description = assignedQuest.getDescription()

@@ -37,7 +37,7 @@ class TileFilterTests {
         },
             "All", 37,
             "worked", 8,
-            "Coastal", 6,
+            "Coastal", 5,
             "Coast", 2,
             "Land", 35,
             "Farm", 0,

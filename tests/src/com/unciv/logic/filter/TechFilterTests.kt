@@ -78,25 +78,25 @@ class TechFilterTests {
     @Test
     fun testTechMatchesFilter() {
         val testTechs = listOf(
-            "Agriculture",
             "Pottery",
-            "Sailing",
             "Animal Husbandry",
-            "Optics"
+            "Sailing",
+            "Archery",
+            "Mathematics"
         )
         val techObjects = testTechs.mapNotNull { game.ruleset.technologies[it] }
         val filters = listOf(
-            "All" to (listOf("Agriculture",
-                "Pottery",
-                "Sailing",
+            "All" to (listOf("Pottery",
                 "Animal Husbandry",
-                "Optics") to 5),
-            "Ancient era" to (listOf("Sailing", "Agriculture", "Pottery", "Animal Husbandry") to 4),
-            "Classical era" to (listOf("Optics") to 1),
+                "Sailing",
+                "Archery",
+                "Mathematics") to 5),
+            "Ancient era" to (listOf("Pottery", "Animal Husbandry", "Sailing", "Archery") to 4),
+            "Classical era" to (listOf("Mathematics") to 1),
             "Modern era" to (emptyList<String>() to 0),
-            "Starting tech" to (listOf("Agriculture") to 1),
             "Pottery" to (listOf("Pottery") to 1),
-            "Archery" to (emptyList<String>() to 0)
+            "Mathematics" to (listOf("Mathematics") to 1),
+            "Mining" to (emptyList<String>() to 0)
         )
         val failures = ArrayList<String>()
         for (test in filters) {

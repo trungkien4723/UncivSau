@@ -197,7 +197,8 @@ class ResourceTests {
     @Test
     fun `should reduce resources due to buildings`() {
         // given
-        city.cityConstructions.addBuilding("Factory")
+        // Civ VI's Factory does not consume resources, so we create a building that does
+        city.cityConstructions.addBuilding(game.createBuilding("Consumes [1] [Coal]"))
 
         // when
         val resources = civInfo.detailedCivResources

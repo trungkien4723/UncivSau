@@ -10,7 +10,7 @@ import yairm210.purity.annotations.Readonly
 class GreatWorksManager : IsPartOfGameInfoSerialization {
 
     @Transient
-    lateinit var civInfo: Civilization
+    var civInfo: Civilization? = null
 
     /** All great works owned by this civilization, keyed by unique ID */
     var greatWorks = LinkedHashMap<String, GreatWork>()
@@ -61,8 +61,9 @@ class GreatWorksManager : IsPartOfGameInfoSerialization {
 
     /** Count how many slots of a given type are available across all buildings */
     @Readonly fun getAvailableSlots(type: GreatWorkType): Int {
+        val civ = civInfo ?: return 0
         var slots = 0
-        for (city in civInfo.cities) {
+        for (city in civ.cities) {
             for (building in city.cityConstructions.getBuiltBuildings()) {
                 slots += building.greatWorkSlots[type.name] ?: 0
             }
@@ -82,7 +83,8 @@ class GreatWorksManager : IsPartOfGameInfoSerialization {
      * Bonus: +1 extra Culture and +1 extra Tourism per great work of the themed type.
      */
     @Readonly fun getThemingStats(type: GreatWorkType): Stats {
-        val totalSlots = civInfo.cities.sumOf { city ->
+        val civ = civInfo ?: return Stats()
+        val totalSlots = civ.cities.sumOf { city ->
             city.cityConstructions.getBuiltBuildings().sumOf { it.greatWorkSlots[type.name] ?: 0 }
         }
         val totalWorks = greatWorks.values.count { it.type == type }

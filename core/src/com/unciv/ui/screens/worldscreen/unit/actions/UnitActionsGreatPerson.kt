@@ -181,7 +181,7 @@ internal fun getExcavateAntiquitySiteActions(unit: MapUnit, tile: Tile) = sequen
                     val tileOwningCiv = tile.owningCity!!.civ
 
                     tileOwningCiv.getDiplomacyManager(unit.civ)!!.addInfluence(influenceEarned)
-                    unit.civ.addNotification("Your trade mission to [$tileOwningCiv] has earned you [${goldEarnedInt.tr()}] gold and [${influenceEarned.tr()}] influence!",
+                    unit.civ.addNotification("Your trade mission to [$tileOwningCiv] has earned you [${goldEarnedInt.tr()}] gold and [${influenceEarned.tr()}] envoys!",
                         NotificationCategory.General, tileOwningCiv.civName, NotificationIcon.Gold, NotificationIcon.Culture)
                     unit.consume()
                 }.takeIf { unit.hasMovement() && canConductTradeMission }

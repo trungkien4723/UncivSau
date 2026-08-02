@@ -46,7 +46,7 @@ internal class WorkerAutomationTest {
         currentTile.setImprovementBasic("Farm") // Set existing improvement
         currentTile.setTileResource("Iron") // This tile also has a resource needs to be enabled by a building a Mine
 
-        val mapUnit = testGame.addUnit("Worker", civInfo, currentTile)
+        val mapUnit = testGame.addUnit("Builder", civInfo, currentTile)
 
         // Act
         workerAutomation.automateWorkerAction(mapUnit, hashSetOf())
@@ -73,7 +73,7 @@ internal class WorkerAutomationTest {
         currentTile.setTileResource("Citrus")
         currentTile.resourceAmount = 1
 
-        val mapUnit = testGame.addUnit("Worker", civInfo, currentTile)
+        val mapUnit = testGame.addUnit("Builder", civInfo, currentTile)
 
         workerAutomation.automateWorkerAction(mapUnit, hashSetOf())
 
@@ -99,7 +99,7 @@ internal class WorkerAutomationTest {
         currentTile.baseTerrain = Constants.grassland
         currentTile.setTileResource("Iron")
 
-        val mapUnit = testGame.addUnit("Worker", civInfo, currentTile)
+        val mapUnit = testGame.addUnit("Builder", civInfo, currentTile)
 
         // Act
         workerAutomation.automateWorkerAction(mapUnit, hashSetOf())
@@ -128,7 +128,7 @@ internal class WorkerAutomationTest {
         currentTile.addTerrainFeature(Constants.hill)
         currentTile.setTileResource("Gold Ore")
 
-        val mapUnit = testGame.addUnit("Worker", civInfo, currentTile)
+        val mapUnit = testGame.addUnit("Builder", civInfo, currentTile)
 
         workerAutomation.automateWorkerAction(mapUnit, hashSetOf())
 
@@ -155,7 +155,7 @@ internal class WorkerAutomationTest {
             tile.baseTerrain = Constants.plains
         }
         city.reassignAllPopulation()
-        val worker = testGame.addUnit("Worker", civInfo, centerTile)
+        val worker = testGame.addUnit("Builder", civInfo, centerTile)
         for(i in 0..37) {
             worker.currentMovement = 2f
             for (unit in civInfo.units.getCivUnits()) {
@@ -216,7 +216,7 @@ internal class WorkerAutomationTest {
             // Make sure that the worker know which tiles to work on first
             city.reassignAllPopulation()
         }
-        val worker = testGame.addUnit("Worker", civInfo, city1.getCenterTile())
+        val worker = testGame.addUnit("Builder", civInfo, city1.getCenterTile())
         for(i in 0..37) {
             worker.currentMovement = 2f
             for (unit in civInfo.units.getCivUnits()) {
@@ -296,7 +296,7 @@ internal class WorkerAutomationTest {
             city.cityConstructions.addBuilding("Stock Exchange")
             city.cityConstructions.addBuilding("Stock Exchange")
         }
-        val worker = testGame.addUnit("Worker", civInfo, city1.getCenterTile())
+        val worker = testGame.addUnit("Builder", civInfo, city1.getCenterTile())
         for(i in 0..24) {
             worker.currentMovement = 2f
             for (unit in civInfo.units.getCivUnits()) {
@@ -349,7 +349,7 @@ internal class WorkerAutomationTest {
         currentTile.setImprovement("Mine")
         currentTile.setPillaged()
 
-        val mapUnit = testGame.addUnit("Worker", civInfo, currentTile)
+        val mapUnit = testGame.addUnit("Builder", civInfo, currentTile)
 
         // Act
         workerAutomation.automateWorkerAction(mapUnit, hashSetOf())
@@ -372,7 +372,7 @@ internal class WorkerAutomationTest {
         markedTile.baseTerrain = Constants.grassland
         markedTile.improvementFunctions.markForCreatesOneImprovement("Farm")
 
-        val worker = testGame.addUnit("Worker", civInfo, workerTile)
+        val worker = testGame.addUnit("Builder", civInfo, workerTile)
         worker.currentMovement = 2f
 
         workerAutomation.automateWorkerAction(worker, hashSetOf())
@@ -401,7 +401,7 @@ internal class WorkerAutomationTest {
         markedTile.baseTerrain = Constants.grassland
         markedTile.improvementFunctions.markForCreatesOneImprovement("Farm")
 
-        val worker = testGame.addUnit("Worker", civInfo, markedTile)
+        val worker = testGame.addUnit("Builder", civInfo, markedTile)
         val farm = testGame.ruleset.tileImprovements["Farm"]!!
 
         markedTile.startWorkingOnImprovement(farm, civInfo, worker)

@@ -8,7 +8,9 @@ import com.unciv.ui.images.ImageGetter
 import com.unciv.ui.screens.basescreen.BaseScreen
 
 /**
- *  This is the "progress-bar" showing city-state influence.
+ *  This is the "progress-bar" showing city-state envoy count.
+ *  Scale: 0 to 6 envoys across 4 segments (Friend at 1, Ally at 3, Suzerain at 6).
+ *  A negative value (e.g. -60 while at war) renders as a single hostile segment.
  *  Goes below the main Button with the name, before the statuses (puppet, resistance, WLTK).
  *  Not internal, it's reused in DiplomacyScreen.
  */
@@ -25,7 +27,8 @@ class InfluenceTable(
             "WorldScreen/CityButton/InfluenceBar",
             tintColor = ImageGetter.CHARCOAL)
 
-        val normalizedInfluence = influence.coerceIn(-60f, 60f) / 30f
+        val warPenalty = influence < 0f
+        val normalizedInfluence = influence.coerceIn(0f, 6f) / 1.5f
 
         val color = when (relationshipLevel) {
             RelationshipLevel.Unforgivable -> Color.RED
@@ -37,24 +40,20 @@ class InfluenceTable(
         }
 
         val percentages = arrayListOf(0f, 0f, 0f, 0f)
-        when {
-            normalizedInfluence < -1f -> {
-                percentages[0] = -normalizedInfluence - 1f
-                percentages[1] = 1f
-            }
-            normalizedInfluence < 0f -> percentages[1] = -normalizedInfluence
-            normalizedInfluence < 1f -> percentages[2] = normalizedInfluence
-            else -> {
-                percentages[2] = 1f
-                percentages[3] = (normalizedInfluence - 1f)
+        if (warPenalty) {
+            percentages[0] = 1f
+        } else {
+            for (i in 0..3) {
+                val segmentStart = i
+                percentages[i] = (normalizedInfluence - segmentStart).coerceIn(0f, 1f)
             }
         }
 
         for (i in 0..3)
-            add(getBarPiece(percentages[i], color, i < 2))
+            add(getBarPiece(percentages[i], color))
     }
 
-    private fun getBarPiece(percentage: Float, color: Color, negative: Boolean) = Table().apply {
+    private fun getBarPiece(percentage: Float, color: Color) = Table().apply {
         val barPieceSize = desiredWidth / 4f
         val full = ImageGetter.getWhiteDot()
         val empty = ImageGetter.getWhiteDot()
@@ -62,13 +61,8 @@ class InfluenceTable(
         full.color = color
         empty.color = Color.DARK_GRAY
 
-        if (negative) {
-            add(empty).size((1f - percentage) * barPieceSize, desiredHeight)
-            add(full).size(percentage * barPieceSize, desiredHeight)
-        } else {
-            add(full).size(percentage * barPieceSize, desiredHeight)
-            add(empty).size((1f - percentage) * barPieceSize, desiredHeight)
-        }
+        add(full).size(percentage * barPieceSize, desiredHeight)
+        add(empty).size((1f - percentage) * barPieceSize, desiredHeight)
     }
 
     override fun draw(batch: Batch?, parentAlpha: Float) { super.draw(batch, parentAlpha) }

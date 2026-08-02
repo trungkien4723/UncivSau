@@ -48,6 +48,8 @@ class QuestTests {
 
     private fun setupBarbarianCamp(): Pair<Tile, Float> {
         val campTile = testGame.getTile(0, 0)
+        if (testGame.gameInfo.civilizations.none { it.civID == Constants.barbarians })
+            testGame.addCiv(testGame.ruleset.nations[Constants.barbarians]!!)
         testGame.gameInfo.barbarians.setTransients(testGame.gameInfo)
         testGame.gameInfo.barbarians.createNewCamp(campTile)
         loadManager(testClearBarbarianJson)
@@ -113,7 +115,7 @@ class QuestTests {
         // Arrange
         loadManager()
         val influence = assignedquests()[1].quest.influence
-        civ.tech.addTechnology("The Wheel", false)
+        civ.tech.addTechnology("Wheel", false)
         // Act
         testGame.getTile(-1, 0).setImprovement("Road", civ)
         testGame.getTile(0, 0).setImprovement("Road", civ)

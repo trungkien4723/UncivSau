@@ -15,6 +15,8 @@ import com.unciv.utils.withItem
 import com.unciv.utils.withoutItem
 import yairm210.purity.annotations.Readonly
 import kotlin.math.ceil
+import kotlin.math.floor
+import kotlin.math.pow
 
 class CityPopulationManager : IsPartOfGameInfoSerialization {
     @Transient
@@ -48,7 +50,7 @@ class CityPopulationManager : IsPartOfGameInfoSerialization {
     
     @Readonly
     fun getFoodToNextPopulation(): Int {
-        var foodRequired = 10 + 6 * population + 2 * (population - 1) * (population - 1)
+        var foodRequired = 15 + 8 * (population - 1) + floor((population - 1).toDouble().pow(1.5)).toInt()
 
         foodRequired = (foodRequired * city.civ.gameInfo.speed.modifier).toInt()
 

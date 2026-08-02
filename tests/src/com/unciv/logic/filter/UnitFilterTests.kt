@@ -37,7 +37,7 @@ class UnitFilterTests {
     @Test
     fun testFilteredUnits() {
         val wetTile = game.tileMap[3,1]
-        val deSela = game.addCiv(game.ruleset.nations["Lhasa"]!!)
+        val deSela = game.addCiv(game.ruleset.nations["Geneva"]!!)
         val city2 = game.addCity(deSela, game.tileMap[-2,1])
         wetTile.setBaseTerrain(ruleset.terrains[Constants.coast]!!)
         val carrier = game.addUnit("Carrier", civ, wetTile)
@@ -46,8 +46,8 @@ class UnitFilterTests {
         val scout1 = game.addUnit("Scout", civ, game.tileMap.values.first())
         val scout2 = game.addUnit("Scout", civ, game.tileMap.values.last())
         val scout3 = game.addUnit("Scout", deSela, city2.getCenterTile())
-        val worker1 = game.addUnit("Worker", civ, game.tileMap[2,1])
-        val worker2 = game.addUnit("Worker", civ, game.tileMap[2,-1])
+        val worker1 = game.addUnit("Builder", civ, game.tileMap[2,1])
+        val worker2 = game.addUnit("Builder", civ, game.tileMap[2,-1])
         val units = listOf(carrier, carried, warrior, scout1, scout2, scout3, worker1, worker2)
         val filters = listOf(
             "Military" to (listOf(carrier, carried, warrior, scout1, scout2, scout3) to 6),

@@ -200,7 +200,7 @@ class GlobalUniquesTests {
     fun statsFromTradeRoute() {
         game.makeHexagonalMap(3)
         val civInfo = game.addCiv("[+30 Science] from each Trade Route")
-        civInfo.tech.addTechnology("The Wheel") // Required to form trade routes
+        civInfo.tech.addTechnology("Wheel") // Required to form trade routes
         val tile1 = game.getTile(HexCoord.Zero)
         val tile2 = game.getTile(HexCoord(0,2))
         tile1.roadStatus = RoadStatus.Road
@@ -220,7 +220,8 @@ class GlobalUniquesTests {
     fun statsFromPolicies() {
         game.makeHexagonalMap(3)
         val civInfo = game.addCiv("[+30 Science] per [2] social policies adopted")
-        val policiesToAdopt = listOf("Tradition", "Aristocracy", "Legalism")
+        game.createNamedPolicyBranch("TestBranch", "p1", "p2", "p3", "p4", "p5")
+        val policiesToAdopt = listOf("TestBranch", "p1", "p2")
         civInfo.policies.freePolicies = 3
         for (policyName in policiesToAdopt) {
             val policy = game.ruleset.policies[policyName]!!
@@ -236,6 +237,7 @@ class GlobalUniquesTests {
         val city = game.addCity(civ, tile, true)
 
         // Policy
+        game.createNamedPolicyBranch("TestBranch", "Legalism")
         Assert.assertFalse(civ.policies.isAdopted("Legalism"))
         city.cityConstructions.addBuilding(game.createBuilding("Adopt [Legalism]"))
         Assert.assertTrue(civ.policies.isAdopted("Legalism"))
@@ -424,7 +426,7 @@ class GlobalUniquesTests {
     fun statPercentFromTradeRoutes() {
         game.makeHexagonalMap(3)
         val civInfo = game.addCiv("[+30 Science] from each Trade Route", "[+100]% [Science] from Trade Routes")
-        civInfo.tech.addTechnology("The Wheel") // Required to form trade routes
+        civInfo.tech.addTechnology("Wheel") // Required to form trade routes
         val tile1 = game.getTile(HexCoord.Zero)
         val tile2 =  game.getTile(HexCoord(0,2))
         tile1.roadStatus = RoadStatus.Road
@@ -647,6 +649,7 @@ class GlobalUniquesTests {
         val civInfo = game.addCiv()
         val city = game.addCity(civInfo, game.getTile(HexCoord.Zero), true)
         // Policy
+        game.createNamedPolicyBranch("Tradition", "Aristocracy", "Legalism", "Oligarchy")
         civInfo.policies.run {
             freePolicies++
             adopt(getPolicyByName("Tradition"))

@@ -34,6 +34,7 @@ open class Stats(
             Stat.Science -> science
             Stat.Culture -> culture
             Stat.Faith -> faith
+            Stat.Happiness -> 0f // Not stored in Stats class
             Stat.Housing -> housing
             Stat.Amenities -> amenities
             Stat.Tourism -> tourism
@@ -50,6 +51,7 @@ open class Stats(
             Stat.Science -> science = value
             Stat.Culture -> culture = value
             Stat.Faith -> faith = value
+            Stat.Happiness -> {} // Not stored in Stats class
             Stat.Housing -> housing = value
             Stat.Amenities -> amenities = value
             Stat.Tourism -> tourism = value

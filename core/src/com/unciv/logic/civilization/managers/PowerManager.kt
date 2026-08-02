@@ -69,7 +69,7 @@ class PowerManager : IsPartOfGameInfoSerialization {
         for (building in city.cityConstructions.getBuiltBuildings()) {
             for (unique in building.uniqueObjects) {
                 if (unique.type == UniqueType.PowerProduction) {
-                    val amount = unique.params[1].toInt()
+                    val amount = unique.params[0].toInt()
                     val resource = getBuildingPowerResource(building.name)
                     if (resource == null || civInfo.getResourceAmount(resource) > 0) {
                         prod += amount
@@ -90,9 +90,9 @@ class PowerManager : IsPartOfGameInfoSerialization {
         for (building in city.cityConstructions.getBuiltBuildings()) {
             for (unique in building.uniqueObjects) {
                 if (unique.type == UniqueType.PowerConsumption) {
-                    cons += unique.params[1].toInt()
+                    cons += unique.params[0].toInt()
                 } else if (unique.type == UniqueType.CO2Emission) {
-                    totalCO2 += unique.params[1].toInt()
+                    totalCO2 += unique.params[0].toInt()
                 }
             }
         }
@@ -144,8 +144,8 @@ class PowerManager : IsPartOfGameInfoSerialization {
     fun getPowerConsumption(buildingName: String): Int {
         val buildingInfo = civInfo.gameInfo.ruleset.buildings[buildingName] ?: return 0
         for (unique in buildingInfo.uniqueObjects) {
-            if (unique.type == UniqueType.PowerConsumption && unique.params.size >= 2) {
-                return unique.params[1].toInt()
+            if (unique.type == UniqueType.PowerConsumption && unique.params.size >= 1) {
+                return unique.params[0].toInt()
             }
         }
         return 0
@@ -155,8 +155,8 @@ class PowerManager : IsPartOfGameInfoSerialization {
     fun getPowerProduction(buildingName: String): Int {
         val buildingInfo = civInfo.gameInfo.ruleset.buildings[buildingName] ?: return 0
         for (unique in buildingInfo.uniqueObjects) {
-            if (unique.type == UniqueType.PowerProduction && unique.params.size >= 2) {
-                return unique.params[1].toInt()
+            if (unique.type == UniqueType.PowerProduction && unique.params.size >= 1) {
+                return unique.params[0].toInt()
             }
         }
         return 0

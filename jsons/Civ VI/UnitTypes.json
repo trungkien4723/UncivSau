@@ -113,6 +113,27 @@
         "name": "Support",
         "movementType": "Land"
     },
+    {
+        "name": "Recon",
+        "movementType": "Land"
+    },
+    {
+        "name": "Anti Cavalry",
+        "movementType": "Land"
+    },
+    {
+        "name": "Light Cavalry",
+        "movementType": "Land"
+    },
+    {
+        "name": "Heavy Cavalry",
+        "movementType": "Land"
+    },
+    {
+        "name": "Naval Raider",
+        "movementType": "Water",
+        "uniques": ["Can enter ice tiles", "Invisible to non-adjacent units", "Can see invisible [Naval Raider] units"]
+    },
 
     {
         "name": "Melee",

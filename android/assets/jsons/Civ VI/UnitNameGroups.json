@@ -30,5 +30,21 @@
     {
         "name": "Prophet",
         "unitNames": [] // The original has no Great Prophet names, but we leave it here to enable mod support
+    },
+    {
+        "name": "Writer",
+        "unitNames": ["Homer", "Leo Tolstoy", "Mark Twain", "Miguel de Cervantes", "Victor Hugo", "William Shakespeare"]
+    },
+    {
+        "name": "Musician",
+        "unitNames": ["Johann Sebastian Bach", "Ludwig van Beethoven", "Johannes Brahms", "Wolfgang Amadeus Mozart", "Franz Schubert", "Pyotr Ilyich Tchaikovsky"]
+    },
+    {
+        "name": "Diplomat",
+        "unitNames": ["Benjamin Franklin", "Charles Maurice de Talleyrand", "Henry Kissinger", "Klemens von Metternich", "Niccolo Machiavelli", "Francois de Callieres"]
+    },
+    {
+        "name": "Naturalist",
+        "unitNames": ["Charles Darwin", "Alexander von Humboldt", "John Muir", "Henry David Thoreau", "John James Audubon", "Rachel Carson"]
     }
 ]

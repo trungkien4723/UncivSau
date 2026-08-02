@@ -1476,7 +1476,7 @@ object UniqueTriggerActivation {
                         if (otherCiv != null && otherCiv.isCityState) {
                             // create this varibale diplomacyCityState for more readability
                             val diplomacyCityState = otherCiv.getDiplomacyManagerOrMeet(civInfo)
-                            diplomacyCityState.addInfluence(-15f)
+                            diplomacyCityState.addInfluence(-1f)
 
                             if (!diplomacyCityState.hasFlag(DiplomacyFlags.TilesStolen)) {
                                 civInfo.popupAlerts.add(PopupAlert(AlertType.TilesStolen, otherCiv.civID))

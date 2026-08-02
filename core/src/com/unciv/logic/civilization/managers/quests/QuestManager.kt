@@ -399,7 +399,7 @@ class QuestManager : IsPartOfGameInfoSerialization {
 
         civ.getDiplomacyManager(assignee)!!.addInfluence(rewardInfluence)
         if (rewardInfluence > 0)
-            assignee.addQuestNotification("[${civ.civName}] rewarded you with [${rewardInfluence.toInt()}] influence for completing the [${assignedQuest.questName}] quest.")
+            assignee.addQuestNotification("[${civ.civName}] rewarded you with [${rewardInfluence.toInt()}] envoys for completing the [${assignedQuest.questName}] quest.")
 
         // We may have received bonuses from city-state friend-ness or ally-ness
         for (city in civ.cities)
@@ -597,7 +597,7 @@ class QuestManager : IsPartOfGameInfoSerialization {
         // Quest complete?
         if (updatedKillCount >= unitsToKillForCiv[killed.civID]!!) {
             killer.addDiplomacyNotification("[${civ.civName}] is deeply grateful for your assistance in the war against [${killed.civName}]!")
-            civ.getDiplomacyManager(killer)!!.addInfluence(100f) // yikes
+            civ.getDiplomacyManager(killer)!!.addInfluence(3f)
             endWarWithMajorQuest(killed)
         }
     }

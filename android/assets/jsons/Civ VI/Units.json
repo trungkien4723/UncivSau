@@ -4,13 +4,15 @@
         "unitType": "Civilian",
         "cost": 50,
         "uniques": [
-            "Can instantly construct a [{All} {non-[Great]}] improvement <[3] times> <after which this unit is consumed> <for all movement>",
+            "Can instantly construct a [{All} {non-[Great]} {non-[Road]} {non-[Railroad]} {non-[Remove Road]} {non-[Remove Railroad]}] improvement <[3] times> <after which this unit is consumed> <for all movement>",
+            "Can build [All] improvements on tiles",
             "May travel on Water tiles without embarking <after discovering [Shipbuilding]>",
             "May create improvements on water resources",
             "Cannot enter ocean tiles",
             "Automation is a primary action"
         ],
-        "movement": 2
+        "movement": 2,
+        "turnsToBuild": 3
     },
     {
         "name": "Settler",
@@ -122,33 +124,33 @@
     },
     {
         "name": "Persian Immortal",
-        "unitType": "Sword",
+        "unitType": "Anti Cavalry",
         "strength": 12,
         "cost": 56,
         "requiredTech": "Bronze Working",
         "upgradesTo": "Pikeman",
         "uniqueTo": "Persia",
         "uniques": [
-            "[+50]% Strength <vs [Mounted] units>"
+            "[+50]% Strength <vs [Light Cavalry] units> <vs [Heavy Cavalry] units>"
         ],
         "movement": 2
     },
     {
         "name": "Marauder",
-        "unitType": "Sword",
+        "unitType": "Anti Cavalry",
         "strength": 10,
         "cost": 56,
         "requiredTech": "Bronze Working",
         "upgradesTo": "Pikeman",
         "uniqueTo": "Barbarians",
         "uniques": [
-            "[+50]% Strength <vs [Mounted] units>"
+            "[+50]% Strength <vs [Light Cavalry] units> <vs [Heavy Cavalry] units>"
         ],
         "movement": 2
     },
     {
         "name": "Companion Cavalry",
-        "unitType": "Mounted",
+        "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 14,
         "cost": 75,
@@ -163,7 +165,7 @@
     },
     {
         "name": "Cataphract",
-        "unitType": "Mounted",
+        "unitType": "Heavy Cavalry",
         "movement": 3,
         "strength": 15,
         "cost": 75,
@@ -204,14 +206,14 @@
     },
     {
         "name": "Landsknecht",
-        "unitType": "Sword",
+        "unitType": "Anti Cavalry",
         "strength": 16,
         "cost": 45,
         "requiredTech": "Iron Working",
         "upgradesTo": "Lancer",
         "uniqueTo": "Germany",
         "uniques": [
-            "[+50]% Strength <vs [Mounted] units>",
+            "[+50]% Strength <vs [Light Cavalry] units> <vs [Heavy Cavalry] units>",
             "Can move immediately once bought"
         ],
         "movement": 2
@@ -350,7 +352,7 @@
         "upgradesTo": "Rifleman",
         "uniqueTo": "Spain",
         "uniques": [
-            "[+50]% Strength <vs [Mounted] units>"
+            "[+50]% Strength <vs [Light Cavalry] units> <vs [Heavy Cavalry] units>"
         ],
         "movement": 2
     },
@@ -380,7 +382,7 @@
     },
     {
         "name": "Lancer",
-        "unitType": "Mounted",
+        "unitType": "Anti Cavalry",
         "movement": 4,
         "strength": 25,
         "cost": 185,
@@ -395,7 +397,7 @@
     },
     {
         "name": "Sipahi",
-        "unitType": "Mounted",
+        "unitType": "Anti Cavalry",
         "movement": 5,
         "strength": 25,
         "cost": 185,
@@ -411,8 +413,9 @@
     },
     {
         "name": "Hakkapeliitta",
-        "unitType": "Mounted",
+        "unitType": "Anti Cavalry",
         "movement": 4,
+        "promotions": ["[Hakkapeliitta] ability"],
         "strength": 25,
         "cost": 185,
         "requiredTech": "Steel",
@@ -472,7 +475,7 @@
     },
     {
         "name": "Cavalry",
-        "unitType": "Mounted",
+        "unitType": "Light Cavalry",
         "movement": 4,
         "strength": 34,
         "cost": 225,
@@ -519,7 +522,7 @@
         "uniques": [
             "[50]% chance to intercept air attacks",
             "[+150]% Strength <vs [Bomber] units>",
-            "[+150]% Strength <vs [Helicopter] units>"
+            "[+150]% Strength <vs [Light Cavalry] units>"
         ]
     },
     {
@@ -554,7 +557,7 @@
         "uniques": [
             "[100]% chance to intercept air attacks",
             "[+150]% Strength <vs [Air] units>",
-            "[+150]% Strength <vs [Helicopter] units>",
+            "[+150]% Strength <vs [Light Cavalry] units>",
             "Never appears as a Barbarian unit"
         ],
         "movement": 2
@@ -598,7 +601,7 @@
         "uniques": [
             "[100]% chance to intercept air attacks",
             "[+150]% Strength <vs [Bomber] units>",
-            "[+150]% Strength <vs [Helicopter] units>"
+            "[+150]% Strength <vs [Light Cavalry] units>"
         ]
     },
     {
@@ -640,13 +643,13 @@
     },
     {
         "name": "Anti-Tank Gun",
-        "unitType": "Gunpowder",
+        "unitType": "Anti Cavalry",
         "strength": 50,
         "cost": 300,
         "requiredTech": "Combined Arms",
         "upgradesTo": "Helicopter Gunship",
         "uniques": [
-            "[+100]% Strength <vs [Armored] units>",
+            "[+100]% Strength <vs [Heavy Cavalry] units> <vs [Light Cavalry] units> <vs [Armored] units>",
             "Never appears as a Barbarian unit"
         ],
         "movement": 2
@@ -695,13 +698,13 @@
     },
     {
         "name": "Helicopter Gunship",
-        "unitType": "Helicopter",
+        "unitType": "Anti Cavalry",
         "movement": 6,
         "strength": 60,
         "cost": 425,
         "requiredTech": "Computers",
         "uniques": [
-            "[+100]% Strength <vs [Armored] units>",
+            "[+100]% Strength <vs [Heavy Cavalry] units> <vs [Light Cavalry] units> <vs [Armored] units>",
             "No defensive terrain bonus",
             "Can move after attacking",
             "All tiles cost 1 movement",
@@ -760,7 +763,7 @@
         "unitType": "Civilian",
         "cost": -1,
         "uniques": [
-            "Can undertake a trade mission with City-State, giving a large sum of gold and [30] Influence",
+            "Can undertake a trade mission with City-State, giving a large sum of gold and [2] Influence",
             "Can instantly construct a [Customs house] improvement <by consuming this unit>",
             "Is part of Great Person group [Great Person]",
             "[This Unit] gets a name from the [Merchant] group",
@@ -1117,7 +1120,7 @@
     },
     {
         "name": "Ngao Mbeba",
-        "unitType": "Sword",
+        "unitType": "Anti Cavalry",
         "strength": 38,
         "cost": 55,
         "requiredTech": "Iron Working",
@@ -1274,7 +1277,7 @@
     },
     {
         "name": "Anti Cavalry",
-        "unitType": "Sword",
+        "unitType": "Anti Cavalry",
         "cost": -1,
         "uniques": [
             "Unbuildable"
@@ -1283,7 +1286,7 @@
     },
     {
         "name": "Spearman",
-        "unitType": "Sword",
+        "unitType": "Anti Cavalry",
         "strength": 25,
         "cost": 32,
         "requiredTech": "Bronze Working",
@@ -1294,7 +1297,7 @@
     },
     {
         "name": "Hoplite",
-        "unitType": "Sword",
+        "unitType": "Anti Cavalry",
         "strength": 28,
         "cost": 32,
         "requiredTech": "Bronze Working",
@@ -1303,7 +1306,7 @@
     },
     {
         "name": "Pikeman",
-        "unitType": "Sword",
+        "unitType": "Anti Cavalry",
         "strength": 45,
         "cost": 100,
         "requiredTech": "Military Tactics",
@@ -1314,7 +1317,7 @@
     },
     {
         "name": "Impi",
-        "unitType": "Sword",
+        "unitType": "Anti Cavalry",
         "strength": 45,
         "cost": 62,
         "requiredTech": "Military Tactics",
@@ -1323,7 +1326,7 @@
     },
     {
         "name": "Pike and Shot",
-        "unitType": "Sword",
+        "unitType": "Anti Cavalry",
         "strength": 55,
         "cost": 145,
         "requiredTech": "Gunpowder",
@@ -1334,7 +1337,7 @@
     },
     {
         "name": "Carolean",
-        "unitType": "Sword",
+        "unitType": "Anti Cavalry",
         "strength": 55,
         "cost": 125,
         "requiredTech": "Rifling",
@@ -1343,7 +1346,7 @@
     },
     {
         "name": "AT Crew",
-        "unitType": "Sword",
+        "unitType": "Anti Cavalry",
         "strength": 80,
         "cost": 200,
         "requiredTech": "Chemistry",
@@ -1354,7 +1357,7 @@
     },
     {
         "name": "Modern AT",
-        "unitType": "Sword",
+        "unitType": "Anti Cavalry",
         "movement": 3,
         "strength": 90,
         "cost": 290,
@@ -1576,7 +1579,7 @@
     },
     {
         "name": "Light Cavalry",
-        "unitType": "Mounted",
+        "unitType": "Light Cavalry",
         "cost": -1,
         "uniques": [
             "Unbuildable"
@@ -1585,7 +1588,7 @@
     },
     {
         "name": "Horseman",
-        "unitType": "Mounted",
+        "unitType": "Light Cavalry",
         "movement": 4,
         "strength": 36,
         "cost": 40,
@@ -1596,7 +1599,7 @@
     },
     {
         "name": "Courser",
-        "unitType": "Mounted",
+        "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 46,
         "cost": 90,
@@ -1607,7 +1610,7 @@
     },
     {
         "name": "Malón Raider",
-        "unitType": "Siege",
+        "unitType": "Heavy Cavalry",
         "movement": 1,
         "strength": 48,
         "cost": 115,
@@ -1616,7 +1619,7 @@
     },
     {
         "name": "Oromo Cavalry",
-        "unitType": "Siege",
+        "unitType": "Heavy Cavalry",
         "movement": 5,
         "strength": 48,
         "cost": 100,
@@ -1625,7 +1628,7 @@
     },
     {
         "name": "Black Army",
-        "unitType": "Siege",
+        "unitType": "Heavy Cavalry",
         "movement": 5,
         "strength": 49,
         "cost": 102,
@@ -1634,7 +1637,7 @@
     },
     {
         "name": "Cossack",
-        "unitType": "Mounted",
+        "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 62,
         "cost": 170,
@@ -1643,7 +1646,7 @@
     },
     {
         "name": "Llanero",
-        "unitType": "Mounted",
+        "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 62,
         "cost": 165,
@@ -1652,7 +1655,7 @@
     },
     {
         "name": "Huszár",
-        "unitType": "Mounted",
+        "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 65,
         "cost": 167,
@@ -1661,7 +1664,7 @@
     },
     {
         "name": "Mountie",
-        "unitType": "Mounted",
+        "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 70,
         "cost": 180,
@@ -1670,7 +1673,7 @@
     },
     {
         "name": "Helicopter",
-        "unitType": "Mounted",
+        "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 86,
         "cost": 300,
@@ -1681,7 +1684,7 @@
     },
     {
         "name": "Heavy Cavalry",
-        "unitType": "Mounted",
+        "unitType": "Heavy Cavalry",
         "cost": -1,
         "uniques": [
             "Unbuildable"
@@ -1690,7 +1693,7 @@
     },
     {
         "name": "War-Cart",
-        "unitType": "Mounted",
+        "unitType": "Heavy Cavalry",
         "movement": 3,
         "strength": 20,
         "cost": 20,
@@ -1698,7 +1701,7 @@
     },
     {
         "name": "Heavy Chariot",
-        "unitType": "Mounted",
+        "unitType": "Heavy Cavalry",
         "movement": 1,
         "strength": 28,
         "cost": 32,
@@ -1706,7 +1709,7 @@
     },
     {
         "name": "Hetairoi",
-        "unitType": "Mounted",
+        "unitType": "Heavy Cavalry",
         "movement": 4,
         "strength": 36,
         "cost": 50,
@@ -1715,7 +1718,7 @@
     },
     {
         "name": "Varu",
-        "unitType": "Mounted",
+        "unitType": "Light Cavalry",
         "strength": 40,
         "cost": 60,
         "requiredTech": "Horseback Riding",
@@ -1724,7 +1727,7 @@
     },
     {
         "name": "Knight",
-        "unitType": "Mounted",
+        "unitType": "Heavy Cavalry",
         "movement": 4,
         "strength": 50,
         "cost": 100,
@@ -1735,7 +1738,7 @@
     },
     {
         "name": "Tagma",
-        "unitType": "Mounted",
+        "unitType": "Heavy Cavalry",
         "movement": 4,
         "strength": 50,
         "cost": 110,
@@ -1744,7 +1747,7 @@
     },
     {
         "name": "Mamluk",
-        "unitType": "Mounted",
+        "unitType": "Heavy Cavalry",
         "movement": 4,
         "strength": 53,
         "cost": 110,
@@ -1753,7 +1756,7 @@
     },
     {
         "name": "Mandekalu Cavalry",
-        "unitType": "Mounted",
+        "unitType": "Heavy Cavalry",
         "movement": 4,
         "strength": 53,
         "cost": 110,
@@ -1762,7 +1765,7 @@
     },
     {
         "name": "Winged Hussar",
-        "unitType": "Mounted",
+        "unitType": "Heavy Cavalry",
         "movement": 4,
         "strength": 64,
         "cost": 165,
@@ -1771,7 +1774,7 @@
     },
     {
         "name": "Cuirassier",
-        "unitType": "Mounted",
+        "unitType": "Heavy Cavalry",
         "movement": 4,
         "strength": 64,
         "cost": 165,
@@ -1782,7 +1785,7 @@
     },
     {
         "name": "Rough Rider",
-        "unitType": "Mounted",
+        "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 64,
         "cost": 192,
@@ -1791,7 +1794,7 @@
     },
     {
         "name": "Tank",
-        "unitType": "Mounted",
+        "unitType": "Armored",
         "movement": 4,
         "strength": 85,
         "cost": 240,
@@ -1802,7 +1805,7 @@
     },
     {
         "name": "Modern Armor",
-        "unitType": "Mounted",
+        "unitType": "Armored",
         "movement": 4,
         "strength": 95,
         "cost": 340,
@@ -1813,7 +1816,7 @@
     },
     {
         "name": "Recon",
-        "unitType": "Mounted",
+        "unitType": "Recon",
         "cost": -1,
         "uniques": [
             "Unbuildable"
@@ -1822,7 +1825,7 @@
     },
     {
         "name": "Scout",
-        "unitType": "Mounted",
+        "unitType": "Recon",
         "movement": 3,
         "strength": 10,
         "cost": 15,
@@ -1832,7 +1835,7 @@
     },
     {
         "name": "Okihtcitaw",
-        "unitType": "Mounted",
+        "unitType": "Recon",
         "movement": 3,
         "strength": 15,
         "cost": 20,
@@ -1840,7 +1843,7 @@
     },
     {
         "name": "Skirmisher",
-        "unitType": "Mounted",
+        "unitType": "Recon",
         "movement": 3,
         "strength": 25,
         "rangedStrength": 35,
@@ -1852,7 +1855,7 @@
     },
     {
         "name": "Warak’aq",
-        "unitType": "Mounted",
+        "unitType": "Recon",
         "movement": 3,
         "strength": 25,
         "rangedStrength": 40,
@@ -1862,7 +1865,7 @@
     },
     {
         "name": "Ranger",
-        "unitType": "Mounted",
+        "unitType": "Recon",
         "movement": 3,
         "strength": 55,
         "rangedStrength": 65,
@@ -1874,7 +1877,7 @@
     },
     {
         "name": "Highlander",
-        "unitType": "Mounted",
+        "unitType": "Recon",
         "movement": 3,
         "strength": 65,
         "rangedStrength": 70,
@@ -1884,7 +1887,7 @@
     },
     {
         "name": "Spec Ops",
-        "unitType": "Mounted",
+        "unitType": "Recon",
         "movement": 3,
         "strength": 65,
         "rangedStrength": 75,
@@ -1921,7 +1924,7 @@
         "cost": 85,
         "requiredTech": "Military Engineering",
         "uniques": [
-            "3Build Charges"
+            "Can instantly construct a [All Road] improvement <[2] times> <for all movement>"
         ]
     },
     {
@@ -2052,6 +2055,7 @@
         "requiredTech": "Combined Arms",
         "uniques": [
             "90Anti-air Strength",
+            "Can see invisible [Naval Raider] units",
             "Strongest melee naval unit. Reveals Naval Raiders within sight range."
         ]
     },
@@ -2150,7 +2154,7 @@
     },
     {
         "name": "Privateer",
-        "unitType": "NavalRanged",
+        "unitType": "Naval Raider",
         "movement": 4,
         "strength": 40,
         "rangedStrength": 50,
@@ -2162,7 +2166,7 @@
     },
     {
         "name": "Sea Dog",
-        "unitType": "NavalRanged",
+        "unitType": "Naval Raider",
         "movement": 4,
         "strength": 40,
         "rangedStrength": 53,
@@ -2172,7 +2176,7 @@
     },
     {
         "name": "Barbary Corsair",
-        "unitType": "NavalRanged",
+        "unitType": "Naval Raider",
         "movement": 4,
         "strength": 40,
         "rangedStrength": 50,
@@ -2181,7 +2185,7 @@
     },
     {
         "name": "Submarine",
-        "unitType": "NavalRanged",
+        "unitType": "Naval Raider",
         "movement": 4,
         "strength": 65,
         "rangedStrength": 75,
@@ -2193,7 +2197,7 @@
     },
     {
         "name": "U-Boat",
-        "unitType": "NavalRanged",
+        "unitType": "Naval Raider",
         "movement": 4,
         "strength": 65,
         "rangedStrength": 75,
@@ -2203,7 +2207,7 @@
     },
     {
         "name": "Nuclear Submarine",
-        "unitType": "NavalRanged",
+        "unitType": "Naval Raider",
         "movement": 4,
         "strength": 80,
         "rangedStrength": 85,
@@ -2215,7 +2219,7 @@
     },
     {
         "name": "Aircraft Carrier",
-        "unitType": "NavalRanged",
+        "unitType": "Aircraft Carrier",
         "movement": 5,
         "strength": 80,
         "cost": 270,

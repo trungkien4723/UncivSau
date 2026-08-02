@@ -668,7 +668,7 @@ class City : IsPartOfGameInfoSerialization, INamed {
             "in enemy cities", "Enemy" -> civ.isAtWarWith(viewingCiv ?: civ)
             "in foreign cities", "Foreign" -> viewingCiv != null && viewingCiv != civ
             "in annexed cities", "Annexed" -> foundingCivObject != civ && !isInResistance()
-            "in puppeted cities", "Puppeted" -> false // Puppet cities don't exist in Civ VI
+            "in puppeted cities", "Puppeted" -> isPuppet // Puppet cities don't exist in Civ VI, so this is always false in gameplay
             "in resisting cities", "Resisting" -> isInResistance()
             "in cities being razed", "Razing" -> isBeingRazed
             "in holy cities", "Holy" -> isHolyCity()

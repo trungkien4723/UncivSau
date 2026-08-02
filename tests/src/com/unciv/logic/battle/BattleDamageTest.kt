@@ -88,6 +88,8 @@ class BattleDamageTest {
     fun `should retrieve modifiers from lack of strategic resource`() {
         // given
         defaultAttackerTile.militaryUnit = null // otherwise we'll also get a flanking bonus
+        testGame.ruleset.units["Horseman"]!!.requiredResource = "Horses"
+        attackerCiv.gainStockpiledResource(testGame.ruleset.tileResources["Horses"]!!, -1)
         val attackerTile = testGame.getTile(HexCoord.Zero)
         val attackerUnit = testGame.addUnit("Horseman", attackerCiv, attackerTile)
 

@@ -1562,7 +1562,7 @@
         "uniques": [
             "Unbuildable",
             "Creates a [Water Entertainment Complex] district on a specific tile",
-            "Requires [Coastal]",
+            "Requires [Coastal] to be built",
             "Shows when unbuildable"
         ],
         "requiredCivic": "Games and Recreation",
@@ -2115,7 +2115,7 @@
         "uniques": [
             "[+2] [Food] [in this city]",
             "[+2] [Production] [in this city]",
-            "Requires [Coastal]"
+            "Requires [Coastal] to be built"
         ]
     },
     {
@@ -2196,7 +2196,7 @@
         ]
     },
     {
-        "name": "Bath",
+        "name": "Palace",
         "cost": 100,
         "hurryCostModifier": 25,
         "uniques": [
@@ -2878,6 +2878,33 @@
         },
         "requiredCivic": "Diplomatic Service",
         "amenities": 1
+    },
+    {
+        "name": "Constabulary",
+        "cost": 160,
+        "maintenance": 2,
+        "uniques": [
+            "[-25]% enemy spy effectiveness [in this city]"
+        ],
+        "requiredTech": "Banking"
+    },
+    {
+        "name": "Police Station",
+        "cost": 240,
+        "maintenance": 2,
+        "uniques": [
+            "[-25]% enemy spy effectiveness [in this city]"
+        ],
+        "requiredTech": "Electricity"
+    },
+    {
+        "name": "National Intelligence Agency",
+        "cost": 380,
+        "maintenance": 3,
+        "uniques": [
+            "[-50]% enemy spy effectiveness [in this city]"
+        ],
+        "requiredTech": "Telecommunications"
     },
     {
         "name": "Grand Master's Chapel",

@@ -2,7 +2,7 @@
   {
     "name": "Route",
     "description": "Build a road to connect your capital to our city.",
-    "influence": 50,
+    "influence": 2,
     "weightForCityStateType": {
         "Friendly": 2,
         "Hostile": 0.2,
@@ -14,7 +14,7 @@
     "name": "Clear Barbarian Camp",
     "description": "We feel threatened by a Barbarian Camp near our city. Please take care of it.",
     "type": "Global",
-    "influence": 50,
+    "influence": 2,
     "minimumCivs": 1,
       "weightForCityStateType": {
           "Cultured": 3,
@@ -49,7 +49,7 @@
   {
     "name": "Conquer City State",
     "description": "It's time to erase the City-State of [cityState] from the map. You will be greatly rewarded for conquering them!",
-    "influence": 80,
+    "influence": 3,
       "weightForCityStateType": {
           "Hostile": 2,
           "Friendly": 0.2,
@@ -59,7 +59,7 @@
   {
     "name": "Find Player",
     "description": "You have yet to discover where [civName] set up their cities. You will be rewarded for finding their territories.",
-    "influence": 35,
+    "influence": 2,
       "weightForCityStateType": {
           "Maritime": 3,
           "Mercantile": 2
@@ -77,7 +77,7 @@
   {
     "name": "Give Gold",
     "description": "We are suffering great poverty after being robbed by [civName], and unless we receive a sum of Gold, it's only a matter of time before we collapse.",
-    "influence": 20,
+    "influence": 1,
     "duration": 30,
       "weightForCityStateType": {
           "Cultured": 3,
@@ -90,7 +90,7 @@
   {
     "name": "Pledge to Protect",
     "description": "We need your protection to stop the aggressions of [civName]. By signing a Pledge of Protection, you'll confirm the bond that ties us.",
-    "influence": 20,
+    "influence": 1,
     "duration": 30,
       "weightForCityStateType": {
           "Cultured": 3.5,

@@ -32,6 +32,7 @@ class GovernmentManager : IsPartOfGameInfoSerialization {
         val toReturn = GovernmentManager()
         toReturn.currentGovernment = currentGovernment
         toReturn.assignedCards.addAll(assignedCards)
+        toReturn.shouldOpenGovernmentPicker = shouldOpenGovernmentPicker
         return toReturn
     }
 
@@ -87,25 +88,29 @@ class GovernmentManager : IsPartOfGameInfoSerialization {
     fun adoptGovernment(governmentName: String) {
         currentGovernment = governmentName
         assignedCards.clear()
+        shouldOpenGovernmentPicker = false
         rebuildTransients()
     }
 
-    /** Assign (or replace) a policy card into slot [slotIndex]. A null/empty cardName clears that slot. */
+    /** Assign (or replace) a policy card into slot [slotIndex]. A null/empty cardName clears that slot.
+     *  The [assignedCards] list always mirrors the government's slot layout (one entry per slot), so
+     *  clearing a slot can never shift or misalign the remaining cards. */
     fun assignCard(slotIndex: Int, cardName: String?) {
         val government = getGovernment() ?: return
         if (slotIndex < 0 || slotIndex >= government.totalSlots()) return
-        if (cardName == null || cardName.isEmpty()) {
-            if (slotIndex < assignedCards.size) assignedCards.removeAt(slotIndex)
-        } else {
-            val slots = government.getSlots()
-            val slotType = slots[slotIndex]
-            val card = getRuleset().policyCards[cardName] ?: return
+        val slots = government.getSlots()
+        val slotType = slots[slotIndex]
+        val name = cardName?.takeIf { it.isNotEmpty() } ?: ""
+        if (name.isNotEmpty()) {
+            val card = getRuleset().policyCards[name] ?: return
             if (slotType != "Wildcard" && card.slotType != "Wildcard" && card.slotType != slotType) return
-            // Prevent the same card occupying two slots
-            assignedCards.remove(cardName)
-            while (assignedCards.size <= slotIndex) assignedCards.add("")
-            assignedCards[slotIndex] = cardName
+            // A card cannot occupy two slots at once - clear it from any other slot first
+            for (i in assignedCards.indices)
+                if (i != slotIndex && assignedCards[i] == name) assignedCards[i] = ""
         }
+        while (assignedCards.size <= slotIndex) assignedCards.add("")
+        assignedCards[slotIndex] = name
+        while (assignedCards.size < slots.size) assignedCards.add("")
         rebuildTransients()
     }
 

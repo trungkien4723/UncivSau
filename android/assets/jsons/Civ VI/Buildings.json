@@ -417,6 +417,7 @@
         "name": "Burial Tomb",
         "replaces": "Temple",
         "uniqueTo": "Egypt",
+        "cost": 210,
         "maintenance": 0,
         "uniques": [
             "[+100]% Gold given to enemy if city is captured <in this city>"
@@ -431,6 +432,7 @@
         "name": "Mud Pyramid Mosque",
         "replaces": "Temple",
         "uniqueTo": "Songhai",
+        "cost": 210,
         "maintenance": 0,
         "hurryCostModifier": 25,
         "culture": 2,
@@ -545,7 +547,7 @@
         "uniques": [
             "EraScore: [4]",
             "Enemy [Land] units must spend [1] extra movement points when inside your territory <before discovering [Chemistry]> <Suppress warning [*contains a conditional on a unit movement unique*]>",
-            "Gain a free [Walls] [in this city]"
+            "Gain a free [Ancient Walls] [in this city]"
         ],
         "requiredTech": "Engineering",
         "quote": "'The art of war teaches us to rely not on the likelihood of the enemy's not attacking, but rather on the fact that we have made our position unassailable.' - Sun Tzu",
@@ -582,6 +584,7 @@
     },
     {
         "name": "Garden",
+        "cost": 100,
         "uniques": [
             "[+25]% Great Person generation [in this city]",
             "Must be next to [Fresh water]"
@@ -1421,6 +1424,7 @@
     },
     {
         "name": "Information Warfare",
+        "cost": 500,
         "production": 4,
         "maintenance": 3,
         "requiredCivic": "Information Warfare",
@@ -1561,7 +1565,7 @@
         "uniques": [
             "Unbuildable",
             "Creates a [Water Entertainment Complex] district on a specific tile",
-            "Requires [Coastal]",
+            "Requires [Coastal] to be built",
             "Shows when unbuildable"
         ],
         "requiredCivic": "Games and Recreation",
@@ -2114,7 +2118,7 @@
         "uniques": [
             "[+2] [Food] [in this city]",
             "[+2] [Production] [in this city]",
-            "Requires [Coastal]"
+            "Requires [Coastal] to be built"
         ]
     },
     {
@@ -2154,6 +2158,7 @@
         "name": "Street Carnival",
         "replaces": "Zoo",
         "uniqueTo": "Brazil",
+        "cost": 180,
         "district": "Entertainment Complex",
         "requiredCivic": "Games and Recreation",
         "uniques": [
@@ -2165,6 +2170,7 @@
         "name": "Ice Hockey Rink",
         "replaces": "Zoo",
         "uniqueTo": "Canada",
+        "cost": 180,
         "district": "Entertainment Complex",
         "requiredCivic": "Games and Recreation",
         "uniques": [
@@ -2195,7 +2201,7 @@
         ]
     },
     {
-        "name": "Bath",
+        "name": "Palace",
         "cost": 100,
         "hurryCostModifier": 25,
         "uniques": [
@@ -2853,6 +2859,33 @@
         },
         "requiredCivic": "Diplomatic Service",
         "amenities": 1
+    },
+    {
+        "name": "Constabulary",
+        "cost": 160,
+        "maintenance": 2,
+        "uniques": [
+            "[-25]% enemy spy effectiveness [in this city]"
+        ],
+        "requiredTech": "Banking"
+    },
+    {
+        "name": "Police Station",
+        "cost": 240,
+        "maintenance": 2,
+        "uniques": [
+            "[-25]% enemy spy effectiveness [in this city]"
+        ],
+        "requiredTech": "Electricity"
+    },
+    {
+        "name": "National Intelligence Agency",
+        "cost": 380,
+        "maintenance": 3,
+        "uniques": [
+            "[-50]% enemy spy effectiveness [in this city]"
+        ],
+        "requiredTech": "Telecommunications"
     },
     {
         "name": "Grand Master's Chapel",
@@ -3600,8 +3633,7 @@
         "name": "Feitoria",
         "uniqueTo": "Portugal",
         "uniques": [
-            "Unbuildable",
-            "Excluded from map editor"
+            "Unbuildable"
         ],
         "maintenance": 0
     },

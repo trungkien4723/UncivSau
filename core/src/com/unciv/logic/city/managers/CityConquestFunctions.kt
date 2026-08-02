@@ -270,8 +270,8 @@ class CityConquestFunctions(val city: City) {
             openBordersTrade.currentTrade.ourOffers.add(TradeOffer(Constants.openBorders, TradeOfferType.Agreement, speed = conqueringCiv.gameInfo.speed))
             openBordersTrade.acceptTrade(false)
         } else {
-            //Liberating a city state gives a large amount of influence, and peace
-            foundingCiv.getDiplomacyManagerOrMeet(conqueringCiv).setInfluence(90f)
+            //Liberating a city state gives a large amount of envoys, and peace
+            foundingCiv.getDiplomacyManagerOrMeet(conqueringCiv).setInfluence(3f)
             if (foundingCiv.isAtWarWith(conqueringCiv)) {
                 val tradeLogic = TradeLogic(foundingCiv, conqueringCiv)
                 tradeLogic.currentTrade.ourOffers.add(TradeOffer(Constants.peaceTreaty, TradeOfferType.Treaty, speed = conqueringCiv.gameInfo.speed))

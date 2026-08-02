@@ -1,6 +1,8 @@
 package com.unciv.logic.filter
 
 import com.unciv.logic.civilization.Civilization
+import com.unciv.models.ruleset.Policy
+import com.unciv.models.ruleset.PolicyBranch
 import com.unciv.models.ruleset.Ruleset
 import com.unciv.testing.GdxTestRunner
 import com.unciv.testing.TestGame
@@ -15,6 +17,27 @@ class PolicyFilterTests {
     private lateinit var game: TestGame
     private lateinit var civ: Civilization
 
+    private fun addPolicyToBranch(branch: PolicyBranch, name: String): Policy {
+        val policy = game.createPolicy()
+        policy.name = name
+        policy.branch = branch
+        branch.policies.add(branch.policies.size - 1, policy)
+        game.ruleset.policies[name] = policy
+        return policy
+    }
+
+    private fun createNamedBranch(name: String, memberNames: List<String>): PolicyBranch {
+        val branch = game.createPolicyBranch()
+        branch.name = name
+        game.ruleset.policies[name] = branch
+        for (memberName in memberNames)
+            addPolicyToBranch(branch, memberName)
+        val complete = branch.policies.last()
+        complete.name = name + Policy.branchCompleteSuffix
+        game.ruleset.policies[complete.name] = complete
+        return branch
+    }
+
     @Before
     fun initTheWorld() {
         setupModdedGame()
@@ -24,10 +47,23 @@ class PolicyFilterTests {
     fun testPolicyMatchesFilter() {
         // Don't use a fake Policy without a branch, the policyFilter would stumble over a lateinit.
         val taggedPolicyBranch = game.createPolicyBranch("Some marker")
+
+        // Civ VI has no pre-defined policies, so build the branches we test against.
+        val traditionBranch = createNamedBranch("Tradition",
+            listOf("Aristocracy", "Legalism", "Oligarchy", "Landed Elite", "Monarchy"))
+        val libertyBranch = createNamedBranch("Liberty",
+            listOf("Citizenship", "Collective Rule", "Meritocracy"))
+
         val polices = listOf(
-            "Tradition", "Aristocracy", "Legalism", "Oligarchy", "Landed Elite", "Monarchy",
-            "Liberty", "Citizenship", "Honor", "Piety"
-        ).mapNotNull { game.ruleset.policies[it] } + taggedPolicyBranch
+            game.ruleset.policies["Tradition"]!!,
+            game.ruleset.policies["Aristocracy"]!!,
+            game.ruleset.policies["Legalism"]!!,
+            game.ruleset.policies["Oligarchy"]!!,
+            game.ruleset.policies["Landed Elite"]!!,
+            game.ruleset.policies["Monarchy"]!!,
+            game.ruleset.policies["Liberty"]!!,
+            game.ruleset.policies["Citizenship"]!!
+        ) + taggedPolicyBranch
         for (policy in polices) {
             civ.policies.freePolicies++
             civ.policies.adopt(policy)
@@ -60,7 +96,7 @@ class PolicyFilterTests {
             println(failures.joinToString("\n"))
             throw AssertionError()
         }
-        Assert.assertEquals(civ.getCompletedPolicyBranchesCount(), 2) // Tradion and taggedPolicyBranch
+        Assert.assertEquals(2, civ.getCompletedPolicyBranchesCount()) // Tradition and the tagged branch
     }
 
     private fun setupModdedGame(): Ruleset {

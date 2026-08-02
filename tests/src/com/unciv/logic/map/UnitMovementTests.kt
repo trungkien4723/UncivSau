@@ -284,7 +284,7 @@ class UnitMovementTests(
         val atWarCiv = testGame.addCiv()
         atWarCiv.diplomacyFunctions.makeCivilizationsMeet(civInfo)
         atWarCiv.getDiplomacyManager(civInfo)!!.declareWar()
-        val enemyWorkerUnit = testGame.addUnit("Worker", atWarCiv, testGame.tileMap[1,2])
+        val enemyWorkerUnit = testGame.addUnit("Builder", atWarCiv, testGame.tileMap[1,2])
 
         val otherCiv = testGame.addCiv()
         val city = testGame.addCity(otherCiv, tile)

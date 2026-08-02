@@ -209,9 +209,6 @@ class Civilization : IsPartOfGameInfoSerialization {
         var notifications = ArrayList<Notification>()
     }
 
-    /** Civ 6: Whether to open the government picker (e.g., after unlocking a new government via civic) */
-    var shouldOpenGovernmentPicker = false
-
     /** for trades here, ourOffers is the current civ's offers, and theirOffers is what the requesting civ offers  */
     val tradeRequests = ArrayList<TradeRequest>()
 
@@ -1062,7 +1059,7 @@ class Civilization : IsPartOfGameInfoSerialization {
         var count = 0
         // Outgoing domestic routes (tracked on source city)
         for (city in cities) {
-            if (city.tradeRoutes.domesticRouteTo != null) count++
+            if (city.tradeRoutes.hasDomesticRoute()) count++
         }
         // Outgoing international routes (tracked on destination city's internationalRoutes)
         for (civ in gameInfo.civilizations) {
@@ -1296,6 +1293,9 @@ class Civilization : IsPartOfGameInfoSerialization {
             Stat.Gold -> gold
             Stat.Faith -> religionManager.storedFaith
             Stat.Tourism -> storedTourism
+            Stat.Happiness -> 0
+            Stat.Housing -> getHousing().toInt()
+            Stat.Amenities -> getAmenities().toInt()
             Stat.DiplomaticFavor -> diplomaticFavor
             Stat.GovernorXP -> governorXP
             else -> throw Exception("Unrecognized stat ${stat.name}")

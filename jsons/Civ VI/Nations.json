@@ -4138,6 +4138,7 @@
     "outerColor": [0, 47, 135],
     "innerColor": [255, 255, 255],
     "cities": ["Seoul"],
+    "uniques": ["[+2 Science] [in all cities]"],
     "spyNames": ["Min-jun", "Soo-yeon", "Ji-ho", "Eun-ji"]
   },
   {

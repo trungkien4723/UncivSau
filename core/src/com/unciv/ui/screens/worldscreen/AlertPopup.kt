@@ -183,7 +183,7 @@ class AlertPopup(
             player.getDiplomacyManager(bullyOrAttacker)!!.sideWithCityState()
             val warReason = if (popupAlert.type == AlertType.AttackedAllyMinor) WarType.AlliedCityStateWar else WarType.ProtectedCityStateWar
             player.getDiplomacyManager(bullyOrAttacker)!!.declareWar(DeclareWarReason(warReason, cityState))
-            cityState.getDiplomacyManager(player)!!.addInfluence(20f) // You went to war for us!!
+            cityState.getDiplomacyManager(player)!!.addInfluence(2f) // You went to war for us!!
         }.row()}
 
         addCloseButton("You'll pay for this!", KeyboardBinding.Confirm) {
@@ -441,7 +441,7 @@ class AlertPopup(
             }
 
             if (originalOwner.isCityState) {
-                originalOwner.getDiplomacyManagerOrMeet(captor).addInfluence(45f)
+                originalOwner.getDiplomacyManagerOrMeet(captor).addInfluence(3f)
             } else if (originalOwner.isMajorCiv()) {
                 // No extra bonus from doing it several times
                 originalOwner.getDiplomacyManagerOrMeet(captor)

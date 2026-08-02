@@ -316,7 +316,7 @@ object TranslationFileWriter {
 
     @VisibleForTesting
     fun getGeneratedStringsSize(): Int {
-        return GenerateStringsFromJSONs(Gdx.files.local("jsons/Civ V - Vanilla")).values.sumOf {
+        return GenerateStringsFromJSONs(Gdx.files.local("jsons/${BaseRuleset.Civ_VI.fullName}")).values.sumOf {
             // exclude empty lines
             it.count { line: String -> !line.startsWith(specialNewLineCode) }
         }

@@ -55,7 +55,7 @@ class DistrictCapacityTests {
         assertEquals("Pop 10: capacity = (10-1)/3 + 1 = 4", 4, city.getDistrictCapacity())
         
         city.population.setPopulation(15)
-        assertEquals("Pop 15: capacity = (15-1)/3 + 1 = 6", 6, city.getDistrictCapacity())
+        assertEquals("Pop 15: capacity = (15-1)/3 + 1 = 5", 5, city.getDistrictCapacity())
     }
 
     @Test

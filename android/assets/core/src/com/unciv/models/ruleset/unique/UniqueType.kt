@@ -699,7 +699,7 @@ enum class UniqueType(
     ////// Improvement uniques
     ImprovementBuildableByFreshWater("Can also be built on tiles adjacent to fresh water", UniqueTarget.Improvement),
     ImprovementStatsOnTile("[stats] from [tileFilter] tiles", UniqueTarget.Improvement),
-    ImprovementStatsForAdjacencies("[stats] for each adjacent [tileFilter]", UniqueTarget.Improvement),
+    ImprovementStatsForAdjacencies("[stats] for each adjacent [tileFilter] tile", UniqueTarget.Improvement),
     StatsForAdjacentDistrict("[stats] for each adjacent [districtFilter]", UniqueTarget.District),
     EnsureMinimumStats("Ensures a minimum tile yield of [stats]", UniqueTarget.Improvement), // City center
 
@@ -1108,7 +1108,7 @@ enum class UniqueType(
 
     DiplomaticFavor("[amount] Diplomatic Favor", UniqueTarget.Global),
     WorldCongressProposal("[proposal] proposal", UniqueTarget.Event),
-    WorldCongressResolution("[resolution]", UniqueTarget.Event),
+    WorldCongressResolution("[resolution] resolution", UniqueTarget.Event),
     DiplomaticVictory("[amount] Diplomatic Favor for Diplomatic Victory", UniqueTarget.Global),
     Emergency("[emergencyType] emergency", UniqueTarget.Event),
 
@@ -1126,10 +1126,6 @@ enum class UniqueType(
     RockBandCulture("[amount] Culture from Rock Band performance", UniqueTarget.Unit, UniqueTarget.Global),
     RockBandGold("[amount] Gold from Rock Band pillage", UniqueTarget.Unit, UniqueTarget.Global),
     RockBandCompete("[rock band] compete with other Rock Bands", UniqueTarget.Unit),
-    CorporealCorporation("[corporation] corporation", UniqueTarget.Global),
-    CorporealCorporationAction("[corporation] action available", UniqueTarget.Global),
-    CorporealMonopoly("[resource] monopoly", UniqueTarget.Global),
-    CorporealMonopolyAction("[resource] monopoly action available", UniqueTarget.Global),
     DramaticAges("Golden Age length modified for Dramatic Ages", UniqueTarget.ModOptions, flags = UniqueFlag.setOfNoConditionals),
 
     PowerConsumption("[positiveAmount] Power [consumptionFilter] buildings consume", UniqueTarget.Building, UniqueTarget.Terrain,
@@ -1138,7 +1134,7 @@ enum class UniqueType(
         docDescription = "Buildings that produce electricity (Wind Farm, Solar Plant, Power Plant)."),
     ClimateChange("CO2: [positiveAmount]", UniqueTarget.Global,
         docDescription = "Accumulated CO2 contributes to Climate Change. Triggers sea level rise at certain thresholds."),
-    NaturalDisaster("[disasterType]", UniqueTarget.Global,
+    NaturalDisaster("[disasterType] natural disaster", UniqueTarget.Global,
         docDescription = "Natural disasters can pillage/improve tiles and districts. Types: Flood, Volcano, Storm, Drought."),
 
     SuppressWarnings("Suppress warning [validationWarning]", *UniqueTarget.CanIncludeSuppression, flags = UniqueFlag.setOfHiddenNoConditionals, docDescription = Suppression.uniqueDocDescription),

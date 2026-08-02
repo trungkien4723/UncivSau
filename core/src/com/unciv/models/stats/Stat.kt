@@ -20,6 +20,7 @@ enum class Stat(
     Science(NotificationIcon.Science, UncivSound.Chimes, Fonts.science, colorFromHex(0x8c9dff)),
     Culture(NotificationIcon.Culture, UncivSound.Paper, Fonts.culture, colorFromHex(0x8b60ff)),
     Faith(NotificationIcon.Faith, UncivSound.Choir, Fonts.faith, colorFromHex(0xcbdfff)),
+    Happiness(NotificationIcon.Happiness, UncivSound.Click, Fonts.happiness, colorFromHex(0xffb400)),
     Housing(NotificationIcon.Housing, UncivSound.Click, 'H', colorFromHex(0x00bcd4)),
     Amenities(NotificationIcon.Amenities, UncivSound.Click, 'A', colorFromHex(0xe91e63)),
     Tourism(NotificationIcon.Tourism, UncivSound.Chimes, 'T', colorFromHex(0xff6f00)),

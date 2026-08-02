@@ -10,14 +10,14 @@
   {
     "name": "Barbarians",
     "outerColor": [
-      139,
-      0,
-      0
+      168,
+      63,
+      63
     ],
     "innerColor": [
-      0,
-      0,
-      0
+      4,
+      4,
+      4
     ],
     "cities": [],
     "spyNames": ["Barbarian"]
@@ -50,7 +50,7 @@
     "favoredReligion": "Christianity",
     "uniqueName": "Manifest Destiny",
     "uniques": [
-      "American unique Atomic era air unit that replaces the Fighter.  Gains +5Combat Strength against fighter aircraft, has +2 flight range, and gains [+50]% experience.<Advanced Flight>",
+      "American unique Atomic era air unit that replaces the Fighter.  Gains +5Combat Strength against fighter aircraft, has +2 flight range, and gains [+50]% experience <after discovering [Advanced Flight]>",
       "American unique Industrial era unit when Teddy Roosevelt is their leader that replaces the Cuirassiers.Culture is earned from kills on theirCapital's continent. +10Combat Strength when fighting on Hills. Lower maintenance cost.<Ballistics>"
     ],
     "cities": [
@@ -1390,7 +1390,7 @@
     "favoredReligion": "Christianity",
     "uniqueName": "Furor Teutonicus",
     "uniques": [
-      "German unique Modern era naval unit that replaces the Submarine. Cheaper to produce, [+1] Sight, and +10Combat Strength when fighting on Ocean tiles. Able to reveal other stealthed units.<Electricity>"
+      "German unique Modern era naval unit that replaces the Submarine. Cheaper to produce, [+1] Sight, and +10Combat Strength when fighting on Ocean tiles. Able to reveal other stealthed units <after discovering [Electricity]>"
     ],
     "cities": [
       "Berlin",
@@ -2363,7 +2363,7 @@
     "startBias": [
       "Desert"
     ],
-    "preferredVictoryType": "Economic",
+    "preferredVictoryType": "Diplomatic",
     "personality": "Mansa Musa",
     "agenda": "Diplomatic",
     "hiddenAgendas": [
@@ -2830,14 +2830,14 @@
       "Piety"
     ],
     "outerColor": [
-      42,
-      51,
-      128
+      39,
+      47,
+      116
     ],
     "innerColor": [
-      234,
-      45,
-      25
+      236,
+      66,
+      48
     ],
     "favoredReligion": "Christianity",
     "uniqueName": "Knarr",
@@ -4138,6 +4138,7 @@
     "outerColor": [0, 47, 135],
     "innerColor": [255, 255, 255],
     "cities": ["Seoul"],
+    "uniques": ["[+2 Science] [in all cities]"],
     "spyNames": ["Min-jun", "Soo-yeon", "Ji-ho", "Eun-ji"]
   },
   {
@@ -4152,7 +4153,7 @@
   {
     "name": "Buenos Aires",
     "cityStateType": "Cultured",
-    "outerColor": [117, 170, 219],
+    "outerColor": [102, 147, 188],
     "innerColor": [255, 255, 255],
     "cities": ["Buenos Aires"],
     "uniques": ["[+2] [Amenities] from [Luxury resource] tiles [in all cities]"],
@@ -4170,10 +4171,10 @@
   {
     "name": "Kumasi",
     "cityStateType": "Cultured",
-    "outerColor": [218, 165, 32],
-    "innerColor": [0, 128, 0],
+    "outerColor": [223, 178, 65],
+    "innerColor": [2, 111, 2],
     "cities": ["Kumasi"],
-    "uniques": ["[+1] [Culture] from [Rainforest] tiles [in all cities]"],
+    "uniques": ["[+1] [Culture] from [Jungle] tiles [in all cities]"],
     "spyNames": ["Kwame", "Ama", "Kofi", "Yaa"]
   },
   {
@@ -4206,7 +4207,7 @@
   {
     "name": "Amsterdam",
     "cityStateType": "Mercantile",
-    "outerColor": [255, 102, 0],
+    "outerColor": [243, 97, 0],
     "innerColor": [255, 255, 255],
     "cities": ["Amsterdam"],
     "uniques": ["[+25]% [Gold] from Trade Routes"],
@@ -4233,8 +4234,8 @@
   {
     "name": "Carthage",
     "cityStateType": "Militaristic",
-    "outerColor": [128, 0, 128],
-    "innerColor": [255, 0, 0],
+    "outerColor": [105, 3, 105],
+    "innerColor": [255, 51, 51],
     "cities": ["Carthage"],
     "uniques": ["[+1] [Production] from [Bonus resource] tiles [in all cities]"],
     "spyNames": ["Hannibal", "Dido", "Hasdrubal", "Sophonisba"]
@@ -4260,7 +4261,7 @@
   {
     "name": "Jerusalem",
     "cityStateType": "Religious",
-    "outerColor": [218, 165, 32],
+    "outerColor": [177, 135, 29],
     "innerColor": [255, 255, 255],
     "cities": ["Jerusalem"],
     "uniques": ["[+1] [Faith] from [Natural Wonder] tiles [in all cities]"],
@@ -4278,7 +4279,7 @@
   {
     "name": "Vatican City",
     "cityStateType": "Religious",
-    "outerColor": [218, 165, 32],
+    "outerColor": [160, 120, 10],
     "innerColor": [255, 255, 255],
     "cities": ["Vatican City"],
     "uniques": ["[+1] [Culture] from [Natural Wonder] tiles [in all cities]"],
@@ -4332,7 +4333,7 @@
   {
     "name": "Monaco",
     "cityStateType": "Entertainment",
-    "outerColor": [218, 165, 32],
+    "outerColor": [140, 110, 20],
     "innerColor": [255, 255, 255],
     "cities": ["Monaco"],
     "uniques": ["[+15]% [Gold] [in capital]"],

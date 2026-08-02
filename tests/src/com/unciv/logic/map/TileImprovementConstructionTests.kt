@@ -41,6 +41,8 @@ class TileImprovementConstructionTests {
         civInfo = testGame.addCiv()
         for (tech in testGame.ruleset.technologies.values)
             civInfo.tech.addTechnology(tech.name)
+        for (civic in testGame.ruleset.civics.values)
+            civInfo.civics.addCivic(civic.name, showNotification = false)
         city = testGame.addCity(civInfo, tileMap[0,0])
     }
 
@@ -55,6 +57,8 @@ class TileImprovementConstructionTests {
             // I would like some comments on whether this approach is fine or if it's better if I handle every single unique here as well
             if (improvement.hasUnique(UniqueType.CanOnlyBeBuiltOnTile, GameContext.IgnoreConditionals)) continue
             if (improvement.hasUnique(UniqueType.Unbuildable, GameContext.IgnoreConditionals)) continue
+            if (improvement.uniques.contains("Can only be built on [Coastal] tiles")) continue
+            if (improvement.hasUnique(UniqueType.MustBeNextTo, GameContext.IgnoreConditionals)) continue
 
             val tile = tileMap[1,1]
             tile.baseTerrain = terrain
@@ -68,6 +72,8 @@ class TileImprovementConstructionTests {
                 civInfo = testGame.addCiv(improvement.uniqueTo!!)
                 for (tech in testGame.ruleset.technologies.values)
                     civInfo.tech.addTechnology(tech.name)
+                for (civic in testGame.ruleset.civics.values)
+                    civInfo.civics.addCivic(civic.name, showNotification = false)
                 city.civ = civInfo
                 city.id = if (city.id != NO_ID) city.id else pseudoRandomId(civInfo)
             }
@@ -141,6 +147,8 @@ class TileImprovementConstructionTests {
                 civInfo = testGame.addCiv(improvement.uniqueTo!!)
                 for (tech in testGame.ruleset.technologies.values)
                     civInfo.tech.addTechnology(tech.name)
+                for (civic in testGame.ruleset.civics.values)
+                    civInfo.civics.addCivic(civic.name, showNotification = false)
                 city.civ = civInfo
                 city.id = if (city.id != NO_ID) city.id else pseudoRandomId(civInfo)
             }

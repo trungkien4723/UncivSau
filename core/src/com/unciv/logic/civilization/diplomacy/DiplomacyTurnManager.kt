@@ -117,7 +117,7 @@ object DiplomacyTurnManager {
             }
 
             // Potentially notify about afraid status
-            if (getInfluence() < 30  // We usually don't want to bully our friends
+            if (getEnvoys() < DiplomacyManager.friendThreshold  // We usually don't want to bully our friends
                 && !hasFlag(DiplomacyFlags.NotifiedAfraid)
                 && civInfo.cityStateFunctions.getTributeWillingness(otherCiv) > 0
                 && otherCiv.isMajorCiv()

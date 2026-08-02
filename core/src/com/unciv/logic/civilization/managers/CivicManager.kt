@@ -263,7 +263,7 @@ class CivicManager : IsPartOfGameInfoSerialization {
             .filter { it.requiredCivic == civicName }
             .filter { civInfo.government.isGovernmentAvailable(it) }
         if (newlyUnlockedGovs.isNotEmpty()) {
-            civInfo.shouldOpenGovernmentPicker = true
+            civInfo.government.shouldOpenGovernmentPicker = true
         }
 
         val triggerNotificationText = "due to adopting [$civicName]"
@@ -295,7 +295,7 @@ class CivicManager : IsPartOfGameInfoSerialization {
             .filter { it.requiredCivic == civicName }
             .filter { civInfo.government.isGovernmentAvailable(it) }
         if (newlyUnlockedGovs.isNotEmpty()) {
-            civInfo.shouldOpenGovernmentPicker = true
+            civInfo.government.shouldOpenGovernmentPicker = true
         }
         updateResearchProgress()
     }

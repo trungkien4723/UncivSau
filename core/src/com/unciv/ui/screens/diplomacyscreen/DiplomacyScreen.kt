@@ -283,13 +283,18 @@ class DiplomacyScreen(
     internal fun getRelationshipTable(otherCivDiplomacyManager: DiplomacyManager): Table {
         val relationshipTable = Table()
 
-        val opinionOfUs =
-            if (otherCivDiplomacyManager.civInfo.isCityState) otherCivDiplomacyManager.getInfluence().toInt()
-            else otherCivDiplomacyManager.opinionOfOtherCiv().toInt()
+        val isCityState = otherCivDiplomacyManager.civInfo.isCityState
+        val atWar = isCityState && otherCivDiplomacyManager.civInfo.isAtWarWith(otherCivDiplomacyManager.otherCiv)
+        val opinionOfUs = when {
+            !isCityState -> otherCivDiplomacyManager.opinionOfOtherCiv().toInt()
+            atWar -> otherCivDiplomacyManager.getInfluence().toInt() // -60 while at war
+            else -> otherCivDiplomacyManager.getEnvoys()
+        }
+        val unitLabel = if (isCityState && !atWar) " Envoys" else ""
 
         relationshipTable.add("{Our relationship}: ".toLabel())
         val relationshipLevel = otherCivDiplomacyManager.relationshipLevel()
-        val relationshipText = relationshipLevel.name.tr() + " ($opinionOfUs)"
+        val relationshipText = relationshipLevel.name.tr() + " ($opinionOfUs$unitLabel)"
         val relationshipColor = when (relationshipLevel) {
             RelationshipLevel.Neutral -> Color.WHITE
             RelationshipLevel.Favorable, RelationshipLevel.Friend,

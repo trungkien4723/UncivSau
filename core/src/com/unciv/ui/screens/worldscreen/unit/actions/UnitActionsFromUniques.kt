@@ -8,6 +8,7 @@ import com.unciv.logic.civilization.PlayerType
 import com.unciv.logic.civilization.diplomacy.DiplomacyFlags
 import com.unciv.logic.civilization.managers.GameModesManager
 import com.unciv.logic.civilization.managers.ImprovementFunctions
+import com.unciv.logic.city.City
 import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.tile.ImprovementBuildingProblem
 import com.unciv.logic.map.tile.RoadStatus
@@ -630,6 +631,7 @@ internal fun getBuildDistrictActions(unit: MapUnit, tile: Tile) = sequence {
         return sequenceOf(UnitAction(UnitActionType.CreateTradeRoute, useFrequency,
             action = {
                 val sourceCity = unit.civ.getCapital() ?: return@UnitAction
+                paveRoadAlongRoute(sourceCity, city, unit)
                 if (city.civ == unit.civ) {
                     // Domestic route
                     sourceCity.tradeRoutes.domesticRouteTo = city.name
@@ -647,6 +649,15 @@ internal fun getBuildDistrictActions(unit: MapUnit, tile: Tile) = sequence {
                 unit.destroy()
             }.takeIf { unit.hasMovement() }
         ))
+    }
+
+    private fun paveRoadAlongRoute(sourceCity: City, destinationCity: City, unit: MapUnit) {
+        val roadStatus = unit.civ.tech.getBestRoadAvailable()
+        if (roadStatus == RoadStatus.None) return
+        val path = sourceCity.getRoadPath(destinationCity) ?: return
+        for (tile in path)
+            if (tile.isLand)
+                tile.setRoadStatus(roadStatus, unit.civ)
     }
 
     internal fun getPerformRockBandActions(unit: MapUnit, tile: Tile): Sequence<UnitAction> {

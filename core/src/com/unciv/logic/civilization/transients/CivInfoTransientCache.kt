@@ -3,6 +3,7 @@ package com.unciv.logic.civilization.transients
 import com.unciv.Constants
 import com.unciv.logic.city.City
 import com.unciv.logic.civilization.Civilization
+import com.unciv.logic.civilization.diplomacy.DiplomacyManager
 import com.unciv.logic.civilization.Notification
 import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.logic.civilization.NotificationIcon
@@ -329,6 +330,7 @@ class CivInfoTransientCache(val civInfo: Civilization) {
         for (diplomacyManager in civInfo.diplomacy.values) {
             val cityState = diplomacyManager.otherCiv
             if (!cityState.isCityState || cityState.isDefeated()) continue
+            val civDiplomacy = cityState.getDiplomacyManager(civInfo)!!
             val uniqueMap = when {
                 cityState.allyCiv == civInfo -> {
                     val map = UniqueMap()
@@ -336,7 +338,8 @@ class CivInfoTransientCache(val civInfo: Civilization) {
                     map.addUniques(cityState.nation.uniqueMap.getAllUniques().toList())
                     map
                 }
-                cityState.getDiplomacyManager(civInfo)!!.getInfluence() >= 30 -> cityState.cityStateType.friendBonusUniqueMap
+                civDiplomacy.getEnvoys() >= DiplomacyManager.friendThreshold
+                    && !cityState.isAtWarWith(civInfo) -> cityState.cityStateType.friendBonusUniqueMap
                 else -> continue
             }
             newMaps.add(uniqueMap)

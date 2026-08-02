@@ -673,6 +673,110 @@ enum class UniqueParameterType(
         override fun getTranslationWriterStringsForOutput() = scanExistingValues(this)
     },
 
+    /** [UniqueType.CreatesOneDistrict] */
+    DistrictName("districtName", "Campus", "The name of any district") {
+        override fun getKnownValuesForAutocomplete(ruleset: Ruleset) = ruleset.districts.keys
+    },
+
+    /** [UniqueType.BuildDistricts], [UniqueType.StatsForAdjacentDistrict], [UniqueType.TriggerUponConstructingDistrict] */
+    DistrictFilter("districtFilter", "Campus", "The name of any district, a Stat, or 'all'") {
+        override val staticKnownValues = Stat.names() + Constants.all
+        override fun isKnownValue(parameterText: String, ruleset: Ruleset) = when {
+            parameterText in staticKnownValues -> true
+            parameterText in ruleset.districts -> true
+            ruleset.districts.values.any { it.hasTagUnique(parameterText) } -> true
+            else -> false
+        }
+        override fun getKnownValuesForAutocomplete(ruleset: Ruleset) = staticKnownValues + ruleset.districts.keys
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = getErrorSeverityForFilter(parameterText, ruleset)
+    },
+
+    /** [UniqueType.TriggerUponAdoptingCivic], no central implementation */
+    CivicFilter("civicFilter", "Early Empire", "The name of any civic, an era, or 'all'") {
+        override val staticKnownValues = Constants.all
+        override fun isKnownValue(parameterText: String, ruleset: Ruleset) = when (parameterText) {
+            in staticKnownValues -> true
+            in ruleset.civics -> true
+            else -> ruleset.civics.values.any { it.hasTagUnique(parameterText) } || EraFilter.isKnownValue(parameterText, ruleset)
+        }
+        override fun getKnownValuesForAutocomplete(ruleset: Ruleset) =
+            staticKnownValues + ruleset.civics.keys + EraFilter.getKnownValuesForAutocomplete(ruleset)
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = getErrorSeverityForFilter(parameterText, ruleset)
+    },
+
+    /** Game-mode named entities that are not part of the core ruleset - contents are ignored */
+    Corporation("corporation", "Heron King", "The name of a corporation", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    EmergencyType("emergencyType", "Score", "The type of an emergency", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    Hero("hero", "Anansi", "The name of a hero", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    Legend("legend", "Legend of the Giants", "The name of a hero legend", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    Disaster("disaster", "Comet", "The name of a disaster", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    DisasterType("disasterType", "Volcano", "The type of a disaster", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    ConsumptionFilter("consumptionFilter", "all", "A filter for buildings consuming power", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    ProductionFilter("productionFilter", "all", "A filter for buildings producing power", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    RockBand("rock band", "Neo", "The name of a rock band", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    Rock("rock", "Neo", "The name of a rock", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    Society("society", "Owls of Minerva", "The name of a secret society", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    SecretSociety("secretSociety", "Owls of Minerva", "The name of a secret society", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    Rank("rank", "Hermetic", "The rank of a secret society", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    SocietyRank("societyRank", "Hermetic", "The rank of a secret society", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    ClimatePhase("climatePhase", "Warm", "The name of a climate phase", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    Proposal("proposal", "Economy", "The name of a world congress proposal", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    Resolution("resolution", "Fund Funds", "The name of a world congress resolution", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
+    Zombie("zombie", "Chosen", "The name of a zombie", "Civ VI") {
+        override fun getErrorSeverity(parameterText: String, ruleset: Ruleset) = null
+    },
+
     /** We don't know anything about this parameter - this needs to return
      *  [isTranslationWriterGuess]() == `true` for all inputs or TranslationFileWriter will have a problem! */
     Unknown("param", "Unknown") {

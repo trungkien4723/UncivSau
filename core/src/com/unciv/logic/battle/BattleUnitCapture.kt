@@ -201,8 +201,17 @@ object BattleUnitCapture {
         capturedUnit.cache.state = GameContext(capturedUnit)
 
         val workerTypeUnit = capturingCiv.gameInfo.ruleset.units.values
-            .firstOrNull { it.isCivilian() && it.getMatchingUniques(UniqueType.BuildImprovements, GameContext.IgnoreConditionals)
-            .any { unique -> unique.params[0] == "Land" } }
+            .firstOrNull {
+                it.isCivilian() && !it.hasUnique(UniqueType.GreatPerson) && (
+                    it.getMatchingUniques(UniqueType.BuildImprovements, GameContext.IgnoreConditionals)
+                        .any { unique -> unique.params[0] == "Land" || unique.params[0] == "All" }
+                        || it.getMatchingUniques(UniqueType.ConstructImprovementInstantly, GameContext.IgnoreConditionals)
+                        .any { unique ->
+                            unique.params[0].startsWith("All") || unique.params[0].startsWith("Land")
+                                    || unique.params[0].startsWith("{All}")
+                        }
+                    )
+            }
             ?: return null
         return capturingCiv.units.placeUnitNearTile(capturedUnit.currentTile.position, workerTypeUnit, capturedUnit.id)
             ?.currentTile?.position

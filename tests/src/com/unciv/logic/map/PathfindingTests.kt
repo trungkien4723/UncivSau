@@ -233,7 +233,7 @@ class PathfindingTests(
 
     @Test
     fun getMovementToTilesAtPosition_military_alliedCivilians_pathsThrough() {
-        verticalWall(1, {tile -> testGame.addUnit("Worker", civInfo, tile)})
+        verticalWall(1, {tile -> testGame.addUnit("Builder", civInfo, tile)})
         val unit = testGame.addUnit("Warrior", civInfo, originTile)
         val paths = unit.movement.getMovementToTilesAtPosition(originTile.position, 2f)
         assertTrue("getMovementToTilesAtPosition should path through allied civilians", paths.containsKey(testGame.tileMap[2,0]))
@@ -241,7 +241,7 @@ class PathfindingTests(
 
     @Test
     fun getShortestPath_military_alliedCivilianAtEndOfTurn_doesEndTurnOnCivilian() {
-        verticalWall(2, {tile -> testGame.addUnit("Worker", civInfo, tile)})
+        verticalWall(2, {tile -> testGame.addUnit("Builder", civInfo, tile)})
         val unit = testGame.addUnit("Warrior", civInfo, originTile)
         val paths = unit.movement.getShortestPath(testGame.tileMap[4,4])
         assertEquals(listOf(testGame.tileMap[2,2], testGame.tileMap[4,4]), paths)
@@ -249,7 +249,7 @@ class PathfindingTests(
 
     @Test
     fun getMovementToTilesAtPosition_military_neutralCivilians_doesNotPathThrough() {
-        verticalWall(1, {tile -> testGame.addUnit("Worker", neutralCiv, tile)})
+        verticalWall(1, {tile -> testGame.addUnit("Builder", neutralCiv, tile)})
         val unit = testGame.addUnit("Warrior", civInfo, originTile)
         val paths = unit.movement.getMovementToTilesAtPosition(originTile.position, 2f)
         assertTrue("getMovementToTilesAtPosition should move to neutral civilians", paths.containsKey(testGame.tileMap[1,0]))
@@ -258,7 +258,7 @@ class PathfindingTests(
 
     @Test
     fun getShortestPath_military_neutralCivilianAtEndOfTurn_doesNotEndTurnOnCivilian() {
-        verticalWall(2, {tile -> testGame.addUnit("Worker", neutralCiv, tile)})
+        verticalWall(2, {tile -> testGame.addUnit("Builder", neutralCiv, tile)})
         val unit = testGame.addUnit("Warrior", civInfo, originTile)
         val paths = unit.movement.getShortestPath(testGame.tileMap[4,4])
         assertEquals(paths.toString(), listOf(1,3,4), paths.map { it.position.x })
@@ -266,7 +266,7 @@ class PathfindingTests(
 
     @Test
     fun getMovementToTilesAtPosition_military_enemyCivilians_canMoveTo() {
-        verticalWall(1, {tile -> testGame.addUnit("Worker", barbarianCiv, tile)})
+        verticalWall(1, {tile -> testGame.addUnit("Builder", barbarianCiv, tile)})
         val unit = testGame.addUnit("Warrior", civInfo, originTile)
         val paths = unit.movement.getMovementToTilesAtPosition(originTile.position, 2f)
         assertTrue("getMovementToTilesAtPosition should move to enemy civilians", paths.containsKey(testGame.tileMap[1,0]))
@@ -275,7 +275,7 @@ class PathfindingTests(
 
     @Test
     fun getShortestPath_military_enemyCivilianAtEndOfTurn_doesEndTurnOnCivilian() {
-        verticalWall(2, {tile -> testGame.addUnit("Worker", barbarianCiv, tile)})
+        verticalWall(2, {tile -> testGame.addUnit("Builder", barbarianCiv, tile)})
         val unit = testGame.addUnit("Warrior", civInfo, originTile)
         val paths = unit.movement.getShortestPath(testGame.tileMap[4,4])
         assertEquals(listOf(testGame.tileMap[2,2], testGame.tileMap[4,4]), paths)
@@ -384,24 +384,24 @@ class PathfindingTests(
 
     @Test
     fun getMovementToTilesAtPosition_civilian_alliedCivilians_pathsThrough() {
-        verticalWall(1, {tile -> testGame.addUnit("Worker", civInfo, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        verticalWall(1, {tile -> testGame.addUnit("Builder", civInfo, tile)})
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getMovementToTilesAtPosition(originTile.position, 2f)
         assertTrue("getMovementToTilesAtPosition should path through allied civilians", paths.containsKey(testGame.tileMap[2,0]))
     }
 
     @Test
     fun getShortestPath_civilian_alliedCivilivanAtEndOfTurn_doesNotEndTurnOnCivilian() {
-        verticalWall(2, {tile -> testGame.addUnit("Worker", civInfo, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        verticalWall(2, {tile -> testGame.addUnit("Builder", civInfo, tile)})
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getShortestPath(testGame.tileMap[4,4])
         assertEquals(paths.toString(), listOf(1,3,4), paths.map { it.position.x })
     }
 
     @Test
     fun getMovementToTilesAtPosition_civilian_neutralCivilians_doesNotPathThrough() {
-        verticalWall(1, {tile -> testGame.addUnit("Worker", neutralCiv, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        verticalWall(1, {tile -> testGame.addUnit("Builder", neutralCiv, tile)})
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getMovementToTilesAtPosition(originTile.position, 2f)
         assertTrue("getMovementToTilesAtPosition should move to neutral civilians", paths.containsKey(testGame.tileMap[1,0]))
         assertTrue("Classic getMovementToTilesAtPosition passes through neutral civilians", paths.containsKey(testGame.tileMap[2,0]))
@@ -409,16 +409,16 @@ class PathfindingTests(
 
     @Test
     fun getShortestPath_civilian_neutralCivilivanAtEndOfTurn_doesNotEndTurnOnCivilian() {
-        verticalWall(2, {tile -> testGame.addUnit("Worker", neutralCiv, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        verticalWall(2, {tile -> testGame.addUnit("Builder", neutralCiv, tile)})
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getShortestPath(testGame.tileMap[4,4])
         assertEquals(paths.toString(), listOf(1,3,4), paths.map { it.position.x })
     }
 
     @Test
     fun getMovementToTilesAtPosition_civilian_enemyCivilians_canMoveTo() {
-        verticalWall(1, {tile -> testGame.addUnit("Worker", barbarianCiv, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        verticalWall(1, {tile -> testGame.addUnit("Builder", barbarianCiv, tile)})
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getMovementToTilesAtPosition(originTile.position, 2f)
         assertTrue("getMovementToTilesAtPosition should move to enemy civilians", paths.containsKey(testGame.tileMap[1,0]))
         assertTrue("Classic getMovementToTilesAtPosition passes through enemy civilians", paths.containsKey(testGame.tileMap[2,0]))
@@ -426,16 +426,16 @@ class PathfindingTests(
 
     @Test
     fun getShortestPath_civilian_enemyCivilivanAtEndOfTurn_doesNotEndTurnOnCivilian() {
-        verticalWall(2, {tile -> testGame.addUnit("Worker", barbarianCiv, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        verticalWall(2, {tile -> testGame.addUnit("Builder", barbarianCiv, tile)})
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getShortestPath(testGame.tileMap[4,4])
         assertEquals(paths.toString(), listOf(1,3,4), paths.map { it.position.x })
     }
 
     @Test
     fun getMovementToTilesAtPosition_civilian_alliedMilitary_pathsThrough() {
-        verticalWall(1, {tile -> testGame.addUnit("Worker", civInfo, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        verticalWall(1, {tile -> testGame.addUnit("Builder", civInfo, tile)})
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getMovementToTilesAtPosition(originTile.position, 2f)
         assertTrue("getMovementToTilesAtPosition should path through allied military", paths.containsKey(testGame.tileMap[2,0]))
     }
@@ -443,7 +443,7 @@ class PathfindingTests(
     @Test
     fun getShortestPath_civilian_alliedMilitaryAtEndOfTurn_doesEndTurnOnCivilian() {
         verticalWall(2, {tile -> testGame.addUnit("Warrior", civInfo, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getShortestPath(testGame.tileMap[4,4])
         assertEquals(listOf(testGame.tileMap[2,2], testGame.tileMap[4,4]), paths)
     }
@@ -451,7 +451,7 @@ class PathfindingTests(
     @Test
     fun getMovementToTilesAtPosition_civilian_neutralMilitary_doesNotPathThrough() {
         verticalWall(1, {tile -> testGame.addUnit("Warrior", neutralCiv, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getMovementToTilesAtPosition(originTile.position, 2f)
         assertTrue("getMovementToTilesAtPosition should move to neutral military", paths.containsKey(testGame.tileMap[1,0]))
         assertTrue("Classic getMovementToTilesAtPosition passes through neutral military", paths.containsKey(testGame.tileMap[2,0]))
@@ -460,7 +460,7 @@ class PathfindingTests(
     @Test
     fun getShortestPath_civilian_neutralMilitaryAtEndOfTurn_doesNotEndTurnOnCivilian() {
         verticalWall(2, {tile -> testGame.addUnit("Warrior", neutralCiv, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getShortestPath(testGame.tileMap[4,4])
         assertEquals(paths.toString(), listOf(1,3,4), paths.map { it.position.x })
     }
@@ -468,7 +468,7 @@ class PathfindingTests(
     @Test
     fun getMovementToTilesAtPosition_civlian_enemyMilitary_canMoveTo() {
         verticalWall(1, {tile -> testGame.addUnit("Warrior", neutralCiv, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getMovementToTilesAtPosition(originTile.position, 2f)
         assertTrue("getMovementToTilesAtPosition should move to enemy military", paths.containsKey(testGame.tileMap[1,0]))
         assertTrue("Classic getMovementToTilesAtPosition passes through enemy military", paths.containsKey(testGame.tileMap[2,0]))
@@ -477,7 +477,7 @@ class PathfindingTests(
     @Test
     fun getShortestPath_civilian_enemyMilitaryAtEndOfTurn_cannotPathThrough() {
         verticalWall(2, {tile -> testGame.addUnit("Warrior", barbarianCiv, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getShortestPath(testGame.tileMap[4,4])
         assertEquals(listOf<Tile>(), paths)
     }
@@ -485,7 +485,7 @@ class PathfindingTests(
     @Test
     fun getMovementToTilesAtPosition_civilian_alliedCity_pathsThrough() {
         verticalWall(2, {tile -> testGame.addCity(civInfo, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getMovementToTilesAtPosition(originTile.position, 2f)
         assertTrue("getMovementToTilesAtPosition should move to allied tiles", paths.containsKey(testGame.tileMap[1,0]))
         assertTrue("getMovementToTilesAtPosition should move to allied cities", paths.containsKey(testGame.tileMap[2,0]))
@@ -494,7 +494,7 @@ class PathfindingTests(
     @Test
     fun getShortestPath_civilian_alliedCityAtEndOfTurn_doesEndTurnOnCity() {
         verticalWall(2, {tile -> testGame.addCity(civInfo, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getShortestPath(testGame.tileMap[4,4])
         assertEquals(listOf(testGame.tileMap[2,2], testGame.tileMap[4,4]), paths)
     }
@@ -502,7 +502,7 @@ class PathfindingTests(
     @Test
     fun getMovementToTilesAtPosition_civilian_neutralCity_doesNotPathThrough() {
         verticalWall(2, {tile -> testGame.addCity(neutralCiv, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getMovementToTilesAtPosition(originTile.position, 2f)
         assertTrue("getMovementToTilesAtPosition should pass through neutral cities", paths.containsKey(testGame.tileMap[1,0]))
         assertFalse("getMovementToTilesAtPosition should not move to neutral cities", paths.containsKey(testGame.tileMap[2,0]))
@@ -511,7 +511,7 @@ class PathfindingTests(
     @Test
     fun getShortestPath_civilian_neutralCityAtEndOfTurn_cannotPathThrough() {
         verticalWall(2, {tile -> testGame.addCity(neutralCiv, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getShortestPath(testGame.tileMap[4,4])
         assertEquals(listOf<Tile>(), paths)
     }
@@ -519,7 +519,7 @@ class PathfindingTests(
     @Test
     fun getMovementToTilesAtPosition_civilian_enemyCity_canMoveTo() {
         verticalWall(2, {tile -> testGame.addCity(barbarianCiv, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getMovementToTilesAtPosition(originTile.position, 2f)
         assertTrue("getMovementToTilesAtPosition should pass through enemy cities", paths.containsKey(testGame.tileMap[1,0]))
         assertTrue("Classic getMovementToTilesAtPosition moves to enemy cities", paths.containsKey(testGame.tileMap[2,0]))
@@ -528,7 +528,7 @@ class PathfindingTests(
     @Test
     fun getShortestPath_civilian_enemyCityAtEndOfTurn_cannotPathThrough() {
         verticalWall(2, {tile -> testGame.addCity(barbarianCiv, tile)})
-        val unit = testGame.addUnit("Worker", civInfo, originTile)
+        val unit = testGame.addUnit("Builder", civInfo, originTile)
         val paths = unit.movement.getShortestPath(testGame.tileMap[4,4])
         assertEquals(listOf<Tile>(), paths)
     }

@@ -34,8 +34,10 @@ class CapitalConnectionsFinderTests {
         ourCiv = testGame.addCiv()
 
         //Add techs to utilize roads
-        ourCiv.tech.addTechnology(testGame.ruleset.tileImprovements[RoadStatus.Road.name]?.techRequired!!)
-        ourCiv.tech.addTechnology(testGame.ruleset.tileImprovements[RoadStatus.Railroad.name]?.techRequired!!)
+        for (roadType in listOf(RoadStatus.Road, RoadStatus.Railroad)) {
+            val techRequired = testGame.ruleset.tileImprovements[roadType.name]?.techRequired
+            if (techRequired != null) ourCiv.tech.addTechnology(techRequired)
+        }
     }
 
     private fun createMedium(from: Int, to: Int, type: RoadStatus) {

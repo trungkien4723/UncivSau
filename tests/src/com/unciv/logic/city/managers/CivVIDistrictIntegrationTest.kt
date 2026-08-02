@@ -47,13 +47,13 @@ class CivVIDistrictIntegrationTest {
         city.cityConstructions.addToQueue("Campus")
         city.cityConstructions.setCurrentConstruction("Campus")
 
-        // Run a turn so the construction completes and the district is placed
-        com.unciv.logic.GameInfo().also { gameInfo ->
-            gameInfo.ruleset = ruleset
-        }
-        // Simpler: directly run city construction update loop a few times
-        repeat(40) {
-            city.cityConstructions.endTurn(com.unciv.models.stats.Stats())
+        // Simulate production so the construction completes and the district is placed
+        // (district cost is scaled up because all techs are researched)
+        val constructionStats = com.unciv.models.stats.Stats()
+        constructionStats.production += 2000
+        repeat(3) {
+            city.cityConstructions.endTurn(constructionStats)
+            city.cityConstructions.constructIfEnough()
         }
 
         // The district should now exist in the city
@@ -61,7 +61,7 @@ class CivVIDistrictIntegrationTest {
             city.districts.values.contains("Campus"))
         val districtTile = city.getTiles().firstOrNull { it.district == "Campus" }
         assertNotNull("A tile should host the Campus district", districtTile)
-        assertNull("Pillaged check: district should be active",
-            districtTile?.let { it.districtIsPillaged })
+        assertFalse("Pillaged check: district should be active",
+            districtTile!!.districtIsPillaged)
     }
 }

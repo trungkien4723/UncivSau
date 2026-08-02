@@ -151,7 +151,7 @@ class CountableTests {
             "[+1 Food] <when number of [[Barbarian] Units] is between [[Japanese] Units] and [[Embarked] Units]>" to 1,
             "[+1 Food] <when number of [[Science] Buildings] is between [[Wonder] Buildings] and [[All] Buildings]>" to 0,
             "[+1 Food] <when number of [[42] Buildings] is between [[Universe] Buildings] and [[Library] Buildings]>" to 2,
-            "[+1 Food] <when number of [Adopted [Tradition] Policies] is between [Adopted [[Tradition] branch] Policies] and [Adopted [all] Policies]>" to 0,
+            "[+1 Food] <when number of [Adopted [Tradition] Policies] is between [Adopted [[Tradition] branch] Policies] and [Adopted [all] Policies]>" to 2, // +2 Civ VI has no policies
             "[+1 Food] <when number of [Adopted [[Legalism] branch] Policies] is between [Adopted [Folklore] Policies] and [Completed Policy branches]>" to 2,
             "[+1 Food] <when number of [Remaining [Human player] Civilizations] is between [Remaining [City-State] Civilizations] and [Remaining [Major] Civilizations]>" to 0,
             "[+1 Food] <when number of [Remaining [city-state] Civilizations] is between [Remaining [la la la] Civilizations] and [Remaining [all] Civilizations]>" to 2,
@@ -218,9 +218,12 @@ class CountableTests {
         game.addCity(cityState, game.tileMap[-2,0], true)
         civ.updateStatsForNextTurn()
 
-        val happiness = Countables.getCountableAmount("Happiness", GameContext(civ, city))
-        // Base 9, -1 city, -3 population +1 deprecated countable should still work, but the bogus one should not
-        assertEquals("Testing Happiness", 6, happiness)
+        val context = GameContext(civ, city)
+        // The deprecated countable should still work, but the bogus one should not
+        assertEquals(1, Countables.getCountableAmount("City-States", context))
+        // Happiness does not exist in Civ VI - only Amenities
+        assertEquals(0, Countables.getCountableAmount("Happiness", context))
+        assertEquals(null, Countables.getCountableAmount("[[42] Monkeys]", context))
     }
     //endregion
 
@@ -250,8 +253,8 @@ class CountableTests {
         runTestParcours("Stat or resource per turn countable", { test: String ->
             Countables.getCountableAmount(test, context)
         },
-            "[Gold] Per Turn", 4, // Palace provides 3
-            "[Culture] Per Turn", 4, // Palace provides 1
+            "[Gold] Per Turn", 9, // Palace provides 8
+            "[Culture] Per Turn", 5, // Palace provides 2
             "[Coal] Per Turn", 5,
             "[Iron] Per Turn", 0,
             "[Null] Per Turn", null,
@@ -265,7 +268,7 @@ class CountableTests {
             for (stat in Stat.entries) {
                 val countableResult = Countables.Stats.eval(stat.name, context)
                 val expected = if (stat == Stat.Housing) civ.getHousing()
-                else if (stat == Stat.Amenities) civ.getAmenities()
+                else if (stat == Stat.Amenities) civ.getAmenities().toInt()
                 else context.getStatAmount(stat)
                 assertEquals("Testing $stat countable:", countableResult, expected)
             }
@@ -297,7 +300,7 @@ class CountableTests {
         },
             "Owned [All] Tiles", 14,
             "Owned [worked] Tiles", 8,
-            "Owned [Coastal] Tiles", 6,
+            "Owned [Coastal] Tiles", 5,
             "Owned [Coast] Tiles", 2,
             "Owned [Land] Tiles", 12,
             "Owned [Farm] Tiles", 0,
@@ -343,16 +346,16 @@ class CountableTests {
             city3.cityStats.update(updateCivStats = false)
         civ.updateStatsForNextTurn()
 
-        // Expect: (1 Palace + 1 Base Ancestor Tree + 2 for-every) * 1.5 = 6
+        // Expect: (2 Palace + 1 Base Ancestor Tree + 2 for-every) * 1.5 = 7.5
         val capitalCulture = city.cityStats.currentCityStats.culture
         // Expect: (1 Base Ancestor Tree + 2 for-every) * 1.5 = 4.5
         val city2Culture = city2.cityStats.currentCityStats.culture
-        // Expect: capitalCulture + city2Culture = 10.5
+        // Expect: capitalCulture + city2Culture = 12
         val civCulture = civ.stats.statsForNextTurn.culture
 
-        assertEquals(6f, capitalCulture, 0.005f)
+        assertEquals(7.5f, capitalCulture, 0.005f)
         assertEquals(4.5f, city2Culture, 0.005f)
-        assertEquals(10.5f, civCulture, 0.005f)
+        assertEquals(12f, civCulture, 0.005f)
 
         // FilteredBuildingsByCivs
         val civ2 = game.addCiv()
@@ -375,18 +378,20 @@ class CountableTests {
     @Test
     fun testPoliciesCountables() {
         setupModdedGame()
+        game.createNamedPolicyBranch("Tradition", "Aristocracy", "Legalism", "Oligarchy", "Landed Elite", "Monarchy")
+        game.createNamedPolicyBranch("Liberty", "Citizenship", "Republic", "Representation")
+        game.createNamedPolicyBranch("Honor", "Military Tradition")
+        game.createNamedPolicyBranch("Piety", "Organized Religion")
         civ.policies.run {
+            freePolicies = 11
             for (name in listOf(
                 "Tradition", "Aristocracy", "Legalism", "Oligarchy", "Landed Elite", "Monarchy",
                 "Liberty", "Citizenship", "Honor", "Piety"
             )) {
-                freePolicies++
-                val policy = getPolicyByName(name)
-                adopt(policy)
+                adopt(getPolicyByName(name))
             }
             // Don't use a fake Policy without a branch, the policyFilter would stumble over a lateinit.
             val taggedPolicyBranch = game.createPolicyBranch("Some marker")
-            freePolicies++
             adopt(taggedPolicyBranch) // Will be completed as it has no member policies
         }
 
@@ -394,7 +399,7 @@ class CountableTests {
         val civ2 = game.addCiv()
         game.addCity(civ2, game.tileMap[2,2])
         civ2.policies.run {
-            freePolicies += 2
+            freePolicies = 2
             adopt(getPolicyByName("Tradition"))
             adopt(getPolicyByName("Oligarchy"))
         }
@@ -425,10 +430,10 @@ class CountableTests {
             civ.tech.addTechnology(tech, false)
             Countables.getCountableAmount("Era number", context)
         },
-            "Agriculture", 0,
-            "Optics", 1,
-            "Archery", 1,
-            "Navigation", 3,
+            "Pottery", 0,
+            "Mathematics", 1,
+            "Shipbuilding", 1,
+            "Astronomy", 3,
         )
     }
 

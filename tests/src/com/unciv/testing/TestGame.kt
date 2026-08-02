@@ -185,6 +185,7 @@ class TestGame(vararg addGlobalUniques: String, forUITesting: Boolean = false) {
         barbarianCivilization.gameInfo = gameInfo
         barbarianCivilization.cache.updateState()
         gameInfo.civilizations.add(barbarianCivilization)
+        barbarianCivilization.setTransients()
         return barbarianCivilization
     }
 
@@ -322,4 +323,33 @@ class TestGame(vararg addGlobalUniques: String, forUITesting: Boolean = false) {
         createRulesetObject(ruleset.unitTypes, *uniques) { UnitType() }
     fun createUnitPromotion(vararg uniques: String) =
         createRulesetObject(ruleset.unitPromotions, *uniques) { Promotion() }
+
+    /**
+     *  Creates a [PolicyBranch] with the given [name] and member policies (by [memberNames]) directly in the ruleset,
+     *  including its auto-generated "complete" policy. Useful for tests that need Civ V-style policy data in a Civ VI ruleset.
+     */
+    fun createNamedPolicyBranch(name: String, vararg memberNames: String): PolicyBranch {
+        val branch = PolicyBranch()
+        branch.name = name
+        branch.branch = branch
+        branch.requires = ArrayList()
+        branch.era = "Ancient era"
+        ruleset.policyBranches[name] = branch
+        ruleset.policies[name] = branch
+        for (memberName in memberNames) {
+            val member = Policy()
+            member.name = memberName
+            member.branch = branch
+            member.requires = ArrayList()
+            branch.policies.add(member)
+            ruleset.policies[memberName] = member
+        }
+        val complete = Policy()
+        complete.name = name + Policy.branchCompleteSuffix
+        complete.branch = branch
+        complete.requires = ArrayList()
+        branch.policies.add(complete)
+        ruleset.policies[complete.name] = complete
+        return branch
+    }
 }

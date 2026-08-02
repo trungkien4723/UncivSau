@@ -363,7 +363,7 @@ object UnitActions {
                     }
                 }
 
-                recipient.getDiplomacyManager(unit.civ)!!.addInfluence(5f)
+                recipient.getDiplomacyManager(unit.civ)!!.addInfluence(1f)
             } else recipient.getDiplomacyManager(unit.civ)!!
                 .addModifier(DiplomaticModifiers.GaveUsUnits, 5f)
 

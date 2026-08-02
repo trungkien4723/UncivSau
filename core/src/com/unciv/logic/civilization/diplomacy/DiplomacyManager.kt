@@ -353,10 +353,14 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
      */
     @Readonly
     fun opinionOfOtherCiv(): Float {
-        var modifierSum = diplomaticModifiers.values.sum()
+        var modifierSum = diplomaticModifiers
+            .filterKeys { it != DiplomaticModifiers.Grievances.name }
+            .values.sum()
         // Angry about attacked CS and destroyed CS do not stack
         if (hasModifier(DiplomaticModifiers.DestroyedProtectedMinor) && hasModifier(DiplomaticModifiers.AttackedProtectedMinor))
             modifierSum -= getModifier(DiplomaticModifiers.AttackedProtectedMinor)
+        // Civ VI Grievances are tracked as a positive count, but they hurt our opinion of the offender
+        modifierSum -= getModifier(DiplomaticModifiers.Grievances)
         return modifierSum
     }
 
@@ -427,6 +431,7 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
              return otherCivDiplomacy().relationshipLevel()
 
          if (civInfo.isCityState) return when {
+             civInfo.isAtWarWith(otherCiv) -> RelationshipLevel.Unforgivable
              envoys >= suzerainThreshold -> RelationshipLevel.Ally
              envoys >= allyThreshold -> RelationshipLevel.Ally
              envoys >= friendThreshold -> RelationshipLevel.Friend
@@ -695,7 +700,7 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
             }
             // Other City-States that are not our ally don't like the fact that we made peace with their enemy
             if (thirdCiv.allyCiv != civInfo && thirdCiv.isAtWarWith(otherCiv))
-                thirdCiv.getDiplomacyManager(civInfo)!!.addInfluence(-10f)
+                thirdCiv.getDiplomacyManager(civInfo)!!.addInfluence(-1f)
         }
     }
 

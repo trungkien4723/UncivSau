@@ -738,7 +738,7 @@ class CityStats(val city: City) {
         for (building in city.cityConstructions.getBuiltBuildings()) {
             for (unique in building.uniqueObjects) {
                 if (unique.type == UniqueType.PowerConsumption) {
-                    totalConsumption += unique.params[1].toInt()
+                    totalConsumption += unique.params[0].toInt()
                 }
             }
         }
@@ -746,7 +746,7 @@ class CityStats(val city: City) {
         for (building in city.cityConstructions.getBuiltBuildings()) {
             for (unique in building.uniqueObjects) {
                 if (unique.type == UniqueType.PowerProduction) {
-                    totalProduction += unique.params[1].toInt()
+                    totalProduction += unique.params[0].toInt()
                 }
             }
         }

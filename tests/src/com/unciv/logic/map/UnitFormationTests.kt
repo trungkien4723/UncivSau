@@ -34,7 +34,7 @@ internal class UnitFormationTests {
     fun `basic formation functionality civilian`() {
         setUp(1)
         val centerTile = testGame.getTile(0,0)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile)
         val militaryUnit = testGame.addUnit("Warrior", civInfo, centerTile)
         assertTrue(civilianUnit.getOtherEscortUnit() != null)
         assertFalse(civilianUnit.isEscorting())
@@ -52,7 +52,7 @@ internal class UnitFormationTests {
     fun `basic formation functionality military`() {
         setUp(1)
         val centerTile = testGame.getTile(0,0)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile)
         val militaryUnit = testGame.addUnit("Warrior", civInfo, centerTile)
         assertTrue(militaryUnit.getOtherEscortUnit() != null)
         assertFalse(militaryUnit.isEscorting())
@@ -70,7 +70,7 @@ internal class UnitFormationTests {
     fun `basic formation not available functionality`() {
         setUp(1)
         val centerTile = testGame.getTile(0,0)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile)
         assertFalse(civilianUnit.getOtherEscortUnit() != null)
         assertFalse(civilianUnit.isEscorting())
         civilianUnit.startEscorting()
@@ -87,7 +87,9 @@ internal class UnitFormationTests {
     fun `formation idle units`() {
         setUp(1)
         val centerTile = testGame.getTile(0,0)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val buildableCivilianUnit = testGame.createBaseUnit("Civilian", "Can build [Farm] improvements on tiles")
+        buildableCivilianUnit.movement = 2
+        val civilianUnit = testGame.addUnit(buildableCivilianUnit.name, civInfo, centerTile)
         val militaryUnit = testGame.addUnit("Warrior", civInfo, centerTile)
         civilianUnit.startEscorting()
         assertTrue(civilianUnit.isIdle())
@@ -96,7 +98,7 @@ internal class UnitFormationTests {
         assertFalse(civilianUnit.isIdle())
         assertFalse(militaryUnit.isIdle())
         civilianUnit.currentMovement = 2f
-        civInfo.tech.techsResearched.add(testGame.ruleset.tileImprovements["Farm"]!!.techRequired!!)
+        testGame.ruleset.tileImprovements["Farm"]!!.techRequired?.let { civInfo.tech.techsResearched.add(it) }
         centerTile.startWorkingOnImprovement(testGame.ruleset.tileImprovements["Farm"]!!, civInfo, civilianUnit)
         assertFalse(civilianUnit.isIdle())
         assertFalse(militaryUnit.isIdle())
@@ -106,7 +108,7 @@ internal class UnitFormationTests {
     fun `formation movement` () {
         setUp(3)
         val centerTile = testGame.getTile(0,0)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile)
         val militaryUnit = testGame.addUnit("Warrior", civInfo, centerTile)
         civilianUnit.startEscorting()
         val targetTile = testGame.getTile(0,2)
@@ -121,7 +123,7 @@ internal class UnitFormationTests {
     fun `stop formation movement` () {
         setUp(3)
         val centerTile = testGame.getTile(0,0)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile)
         val militaryUnit = testGame.addUnit("Warrior", civInfo, centerTile)
         civilianUnit.startEscorting()
         civilianUnit.stopEscorting()
@@ -137,10 +139,10 @@ internal class UnitFormationTests {
     fun `formation canMoveTo` () {
         setUp(3)
         val centerTile = testGame.getTile(0,0)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile)
         val militaryUnit = testGame.addUnit("Warrior", civInfo, centerTile)
         val targetTile = testGame.getTile(0,2)
-        val blockingCivilianUnit = testGame.addUnit("Worker", civInfo, targetTile)
+        val blockingCivilianUnit = testGame.addUnit("Builder", civInfo, targetTile)
         assertFalse(civilianUnit.movement.canMoveTo(targetTile))
         assertTrue(militaryUnit.movement.canMoveTo(targetTile))
         civilianUnit.startEscorting()
@@ -149,19 +151,17 @@ internal class UnitFormationTests {
 
     @Test
     fun `formation canMoveTo water` () {
-        setUp(3, "Ocean")
+        setUp(3, "Grassland")
         val centerTile = testGame.getTile(0,0)
-        centerTile.baseTerrain = "Coast"
-        centerTile.isWater = true
-        centerTile.isLand = false
-        civInfo.tech.embarkedUnitsCanEnterOcean = true
-        civInfo.tech.addTechnology("Astronomy")
-        val civilianUnit = testGame.addUnit("Work Boats", civInfo, centerTile) // Can enter ocean
-        val militaryUnit = testGame.addUnit("Trireme", civInfo, centerTile) // Can't enter ocean
         val targetTile = testGame.getTile(0,1)
-        targetTile.isWater = true
-        targetTile.isLand = false
-        targetTile.isOcean = true
+        targetTile.baseTerrain = "Coast"
+        targetTile.setTransients()
+        civInfo.tech.addTechnology("Shipbuilding")
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile) // Can travel on Coast after Shipbuilding
+        val militaryUnitType = testGame.createBaseUnit("Sword", "Cannot embark")
+        militaryUnitType.movement = 2
+        militaryUnitType.strength = 20
+        val militaryUnit = testGame.addUnit(militaryUnitType.name, civInfo, centerTile) // Land unit: can't embark into water
         assertFalse(militaryUnit.movement.canMoveTo(targetTile))
         assertTrue(civilianUnit.movement.canMoveTo(targetTile))
         civilianUnit.startEscorting()
@@ -173,7 +173,7 @@ internal class UnitFormationTests {
     fun `formation head towards with faster units` () {
         setUp(5)
         val centerTile = testGame.getTile(0,0)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile)
         val militaryUnit = testGame.addUnit("Horseman", civInfo, centerTile) // 4 movement
         civilianUnit.startEscorting()
         val targetTile = testGame.getTile(0,4)
@@ -191,7 +191,7 @@ internal class UnitFormationTests {
     fun `getDistanceToTiles when in formation`() {
         setUp(5)
         val centerTile = testGame.getTile(0,0)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile)
         val militaryUnit = testGame.addUnit("Horseman", civInfo, centerTile) // 4 movement
         civilianUnit.startEscorting()
         var civilianDistanceToTiles = civilianUnit.movement.getDistanceToTiles()
@@ -215,7 +215,7 @@ internal class UnitFormationTests {
         val centerTile = testGame.getTile(0,0)
         val enemyTile = testGame.getTile(2,2)
         val scout = testGame.addUnit("Warrior", civInfo, centerTile)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile)
         val enemyUnit = testGame.addUnit("Warrior", enemyCiv , enemyTile)
         enemyUnit.health = 1 // Needs to be killable by the scout
         scout.startEscorting()
@@ -241,7 +241,7 @@ internal class UnitFormationTests {
         val centerTile = testGame.getTile(0,0)
         val enemyTile = testGame.getTile(3,3)
         val archer = testGame.addUnit("Archer", civInfo, centerTile)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile)
         val enemyUnit = testGame.addUnit("Warrior", enemyCiv , enemyTile)
         enemyUnit.health = 1 // Needs to be killable by the scout
         archer.startEscorting()
@@ -266,7 +266,7 @@ internal class UnitFormationTests {
         val forestTile = testGame.getTile(1,1)
         val enemyTile = testGame.getTile(2,2)
         val scout = testGame.addUnit("Warrior", civInfo, centerTile)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile)
         val enemyUnit = testGame.addUnit("Warrior", enemyCiv , enemyTile)
         enemyUnit.health = 1 // Needs to be killable by the scout
         forestTile.addTerrainFeature("Forest")
@@ -283,7 +283,7 @@ internal class UnitFormationTests {
         val hillTile = testGame.getTile(1,1)
         val destinationTile = testGame.getTile(1,2)
         val militaryUnit = testGame.addUnit("Mechanized Infantry", civInfo, centerTile)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile)
         hillTile.addTerrainFeature("Hill")
         destinationTile.addTerrainFeature("Hill")
         civilianUnit.startEscorting()
@@ -299,7 +299,7 @@ internal class UnitFormationTests {
         val hillTile = testGame.getTile(1,1)
         val destinationTile = testGame.getTile(1,2)
         val militaryUnit = testGame.addUnit("Mechanized Infantry", civInfo, centerTile)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile)
         hillTile.addTerrainFeature("Hill")
         destinationTile.addTerrainFeature("Hill")
         militaryUnit.startEscorting()
@@ -321,7 +321,7 @@ internal class UnitFormationTests {
         val destinationTile = testGame.getTile(4,5)
         val tileReached = testGame.getTile(1,2)
         val militaryUnit = testGame.addUnit("Scout", civInfo, centerTile)
-        val civilianUnit = testGame.addUnit("Worker", civInfo, centerTile)
+        val civilianUnit = testGame.addUnit("Builder", civInfo, centerTile)
         militaryUnit.startEscorting()
         val shortestPath = militaryUnit.movement.getShortestPath(destinationTile)
         assertEquals(true, shortestPath.count() == 3)

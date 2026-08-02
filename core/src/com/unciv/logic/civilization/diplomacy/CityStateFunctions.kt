@@ -174,7 +174,7 @@ class CityStateFunctions(val civInfo: Civilization) {
         if (winner == null) {
             // No spy won the election, the civs that tried to rig the election loose influence
             for (spy in spies) {
-                civInfo.getDiplomacyManager(spy.civInfo)!!.addInfluence(-5f)
+                civInfo.getDiplomacyManager(spy.civInfo)!!.addInfluence(-1f)
                 spy.civInfo.addNotification("Your spy lost the election in [$capital]!", capital.location, NotificationCategory.Espionage, NotificationIcon.Spy)
             }
             return
@@ -184,7 +184,7 @@ class CityStateFunctions(val civInfo: Civilization) {
 
         // Winning civ gets influence and all others loose influence
         for (civ in civInfo.getKnownCivs().toList()) {
-            val influence = if (civ == winner) 20f else -5f
+            val influence = if (civ == winner) 2f else -1f
             civInfo.getDiplomacyManager(civ)!!.addInfluence(influence)
             if (civ == winner)  {
                 civ.addNotification("Your spy successfully rigged the election in [${civInfo.civName}]!", capital.location, NotificationCategory.Espionage, NotificationIcon.Spy)
@@ -273,9 +273,8 @@ class CityStateFunctions(val civInfo: Civilization) {
 
     @Readonly
     fun influenceGainedByGift(donorCiv: Civilization, giftAmount: Int): Int {
-        // https://github.com/Gedemon/Civ5-DLL/blob/aa29e80751f541ae04858b6d2a2c7dcca454201e/CvGameCoreDLL_Expansion1/CvMinorCivAI.cpp
-        // line 8681 and below
-        var influenceGained = giftAmount.toFloat().pow(1.01f) / 9.8f
+        // Envoys earned per gold gift - kept small so that the 0-3 envoy thresholds stay meaningful.
+        var influenceGained = giftAmount.toFloat().pow(1.01f) / 9.8f / 20f
         val speed = civInfo.gameInfo.speed
         val gameProgressApproximate = min(civInfo.gameInfo.turns / (400f * speed.modifier), 1f)
         influenceGained *= 1 - (2/3f) * gameProgressApproximate
@@ -287,8 +286,9 @@ class CityStateFunctions(val civInfo: Civilization) {
         // Bonus due to "Invest" quests
         influenceGained *= civInfo.questManager.getInvestmentMultiplier(donorCiv)
 
-        influenceGained -= influenceGained % 5
-        if (influenceGained < 5f) influenceGained = 5f
+        influenceGained -= influenceGained % 1
+        if (influenceGained < 1f) influenceGained = 1f
+        influenceGained = influenceGained.coerceAtMost(3f)
         return influenceGained.toInt()
     }
 
@@ -324,7 +324,7 @@ class CityStateFunctions(val civInfo: Civilization) {
         val diplomacy = civInfo.getDiplomacyManager(otherCiv)!!
         diplomacy.diplomaticStatus = DiplomaticStatus.Peace
         diplomacy.setFlag(DiplomacyFlags.RecentlyWithdrewProtection, 20) // Can't re-pledge for 20 turns
-        diplomacy.addInfluence(-20f)
+        diplomacy.addInfluence(-2f)
     }
 
     @Readonly
@@ -369,9 +369,9 @@ class CityStateFunctions(val civInfo: Civilization) {
         var newAlly: Civilization? = null
 
         val maxInfluence = civInfo.diplomacy
-            .filter { it.value.otherCiv.isMajorCiv() && !it.value.otherCiv.isDefeated() }
-            .maxByOrNull { it.value.getInfluence() }
-        if (maxInfluence != null && maxInfluence.value.getInfluence() >= 60) {
+            .filter { it.value.otherCiv.isMajorCiv() && !it.value.otherCiv.isDefeated() && !civInfo.isAtWarWith(it.value.otherCiv) }
+            .maxByOrNull { it.value.getEnvoys() }
+        if (maxInfluence != null && maxInfluence.value.getEnvoys() >= DiplomacyManager.allyThreshold) {
             newAlly = maxInfluence.value.otherCiv
         }
 
@@ -593,7 +593,7 @@ class CityStateFunctions(val civInfo: Civilization) {
         if (!civInfo.isCityState) throw Exception("You can only demand gold from City-States!")
         val goldAmount = goldGainedByTribute()
         demandingCiv.addGold(goldAmount)
-        civInfo.getDiplomacyManager(demandingCiv)!!.addInfluence(-15f)
+        civInfo.getDiplomacyManager(demandingCiv)!!.addInfluence(-1f)
         cityStateBullied(demandingCiv)
         civInfo.addFlag(CivFlags.RecentlyBullied.name, 20)
     }
@@ -609,7 +609,7 @@ class CityStateFunctions(val civInfo: Civilization) {
         if (buildableWorkerLikeUnits.isEmpty()) return  // Bad luck?
         demandingCiv.units.placeUnitNearTile(civInfo.getCapital()!!.location.toHexCoord(), buildableWorkerLikeUnits.values.random(rng))
 
-        civInfo.getDiplomacyManager(demandingCiv)!!.addInfluence(-50f)
+        civInfo.getDiplomacyManager(demandingCiv)!!.addInfluence(-3f)
         cityStateBullied(demandingCiv)
         civInfo.addFlag(CivFlags.RecentlyBullied.name, 20)
     }
@@ -637,7 +637,7 @@ class CityStateFunctions(val civInfo: Civilization) {
 
             val unitsInBorder = otherCiv.units.getCivUnits().count { !it.isCivilian() && it.getTile().getOwner() == civInfo }
             if (unitsInBorder > 0 && diplomacy.isRelationshipLevelLT(RelationshipLevel.Friend)) {
-                diplomacy.addInfluence(-10f)
+                diplomacy.addInfluence(-1f)
                 if (!diplomacy.hasFlag(DiplomacyFlags.BorderConflict)) {
                     otherCiv.popupAlerts.add(PopupAlert(AlertType.BorderConflict, civInfo.civID))
                     diplomacy.setFlag(DiplomacyFlags.BorderConflict, 10)
@@ -670,7 +670,7 @@ class CityStateFunctions(val civInfo: Civilization) {
         val diplomacy = civInfo.getDiplomacyManager(otherCiv)!!
         if (diplomacy.diplomaticStatus == DiplomaticStatus.War) return // No reward for enemies
 
-        diplomacy.addInfluence(12f)
+        diplomacy.addInfluence(1f)
 
         if (diplomacy.hasFlag(DiplomacyFlags.AngerFreeIntrusion))
             diplomacy.setFlag(DiplomacyFlags.AngerFreeIntrusion, diplomacy.getFlag(DiplomacyFlags.AngerFreeIntrusion) + 5)

@@ -774,6 +774,7 @@ if (!otherIsBarbarian && civ.isMajorCiv()) { // Can't get great generals from Ba
             }
         }
 
+        city.puppetCity(civInfo)
         if (city.population.population < 4 || civInfo.isCityState) {
             if (!civInfo.hasUnique(UniqueType.MayNotAnnexCities)) city.destroyCity()
         }

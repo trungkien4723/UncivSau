@@ -87,7 +87,7 @@ class BattleTest(
         val damageDealt = Battle.attack(MapUnitCombatant(attackerUnit), MapUnitCombatant(defaultDefenderUnit))
 
         // then
-        assertEquals(28, damageDealt.attackerDealt)
+        assertEquals(35, damageDealt.attackerDealt)
         assertEquals(0, damageDealt.defenderDealt)
     }
 
@@ -126,7 +126,7 @@ class BattleTest(
 
         // then
         assertEquals(5, defaultAttackerUnit.promotions.XP)
-        assertEquals(4, defaultDefenderUnit.promotions.XP)
+        assertEquals(2, defaultDefenderUnit.promotions.XP)
     }
 
     @Test
@@ -140,7 +140,7 @@ class BattleTest(
 
         // then
         assertEquals(5, barbarianUnit.promotions.XP)
-        assertEquals(4, defaultDefenderUnit.promotions.XP)
+        assertEquals(2, defaultDefenderUnit.promotions.XP)
     }
 
     @Test
@@ -196,7 +196,7 @@ class BattleTest(
     @Test
     fun `should capture civilian`() {
         // given
-        val defenderUnit = testGame.addUnit("Worker", defenderCiv, testGame.getTile(2, 0))
+        val defenderUnit = testGame.addUnit("Builder", defenderCiv, testGame.getTile(2, 0))
 
         // when
         val attack = Battle.attack(MapUnitCombatant(defaultAttackerUnit), MapUnitCombatant(defenderUnit))
@@ -221,7 +221,7 @@ class BattleTest(
         assertEquals(0, attack.defenderDealt)
         assertTrue(defaultAttackerUnit.getTile().position.eq(2,0))
         assertEquals(attackerCiv, defaultAttackerUnit.getTile().civilianUnit!!.civ)  // captured unit
-        assertEquals("Worker", defaultAttackerUnit.getTile().civilianUnit!!.baseUnit.name)
+        assertEquals("Builder", defaultAttackerUnit.getTile().civilianUnit!!.baseUnit.name)
     }
 
     @Test
@@ -231,7 +231,7 @@ class BattleTest(
 
         // then
         assertEquals(5, attackerCiv.greatPeople.greatGeneralPointsCounter["Great General"])
-        assertEquals(4, defenderCiv.greatPeople.greatGeneralPointsCounter["Great General"])
+        assertEquals(2, defenderCiv.greatPeople.greatGeneralPointsCounter["Great General"])
     }
 
     @Test
@@ -337,8 +337,8 @@ class BattleTest(
         Battle.attack(MapUnitCombatant(defaultAttackerUnit), MapUnitCombatant(defaultDefenderUnit))
 
         // then
-        assertEquals(8, attackerCiv.gold)
-        assertEquals(8, attackerCiv.policies.storedCulture)
+        assertEquals(20, attackerCiv.gold)
+        assertEquals(20, attackerCiv.policies.storedCulture)
     }
 
     @Test
@@ -395,7 +395,7 @@ class BattleTest(
         Battle.attackOrNuke(MapUnitCombatant(attackerUnit), AttackableTile(attackerUnit.getTile(), defaultDefenderUnit.currentTile, 0f, null))
 
         // then
-        assertEquals(-75f, defenderCiv.getDiplomacyManager(attackerCiv)!!.opinionOfOtherCiv()) // 50 for nuke, 25 for war declaration
+        assertEquals(-125f, defenderCiv.getDiplomacyManager(attackerCiv)!!.opinionOfOtherCiv()) // 50 for nuke, 75 for war declaration (Civ VI grievances)
         assertEquals(-55f, thirdCiv.getDiplomacyManager(attackerCiv)!!.opinionOfOtherCiv()) // 50 for nuke, 5 for warmongering
     }
 
@@ -558,11 +558,11 @@ class BattleTest(
 
         // then
         assertEquals(7, attackerUnit.promotions.XP) // Attacker should get 2 xp from ranged attack + 5 xp from melee attack
-        assertEquals(6, defaultDefenderUnit.promotions.XP) // Defender should get 2 xp from ranged attack + 4 xp from melee attack
-        assertEquals(50, damageDealt.attackerDealt) // Attacker deals damage from both the ranged attack and melee attack
-        assertEquals(27, damageDealt.defenderDealt)
-        assertEquals(73, attackerUnit.health)
-        assertEquals(50, defaultDefenderUnit.health)
+        assertEquals(4, defaultDefenderUnit.promotions.XP) // Defender should get 2 xp from ranged attack + 2 xp from melee attack
+        assertEquals(19, damageDealt.attackerDealt) // Attacker deals damage from both the ranged attack and melee attack
+        assertEquals(61, damageDealt.defenderDealt)
+        assertEquals(39, attackerUnit.health)
+        assertEquals(81, defaultDefenderUnit.health)
     }
 
     @Test

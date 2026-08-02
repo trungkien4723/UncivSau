@@ -73,7 +73,7 @@ class CityTest {
     @Test
     fun `should sell building`() {
         // given
-        val expectedMonumentSellingGoldGain = 4
+        val expectedMonumentSellingGoldGain = 6
         capitalCity.cityConstructions.addBuilding("Monument")
 
         // when
