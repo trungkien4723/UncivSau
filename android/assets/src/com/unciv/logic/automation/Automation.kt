@@ -395,16 +395,28 @@ object Automation {
     /** Support [UniqueType.CreatesOneDistrict] unique - find best tile for district placement automation */
     @Readonly
     fun getTileForDistrict(city: City, district: District): Tile? {
+        return city.getTiles().filter { isTileValidForDistrict(city, district, it) }
+            .maxByOrNull { rankTileForDistrict(city, district, it) }
+    }
+
+    /** Scores the best achievable placement of [district] in [city], including its base yields and adjacency bonuses.
+     *  Returns 0 if the district cannot be built (missing tech/civic or no valid tile). */
+    @Readonly
+    fun rankDistrictValue(city: City, district: District): Float {
         val civ = city.civ
-        // Check tech/civic requirements before considering the district
-        if (district.requiredTech != null && !civ.tech.isResearched(district.requiredTech!!)) return null
-        if (district.requiredCivic != null && !civ.civics.isResearched(district.requiredCivic!!)) return null
-        return city.getTiles().filter {
-            it.getCity() == city
-                && !it.isCityCenter()
-                && it.district == null
-                && (district.onlyBuildableOn.isEmpty() || it.matchesFilter(district.onlyBuildableOn, civ))
-        }.maxByOrNull { rankTileForDistrict(city, district, it) }
+        if (district.requiredTech != null && !civ.tech.isResearched(district.requiredTech!!)) return 0f
+        if (district.requiredCivic != null && !civ.civics.isResearched(district.requiredCivic!!)) return 0f
+        return city.getTiles().filter { isTileValidForDistrict(city, district, it) }
+            .maxOfOrNull { rankTileForDistrict(city, district, it) } ?: 0f
+    }
+
+    @Readonly
+    private fun isTileValidForDistrict(city: City, district: District, tile: Tile): Boolean {
+        val civ = city.civ
+        return tile.getCity() == city
+            && !tile.isCityCenter()
+            && tile.district == null
+            && (district.onlyBuildableOn.isEmpty() || tile.matchesFilter(district.onlyBuildableOn, civ))
     }
 
     /** Scores a tile for placing [district], rewarding own stats and adjacency bonuses. */

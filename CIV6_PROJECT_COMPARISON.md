@@ -45,7 +45,7 @@
 | STT | Mục | Hiện trạng | Chi tiết sẽ cần |
 |---|---|---|---|
 | 1 | **AI toàn diện** | `[~]` | City placement, build queue, wonder priority, unit automation, research, diplomacy... đang "basic automation". Đây là mảng lớn nhất còn lại. |
-| 2 | **AI chỗ đặt district** (`rankTileForDistrict`) | `[~]` | Có đánh giá adjacency từ JSON nhưng chưa bằng độ tinh của 1 người chơi giỏi (giữ ô, dây chuyền district...). |
+| 2 | **AI chỗ đặt district** (`rankTileForDistrict`) | `[~]` | Có đánh giá adjacency theo JSON; thêm `Automation.rankDistrictValue` và dùng vào build queue (`ConstructionAutomation`): AI chọn district theo giá trị placement thực tế (base + adjacency), không còn flat bonus. |
 | 3 | **Adjacency** | `[~]` | Đã gần đủ mapping các district; cần rà từng ô theo đúng bảng của Civ 6 (vd +½ x 2 cho mỗi 2 ô, giá trị fraction thực thi đúng). |
 | 4 | **War Support / War Weariness** | `[x]` | War Support là cơ chế chính (combat +1% mỗi điểm, UI ngoại giao, khởi tạo qua Casus Belli); hệ war weariness C5 cũ đã gỡ — hết friction |
 | 5 | **Theming/Great Works per-building** | `[x]` | Great Works đã **gán vào building/city cụ thể** (auto-place khi tạo; `GreatWork.cityId`/`building`); theming tính **per-building** (building đủ slot → bonus); UI hiển thị vị trí đặt |

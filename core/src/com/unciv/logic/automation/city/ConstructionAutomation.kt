@@ -299,9 +299,12 @@ class ConstructionAutomation(val cityConstructions: CityConstructions) {
         } else value += when {
                 building.hasUnique(UniqueType.CreatesOneImprovement) -> 5f // District-type buildings, should be weighed by the stats (incl. adjacencies) of the improvement
                 building.hasUnique(UniqueType.CreatesOneDistrict) -> {
-                    // Civ VI districts: high priority, especially the first district of a city
-                    val firstDistrictBonus = if (city.districts.isEmpty()) 12f else 8f
-                    firstDistrictBonus
+                    // Civ VI districts: value by the adjacency and base yields of their best achievable placement,
+                    // with a bonus for the first district of a city
+                    val district = building.getDistrictToCreate(city.getRuleset())
+                    val districtValue = if (district != null) Automation.rankDistrictValue(city, district) else 0f
+                    val firstDistrictBonus = if (city.districts.isEmpty()) 6f else 2f
+                    firstDistrictBonus + districtValue
                 }
 
             building.hasUnique(UniqueType.ProvidesResources) -> 3f // Should be weighed by how much we need the resources
