@@ -28,7 +28,7 @@
 | 15 | Thành bang & Envoys | `[x]` | 24 CS (6 loại, mỗi loại có suzerain bonus riêng cấp qua nation uniques), gifts/quests, diplomatic marriage |
 | 16 | Ngoại giao & quan hệ | `[x]` | Diplomacy + alliances + deals + promises; agendas (24 personality types) cho AI |
 | 17 | Chiến tranh, Casus Belli, Grievances | `[x]` | CasusBelli enum đầy đủ + UI chọn khi tuyên chiến + war support; Grievances có |
-| 18 | War Weariness | `[~]` | Đã thay bằng **War Support** (mechanics Civ VI) + hiển thị UI trên màn ngoại giao; hiệu ứng amenities/weariness đời 5 cũ vẫn còn đâu đó |
+| 18 | War Weariness | `[x]` | Đã thay bằng **War Support** (mechanics Civ VI) + hiển thị UI trên màn ngoại giao; hệ `warWeariness` Cum5 cũ (tích lũy + giảm Amenities) **đã gỡ** — chỉ còn War Support điều hành |
 | 19 | Rise & Fall: Loyalty, Governors, Golden/Dark Ages | `[x]` | Governor (cây promo), Loyalty (city happy, thất → Free City), GoldenAgeManager (era score, Dark/Golden/Heroic, Dedications, Dramatic Ages mode) |
 | 20 | Gathering Storm: khí hậu/thảm họa/năng lượng | `[x]` | ClimateManager (CO2, 7 pha, sea level), DisasterManager, PowerManager (than/dầu/nuke/tái tạo), Canal/Dam |
 | 21 | World Congress & Diplomatic Victory | `[x]` | Hoàn chỉnh: resolutions, emergencies, favor, Diplomatic Victory (quỹ 10 điểm, UN), Trade Embargo |
@@ -47,8 +47,8 @@
 | 1 | **AI toàn diện** | `[~]` | City placement, build queue, wonder priority, unit automation, research, diplomacy... đang "basic automation". Đây là mảng lớn nhất còn lại. |
 | 2 | **AI chỗ đặt district** (`rankTileForDistrict`) | `[~]` | Có đánh giá adjacency từ JSON nhưng chưa bằng độ tinh của 1 người chơi giỏi (giữ ô, dây chuyền district...). |
 | 3 | **Adjacency** | `[~]` | Đã gần đủ mapping các district; cần rà từng ô theo đúng bảng của Civ 6 (vd +½ x 2 cho mỗi 2 ô, giá trị fraction thực thi đúng). |
-| 4 | **War Support / War Weariness** | `[~]` | War Support là cơ chế chính thay cho War Weariness (đã vgt; nhưng vẫn còn friction với hệ Amenities/war weariness cũ tư đâu đó trong engine Unciv). |
-| 5 | **Theming/Great Works per-building** | `[~]` | Great Works dùng **global pool**, không gán vào từng công trình/museum riêng → theming tính toàn cục, chưa per-building như Civ 6. |
+| 4 | **War Support / War Weariness** | `[x]` | War Support là cơ chế chính (combat +1% mỗi điểm, UI ngoại giao, khởi tạo qua Casus Belli); hệ war weariness C5 cũ đã gỡ — hết friction |
+| 5 | **Theming/Great Works per-building** | `[x]` | Great Works đã **gán vào building/city cụ thể** (auto-place khi tạo; `GreatWork.cityId`/`building`); theming tính **per-building** (building đủ slot → bonus); UI hiển thị vị trí đặt |
 | 6 | **Leader/Hero promotion system** | `[~]` | Hero promotions còn basic. |
 | 7 | **UI tooltips cho toàn bộ uniques** | `[~]` | Một part còn thiếu tooltip. |
 | 8 | **Trade route nuances** | `[~]` | Có capacity + Trading post, nhưng chưa hết chi tiết (route modifier phức tạp theo policy cũ nói chung, tầm vang...). |
@@ -117,7 +117,7 @@
 | Nước ngọt định cư | `[x]` |
 | Luxury → 1 Amenity × 4 cities | `[x]` |
 | Entertainment Complex / Water Park / neighborhoods | `[x]` |
-| War weariness làm giảm Amenities | `[~]` (War support thay thế, phần õ hạch còn basic) |
+| War weariness làm giảm Amenities | `[-]` (đã xoá — Civ VI chỉ dùng War Support thay thế hoàn toàn) |
 
 ### 3.4 Tôn giáo (mục 13)
 | Item | Status |

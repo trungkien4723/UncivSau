@@ -6,9 +6,7 @@ import com.unciv.models.ruleset.GreatWorkType
 import com.unciv.models.translations.tr
 import com.unciv.ui.images.ImageGetter
 import com.unciv.ui.components.extensions.toLabel
-import com.unciv.ui.screens.basescreen.BaseScreen
 import com.unciv.ui.screens.worldscreen.WorldScreen
-import com.badlogic.gdx.graphics.Color
 
 class GreatWorksScreen(
     private val worldScreen: WorldScreen,
@@ -23,8 +21,7 @@ class GreatWorksScreen(
         val greatWorks = civInfo.greatWorks
 
         for (type in GreatWorkType.entries) {
-            val worksOfType = greatWorks.getGreatWorksByType(type)
-            val icon = ImageGetter.getStatIcon(type.name)
+            val worksOfType = greatWorks.getWorksByType(type)
             val typeLabel = type.name.tr().toLabel()
 
             val header = Table()
@@ -36,15 +33,17 @@ class GreatWorksScreen(
             if (worksOfType.isEmpty()) {
                 topTable.add("  No great works of this type".toLabel()).padLeft(30f).row()
             } else {
-                for (work in worksOfType) {
-                    val stats = work.getStats()
-                    val statsText = buildString {
-                        if (stats.tourism > 0) append("+${stats.tourism.toInt()} Tourism ")
-                        if (stats.culture > 0) append("+${stats.culture.toInt()} Culture")
+                for (city in civInfo.cities) {
+                    val cityWorks = city.cityConstructions
+                        .getBuiltBuildings()
+                        .flatMap { building ->
+                            greatWorks.getWorksInBuilding(city.id, building.name, type)
+                                .map { work -> "  ${building.name}: ${work.name}" }
+                        }
+                    for (workText in cityWorks) {
+                        topTable.add("  ").padLeft(30f)
+                        topTable.add(workText.toLabel()).padLeft(5f).row()
                     }
-                    val workLabel = "${work.name} (${statsText})".toLabel()
-                    topTable.add("  ").padLeft(30f)
-                    topTable.add(workLabel).padLeft(5f).row()
                 }
             }
             topTable.add().padBottom(8f).row()

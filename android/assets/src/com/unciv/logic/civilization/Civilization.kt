@@ -18,6 +18,7 @@ import com.unciv.logic.trade.TradeRequest
 import com.unciv.models.Counter
 import com.unciv.models.metadata.GameParameters
 import com.unciv.models.ruleset.Building
+import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.models.ruleset.Policy
 import com.unciv.models.ruleset.nation.CityStateType
 import com.unciv.models.ruleset.nation.Difficulty
@@ -131,6 +132,23 @@ class Civilization : IsPartOfGameInfoSerialization {
     var gold = 0
         private set
 
+    /** Civ VI: Diplomatic Favor — used in World Congress voting. */
+    var diplomaticFavor = 0
+        private set
+
+    /** Civ VI: Governor XP — used for governor promotions. */
+    var governorXP = 0
+        private set
+
+    /** Add Governor XP */
+    fun addGovernorXP(amount: Int) {
+        governorXP += amount
+        cache.updateCivResources()
+    }
+
+    /** Accumulated Tourism for Cultural Victory (Civ VI style) */
+    var storedTourism = 0
+
     /** The Civ's name
      *
      *  - must always be equal to Nation.name (except in the unit test code, where only local consistency is needed)
@@ -162,8 +180,13 @@ class Civilization : IsPartOfGameInfoSerialization {
     var powerManager = PowerManager()
     var climateManager = ClimateManager()
     var disasterManager = DisasterManager()
+    var secretSocietyManager = SecretSocietyManager()
     var worldCongress = WorldCongressManager()
     var gameModes = GameModesManager()
+    var zombieManager = ZombieManager()
+    var corporationManager = CorporationManager()
+    var heroesManager = HeroesManager()
+    var emergenciesManager = EmergenciesManager()
     var diplomacy = HashMap<String, DiplomacyManager>()
     var proximity = HashMap<String, Proximity>()
 
@@ -187,6 +210,7 @@ class Civilization : IsPartOfGameInfoSerialization {
 
     /** See DiplomacyManager.flagsCountdown for why this does not map Enums to ints */
     var flagsCountdown = HashMap<String, Int>()
+    var tempStringValues = HashMap<String, String>() // For storing temporary string values
 
     var resourceStockpiles = Counter<String>()
 
@@ -300,6 +324,9 @@ class Civilization : IsPartOfGameInfoSerialization {
     fun clone(): Civilization {
         val toReturn = Civilization()
         toReturn.gold = gold
+        toReturn.diplomaticFavor = diplomaticFavor
+        toReturn.governorXP = governorXP
+        toReturn.storedTourism = storedTourism
         toReturn.playerType = playerType
         toReturn.playerId = playerId
         toReturn.playerMinutesBeforeForceResign = playerMinutesBeforeForceResign
@@ -322,8 +349,13 @@ class Civilization : IsPartOfGameInfoSerialization {
         toReturn.powerManager = powerManager.clone()
         toReturn.climateManager = climateManager.clone()
         toReturn.disasterManager = disasterManager.clone()
+        toReturn.secretSocietyManager = secretSocietyManager.clone()
         toReturn.worldCongress = worldCongress.clone()
         toReturn.gameModes = gameModes.clone()
+        toReturn.zombieManager = zombieManager.clone()
+        toReturn.corporationManager = corporationManager.clone()
+        toReturn.heroesManager = heroesManager.clone()
+        toReturn.emergenciesManager = emergenciesManager.clone()
         toReturn.allyCivName = allyCivName
         for (diplomacyManager in diplomacy.values.map { it.clone() })
             toReturn.diplomacy[diplomacyManager.otherCivName] = diplomacyManager
@@ -346,6 +378,7 @@ class Civilization : IsPartOfGameInfoSerialization {
         toReturn.cityStateResource = cityStateResource
         toReturn.cityStateUniqueUnit = cityStateUniqueUnit
         toReturn.flagsCountdown.putAll(flagsCountdown)
+        toReturn.tempStringValues.putAll(tempStringValues)
         toReturn.temporaryUniques.addAll(temporaryUniques)
         toReturn.hasEverOwnedOriginalCapital = hasEverOwnedOriginalCapital
         toReturn.passableImpassables.addAll(passableImpassables)
@@ -647,6 +680,7 @@ class Civilization : IsPartOfGameInfoSerialization {
 
         yieldAll(civResourcesUniqueMap.getMatchingUniques(uniqueType, gameContext))
         yieldAll(gameInfo.getGlobalUniques().getMatchingUniques(uniqueType, gameContext))
+        yieldAll(secretSocietyManager.getMatchingUniques(uniqueType, gameContext))
     }
 
     @Readonly
@@ -664,6 +698,7 @@ class Civilization : IsPartOfGameInfoSerialization {
         religionManager.religion?.founderBeliefUniqueMap?.forEachMatchingUnique(uniqueType, gameContext, op)
         civResourcesUniqueMap.forEachMatchingUnique(uniqueType, gameContext, op)
         gameInfo.getGlobalUniques().forEachMatchingUnique(uniqueType, gameContext, op)
+        secretSocietyManager.forEachMatchingUnique(uniqueType, gameContext, op)
     }
 
     @Readonly
@@ -781,6 +816,18 @@ class Civilization : IsPartOfGameInfoSerialization {
             "Friendly" -> state?.civInfo?.let { it.civID == civID || (it.diplomacy[civID]?.isRelationshipLevelGE(RelationshipLevel.Friend) == true) } ?: false
             "Hostile" -> state?.civInfo?.let { isAtWarWith(it) } ?: false
             "Known" -> state?.civInfo?.let { it == this || knows(it) } ?: false
+            "At War" -> state?.civInfo?.let { isAtWarWith(it) } ?: false
+            "Not At War" -> state?.civInfo?.let { !isAtWarWith(it) } ?: false
+            "Same Religion" -> state?.civInfo?.let { religionManager.religion != null && religionManager.religion == it.religionManager.religion } ?: false
+            "Different Religion" -> state?.civInfo?.let { religionManager.religion != null && it.religionManager.religion != null && religionManager.religion != it.religionManager.religion } ?: false
+            "More Science" -> state?.civInfo?.let { stats.statsForNextTurn[Stat.Science] > it.stats.statsForNextTurn[Stat.Science] } ?: false
+            "More Culture" -> state?.civInfo?.let { stats.statsForNextTurn[Stat.Culture] > it.stats.statsForNextTurn[Stat.Culture] } ?: false
+            "More Faith" -> state?.civInfo?.let { stats.statsForNextTurn[Stat.Faith] > it.stats.statsForNextTurn[Stat.Faith] } ?: false
+            "More Cities" -> state?.civInfo?.let { cities.size > it.cities.size } ?: false
+            "Fewer Cities" -> state?.civInfo?.let { cities.size < it.cities.size } ?: false
+            "Same Government" -> state?.civInfo?.let { government.getGovernment()?.name == it.government.getGovernment()?.name } ?: false
+            "Different Government" -> state?.civInfo?.let { government.getGovernment()?.name != it.government.getGovernment()?.name } ?: false
+            "Has More Great People" -> state?.civInfo?.let { greatPeople.getGreatPeople().size > it.greatPeople.getGreatPeople().size } ?: false
             else -> nation.matchesFilter(filter, state, false)
         }
     }
@@ -985,6 +1032,43 @@ class Civilization : IsPartOfGameInfoSerialization {
 
     @Readonly fun calculateTotalScore() = calculateScoreBreakdown().values.sum()
 
+    // === Trade Route Capacity (Civ VI) ===
+
+    @Readonly
+    fun getMaxTradeRoutes(): Int {
+        var capacity = 1  // Base capacity: 1 trade route
+        for (city in cities) {
+            for (building in city.cityConstructions.getBuiltBuildings()) {
+                capacity += building.getMatchingUniques(UniqueType.TradeRouteCapacity)
+                    .sumOf { it.params[0].toInt() }
+            }
+        }
+        capacity += getMatchingUniques(UniqueType.TradeRouteCapacity)
+            .sumOf { it.params[0].toInt() }
+        return capacity
+    }
+
+    @Readonly
+    fun getActiveTradeRouteCount(): Int {
+        var count = 0
+        // Outgoing domestic routes (tracked on source city)
+        for (city in cities) {
+            if (city.tradeRoutes.hasDomesticRoute()) count++
+        }
+        // Outgoing international routes (tracked on destination city's internationalRoutes)
+        for (civ in gameInfo.civilizations) {
+            for (city in civ.cities) {
+                if (city.tradeRoutes.internationalRoutes.containsKey(civName)) count++
+            }
+        }
+        return count
+    }
+
+    @Readonly
+    fun hasAvailableTradeRouteCapacity(): Boolean {
+        return getActiveTradeRouteCount() < getMaxTradeRoutes()
+    }
+
     //endregion
 
     //region state-changing functions
@@ -1006,7 +1090,7 @@ class Civilization : IsPartOfGameInfoSerialization {
     fun setTransients():Unit = timeThis("Civilization.setTransients") {
         goldenAges.civInfo = this
         greatPeople.civInfo = this
-        greatWorks.civInfo = this
+        greatWorks.setTransients(this)
         civConstructions.setTransients(civInfo = this)
         policies.setTransients(this)
         questManager.setTransients(this)
@@ -1017,9 +1101,16 @@ class Civilization : IsPartOfGameInfoSerialization {
         ruinsManager.setTransients(this)
         espionageManager.setTransients(this)
         governorManager.setTransients(this)
+        secretSocietyManager.setTransients(this)
         worldCongress.setTransients(this)
         victoryManager.civInfo = this
         powerManager.civInfo = this
+        climateManager.setTransients(this)
+        disasterManager.setTransients(this)
+        zombieManager.setTransients(this)
+        corporationManager.setTransients(this)
+        heroesManager.setTransients(this)
+        emergenciesManager.setTransients(this)
 
         for (diplomacyManager in diplomacy.values) {
             diplomacyManager.civInfo = this
@@ -1048,6 +1139,10 @@ class Civilization : IsPartOfGameInfoSerialization {
     fun removeFlag(flag: String) = flagsCountdown.remove(flag)
     @Readonly fun hasFlag(flag: String) = flagsCountdown.contains(flag)
 
+    fun addTemporaryUniqueValue(key: String, value: String) { tempStringValues[key] = value }
+    fun getTemporaryUniqueValue(key: String): String = tempStringValues[key] ?: ""
+    fun removeTemporaryUniqueValue(key: String) { tempStringValues.remove(key) }
+
     @Readonly fun getTurnsBetweenDiplomaticVotes() = (15 * gameInfo.speed.modifier).toInt() // Dunno the exact calculation, hidden in Lua files
     @Readonly fun getTurnsTillNextDiplomaticVote() = flagsCountdown[CivFlags.TurnsTillNextDiplomaticVote.name]
 
@@ -1073,6 +1168,27 @@ class Civilization : IsPartOfGameInfoSerialization {
          flagsCountdown[CivFlags.ShowDiplomaticVotingResults.name] == 0
          && gameInfo.civilizations.any { it.isMajorCiv() && !it.isDefeated() && it != this }
 
+    /** Check if the World Congress screen should be shown this turn */
+    @Readonly
+    fun shouldShowWorldCongressScreen(): Boolean {
+        if (isDefeated() || isBarbarian || isSpectator()) return false
+        return flagsCountdown[CivFlags.ShouldShowWorldCongress.name] == 0
+    }
+
+    /** Record a resolution vote for World Congress */
+    fun worldCongressVoteOnResolution(resolution: String, favorAmount: Int, support: Boolean) {
+        worldCongress.voteOnResolution(this, resolution, favorAmount, support)
+    }
+
+    /** Check if this civ can vote in the current World Congress session */
+    @Readonly
+    fun canVoteInWorldCongress(): Boolean {
+        return worldCongress.currentSession != null
+                && !isDefeated()
+                && !isBarbarian
+                && !isSpectator()
+                && diplomaticFavor >= WorldCongressManager.FAVOR_COST_PER_VOTE
+    }
 
     /** Modify gold by a given amount making sure it does neither overflow nor underflow.
      * @param delta the amount to add (can be negative)
@@ -1083,6 +1199,15 @@ class Civilization : IsPartOfGameInfoSerialization {
             delta > 0 && gold > Int.MAX_VALUE - delta -> Int.MAX_VALUE
             delta < 0 && gold < Int.MIN_VALUE - delta -> Int.MIN_VALUE
             else -> gold + delta
+        }
+    }
+
+    /** Modify diplomatic favor by a given amount */
+    fun addDiplomaticFavor(delta: Int) {
+        diplomaticFavor = when {
+            delta > 0 && diplomaticFavor > Int.MAX_VALUE - delta -> Int.MAX_VALUE
+            delta < 0 && diplomaticFavor < Int.MIN_VALUE - delta -> Int.MIN_VALUE
+            else -> diplomaticFavor + delta
         }
     }
 
@@ -1107,6 +1232,9 @@ class Civilization : IsPartOfGameInfoSerialization {
             Stat.Gold -> addGold(amount)
             Stat.Faith -> { religionManager.storedFaith += amount
                             if(amount > 0) totalFaithForContests += amount }
+            Stat.Tourism -> storedTourism += amount
+            Stat.DiplomaticFavor -> addDiplomaticFavor(amount)
+            Stat.GovernorXP -> addGovernorXP(amount)
             else -> {}
             // Food and Production wouldn't make sense to be added nationwide
             // Happiness cannot be added as it is recalculated again, use a unique instead
@@ -1122,6 +1250,9 @@ class Civilization : IsPartOfGameInfoSerialization {
             Stat.Gold -> addGold(amount)
             Stat.Faith -> { religionManager.storedFaith += amount
                 if (amount > 0) totalFaithForContests += amount }
+            Stat.Tourism -> storedTourism += amount
+            Stat.DiplomaticFavor -> addDiplomaticFavor(amount)
+            Stat.GovernorXP -> addGovernorXP(amount)
             SubStat.GoldenAgePoints -> goldenAges.addEraPoints(amount)
             else -> {}
             // Food and Production wouldn't make sense to be added nationwide
@@ -1135,6 +1266,7 @@ class Civilization : IsPartOfGameInfoSerialization {
             is TileResource -> getResourceAmount(gameResource)
             is Stat -> getStatReserve(gameResource)
             SubStat.GoldenAgePoints -> goldenAges.storedEraPoints
+            SubStat.GovernorXP -> governorXP
             else -> throw Exception("Unrecognized gameResource ${gameResource.name}")
         }
     }
@@ -1154,7 +1286,13 @@ class Civilization : IsPartOfGameInfoSerialization {
             }
             Stat.Gold -> gold
             Stat.Faith -> religionManager.storedFaith
-            else -> 0
+            Stat.Tourism -> storedTourism
+            Stat.Happiness -> 0
+            Stat.Housing -> getHousing().toInt()
+            Stat.Amenities -> getAmenities().toInt()
+            Stat.DiplomaticFavor -> diplomaticFavor
+            Stat.GovernorXP -> governorXP
+            else -> throw Exception("Unrecognized stat ${stat.name}")
         }
     }
 
@@ -1380,4 +1518,6 @@ enum class CivFlags {
     RecentlyBullied,
     TurnsTillCallForBarbHelp,
     RevoltSpawning,
+    WorldCongressInSession,
+    ShouldShowWorldCongress,
 }

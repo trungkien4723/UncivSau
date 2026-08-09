@@ -149,10 +149,6 @@ class Civilization : IsPartOfGameInfoSerialization {
     /** Accumulated Tourism for Cultural Victory (Civ VI style) */
     var storedTourism = 0
 
-    /** War Weariness (Civ VI style) — increases during wartime, decreases during peace.
-     *  Causes unhappiness equivalent to a negative amenities effect. */
-    var warWeariness = 0
-
     /** The Civ's name
      *
      *  - must always be equal to Nation.name (except in the unit test code, where only local consistency is needed)
@@ -539,8 +535,6 @@ class Civilization : IsPartOfGameInfoSerialization {
         for (city in cities) {
             totalAmenities += city.cityStats.amenitiesList["Total"] ?: 0f
         }
-        // War Weariness causes unhappiness (Civ VI style)
-        if (warWeariness > 0) totalAmenities -= warWeariness / 15f
         return totalAmenities
     }
     
@@ -1096,7 +1090,7 @@ class Civilization : IsPartOfGameInfoSerialization {
     fun setTransients():Unit = timeThis("Civilization.setTransients") {
         goldenAges.civInfo = this
         greatPeople.civInfo = this
-        greatWorks.civInfo = this
+        greatWorks.setTransients(this)
         civConstructions.setTransients(civInfo = this)
         policies.setTransients(this)
         questManager.setTransients(this)

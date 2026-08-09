@@ -409,6 +409,7 @@ class CityStats(val city: City) {
             val filter = unique.params[1].removePrefix("districtFilter: ")
             val adjacent = tile.neighbors.count { neighbor ->
                 neighbor.getDistrict()?.name == filter
+                        || (filter == "District" && (neighbor.getDistrict() != null || neighbor.isCityCenter()))
                         || neighbor.matchesFilter(filter, city.civ)
             }
             if (adjacent > 0) stats.add(unique.stats.times(adjacent.toFloat()))
@@ -737,7 +738,7 @@ class CityStats(val city: City) {
         for (building in city.cityConstructions.getBuiltBuildings()) {
             for (unique in building.uniqueObjects) {
                 if (unique.type == UniqueType.PowerConsumption) {
-                    totalConsumption += unique.params[1].toInt()
+                    totalConsumption += unique.params[0].toInt()
                 }
             }
         }
@@ -745,7 +746,7 @@ class CityStats(val city: City) {
         for (building in city.cityConstructions.getBuiltBuildings()) {
             for (unique in building.uniqueObjects) {
                 if (unique.type == UniqueType.PowerProduction) {
-                    totalProduction += unique.params[1].toInt()
+                    totalProduction += unique.params[0].toInt()
                 }
             }
         }

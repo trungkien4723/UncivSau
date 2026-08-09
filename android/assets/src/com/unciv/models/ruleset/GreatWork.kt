@@ -11,6 +11,12 @@ data class GreatWork(
     val creator: String = "",  // Great Person name who created it
     val era: String = ""
 ) : IsPartOfGameInfoSerialization {
+
+    /** City hierarchy on which this Great Work is currently displayed (Civ VI style placement). */
+    var cityId: String = ""
+    /** Building (by name) in [cityId] holding this Great Work. */
+    var building: String = ""
+
     @Readonly fun getStats(): Stats = Stats(
         tourism = type.getTourism().toFloat(),
         culture = type.getCulture().toFloat()

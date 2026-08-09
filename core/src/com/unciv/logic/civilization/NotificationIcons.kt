@@ -33,7 +33,6 @@ object NotificationIcon {
     const val Spy = "OtherIcons/Spy"
     const val Trade = "StatIcons/Acquire"
 const val War = "OtherIcons/Pillage"
-     const val WarWeariness = "StatIcons/Happiness"
      const val Quest = "OtherIcons/Quest"
     const val Housing = "StatIcons/Housing"
     const val Amenities = "StatIcons/Amenities"

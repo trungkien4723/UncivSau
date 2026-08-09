@@ -17,7 +17,7 @@ class GreatWorksOverviewTab(
         val greatWorks = viewingPlayer.greatWorks
 
         for (type in GreatWorkType.entries) {
-            val worksOfType = greatWorks.getGreatWorksByType(type)
+            val worksOfType = greatWorks.getWorksByType(type)
             val icon = ImageGetter.getStatIcon(type.name)
             val typeLabel = type.name.tr().toLabel()
             val slotInfo = greatWorks.getAvailableSlots(type)
@@ -38,16 +38,17 @@ class GreatWorksOverviewTab(
                         if (stats.tourism > 0) append("+${stats.tourism.toInt()} Tourism ")
                         if (stats.culture > 0) append("+${stats.culture.toInt()} Culture")
                     }
+                    val homeText = if (work.building.isEmpty()) "" else " (in ${work.building})"
                     val workTable = Table()
                     workTable.add("  ".toLabel()).padLeft(30f)
-                    workTable.add("${work.name} ($statsText)".toLabel()).padLeft(5f)
+                    workTable.add("${work.name} ($statsText)$homeText".toLabel()).padLeft(5f)
                     add(workTable).row()
                 }
             }
             add(Table().apply { padBottom(8f) }).row()
         }
 
-        val totalStats = greatWorks.getTotalStats()
+        val totalStats = viewingPlayer.greatWorks.getTotalStats()
         val totalLabel = "Total: +${totalStats.tourism.toInt()} Tourism, +${totalStats.culture.toInt()} Culture".toLabel()
         add(totalLabel).pad(10f).colspan(2).row()
     }

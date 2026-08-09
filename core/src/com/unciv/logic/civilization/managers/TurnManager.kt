@@ -6,7 +6,6 @@ import com.unciv.logic.automation.civilization.NextTurnAutomation
 import com.unciv.logic.city.managers.CityTurnManager
 import com.unciv.logic.civilization.*
 import com.unciv.logic.civilization.diplomacy.DiplomacyTurnManager.nextTurn
-import com.unciv.logic.civilization.diplomacy.DiplomaticStatus
 import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.mapunit.UnitTurnManager
 import com.unciv.logic.map.tile.Tile
@@ -18,9 +17,8 @@ import com.unciv.models.stats.Stats
 import com.unciv.ui.components.MayaCalendar
 import com.unciv.ui.screens.worldscreen.status.NextTurnProgress
 import com.unciv.utils.Log
-import kotlin.math.max
-import yairm210.purity.annotations.Readonly
 import kotlin.math.min
+import yairm210.purity.annotations.Readonly
 import kotlin.random.Random
 import com.unciv.logic.automation.Timers.Companion.timeThis
 
@@ -404,17 +402,6 @@ class TurnManager(val civInfo: Civilization) {
         }
         civInfo.units.getCivUnits().forEach { UnitTurnManager(it).endTurn() }  // This is the most expensive part of endTurn
         civInfo.diplomacy.values.toList().forEach { it.nextTurn() } // we copy the diplomacy values so if it changes in-loop we won't crash
-
-        // War Weariness (Civ VI style): increases by number of active wars per turn, decreases by 1 when at peace
-        if (civInfo.isAtWar()) {
-            val activeWars = civInfo.diplomacy.values.count { it.diplomaticStatus == DiplomaticStatus.War && !it.otherCiv.isDefeated() }
-            civInfo.warWeariness += activeWars
-        } else {
-            civInfo.warWeariness = max(0, civInfo.warWeariness - 1)
-        }
-        if (civInfo.warWeariness > 0 && civInfo.warWeariness % 10 == 1) {
-            civInfo.addNotification("War weariness has reached [${civInfo.warWeariness}]", NotificationCategory.General, NotificationIcon.WarWeariness)
-        }
 
         civInfo.cache.updateHasActiveEnemyMovementPenalty()
 
