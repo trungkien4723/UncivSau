@@ -99,11 +99,16 @@ class BasicTests {
         runTestParcours("Stats isStats", Stats::isStats,
             "+1 Production", true,
             "+1 Gold, +2 Production", true,
+            "+0.5 Science", true,
+            "+1.5 Science, +2 Production", true,
             "+1 Gold from tree", false,
         )
 
         // Can't use `runTestParcours` thanks to the non-standard Stats.equals()
         Assert.assertTrue(Stats.parse("+1 Gold, +2 Production").equals(Stats(gold = 1f, production = 2f)))
+        // Civ VI adjacency uses half-tile amounts - must parse to float
+        Assert.assertEquals(0.5f, Stats.parse("+0.5 Science").science)
+        Assert.assertEquals(1.5f, Stats.parse("+1.5 Science").science)
     }
 
     @Test

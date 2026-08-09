@@ -263,7 +263,7 @@ open class Stats(
 
     companion object {
         private val allStatNames = Stat.entries.joinToString("|") { it.name }
-        private val statRegexPattern = "([+-])(\\d+) ($allStatNames)"
+        private val statRegexPattern = "([+-])(\\d+(?:\\.\\d+)?) ($allStatNames)"
         private val statRegex = Regex(statRegexPattern)
         private val entireStringRegexPattern = Regex("$statRegexPattern(, $statRegexPattern)*")
 

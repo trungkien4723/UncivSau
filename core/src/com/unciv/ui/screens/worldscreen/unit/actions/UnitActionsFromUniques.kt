@@ -332,6 +332,29 @@ object UnitActionsFromUniques {
             val useFrequency = getUseFrequency(unit, unique, 85f)
 
             for (improvement in improvements) {
+                // Civ 6-style builders repair pillaged tiles instantly, spending one charge. The
+                // "Repair" Tile itself is "Unbuildable", so it must be handled here rather than
+                // falling through to the generic (and hence skipped) improvement-building path.
+                if (improvement.name == Constants.repair
+                    && unit.cache.hasUniqueToBuildImprovements
+                    && tile.isPillaged()
+                    && !tile.isEnemyTerritory(unit.civ)
+                    && !tile.isCityCenter()
+                ) {
+                    val repairTargetName = tile.getImprovementToRepair()?.name
+                        ?: tile.district
+                        ?: Constants.repair
+                    yield(UnitAction(UnitActionType.CreateImprovement, useFrequency,
+                        title = "Repair [$repairTargetName]",
+                        associatedUnique = unique,
+                        action = {
+                            tile.setRepaired()
+                            unit.civ.cache.updateViewableTiles()
+                            UnitActionModifiers.activateSideEffects(unit, unique)
+                        }.takeIf { unit.hasMovement() && UnitActionModifiers.canActivateSideEffects(unit, unique) }
+                    ))
+                    continue
+                }
                 // Skip improvements we can't build on this tile
                 if (tile.improvementFunctions.getImprovementBuildingProblems(improvement, gameContext).any())
                     continue
@@ -488,6 +511,10 @@ object UnitActionsFromUniques {
 
     internal fun getBuildingImprovementsActions(unit: MapUnit, tile: Tile): Sequence<UnitAction> {
         if (!unit.cache.hasUniqueToBuildImprovements) return emptySequence()
+        // Civ 6-style builders (units with "Can instantly construct a [...] improvement") build
+        // improvements per-tile via charge-consuming "Create [X]" actions, so the generic
+        // "Construct improvement" picker (a Civ 5 mechanic) is redundant for them and must not appear.
+        if (unit.hasUnique(UniqueType.ConstructImprovementInstantly)) return emptySequence()
         // Conditional uniques (e.g. <when above [0] [Stockpile]>) may no longer apply even though
         // the cache flag was set true - use firstOrNull to avoid NoSuchElementException (#15114)
         val unique = unit.getMatchingUniques(UniqueType.BuildImprovements).firstOrNull()

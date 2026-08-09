@@ -10,6 +10,8 @@ import com.unciv.models.UncivSound
 import com.unciv.models.ruleset.government.Government
 import com.unciv.models.ruleset.government.PolicyCard
 import com.unciv.models.translations.tr
+import com.unciv.ui.components.extensions.disable
+import com.unciv.ui.components.extensions.enable
 import com.unciv.ui.components.extensions.toLabel
 import com.unciv.ui.components.extensions.toTextButton
 import com.unciv.ui.components.input.onClick
@@ -28,39 +30,62 @@ class GovernmentPickerScreen(
     private var selectedGovernment: String = manager.currentGovernment
     private var selectedCards = ArrayList<String>(manager.assignedCards)
 
+    private lateinit var governmentListTable: Table
+    private lateinit var slotTable: Table
+
     init {
         setDefaultCloseAction()
 
-        val governmentList = Table().apply { defaults().pad(5f) }
-        for (government in ruleset.governments.values.sortedBy { it.name }) {
-            val available = manager.isGovernmentAvailable(government)
-            val button = government.name.toTextButton()
-                .apply {
-                    if (available) onClick { selectGovernment(government.name) }
-                    else isDisabled = true
-                }
-            governmentList.add(button).row()
-            if (!available)
-                governmentList.add("Requires [$government.requiredCivic]".tr().toLabel()).padBottom(4f).row()
-        }
+        governmentListTable = Table().apply { defaults().pad(5f) }
+        slotTable = Table()
 
-        topTable.add(governmentList)
+        topTable.defaults().pad(10f).top()
+        topTable.add(governmentListTable)
+        topTable.add(slotTable).padLeft(20f)
+
         rightSideButton.setText("Adopt [${selectedGovernment}]".tr())
         rightSideButton.onClick(UncivSound.Paper) { adopt() }
+        rightSideButton.enable()
 
         selectGovernment(selectedGovernment)
     }
 
     private fun selectGovernment(governmentName: String) {
         selectedGovernment = governmentName
-        selectedCards = ArrayList()
         val government = ruleset.governments[governmentName]!!
-        repeat(government.totalSlots()) { selectedCards.add("") }
+        if (governmentName == manager.currentGovernment) {
+            // Preserve the cards currently assigned to the adopted government
+            selectedCards = ArrayList(manager.assignedCards)
+            while (selectedCards.size < government.totalSlots()) selectedCards.add("")
+        } else {
+            selectedCards = ArrayList()
+            repeat(government.totalSlots()) { selectedCards.add("") }
+        }
 
         descriptionLabel.setText(government.getCivilopediaTextLines(ruleset)
             .joinToString("\n") { it.text })
+        rebuildGovernmentList()
         rebuildSlotTable()
         rightSideButton.setText("Adopt [${governmentName}]".tr())
+    }
+
+    private fun rebuildGovernmentList() {
+        governmentListTable.clear()
+        governmentListTable.defaults().pad(5f)
+        val governmentList = governmentListTable
+        for (government in ruleset.governments.values.sortedBy { it.name }) {
+            val available = manager.isGovernmentAvailable(government)
+            val button = government.name.toTextButton()
+                .apply {
+                    if (available) {
+                        onClick { selectGovernment(government.name) }
+                        if (government.name == selectedGovernment) isDisabled = true
+                    } else isDisabled = true
+                }
+            governmentList.add(button).row()
+            if (!available)
+                governmentList.add("Requires [$government.requiredCivic]".tr().toLabel()).padBottom(4f).row()
+        }
     }
 
     private fun rebuildSlotTable() {
@@ -73,19 +98,18 @@ class GovernmentPickerScreen(
             val card = if (cardName.isEmpty()) null else ruleset.policyCards[cardName]
             val cell = Table().apply {
                 background = skinStrings.getUiBackground("General/Border", tintColor = BaseScreen.skinStrings.skinConfig.baseColor)
-                setSize(600f, 600f)
                 if (card == null) {
-                    add("($slotType)".toLabel(fontSize = 40)).pad(20f).row()
-                    add("empty".toLabel(fontSize = 30)).pad(20f)
+                    add("($slotType)".toLabel(fontSize = 20)).pad(10f).row()
+                    add("empty".toLabel(fontSize = 16)).pad(10f)
                 } else {
-                    add(card.name.toLabel(fontSize = 30)).pad(10f).row()
+                    add(card.name.toLabel(fontSize = 20)).pad(10f).row()
                     val descText = card.getCivilopediaTextLines(ruleset)
                         .drop(1)
                         .joinToString("\n") { it.text }
                     if (descText.isNotEmpty()) {
-                        add(descText.toLabel(fontSize = 16)).pad(10f)
+                        add(descText.toLabel(fontSize = 14)).pad(10f)
                     } else {
-                        add("($slotType slot)".toLabel(fontSize = 20)).pad(10f)
+                        add("($slotType slot)".toLabel(fontSize = 16)).pad(10f)
                     }
                 }
             }
@@ -93,8 +117,8 @@ class GovernmentPickerScreen(
             table.add(cell).pad(4f)
             if (i % 2 == 1) table.row()
         }
-        topTable.clear()
-        topTable.add(table)
+        slotTable.clear()
+        slotTable.add(table)
     }
 
     private fun openCardChooser(slotIndex: Int, slotType: String) {
@@ -142,6 +166,7 @@ class GovernmentPickerScreen(
             val cardName = selectedCards.getOrNull(i) ?: ""
             manager.assignCard(i, if (cardName.isEmpty()) null else cardName)
         }
+        manager.shouldOpenGovernmentPicker = false
         game.popScreen()
     }
 }

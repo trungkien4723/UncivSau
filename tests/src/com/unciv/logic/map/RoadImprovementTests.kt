@@ -52,6 +52,20 @@ class RoadImprovementTests {
     }
 
     @Test
+    fun builderHasNoGenericImprovementPicker() {
+        testGame.makeHexagonalMap(2)
+        val civ = addCivWithAllTechs()
+        val tile = makeLandTile(1, 1)
+        val builder = testGame.addUnit("Builder", civ, tile)
+
+        val pickerActions = UnitActions.getUnitActions(builder, UnitActionType.ConstructImprovement).toList()
+        assertTrue("Builder should not offer the generic improvement picker: ${pickerActions.map { it.title }}", pickerActions.isEmpty())
+
+        val createActions = UnitActions.getUnitActions(builder, UnitActionType.CreateImprovement).toList()
+        assertTrue("Builder should still offer per-tile Create actions, got: ${createActions.map { it.title }}", createActions.isNotEmpty())
+    }
+
+    @Test
     fun militaryEngineerCanConstructRoads() {
         testGame.makeHexagonalMap(2)
         val civ = addCivWithAllTechs()

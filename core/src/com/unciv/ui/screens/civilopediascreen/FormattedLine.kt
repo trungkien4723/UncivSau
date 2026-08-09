@@ -84,7 +84,13 @@ class FormattedLine (
     // have no backing field, be `by lazy` or use @Transient, Thank you.
 
     /** Looks for linkable ruleset objects in [Unique] parameters and returns a linked [FormattedLine] if successful, a plain one otherwise */
-    constructor(unique: Unique, indent: Int = 0) : this(unique.getDisplayText(), getUniqueLink(unique), indent = indent)
+    constructor(unique: Unique, indent: Int = 0) : this(unique.getDisplayText(), getUniqueLink(unique), indent = indent) {
+        docDescription = unique.type?.docDescription ?: ""
+    }
+
+    /** Explanation of what this unique does, taken from [UniqueType.docDescription], shown as a hover-tooltip if non-empty. */
+    @Transient
+    var docDescription: String = ""
 
     /** Link types that can be used for [FormattedLine.link] */
     enum class LinkType {

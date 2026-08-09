@@ -161,6 +161,16 @@ class WorkerAutomation(
     private fun startWorkOnCurrentTile(unit: MapUnit) {
         val currentTile = unit.currentTile
         val tileRanking = tileRankings[currentTile]!!
+        // Civ 6-style builders (units with "Can instantly construct a [...] improvement") build
+        // instantly per charge, instead of the Civ 5 multi-turn construction handled below.
+        if (unit.hasUnique(UniqueType.ConstructImprovementInstantly)) {
+            executeChargeBuilderImprovement(
+                unit,
+                repair = tileRanking.repairImprovment == true,
+                improvementName = tileRanking.bestImprovement?.name
+            )
+            return
+        }
         if (tileRanking.repairImprovment == true) {
             debug("WorkerAutomation: $unit -> repairs $currentTile")
             UnitActionsFromUniques.getRepairAction(unit)?.action?.invoke()
@@ -172,6 +182,31 @@ class WorkerAutomation(
             return currentTile.startWorkingOnImprovement(tileRanking.bestImprovement!!, civInfo, unit)
         } else {
             throw IllegalStateException("We didn't find anything to improve on this tile even though there was supposed to be something to improve!")
+        }
+    }
+
+    /**
+     * For Civ 6-style charge builders: locate the matching per-tile "Create [X]" (or "Repair [X]")
+     * charge-consuming action on the unit's current tile and invoke it. This spends one charge and,
+     * when the builder runs out, destroys it ("after which this unit is consumed").
+     */
+    private fun executeChargeBuilderImprovement(
+        unit: MapUnit,
+        repair: Boolean,
+        improvementName: String?
+    ) {
+        val actions = UnitActions.getUnitActions(unit, UnitActionType.CreateImprovement).toList()
+        val action = when {
+            repair -> actions.firstOrNull { it.title.contains("Repair [", ignoreCase = true) }
+            improvementName != null -> actions.firstOrNull { it.title.contains("[$improvementName]", ignoreCase = true) }
+            else -> null
+        }
+        if (action?.action != null) {
+            debug("WorkerAutomation: %s -> invoke %s", unit.toString(), action.title)
+            action.action!!.invoke()
+        } else {
+            debug("WorkerAutomation: %s -> no matching charge action (%s)", unit.toString(),
+                if (repair) "repair" else "create $improvementName")
         }
     }
 

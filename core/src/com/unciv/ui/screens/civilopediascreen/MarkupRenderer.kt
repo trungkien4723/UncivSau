@@ -3,6 +3,7 @@ package com.unciv.ui.screens.civilopediascreen
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.Align
+import com.unciv.ui.components.UncivTooltip.Companion.addDescriptionTooltip
 import com.unciv.ui.components.extensions.addSeparator
 import com.unciv.ui.components.input.onClick
 import com.unciv.ui.components.input.onRightClick
@@ -67,6 +68,8 @@ object MarkupRenderer {
                 continue
             }
             val actor = line.render(labelWidth, iconDisplay)
+            if (line.docDescription.isNotEmpty())
+                actor.addDescriptionTooltip(line.docDescription)
             if (line.linkType == FormattedLine.LinkType.Internal && linkAction != null)
                 actor.onClick {
                     linkAction(line.link)

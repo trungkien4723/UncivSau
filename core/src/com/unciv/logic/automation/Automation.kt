@@ -418,7 +418,7 @@ object Automation {
             val filter = unique.params[1].removePrefix("districtFilter: ")
             val adjacent = tile.neighbors.count { neighbor ->
                 neighbor.getDistrict()?.name == filter
-                        || (filter == "District" && neighbor.getDistrict() != null)
+                        || (filter == "District" && (neighbor.getDistrict() != null || neighbor.isCityCenter()))
                         || neighbor.matchesFilter(filter, city.civ)
             }
             rank += rankStatsValue(unique.stats, civ) * adjacent

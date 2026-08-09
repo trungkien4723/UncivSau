@@ -356,5 +356,56 @@ class UncivTooltip <T: Actor>(
                 getText()
             }
         }
+
+        /**
+         * Add an informational Tooltip showing a (possibly long) explanation text to a [Table] or other [Group].
+         *
+         * In contrast to [addTooltip] this is not suppressed on devices without keyboard, always shows on hover,
+         * and wraps long texts to a [maxWidth]. Used e.g. for [com.unciv.models.ruleset.unique.UniqueType.docDescription].
+         *
+         * Removes any previous tooltips (so this can be used to clear tips by passing an empty [text]).
+         */
+        fun Actor.addDescriptionTooltip(
+            text: String,
+            maxWidth: Float = 480f,
+            fontSize: Int = 34
+        ) {
+            removeTooltips()
+            if (text.isEmpty()) return
+
+            val labelColor = BaseScreen.skinStrings.skinConfig.baseColor
+            val label = ColorMarkupLabel(text, fontSize = fontSize, defaultColor = labelColor)
+            label.setAlignment(Align.topLeft)
+            label.wrap = true
+            label.width = maxWidth
+
+            val background = BaseScreen.skinStrings.getUiBackground("General/Tooltip", BaseScreen.skinStrings.roundedEdgeRectangleShape, Color.LIGHT_GRAY)
+            background.setPadding(6f, 12f, 6f, 12f)
+
+            val labelWithBackground = Container(label).apply {
+                setBackground(background)
+                isTransform = true
+                width = maxWidth + background.leftWidth + background.rightWidth
+            }
+
+            // Measure actual size after layout so the tip does not jump when wrapping
+            fun getContentSize(): Vector2 {
+                label.pack()
+                label.wrap = true
+                label.setWidth(maxWidth)
+                label.invalidateHierarchy()
+                label.pack()
+                labelWithBackground.pack()
+                return Vector2(labelWithBackground.width, labelWithBackground.height)
+            }
+
+            addListener(UncivTooltip(this,
+                labelWithBackground,
+                forceContentSize = getContentSize(),
+                offset = Vector2(-maxWidth / 6, 20f),
+                targetAlign = Align.topRight,
+                tipAlign = Align.topRight
+            ))
+        }
     }
 }

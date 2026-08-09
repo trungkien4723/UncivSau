@@ -5,8 +5,10 @@ import com.unciv.UncivGame
 import com.unciv.logic.automation.civilization.NextTurnAutomation
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.civilization.managers.TurnManager
+import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.tile.RoadStatus
 import com.unciv.logic.map.tile.Tile
+import com.unciv.models.ruleset.unit.BaseUnit
 import com.unciv.models.stats.Stat
 import com.unciv.testing.GdxTestRunner
 import com.unciv.testing.TestGame
@@ -24,12 +26,37 @@ internal class WorkerAutomationTest {
 
     val testGame = TestGame()
 
+    private var legacyWorkerIndex = 0
+
     @Before
     fun setUp() {
         UncivGame.Current.settings.useAStarPathfinding = true
         testGame.makeHexagonalMap(7)
         civInfo = testGame.addCiv()
         workerAutomation = WorkerAutomation(civInfo, 3)
+    }
+
+    /**
+     * The "Builder" unit in the Civ VI ruleset constructs improvements instantly in 3 charges
+     * ("Can instantly construct ... <after which this unit is consumed>"), so the multi-turn
+     * worker automation is only exercised by Civ 5-style workers. Create one such legacy worker
+     * on the fly: it has no insta-construct unique, so it builds improvements over turns.
+     */
+    private fun addLegacyWorker(civInfo: Civilization, tile: Tile?): MapUnit {
+        legacyWorkerIndex++
+        val name = "LegacyWorker-$legacyWorkerIndex"
+        val baseUnit = BaseUnit().apply {
+            this.name = name
+            unitType = "Civilian"
+            cost = 50
+            movement = 2
+            uniques = ArrayList(listOf(
+                "Can build [All] improvements on tiles",
+                "Automation is a primary action"
+            ))
+        }
+        testGame.ruleset.units[name] = baseUnit
+        return testGame.addUnit(name, civInfo, tile)
     }
 
     @Test
@@ -46,7 +73,7 @@ internal class WorkerAutomationTest {
         currentTile.setImprovementBasic("Farm") // Set existing improvement
         currentTile.setTileResource("Iron") // This tile also has a resource needs to be enabled by a building a Mine
 
-        val mapUnit = testGame.addUnit("Builder", civInfo, currentTile)
+        val mapUnit = addLegacyWorker(civInfo, currentTile)
 
         // Act
         workerAutomation.automateWorkerAction(mapUnit, hashSetOf())
@@ -73,7 +100,7 @@ internal class WorkerAutomationTest {
         currentTile.setTileResource("Citrus")
         currentTile.resourceAmount = 1
 
-        val mapUnit = testGame.addUnit("Builder", civInfo, currentTile)
+        val mapUnit = addLegacyWorker(civInfo, currentTile)
 
         workerAutomation.automateWorkerAction(mapUnit, hashSetOf())
 
@@ -99,7 +126,7 @@ internal class WorkerAutomationTest {
         currentTile.baseTerrain = Constants.grassland
         currentTile.setTileResource("Iron")
 
-        val mapUnit = testGame.addUnit("Builder", civInfo, currentTile)
+        val mapUnit = addLegacyWorker(civInfo, currentTile)
 
         // Act
         workerAutomation.automateWorkerAction(mapUnit, hashSetOf())
@@ -128,7 +155,7 @@ internal class WorkerAutomationTest {
         currentTile.addTerrainFeature(Constants.hill)
         currentTile.setTileResource("Gold Ore")
 
-        val mapUnit = testGame.addUnit("Builder", civInfo, currentTile)
+        val mapUnit = addLegacyWorker(civInfo, currentTile)
 
         workerAutomation.automateWorkerAction(mapUnit, hashSetOf())
 
@@ -155,7 +182,7 @@ internal class WorkerAutomationTest {
             tile.baseTerrain = Constants.plains
         }
         city.reassignAllPopulation()
-        val worker = testGame.addUnit("Builder", civInfo, centerTile)
+        val worker = addLegacyWorker(civInfo, centerTile)
         for(i in 0..37) {
             worker.currentMovement = 2f
             for (unit in civInfo.units.getCivUnits()) {
@@ -216,7 +243,7 @@ internal class WorkerAutomationTest {
             // Make sure that the worker know which tiles to work on first
             city.reassignAllPopulation()
         }
-        val worker = testGame.addUnit("Builder", civInfo, city1.getCenterTile())
+        val worker = addLegacyWorker(civInfo, city1.getCenterTile())
         for(i in 0..37) {
             worker.currentMovement = 2f
             for (unit in civInfo.units.getCivUnits()) {
@@ -296,7 +323,7 @@ internal class WorkerAutomationTest {
             city.cityConstructions.addBuilding("Stock Exchange")
             city.cityConstructions.addBuilding("Stock Exchange")
         }
-        val worker = testGame.addUnit("Builder", civInfo, city1.getCenterTile())
+        val worker = addLegacyWorker(civInfo, city1.getCenterTile())
         for(i in 0..24) {
             worker.currentMovement = 2f
             for (unit in civInfo.units.getCivUnits()) {
@@ -349,7 +376,7 @@ internal class WorkerAutomationTest {
         currentTile.setImprovement("Mine")
         currentTile.setPillaged()
 
-        val mapUnit = testGame.addUnit("Builder", civInfo, currentTile)
+        val mapUnit = addLegacyWorker(civInfo, currentTile)
 
         // Act
         workerAutomation.automateWorkerAction(mapUnit, hashSetOf())

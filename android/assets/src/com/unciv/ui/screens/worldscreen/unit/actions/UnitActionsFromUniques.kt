@@ -6,7 +6,9 @@ import com.unciv.UncivGame
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.civilization.PlayerType
 import com.unciv.logic.civilization.diplomacy.DiplomacyFlags
+import com.unciv.logic.civilization.managers.GameModesManager
 import com.unciv.logic.civilization.managers.ImprovementFunctions
+import com.unciv.logic.city.City
 import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.tile.ImprovementBuildingProblem
 import com.unciv.logic.map.tile.RoadStatus
@@ -45,11 +47,8 @@ object UnitActionsFromUniques {
      * (no movement left, too close to another city).
      */
     internal fun getFoundCityAction(unit: MapUnit, tile: Tile): UnitAction? {
-        // FoundPuppetCity is to found a puppet city for modding.
         val unique = UnitActionModifiers.getUsableUnitActionUniques(unit,
-            UniqueType.FoundCity).firstOrNull() ?: 
-            UnitActionModifiers.getUsableUnitActionUniques(unit,
-            UniqueType.FoundPuppetCity).firstOrNull() ?: return null
+            UniqueType.FoundCity).firstOrNull() ?: return null
 
         if (tile.isWater || tile.isImpassible()) return null
         // Spain should still be able to build Conquistadors in a one city challenge - but can't settle them
@@ -353,6 +352,8 @@ object UnitActionsFromUniques {
                     continue
                 }
 
+                val isNationalPark = improvement.hasUnique(UniqueType.NationalPark)
+
                 yield(UnitAction(UnitActionType.CreateImprovement, useFrequency,
                     title = UnitActionModifiers.actionTextWithSideEffects(
                         "Create [${improvement.name}]",
@@ -361,16 +362,22 @@ object UnitActionsFromUniques {
                     ),
                     associatedUnique = unique,
                     action = {
-                        val unitTile = unit.getTile()
-                        unitTile.setImprovement(improvement, unit.civ, unit)
-
+                        if (isNationalPark) {
+                            tile.improvementFunctions.createNationalPark(improvement, unit.civ, unit)
+                        } else {
+                            val unitTile = unit.getTile()
+                            unitTile.setImprovement(improvement, unit.civ, unit)
+                        }
                         unit.civ.cache.updateViewableTiles() // to update 'last seen improvement'
 
                         UnitActionModifiers.activateSideEffects(unit, unique)
                     }.takeIf {
                         resourcesAvailable
                             && unit.hasMovement()
-                            && tile.improvementFunctions.canBuildImprovement(improvement, unit.cache.state)
+                            && if (isNationalPark)
+                                tile.improvementFunctions.canCreateNationalPark(civInfo = unit.civ)
+                            else
+                                tile.improvementFunctions.canBuildImprovement(improvement, unit.cache.state)
                             // Next test is to prevent interfering with UniqueType.CreatesOneImprovement -
                             // not pretty, but users *can* remove the building from the city queue an thus clear this:
                             && !tile.isMarkedForCreatesOneImprovement()
@@ -481,6 +488,10 @@ object UnitActionsFromUniques {
 
     internal fun getBuildingImprovementsActions(unit: MapUnit, tile: Tile): Sequence<UnitAction> {
         if (!unit.cache.hasUniqueToBuildImprovements) return emptySequence()
+        // Civ 6-style builders (units with "Can instantly construct a [...] improvement") build
+        // improvements per-tile via charge-consuming "Create [X]" actions, so the generic
+        // "Construct improvement" picker (a Civ 5 mechanic) is redundant for them and must not appear.
+        if (unit.hasUnique(UniqueType.ConstructImprovementInstantly)) return emptySequence()
         // Conditional uniques (e.g. <when above [0] [Stockpile]>) may no longer apply even though
         // the cache flag was set true - use firstOrNull to avoid NoSuchElementException (#15114)
         val unique = unit.getMatchingUniques(UniqueType.BuildImprovements).firstOrNull()
@@ -619,9 +630,12 @@ internal fun getBuildDistrictActions(unit: MapUnit, tile: Tile) = sequence {
 
         val useFrequency = 70f
 
+        if (!unit.civ.hasAvailableTradeRouteCapacity()) return emptySequence()
+
         return sequenceOf(UnitAction(UnitActionType.CreateTradeRoute, useFrequency,
             action = {
                 val sourceCity = unit.civ.getCapital() ?: return@UnitAction
+                paveRoadAlongRoute(sourceCity, city, unit)
                 if (city.civ == unit.civ) {
                     // Domestic route
                     sourceCity.tradeRoutes.domesticRouteTo = city.name
@@ -636,6 +650,31 @@ internal fun getBuildDistrictActions(unit: MapUnit, tile: Tile) = sequence {
                         "Established an international trade route from [${sourceCity.name}] to [${city.name}]!",
                         com.unciv.logic.civilization.NotificationCategory.Trade, "TradeRoute")
                 }
+                unit.destroy()
+            }.takeIf { unit.hasMovement() }
+        ))
+    }
+
+    private fun paveRoadAlongRoute(sourceCity: City, destinationCity: City, unit: MapUnit) {
+        val roadStatus = unit.civ.tech.getBestRoadAvailable()
+        if (roadStatus == RoadStatus.None) return
+        val path = sourceCity.getRoadPath(destinationCity) ?: return
+        for (tile in path)
+            if (tile.isLand)
+                tile.setRoadStatus(roadStatus, unit.civ)
+    }
+
+    internal fun getPerformRockBandActions(unit: MapUnit, tile: Tile): Sequence<UnitAction> {
+        if (!unit.civ.gameModes.isGameModeEnabled(GameModesManager.ROCK_BANDS)) return emptySequence()
+        if (unit.name != "Rock Band") return emptySequence()
+        if (!unit.hasUnique(UniqueType.RockBandPerform)) return emptySequence()
+
+        val useFrequency = 70f
+
+        return sequenceOf(UnitAction(UnitActionType.PerformRockBand, 70f,
+            action = {
+                // Trigger the RockBandPerform unique which handles the performance effects
+                UnitActionModifiers.activateSideEffects(unit, unit.getMatchingUniques(UniqueType.RockBandPerform).first())
                 unit.destroy()
             }.takeIf { unit.hasMovement() }
         ))

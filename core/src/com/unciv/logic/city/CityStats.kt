@@ -409,7 +409,7 @@ class CityStats(val city: City) {
             val filter = unique.params[1].removePrefix("districtFilter: ")
             val adjacent = tile.neighbors.count { neighbor ->
                 neighbor.getDistrict()?.name == filter
-                        || (filter == "District" && neighbor.getDistrict() != null)
+                        || (filter == "District" && (neighbor.getDistrict() != null || neighbor.isCityCenter()))
                         || neighbor.matchesFilter(filter, city.civ)
             }
             if (adjacent > 0) stats.add(unique.stats.times(adjacent.toFloat()))
