@@ -4,6 +4,7 @@ import com.unciv.GUI
 import com.unciv.UncivGame
 import com.unciv.logic.automation.Automation
 import com.unciv.logic.automation.civilization.NextTurnAutomation
+import com.unciv.logic.automation.civilization.getGamePhase
 import com.unciv.logic.automation.unit.WorkerAutomation
 import com.unciv.logic.city.CityConstructions
 import com.unciv.logic.civilization.CityAction
@@ -40,6 +41,8 @@ class ConstructionAutomation(val cityConstructions: CityConstructions) {
     private val cityStats = city.cityStats
 
     private val personality = civInfo.getPersonality()
+
+    private val gamePhase = civInfo.getGamePhase()
 
     private val constructionsToAvoid = personality.getMatchingUniques(UniqueType.WillNotBuild, cityState)
         .map{ it.params[0] }
@@ -355,7 +358,14 @@ class ConstructionAutomation(val cityConstructions: CityConstructions) {
 
         buildingStats.food *= 3
 
+        if (gamePhase.isEarly) buildingStats.food *= 1.5f // Early game: prioritize city growth
+
         buildingStats.production *= 2
+
+        if (gamePhase.isLate) {
+            buildingStats.production *= 1.2f
+            buildingStats.science *= 1.2f // Late game: push towards a victory condition
+        }
 
         buildingStats.gold *= 2 // Everything's weighed by rankStatsValue, which ranks gold at 0.3, let's make that 0.6 (vs Science being 1)
 

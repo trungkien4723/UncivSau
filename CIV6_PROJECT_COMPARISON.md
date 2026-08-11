@@ -34,7 +34,7 @@
 | 21 | World Congress & Diplomatic Victory | `[x]` | Hoàn chỉnh: resolutions, emergencies, favor, Diplomatic Victory (quỹ 10 điểm, UN), Trade Embargo |
 | 22 | Gián điệp (Spies) | `[x]` | Đầy đủ spy actions (steal tech, sabotage, coup...). **Lưu ý:** Spies là **dữ liệu/manager**, KHÔNG cần unit `Spy` trong Units.json → status "[x]" |
 | 23 | 6 điều kiện chiến thắng | `[x]` | Science (spaceship parts), Domination (thủ đô), Culture (tourism), Religion, Diplomatic + Time |
-| 24 | Chiến lược game phases | `[~]` | Phần này là chiến lược guidance trong file; AI mới chỉ có `isLateGame` trong `CivilianUnitAutomation` — **chưa có** chiến lược phân biệt early/mid/late game |
+| 24 | Chiến lược game phases | `[~]` | Đã có `GamePhase` (Early/Mid/Late) theo era trong `GamePhase.kt` + `Civilization.getGamePhase()`, áp dụng vào `ConstructionAutomation` (early: +food, late: +production/+science) và `CivilianUnitAutomation.isLateGame` (era ≥ Industrial). Còn thiếu: chiến lược sâu hơn theo từng phase (chọn wonder, mở rộng, tấn công) |
 | 25 | Tourism theo Appeal (Seaside Resort / National Park) | `[x]` | Unique `Tourism based on tile appeal` được engine thực thi (`updateStatsForNextTurn` cộng tourism theo appeal từng tile) — có test |
 
 ---
@@ -185,7 +185,7 @@ Những thay đổi hiện đang có trong working tree mà **chưa commit**:
 
 **Việc nên làm tiếp (theo ưu tiên):**
 1. **Bổ sung Natural Wonders** còn thiếu (GS/NFP: Bermuda Triangle, Matterhorn, Pamukkale, Giant's Causeway, Roraima... đã có) và **đồng bộ 2 cây jsons** (root 28 / android 26).
-2. **AI theo game phase** (early/mid/late) — hiện mới có `isLateGame`.
+2. **AI theo game phase** — đã làm phần nền: `GamePhase.kt` (Early/Mid/Late theo era) + áp dụng vào build queue và `isLateGame`; còn mở rộng thêm các quyết định khác theo phase.
 3. **Tăng độ sâu AI** so với Civ 6 thật (chiến thuật corps/army, quyết định theo grievances, chiến lược theo era).
 4. **Hoàn thiện adjacency call chuẩn** (giá trị phân số + kiểm chứng từng district).
 5. **Great Works per-building + theming per-museum** (đang global pool).

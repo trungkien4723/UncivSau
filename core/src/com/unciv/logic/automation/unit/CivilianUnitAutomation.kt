@@ -1,5 +1,6 @@
 package com.unciv.logic.automation.unit
 
+import com.unciv.logic.automation.civilization.getGamePhase
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.civilization.managers.ReligionState
 import com.unciv.logic.map.mapunit.MapUnit
@@ -175,11 +176,7 @@ object CivilianUnitAutomation {
     }
 
     @Readonly
-    fun isLateGame(civ: Civilization): Boolean {
-        val researchCompletePercent =
-            (civ.tech.researchedTechnologies.size * 1.0f) / civ.gameInfo.ruleset.technologies.size
-        return researchCompletePercent >= 0.55f
-    }
+    fun isLateGame(civ: Civilization): Boolean = civ.getGamePhase().isLate
 
     /** Returns whether the civilian spends its turn hiding and not moving */
     fun tryRunAwayIfNeccessary(unit: MapUnit): Boolean {
