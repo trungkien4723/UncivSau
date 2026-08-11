@@ -17,6 +17,7 @@ import com.unciv.ui.components.extensions.toTextButton
 import com.unciv.ui.components.input.onClick
 import com.unciv.ui.popups.Popup
 import com.unciv.ui.screens.basescreen.BaseScreen
+import com.unciv.ui.screens.civilopediascreen.MarkupRenderer
 
 class GovernmentPickerScreen(
     internal val civInfo: Civilization,
@@ -103,11 +104,9 @@ class GovernmentPickerScreen(
                     add("empty".toLabel(fontSize = 16)).pad(10f)
                 } else {
                     add(card.name.toLabel(fontSize = 20)).pad(10f).row()
-                    val descText = card.getCivilopediaTextLines(ruleset)
-                        .drop(1)
-                        .joinToString("\n") { it.text }
-                    if (descText.isNotEmpty()) {
-                        add(descText.toLabel(fontSize = 14)).pad(10f)
+                    val descLines = card.getCivilopediaTextLines(ruleset).drop(1)
+                    if (descLines.isNotEmpty()) {
+                        add(MarkupRenderer.render(descLines, labelWidth = SLOT_DESCRIPTION_WIDTH)).pad(10f)
                     } else {
                         add("($slotType slot)".toLabel(fontSize = 16)).pad(10f)
                     }
@@ -130,9 +129,7 @@ class GovernmentPickerScreen(
         }.sortedBy { it.name }
         if (available.isEmpty()) popup.add("No available cards".toLabel()).row()
         for (card in available) {
-            val descText = card.getCivilopediaTextLines(ruleset)
-                .drop(1)
-                .joinToString("\n") { it.text }
+            val descLines = card.getCivilopediaTextLines(ruleset).drop(1)
             popup.add(card.name.toTextButton().apply {
                 onClick {
                     selectedCards.addOrReplaceAt(slotIndex, card.name)
@@ -140,8 +137,8 @@ class GovernmentPickerScreen(
                     rebuildSlotTable()
                 }
             }).row()
-            if (descText.isNotEmpty()) {
-                popup.add(descText.toLabel(fontSize = 20)).padLeft(30f).padBottom(10f).row()
+            if (descLines.isNotEmpty()) {
+                popup.add(MarkupRenderer.render(descLines, labelWidth = POPUP_DESCRIPTION_WIDTH)).padLeft(30f).padBottom(10f).row()
             }
         }
         popup.addCloseButton()
@@ -168,5 +165,10 @@ class GovernmentPickerScreen(
         }
         manager.shouldOpenGovernmentPicker = false
         game.popScreen()
+    }
+
+    companion object {
+        private const val SLOT_DESCRIPTION_WIDTH = 150f
+        private const val POPUP_DESCRIPTION_WIDTH = 320f
     }
 }

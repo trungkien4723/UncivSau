@@ -85,6 +85,29 @@ class NextTurnAutomationTest(private val algorithm: PathfindingAlgorithm) {
         assertEquals("high hp warrior have taken the place of low hp escort of settler", settler2, lowHpWarrior.getOtherEscortUnit())
     }
 
+    @Test
+    fun `chooseCivicToResearch queues cheapest researchable civic`() {
+        civInfo.civics.civicsToResearch.clear()
+        // Code of Laws has no prerequisites - should be researchable from the start
+        assertTrue("Code of Laws should be researchable", civInfo.civics.canBeResearched("Code of Laws"))
+
+        NextTurnAutomation.chooseCivicToResearch(civInfo)
+
+        assertTrue("AI should queue a civic to research", civInfo.civics.civicsToResearch.isNotEmpty())
+        assertEquals("Code of Laws", civInfo.civics.civicsToResearch[0])
+    }
+
+    @Test
+    fun `chooseCivicToResearch spends free civics on researchable civic`() {
+        assertTrue("Code of Laws should be researchable", civInfo.civics.canBeResearched("Code of Laws"))
+        civInfo.civics.freeCivics = 1
+
+        NextTurnAutomation.chooseCivicToResearch(civInfo)
+
+        assertEquals("free civic should be spent", 0, civInfo.civics.freeCivics)
+        assertTrue("civic should be researched after free pick", civInfo.civics.isResearched("Code of Laws"))
+    }
+
     companion object {
         @Suppress("unused")
         @Parameters

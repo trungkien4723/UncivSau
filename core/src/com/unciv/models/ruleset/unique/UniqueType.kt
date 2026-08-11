@@ -619,6 +619,8 @@ enum class UniqueType(
     SpaceshipPart("Spaceship part", UniqueTarget.Unit, UniqueTarget.Building), // Should be deprecated in the near future
     TakeReligionOverBirthCity("Takes your religion over the one in their birth city", UniqueTarget.Unit),
 
+Immortal("Immortal [cityFilter]", UniqueTarget.Unit,
+        docDescription = "Civ VI Heroes & Legends: instead of dying, the unit is restored to full health in a city matching the filter"),
     // Hurried means: sped up using great engineer/scientist ability, so this is in some sense a unit unique that should be here
     CannotBeHurried("Cannot be hurried", UniqueTarget.Building, UniqueTarget.Tech),
     GreatPerson("Great Person - [comment]", UniqueTarget.Unit),
@@ -1041,7 +1043,7 @@ enum class UniqueType(
                 "Turns left on the status decrease at the *start of turn*, so bonuses applied for 1 turn are stll applied during other civ's turns."),
     OneTimeUnitLoseStatus("[unitTriggerTarget] loses the [promotion] status", UniqueTarget.UnitTriggerable),
     OneTimeUnitDestroyed("[unitTriggerTarget] is destroyed", UniqueTarget.UnitTriggerable),
-    OneTimeUnitGetsName("[unitTriggerTarget] gets a name from the [unitNameGroup] group", UniqueTarget.UnitTriggerable),
+OneTimeUnitGetsName("[unitTriggerTarget] gets a name from the [unitNameGroup] group", UniqueTarget.UnitTriggerable),
     //endregion
 
 
@@ -1378,6 +1380,7 @@ enum class UniqueType(
     Civ62RelicSlots("2Relic slots", UniqueTarget.Building),
     Civ61TourismFromGreatWorks("+1 Tourism from Great Works", UniqueTarget.Building),
     Civ6HousingBasedOnTileAppeal("Housing based on tile appeal", UniqueTarget.Building),
+    Civ6TourismBasedOnTileAppeal("Tourism based on tile appeal", UniqueTarget.Improvement),
     Civ61GreatGeneralPointPerTurn("+1 Great General point per turn", UniqueTarget.Building),
     Civ6Provides2Housing("Provides +2 Housing", UniqueTarget.Building),
     Civ6ABuildingUniqueToMongoliaGrantsAnAbilityThatGives1MovementToHeavyAndLightCavalryTrainedInThisCity25CombatExperienceForAllCavalryAndSiegeClassUnitsTrainedInThisCityStrategicResourceStockpilesIncreased10OnStandardSpeedMayNotBeBuiltInAnEncampmentDistrictThatAlreadyHasABarracks("A building unique to Mongolia. Grants an ability that gives +1Movement to Heavy and Light Cavalry trained in this city. +25% combat experience for all cavalry and siege class units trained in this city.Strategic Resource Stockpiles increased +10 (on Standard Speed).May not be built in an Encampment district that already has a Barracks.", UniqueTarget.Building),

@@ -14,6 +14,7 @@ import com.unciv.logic.civilization.transients.CivInfoTransientCache
 import com.unciv.logic.map.HexCoord
 import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.tile.Tile
+import com.unciv.logic.map.tile.TileAppeal
 import com.unciv.logic.trade.TradeRequest
 import com.unciv.models.Counter
 import com.unciv.models.metadata.GameParameters
@@ -120,6 +121,11 @@ class Civilization : IsPartOfGameInfoSerialization {
     @Transient
     var neutralRoads = HashSet<HexCoord>()
 
+    /** Civ VI Trading Posts: names of cities (own and foreign) where this civ has established a trading post.
+     *  A post is created at both ends when a trade route is established.
+     *  Posts in foreign cities extend the civ's trade route range and grant +1 Gold per post passed. */
+    var tradingPosts = HashSet<String>()
+
     val modConstants get() = gameInfo.ruleset.modOptions.constants
 
     var playerType = PlayerType.AI
@@ -185,7 +191,6 @@ class Civilization : IsPartOfGameInfoSerialization {
     var gameModes = GameModesManager()
     var zombieManager = ZombieManager()
     var corporationManager = CorporationManager()
-    var heroesManager = HeroesManager()
     var emergenciesManager = EmergenciesManager()
     var diplomacy = HashMap<String, DiplomacyManager>()
     var proximity = HashMap<String, Proximity>()
@@ -354,7 +359,6 @@ class Civilization : IsPartOfGameInfoSerialization {
         toReturn.gameModes = gameModes.clone()
         toReturn.zombieManager = zombieManager.clone()
         toReturn.corporationManager = corporationManager.clone()
-        toReturn.heroesManager = heroesManager.clone()
         toReturn.emergenciesManager = emergenciesManager.clone()
         toReturn.allyCivName = allyCivName
         for (diplomacyManager in diplomacy.values.map { it.clone() })
@@ -362,6 +366,7 @@ class Civilization : IsPartOfGameInfoSerialization {
         toReturn.proximity.putAll(proximity)
         toReturn.cities = cities.map { it.clone() }
         toReturn.neutralRoads = neutralRoads
+        toReturn.tradingPosts.addAll(tradingPosts)
         toReturn.disabledCityConstructions.addAll(disabledCityConstructions)
         toReturn.exploredRegion = exploredRegion.clone()
         toReturn.lastSeenImprovement.putAll(lastSeenImprovement)
@@ -523,6 +528,12 @@ class Civilization : IsPartOfGameInfoSerialization {
 
         val newStats = Stats()
         for (stats in statMapForNextTurn.values) newStats.add(stats)
+        // Civ VI: improvements like the Seaside Resort generate Tourism equal to their tile's Appeal
+        val appealTourism = gameInfo.tileMap.values.asSequence()
+            .filter { it.getOwner() == this }
+            .filter { it.getUnpillagedTileImprovement()?.getMatchingUniques(UniqueType.Civ6TourismBasedOnTileAppeal)?.any() == true }
+            .sumOf { max(0, TileAppeal.getAppeal(it, this)).toDouble() }.toFloat()
+        newStats.tourism += appealTourism
         stats.statsForNextTurn = newStats
     }
 
@@ -1069,6 +1080,15 @@ class Civilization : IsPartOfGameInfoSerialization {
         return getActiveTradeRouteCount() < getMaxTradeRoutes()
     }
 
+    /** Civ VI: base trade route reach in tiles, extended by +5 per trading post this civ holds in a foreign city. */
+    @Readonly
+    fun getTradeRouteRange(): Int {
+        val foreignPosts = tradingPosts.count { postCityName ->
+            gameInfo.getCities().any { it.name == postCityName && it.civ != this }
+        }
+        return 15 + 5 * foreignPosts
+    }
+
     //endregion
 
     //region state-changing functions
@@ -1109,7 +1129,6 @@ class Civilization : IsPartOfGameInfoSerialization {
         disasterManager.setTransients(this)
         zombieManager.setTransients(this)
         corporationManager.setTransients(this)
-        heroesManager.setTransients(this)
         emergenciesManager.setTransients(this)
 
         for (diplomacyManager in diplomacy.values) {

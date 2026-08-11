@@ -8,6 +8,7 @@ import com.unciv.logic.battle.BattleUnitCapture
 import com.unciv.logic.battle.MapUnitCombatant
 import com.unciv.logic.city.City
 import com.unciv.logic.civilization.Civilization
+import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.logic.civilization.NotificationIcon
 import com.unciv.logic.map.HexCoord
@@ -899,22 +900,26 @@ class MapUnit : IsPartOfGameInfoSerialization {
         health -= amount
         if (health > 100) health = 100 // For cheating modders, e.g. negative tile damage
         if (health < 0) health = 0
-        if (health == 0) destroy()
-        else cache.updateUniques()
+        if (health == 0) {
+            if (hasUnique(UniqueType.Immortal, checkCivInfoUniques = true) && !civ.isDefeated() && !isDestroyed) {
+                val capital = civ.getCapital()
+                if (capital != null && ::currentTile.isInitialized) {
+                    val capitalTile = capital.getCenterTile()
+                    stopEscorting()
+                    currentMovement = 0f
+                    removeFromTile()
+                    putInTile(capitalTile)
+                    health = 100
+                    cache.updateUniques()
+                    isDestroyed = false
+                    return
+                }
+            }
+            destroy()
+        } else cache.updateUniques()
     }
 
     fun destroy(destroyTransportedUnit: Boolean = true) {
-        // Heroes & Legends mode: hero units are defeated instead of destroyed
-        if (civ.heroesManager.isHeroUnit(this)) {
-            civ.heroesManager.defeatHero(this)
-            civ.units.removeUnit(this)
-            if (::currentTile.isInitialized) {
-                removeFromTile()
-            }
-            isDestroyed = true
-            return
-        }
-
         // Zombie Defense mode: down instead of destroy for zombie units
         if (civ.gameModes.isZombieModeActive() && name.contains("Zombie", ignoreCase = true)) {
             if (::currentTile.isInitialized) {

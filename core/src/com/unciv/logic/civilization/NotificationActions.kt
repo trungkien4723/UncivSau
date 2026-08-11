@@ -248,7 +248,6 @@ class ReligionAction(private val religionName: String? = null) : NotificationAct
     }
 }
 
-
 @Suppress("PrivatePropertyName")  // These names *must* match their class name, see below
 /** This exists as trick to leverage readFields for Json deserialization.
  *

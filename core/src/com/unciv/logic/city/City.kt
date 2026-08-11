@@ -21,6 +21,7 @@ import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.mapunit.UnitPromotions
 import com.unciv.logic.map.tile.RoadStatus
 import com.unciv.logic.map.tile.Tile
+import com.unciv.logic.map.tile.TileAppeal
 import com.unciv.models.Counter
 import com.unciv.models.ruleset.Building
 import com.unciv.models.ruleset.District
@@ -323,7 +324,6 @@ class City : IsPartOfGameInfoSerialization, INamed {
     @Readonly fun hasFlag(flag: CityFlags) = flagsCountdown.containsKey(flag.name)
     @Readonly fun getFlag(flag: CityFlags) = flagsCountdown[flag.name]!!
 
-    @Readonly
     fun getAvailableHousing(): Int {
         var totalHousing = 0
         
@@ -336,7 +336,7 @@ class City : IsPartOfGameInfoSerialization, INamed {
         }
         
         for (building in cityConstructions.getBuiltBuildings()) {
-            totalHousing += building.housing.toInt()
+            totalHousing += getHousingFromBuilding(building).toInt()
         }
         
         for (district in getDistricts()) {
@@ -344,6 +344,19 @@ class City : IsPartOfGameInfoSerialization, INamed {
         }
         
         return totalHousing
+    }
+
+    fun getHousingFromBuilding(building: Building): Float {
+        if (building.getMatchingUniques(UniqueType.Civ6HousingBasedOnTileAppeal).firstOrNull() == null)
+            return building.housing
+
+        val districtTile = getDistricts().firstOrNull { it.second.name == building.district }?.first
+        val appeal = if (districtTile != null) TileAppeal.getAppeal(districtTile, civ) else 0
+        return when {
+            appeal >= 4 -> 4f
+            appeal >= 2 -> 3f
+            else -> 2f
+        }
     }
 
     @Readonly fun isInResistance() = hasFlag(CityFlags.Resistance)

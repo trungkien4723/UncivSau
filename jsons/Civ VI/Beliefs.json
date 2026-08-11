@@ -52,12 +52,7 @@
         "type": "Pantheon",
         "uniques": ["[+1 Culture, +1 Faith] from every [Wine]", "[+1 Culture, +1 Faith] from every [Incense]"]
     },
-    {
-        "name": "Goddess of Love",
-        "type": "Pantheon",
-        "uniques": ["[+1 Happiness] [in cities following this religion] <in cities with at least [6] [Population]>"]
-    },
-    {
+{
         "name": "Goddess of Protection",
         "type": "Pantheon",
         "uniques": ["[+30]% Strength for cities <when attacking>"]
@@ -103,23 +98,13 @@
         "type": "Pantheon",
         "uniques": ["[+1 Culture] from every [Jungle]"]
     },
-    {
-        "name": "Sacred Waters",
-        "type": "Pantheon",
-        "uniques": ["[+1 Happiness] in cities on [River] tiles"]
-    },
-    {
+{
         "name": "Stone Circles",
         "type": "Pantheon",
         "uniques": ["[+2 Faith] from every [Quarry]"]
     },
 
-    {
-        "name": "Asceticism",
-        "type": "Follower",
-        "uniques": ["[+1 Happiness] from every [Shrine] <in cities with at least [3] [Followers of this Religion]>"]
-    },
-    {
+{
         "name": "Cathedrals",
         "type": "Follower",
         "uniques": ["May buy [Cathedral] buildings with [Faith] [in cities following this religion]"]
@@ -169,22 +154,12 @@
         "type": "Follower",
         "uniques": ["May buy [Pagoda] buildings with [Faith] [in cities following this religion]"]
     },
-    {
-        "name": "Peace Gardens",
-        "type": "Follower",
-        "uniques": ["[+2 Happiness] from every [Garden]"]
-    },
-    {
+{
         "name": "Religious Art",
         "type": "Follower",
         "uniques": ["[+2 Culture] from every [Temple]"]
     },
-    {
-        "name": "Religious Center",
-        "type": "Follower",
-        "uniques": ["[+2 Happiness] from every [Temple] <in cities with at least [5] [Followers of this Religion]>"]
-    },
-    {
+{
         "name": "Religious Community",
         "type": "Follower",
         "uniques": ["[+1]% [Production] from every follower, up to [15]%"]
@@ -196,12 +171,7 @@
     },
 
 
-    {
-        "name": "Ceremonial Burial",
-        "type": "Founder",
-        "uniques": ["[+1 Happiness] for each global city following this religion"]
-    },
-    {
+{
         "name": "Church Property",
         "type": "Founder",
         "uniques": ["[+2 Gold] for each global city following this religion"]
@@ -223,12 +193,7 @@
             "[-100]% weight to this choice for AI decisions <when number of [Remaining [City-State] Civilizations] is less than [2]>",
             "[-50]% weight to this choice for AI decisions <when number of [Remaining [City-State] Civilizations] is less than [4]>"]
     },
-    {
-        "name": "Peace Loving",
-        "type": "Founder",
-        "uniques": ["[+1 Happiness] from every [5] global followers [in non-enemy foreign cities]"]
-    },
-    {
+{
         "name": "Pilgrimage",
         "type": "Founder",
         "uniques": ["[+2 Faith] for each global city following this religion"]

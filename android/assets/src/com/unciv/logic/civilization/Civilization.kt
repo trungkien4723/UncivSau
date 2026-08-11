@@ -185,7 +185,6 @@ class Civilization : IsPartOfGameInfoSerialization {
     var gameModes = GameModesManager()
     var zombieManager = ZombieManager()
     var corporationManager = CorporationManager()
-    var heroesManager = HeroesManager()
     var emergenciesManager = EmergenciesManager()
     var diplomacy = HashMap<String, DiplomacyManager>()
     var proximity = HashMap<String, Proximity>()
@@ -354,7 +353,6 @@ class Civilization : IsPartOfGameInfoSerialization {
         toReturn.gameModes = gameModes.clone()
         toReturn.zombieManager = zombieManager.clone()
         toReturn.corporationManager = corporationManager.clone()
-        toReturn.heroesManager = heroesManager.clone()
         toReturn.emergenciesManager = emergenciesManager.clone()
         toReturn.allyCivName = allyCivName
         for (diplomacyManager in diplomacy.values.map { it.clone() })
@@ -1109,7 +1107,6 @@ class Civilization : IsPartOfGameInfoSerialization {
         disasterManager.setTransients(this)
         zombieManager.setTransients(this)
         corporationManager.setTransients(this)
-        heroesManager.setTransients(this)
         emergenciesManager.setTransients(this)
 
         for (diplomacyManager in diplomacy.values) {

@@ -107,24 +107,26 @@ class CityStats(val city: City) {
     private fun getStatsFromTradeRoute(): Stats {
         val stats = Stats()
         
-        // Civ VI: Check for domestic trade route
+        // Civ VI: Domestic trade route — source city gains Food + Production based on the destination's districts
         if (city.tradeRoutes.hasDomesticRoute()) {
             val destinationCityName = city.tradeRoutes.domesticRouteTo
             val destinationCity = city.civ.gameInfo.getCities().find { it.name == destinationCityName }
             if (destinationCity != null) {
-                val destinationPopulation = destinationCity.population.population
-                stats.gold = destinationPopulation.toFloat() * 2f
+                stats.add(getDomesticRouteYields(destinationCity))
             }
         }
         
-        // Civ VI: Check for international trade routes
+        // Civ VI: International trade routes — destination city gains Gold/Science/Culture/Faith based on its own districts,
+        // plus +1 Gold per Trading Post the sending civ holds in this civ
         for ((sourceCivName, turns) in city.tradeRoutes.internationalRoutes) {
             if (turns <= 0) continue
             val sourceCiv = city.civ.gameInfo.getCivilization(sourceCivName)
             if (sourceCiv != null) {
-                val sourcePopulation = sourceCiv.getCapital()?.population?.population ?: 0
-                stats.gold += sourcePopulation.toFloat() * 2f
-                stats.science += sourcePopulation.toFloat() * 0.5f
+                stats.add(getInternationalRouteYields())
+                val postsInThisCiv = sourceCiv.tradingPosts.count { postCityName ->
+                    city.civ.cities.any { it.name == postCityName }
+                }
+                stats.gold += postsInThisCiv.toFloat()
             }
         }
 
@@ -152,6 +154,40 @@ class CityStats(val city: City) {
             percentageStats[Stat.valueOf(unique.params[1])] += unique.params[0].toFloat()
         for ((stat) in stats) {
             stats[stat] *= percentageStats[stat].toPercent()
+        }
+        return stats
+    }
+
+    /** Civ VI domestic route: Food + Production per destination district.
+     *  City Center +1F +1P; Campus/Theater Square/Holy Site +1F; Harbor/Industrial Zone +1P; others +1F. */
+    @Readonly
+    private fun getDomesticRouteYields(destinationCity: City): Stats {
+        val stats = Stats()
+        stats.add(Stats(food = 1f, production = 1f))  // City Center
+        for ((_, district) in destinationCity.getDistricts()) {
+            when (district.name) {
+                "Campus", "Theater Square", "Holy Site" -> stats.food += 1f
+                "Harbor", "Industrial Zone" -> stats.production += 1f
+                else -> stats.food += 1f
+            }
+        }
+        return stats
+    }
+
+    /** Civ VI international route: Gold/Science/Culture/Faith per this (destination) city's districts.
+     *  Commercial Hub/Harbor +2G; Campus +1 Science; Theater Square +1 Culture; Holy Site +1 Faith; others +1G. */
+    @Readonly
+    private fun getInternationalRouteYields(): Stats {
+        val stats = Stats()
+        stats.gold += 1f  // City Center
+        for ((_, district) in city.getDistricts()) {
+            when (district.name) {
+                "Commercial Hub", "Harbor" -> stats.gold += 2f
+                "Campus" -> stats.science += 1f
+                "Theater Square" -> stats.culture += 1f
+                "Holy Site" -> stats.faith += 1f
+                else -> stats.gold += 1f
+            }
         }
         return stats
     }
@@ -438,7 +474,7 @@ class CityStats(val city: City) {
 
         for (building in city.cityConstructions.getBuiltBuildings()) {
             if (building.housing > 0) {
-                newHousingList[building.name] = building.housing
+                newHousingList[building.name] = city.getHousingFromBuilding(building)
             }
         }
 

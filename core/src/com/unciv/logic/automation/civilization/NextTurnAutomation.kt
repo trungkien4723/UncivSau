@@ -20,6 +20,7 @@ import com.unciv.logic.map.tile.Tile
 import com.unciv.models.ruleset.MilestoneType
 import com.unciv.models.ruleset.Policy
 import com.unciv.models.ruleset.PolicyBranch
+import com.unciv.models.ruleset.civic.Civic
 import com.unciv.models.ruleset.nation.PersonalityValue
 import com.unciv.models.ruleset.tech.Technology
 import com.unciv.models.ruleset.tile.ResourceType
@@ -73,6 +74,7 @@ object NextTurnAutomation {
         }
 
         chooseTechToResearch(civInfo)
+        chooseCivicToResearch(civInfo)
         automateCityBombardment(civInfo)
         if (tradeAndChangeState) UseGoldAutomation.useGold(civInfo)
         if (tradeAndChangeState && !civInfo.isCityState) {
@@ -299,6 +301,51 @@ object NextTurnAutomation {
                 }
 
             civInfo.tech.techsToResearch.add(techToResearch.name)
+        }
+    }
+
+    @VisibleForTesting
+    fun chooseCivicToResearch(civInfo: Civilization) {
+        val rng = civInfo.state.stateBasedRandom("NextTurnAutomation.chooseCivicToResearch")
+
+        @Readonly
+        fun getGroupedResearchableCivics(): List<List<Civic>> {
+            val researchableCivics = civInfo.gameInfo.ruleset.civics.values
+                .asSequence()
+                .filter { civInfo.civics.canBeResearched(it.name) }
+                .groupBy { it.cost }
+            return researchableCivics.toSortedMap().values.toList()
+        }
+
+        val stateForConditionals = civInfo.state
+        if (civInfo.civics.freeCivics > 0) {
+            val civics = getGroupedResearchableCivics()
+            if (civics.isEmpty()) return
+
+            val mostExpensiveCivics = civics.lastOrNull {
+                it.any { civic -> civic.getWeightForAiDecision(stateForConditionals) > 0 }
+            } ?: civics.last()
+            val chosenCivic = mostExpensiveCivics.randomWeighted(rng) { it.getWeightForAiDecision(stateForConditionals) }
+            civInfo.civics.getFreeCivic(chosenCivic.name)
+        } else if (civInfo.civics.civicsToResearch.isEmpty()) {
+            val civics = getGroupedResearchableCivics()
+            if (civics.isEmpty()) return
+
+            val cheapestCivics = civics.firstOrNull {
+                // Ignore rows where all civics have 0 weight
+                it.any { civic -> civic.getWeightForAiDecision(stateForConditionals) > 0 }
+            } ?: civics.first()
+            // Do not consider advanced civics if only one civic left in cheapest group
+            val civicToResearch: Civic =
+                if (cheapestCivics.size == 1 || civics.size == 1) {
+                    cheapestCivics.randomWeighted(rng) { it.getWeightForAiDecision(stateForConditionals) }
+                } else {
+                    // Choose randomly between cheapest and second cheapest group
+                    val civicsAdvanced = civics[1]
+                    (cheapestCivics + civicsAdvanced).randomWeighted(rng) { it.getWeightForAiDecision(stateForConditionals) }
+                }
+
+            civInfo.civics.civicsToResearch.add(civicToResearch.name)
         }
     }
 

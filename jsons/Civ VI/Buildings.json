@@ -1439,7 +1439,6 @@
         "uniques": [
             "EraScore: [4]",
             "[+1] population [in all cities]",
-            "[+1 Happiness] [in all cities]",
             "Gain a free [Broadcast Tower] [in all cities]"
         ],
         "requiredTech": "Telecommunications",

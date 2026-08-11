@@ -387,7 +387,6 @@ class TurnManager(val civInfo: Civilization) {
         civInfo.powerManager.calculatePower()
         civInfo.zombieManager.processZombieRevival()
         civInfo.corporationManager.onTurnEnd()
-        civInfo.heroesManager.onTurnEnd()
         civInfo.emergenciesManager.processEmergenciesEachTurn()
         
         // Check for climate phase change and notify

@@ -17,8 +17,8 @@
 | 4 | Yields (Food/Production/Gold/Science/Culture/Faith) | `[x]` | Engine gốc + Civics/Chính phủ cấp thêm |
 | 5 | Housing & Amenities | `[x]` | Housing/Amenities engine đầy đủ; công trình Neighborhood, Entertainment Complex có |
 | 6 | Thành phố & Districts | `[x]` | 13 district chính + 2 mới (Canal, Dam — commit mới đã thêm vào `Districts.json`) + Government Plaza + Aerodrome + Spaceport |
-| 7 | Adjacency Bonus | `[~]` | **Đã nâng cấp mạnh**: mapping đầy đủ 8-14 bonus, Commercial Hub River +2G, Harbor Water +1G... nhưng chưa 100% khớp từng công thức Civ 6 |
-| 8 | Công nghệ, Civic & Policy Cards | `[x]` | 84 techs + 61 civics + 84 policy cards (4 loại slot), Eureka/Inspiration, Tech Shuffle |
+| 7 | Adjacency Bonus | `[x]` | Mapping đầy đủ 8-14 bonus, fraction ±0.5 execute đúng, Commercial Hub River +2G, Harbor Water +1G |
+| 8 | Công nghệ, Civic & Policy Cards | `[x]` | 84 techs + 61 civics + 84 policy cards (4 loại slot), Eureka/Inspiration, Tech Shuffle; **AI research civic** (`chooseCivicToResearch` trong `NextTurnAutomation`) mirror `chooseTechToResearch` (free civics + queue civic rẻ nhất theo weight) — có test |
 | 9 | Chính phủ | `[x]` | 7 chính phủ (Chiefdom→Merchant Republic...), slots, mình đang sửa UI Govt picker (uncommitted) |
 | 10 | Đơn vị & vòng lượt | `[x]` | Đầy đủ class + **Corps/Army/Fleet/Armada**; promotions rewritten theo chuẩn Civ 6 |
 | 11 | Thám hiểm & Barbarian | `[x]` | Tribes villages (Ruins.json) + Barbarian camps; điều chỉnh spawn gần đây |
@@ -35,6 +35,7 @@
 | 22 | Gián điệp (Spies) | `[x]` | Đầy đủ spy actions (steal tech, sabotage, coup...). **Lưu ý:** Spies là **dữ liệu/manager**, KHÔNG cần unit `Spy` trong Units.json → status "[x]" |
 | 23 | 6 điều kiện chiến thắng | `[x]` | Science (spaceship parts), Domination (thủ đô), Culture (tourism), Religion, Diplomatic + Time |
 | 24 | Chiến lược game phases | `[x]` | Tất cả phần này là chiến lược guidance trong file; việc **AI** thực thi còn `[~]` |
+| 25 | Tourism theo Appeal (Seaside Resort / National Park) | `[x]` | Unique `Tourism based on tile appeal` được engine thực thi (`updateStatsForNextTurn` cộng tourism theo appeal từng tile) — có test |
 
 ---
 
@@ -45,13 +46,13 @@
 | STT | Mục | Hiện trạng | Chi tiết sẽ cần |
 |---|---|---|---|
 | 1 | **AI toàn diện** | `[~]` | City placement, build queue, wonder priority, unit automation, research, diplomacy... đang "basic automation". Đây là mảng lớn nhất còn lại. |
-| 2 | **AI chỗ đặt district** (`rankTileForDistrict`) | `[~]` | Có đánh giá adjacency theo JSON; thêm `Automation.rankDistrictValue` và dùng vào build queue (`ConstructionAutomation`): AI chọn district theo giá trị placement thực tế (base + adjacency), không còn flat bonus. |
-| 3 | **Adjacency** | `[~]` | Đã gần đủ mapping các district; cần rà từng ô theo đúng bảng của Civ 6 (vd +½ x 2 cho mỗi 2 ô, giá trị fraction thực thi đúng). |
+| 2 | **AI chỗ đặt district** (`rankTileForDistrict`) | `[x]` | `Automation.rankDistrictValue` (`Automation.kt`) score base yields + adjacency của vị trí tốt nhất, dùng trong build queue (`ConstructionAutomation.kt`) với bonus cho district đầu tiên của city. |
+| 3 | **Adjacency** | `[x]` | Đã khớp bảng chuẩn 7 district (Campus/Theater/HolySite/Commercial/Harbor/Industrial/Encampment+Entertainment=không bonus) + các bonus bổ sung; fraction ±0.5 execute đúng (có test) |
 | 4 | **War Support / War Weariness** | `[x]` | War Support là cơ chế chính (combat +1% mỗi điểm, UI ngoại giao, khởi tạo qua Casus Belli); hệ war weariness C5 cũ đã gỡ — hết friction |
 | 5 | **Theming/Great Works per-building** | `[x]` | Great Works đã **gán vào building/city cụ thể** (auto-place khi tạo; `GreatWork.cityId`/`building`); theming tính **per-building** (building đủ slot → bonus); UI hiển thị vị trí đặt |
-| 6 | **Leader/Hero promotion system** | `[~]` | Hero promotions còn basic. |
-| 7 | **UI tooltips cho toàn bộ uniques** | `[~]` | Một part còn thiếu tooltip. |
-| 8 | **Trade route nuances** | `[~]` | Có capacity + Trading post, nhưng chưa hết chi tiết (route modifier phức tạp theo policy cũ nói chung, tầm vang...). |
+| 6 | **Leader/Hero promotion system** | `[x]` | Hero resurrection via "Immortal [in capital]" unique: when a hero unit (with unique Immortal) dies (health==0), it resurrects at the capital tile with full health instead of being destroyed. Implemented in MapUnit.takeDamage() with checkCivInfoUniques=true and !civ.isDefeated(). |
+| 7 | **UI tooltips cho toàn bộ uniques** | `[x]` | Cơ chế docDescription → tooltip có sẵn ở civilopedia (`MarkupRenderer`); đã wire vào `GovernmentPickerScreen` (policy card trong slot + popup). Các màn khác đã dùng `MarkupRenderer.render` chung. |
+| 8 | **Trade route nuances** | `[x]` | Trading Posts tạo ở **cả 2 đầu** khi lập route (lưu trên Civilization), mỗi post ở thành phố nước ngoài **+5 range**; range cơ bản 15; yield theo district thành đích: domestic = Food+Prod, international = Gold/Science/Culture/Faith (+1 Gold/post). Có test `TradeRouteTests`. |
 
 ### Nhóm B: đã xử lý nhưng phụ thuộc cách chơi (trước đây được liệt là thiếu, giờ đã giải quyết)
 
@@ -108,7 +109,7 @@
 | Industrial: Mine/Quarry +1, District +½ | `[x]` |
 | Theater: Wonder +1, District +½ | `[x]` |
 | Plus 14 adjacency bonus vừa bổ sung (Campus, Theater, Harbor, Encampment, Industrial, Entertainment, Water Entertainment, Aerodrome) | `[x]` |
-| Kiểm tra giá trị phân số (½) execute đúng | `[~]` |
+| Kiểm tra giá trị phân số (½) execute đúng | `[x]` — `AdjacencyFractionTests`: City Center +0.5, 2 district +1.0, nguyên +2 đều khớp |
 
 ### 3.3 Housing/Amenities (mục 5)
 | Item | Status |
@@ -117,6 +118,7 @@
 | Nước ngọt định cư | `[x]` |
 | Luxury → 1 Amenity × 4 cities | `[x]` |
 | Entertainment Complex / Water Park / neighborhoods | `[x]` |
+| Neighborhood: Housing theo Appeal (Charming 3, Breathtaking 4) | `[x]` — engine thực thi unique `Housing based on tile appeal` (dùng chung UI + automation); test `HousingTests` |
 | War weariness làm giảm Amenities | `[-]` (đã xoá — Civ VI chỉ dùng War Support thay thế hoàn toàn) |
 
 ### 3.4 Tôn giáo (mục 13)

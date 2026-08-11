@@ -1,8 +1,10 @@
 package com.unciv.logic.city
 
 import com.unciv.Constants
+import com.unciv.logic.map.tile.TileAppeal
 import com.unciv.models.metadata.BaseRuleset
 import com.unciv.models.ruleset.RulesetCache
+import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.testing.GdxTestRunner
 import com.unciv.testing.TestGame
 import org.junit.Assert.*
@@ -75,5 +77,54 @@ class HousingTests {
         
         city.population.setPopulation(10)
         assertEquals("Population 10 should allow 4 districts", 4, city.getDistrictCapacity())
+    }
+
+    @Test
+    fun `Neighborhood housing scales with tile appeal`() {
+        foundCity()
+        val districtTile = city.getTiles().first { !it.isCityCenter() }
+        testGame.addTileToCity(city, districtTile)
+
+        val districtName = "Neighborhood Appeal Test"
+        val district = testGame.createDistrict()
+        district.name = districtName
+        district.cost = 10
+        testGame.ruleset.districts[districtName] = district
+
+        val buildingName = "Neighborhood Building Test"
+        val building = testGame.createBuilding("Housing based on tile appeal")
+        building.name = buildingName
+        building.housing = 2f
+        building.district = districtName
+        testGame.ruleset.buildings[buildingName] = building
+
+        city.districts[districtTile.position] = districtName
+        districtTile.district = districtName
+        districtTile.setOwningCity(city)
+
+        // Low appeal tile: base 2 housing
+        city.cityConstructions.addBuilding(building, tryAddFreeBuildings = false)
+        city.cityStats.update()
+        assertEquals("Low appeal tile should give base 2 housing", 2, city.getAvailableHousing() - baseHousing())
+
+        // High appeal tile: forest + jungle features give +1 each, expect Charming/Breathtaking housing
+        testGame.setTileFeatures(districtTile.position, "Forest", "Jungle")
+        val appeal = TileAppeal.getAppeal(districtTile, civ)
+        assertTrue("Appeal should be positive", appeal >= 2)
+        city.cityStats.update()
+        val expected = when {
+            appeal >= 4 -> 4
+            else -> 3
+        }
+        assertEquals("Appeal-based housing should apply", expected, city.getAvailableHousing() - baseHousing())
+    }
+
+    private fun baseHousing(): Int {
+        val terrain = if (city.isCoastal()) 3 else if (city.getCenterTile().isAdjacentTo(Constants.freshWater)) 5 else 2
+        var housing = terrain
+        for (building in city.cityConstructions.getBuiltBuildings())
+            if (building.housing > 0 && building.getMatchingUniques(UniqueType.Civ6HousingBasedOnTileAppeal).firstOrNull() == null)
+                housing += building.housing.toInt()
+        return housing
     }
 }

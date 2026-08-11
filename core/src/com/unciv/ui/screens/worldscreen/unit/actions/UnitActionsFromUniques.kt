@@ -655,10 +655,16 @@ internal fun getBuildDistrictActions(unit: MapUnit, tile: Tile) = sequence {
 
         if (!unit.civ.hasAvailableTradeRouteCapacity()) return emptySequence()
 
+        val sourceCity = unit.civ.getCapital() ?: return emptySequence()
+        if (sourceCity.getCenterTile().aerialDistanceTo(city.getCenterTile()) > unit.civ.getTradeRouteRange())
+            return emptySequence()
+
         return sequenceOf(UnitAction(UnitActionType.CreateTradeRoute, useFrequency,
             action = {
-                val sourceCity = unit.civ.getCapital() ?: return@UnitAction
                 paveRoadAlongRoute(sourceCity, city, unit)
+                // Civ VI: completing a route establishes a Trading Post at both ends
+                unit.civ.tradingPosts.add(sourceCity.name)
+                unit.civ.tradingPosts.add(city.name)
                 if (city.civ == unit.civ) {
                     // Domestic route
                     sourceCity.tradeRoutes.domesticRouteTo = city.name
