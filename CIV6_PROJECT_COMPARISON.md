@@ -3,7 +3,7 @@
 > **Đối chiếu:** `CIV6_GAMEPLAY_MECHANICS.md` (mô tả chuẩn cơ chế Civ 6) ↔ trạng thái code/dữ liệu hiện tại của project này.
 > **Cách đọc:** `[x]` = đã làm, `[~]` = làm 1 phần / còn thiếu chi tiết, `[ ]` = chưa có.
 > **Nguồn dữ liệu:** ruleset `jsons/Civ VI/`, code `core/src/com/unciv/`, theo bản kế hoạch `CIV6_CONSOLIDATED_PLAN.md` (tới commit `59e80a2 "fix minor bugs"`) + kiểm tra trực tiếp file + diff uncommitted hiện tại.
-> **Đánh giá tổng thể:** project hiện là bản chuyển đổi **Civ 5 → Civ 6** của Unciv, đạt ~**95%** cơ chế Civ 6.
+> **Đánh giá tổng thể:** project hiện là bản chuyển đổi **Civ 5 → Civ 6** của Unciv, đạt ~**92%** cơ chế Civ 6.
 
 ---
 
@@ -13,7 +13,7 @@
 |---|---|---|---|
 | 1 | Tổng quan game (UPT, hex, theo lượt) | `[x]` | Đúng engine Unciv gốc |
 | 2 | Thiết lập trận đấu (ruleset, độ khó, tốc độ, bản đồ, thảm họa) | `[x]` | Có đầy đủ `Difficulties.json`, `Speeds.json`, `Eras.json`; cường độ thảm họa GS có |
-| 3 | Bản đồ & địa hình (terrain, features, nước, Natural Wonders, resources) | `[x]` | Terrains/Features/Resources đầy đủ; **~22 Natural Wonders** (62+ các yếu mục bổ sung) |
+| 3 | Bản đồ & địa hình (terrain, features, nước, Natural Wonders, resources) | `[x]` | Terrains/Features/Resources đầy đủ; **16 Natural Wonders (root) / 17 (android)** (Civ 6 chuẩn ~35; 2 cây jsons đang lệch) |
 | 4 | Yields (Food/Production/Gold/Science/Culture/Faith) | `[x]` | Engine gốc + Civics/Chính phủ cấp thêm |
 | 5 | Housing & Amenities | `[x]` | Housing/Amenities engine đầy đủ; công trình Neighborhood, Entertainment Complex có |
 | 6 | Thành phố & Districts | `[x]` | 13 district chính + 2 mới (Canal, Dam — commit mới đã thêm vào `Districts.json`) + Government Plaza + Aerodrome + Spaceport |
@@ -34,7 +34,7 @@
 | 21 | World Congress & Diplomatic Victory | `[x]` | Hoàn chỉnh: resolutions, emergencies, favor, Diplomatic Victory (quỹ 10 điểm, UN), Trade Embargo |
 | 22 | Gián điệp (Spies) | `[x]` | Đầy đủ spy actions (steal tech, sabotage, coup...). **Lưu ý:** Spies là **dữ liệu/manager**, KHÔNG cần unit `Spy` trong Units.json → status "[x]" |
 | 23 | 6 điều kiện chiến thắng | `[x]` | Science (spaceship parts), Domination (thủ đô), Culture (tourism), Religion, Diplomatic + Time |
-| 24 | Chiến lược game phases | `[x]` | Tất cả phần này là chiến lược guidance trong file; việc **AI** thực thi còn `[~]` |
+| 24 | Chiến lược game phases | `[~]` | Phần này là chiến lược guidance trong file; AI mới chỉ có `isLateGame` trong `CivilianUnitAutomation` — **chưa có** chiến lược phân biệt early/mid/late game |
 | 25 | Tourism theo Appeal (Seaside Resort / National Park) | `[x]` | Unique `Tourism based on tile appeal` được engine thực thi (`updateStatsForNextTurn` cộng tourism theo appeal từng tile) — có test |
 
 ---
@@ -62,7 +62,7 @@
 | Goody Huts | `[ ]` | `[x]` — `Ruins.json` + "Ancient Ruins" random bonuses + tile "Goody Hut" trong TileImprovements |
 | Canal/Dam as districts | `[ ]` | `[x]` — đã thêm vào Districts.json (Dắm: +1 Production, adjacency Industrial Zone/Aqueduct, chứa Hydroelectric Dam) |
 | Aircraft Factory | `[ ]` | `[x]` — có trong Buildings.json (thuộc Aerodrome) |
-| 2 Natural Wonders | `[ ]` | `[~]` — ~22 natural wonders đã đủ/gần đủ |
+| 2 Natural Wonders | `[ ]` | `[~]` — chỉ **16/17** natural wonders (Civ 6 chuẩn ~35) |
 | City-state nations | `[ ]` | `[x]` — 24 CS + "Barbarians" nation |
 | 6 unique buildings thiếu `uniqueTo/replaces` | `[ ]` | `[x]` |
 | CasusBelli.RetributionWar | `[ ]` | `[x]` |
@@ -181,15 +181,15 @@ Những thay đổi hiện đang có trong working tree mà **chưa commit**:
 
 ## 5. Kết luận & ưu tiên đề xuất
 
-**Đã đạt (~95%):** toàn bộ hệ thống "chơi" của Civ 6 có trong engine + ruleset — districts, adjacency, tech/civic/policy, gov, tôn giáo, age/loyalty, world congress, climate, corps/army, great works, game modes.
+**Đã đạt (~92%):** toàn bộ hệ thống "chơi" của Civ 6 có trong engine + ruleset — districts, adjacency, tech/civic/policy, gov, tôn giáo, age/loyalty, world congress, climate, corps/army, great works, game modes.
 
 **Việc nên làm tiếp (theo ưu tiên):**
-1. **AI toàn diện** (đặt thành, đặt district, build queue, research, wonder) — mảng lớn còn `[~]` thật.
-2. **Hoàn thiện adjacency call chuẩn** (giá trị phân số + kiểm chứng từng district).
-3. **Great Works per-building + theming per-museum** (đang global pool).
-4. **Giảm friction War Weariness cũ với War Support mới.**
-5. **Hoàn tất UI tooltips uniques** + bổ sung unit action team đang sửa.
-6. **Commit các thay đổi uncommitted** (GovernmentPicker, WorkerAutomation builder, test mới) sau khi chạy test xong.
+1. **Bổ sung Natural Wonders** lên gần chuẩn Civ 6 (~35) và **đồng bộ 2 cây jsons** (root 16 / android 17 đang lệch).
+2. **AI theo game phase** (early/mid/late) — hiện mới có `isLateGame`.
+3. **Tăng độ sâu AI** so với Civ 6 thật (chiến thuật corps/army, quyết định theo grievances, chiến lược theo era).
+4. **Hoàn thiện adjacency call chuẩn** (giá trị phân số + kiểm chứng từng district).
+5. **Great Works per-building + theming per-museum** (đang global pool).
+6. **Hoàn tất UI tooltips uniques** + bổ sung unit action team đang sửa.
 
 ---
 
