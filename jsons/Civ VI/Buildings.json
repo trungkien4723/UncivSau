@@ -6,7 +6,8 @@
         "uniques": [
             "Unbuildable",
             "Creates a [Campus] district on a specific tile",
-            "Shows when unbuildable"
+            "Shows when unbuildable",
+            "[+50]% weight to this choice for AI decisions"
         ],
         "maintenance": 0,
         "district": "Campus",
@@ -23,7 +24,8 @@
         "uniques": [
             "Unbuildable",
             "Creates a [Theater Square] district on a specific tile",
-            "Shows when unbuildable"
+            "Shows when unbuildable",
+            "[+50]% weight to this choice for AI decisions"
         ],
         "maintenance": 0,
         "district": "Theater Square",
@@ -40,7 +42,8 @@
         "uniques": [
             "Unbuildable",
             "Creates a [Holy Site] district on a specific tile",
-            "Shows when unbuildable"
+            "Shows when unbuildable",
+            "[+50]% weight to this choice for AI decisions"
         ],
         "maintenance": 0,
         "district": "Holy Site",
@@ -57,7 +60,8 @@
         "uniques": [
             "Unbuildable",
             "Creates a [Commercial Hub] district on a specific tile",
-            "Shows when unbuildable"
+            "Shows when unbuildable",
+            "[+50]% weight to this choice for AI decisions"
         ],
         "maintenance": 0,
         "district": "Commercial Hub",
@@ -74,7 +78,8 @@
         "uniques": [
             "Unbuildable",
             "Creates a [Industrial Zone] district on a specific tile",
-            "Shows when unbuildable"
+            "Shows when unbuildable",
+            "[+50]% weight to this choice for AI decisions"
         ],
         "maintenance": 0,
         "district": "Industrial Zone",
@@ -2210,7 +2215,9 @@
         "name": "Monument",
         "cost": 60,
         "maintenance": 1,
-        "uniques": [],
+        "uniques": [
+            "[+25]% weight to this choice for AI decisions"
+        ],
         "requiredTech": "Writing",
         "culture": 2
     },
@@ -2218,7 +2225,9 @@
         "name": "Granary",
         "cost": 65,
         "maintenance": 1,
-        "uniques": [],
+        "uniques": [
+            "[+25]% weight to this choice for AI decisions"
+        ],
         "requiredTech": "Pottery",
         "food": 2,
         "housing": 1
@@ -2227,7 +2236,9 @@
         "name": "Water Mill",
         "cost": 100,
         "maintenance": 0,
-        "uniques": [],
+        "uniques": [
+            "[+25]% weight to this choice for AI decisions"
+        ],
         "requiredTech": "Wheel",
         "food": 2,
         "production": 1,
@@ -2383,7 +2394,8 @@
         "maintenance": 1,
         "uniques": [
             "+1 Citizen slot",
-            "Allows purchasing Missionaries with Faith"
+            "Allows purchasing Missionaries with Faith",
+            "[+25]% weight to this choice for AI decisions"
         ],
         "requiredTech": "Astrology",
         "faith": 2,
@@ -2399,7 +2411,8 @@
         "uniques": [
             "+1 Citizen slot",
             "Allows purchasing Apostles with Faith",
-            "+1 Relic slot"
+            "+1 Relic slot",
+            "[+25]% weight to this choice for AI decisions"
         ],
         "requiredCivic": "Political Philosophy",
         "faith": 4,
@@ -2509,7 +2522,8 @@
         "cost": 100,
         "maintenance": 1,
         "uniques": [
-            "+1 Citizen slot"
+            "+1 Citizen slot",
+            "[+25]% weight to this choice for AI decisions"
         ],
         "requiredTech": "Writing",
         "science": 2,
@@ -2524,7 +2538,8 @@
         "maintenance": 2,
         "uniques": [
             "+1 Citizen slot",
-            "+1 Science per Campus adjacency"
+            "+1 Science per Campus adjacency",
+            "[+25]% weight to this choice for AI decisions"
         ],
         "requiredTech": "Education",
         "science": 4,
@@ -2646,7 +2661,8 @@
         "maintenance": 0,
         "uniques": [
             "+1 Citizen slot",
-            "+1 Trade Route capacity"
+            "+1 Trade Route capacity",
+            "[+25]% weight to this choice for AI decisions"
         ],
         "requiredTech": "Currency",
         "gold": 2,
@@ -2681,6 +2697,7 @@
         "maintenance": 0,
         "uniques": [
             "+1 Citizen slot",
+            "[+25]% weight to this choice for AI decisions",
             "+1 Trade Route capacity"
         ],
         "requiredTech": "Banking",
@@ -2709,7 +2726,9 @@
         "district": "Theater Square",
         "cost": 75,
         "maintenance": 1,
-        "uniques": [],
+        "uniques": [
+            "[+25]% weight to this choice for AI decisions"
+        ],
         "requiredCivic": "Drama and Poetry",
         "tourism": 1,
         "greatWorkSlots": {
@@ -3022,7 +3041,8 @@
         "maintenance": 2,
         "uniques": [
             "+1 Citizen slot",
-            "Regional effect: +3 Production to all cities within 6 tiles"
+            "Regional effect: +3 Production to all cities within 6 tiles",
+            "[+25]% weight to this choice for AI decisions"
         ],
         "requiredTech": "Industrialization",
         "production": 3,

@@ -77,6 +77,11 @@
   {
     "name": "Alexander",
     "production": 5,
+    "uniques": [
+      "[+50]% weight to [Melee] for AI decisions",
+      "[+50]% weight to [Siege] for AI decisions",
+      "[+50]% weight to [Military] for AI decisions"
+    ],
     "food": 4,
     "gold": 3,
     "science": 6,
@@ -216,6 +221,10 @@
   {
     "name": "Augustus Caesar",
     "production": 6,
+    "uniques": [
+      "[+50]% weight to [Military] for AI decisions",
+      "[+25]% weight to [Housing] for AI decisions"
+    ],
     "food": 5,
     "gold": 6,
     "science": 5,
@@ -252,6 +261,10 @@
   {
     "name": "Otto von Bismarck",
     "production": 8,
+    "uniques": [
+      "[+50]% weight to [Military] for AI decisions",
+      "[+50]% weight to [Production] for AI decisions"
+    ],
     "food": 5,
     "gold": 5,
     "science": 7,
@@ -355,6 +368,10 @@
   {
     "name": "Catherine",
     "production": 6,
+    "uniques": [
+      "[+50]% weight to [Science] for AI decisions",
+      "[+25]% weight to [Gold] for AI decisions"
+    ],
     "food": 3,
     "gold": 5,
     "science": 8,
@@ -417,6 +434,10 @@
   {
     "name": "Dido",
     "production": 5,
+    "uniques": [
+      "[+75]% weight to [Water] for AI decisions",
+      "[+75]% weight to [Gold] for AI decisions"
+    ],
     "food": 5,
     "gold": 7,
     "science": 5,
@@ -448,6 +469,10 @@
   {
     "name": "Elizabeth",
     "production": 6,
+    "uniques": [
+      "[+75]% weight to [Water] for AI decisions",
+      "[+25]% weight to [Gold] for AI decisions"
+    ],
     "food": 4,
     "gold": 8,
     "science": 6,
@@ -541,6 +566,12 @@
   {
     "name": "Gandhi",
     "production": 5,
+    "uniques": [
+      "[+50]% weight to [Faith] for AI decisions",
+      "[+25]% weight to [Culture] for AI decisions",
+      "[-25]% weight to [Military] for AI decisions",
+      "Will not build [Nuclear Weapon]"
+    ],
     "food": 10,
     "gold": 4,
     "science": 6,
@@ -572,6 +603,11 @@
   {
     "name": "Genghis Khan",
     "production": 6,
+    "uniques": [
+      "[+75]% weight to [Mounted] for AI decisions",
+      "[+25]% weight to [Military] for AI decisions",
+      "[-50]% weight to [Building] for AI decisions"
+    ],
     "food": 5,
     "gold": 6,
     "science": 4,
@@ -696,6 +732,10 @@
   {
     "name": "Harun al-Rashid",
     "production": 5,
+    "uniques": [
+      "[+50]% weight to [Gold] for AI decisions",
+      "[+50]% weight to [Faith] for AI decisions"
+    ],
     "food": 5,
     "gold": 8,
     "science": 7,
@@ -758,6 +798,10 @@
   {
     "name": "Isabella",
     "production": 5,
+    "uniques": [
+      "[+50]% weight to [Faith] for AI decisions",
+      "[+25]% weight to [Military] for AI decisions"
+    ],
     "food": 5,
     "gold": 7,
     "science": 3,
@@ -882,6 +926,10 @@
   {
     "name": "Napoleon",
     "production": 5,
+    "uniques": [
+      "[+50]% weight to [Siege] for AI decisions",
+      "[+25]% weight to [Military] for AI decisions"
+    ],
     "food": 5,
     "gold": 4,
     "science": 7,
@@ -913,6 +961,9 @@
   {
     "name": "Nebuchadnezzar II",
     "production": 5,
+    "uniques": [
+      "[+75]% weight to [Science] for AI decisions"
+    ],
     "food": 6,
     "gold": 5,
     "science": 8,
@@ -944,6 +995,10 @@
   {
     "name": "Oda Nobunaga",
     "production": 5,
+    "uniques": [
+      "[+50]% weight to [Melee] for AI decisions",
+      "[+25]% weight to [Military] for AI decisions"
+    ],
     "food": 5,
     "gold": 6,
     "science": 4,
@@ -1006,6 +1061,10 @@
   {
     "name": "Pachacuti",
     "production": 5,
+    "uniques": [
+      "[+50]% weight to [Gold] for AI decisions",
+      "[+25]% weight to [Faith] for AI decisions"
+    ],
     "food": 5,
     "gold": 8,
     "science": 5,
@@ -1037,6 +1096,10 @@
   {
     "name": "Pedro II",
     "production": 6,
+    "uniques": [
+      "[+75]% weight to [Culture] for AI decisions",
+      "[+25]% weight to [Wonder] for AI decisions"
+    ],
     "food": 7,
     "gold": 6,
     "science": 5,
@@ -1099,6 +1162,10 @@
   {
     "name": "Ramesses II",
     "production": 7,
+    "uniques": [
+      "[+75]% weight to [Wonder] for AI decisions",
+      "[+25]% weight to [Faith] for AI decisions"
+    ],
     "food": 6,
     "gold": 6,
     "science": 5,
@@ -1192,6 +1259,10 @@
   {
     "name": "Shaka",
     "production": 8,
+    "uniques": [
+      "[+75]% weight to [Melee] for AI decisions",
+      "[+25]% weight to [Military] for AI decisions"
+    ],
     "food": 3,
     "gold": 6,
     "science": 3,
@@ -1254,6 +1325,10 @@
   {
     "name": "Theodora",
     "production": 5,
+    "uniques": [
+      "[+50]% weight to [Faith] for AI decisions",
+      "[+25]% weight to [Gold] for AI decisions"
+    ],
     "food": 7,
     "gold": 5,
     "science": 6,
@@ -1285,6 +1360,10 @@
   {
     "name": "George Washington",
     "production": 5,
+    "uniques": [
+      "[+50]% weight to [Wonder] for AI decisions",
+      "[+25]% weight to [Military] for AI decisions"
+    ],
     "food": 3,
     "gold": 6,
     "science": 6,
@@ -1347,6 +1426,10 @@
   {
     "name": "Wu Zetian",
     "production": 5,
+    "uniques": [
+      "[+50]% weight to [Science] for AI decisions",
+      "[+50]% weight to [Culture] for AI decisions"
+    ],
     "food": 8,
     "gold": 5,
     "science": 8,
@@ -1378,6 +1461,10 @@
   {
     "name": "Ba Trieu",
     "production": 6,
+    "uniques": [
+      "[+75]% weight to [Melee] for AI decisions",
+      "[+25]% weight to [Military] for AI decisions"
+    ],
     "food": 5,
     "gold": 5,
     "science": 5,

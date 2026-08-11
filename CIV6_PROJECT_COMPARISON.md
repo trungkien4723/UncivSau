@@ -45,7 +45,7 @@
 
 | STT | Mục | Hiện trạng | Chi tiết sẽ cần |
 |---|---|---|---|
-| 1 | **AI toàn diện** | `[~]` | City placement, build queue, wonder priority, unit automation, research, diplomacy... đang "basic automation". Đây là mảng lớn nhất còn lại. |
+| 1 | **AI toàn diện** | `[x]` | City placement (`rankTileForDistrict`), build queue có AI weight (personality + building AiChoiceWeight: district chuẩn +50%, công trình +25%), research (`chooseTechToResearch`/`chooseCivicToResearch`), unit automation, diplomacy, wonder priority. Có test `AiWeightsTests`. |
 | 2 | **AI chỗ đặt district** (`rankTileForDistrict`) | `[x]` | `Automation.rankDistrictValue` (`Automation.kt`) score base yields + adjacency của vị trí tốt nhất, dùng trong build queue (`ConstructionAutomation.kt`) với bonus cho district đầu tiên của city. |
 | 3 | **Adjacency** | `[x]` | Đã khớp bảng chuẩn 7 district (Campus/Theater/HolySite/Commercial/Harbor/Industrial/Encampment+Entertainment=không bonus) + các bonus bổ sung; fraction ±0.5 execute đúng (có test) |
 | 4 | **War Support / War Weariness** | `[x]` | War Support là cơ chế chính (combat +1% mỗi điểm, UI ngoại giao, khởi tạo qua Casus Belli); hệ war weariness C5 cũ đã gỡ — hết friction |
