@@ -2,6 +2,8 @@ package com.unciv.logic.automation.civilization
 
 import com.unciv.logic.civilization.Civilization
 import com.unciv.models.ruleset.Victory
+import com.unciv.models.ruleset.tech.Technology
+import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.models.stats.Stat
 import com.unciv.ui.screens.victoryscreen.RankingType
 import yairm210.purity.annotations.Readonly
@@ -163,4 +165,61 @@ fun Civilization.getAiVictoryFocus(): Victory.Focus? {
         .distinct()
     val bestFocus = focuses.maxByOrNull { powerRatio(it) } ?: return null
     return bestFocus.takeIf { powerRatio(it) > 1f }
+}
+
+/**
+ * Multiplier on a tech's AI research weight so the AI researches towards its
+ * [getAiVictoryFocus] victory path. Returns 1f (no change) when the civ has no focus
+ * or the tech does not advance it.
+ *
+ * Evaluated from what the tech unlocks (buildings/units that require it), weighed by
+ * how well those serve the focus: the focus stat's yield, military units, the
+ * spaceship part constructions and key wonders.
+ */
+@Readonly
+fun Civilization.getTechFocusMultiplier(tech: Technology): Float {
+    val focus = getAiVictoryFocus() ?: return 1f
+    val ruleset = gameInfo.ruleset
+    val unlockedBuildings = ruleset.buildings.values.filter { tech.name in it.requiredTechs() }
+    val unlockedUnits = ruleset.units.values.filter { tech.name in it.requiredTechs() }
+
+    fun statValue(stat: Stat): Float = unlockedBuildings.map { it.cloneStats()[stat] }.sum() * 0.2f
+
+    var value = when (focus) {
+        Victory.Focus.Military -> {
+            var v = unlockedUnits.count { it.isRanged() || it.isMelee() } * 0.5f
+            v += unlockedBuildings.count { it.hasUnique(UniqueType.Strength) } * 0.25f
+            v
+        }
+        Victory.Focus.Science -> {
+            var v = statValue(Stat.Science)
+            if (unlockedBuildings.any { it.hasUnique(UniqueType.EnablesConstructionOfSpaceshipParts) }) v += 3f
+            v += unlockedUnits.count { it.hasUnique(UniqueType.SpaceshipPart) } * 1f
+            v
+        }
+        Victory.Focus.Culture -> {
+            var v = statValue(Stat.Culture)
+            v += unlockedBuildings.count { it.greatWorkSlots.values.any { slotCount -> slotCount > 0 } } * 0.5f
+            v
+        }
+        Victory.Focus.Faith -> {
+            var v = statValue(Stat.Faith)
+            v += unlockedBuildings.count {
+                it.hasUnique(UniqueType.GreatPersonPointPercentage) ||
+                    it.hasUnique(UniqueType.Civ6GreatPersonPointsPerTurn) ||
+                    it.hasUnique(UniqueType.Civ61GreatPersonPointPerTurn)
+            } * 0.3f
+            v
+        }
+        Victory.Focus.Gold -> statValue(Stat.Gold)
+        Victory.Focus.Production -> {
+            var v = statValue(Stat.Production)
+            v += unlockedBuildings.count { it.isAnyWonder() } * 0.4f
+            v
+        }
+        else -> return 1f
+    }
+    if (value <= 0f) return 1f
+    value = (1f + value).coerceAtMost(3f)
+    return value
 }

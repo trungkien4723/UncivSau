@@ -271,15 +271,18 @@ object NextTurnAutomation {
         }
 
         val stateForConditionals = civInfo.state
+        fun techWeight(tech: Technology): Float =
+            getTechWeightWithAgenda(tech, civInfo, tech.getWeightForAiDecision(stateForConditionals)) *
+                civInfo.getTechFocusMultiplier(tech)
         while (civInfo.tech.freeTechs > 0) {
             val costs = getGroupedResearchableTechs()
             if (costs.isEmpty()) return
             
             val mostExpensiveTechs = costs.lastOrNull{ 
                 // Ignore rows where all techs have 0 weight
-                it.any { getTechWeightWithAgenda(it, civInfo, it.getWeightForAiDecision(stateForConditionals)) > 0 }
+                it.any { techWeight(it) > 0 }
             } ?: costs.last()
-            val chosenTech = mostExpensiveTechs.randomWeighted(rng) { getTechWeightWithAgenda(it, civInfo, it.getWeightForAiDecision(stateForConditionals)) }
+            val chosenTech = mostExpensiveTechs.randomWeighted(rng) { techWeight(it) }
             civInfo.tech.getFreeTechnology(chosenTech.name)
         }
         if (civInfo.tech.techsToResearch.isEmpty()) {
@@ -288,15 +291,15 @@ object NextTurnAutomation {
 
             val cheapestTechs = costs.firstOrNull{
                 // Ignore rows where all techs have 0 weight
-                it.any { getTechWeightWithAgenda(it, civInfo, it.getWeightForAiDecision(stateForConditionals)) > 0 } }?: costs.first()
+                it.any { techWeight(it) > 0 } }?: costs.first()
             //Do not consider advanced techs if only one tech left in cheapest group
             val techToResearch: Technology =
                 if (cheapestTechs.size == 1 || costs.size == 1) {
-                    cheapestTechs.randomWeighted(rng) { getTechWeightWithAgenda(it, civInfo, it.getWeightForAiDecision(stateForConditionals)) }
+                    cheapestTechs.randomWeighted(rng) { techWeight(it) }
                 } else {
                     //Choose randomly between cheapest and second cheapest group
                     val techsAdvanced = costs[1]
-                    (cheapestTechs + techsAdvanced).randomWeighted(rng) { getTechWeightWithAgenda(it, civInfo, it.getWeightForAiDecision(stateForConditionals)) }
+                    (cheapestTechs + techsAdvanced).randomWeighted(rng) { techWeight(it) }
                 }
 
             civInfo.tech.techsToResearch.add(techToResearch.name)

@@ -2,6 +2,7 @@ package com.unciv.logic.automation
 
 import com.unciv.logic.automation.civilization.getAiVictoryFocus
 import com.unciv.logic.automation.civilization.getAiVictoryStatModifiers
+import com.unciv.logic.automation.civilization.getTechFocusMultiplier
 import com.unciv.models.ruleset.Victory
 import com.unciv.models.ruleset.tech.Era
 import com.unciv.models.stats.Stat
@@ -166,5 +167,39 @@ class AiVictoryFocusTests {
         enemy.stats.statsForNextTurn[Stat.Science] = 10f
 
         assertEquals(null, civ.getAiVictoryFocus())
+    }
+
+    @Test
+    fun scienceFocusResearchesApolloTech() {
+        setEra(4)
+        val enemy = addAliveEnemy()
+        civ.stats.statsForNextTurn[Stat.Science] = 50f
+        enemy.stats.statsForNextTurn[Stat.Science] = 10f
+        assertEquals(Victory.Focus.Science, civ.getAiVictoryFocus())
+
+        // Rocketry unlocks Apollo Program (Enables construction of Spaceship parts) -> strongly boosted
+        assertTrue(civ.getTechFocusMultiplier(testGame.ruleset.technologies["Rocketry"]!!) > 1f)
+    }
+
+    @Test
+    fun militaryFocusResearchesMilitaryTechs() {
+        setEra(4)
+        addAliveEnemy()
+        for (i in 0..5) testGame.addUnit("Warrior", civ, testGame.getTile(i % 3, i / 3))
+        assertEquals(Victory.Focus.Military, civ.getAiVictoryFocus())
+
+        // Bronze Working unlocks Spearman, a military unit
+        assertTrue(civ.getTechFocusMultiplier(testGame.ruleset.technologies["Bronze Working"]!!) > 1f)
+    }
+
+    @Test
+    fun noFocusLeavesResearchWeightUntouched() {
+        setEra(4)
+        val enemy = addAliveEnemy()
+        civ.stats.statsForNextTurn[Stat.Science] = 10f
+        enemy.stats.statsForNextTurn[Stat.Science] = 100f
+
+        assertEquals(null, civ.getAiVictoryFocus())
+        assertEquals(1f, civ.getTechFocusMultiplier(testGame.ruleset.technologies["Rocketry"]!!), 0.0001f)
     }
 }
