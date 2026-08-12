@@ -417,6 +417,7 @@ object Automation {
             && !tile.isCityCenter()
             && tile.district == null
             && (district.onlyBuildableOn.isEmpty() || tile.matchesFilter(district.onlyBuildableOn, civ))
+            && district.getMatchingUniques(UniqueType.Civ6Requires).all { tile.matchesFilter(it.params[0], civ) }
     }
 
     /** Scores a tile for placing [district], rewarding own stats and adjacency bonuses. */

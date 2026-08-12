@@ -923,6 +923,7 @@ class CityConstructions : IsPartOfGameInfoSerialization {
             && (techRequired == null || city.civ.tech.isResearched(techRequired))
             && (civicRequired == null || city.civ.civics.isResearched(civicRequired))
             && (district.onlyBuildableOn.isEmpty() || tile.matchesFilter(district.onlyBuildableOn, city.civ))
+            && district.getMatchingUniques(UniqueType.Civ6Requires).all { tile.matchesFilter(it.params[0], city.civ) }
     }
 
     /**

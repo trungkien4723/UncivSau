@@ -64,4 +64,28 @@ class CivVIDistrictIntegrationTest {
         assertFalse("Pillaged check: district should be active",
             districtTile!!.districtIsPillaged)
     }
+
+    @Test
+    fun `Harbor district requires a coastal tile`() {
+        val ruleset = RulesetCache[BaseRuleset.Civ_VI.fullName]!!
+        val harbor = ruleset.districts["Harbor"]!!
+        assertTrue("Harbor should require Coast", harbor.getMatchingUniques(
+            com.unciv.models.ruleset.unique.UniqueType.Civ6Requires).any())
+
+        // Inland land tile - no water neighbor
+        val inlandTile = testGame.tileMap[0, 1]
+        inlandTile.setOwningCity(city)
+        testGame.addTileToCity(city, inlandTile)
+
+        // Coastal land tile - a neighbor is Coast water
+        val coastalTile = testGame.tileMap[2, 0]
+        coastalTile.setOwningCity(city)
+        testGame.addTileToCity(city, coastalTile)
+        testGame.setTileTerrain(testGame.tileMap[1, 0].position, "Coast")
+
+        assertFalse("Inland tile must be invalid for Harbor",
+            city.cityConstructions.canPlaceCreateOneDistrictOn(harbor, inlandTile))
+        assertTrue("Coastal tile must be valid for Harbor",
+            city.cityConstructions.canPlaceCreateOneDistrictOn(harbor, coastalTile))
+    }
 }
