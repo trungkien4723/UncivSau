@@ -1,8 +1,10 @@
 package com.unciv.logic.automation.civilization
 
 import com.unciv.logic.civilization.Civilization
+import com.unciv.logic.civilization.diplomacy.DeclareWarReason
 import com.unciv.logic.civilization.diplomacy.DiplomacyFlags
 import com.unciv.logic.civilization.diplomacy.RelationshipLevel
+import com.unciv.logic.civilization.diplomacy.WarType
 import com.unciv.logic.trade.TradeLogic
 import com.unciv.logic.trade.TradeOffer
 import com.unciv.logic.trade.TradeRequest
@@ -104,7 +106,12 @@ object DeclareWarTargetAutomation {
      */
     private fun declareWar(civInfo: Civilization, target: Civilization, motivation: Float): Boolean {
         if (DeclareWarPlanEvaluator.evaluateDeclareWarPlan(civInfo, target, motivation) > 0) {
-            civInfo.getDiplomacyManager(target)!!.declareWar()
+            // Civ VI: pick the casus belli with the least grievance cost (e.g. Formal War after
+            // a denouncement instead of a Surprise War), to minimize diplomatic fallout
+            val casusBelli = DeclareWarPlanEvaluator.chooseCasusBelli(civInfo, target)
+            civInfo.getDiplomacyManager(target)!!.declareWar(
+                DeclareWarReason(WarType.DirectWar, casusBelli = casusBelli)
+            )
             return true
         }
         return false

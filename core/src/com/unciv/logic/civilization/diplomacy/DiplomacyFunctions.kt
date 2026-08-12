@@ -301,8 +301,9 @@ class DiplomacyFunctions(val civInfo: Civilization) {
     @Readonly
     fun canDeclareFormalWar(otherCiv: Civilization): Boolean {
         // Can declare formal war if we denounced them 5 turns ago
+        // (getFlag returns 0 when the flag does not exist, so check hasFlag first)
         val theirDiplo = otherCiv.getDiplomacyManager(civInfo)
-        return theirDiplo?.getFlag(DiplomacyFlags.Denunciation) != null && theirDiplo!!.getFlag(DiplomacyFlags.Denunciation) <= 25
+        return theirDiplo?.hasFlag(DiplomacyFlags.Denunciation) == true && theirDiplo.getFlag(DiplomacyFlags.Denunciation) <= 25
     }
 
     @Readonly

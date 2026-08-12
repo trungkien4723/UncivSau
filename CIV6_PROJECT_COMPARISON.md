@@ -45,7 +45,7 @@
 
 | STT | Mục | Hiện trạng | Chi tiết sẽ cần |
 |---|---|---|---|
-| 1 | **AI toàn diện** | `[x]` | City placement (`rankTileForDistrict`), build queue có AI weight (personality + building AiChoiceWeight: district chuẩn +50%, công trình +25%), research (`chooseTechToResearch`/`chooseCivicToResearch`), unit automation, diplomacy, wonder priority. Có test `AiWeightsTests`. |
+| 1 | **AI toàn diện** | `[x]` | City placement (`rankTileForDistrict`), build queue có AI weight (personality + building AiChoiceWeight: district chuẩn +50%, công trình +25%), research (`chooseTechToResearch`/`chooseCivicToResearch`), unit automation, diplomacy, wonder priority, **game-phase** (worker/military/wonder/expansion), **war theo grievances + casus belli** (AI chọn casus belli ít grievance nhất, grievance tăng motivation tuyên chiến/chuẩn bị chiến). Có test `AiWeightsTests`, `GamePhaseTests`, `DeclareWarPlanEvaluatorTests`. |
 | 2 | **AI chỗ đặt district** (`rankTileForDistrict`) | `[x]` | `Automation.rankDistrictValue` (`Automation.kt`) score base yields + adjacency của vị trí tốt nhất, dùng trong build queue (`ConstructionAutomation.kt`) với bonus cho district đầu tiên của city. |
 | 3 | **Adjacency** | `[x]` | Đã khớp bảng chuẩn 7 district (Campus/Theater/HolySite/Commercial/Harbor/Industrial/Encampment+Entertainment=không bonus) + các bonus bổ sung; fraction ±0.5 execute đúng (có test) |
 | 4 | **War Support / War Weariness** | `[x]` | War Support là cơ chế chính (combat +1% mỗi điểm, UI ngoại giao, khởi tạo qua Casus Belli); hệ war weariness C5 cũ đã gỡ — hết friction |
@@ -189,7 +189,7 @@ Những thay đổi hiện đang có trong working tree mà **chưa commit**:
 **Việc nên làm tiếp (theo ưu tiên):**
 1. **Bổ sung Natural Wonders** — đã xong: thêm 10 wonder GS/NFP (Bermuda Triangle, Chocolate Hills, Delicate Arch, Eye of the Sahara, Giant's Causeway, Mato Tipila, Matterhorn, Mount Kilimanjaro, Mount Vesuvius, Pamukkale) → **38 wonders, đồng bộ 2 cây jsons**. (Civ 6 chuẩn có 37; project còn thêm Grand Canyon + Nile River).
 2. **AI theo game phase** — đã xong: `GamePhase.kt` (Early/Mid/Late theo era) + 4 helper theo phase (`workerRatio`, `militaryBuildModifier`, `minimumFreeLandForExpansion`, `wonderModifier`) áp dụng vào build queue (military/worker/wonder), `trainSettler` (mở rộng early/mid, late chỉ khi còn đất) và `isLateGame`.
-3. **Tăng độ sâu AI** so với Civ 6 thật (chiến thuật corps/army, quyết định theo grievances, chiến lược theo era).
+3. **Tăng độ sâu AI** — đã làm phần war/grievances: `chooseCasusBelli` (chọn casus belli ít grievance nhất khi tuyên chiến), grievance tăng motivation tuyên chiến + chuẩn bị chiến (`DeclareWarPlanEvaluator`), fix bug `canDeclareFormalWar` (getFlag trả 0 khi chưa set → Formal War luôn available). Còn: chiến thuật corps/army (cần unit stacking — hiện engine 1 military unit/tile), chiến lược theo era sâu hơn.
 4. **Hoàn thiện adjacency call chuẩn** — đã làm: fix bug "dead unique" (13 uniques hậu tố thừa), fix engine filter `City Center`, Government Plaza chuyển sang "cho", đồng bộ 2 cây jsons, test từng district (`DistrictAdjacencyTests`, 15 test).
 5. **Great Works per-building + theming per-museum** (đang global pool).
 6. **Hoàn tất UI tooltips uniques** + bổ sung unit action team đang sửa.

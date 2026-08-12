@@ -1,7 +1,9 @@
 package com.unciv.logic.automation.civilization
 
 import com.unciv.logic.civilization.Civilization
+import com.unciv.logic.civilization.diplomacy.CasusBelli
 import com.unciv.logic.civilization.diplomacy.DiplomacyFlags
+import com.unciv.logic.civilization.diplomacy.DiplomaticModifiers
 import com.unciv.logic.civilization.diplomacy.DiplomaticStatus
 import com.unciv.logic.civilization.diplomacy.RelationshipLevel
 import com.unciv.models.ruleset.nation.PersonalityValue
@@ -12,6 +14,28 @@ import yairm210.purity.annotations.Readonly
  * Contains the logic for evaluating how we want to declare war on another civ.
  */
 object DeclareWarPlanEvaluator {
+
+    /**
+     * Civ VI: picks the best casus belli available to [civInfo] when declaring war on [target].
+     * The AI prefers the legal casus belli with the lowest grievance cost, i.e. the least
+     * diplomatic fallout (e.g. Formal War instead of a Surprise War once the target was denounced).
+     * @return The best casus belli, or `null` if only a Surprise War is possible.
+     */
+    @Readonly
+    fun chooseCasusBelli(civInfo: Civilization, target: Civilization): CasusBelli? {
+        return CasusBelli.getAvailableCasusBelli(civInfo, target)
+            .filter { it != CasusBelli.SurpriseWar }
+            .minByOrNull { it.grievanceCost }
+    }
+
+    /**
+     * Civ VI Grievances: the more grievances we hold against the target, the more justified
+     * the war feels. Adds a small retaliation boost to war motivation so the AI doesn't
+     * just sit there while its oppressor settles captured cities.
+     */
+    @Readonly
+    private fun grievanceMotivation(civInfo: Civilization, target: Civilization): Float =
+        civInfo.getDiplomacyManager(target)!!.getModifier(DiplomaticModifiers.Grievances) / 20f
 
     /**
      * How much motivation [civInfo] has to do a team war with [teamCiv] against [target].
@@ -152,10 +176,13 @@ object DeclareWarPlanEvaluator {
     @Readonly
     fun evaluateDeclareWarPlan(civInfo: Civilization, target: Civilization, givenMotivation: Float?): Float {
         if (civInfo.getPersonality()[PersonalityValue.DeclareWar] == 0f) return -1000f
-        val motivation = givenMotivation
+        var motivation = givenMotivation
             ?: MotivationToAttackAutomation.hasAtLeastMotivationToAttack(civInfo, target, 0f)
 
         val diploManager = civInfo.getDiplomacyManager(target)!!
+
+        // Civ VI Grievances: retaliating against the civ we hold grievances against feels justified
+        motivation += grievanceMotivation(civInfo, target)
 
         if (diploManager.hasFlag(DiplomacyFlags.WaryOf) && diploManager.getFlag(DiplomacyFlags.WaryOf) < 0) {
             val turnsToPlan = (10 - (motivation / 10)).coerceAtLeast(3f)
@@ -173,8 +200,12 @@ object DeclareWarPlanEvaluator {
      */
     @Readonly
     fun evaluateStartPreparingWarPlan(civInfo: Civilization, target: Civilization, givenMotivation: Float?): Float {
-        val motivation = givenMotivation
+        var motivation = givenMotivation
             ?: MotivationToAttackAutomation.hasAtLeastMotivationToAttack(civInfo, target, 0f)
+
+        // Civ VI Grievances: build up military against a civ we hold grievances against
+        // (they are likely to strike us first anyway)
+        motivation += grievanceMotivation(civInfo, target)
 
         // TODO: We use negative values in WaryOf for now so that we aren't adding any extra fields to the save file
         // This will very likely change in the future and we will want to build upon it
