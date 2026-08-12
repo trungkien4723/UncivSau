@@ -17,7 +17,9 @@
         "uniques": [
             "[+1 Science] [in this city]",
             "[+1 Science] for each adjacent [Mountain]",
-            "[+1 Science] for each adjacent [Jungle]"
+            "[+0.5 Science] for each adjacent [Jungle]",
+            "[+1 Science] for each adjacent [Government Plaza]",
+            "[+0.5 Science] for each adjacent [District]"
         ]
     },
     {
@@ -31,8 +33,10 @@
         "uniques": [
             "[+1 Culture] [in this city]",
             "[+1 Culture] for each adjacent [Wonder]",
-            "[+1 Culture] for each adjacent [Entertainment Complex] district",
-            "[+1 Culture] for each adjacent [Water Entertainment Complex] district"
+            "[+2 Culture] for each adjacent [Entertainment Complex]",
+            "[+2 Culture] for each adjacent [Water Entertainment Complex]",
+            "[+1 Culture] for each adjacent [Government Plaza]",
+            "[+0.5 Culture] for each adjacent [District]"
         ]
     },
     {
@@ -45,8 +49,11 @@
         ],
         "uniques": [
             "[+1 Faith] [in this city]",
+            "[+2 Faith] for each adjacent [Natural Wonder]",
             "[+1 Faith] for each adjacent [Mountain]",
-            "[+1 Faith] for each adjacent [Natural Wonder]"
+            "[+0.5 Faith] for each adjacent [Forest]",
+            "[+1 Faith] for each adjacent [Government Plaza]",
+            "[+0.5 Faith] for each adjacent [District]"
         ]
     },
     {
@@ -60,8 +67,10 @@
         ],
         "uniques": [
             "[+2 Gold] [in this city]",
-            "[+1 Gold] for each adjacent [Harbor] district",
-            "[+2 Gold] for each adjacent [River]"
+            "[+2 Gold] for each adjacent [Harbor]",
+            "[+2 Gold] for each adjacent [River]",
+            "[+1 Gold] for each adjacent [Government Plaza]",
+            "[+0.5 Gold] for each adjacent [District]"
         ]
     },
     {
@@ -75,10 +84,14 @@
         ],
         "uniques": [
             "[+2 Production] [in this city]",
-            "[+1 Production] for each adjacent [Aqueduct] district",
-            "[+1 Production] for each adjacent [Strategic] resource",
+            "[+2 Production] for each adjacent [Aqueduct]",
+            "[+2 Production] for each adjacent [Dam]",
+            "[+2 Production] for each adjacent [Canal]",
+            "[+1 Production] for each adjacent [Strategic]",
             "[+1 Production] for each adjacent [Mine]",
-            "[+1 Production] for each adjacent [Quarry]"
+            "[+1 Production] for each adjacent [Quarry]",
+            "[+1 Production] for each adjacent [Government Plaza]",
+            "[+0.5 Production] for each adjacent [District]"
         ]
     },
     {
@@ -86,7 +99,9 @@
         "cost": 30,
         "requiredTech": "Sanitation",
         "uniques": [
-            "[+2 Food] [in this city]"
+            "[+2 Food] [in this city]",
+            "[+1 Housing] for each adjacent [City Center]",
+            "[+1 Housing] for each adjacent [Entertainment Complex]"
         ]
     },
     {
@@ -100,8 +115,7 @@
             "Military Academy"
         ],
         "uniques": [
-            "[+1 Production] [in this city]",
-            "[+1 Production] for each adjacent [Bonus] resource"
+            "[+1 Production] [in this city]"
         ]
     },
     {
@@ -116,9 +130,10 @@
         "uniques": [
             "[+2 Gold] [in this city]",
             "Requires [Coastal] to be built",
-            "[+1 Gold] for each adjacent [City Center]",
-            "[+1 Gold] for each adjacent [Commercial Hub] district",
-            "[+1 Gold] for each adjacent [Water resource]"
+            "[+2 Gold] for each adjacent [City Center]",
+            "[+1 Gold] for each adjacent [Water resource]",
+            "[+1 Gold] for each adjacent [Government Plaza]",
+            "[+0.5 Gold] for each adjacent [District]"
         ]
     },
     {
@@ -141,7 +156,7 @@
         "uniques": [
             "[+1 Amenities] [in this city]",
             "[+1 Culture] for each adjacent [Wonder]",
-            "[+1 Culture] for each adjacent [Theater Square] district"
+            "[+1 Culture] for each adjacent [Theater Square]"
         ]
     },
     {
@@ -152,7 +167,7 @@
             "[+1 Amenities] [in this city]",
             "Requires [Coastal] to be built",
             "[+1 Culture] for each adjacent [Wonder]",
-            "[+1 Culture] for each adjacent [Theater Square] district"
+            "[+1 Culture] for each adjacent [Theater Square]"
         ]
     },
     {
@@ -169,11 +184,6 @@
         "requiredCivic": "State Workforce",
         "uniques": [
             "[+1 Production] [in this city]",
-            "[+1 Production] for each adjacent [District]",
-            "[+1 Science] for each adjacent [District]",
-            "[+1 Culture] for each adjacent [District]",
-            "[+1 Faith] for each adjacent [District]",
-            "[+1 Gold] for each adjacent [District]",
             "[+2 Amenities] [in this city]"
         ]
     },
@@ -188,7 +198,7 @@
         ],
         "uniques": [
             "[+1 Production] [in this city]",
-            "[+1 Production] for each adjacent [Encampment] district",
+            "[+1 Production] for each adjacent [Encampment]",
             "[+1 Production] for each adjacent [City Center]"
         ]
     },
@@ -203,7 +213,7 @@
         "uniques": [
             "[+1 Culture] [in this city]",
             "[+1 Culture] for each adjacent [Mountain]",
-            "[+1 Food] for each adjacent [Neighborhood] district"
+            "[+1 Food] for each adjacent [Neighborhood]"
         ]
     },
     {
@@ -381,7 +391,7 @@
         ],
         "uniques": [
             "[+1 Production] [in this city]",
-            "[+1 Production] for each adjacent [Industrial Zone] district",
+            "[+1 Production] for each adjacent [Industrial Zone]",
             "Gives a [+1 Gold] bonus [in this city] for each district [in this city]"
         ]
     },
@@ -398,7 +408,7 @@
             "Military Academy"
         ],
         "uniques": [
-            "[+1 Culture] for each adjacent [district]",
+            "[+2 Culture] for each adjacent [District]",
             "Cheaper to build than Encampment"
         ]
     },
@@ -415,7 +425,7 @@
         ],
         "uniques": [
             "[+2 Gold] [in this city]",
-            "[+1 Gold] for each adjacent [Holy Site] district"
+            "[+1 Gold] for each adjacent [Holy Site]"
         ]
     },
     {
@@ -424,7 +434,7 @@
         "requiredTech": "Steam Power",
         "uniques": [
             "[+1 Gold] [in this city]",
-            "[+1 Gold] for each adjacent [Commercial Hub] district",
+            "[+1 Gold] for each adjacent [Commercial Hub]",
             "[+1 Gold] for each adjacent [City Center]"
         ]
     },
@@ -437,7 +447,7 @@
         ],
         "uniques": [
             "[+1 Production] [in this city]",
-            "[+1 Production] for each adjacent [Industrial Zone] district",
+            "[+1 Production] for each adjacent [Industrial Zone]",
             "[+1 Production] for each adjacent [Aqueduct]"
         ]
     }

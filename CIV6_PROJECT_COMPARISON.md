@@ -102,14 +102,17 @@
 ### 3.2 Adjacency (mục 7)
 | Bonus chuẩn | Project |
 |---|---|
-| Campus: Mountain +1, Rainforest +½, District +½ | `[x]` |
-| Holy Site: Mountain +1, Wood +½, NaturalWonder +2, District +½ | `[x]` |
-| Commercial Hub: River +2, Harbor +2, District +½ | `[x]` |
-| Harbor: coastal resource +1, District +½ | `[x]` |
-| Industrial: Mine/Quarry +1, District +½ | `[x]` |
-| Theater: Wonder +1, District +½ | `[x]` |
-| Plus 14 adjacency bonus vừa bổ sung (Campus, Theater, Harbor, Encampment, Industrial, Entertainment, Water Entertainment, Aerodrome) | `[x]` |
-| Kiểm tra giá trị phân số (½) execute đúng | `[x]` — `AdjacencyFractionTests`: City Center +0.5, 2 district +1.0, nguyên +2 đều khớp |
+| Campus: Mountain +1, Rainforest +½, District +½, Government Plaza +1 | `[x]` |
+| Holy Site: Mountain +1, Wood +½, NaturalWonder +2, District +½, Government Plaza +1 | `[x]` |
+| Commercial Hub: River +2, Harbor +2, District +½, Government Plaza +1 | `[x]` |
+| Harbor: City Center +2, sea resource (Water resource) +1, District +½, Government Plaza +1 (bỏ sai: River, Commercial Hub) | `[x]` |
+| Industrial: Mine/Quarry +1, Strategic +1, District +½, Aqueduct/Canal/Dam +2, Government Plaza +1 (bỏ sai: Bonus resource) | `[x]` |
+| Theater: Wonder +1 (inert — wonders là buildings không phải tile), Entertainment/Water Entertainment +2, District +½, Government Plaza +1 | `[~]` |
+| Encampment: không bonus (bỏ sai: Bonus resource) | `[x]` |
+| Government Plaza: **cho** district lân cận +1 yield chính (đổi từ nhận +1 cả 5 yield) | `[x]` |
+| FIX bug "dead unique": uniques `[... for each adjacent [X] district/resource]` có hậu tố thừa → **NULL TYPE, không chạy**. Đã bỏ hậu tố (13 uniques) + thêm test chặn hồi quy | `[x]` |
+| FIX engine: filter `City Center` giờ match tile trung tâm qua `isCityCenter()` (CityStats + Automation) | `[x]` |
+| Kiểm tra từng district | `[x]` — `DistrictAdjacencyTests` (15 test: Campus, Holy Site, Commercial Hub, Harbor, IZ, Theater, GP, Encampment, meta-parse) + `AdjacencyFractionTests` (phân số ½) |
 
 ### 3.3 Housing/Amenities (mục 5)
 | Item | Status |
@@ -187,7 +190,7 @@ Những thay đổi hiện đang có trong working tree mà **chưa commit**:
 1. **Bổ sung Natural Wonders** còn thiếu (GS/NFP: Bermuda Triangle, Matterhorn, Pamukkale, Giant's Causeway, Roraima... đã có) và **đồng bộ 2 cây jsons** (root 28 / android 26).
 2. **AI theo game phase** — đã làm phần nền: `GamePhase.kt` (Early/Mid/Late theo era) + áp dụng vào build queue và `isLateGame`; còn mở rộng thêm các quyết định khác theo phase.
 3. **Tăng độ sâu AI** so với Civ 6 thật (chiến thuật corps/army, quyết định theo grievances, chiến lược theo era).
-4. **Hoàn thiện adjacency call chuẩn** (giá trị phân số + kiểm chứng từng district).
+4. **Hoàn thiện adjacency call chuẩn** — đã làm: fix bug "dead unique" (13 uniques hậu tố thừa), fix engine filter `City Center`, Government Plaza chuyển sang "cho", đồng bộ 2 cây jsons, test từng district (`DistrictAdjacencyTests`, 15 test).
 5. **Great Works per-building + theming per-museum** (đang global pool).
 6. **Hoàn tất UI tooltips uniques** + bổ sung unit action team đang sửa.
 
