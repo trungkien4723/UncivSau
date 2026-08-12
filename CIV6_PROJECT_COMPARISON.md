@@ -13,7 +13,7 @@
 |---|---|---|---|
 | 1 | Tổng quan game (UPT, hex, theo lượt) | `[x]` | Đúng engine Unciv gốc |
 | 2 | Thiết lập trận đấu (ruleset, độ khó, tốc độ, bản đồ, thảm họa) | `[x]` | Có đầy đủ `Difficulties.json`, `Speeds.json`, `Eras.json`; cường độ thảm họa GS có |
-| 3 | Bản đồ & địa hình (terrain, features, nước, Natural Wonders, resources) | `[x]` | Terrains/Features/Resources đầy đủ; **28 Natural Wonders (root) / 26 (android)** (Civ 6 chuẩn ~35; vẫn còn thiếu vài wonder GS/NFP) |
+| 3 | Bản đồ & địa hình (terrain, features, nước, Natural Wonders, resources) | `[x]` | Terrains/Features/Resources đầy đủ; **38 Natural Wonders (root) / 38 (android)** (gồm các wonder GS/NFP: Bermuda Triangle, Chocolate Hills, Delicate Arch, Eye of the Sahara, Giant's Causeway, Mato Tipila, Matterhorn, Mount Kilimanjaro, Mount Vesuvius, Pamukkale) |
 | 4 | Yields (Food/Production/Gold/Science/Culture/Faith) | `[x]` | Engine gốc + Civics/Chính phủ cấp thêm |
 | 5 | Housing & Amenities | `[x]` | Housing/Amenities engine đầy đủ; công trình Neighborhood, Entertainment Complex có |
 | 6 | Thành phố & Districts | `[x]` | 13 district chính + 2 mới (Canal, Dam — commit mới đã thêm vào `Districts.json`) + Government Plaza + Aerodrome + Spaceport |
@@ -62,7 +62,7 @@
 | Goody Huts | `[ ]` | `[x]` — `Ruins.json` + "Ancient Ruins" random bonuses + tile "Goody Hut" trong TileImprovements |
 | Canal/Dam as districts | `[ ]` | `[x]` — đã thêm vào Districts.json (Dắm: +1 Production, adjacency Industrial Zone/Aqueduct, chứa Hydroelectric Dam) |
 | Aircraft Factory | `[ ]` | `[x]` — có trong Buildings.json (thuộc Aerodrome) |
-| 2 Natural Wonders | `[ ]` | `[~]` — **28/26** natural wonders (Civ 6 chuẩn ~35) |
+| 2 Natural Wonders | `[ ]` | `[x]` — **38/38** natural wonders (đồng bộ 2 cây, gồm đủ wonder GS/NFP chuẩn) |
 | City-state nations | `[ ]` | `[x]` — 24 CS + "Barbarians" nation |
 | 6 unique buildings thiếu `uniqueTo/replaces` | `[ ]` | `[x]` |
 | CasusBelli.RetributionWar | `[ ]` | `[x]` |
@@ -187,7 +187,7 @@ Những thay đổi hiện đang có trong working tree mà **chưa commit**:
 **Đã đạt (~94%):** toàn bộ hệ thống "chơi" của Civ 6 có trong engine + ruleset — districts, adjacency, tech/civic/policy, gov, tôn giáo, age/loyalty, world congress, climate, corps/army, great works, game modes.
 
 **Việc nên làm tiếp (theo ưu tiên):**
-1. **Bổ sung Natural Wonders** còn thiếu (GS/NFP: Bermuda Triangle, Matterhorn, Pamukkale, Giant's Causeway, Roraima... đã có) và **đồng bộ 2 cây jsons** (root 28 / android 26).
+1. **Bổ sung Natural Wonders** — đã xong: thêm 10 wonder GS/NFP (Bermuda Triangle, Chocolate Hills, Delicate Arch, Eye of the Sahara, Giant's Causeway, Mato Tipila, Matterhorn, Mount Kilimanjaro, Mount Vesuvius, Pamukkale) → **38 wonders, đồng bộ 2 cây jsons**. (Civ 6 chuẩn có 37; project còn thêm Grand Canyon + Nile River).
 2. **AI theo game phase** — đã làm phần nền: `GamePhase.kt` (Early/Mid/Late theo era) + áp dụng vào build queue và `isLateGame`; còn mở rộng thêm các quyết định khác theo phase.
 3. **Tăng độ sâu AI** so với Civ 6 thật (chiến thuật corps/army, quyết định theo grievances, chiến lược theo era).
 4. **Hoàn thiện adjacency call chuẩn** — đã làm: fix bug "dead unique" (13 uniques hậu tố thừa), fix engine filter `City Center`, Government Plaza chuyển sang "cho", đồng bộ 2 cây jsons, test từng district (`DistrictAdjacencyTests`, 15 test).
