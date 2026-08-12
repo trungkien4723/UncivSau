@@ -21,6 +21,7 @@ import com.unciv.models.UpgradeUnitAction
 import com.unciv.models.ruleset.unique.GameContext
 import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.models.ruleset.unit.BaseUnit
+import com.unciv.ui.screens.worldscreen.unit.actions.UnitActionsCombine
 import com.unciv.ui.screens.worldscreen.unit.actions.UnitActionsPillage
 import com.unciv.ui.screens.worldscreen.unit.actions.UnitActionsUpgrade
 import kotlin.math.ceil
@@ -34,6 +35,9 @@ object UnitAutomation {
 
     fun automateUnitMoves(unit: MapUnit):Unit = timeThis("automateUnitMoves") {
         check(!unit.civ.isBarbarian) { "Barbarians is not allowed here." }
+
+        // Another AI unit may have merged with (and thus destroyed) this unit earlier in the turn loop
+        if (unit.isDestroyed) return
 
         // Might die next turn - move!
         if (unit.getDamageFromTerrain() > 0 && tryHealUnit(unit)) return
@@ -69,6 +73,9 @@ object UnitAutomation {
 
             return AirUnitAutomation.automateBomber(unit)
         }
+
+        // Peacetime buildup: merge available same-name units into Corps/Army/Fleet/Armada
+        if (tryFormCorpsOrArmy(unit)) return
 
         // Accompany settlers
         if (tryAccompanySettlerOrGreatPerson(unit)) return
@@ -114,6 +121,36 @@ object UnitAutomation {
         // Idle CS units should wander so they don't obstruct players so much
         if (unit.civ.isCityState)
             wander(unit, stayInTerritory = true)
+    }
+
+    /**
+     * Peacetime buildup: merge this unit with an adjacent same-name unit into a
+     * Corps/Fleet (+10 strength) or Army/Armada (+17 strength), like Civ 6.
+     * Only done for healthy units while at peace, and keeps a gold reserve so the
+     * merge never drains the treasury needed for upgrades or purchases.
+     */
+    private fun tryFormCorpsOrArmy(unit: MapUnit): Boolean {
+        val civInfo = unit.civ
+        if (civInfo.isAtWar()) return false
+        if (unit.health < 100) return false
+
+        val formationActions = when {
+            unit.formationLevel == 0 && civInfo.civics.isResearched("Nationalism") ->
+                if (unit.baseUnit.isWaterUnit) UnitActionsCombine.getFormFleetActions(unit, unit.currentTile)
+                else UnitActionsCombine.getFormCorpsActions(unit, unit.currentTile)
+            unit.formationLevel == 1 && civInfo.civics.isResearched("Mobilization") ->
+                if (unit.baseUnit.isWaterUnit) UnitActionsCombine.getFormArmadaActions(unit, unit.currentTile)
+                else UnitActionsCombine.getFormArmyActions(unit, unit.currentTile)
+            else -> emptySequence()
+        }
+        val combineAction = formationActions.firstOrNull() ?: return false
+        val action = combineAction.action ?: return false
+
+        val cost = UnitActionsCombine.getCombineGoldCost(unit) * if (unit.formationLevel == 1) 2 else 1
+        if (civInfo.gold < cost * 2) return false
+
+        action.invoke()
+        return true
     }
 
     @Readonly
