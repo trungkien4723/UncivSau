@@ -809,10 +809,9 @@
         "uniques":  [
                         "Must be adjacent to [0] to [2] [Oasis] tiles",
                         "Must be adjacent to [0] [River] tiles",
-                        "Must be adjacent to [0] [Coast] tiles",
-                        "+1 [Food] to all cities within [8] tiles"
+                        "Must be adjacent to [0] [Coast] tiles"
                     ],
-        "turnsInto":  "River",
+        "turnsInto":  "Grassland",
         "impassable":  true,
         "unbuildable":  true,
         "weight":  10
