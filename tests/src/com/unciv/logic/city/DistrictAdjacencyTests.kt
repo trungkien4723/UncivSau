@@ -203,6 +203,40 @@ class DistrictAdjacencyTests {
     }
 
     @Test
+    fun theaterSquareGetsAdjacencyFromCityWithWonder() {
+        val theaterTile = centerTile.neighbors.first()
+        placeDistrict(theaterTile, "Theater Square")
+        city.cityConstructions.addBuilding("Temple of Artemis")
+
+        val adjacency = adjacencyOf(theaterTile)
+        // Adjacent city center: +0.5 (as a district) + 1 (city has built a wonder)
+        assertEquals(1.5f, adjacency.culture, 0.001f)
+    }
+
+    @Test
+    fun theaterSquareGetsNoWonderBonusFromCityWithoutWonder() {
+        val theaterTile = centerTile.neighbors.first()
+        placeDistrict(theaterTile, "Theater Square")
+
+        val adjacency = adjacencyOf(theaterTile)
+        // Adjacent city center grants only the +0.5 district bonus, no wonder bonus
+        assertEquals(0.5f, adjacency.culture, 0.001f)
+    }
+
+    @Test
+    fun theaterSquareGetsAdjacencyFromForeignCityWithWonder() {
+        val theaterTile = farTile()
+        placeDistrict(theaterTile, "Theater Square")
+        val otherCiv = testGame.addCiv()
+        val wonderCityTile = theaterTile.neighbors.first { it.getCity() == null }
+        testGame.addCity(otherCiv, wonderCityTile).cityConstructions.addBuilding("Temple of Artemis")
+
+        val adjacency = adjacencyOf(theaterTile)
+        // Adjacent foreign city center with a wonder: +0.5 (as a district) + 1 (has a wonder)
+        assertEquals(1.5f, adjacency.culture, 0.001f)
+    }
+
+    @Test
     fun governmentPlazaGivesButDoesNotReceive() {
         val gpTile = farTile()
         placeDistrict(gpTile, "Government Plaza")

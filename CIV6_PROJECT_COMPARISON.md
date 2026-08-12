@@ -107,12 +107,12 @@
 | Commercial Hub: River +2, Harbor +2, District +½, Government Plaza +1 | `[x]` |
 | Harbor: City Center +2, sea resource (Water resource) +1, District +½, Government Plaza +1 (bỏ sai: River, Commercial Hub) | `[x]` |
 | Industrial: Mine/Quarry +1, Strategic +1, District +½, Aqueduct/Canal/Dam +2, Government Plaza +1 (bỏ sai: Bonus resource) | `[x]` |
-| Theater: Wonder +1 (inert — wonders là buildings không phải tile), Entertainment/Water Entertainment +2, District +½, Government Plaza +1 | `[~]` |
+| Theater: Wonder +1, Entertainment/Water Entertainment +2, District +½, Government Plaza +1 | `[x]` (Wonder qua proxy: vì wonders là buildings (không phải tile) nên mỗi city-center lân cận có ≥1 wonder được tính +1 — `getDistrictAdjacencyStats`) |
 | Encampment: không bonus (bỏ sai: Bonus resource) | `[x]` |
 | Government Plaza: **cho** district lân cận +1 yield chính (đổi từ nhận +1 cả 5 yield) | `[x]` |
 | FIX bug "dead unique": uniques `[... for each adjacent [X] district/resource]` có hậu tố thừa → **NULL TYPE, không chạy**. Đã bỏ hậu tố (13 uniques) + thêm test chặn hồi quy | `[x]` |
 | FIX engine: filter `City Center` giờ match tile trung tâm qua `isCityCenter()` (CityStats + Automation) | `[x]` |
-| Kiểm tra từng district | `[x]` — `DistrictAdjacencyTests` (15 test: Campus, Holy Site, Commercial Hub, Harbor, IZ, Theater, GP, Encampment, meta-parse) + `AdjacencyFractionTests` (phân số ½) |
+| Kiểm tra từng district | `[x]` — `DistrictAdjacencyTests` (18 test: Campus, Holy Site, Commercial Hub, Harbor, IZ, Theater, GP, Encampment, meta-parse + Theater/Wonder qua city-center) + `AdjacencyFractionTests` (phân số ½) |
 
 ### 3.3 Housing/Amenities (mục 5)
 | Item | Status |

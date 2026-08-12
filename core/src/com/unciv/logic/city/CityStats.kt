@@ -437,7 +437,11 @@ class CityStats(val city: City) {
         statsFromTiles = stats
     }
 
-    /** Adjacency bonuses for a [district] placed on [tile], from [UniqueType.StatsForAdjacentDistrict]. */
+    /** Adjacency bonuses for a [district] placed on [tile], from [UniqueType.StatsForAdjacentDistrict].
+     *
+     * Wonder filters (e.g. "Wonder") are proxied by adjacent city-center tiles whose city has built a wonder,
+     * since wonders are buildings (not map tiles) in this engine.
+     */
     @Readonly
     fun getDistrictAdjacencyStats(tile: Tile, district: District): Stats {
         val stats = Stats()
@@ -447,11 +451,17 @@ class CityStats(val city: City) {
                 neighbor.getDistrict()?.name == filter
                         || (filter == "District" && (neighbor.getDistrict() != null || neighbor.isCityCenter()))
                         || (filter == "City Center" && neighbor.isCityCenter())
+                        || (filter in wonderBuildingFilters && neighbor.isCityCenter()
+                            && neighbor.getCity()!!.cityConstructions.getBuiltBuildings().any { it.isAnyWonder() })
                         || neighbor.matchesFilter(filter, city.civ)
             }
             if (adjacent > 0) stats.add(unique.stats.times(adjacent.toFloat()))
         }
         return stats
+    }
+
+    companion object {
+        val wonderBuildingFilters = setOf("Wonder", "Wonders", "World Wonder", "World", "National Wonder", "National")
     }
 
 
