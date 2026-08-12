@@ -2,8 +2,8 @@
 
 > **Đối chiếu:** `CIV6_GAMEPLAY_MECHANICS.md` (mô tả chuẩn cơ chế Civ 6) ↔ trạng thái code/dữ liệu hiện tại của project này.
 > **Cách đọc:** `[x]` = đã làm, `[~]` = làm 1 phần / còn thiếu chi tiết, `[ ]` = chưa có.
-> **Nguồn dữ liệu:** ruleset `jsons/Civ VI/`, code `core/src/com/unciv/`, theo bản kế hoạch `CIV6_CONSOLIDATED_PLAN.md` (tới commit `59e80a2 "fix minor bugs"`) + kiểm tra trực tiếp file + diff uncommitted hiện tại.
-> **Đánh giá tổng thể:** project hiện là bản chuyển đổi **Civ 5 → Civ 6** của Unciv, đạt ~**94%** cơ chế Civ 6.
+> **Nguồn dữ liệu:** ruleset `jsons/Civ VI/`, code `core/src/com/unciv/`, theo bản kế hoạch `CIV6_CONSOLIDATED_PLAN.md` (tới commit `59e80a2 "fix minor bugs"`, file plan sau đó đã xoá) + kiểm tra trực tiếp file + working tree hiện tại.
+> **Đánh giá tổng thể:** project hiện là bản chuyển đổi **Civ 5 → Civ 6** của Unciv, đạt ~**96%** cơ chế Civ 6.
 
 ---
 
@@ -19,7 +19,7 @@
 | 6 | Thành phố & Districts | `[x]` | 13 district chính + 2 mới (Canal, Dam — commit mới đã thêm vào `Districts.json`) + Government Plaza + Aerodrome + Spaceport |
 | 7 | Adjacency Bonus | `[x]` | Mapping đầy đủ 8-14 bonus, fraction ±0.5 execute đúng, Commercial Hub River +2G, Harbor Water +1G |
 | 8 | Công nghệ, Civic & Policy Cards | `[x]` | 84 techs + 61 civics + 84 policy cards (4 loại slot), Eureka/Inspiration, Tech Shuffle; **AI research civic** (`chooseCivicToResearch` trong `NextTurnAutomation`) mirror `chooseTechToResearch` (free civics + queue civic rẻ nhất theo weight); **AI research theo victory focus** — `getTechFocusMultiplier` (tech mở Apollo/SS parts, unit quân sự, wonder, stat building) + `getCivicFocusMultiplier` (civic mở building/improvement/district theo stat focus) nhân vào weight — có test |
-| 9 | Chính phủ | `[x]` | 7 chính phủ (Chiefdom→Merchant Republic...), slots, mình đang sửa UI Govt picker (uncommitted) |
+| 9 | Chính phủ | `[x]` | 7 chính phủ (Chiefdom→Merchant Republic...), slots, policy card trong slot |
 | 10 | Đơn vị & vòng lượt | `[x]` | Đầy đủ class + **Corps/Army/Fleet/Armada** (gộp 2 unit cùng tên cạnh nhau → +10/+17 STR; vì engine cấm xếp chồng military nên tìm partner trên ô lân cận thay vì cùng ô — có test `UnitActionsCombineTests`); **AI cũng tự form corps/army/fleet/armada lúc peacetime** (máu đầy + đủ vàng, giữ vàng dự trữ — có test `AiCorpsFormationTests`); promotions rewritten theo chuẩn Civ 6 |
 | 11 | Thám hiểm & Barbarian | `[x]` | Tribes villages (Ruins.json) + Barbarian camps; điều chỉnh spawn gần đây |
 | 12 | Thương mại & Trade Routes | `[x]` | Trader unit + capacity (`UniqueType.TradeRouteCapacity`), Trading Posts, roads tự dựng |
@@ -51,7 +51,7 @@
 | 4 | **War Support / War Weariness** | `[x]` | War Support là cơ chế chính (combat +1% mỗi điểm, UI ngoại giao, khởi tạo qua Casus Belli); hệ war weariness C5 cũ đã gỡ — hết friction |
 | 5 | **Theming/Great Works per-building** | `[x]` | Great Works đã **gán vào building/city cụ thể** (auto-place khi tạo; `GreatWork.cityId`/`building`); theming tính **per-building** (building đủ slot → bonus); UI hiển thị vị trí đặt |
 | 6 | **Leader/Hero promotion system** | `[x]` | Hero resurrection via "Immortal [in capital]" unique: when a hero unit (with unique Immortal) dies (health==0), it resurrects at the capital tile with full health instead of being destroyed. Implemented in MapUnit.takeDamage() with checkCivInfoUniques=true and !civ.isDefeated(). |
-| 7 | **UI tooltips cho toàn bộ uniques** | `[x]` | Cơ chế docDescription → tooltip có sẵn ở civilopedia (`MarkupRenderer`); đã wire vào `GovernmentPickerScreen` (policy card trong slot + popup). Các màn khác đã dùng `MarkupRenderer.render` chung. |
+| 7 | **UI tooltips cho toàn bộ uniques** | `[x]` | Cơ chế docDescription → tooltip có sẵn ở civilopedia (`MarkupRenderer`); các màn UI đều dùng `MarkupRenderer.render` chung. |
 | 8 | **Trade route nuances** | `[x]` | Trading Posts tạo ở **cả 2 đầu** khi lập route (lưu trên Civilization), mỗi post ở thành phố nước ngoài **+5 range**; range cơ bản 15; yield theo district thành đích: domestic = Food+Prod, international = Gold/Science/Culture/Faith (+1 Gold/post). Có test `TradeRouteTests`. |
 
 ### Nhóm B: đã xử lý nhưng phụ thuộc cách chơi (trước đây được liệt là thiếu, giờ đã giải quyết)
@@ -164,36 +164,26 @@
 
 ---
 
-## 4. Công việc đang làm dở (uncommitted — không nằm trong commit cuối)
+## 4. Trạng thái working tree & ghi chú sửa doc
 
-Những thay đổi hiện đang có trong working tree mà **chưa commit**:
+**Working tree hiện tại sạch** (`git status` rỗng) — mọi thay đổi đã commit, commit cuối `bcea8fc` (AI research civic theo victory focus).
 
-| File | Thay đổi gì | Ý nghĩa |
-|---|---|---|
-| `core/.../WorkerAutomation.kt` | Thêm `executeChargeBuilderImprovement()` cho builder kiểu Civ6 (dùng charge, instant `ConstructImprovementInstantly`) | Builder tự động hết charge (Civ6-style) |
-| `core/.../GovernmentPickerScreen.kt` + android copy | Tái cấu trúc giao diện: tách bảng chính phủ / slots, **giữ lại cards đã gán khi đổi chính phủ** | Sửa UX picker chính phủ |
-| `core/.../UnitActionsFromUniques.kt` + android copy | (đang sửa) | Điều chỉnh liên quan upgrade/action units |
-| `tests/.../RoadImprovementTests.kt` | Cập nhật test đường | Phù hợp builder charge mới |
-| `tests/.../Civ6BuilderAutomationTests.kt` (mới) | Test tự động builder Civ6 | Kèm theo thay đổi WorkerAutomation |
-| `Xóa` | `CIV6_CONSOLIDATED_PLAN.md`, `CODE_OF_CONDUCT.md` | (theo yêu cầu vừa rồi) |
-| `Thêm` | `CIV6_GAMEPLAY_MECHANICS.md` | Tài liệu cơ chế chuẩn (chính file này được giữ) |
-
-> Gợi ý: các thay đổi này về AI builder đang là hướng "Civ6-style builders consume charges" — cùng mảng "AI/district xây dựng" chưa `[x]` phải đầy đủ.
+> **Sửa doc (kiểm tra lại):** các mục ghi "uncommitted" trước đây là sai/stale — `GovernmentPickerScreen.kt`, `UnitActionsFromUniques.kt`, `Civ6BuilderAutomationTests.kt` **không hề tồn tại trong repo** (không commit, không trong cây); `WorkerAutomation.kt` (builder dùng charge) đã commit tại `b5fcde4`.
 
 ---
 
 ## 5. Kết luận & ưu tiên đề xuất
 
-**Đã đạt (~94%):** toàn bộ hệ thống "chơi" của Civ 6 có trong engine + ruleset — districts, adjacency, tech/civic/policy, gov, tôn giáo, age/loyalty, world congress, climate, corps/army, great works, game modes.
+**Đã đạt (~96%):** toàn bộ hệ thống "chơi" của Civ 6 có trong engine + ruleset — districts, adjacency, tech/civic/policy, gov, tôn giáo, age/loyalty, world congress, climate, corps/army, great works, game modes.
 
 **Việc nên làm tiếp (theo ưu tiên):**
 1. **Bổ sung Natural Wonders** — đã xong: thêm 10 wonder GS/NFP (Bermuda Triangle, Chocolate Hills, Delicate Arch, Eye of the Sahara, Giant's Causeway, Mato Tipila, Matterhorn, Mount Kilimanjaro, Mount Vesuvius, Pamukkale) → **38 wonders, đồng bộ 2 cây jsons**. (Civ 6 chuẩn có 37; project còn thêm Grand Canyon + Nile River).
 2. **AI theo game phase** — đã xong: `GamePhase.kt` (Early/Mid/Late theo era) + 4 helper theo phase (`workerRatio`, `militaryBuildModifier`, `minimumFreeLandForExpansion`, `wonderModifier`) áp dụng vào build queue (military/worker/wonder), `trainSettler` (mở rộng early/mid, late chỉ khi còn đất) và `isLateGame`.
 3. **Tăng độ sâu AI** — đã làm: war/grievances (`chooseCasusBelli`, grievance tăng motivation, fix `canDeclareFormalWar`), corps/army khả dụng cho player + **AI tự form corps lúc peacetime** (`tryFormCorpsOrArmy`), **victory focus theo era** (`getAiVictoryStatModifiers`: mid/late chọn stat mạnh nhất so với field để ưu tiên build — Science/Culture/Faith/Gold/Production; `getAiVictoryFocus`: chọn victory type mạnh nhất so với field từ mid game, **Dominion → boost military build** ×1.5 unit + +5 military building; fix `Milestone.getFocus` dead-code — trước luôn trả Production; **research theo focus** — `getTechFocusMultiplier` boost tech mở Apollo/spaceship (Science), unit quân sự (Military), wonder/stat building; `getCivicFocusMultiplier` boost civic mở building/improvement/district theo stat focus — nhân vào weight trong `chooseTechToResearch`/`chooseCivicToResearch`). Đã khép trọn mục "chiến lược research theo focus" (tech + civic).
 4. **Hoàn thiện adjacency call chuẩn** — đã làm: fix bug "dead unique" (13 uniques hậu tố thừa), fix engine filter `City Center`, Government Plaza chuyển sang "cho", đồng bộ 2 cây jsons, test từng district (`DistrictAdjacencyTests`, 15 test).
-5. **Great Works per-building + theming per-museum** (đang global pool).
-6. **Hoàn tất UI tooltips uniques** + bổ sung unit action team đang sửa.
+5. **Great Works per-building + theming per-museum** — đã xong: Great Works gán vào building/city cụ thể, theming tính **per-building**, UI hiển thị vị trí đặt (xem phần 2 mục 5).
+6. **UI tooltips uniques** — đã hoàn tất: docDescription → civilopedia + `MarkupRenderer.render` dùng chung mọi màn.
 
 ---
 
-*Tài liệu tổng hợp từ: `CIV6_GAMEPLAY_MECHANICS.md`, `git show <commit>:CIV6_CONSOLIDATED_PLAN.md`, kiểm tra `jsons/Civ VI/*.json`, `git status`, `git log --oneline`, `git diff` (working tree). Trạng thái tính đến commit `59e80a2` + uncommitted.*
+*Tài liệu tổng hợp từ: `CIV6_GAMEPLAY_MECHANICS.md`, `git show <commit>:CIV6_CONSOLIDATED_PLAN.md`, kiểm tra `jsons/Civ VI/*.json`, `git status`, `git log --oneline`, `git diff` (working tree). Trạng thái tính đến commit `bcea8fc` (working tree sạch).*
