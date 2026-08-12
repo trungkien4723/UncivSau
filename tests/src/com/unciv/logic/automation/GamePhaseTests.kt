@@ -2,6 +2,10 @@ package com.unciv.logic.automation
 
 import com.unciv.logic.automation.civilization.GamePhase
 import com.unciv.logic.automation.civilization.getGamePhase
+import com.unciv.logic.automation.civilization.militaryBuildModifier
+import com.unciv.logic.automation.civilization.minimumFreeLandForExpansion
+import com.unciv.logic.automation.civilization.workerRatio
+import com.unciv.logic.automation.civilization.wonderModifier
 import com.unciv.logic.automation.unit.CivilianUnitAutomation
 import com.unciv.models.ruleset.tech.Era
 import com.unciv.testing.GdxTestRunner
@@ -63,5 +67,33 @@ class GamePhaseTests {
         assertFalse(CivilianUnitAutomation.isLateGame(civ))
         setEra(4)
         assertTrue(CivilianUnitAutomation.isLateGame(civ))
+    }
+
+    @Test
+    fun expansionIsEagerInEarlyAndMidGame() {
+        assertTrue(GamePhase.Early.minimumFreeLandForExpansion(false) < GamePhase.Late.minimumFreeLandForExpansion(false))
+        assertTrue(GamePhase.Mid.minimumFreeLandForExpansion(false) < GamePhase.Late.minimumFreeLandForExpansion(false))
+        // Expansionist agendas expand more readily than defensive ones
+        assertTrue(GamePhase.Late.minimumFreeLandForExpansion(true) < GamePhase.Late.minimumFreeLandForExpansion(false))
+    }
+
+    @Test
+    fun workersArePrioritizedInEarlyGame() {
+        assertTrue(GamePhase.Early.workerRatio() > GamePhase.Mid.workerRatio())
+        assertTrue(GamePhase.Mid.workerRatio() > GamePhase.Late.workerRatio())
+    }
+
+    @Test
+    fun militaryBuildsUpInLateGame() {
+        assertEquals(1f, GamePhase.Mid.militaryBuildModifier(), 0f)
+        assertTrue(GamePhase.Late.militaryBuildModifier() > GamePhase.Mid.militaryBuildModifier())
+        assertTrue(GamePhase.Early.militaryBuildModifier() > GamePhase.Mid.militaryBuildModifier())
+    }
+
+    @Test
+    fun wondersAreWeightedByPhase() {
+        assertEquals(1f, GamePhase.Mid.wonderModifier(), 0f)
+        assertTrue(GamePhase.Early.wonderModifier() > 1f)
+        assertTrue(GamePhase.Late.wonderModifier() > GamePhase.Early.wonderModifier())
     }
 }

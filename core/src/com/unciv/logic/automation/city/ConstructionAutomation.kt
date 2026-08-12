@@ -5,6 +5,9 @@ import com.unciv.UncivGame
 import com.unciv.logic.automation.Automation
 import com.unciv.logic.automation.civilization.NextTurnAutomation
 import com.unciv.logic.automation.civilization.getGamePhase
+import com.unciv.logic.automation.civilization.militaryBuildModifier
+import com.unciv.logic.automation.civilization.workerRatio
+import com.unciv.logic.automation.civilization.wonderModifier
 import com.unciv.logic.automation.unit.WorkerAutomation
 import com.unciv.logic.city.CityConstructions
 import com.unciv.logic.civilization.CityAction
@@ -168,6 +171,7 @@ class ConstructionAutomation(val cityConstructions: CityConstructions) {
         // most buildings and civ units contribute the the civ's growth, military units are anti-growth
         var modifier = 1 + sqrt(unitsToCitiesRatio) / 2
         if (isAtWar) modifier *= 2
+        modifier *= gamePhase.militaryBuildModifier() // early: defend while expanding, late: wars and territory defense
 
         if (Automation.afraidOfBarbarians(civInfo)) modifier = 2f // military units are pro-growth if pressured by barbs
         if (!cityIsOverAverageProduction) modifier /= 5 // higher production cities will deal with this
@@ -241,7 +245,9 @@ class ConstructionAutomation(val cityConstructions: CityConstructions) {
         if (workerEquivalents.none()) return // for mods with no worker units
 
         // Dedicate 1 worker for the first city (CS), then 1.5 workers for the first 5 cities, from then on build one more worker for every city.
-        val numberOfWorkersWeWant = if (cities <= 1) 1f else if  (cities <= 5) (cities * 1.8f) else 9f + 1.3f * (cities - 5)
+        // Young empires need more builders, late ones already have their improvements in place.
+        val numberOfWorkersWeWant = (if (cities <= 1) 1f else if  (cities <= 5) (cities * 1.8f) else 9f + 1.3f * (cities - 5)) *
+            gamePhase.workerRatio()
 
         if (workers < numberOfWorkersWeWant) {
             val modifier = numberOfWorkersWeWant / (workers + 0.17f) // The worse our worker to city ratio is, the more desperate we are
@@ -265,7 +271,17 @@ class ConstructionAutomation(val cityConstructions: CityConstructions) {
             if (building.isWonder && (!cityIsOverAverageProduction || civInfo.cities.sumOf { it.population.population } < 8)) continue
             var modifier = getValueOfBuilding(building)
             // Boost wonder priority in high-production cities
-            if (building.isWonder && cityIsOverAverageProduction) modifier *= 1.5f
+            if (building.isWonder && cityIsOverAverageProduction) {
+                modifier *= 1.5f
+                // Phase: an early-game wonder lead can snowball, a late-game one directly
+                // pushes towards a victory condition
+                if (gamePhase.isEarly) modifier *= gamePhase.wonderModifier()
+                else if (gamePhase.isLate
+                    && (building.hasUnique(UniqueType.EnablesConstructionOfSpaceshipParts)
+                        || building.hasUnique(UniqueType.TriggersVictory)
+                        || building.hasUnique(UniqueType.TriggersCulturalVictory)))
+                    modifier *= gamePhase.wonderModifier()
+            }
             addChoice(relativeCostEffectiveness, building, modifier)
         }
     }

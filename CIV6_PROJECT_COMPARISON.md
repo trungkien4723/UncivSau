@@ -34,7 +34,7 @@
 | 21 | World Congress & Diplomatic Victory | `[x]` | Hoàn chỉnh: resolutions, emergencies, favor, Diplomatic Victory (quỹ 10 điểm, UN), Trade Embargo |
 | 22 | Gián điệp (Spies) | `[x]` | Đầy đủ spy actions (steal tech, sabotage, coup...). **Lưu ý:** Spies là **dữ liệu/manager**, KHÔNG cần unit `Spy` trong Units.json → status "[x]" |
 | 23 | 6 điều kiện chiến thắng | `[x]` | Science (spaceship parts), Domination (thủ đô), Culture (tourism), Religion, Diplomatic + Time |
-| 24 | Chiến lược game phases | `[~]` | Đã có `GamePhase` (Early/Mid/Late) theo era trong `GamePhase.kt` + `Civilization.getGamePhase()`, áp dụng vào `ConstructionAutomation` (early: +food, late: +production/+science) và `CivilianUnitAutomation.isLateGame` (era ≥ Industrial). Còn thiếu: chiến lược sâu hơn theo từng phase (chọn wonder, mở rộng, tấn công) |
+| 24 | Chiến lược game phases | `[x]` | `GamePhase` (Early/Mid/Late) theo era trong `GamePhase.kt`: helper tính theo phase — `workerRatio` (early 1.2 / late 0.8), `militaryBuildModifier` (early 1.2 / late 1.3), `minimumFreeLandForExpansion` (early eager / late chỉ khi còn đất), `wonderModifier` (early 1.3 / late 1.5). Áp dụng: `ConstructionAutomation` (buildings, military, workers, wonders), `NextTurnAutomation.trainSettler` (mở rộng theo phase), `CivilianUnitAutomation.isLateGame`. Có test `GamePhaseTests` |
 | 25 | Tourism theo Appeal (Seaside Resort / National Park) | `[x]` | Unique `Tourism based on tile appeal` được engine thực thi (`updateStatsForNextTurn` cộng tourism theo appeal từng tile) — có test |
 
 ---
@@ -188,7 +188,7 @@ Những thay đổi hiện đang có trong working tree mà **chưa commit**:
 
 **Việc nên làm tiếp (theo ưu tiên):**
 1. **Bổ sung Natural Wonders** — đã xong: thêm 10 wonder GS/NFP (Bermuda Triangle, Chocolate Hills, Delicate Arch, Eye of the Sahara, Giant's Causeway, Mato Tipila, Matterhorn, Mount Kilimanjaro, Mount Vesuvius, Pamukkale) → **38 wonders, đồng bộ 2 cây jsons**. (Civ 6 chuẩn có 37; project còn thêm Grand Canyon + Nile River).
-2. **AI theo game phase** — đã làm phần nền: `GamePhase.kt` (Early/Mid/Late theo era) + áp dụng vào build queue và `isLateGame`; còn mở rộng thêm các quyết định khác theo phase.
+2. **AI theo game phase** — đã xong: `GamePhase.kt` (Early/Mid/Late theo era) + 4 helper theo phase (`workerRatio`, `militaryBuildModifier`, `minimumFreeLandForExpansion`, `wonderModifier`) áp dụng vào build queue (military/worker/wonder), `trainSettler` (mở rộng early/mid, late chỉ khi còn đất) và `isLateGame`.
 3. **Tăng độ sâu AI** so với Civ 6 thật (chiến thuật corps/army, quyết định theo grievances, chiến lược theo era).
 4. **Hoàn thiện adjacency call chuẩn** — đã làm: fix bug "dead unique" (13 uniques hậu tố thừa), fix engine filter `City Center`, Government Plaza chuyển sang "cho", đồng bộ 2 cây jsons, test từng district (`DistrictAdjacencyTests`, 15 test).
 5. **Great Works per-building + theming per-museum** (đang global pool).

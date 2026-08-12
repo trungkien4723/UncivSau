@@ -4,7 +4,6 @@ import com.unciv.UncivGame
 import com.unciv.logic.automation.Automation
 import com.unciv.logic.automation.ThreatLevel
 import com.unciv.logic.automation.Timers.Companion.timeThis
-import com.unciv.logic.automation.unit.CivilianUnitAutomation
 import com.unciv.logic.automation.unit.EspionageAutomation
 import com.unciv.logic.automation.unit.UnitAutomation
 import com.unciv.logic.battle.*
@@ -671,15 +670,15 @@ object NextTurnAutomation {
         if (civInfo.cities.none()) return
         
         val expansionModifier = getExpansionistAgendaModifier(civInfo)
-        
-        if (CivilianUnitAutomation.isLateGame(civInfo)){
-            val unoccupiedNearishTiles = civInfo.cities.asSequence()
-                .flatMap { it.getCenterTile().getTilesInDistance(10) }
-                .filter { it.owningCity == null && it.neighbors.all { it.owningCity == null } }
-                .count()
-            val minTiles = if (expansionModifier > 1f) 3 else 6
-            if (unoccupiedNearishTiles < minTiles) return
-        } 
+        val gamePhase = civInfo.getGamePhase()
+
+        // Civ 6 style: expansion is an early/mid-game priority; in the late game the AI
+        // only settles when genuinely free land is still available
+        val unoccupiedNearishTiles = civInfo.cities.asSequence()
+            .flatMap { it.getCenterTile().getTilesInDistance(10) }
+            .filter { it.owningCity == null && it.neighbors.all { it.owningCity == null } }
+            .count()
+        if (unoccupiedNearishTiles < gamePhase.minimumFreeLandForExpansion(expansionModifier > 1f)) return
 
         if (civInfo.units.getCivUnits().any { it.hasUnique(UniqueType.FoundCity, GameContext.IgnoreConditionals) }) return
         if (civInfo.cities.any {
@@ -694,12 +693,13 @@ object NextTurnAutomation {
 
         if (civInfo.units.getCivUnits().count { it.isMilitary() } < civInfo.cities.size) return
 
-        val minPopulation = if (expansionModifier > 1f) 2 else 3
+        // Early game: expand from smaller, less developed cities
+        val minPopulation = if (gamePhase.isEarly && expansionModifier > 1f) 2 else 3
         val bestCity = civInfo.cities
             .filterNot { it.isPuppet || it.population.population < minPopulation }
             .maxByOrNull { it.cityStats.currentCityStats.production }
             ?: return
-        val minBuildings = if (expansionModifier > 1f) 0 else 1
+        val minBuildings = if (gamePhase.isEarly || expansionModifier > 1f) 0 else 1
         if (bestCity.cityConstructions.getBuiltBuildings().count() > minBuildings)
             bestCity.cityConstructions.setCurrentConstruction(settlerUnits.minByOrNull { it.cost }!!.name)
     }
