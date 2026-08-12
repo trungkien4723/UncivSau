@@ -372,20 +372,17 @@ class Milestone(val uniqueDescription: String, private val parentVictory: Victor
         return buttons
     }
 
+    @Readonly
     fun getFocus(civInfo: Civilization): Victory.Focus {
         val ruleset = civInfo.gameInfo.ruleset
         return when (type!!) {
             MilestoneType.BuiltBuilding -> {
                 val building = ruleset.buildings[params[0]]!!
-                if (!civInfo.tech.isResearched(building)) Victory.Focus.Science
-//                if (building.hasUnique(UniqueType.Unbuildable)) Stat.Gold // Temporary, should be replaced with whatever is required to buy
-                Victory.Focus.Production
+                if (!civInfo.tech.isResearched(building)) Victory.Focus.Science else Victory.Focus.Production
             }
             MilestoneType.BuildingBuiltGlobally -> {
                 val building = ruleset.buildings[params[0]]!!
-                if (!civInfo.tech.isResearched(building)) Victory.Focus.Science
-//                if (building.hasUnique(UniqueType.Unbuildable)) Victory.Focus.Gold
-                Victory.Focus.Production
+                if (!civInfo.tech.isResearched(building)) Victory.Focus.Science else Victory.Focus.Production
             }
             MilestoneType.AddedSSPartsInCapital -> {
                 val constructions =
@@ -395,8 +392,7 @@ class Milestone(val uniqueDescription: String, private val parentVictory: Victor
                         else ruleset.units[it]!!
                     }
                 if (constructions.any { !civInfo.tech.isResearched(it) } ) Victory.Focus.Science
-//                if (constructions.any { it.hasUnique(UniqueType.Unbuildable) } ) Stat.Gold
-                Victory.Focus.Production
+                    else Victory.Focus.Production
             }
             MilestoneType.DestroyAllPlayers, MilestoneType.CaptureAllCapitals -> Victory.Focus.Military
             MilestoneType.CompletePolicyBranches -> Victory.Focus.Culture
@@ -410,13 +406,14 @@ class Milestone(val uniqueDescription: String, private val parentVictory: Victor
                         Stat.Science -> Victory.Focus.Science
                         Stat.Culture -> Victory.Focus.Culture
                         Stat.Faith -> Victory.Focus.Faith
+                        Stat.Tourism -> Victory.Focus.Culture // Civ VI Cultural victory is measured in Tourism
                         else -> Victory.Focus.Production
                     }
                     Countables.Cities, Countables.FilteredCities, Countables.FilteredBuildings, Countables.OwnedTiles -> Victory.Focus.Production
                     Countables.Units, Countables.FilteredUnits -> Victory.Focus.Military
                     Countables.PolicyBranches, Countables.FilteredPolicies -> Victory.Focus.Culture
                     Countables.TileResources, Countables.TileFilterTiles -> Victory.Focus.Production
-                    else -> Victory.Focus.Score
+                    else -> if (params[0] == "Diplomatic Victory Points") Victory.Focus.CityStates else Victory.Focus.Score
                 }
             }
             MilestoneType.WinDiplomaticVote -> Victory.Focus.CityStates

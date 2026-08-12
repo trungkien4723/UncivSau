@@ -4,6 +4,7 @@ import com.unciv.GUI
 import com.unciv.UncivGame
 import com.unciv.logic.automation.Automation
 import com.unciv.logic.automation.civilization.NextTurnAutomation
+import com.unciv.logic.automation.civilization.getAiVictoryFocus
 import com.unciv.logic.automation.civilization.getAiVictoryStatModifiers
 import com.unciv.logic.automation.civilization.getGamePhase
 import com.unciv.logic.automation.civilization.militaryBuildModifier
@@ -22,6 +23,7 @@ import com.unciv.models.ruleset.IConstruction
 import com.unciv.models.ruleset.INonPerpetualConstruction
 import com.unciv.models.ruleset.MilestoneType
 import com.unciv.models.ruleset.PerpetualConstruction
+import com.unciv.models.ruleset.Victory
 import com.unciv.models.ruleset.nation.PersonalityValue
 import com.unciv.models.ruleset.unique.GameContext
 import com.unciv.models.ruleset.unique.UniqueType
@@ -184,6 +186,7 @@ class ConstructionAutomation(val cityConstructions: CityConstructions) {
 
         if (!civInfo.isAIOrAutoPlaying()) modifier /= 2 // Players prefer to make their own unit choices usually
         modifier *= personality.modifierFocus(PersonalityValue.Military, .3f)
+        if (civInfo.getAiVictoryFocus() == Victory.Focus.Military) modifier *= 1.5f // Domination-focused civ keeps fielding an army
         addChoice(relativeCostEffectiveness, militaryUnit, modifier)
     }
 
@@ -366,6 +369,7 @@ class ConstructionAutomation(val cityConstructions: CityConstructions) {
         }
         if (building.hasUnique(UniqueType.EnablesNuclearWeapons) && !civInfo.hasUnique(UniqueType.EnablesNuclearWeapons))
             value += 10f * personality.modifierFocus(PersonalityValue.Military, 0.3f)
+        if (civInfo.getAiVictoryFocus() == Victory.Focus.Military) value += 5f // Domination-focused civ values military buildings
         return value
     }
 

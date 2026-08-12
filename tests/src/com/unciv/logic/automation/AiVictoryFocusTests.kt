@@ -1,6 +1,8 @@
 package com.unciv.logic.automation
 
+import com.unciv.logic.automation.civilization.getAiVictoryFocus
 import com.unciv.logic.automation.civilization.getAiVictoryStatModifiers
+import com.unciv.models.ruleset.Victory
 import com.unciv.models.ruleset.tech.Era
 import com.unciv.models.stats.Stat
 import com.unciv.testing.GdxTestRunner
@@ -111,5 +113,58 @@ class AiVictoryFocusTests {
         val modifiers = civ.getAiVictoryStatModifiers()
         assertEquals(1, modifiers.size)
         assertEquals(1.8f, modifiers[Stat.Gold]!!, 0.0001f)
+    }
+
+    @Test
+    fun militaryFocusWhenDominant() {
+        setEra(4)
+        addAliveEnemy()
+        // many warriors but no stat output: might is our only advantage
+        for (i in 0..5) testGame.addUnit("Warrior", civ, testGame.getTile(i % 3, i / 3))
+
+        assertEquals(Victory.Focus.Military, civ.getAiVictoryFocus())
+    }
+
+    @Test
+    fun scienceFocusWhenDominant() {
+        setEra(4)
+        val enemy = addAliveEnemy()
+        civ.stats.statsForNextTurn[Stat.Science] = 50f
+        civ.stats.statsForNextTurn[Stat.Culture] = 20f
+        enemy.stats.statsForNextTurn[Stat.Science] = 10f
+        enemy.stats.statsForNextTurn[Stat.Culture] = 10f
+
+        // strongest relative stat is Science (Apollo Program not researched -> Scientific victory = Science focus)
+        assertEquals(Victory.Focus.Science, civ.getAiVictoryFocus())
+    }
+
+    @Test
+    fun cultureFocusWhenTourismDominant() {
+        setEra(4)
+        val enemy = addAliveEnemy()
+        civ.stats.statsForNextTurn[Stat.Culture] = 50f
+        enemy.stats.statsForNextTurn[Stat.Culture] = 10f
+
+        assertEquals(Victory.Focus.Culture, civ.getAiVictoryFocus())
+    }
+
+    @Test
+    fun noFocusWhenBehind() {
+        setEra(4)
+        val enemy = addAliveEnemy()
+        civ.stats.statsForNextTurn[Stat.Science] = 10f
+        enemy.stats.statsForNextTurn[Stat.Science] = 100f
+
+        assertEquals(null, civ.getAiVictoryFocus())
+    }
+
+    @Test
+    fun earlyGameHasNoFocus() {
+        setEra(0)
+        val enemy = addAliveEnemy()
+        civ.stats.statsForNextTurn[Stat.Science] = 50f
+        enemy.stats.statsForNextTurn[Stat.Science] = 10f
+
+        assertEquals(null, civ.getAiVictoryFocus())
     }
 }

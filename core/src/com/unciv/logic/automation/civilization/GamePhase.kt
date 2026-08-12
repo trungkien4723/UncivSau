@@ -1,7 +1,9 @@
 package com.unciv.logic.automation.civilization
 
 import com.unciv.logic.civilization.Civilization
+import com.unciv.models.ruleset.Victory
 import com.unciv.models.stats.Stat
+import com.unciv.ui.screens.victoryscreen.RankingType
 import yairm210.purity.annotations.Readonly
 
 enum class GamePhase {
@@ -75,6 +77,13 @@ fun GamePhase.wonderModifier(): Float = when (this) {
 }
 
 /**
+ * The major AI civs the civ compares itself against for victory decisions, excluding itself.
+ */
+@Readonly
+private fun Civilization.getVictoryField(): List<Civilization> =
+    gameInfo.civilizations.filter { it.isMajorCiv() && it.isAlive() && it != this }
+
+/**
  * Returns the multiplier to put on the [Stat] the AI is strongest at **relative to the
  * rest of the field**, so it commits to its best victory path as the game progresses:
  * - [GamePhase.Early]: no specialization yet - the civ must grow first.
@@ -90,7 +99,7 @@ fun Civilization.getAiVictoryStatModifiers(): Map<Stat, Float> {
     val phase = getGamePhase()
     if (phase == GamePhase.Early) return emptyMap()
 
-    val field = gameInfo.civilizations.filter { it.isMajorCiv() && it.isAlive() && it != this }
+    val field = getVictoryField()
     if (field.isEmpty()) return emptyMap()
 
     fun ratio(stat: Stat): Float {
@@ -105,4 +114,53 @@ fun Civilization.getAiVictoryStatModifiers(): Map<Stat, Float> {
 
     val boost = if (phase == GamePhase.Late) 1.8f else 1.3f
     return mapOf(focusStat to boost)
+}
+
+/**
+ * Decides which victory type the AI is best positioned for and commits to it, based on the
+ * victory conditions present in the ruleset:
+ * - a [Victory.Focus.Military] (Domination) is measured by military might vs the field,
+ * - stat focuses are measured by next-turn output vs the field.
+ *
+ * Returns null during [GamePhase.Early] or when the civ is not ahead of the field at anything
+ * (it should keep growing instead of specializing).
+ */
+@Readonly
+fun Civilization.getAiVictoryFocus(): Victory.Focus? {
+    if (!isAI()) return null
+    val phase = getGamePhase()
+    if (phase == GamePhase.Early) return null
+
+    val field = getVictoryField()
+    if (field.isEmpty()) return null
+
+    fun statRatio(stat: Stat): Float {
+        val mine = stats.statsForNextTurn[stat]
+        if (mine <= 0f) return 0f
+        val fieldAverage = field.map { it.stats.statsForNextTurn[stat] }.average().toFloat()
+        return if (fieldAverage <= 0f) 1.5f else mine / fieldAverage
+    }
+    fun mightRatio(): Float {
+        val mine = getStatForRanking(RankingType.Force)
+        if (mine <= 0) return 0f
+        val fieldAverage = field.map { it.getStatForRanking(RankingType.Force) }.average().toFloat()
+        return if (fieldAverage <= 0f) 1.5f else mine / fieldAverage
+    }
+    fun powerRatio(focus: Victory.Focus): Float = when (focus) {
+        Victory.Focus.Military -> mightRatio()
+        Victory.Focus.Science -> statRatio(Stat.Science)
+        Victory.Focus.Culture -> statRatio(Stat.Culture)
+        Victory.Focus.Faith -> statRatio(Stat.Faith)
+        Victory.Focus.Gold -> statRatio(Stat.Gold)
+        Victory.Focus.Production -> statRatio(Stat.Production)
+        Victory.Focus.CityStates -> statRatio(Stat.Gold) // gold funds city-state courting
+        Victory.Focus.Score -> statRatio(Stat.Production) // best proxy for overall growth
+    }
+
+    val focuses = gameInfo.ruleset.victories.values
+        .flatMap { it.milestoneObjects }
+        .map { milestone -> milestone.getFocus(this) }
+        .distinct()
+    val bestFocus = focuses.maxByOrNull { powerRatio(it) } ?: return null
+    return bestFocus.takeIf { powerRatio(it) > 1f }
 }
