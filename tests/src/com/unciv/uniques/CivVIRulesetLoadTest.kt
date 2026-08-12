@@ -63,4 +63,20 @@ class CivVIRulesetLoadTest {
         val normal = civ.goldenAges.onEraTransition(4)
         Assert.assertEquals("Mid Era Score yields Normal Age", "Normal", normal)
     }
+
+    @Test
+    fun `completing a wonder grants its Era Score unique`() {
+        RulesetCache.loadRulesets(noMods = true)
+        val ruleset = RulesetCache[BaseRuleset.Civ_VI.fullName]!!
+
+        val testGame = com.unciv.testing.TestGame()
+        testGame.makeHexagonalMap(2)
+        val civ = testGame.addCiv()
+        val city = testGame.addCity(civ, testGame.tileMap[0, 0])
+
+        // Temple of Artemis carries "[4] Era Score"
+        city.cityConstructions.addBuilding("Temple of Artemis")
+
+        Assert.assertEquals("Wonder completion grants 4 Era Score", 4, civ.goldenAges.eraScore)
+    }
 }

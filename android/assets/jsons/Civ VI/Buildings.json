@@ -143,7 +143,7 @@
             "Great Engineer": 1
         },
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[+10]% [Food] [in all cities]",
             "[+15]% Production when constructing [Archery] units [in this city]",
             "[+15]% Production when constructing [Ranged Gunpowder] units [in this city]"
@@ -213,7 +213,7 @@
         "isWonder": true,
         "requiredTech": "Writing",
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Free Technology",
             "Gain a free [Library] [in this city]"
         ],
@@ -274,7 +274,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Can build [all] improvements at a [+25]% rate",
             "[2] free [Builder] units appear"
         ],
@@ -307,7 +307,7 @@
         "culture": 1,
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[+15]% Strength <for [All] units> <vs cities> <when attacking>"
         ],
         "requiredTech": "Bronze Working",
@@ -329,7 +329,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Must be next to [Coast]",
             "[+1] Movement <for [{Military} {Water}] units>",
             "[+1] Sight <for [{Military} {Water}] units>",
@@ -381,7 +381,7 @@
         "isWonder": true,
         "requiredTech": "Mathematics",
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Gain a free [Garden] [in this city]"
         ],
         "quote": "'I think that if ever a mortal heard the word of God it would be in a garden at the cool of the day.' - F. Frankfort Moore",
@@ -453,7 +453,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Free Social Policy"
         ],
         "requiredCivic": "Political Philosophy",
@@ -507,7 +507,7 @@
             "Great Engineer": 1
         },
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Must be next to [Desert]",
             "[+1 Food, +1 Production, +1 Gold] from [Desert] tiles without [Flood plains] [in this city]",
             "Gain a free [Amphitheater] [in this city]",
@@ -550,7 +550,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Enemy [Land] units must spend [1] extra movement points when inside your territory <before discovering [Chemistry]> <Suppress warning [*contains a conditional on a unit movement unique*]>",
             "Gain a free [Ancient Walls] [in this city]"
         ],
@@ -574,7 +574,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Must be next to [Coast]",
             "[+1 Gold] from [Water] tiles [in this city]"
         ],
@@ -606,7 +606,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Gain a free [Temple] [in this city]",
             "Free [Great Prophet] appears",
             "Only available <when religion is enabled>"
@@ -630,7 +630,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Gain a free [Mosque] [in this city]",
             "Only available <when religion is enabled>",
             "All newly-trained [Missionary] units [in this city] receive the [Devout] promotion",
@@ -655,7 +655,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[+50]% Golden Age length"
         ],
         "requiredTech": "Education",
@@ -677,7 +677,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[+25]% [Gold] from Trade Routes",
             "Must have an owned [{non-[Natural Wonder]} {Mountain}] within [2] tiles"
         ],
@@ -729,7 +729,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[-25]% Culture cost of natural border growth [in all cities]",
             "[-25]% Gold cost of acquiring tiles [in all cities]"
         ],
@@ -781,7 +781,7 @@
             "culture": 20
         },
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "All newly-trained [relevant] units [in this city] receive the [Drill I] promotion",
             "Gain a free [Castle] [in this city]"
         ],
@@ -821,7 +821,7 @@
             "Great Artist": 2
         },
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[+25]% [Culture] [in all cities]"
         ],
         "requiredTech": "Education",
@@ -858,7 +858,7 @@
             "Great Artist": 1
         },
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[-10]% Unhappiness from [Population] [in all non-occupied cities]"
         ],
         "requiredTech": "Banking",
@@ -879,7 +879,7 @@
             "Great Artist": 1
         },
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[+25]% Great Person generation [in all cities]",
             "Free Great Person"
         ],
@@ -901,7 +901,7 @@
             "Great Engineer": 2
         },
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[+15]% Strength <for [All] units> <when fighting in [Friendly Land] tiles>",
             "Gain a free [Castle] [in this city]"
         ],
@@ -924,7 +924,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Empire enters golden age"
         ],
         "requiredTech": "Economics",
@@ -945,7 +945,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Free [Great Scientist] appears",
             "Science gained from research agreements [+50]%"
         ],
@@ -980,7 +980,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[+25]% City Strength from defensive buildings"
         ],
         "requiredTech": "Steel",
@@ -1015,7 +1015,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[2] free [Great Artist] units appear"
         ],
         "requiredTech": "Scientific Theory",
@@ -1037,7 +1037,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[Gold] cost of purchasing items in cities [-15]%"
         ],
         "requiredTech": "Industrialization",
@@ -1058,7 +1058,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Free [Great General] appears",
             "New [Military] units start with [15] XP [in this city]"
         ],
@@ -1105,7 +1105,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[+1 Amenities] per [2] social policies adopted"
         ],
         "requiredTech": "Radio",
@@ -1126,7 +1126,7 @@
             "Great Engineer": 2
         },
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[+1 Production] from every specialist [in all cities]"
         ],
         "requiredTech": "Replaceable Parts",
@@ -1149,7 +1149,7 @@
         },
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[+1 Amenities, +2 Culture, +3 Gold] from every [Castle]",
             "Must have an owned [{non-[Natural Wonder]} {Mountain}] within [2] tiles"
         ],
@@ -1183,7 +1183,7 @@
             "Great Artist": 2
         },
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[-10]% Culture cost of adopting new Policies"
         ],
         "requiredTech": "Plastics",
@@ -1220,7 +1220,7 @@
             "Great Engineer": 2
         },
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[-33]% Gold cost of upgrading <for [Military] units>"
         ],
         "requiredTech": "Combined Arms",
@@ -1321,7 +1321,7 @@
             "culture": 50
         },
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Free Social Policy",
             "Must be next to [Coast]"
         ],
@@ -1388,7 +1388,7 @@
         "name": "Great Firewall",
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Only available <when espionage is enabled>",
             "[-99]% enemy spy effectiveness [in this city]",
             "[-25]% enemy spy effectiveness [in all cities]"
@@ -1409,7 +1409,7 @@
         "requiredCivic": "Diplomatic Service",
         "maintenance": 3,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "DiplomaticFavor: 3",
             "[+1] Diplomatic Victory point [in all cities]",
             "Only available <when [Diplomatic] Victory is enabled>"
@@ -1421,7 +1421,7 @@
         "maintenance": 4,
         "requiredCivic": "Globalization",
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "DiplomaticFavor: 5",
             "Diplomatic Victory points from World Congress resolutions [+3]",
             "Only available <when [Diplomatic] Victory is enabled>"
@@ -1445,7 +1445,7 @@
             "Great Merchant": 1
         },
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[+1] population [in all cities]",
             "[+1 Happiness] [in all cities]",
             "Gain a free [Broadcast Tower] [in all cities]"
@@ -1467,7 +1467,7 @@
             "Great Scientist": 1
         },
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[2] free [Great Scientist] units appear",
             "[+25]% Production when constructing [Spaceship part] units [in this city]",
             "Gain a free [Spaceship Factory] [in this city]"
@@ -1503,7 +1503,7 @@
         },
         "requiredCivic": "Globalization",
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Triggers voting for the Diplomatic Victory",
             "Only available <when [Diplomatic] Victory is enabled>",
             "Triggers a global alert upon completion"
@@ -1725,7 +1725,7 @@
         "isWonder": true,
         "science": 10,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Must be built on [Snow]"
         ],
         "requiredTech": "Satellites",
@@ -1746,7 +1746,7 @@
             "Great Engineer": 2
         },
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Must be built adjacent to [City Center]"
         ],
         "requiredCivic": "State Workforce",
@@ -1816,7 +1816,7 @@
         "gold": 5,
         "production": 3,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Must be next to [Coast]"
         ],
         "requiredTech": "Steam Power",
@@ -1867,7 +1867,7 @@
         "production": 4,
         "gold": 4,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Must be next to [Coast]"
         ],
         "requiredTech": "Telecommunications",
@@ -1885,7 +1885,7 @@
         "isWonder": true,
         "gold": 6,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Must be built adjacent to [Commercial Hub] district"
         ],
         "requiredCivic": "State Workforce",
@@ -1903,7 +1903,7 @@
         "isWonder": true,
         "faith": 6,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Must be built on [Desert]"
         ],
         "requiredCivic": "Theology",
@@ -2000,7 +2000,7 @@
         "isWonder": true,
         "production": 8,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Must be built adjacent to [Industrial Zone] district"
         ],
         "requiredTech": "Industrialization",
@@ -2033,7 +2033,7 @@
         "isWonder": true,
         "production": 6,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Must be next to [Coast]"
         ],
         "requiredTech": "Military Engineering",
@@ -2050,7 +2050,7 @@
         "cost": 320,
         "isWonder": true,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "[+10]% Strength <for [All] units> <when defending>"
         ],
         "requiredCivic": "Nationalism",
@@ -2069,7 +2069,7 @@
         "production": 5,
         "housing": 3,
         "uniques": [
-            "EraScore: [4]",
+            "[4] Era Score",
             "Must be next to [River]"
         ],
         "requiredTech": "Refining",
