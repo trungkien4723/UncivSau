@@ -4,6 +4,7 @@ import com.unciv.GUI
 import com.unciv.UncivGame
 import com.unciv.logic.automation.Automation
 import com.unciv.logic.automation.civilization.NextTurnAutomation
+import com.unciv.logic.automation.civilization.getAiVictoryStatModifiers
 import com.unciv.logic.automation.civilization.getGamePhase
 import com.unciv.logic.automation.civilization.militaryBuildModifier
 import com.unciv.logic.automation.civilization.workerRatio
@@ -404,6 +405,11 @@ class ConstructionAutomation(val cityConstructions: CityConstructions) {
 
         for (stat in Stat.entries) {
             buildingStats[stat] *= personality.scaledFocus(PersonalityValue[stat])
+        }
+
+        // Victory focus: commit to the stat we're strongest at relative to the field, per game phase
+        for ((focusStat, multiplier) in civInfo.getAiVictoryStatModifiers()) {
+            buildingStats[focusStat] *= multiplier
         }
 
         // Civ VI Agenda-based stat focus
