@@ -2,6 +2,7 @@ package com.unciv.logic.automation.civilization
 
 import com.unciv.logic.civilization.Civilization
 import com.unciv.models.ruleset.Victory
+import com.unciv.models.ruleset.civic.Civic
 import com.unciv.models.ruleset.tech.Technology
 import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.models.stats.Stat
@@ -222,4 +223,43 @@ fun Civilization.getTechFocusMultiplier(tech: Technology): Float {
     if (value <= 0f) return 1f
     value = (1f + value).coerceAtMost(3f)
     return value
+}
+
+/**
+ * Multiplier on a civic's AI research weight, same idea as [getTechFocusMultiplier] but for the
+ * civic tree: civics mostly unlock buildings, tile improvements and districts, so the focus stat's
+ * yield of those is weighed. Returns 1f when the civ has no focus or the civic does not advance it.
+ */
+@Readonly
+fun Civilization.getCivicFocusMultiplier(civic: Civic): Float {
+    val focus = getAiVictoryFocus() ?: return 1f
+    val ruleset = gameInfo.ruleset
+    val unlockedBuildings = ruleset.buildings.values.filter { it.requiredCivic == civic.name }
+    val unlockedImprovements = ruleset.tileImprovements.values.filter { it.requiredCivic == civic.name }
+    val unlockedDistricts = ruleset.districts.values.filter { it.requiredCivic == civic.name }
+
+    fun statValue(stat: Stat): Float =
+        (unlockedBuildings.map { it.cloneStats()[stat] }.sum()
+            + unlockedImprovements.map { it.cloneStats()[stat] }.sum()
+            + unlockedDistricts.map { it.cloneStats()[stat] }.sum()) * 0.2f
+
+    var value = when (focus) {
+        Victory.Focus.Military -> {
+            var v = statValue(Stat.Production)
+            v += unlockedBuildings.count { it.hasUnique(UniqueType.Strength) } * 0.25f
+            v
+        }
+        Victory.Focus.Science -> statValue(Stat.Science)
+        Victory.Focus.Culture -> {
+            var v = statValue(Stat.Culture)
+            v += unlockedBuildings.count { it.greatWorkSlots.values.any { slotCount -> slotCount > 0 } } * 0.5f
+            v
+        }
+        Victory.Focus.Faith -> statValue(Stat.Faith)
+        Victory.Focus.Gold -> statValue(Stat.Gold)
+        Victory.Focus.Production -> statValue(Stat.Production)
+        else -> return 1f
+    }
+    if (value <= 0f) return 1f
+    return (1f + value).coerceAtMost(3f)
 }

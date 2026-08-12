@@ -2,6 +2,7 @@ package com.unciv.logic.automation
 
 import com.unciv.logic.automation.civilization.getAiVictoryFocus
 import com.unciv.logic.automation.civilization.getAiVictoryStatModifiers
+import com.unciv.logic.automation.civilization.getCivicFocusMultiplier
 import com.unciv.logic.automation.civilization.getTechFocusMultiplier
 import com.unciv.models.ruleset.Victory
 import com.unciv.models.ruleset.tech.Era
@@ -201,5 +202,40 @@ class AiVictoryFocusTests {
 
         assertEquals(null, civ.getAiVictoryFocus())
         assertEquals(1f, civ.getTechFocusMultiplier(testGame.ruleset.technologies["Rocketry"]!!), 0.0001f)
+    }
+
+    @Test
+    fun cultureFocusResearchesCultureCivics() {
+        setEra(4)
+        val enemy = addAliveEnemy()
+        civ.stats.statsForNextTurn[Stat.Culture] = 50f
+        enemy.stats.statsForNextTurn[Stat.Culture] = 10f
+        assertEquals(Victory.Focus.Culture, civ.getAiVictoryFocus())
+
+        // Drama and Poetry unlocks the Amphitheater (Great Work slot) -> culture path
+        assertTrue(civ.getCivicFocusMultiplier(testGame.ruleset.civics["Drama and Poetry"]!!) > 1f)
+    }
+
+    @Test
+    fun faithFocusResearchesFaithCivics() {
+        setEra(4)
+        val enemy = addAliveEnemy()
+        civ.stats.statsForNextTurn[Stat.Faith] = 50f
+        enemy.stats.statsForNextTurn[Stat.Faith] = 10f
+        assertEquals(Victory.Focus.Faith, civ.getAiVictoryFocus())
+
+        // Political Philosophy unlocks the Temple (Faith yield) -> religion path
+        assertTrue(civ.getCivicFocusMultiplier(testGame.ruleset.civics["Political Philosophy"]!!) > 1f)
+    }
+
+    @Test
+    fun noFocusLeavesCivicWeightUntouched() {
+        setEra(4)
+        val enemy = addAliveEnemy()
+        civ.stats.statsForNextTurn[Stat.Science] = 10f
+        enemy.stats.statsForNextTurn[Stat.Science] = 100f
+
+        assertEquals(null, civ.getAiVictoryFocus())
+        assertEquals(1f, civ.getCivicFocusMultiplier(testGame.ruleset.civics["Political Philosophy"]!!), 0.0001f)
     }
 }

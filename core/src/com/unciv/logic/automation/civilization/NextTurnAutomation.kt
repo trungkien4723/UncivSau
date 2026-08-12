@@ -320,14 +320,16 @@ object NextTurnAutomation {
         }
 
         val stateForConditionals = civInfo.state
+        fun civicWeight(civic: Civic): Float =
+            civic.getWeightForAiDecision(stateForConditionals) * civInfo.getCivicFocusMultiplier(civic)
         if (civInfo.civics.freeCivics > 0) {
             val civics = getGroupedResearchableCivics()
             if (civics.isEmpty()) return
 
             val mostExpensiveCivics = civics.lastOrNull {
-                it.any { civic -> civic.getWeightForAiDecision(stateForConditionals) > 0 }
+                it.any { civic -> civicWeight(civic) > 0 }
             } ?: civics.last()
-            val chosenCivic = mostExpensiveCivics.randomWeighted(rng) { it.getWeightForAiDecision(stateForConditionals) }
+            val chosenCivic = mostExpensiveCivics.randomWeighted(rng) { civicWeight(it) }
             civInfo.civics.getFreeCivic(chosenCivic.name)
         } else if (civInfo.civics.civicsToResearch.isEmpty()) {
             val civics = getGroupedResearchableCivics()
@@ -335,16 +337,16 @@ object NextTurnAutomation {
 
             val cheapestCivics = civics.firstOrNull {
                 // Ignore rows where all civics have 0 weight
-                it.any { civic -> civic.getWeightForAiDecision(stateForConditionals) > 0 }
+                it.any { civic -> civicWeight(civic) > 0 }
             } ?: civics.first()
             // Do not consider advanced civics if only one civic left in cheapest group
             val civicToResearch: Civic =
                 if (cheapestCivics.size == 1 || civics.size == 1) {
-                    cheapestCivics.randomWeighted(rng) { it.getWeightForAiDecision(stateForConditionals) }
+                    cheapestCivics.randomWeighted(rng) { civicWeight(it) }
                 } else {
                     // Choose randomly between cheapest and second cheapest group
                     val civicsAdvanced = civics[1]
-                    (cheapestCivics + civicsAdvanced).randomWeighted(rng) { it.getWeightForAiDecision(stateForConditionals) }
+                    (cheapestCivics + civicsAdvanced).randomWeighted(rng) { civicWeight(it) }
                 }
 
             civInfo.civics.civicsToResearch.add(civicToResearch.name)
