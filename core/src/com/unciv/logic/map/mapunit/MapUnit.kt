@@ -202,14 +202,20 @@ class MapUnit : IsPartOfGameInfoSerialization {
         val baseName =
                 if (instanceName == null) "[$name]"
                 else "$instanceName ([$name])"
+        val suffix = formationSuffix()
 
-        return if (religion == null) baseName
-        else "$baseName ([${getReligionDisplayName()}])"
+        return if (religion == null) baseName + suffix
+        else "$baseName ([${getReligionDisplayName()}])$suffix"
     }
 
     fun shortDisplayName(): String {
-        return if (instanceName != null) "[$instanceName]"
-        else "[$name]"
+        return (if (instanceName != null) "[$instanceName]" else "[$name]") + formationSuffix()
+    }
+
+    @Readonly private fun formationSuffix(): String = when (formationLevel) {
+        1 -> if (baseUnit.isWaterUnit) " Fleet" else " Corps"
+        2 -> if (baseUnit.isWaterUnit) " Armada" else " Army"
+        else -> ""
     }
 
     @Readonly

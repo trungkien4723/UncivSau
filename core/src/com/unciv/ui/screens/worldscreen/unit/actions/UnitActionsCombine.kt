@@ -9,7 +9,7 @@ import com.unciv.models.translations.tr
 
 object UnitActionsCombine {
 
-    internal fun getFormCorpsActions(unit: MapUnit, tile: Tile) = sequence {
+    fun getFormCorpsActions(unit: MapUnit, tile: Tile) = sequence {
         if (unit.formationLevel != 0) return@sequence
         if (!unit.isMilitary()) return@sequence
         if (!unit.civ.civics.isResearched("Nationalism")) return@sequence
@@ -36,7 +36,7 @@ object UnitActionsCombine {
         ))
     }
 
-    internal fun getFormArmyActions(unit: MapUnit, tile: Tile) = sequence {
+    fun getFormArmyActions(unit: MapUnit, tile: Tile) = sequence {
         if (unit.formationLevel != 1) return@sequence
         if (!unit.isMilitary()) return@sequence
         if (!unit.civ.civics.isResearched("Mobilization")) return@sequence
@@ -65,7 +65,7 @@ object UnitActionsCombine {
     }
 
     // Naval formations: Fleet (Corps equivalent) and Armada (Army equivalent)
-    internal fun getFormFleetActions(unit: MapUnit, tile: Tile) = sequence {
+    fun getFormFleetActions(unit: MapUnit, tile: Tile) = sequence {
         if (unit.formationLevel != 0) return@sequence
         if (!unit.isMilitary()) return@sequence
         if (!unit.civ.civics.isResearched("Nationalism")) return@sequence
@@ -92,7 +92,7 @@ object UnitActionsCombine {
         ))
     }
 
-    internal fun getFormArmadaActions(unit: MapUnit, tile: Tile) = sequence {
+    fun getFormArmadaActions(unit: MapUnit, tile: Tile) = sequence {
         if (unit.formationLevel != 1) return@sequence
         if (!unit.isMilitary()) return@sequence
         if (!unit.civ.civics.isResearched("Mobilization")) return@sequence
@@ -120,21 +120,28 @@ object UnitActionsCombine {
         ))
     }
 
-    private fun findCombinePartner(unit: MapUnit, tile: Tile): MapUnit? {
-        val allUnitsOnTile = sequence {
-            if (tile.militaryUnit != null && tile.militaryUnit != unit) yield(tile.militaryUnit!!)
-            if (tile.civilianUnit != null && tile.civilianUnit != unit) yield(tile.civilianUnit!!)
-            yieldAll(tile.airUnits.filter { it != unit })
+    /**
+     * Civ 6 forms corps from units stacked on one tile, but this engine enforces 1 military
+     * unit per tile ([com.unciv.logic.map.mapunit.movement.UnitMovement] `TileIsNotEmpty`).
+     * So we look for a matching partner on the unit's own tile **or any adjacent tile** - the
+     * two units "merge" and the partner is consumed.
+     */
+    fun findCombinePartner(unit: MapUnit, tile: Tile): MapUnit? {
+        val candidateTiles = sequence {
+            yield(tile)
+            yieldAll(tile.neighbors)
         }
-        return allUnitsOnTile.firstOrNull {
-            it.owner == unit.owner
-                && it.isMilitary()
-                && it.name == unit.name
-                && it.formationLevel == unit.formationLevel
-        }
+        return candidateTiles.mapNotNull { it.militaryUnit }
+            .firstOrNull {
+                it != unit
+                    && it.owner == unit.owner
+                    && it.isMilitary()
+                    && it.name == unit.name
+                    && it.formationLevel == unit.formationLevel
+            }
     }
 
-    private fun getCombineGoldCost(unit: MapUnit): Int {
+    fun getCombineGoldCost(unit: MapUnit): Int {
         val eraNumber = unit.civ.getEra().eraNumber
         return 50 + eraNumber * 20
     }
