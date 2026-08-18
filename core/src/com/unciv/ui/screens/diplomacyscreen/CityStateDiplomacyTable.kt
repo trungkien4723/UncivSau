@@ -49,6 +49,17 @@ class CityStateDiplomacyTable(private val diplomacyScreen: DiplomacyScreen) {
         diplomacyTable.add(giveGiftButton).row()
         if (diplomacyScreen.isNotPlayersTurn() || viewingCiv.isAtWarWith(otherCiv)) giveGiftButton.disable()
 
+        val sendEnvoyButton = "Send Envoy (${viewingCiv.unassignedEnvoys})".toTextButton()
+        sendEnvoyButton.onClick {
+            if (viewingCiv.unassignedEnvoys <= 0) return@onClick
+            otherCivDiplomacyManager.addEnvoys(1)
+            viewingCiv.unassignedEnvoys -= 1
+            diplomacyScreen.rightSideTable.clear()
+            diplomacyScreen.rightSideTable.add(ScrollPane(getCityStateDiplomacyTable(otherCiv)))
+        }
+        diplomacyTable.add(sendEnvoyButton).row()
+        if (diplomacyScreen.isNotPlayersTurn() || viewingCiv.isAtWarWith(otherCiv) || viewingCiv.unassignedEnvoys <= 0) sendEnvoyButton.disable()
+
         val improveTileButton = getImproveTilesButton(otherCiv, otherCivDiplomacyManager)
         if (improveTileButton != null) diplomacyTable.add(improveTileButton).row()
 

@@ -309,7 +309,7 @@
         "name": "Military Research",
         "slotType": "Diplomatic",
         "requiredCivic": "Diplomatic Service",
-        "uniques": ["[+1 Envoy]s [in all cities]"]
+        "uniques": ["Gain [1] Envoys per turn"]
     },
     {
         "name": "Rapacious Plans",
@@ -357,7 +357,7 @@
         "name": "Environmental Diplomacy",
         "slotType": "Diplomatic",
         "requiredCivic": "Conservation",
-        "uniques": ["[+1 Envoy]s [in all cities]"]
+        "uniques": ["Gain [1] Envoys per turn"]
     },
     {
         "name": "Inspiration",

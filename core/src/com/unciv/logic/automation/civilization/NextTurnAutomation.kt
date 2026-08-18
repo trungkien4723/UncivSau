@@ -79,6 +79,7 @@ object NextTurnAutomation {
         if (tradeAndChangeState && !civInfo.isCityState) {
             protectCityStates(civInfo)
             bullyCityStates(civInfo)
+            civInfo.cityStateFunctions.aiSendEnvoys()
         }
         automateUnits(civInfo)  // this is the most expensive part
 

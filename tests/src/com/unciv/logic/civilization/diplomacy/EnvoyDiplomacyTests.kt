@@ -136,6 +136,44 @@ class EnvoyDiplomacyTests {
     }
 
     @Test
+    fun `unassigned envoys accrue per turn and can be sent to a city-state`() {
+        val cityState = addCiv(cityStateType = "Militaristic")
+        meet(a, cityState)
+        val csDiplomacy = cityState.getDiplomacyManager(a)!!
+
+        assertEquals(0, a.unassignedEnvoys)
+        a.cityStateFunctions.gainEnvoysPerTurn()
+        assertEquals(1, a.unassignedEnvoys)
+
+        // Send an envoy from the accumulated pool
+        a.unassignedEnvoys -= 1
+        csDiplomacy.addEnvoys(1)
+        assertEquals(0, a.unassignedEnvoys)
+        assertEquals(1, csDiplomacy.getEnvoys())
+    }
+
+    @Test
+    fun `AI sends unassigned envoys to city-states`() {
+        val cityState = addCiv(cityStateType = "Militaristic")
+        meet(a, cityState)
+        val csDiplomacy = cityState.getDiplomacyManager(a)!!
+
+        a.unassignedEnvoys = 3
+        a.cityStateFunctions.aiSendEnvoys()
+        assertEquals(2, a.unassignedEnvoys)
+        assertEquals(1, csDiplomacy.getEnvoys())
+    }
+
+    @Test
+    fun `policy and society uniques grant envoys into the pool`() {
+        val b = testGame.addCiv("Gain [1] Envoys per turn")
+        assertEquals(0, b.unassignedEnvoys)
+        b.cityStateFunctions.gainEnvoysPerTurn()
+        // baseline +1 plus the unique's +1
+        assertEquals(2, b.unassignedEnvoys)
+    }
+
+    @Test
     fun `seoul suzerain bonus applies at three envoys`() {
         val seoulNation = testGame.ruleset.nations["Seoul"]!!
         val seoul = testGame.addCiv(seoulNation).apply {

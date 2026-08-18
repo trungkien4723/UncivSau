@@ -363,6 +363,28 @@ class CityStateFunctions(val civInfo: Civilization) {
         return true
     }
 
+    /** Accrue free Envoys into the unassigned pool (Civ VI: a steady trickle plus policy/governor/society bonuses). */
+    fun gainEnvoysPerTurn() {
+        var gain = 1
+        gain += civInfo.getMatchingUniques(UniqueType.GainEnvoy).sumOf { it.params[0].toIntOrNull() ?: 0 }
+        civInfo.unassignedEnvoys += gain
+    }
+
+    /** AI: send one accumulated unassigned Envoy to the City-State the civ has the strongest interest in. */
+    fun aiSendEnvoys() {
+        if (civInfo.unassignedEnvoys <= 0) return
+        val cityStates = civInfo.gameInfo.getAliveCityStates()
+            .filter { civInfo.knows(it) && !civInfo.isAtWarWith(it) }
+        if (cityStates.isEmpty()) return
+        val target = cityStates.maxByOrNull { cs ->
+            val diplo = cs.getDiplomacyManager(civInfo)!!
+            val questBonus = if (cs.questManager.getAssignedQuestsFor(civInfo).any()) 1000 else 0
+            questBonus + diplo.getEnvoys()
+        } ?: return
+        target.getDiplomacyManager(civInfo)!!.addEnvoys(1)
+        civInfo.unassignedEnvoys -= 1
+    }
+
     fun updateAllyCivForCityState() {
         if (!civInfo.isCityState) return
         val oldAlly = civInfo.allyCiv

@@ -195,6 +195,9 @@ class Civilization : IsPartOfGameInfoSerialization {
     var diplomacy = HashMap<String, DiplomacyManager>()
     var proximity = HashMap<String, Proximity>()
 
+    /** Unassigned Envoys available to send to City-States (Civ VI diplomacy). */
+    var unassignedEnvoys = 0
+
     /** Civ VI: the hidden agenda randomly assigned to this civ at game start. */
     var chosenHiddenAgenda: String? = null
     val popupAlerts = ArrayList<PopupAlert>()

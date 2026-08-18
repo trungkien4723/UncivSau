@@ -31,6 +31,7 @@ class TurnManager(val civInfo: Civilization) {
         civInfo.threatManager.clear()
         if (civInfo.isMajorCiv() && civInfo.isAlive()) {
             civInfo.statsHistory.recordRankingStats(civInfo)
+            civInfo.cityStateFunctions.gainEnvoysPerTurn()
         }
 
         if (civInfo.cities.isNotEmpty() && civInfo.gameInfo.ruleset.technologies.isNotEmpty())

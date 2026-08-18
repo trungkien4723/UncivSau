@@ -188,6 +188,8 @@ enum class UniqueType(
     /// Building Maintenance
     GainFreeBuildings("Gain a free [buildingName] [cityFilter]", UniqueTarget.Global, UniqueTarget.Triggerable,
         docDescription = "Free buildings CANNOT be self-removing - this leads to an endless loop of trying to add the building"),
+
+    GainEnvoy("Gain [amount] Envoys per turn", UniqueTarget.Global, UniqueTarget.Unit, UniqueTarget.Promotion),
     BuildingMaintenance("[relativeAmount]% maintenance cost for [buildingFilter] buildings [cityFilter]", UniqueTarget.Global, UniqueTarget.FollowerBelief,
         docDescription = MULTIPLICATIVE_BONUS_EXPLANATION),
     RemoveBuilding("Remove [buildingFilter] [cityFilter]", UniqueTarget.Global, UniqueTarget.Triggerable),
