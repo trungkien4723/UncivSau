@@ -294,5 +294,31 @@
         "name": "Reliquary",
         "type": "Enhancer",
         "uniques": ["Gain [50] [Faith] <upon expending a [Great Person] unit> <(modified by game speed)>"]
+    },
+
+    ////////////////////////////////////// Reformation beliefs //////////////////////////////////////
+
+    {
+        "name": "Reformed Church",
+        "type": "Reformation",
+        "uniques": ["[+1 Faith] from every [Shrine] <in cities following this religion>",
+            "[+1 Faith] from every [Temple] <in cities following this religion>"]
+    },
+    {
+        "name": "Jesuit Education",
+        "type": "Reformation",
+        "uniques": ["Can purchase [Campus] district buildings with [Faith] <in cities following this religion>",
+            "Can purchase [Theater Square] district buildings with [Faith] <in cities following this religion>"]
+    },
+    {
+        "name": "Warrior Monks",
+        "type": "Reformation",
+        "uniques": ["Unlocks [Warrior Monk]",
+            "Gain [1] [Great General] point from every [Holy Site] district <in cities following this religion>"]
+    },
+    {
+        "name": "Sacred Space",
+        "type": "Reformation",
+        "uniques": ["[+2 Faith] from every improved [Resource] <in cities following this religion>"]
     }
 ]

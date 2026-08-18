@@ -531,7 +531,6 @@
                         "[+1 Housing]",
                         "[+4 Gold]",
                         "National Park",
-                        "Tourism based on tile appeal",
                         "Pillaging this improvement yields approximately [+20 Gold]"
                     ],
         "requiredCivic":  "Conservation",
@@ -547,7 +546,6 @@
         "uniques":  [
                         "Can only be built on [Coastal] tiles",
                         "[+2 Gold] \u003cafter discovering [Radio]\u003e",
-                        "Tourism based on tile appeal",
                         "Pillaging this improvement yields approximately [+20 Gold]"
                     ],
         "requiredCivic":  "Conservation",
@@ -706,7 +704,6 @@
         "turnsToBuild":  8,
         "techRequired":  "Electricity",
         "uniques":  [
-                        "Can only be built on [Plains], [Grassland], [Hill], or [Tundra] tiles",
                         "[+1 Production] \u003cafter discovering [Industrialization]\u003e",
                         "Pillaging this improvement yields approximately [+20 Gold]"
                     ],
@@ -739,8 +736,8 @@
         "turnsToBuild":  8,
         "techRequired":  "Education",
         "uniques":  [
-                        "[+1 Gold] \u003cafter discovering [Renaissance]\u003e",
-                        "[+1 Culture] \u003cafter discovering [Renaissance]\u003e",
+                        "[+1 Gold] \u003cstarting from the [Renaissance era]\u003e",
+                        "[+1 Culture] \u003cstarting from the [Renaissance era]\u003e",
                         "Pillaging this improvement yields approximately [+20 Gold]"
                     ],
         "shortcutKey":  "C"
@@ -750,14 +747,14 @@
         "uniqueTo":  "Egypt",
         "terrainsCanBeBuiltOn":  [
                                      "Desert",
-                                     "Desert Hill"
+                                     "Hill"
                                  ],
         "culture":  3,
         "turnsToBuild":  10,
         "techRequired":  "Masonry",
         "uniques":  [
                         "[+2 Culture]",
-                        "[+1 Faith] \u003cafter discovering [Monumentality]\u003e",
+                        "[+1 Faith] \u003cstarting from the [Classical era]\u003e",
                         "Pillaging this improvement yields approximately [+20 Gold]"
                     ],
         "shortcutKey":  "S"
@@ -789,8 +786,7 @@
                                  ],
         "uniques":  [
                         "Unbuildable",
-                        "Irremovable",
-                        "Provides [1] [Artifact]"
+                        "Irremovable"
                     ]
     },
     {

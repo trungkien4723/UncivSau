@@ -111,7 +111,7 @@
     },
     {
         "name": "Natural Disaster: Flood",
-        "presentation": "EventPopup",
+        "presentation": "Alert",
         "civilopediaText": [
             {"text": "Rising Waters!", "centered": true},
             {"text": "River flooding affects tiles adjacent to waterways. Can pillage improvements, reduce population, and damage units. Wonders are protected from flooding damage."},
@@ -128,7 +128,7 @@
     },
     {
         "name": "Natural Disaster: Volcano",
-        "presentation": "EventPopup",
+        "presentation": "Alert",
         "civilopediaText": [
             {"text": "Eruption!", "centered": true},
             {"text": "Volcanic eruptions destroy terrain, create volcanic soil, and damage nearby cities and units. Air units are immune to volcanic ash."},
@@ -145,7 +145,7 @@
     },
     {
         "name": "Natural Disaster: Storm",
-        "presentation": "EventPopup",
+        "presentation": "Alert",
         "civilopediaText": [
             {"text": "Incoming Storm!", "centered": true},
             {"text": "Storms disrupt movement, damage units, and scatter Great Person points. After passing, yields improve in affected tiles."},
@@ -162,7 +162,7 @@
     },
     {
         "name": "Natural Disaster: Drought",
-        "presentation": "EventPopup",
+        "presentation": "Alert",
         "civilopediaText": [
             {"text": "Drought!", "centered": true},
             {"text": "Droughts reduce food production, can pillage improvements, and increase gold maintenance costs. Deserts expand from affected tiles.", "centered": true},
@@ -179,7 +179,7 @@
     },
     {
         "name": "Natural Disaster: Solar Flare",
-        "presentation": "EventPopup",
+        "presentation": "Alert",
         "civilopediaText": [
             {"text": "Solar Flare!", "centered": true},
             {"text": "Solar flares damage technology and culture networks. Great People abilities disabled, research slowed, and cultural output reduced for the affected civilization.", "centered": true},
@@ -196,7 +196,7 @@
     },
     {
         "name": "Natural Disaster: Tornado",
-        "presentation": "EventPopup",
+        "presentation": "Alert",
         "civilopediaText": [
             {"text": "Tornado!", "centered": true},
             {"text": "Tornadoes damage all units in their path, destroy buildings, and uproot trees. Allows air units to move at double speed.", "centered": true},
@@ -212,7 +212,7 @@
     },
     {
         "name": "Natural Disaster: Blizzard",
-        "presentation": "EventPopup",
+        "presentation": "Alert",
         "civilopediaText": [
             {"text": "Blizzard!", "centered": true},
             {"text": "Blizzards halt all land unit movement, reduce visibility, and scatter Great Person points. Air units are immune.", "centered": true},
@@ -303,11 +303,11 @@
         "uniques": [
             "Only available <if tutorials are enabled>",
             "Unavailable <if tutorial [See your stats breakdown] is completed>"
-        }
+        ],
     },
 {
         "name": "Rock Band Rock Concert",
-        "presentation": "EventPopup",
+        "presentation": "Alert",
         "civilopediaText": [
             {"text": "Rock Band Rock Concert!", "centered": true},
             {"text": "A rock band performs a spectacular concert! This creates worldwide tourism, generates Great Musician points, and creates a cultural renaissance across all cities.", "centered": true},
@@ -323,7 +323,7 @@
     },
     {
         "name": "Era Transition: Golden Age",
-        "presentation": "EventPopup",
+        "presentation": "Alert",
         "civilopediaText": [
             {"text": "Golden Age Achieved!", "centered": true},
             {"text": "Your civilization has entered a Golden Age! Cities gain +3 Loyalty, +1 Policy Slot, and increased production. Dedications provide powerful bonuses.", "centered": true},
@@ -339,7 +339,7 @@
     },
     {
         "name": "Era Transition: Dark Age",
-        "presentation": "EventPopup",
+        "presentation": "Alert",
         "civilopediaText": [
             {"text": "Dark Age Begins!", "centered": true},
             {"text": "Your civilization has fallen into a Dark Age! Cities lose -4 Loyalty and -1 Policy Slot. But Dark Ages allow unique Dark Age policies and can lead to a Heroic Age.", "centered": true},
@@ -355,7 +355,7 @@
     },
     {
         "name": "Era Transition: Heroic Age",
-        "presentation": "EventPopup",
+        "presentation": "Alert",
         "civilopediaText": [
             {"text": "Heroic Age Achieved!", "centered": true},
             {"text": "From the ashes of a Dark Age, your civilization has risen to a Heroic Age! Gain +6 Loyalty, +2 Policy Slots, and three dedications from both Dark and Golden Age options.", "centered": true},
@@ -371,7 +371,7 @@
     },
     {
         "name": "Era Transition: Normal Age",
-        "presentation": "EventPopup",
+        "presentation": "Alert",
         "civilopediaText": [
             {"text": "Normal Age Continues", "centered": true},
             {"text": "Your civilization enters a Normal Age. No special bonuses or penalties. Choose a dedication to guide your era: Heartbeat of Steam, To Arms!, Monumentality, Free Inquiry, or Bodyguard of Lies.", "centered": true}

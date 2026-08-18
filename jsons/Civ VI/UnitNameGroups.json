@@ -34,5 +34,21 @@
     {
         "name": "Archaeologist",
         "unitNames": ["Howard Carter", "Heinrich Schliemann", "Arthur Evans", "John Lloyd Stephens", "Jean-François Champollion", "Giovanni Battista Belzoni", "Flinders Petrie", "Auguste Mariette", "Zahi Hawass", "Gertrude Bell", "Kathleen Kenyon", "Hiram Bingham", "Louis Leakey", "Mary Leakey", "Richard Leakey", "Johan Hjerpe", "C. W. Ceram", "Heinrich Himmler", "Ventris Michael"]
+    },
+    {
+        "name": "Writer",
+        "unitNames": ["Homer", "Leo Tolstoy", "Mark Twain", "Miguel de Cervantes", "Victor Hugo", "William Shakespeare"]
+    },
+    {
+        "name": "Musician",
+        "unitNames": ["Johann Sebastian Bach", "Ludwig van Beethoven", "Johannes Brahms", "Wolfgang Amadeus Mozart", "Franz Schubert", "Pyotr Ilyich Tchaikovsky"]
+    },
+    {
+        "name": "Diplomat",
+        "unitNames": ["Benjamin Franklin", "Charles Maurice de Talleyrand", "Henry Kissinger", "Klemens von Metternich", "Niccolo Machiavelli", "Francois de Callieres"]
+    },
+    {
+        "name": "Naturalist",
+        "unitNames": ["Charles Darwin", "Alexander von Humboldt", "John Muir", "Henry David Thoreau", "John James Audubon", "Rachel Carson"]
     }
 ]

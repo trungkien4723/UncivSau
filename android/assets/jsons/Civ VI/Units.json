@@ -133,7 +133,8 @@
         "uniques": [
             "[+50]% Strength <vs [Light Cavalry] units> <vs [Heavy Cavalry] units>"
         ],
-        "movement": 2
+        "movement": 2,
+        "replaces": "Spearman"
     },
     {
         "name": "Marauder",
@@ -995,17 +996,33 @@
         "movement": 2
     },
     {
+        "name": "Archaeologist",
+        "unitType": "Civilian",
+        "cost": -1,
+        "uniques": [
+            "Can create Great Work",
+            "Is part of Great Person group [Great Person]",
+            "[This Unit] gets a name from the [Archaeologist] group",
+            "Great Person - [Culture]",
+            "Unbuildable",
+            "Uncapturable"
+        ],
+        "movement": 2
+    },
+    {
         "name": "Rock Band",
         "unitType": "Civilian",
         "movement": 3,
         "cost": 180,
         "uniques": [
-            "Can perform a [Rock] action <by consuming this unit>",
+            "Can perform a [Rock Concert] action <by consuming this unit>",
             "Pillaging this unit yields approximately [+60 Gold]",
             "Can move after performing an action",
-            "Unbuildable"
+            "Unbuildable",
+            "Provides [+25] [Tourism] to foreign civilizations",
+            "[+10] [Great Musician] points per turn [in this city]"
         ],
-        "requiredCivic": ""
+        "requiredCivic": "Mass Media"
     },
     {
         "name": "Missionary",
@@ -1069,7 +1086,9 @@
         "movement": 3,
         "strength": 17,
         "cost": 17,
-        "uniqueTo": "Babylon"
+        "uniqueTo": "Babylon",
+        "replaces": "Warrior",
+        "upgradesTo": "Swordsman"
     },
     {
         "name": "Warrior",
@@ -1087,7 +1106,9 @@
         "strength": 20,
         "cost": 30,
         "uniqueTo": "Gaul",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Warrior",
+        "upgradesTo": "Swordsman"
     },
     {
         "name": "Eagle Warrior",
@@ -1095,7 +1116,9 @@
         "strength": 28,
         "cost": 32,
         "uniqueTo": "Aztec",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Warrior",
+        "upgradesTo": "Swordsman"
     },
     {
         "name": "Swordsman",
@@ -1116,7 +1139,9 @@
         "cost": 50,
         "requiredTech": "Iron Working",
         "uniqueTo": "Persia",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Swordsman",
+        "upgradesTo": "Man-At-Arms"
     },
     {
         "name": "Ngao Mbeba",
@@ -1125,7 +1150,9 @@
         "cost": 55,
         "requiredTech": "Iron Working",
         "uniqueTo": "Kongo",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Spearman",
+        "upgradesTo": "Pikeman"
     },
     {
         "name": "Hypaspist",
@@ -1134,7 +1161,9 @@
         "cost": 50,
         "requiredTech": "Iron Working",
         "uniqueTo": "Macedon",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Swordsman",
+        "upgradesTo": "Man-At-Arms"
     },
     {
         "name": "Legion",
@@ -1146,7 +1175,9 @@
         "uniques": [
             "1Build Charges"
         ],
-        "movement": 2
+        "movement": 2,
+        "replaces": "Swordsman",
+        "upgradesTo": "Man-At-Arms"
     },
     {
         "name": "Berserker",
@@ -1155,7 +1186,9 @@
         "cost": 80,
         "requiredTech": "Military Tactics",
         "uniqueTo": "Norway",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Swordsman",
+        "upgradesTo": "Man-At-Arms"
     },
     {
         "name": "Man-At-Arms",
@@ -1175,7 +1208,9 @@
         "cost": 80,
         "requiredTech": "Military Tactics",
         "uniqueTo": "Japan",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Swordsman",
+        "upgradesTo": "Man-At-Arms"
     },
     {
         "name": "Khevsur",
@@ -1184,7 +1219,9 @@
         "cost": 80,
         "requiredTech": "Military Tactics",
         "uniqueTo": "Georgia",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Swordsman",
+        "upgradesTo": "Man-At-Arms"
     },
     {
         "name": "Musketman",
@@ -1204,7 +1241,9 @@
         "cost": 125,
         "requiredTech": "Gunpowder",
         "uniqueTo": "Spain",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Musketman",
+        "upgradesTo": "Line Infantry"
     },
     {
         "name": "Janissary",
@@ -1213,7 +1252,9 @@
         "cost": 60,
         "requiredTech": "Gunpowder",
         "uniqueTo": "Ottomans",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Musketman",
+        "upgradesTo": "Line Infantry"
     },
     {
         "name": "Line Infantry",
@@ -1233,7 +1274,9 @@
         "cost": 180,
         "requiredTech": "Military Science",
         "uniqueTo": "England",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Line Infantry",
+        "upgradesTo": "Infantry"
     },
     {
         "name": "Garde Impériale",
@@ -1242,7 +1285,9 @@
         "cost": 180,
         "requiredTech": "Military Science",
         "uniqueTo": "France",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Musketman",
+        "upgradesTo": "Line Infantry"
     },
     {
         "name": "Infantry",
@@ -1262,7 +1307,9 @@
         "cost": 215,
         "requiredTech": "Replaceable Parts",
         "uniqueTo": "Australia",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Infantry",
+        "upgradesTo": "Mechanized Infantry"
     },
     {
         "name": "Mechanized Infantry",
@@ -1302,7 +1349,9 @@
         "cost": 32,
         "requiredTech": "Bronze Working",
         "uniqueTo": "Greece",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Spearman",
+        "upgradesTo": "Pikeman"
     },
     {
         "name": "Pikeman",
@@ -1322,7 +1371,9 @@
         "cost": 62,
         "requiredTech": "Military Tactics",
         "uniqueTo": "Zulu",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Pikeman",
+        "upgradesTo": "Pike and Shot"
     },
     {
         "name": "Pike and Shot",
@@ -1342,7 +1393,9 @@
         "cost": 125,
         "requiredTech": "Rifling",
         "uniqueTo": "Sweden",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Pike and Shot",
+        "upgradesTo": "Infantry"
     },
     {
         "name": "AT Crew",
@@ -1397,7 +1450,9 @@
         "cost": 30,
         "requiredTech": "Archery",
         "uniqueTo": "Maya",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Slinger",
+        "upgradesTo": "Archer"
     },
     {
         "name": "Pítati Archer",
@@ -1407,7 +1462,9 @@
         "cost": 35,
         "requiredTech": "Archery",
         "uniqueTo": "Nubia",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Slinger",
+        "upgradesTo": "Archer"
     },
     {
         "name": "Saka Horse Archer",
@@ -1417,7 +1474,9 @@
         "rangedStrength": 25,
         "cost": 35,
         "requiredTech": "Horseback Riding",
-        "uniqueTo": "Scythia"
+        "uniqueTo": "Scythia",
+        "replaces": "Horseman",
+        "upgradesTo": "Knight"
     },
     {
         "name": "Maryannu Chariot Archer",
@@ -1427,7 +1486,9 @@
         "rangedStrength": 35,
         "cost": 45,
         "requiredTech": "Wheel",
-        "uniqueTo": "Egypt"
+        "uniqueTo": "Egypt",
+        "replaces": "Chariot Archer",
+        "upgradesTo": "Knight"
     },
     {
         "name": "Crossbowman",
@@ -1449,7 +1510,9 @@
         "cost": 85,
         "requiredTech": "Machinery",
         "uniqueTo": "China",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Crossbowman",
+        "upgradesTo": "Field Cannon"
     },
     {
         "name": "Keshig",
@@ -1459,7 +1522,9 @@
         "rangedStrength": 40,
         "cost": 90,
         "requiredTech": "Stirrups",
-        "uniqueTo": "Mongolia"
+        "uniqueTo": "Mongolia",
+        "replaces": "Crossbowman",
+        "upgradesTo": "Field Cannon"
     },
     {
         "name": "Voi Chiến",
@@ -1469,7 +1534,9 @@
         "rangedStrength": 40,
         "cost": 100,
         "requiredTech": "Machinery",
-        "uniqueTo": "Vietnam"
+        "uniqueTo": "Vietnam",
+        "replaces": "Crossbowman",
+        "upgradesTo": "Field Cannon"
     },
     {
         "name": "Hwacha",
@@ -1479,7 +1546,9 @@
         "cost": 125,
         "requiredTech": "Ballistics",
         "uniqueTo": "Korea",
-        "movement": 2
+        "movement": 2,
+        "replaces": "Field Cannon",
+        "upgradesTo": "Machine Gun"
     },
     {
         "name": "Field Cannon",
@@ -1539,7 +1608,9 @@
         "uniques": [
             "50Bombard Strength"
         ],
-        "movement": 2
+        "movement": 2,
+        "replaces": "Catapult",
+        "upgradesTo": "Trebuchet"
     },
     {
         "name": "Bombard",
@@ -1615,7 +1686,9 @@
         "strength": 48,
         "cost": 115,
         "requiredTech": "Military Science",
-        "uniqueTo": "Mapuche"
+        "uniqueTo": "Mapuche",
+        "replaces": "Cuirassier",
+        "upgradesTo": "Tank"
     },
     {
         "name": "Oromo Cavalry",
@@ -1624,7 +1697,9 @@
         "strength": 48,
         "cost": 100,
         "requiredTech": "Military Science",
-        "uniqueTo": "Ethiopia"
+        "uniqueTo": "Ethiopia",
+        "replaces": "Cuirassier",
+        "upgradesTo": "Tank"
     },
     {
         "name": "Black Army",
@@ -1633,7 +1708,9 @@
         "strength": 49,
         "cost": 102,
         "requiredTech": "Stirrups",
-        "uniqueTo": "Hungary"
+        "uniqueTo": "Hungary",
+        "replaces": "Cuirassier",
+        "upgradesTo": "Tank"
     },
     {
         "name": "Cossack",
@@ -1642,7 +1719,9 @@
         "strength": 62,
         "cost": 170,
         "requiredTech": "Military Science",
-        "uniqueTo": "Russia"
+        "uniqueTo": "Russia",
+        "replaces": "Cavalry",
+        "upgradesTo": "Landship"
     },
     {
         "name": "Llanero",
@@ -1651,7 +1730,9 @@
         "strength": 62,
         "cost": 165,
         "requiredTech": "Military Science",
-        "uniqueTo": "Gran"
+        "uniqueTo": "Gran",
+        "replaces": "Cavalry",
+        "upgradesTo": "Landship"
     },
     {
         "name": "Huszár",
@@ -1660,7 +1741,9 @@
         "strength": 65,
         "cost": 167,
         "requiredTech": "Military Science",
-        "uniqueTo": "Hungary"
+        "uniqueTo": "Hungary",
+        "replaces": "Cavalry",
+        "upgradesTo": "Landship"
     },
     {
         "name": "Mountie",
@@ -1669,7 +1752,9 @@
         "strength": 70,
         "cost": 180,
         "requiredTech": "Replaceable Parts",
-        "uniqueTo": "Canada"
+        "uniqueTo": "Canada",
+        "replaces": "Cavalry",
+        "upgradesTo": "Helicopter"
     },
     {
         "name": "Helicopter",
@@ -1697,7 +1782,9 @@
         "movement": 3,
         "strength": 20,
         "cost": 20,
-        "uniqueTo": "Sumeria"
+        "uniqueTo": "Sumeria",
+        "replaces": "Warrior",
+        "upgradesTo": "Swordsman"
     },
     {
         "name": "Heavy Chariot",
@@ -1714,7 +1801,9 @@
         "strength": 36,
         "cost": 50,
         "requiredTech": "Horseback Riding",
-        "uniqueTo": "Macedon"
+        "uniqueTo": "Macedon",
+        "replaces": "Horseman",
+        "upgradesTo": "Knight"
     },
     {
         "name": "Varu",
@@ -1723,7 +1812,9 @@
         "cost": 60,
         "requiredTech": "Horseback Riding",
         "uniqueTo": "India",
-        "movement": 4
+        "movement": 4,
+        "replaces": "Horseman",
+        "upgradesTo": "Knight"
     },
     {
         "name": "Knight",
@@ -1743,7 +1834,9 @@
         "strength": 50,
         "cost": 110,
         "requiredTech": "Stirrups",
-        "uniqueTo": "Byzantium"
+        "uniqueTo": "Byzantium",
+        "replaces": "Knight",
+        "upgradesTo": "Cavalry"
     },
     {
         "name": "Mamluk",
@@ -1752,7 +1845,9 @@
         "strength": 53,
         "cost": 110,
         "requiredTech": "Stirrups",
-        "uniqueTo": "Arabia"
+        "uniqueTo": "Arabia",
+        "replaces": "Knight",
+        "upgradesTo": "Cavalry"
     },
     {
         "name": "Mandekalu Cavalry",
@@ -1761,7 +1856,9 @@
         "strength": 53,
         "cost": 110,
         "requiredTech": "Stirrups",
-        "uniqueTo": "Mali"
+        "uniqueTo": "Mali",
+        "replaces": "Knight",
+        "upgradesTo": "Cavalry"
     },
     {
         "name": "Winged Hussar",
@@ -1770,7 +1867,9 @@
         "strength": 64,
         "cost": 165,
         "uniqueTo": "Poland",
-        "requiredCivic": "Mercenaries"
+        "requiredCivic": "Mercenaries",
+        "replaces": "Cuirassier",
+        "upgradesTo": "Tank"
     },
     {
         "name": "Cuirassier",
@@ -1790,7 +1889,9 @@
         "strength": 64,
         "cost": 192,
         "requiredTech": "Rifling",
-        "uniqueTo": "America"
+        "uniqueTo": "America",
+        "replaces": "Cavalry",
+        "upgradesTo": "Landship"
     },
     {
         "name": "Tank",
@@ -1839,7 +1940,9 @@
         "movement": 3,
         "strength": 15,
         "cost": 20,
-        "uniqueTo": "Cree"
+        "uniqueTo": "Cree",
+        "replaces": "Scout",
+        "upgradesTo": "Skirmisher"
     },
     {
         "name": "Skirmisher",
@@ -1861,7 +1964,9 @@
         "rangedStrength": 40,
         "cost": 82,
         "requiredTech": "Horseback Riding",
-        "uniqueTo": "Inca"
+        "uniqueTo": "Inca",
+        "replaces": "Skirmisher",
+        "upgradesTo": "Ranger"
     },
     {
         "name": "Ranger",
@@ -1883,7 +1988,9 @@
         "rangedStrength": 70,
         "cost": 190,
         "requiredTech": "Rifling",
-        "uniqueTo": "Scotland"
+        "uniqueTo": "Scotland",
+        "replaces": "Ranger",
+        "upgradesTo": "Spec Ops"
     },
     {
         "name": "Spec Ops",
@@ -2001,7 +2108,9 @@
         "strength": 35,
         "cost": 32,
         "requiredTech": "Sailing",
-        "uniqueTo": "Norway"
+        "uniqueTo": "Norway",
+        "replaces": "Galley",
+        "upgradesTo": "Quadrireme"
     },
     {
         "name": "Bireme",
@@ -2010,7 +2119,9 @@
         "strength": 35,
         "cost": 32,
         "requiredTech": "Sailing",
-        "uniqueTo": "Phoenicia"
+        "uniqueTo": "Phoenicia",
+        "replaces": "Galley",
+        "upgradesTo": "Quadrireme"
     },
     {
         "name": "Caravel",
@@ -2033,7 +2144,9 @@
         "uniqueTo": "Portugal",
         "uniques": [
             "2Build Charges"
-        ]
+        ],
+        "replaces": "Caravel",
+        "upgradesTo": "Ironclad"
     },
     {
         "name": "Ironclad",
@@ -2079,7 +2192,9 @@
         "rangedStrength": 25,
         "cost": 60,
         "requiredTech": "Shipbuilding",
-        "uniqueTo": "Byzantium"
+        "uniqueTo": "Byzantium",
+        "replaces": "Quadrireme",
+        "upgradesTo": "Frigate"
     },
     {
         "name": "Frigate",
@@ -2101,7 +2216,9 @@
         "rangedStrength": 55,
         "cost": 150,
         "uniqueTo": "Indonesia",
-        "requiredCivic": "Mercantilism"
+        "requiredCivic": "Mercantilism",
+        "replaces": "Frigate",
+        "upgradesTo": "Battleship"
     },
     {
         "name": "De Zeven Provinciën",
@@ -2111,7 +2228,9 @@
         "rangedStrength": 60,
         "cost": 140,
         "requiredTech": "Square Rigging",
-        "uniqueTo": "Netherlands"
+        "uniqueTo": "Netherlands",
+        "replaces": "Frigate",
+        "upgradesTo": "Battleship"
     },
     {
         "name": "Battleship",
@@ -2137,7 +2256,9 @@
         "uniques": [
             "95Anti-air Strength"
         ],
-        "requiredCivic": "Nationalism"
+        "requiredCivic": "Nationalism",
+        "replaces": "Battleship",
+        "upgradesTo": "Missile Cruiser"
     },
     {
         "name": "Missile Cruiser",
@@ -2172,7 +2293,9 @@
         "rangedStrength": 53,
         "cost": 140,
         "uniqueTo": "England",
-        "requiredCivic": "Mercantilism"
+        "requiredCivic": "Mercantilism",
+        "replaces": "Privateer",
+        "upgradesTo": "Submarine"
     },
     {
         "name": "Barbary Corsair",
@@ -2203,7 +2326,9 @@
         "rangedStrength": 75,
         "cost": 215,
         "requiredTech": "Electricity",
-        "uniqueTo": "Germany"
+        "uniqueTo": "Germany",
+        "replaces": "Submarine",
+        "upgradesTo": "Nuclear Submarine"
     },
     {
         "name": "Nuclear Submarine",
@@ -2278,7 +2403,9 @@
         "rangedStrength": 95,
         "cost": 260,
         "requiredTech": "Advanced Flight",
-        "uniqueTo": "America"
+        "uniqueTo": "America",
+        "replaces": "Fighter",
+        "upgradesTo": "Jet Fighter"
     },
     {
         "name": "Jet Fighter",
@@ -2337,5 +2464,108 @@
             "120Anti-air Strength",
             "Information Era Super-Unit. Able to move and fight in water. Resistant to Weapons of Mass Destruction. Combat abilities can be upgraded by researching future technologies."
         ]
+    },
+    {
+        "name": "Hercules",
+        "unitType": "Hero",
+        "movement": 2,
+        "strength": 35,
+        "cost": 80,
+        "uniques": [
+            "Can perform a limited number of attacks per turn.",
+            "+10 Combat Strength against [Barbarian] units.",
+            "Immortal [in capital]"
+        ]
+    },
+    {
+        "name": "Beowulf",
+        "unitType": "Hero",
+        "movement": 2,
+        "strength": 35,
+        "cost": 80,
+        "uniques": [
+            "+15 Combat Strength when fighting [Barbarian] units or in [Forest] tiles.",
+            "Bonus [+5] Movement"
+        ]
+    },
+    {
+        "name": "Achilles",
+        "unitType": "Hero",
+        "movement": 2,
+        "strength": 35,
+        "cost": 80,
+        "uniques": [
+            "+10 Combat Strength",
+            "Immortal [in capital]"
+        ]
+    },
+    {
+        "name": "Gilgamesh",
+        "unitType": "Hero",
+        "movement": 2,
+        "strength": 35,
+        "cost": 80,
+        "uniques": [
+            "+1 Combat Strength for each adjacent [Sword] unit.",
+            "Immortal [in capital]"
+        ]
+    },
+    {
+        "name": "Siegfried",
+        "unitType": "Hero",
+        "movement": 2,
+        "strength": 35,
+        "cost": 80,
+        "uniques": [
+            "+15 Combat Strength against [Armored] units.",
+            "Immortal [in capital]"
+        ]
+    },
+    {
+        "name": "King Arthur",
+        "unitType": "Hero",
+        "movement": 2,
+        "strength": 35,
+        "cost": 80,
+        "uniques": [
+            "+10 Combat Strength for [all] units within 2 tiles.",
+            "Immortal [in capital]"
+        ]
+    },
+    {
+        "name": "Arjuna",
+        "unitType": "Hero",
+        "movement": 2,
+        "strength": 35,
+        "cost": 80,
+        "uniques": [
+            "+20 Combat Strength when fighting [Light Cavalry] units.",
+            "+20 Combat Strength when fighting [Heavy Cavalry] units.",
+            "Immortal [in capital]"
+        ]
+    },
+    {
+        "name": "Roland",
+        "unitType": "Hero",
+        "movement": 2,
+        "strength": 35,
+        "cost": 80,
+        "uniques": [
+            "+10 Combat Strength for adjacent [Melee] units.",
+            "Immortal [in capital]"
+        ]
+    },
+    {
+        "name": "Washington",
+        "unitType": "Civilian",
+        "cost": 50,
+        "uniques": [
+            "Founds a new city <by consuming this unit>",
+            "Enables construction of private buildings in Washington",
+            "Immortal [in capital]",
+            "Can perform a limited number of attacks per turn."
+        ],
+        "movement": 2,
+        "strength": 10
     }
 ]

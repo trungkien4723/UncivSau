@@ -576,7 +576,8 @@
         "uniques": [
             "[4] Era Score",
             "Must be next to [Coast]",
-            "[+1 Gold] from [Water] tiles [in this city]"
+            "[+1 Gold] from [Water] tiles [in this city]",
+            "+1 Trade Route capacity"
         ],
         "requiredTech": "Iron Working",
         "quote": "'Why man, he doth bestride the narrow world like a colossus, and we petty men walk under his huge legs, and peep about to find ourselves dishonorable graves.' - William Shakespeare, Julius Caesar",
@@ -2278,10 +2279,13 @@
     },
     {
         "name": "Tsikhe",
-        "cost": 50,
+        "replaces": "Renaissance Walls",
+        "uniqueTo": "Georgia",
+        "cost": 300,
         "maintenance": 0,
-        "uniques": [],
-        "requiredTech": "Castles"
+        "faith": 3,
+        "uniques": ["[+20]% [Production] when constructing [Walls] [in this city]"],
+        "requiredCivic": "The Enlightenment"
     },
     {
         "name": "Medieval Walls",
@@ -2343,11 +2347,13 @@
     },
     {
         "name": "Basilikoi Paides",
+        "replaces": "Stable",
+        "uniqueTo": "Macedon",
         "district": "Encampment",
-        "cost": 45,
+        "cost": 100,
         "maintenance": 1,
-        "uniques": [],
-        "requiredTech": "Bronze Working"
+        "uniques": ["New [Military] units start with [15] XP [in this city]"],
+        "requiredTech": "Horseback Riding"
     },
     {
         "name": "Stable",
@@ -2423,19 +2429,27 @@
     },
     {
         "name": "Stave Church",
+        "replaces": "Temple",
+        "uniqueTo": "Norway",
         "district": "Holy Site",
-        "cost": 60,
+        "cost": 210,
         "maintenance": 2,
-        "uniques": [],
-        "requiredTech": "Pottery"
+        "faith": 4,
+        "greatPersonPoints": {"Great Prophet": 1},
+        "uniques": ["+1 Relic slot"],
+        "requiredCivic": "Political Philosophy"
     },
     {
         "name": "Prasat",
+        "replaces": "Temple",
+        "uniqueTo": "Khmer",
         "district": "Holy Site",
-        "cost": 60,
+        "cost": 210,
         "maintenance": 2,
-        "uniques": [],
-        "requiredTech": "Pottery"
+        "faith": 4,
+        "greatPersonPoints": {"Great Prophet": 1},
+        "uniques": ["+1 Relic slot", "+2 [Food] from [Farms] tiles [in this city]"],
+        "requiredCivic": "Political Philosophy"
     },
     {
         "name": "Cathedral",
@@ -2620,7 +2634,8 @@
         "cost": 100,
         "maintenance": 0,
         "uniques": [
-            "+1 Citizen slot"
+            "+1 Citizen slot",
+            "+1 Trade Route capacity"
         ],
         "requiredTech": "Sailing",
         "food": 1,
@@ -2672,11 +2687,15 @@
     },
     {
         "name": "Grand Bazaar",
+        "replaces": "Bank",
+        "uniqueTo": "Ottomans",
         "district": "Commercial Hub",
-        "cost": 110,
+        "cost": 210,
         "maintenance": 0,
-        "uniques": [],
-        "requiredTech": "Currency"
+        "gold": 4,
+        "greatPersonPoints": {"Great Merchant": 1},
+        "uniques": ["+1 Trade Route capacity"],
+        "requiredTech": "Banking"
     },
     {
         "name": "Bank",
@@ -2685,8 +2704,8 @@
         "maintenance": 0,
         "uniques": [
             "+1 Citizen slot",
-            "+1 Trade Route capacity",
-            "[+25]% weight to this choice for AI decisions"
+            "[+25]% weight to this choice for AI decisions",
+            "+1 Trade Route capacity"
         ],
         "requiredTech": "Banking",
         "gold": 4,
@@ -2772,11 +2791,17 @@
     },
     {
         "name": "Film Studio",
+        "replaces": "Broadcast Center",
+        "uniqueTo": "America",
         "district": "Theater Square",
-        "cost": 220,
+        "cost": 310,
         "maintenance": 3,
+        "culture": 4,
+        "tourism": 4,
+        "greatPersonPoints": {"Great Musician": 1},
+        "percentStatBonus": {"tourism": 50},
         "uniques": [
-            "A building unique to America. +30%Tourism pressure from this city towards other civilizations who reached the Modern era."
+            "+1 Citizen slot"
         ],
         "requiredCivic": "Mass Media"
     },
@@ -3653,7 +3678,8 @@
         "name": "Feitoria",
         "uniqueTo": "Portugal",
         "uniques": [
-            "Unbuildable"
+            "Unbuildable",
+            "Excluded from map editor"
         ],
         "maintenance": 0
     },
