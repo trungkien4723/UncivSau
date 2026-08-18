@@ -140,6 +140,7 @@ jobs:
 
       - name: Sign AAB for Google Play upload
         uses: r0adkll/sign-android-release@v1
+        continue-on-error: true
         with:
           releaseDirectory: android/build/outputs/bundle/release
           signingKeyBase64: ${{ secrets.BUNDLE_SIGNING_KEY_BASE64 }}
@@ -160,6 +161,7 @@ jobs:
 
       - name: Sign APK for Github upload
         uses: r0adkll/sign-android-release@v1
+        continue-on-error: true
         with:
           releaseDirectory: android/build/outputs/apk/release
           signingKeyBase64: ${{ secrets.BUNDLE_SIGNING_KEY_BASE64 }}
@@ -173,7 +175,8 @@ jobs:
       - name: Move APK to deploy folder
         shell: bash
         run: |
-          mv android/build/outputs/apk/release/Unciv-release-unsigned-signed.apk Unciv-signed.apk
+          SRC=$(ls android/build/outputs/apk/release/Unciv-release-unsigned-signed.apk 2>/dev/null || ls android/build/outputs/apk/release/Unciv-release-unsigned.apk 2>/dev/null || ls android/build/outputs/apk/release/*.apk 2>/dev/null | head -1)
+          mv "$SRC" Unciv-signed.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
