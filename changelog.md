@@ -1,3 +1,7 @@
+## 4.21.4
+
+Enabled Open Borders in the trade list for both player and AI - By trungkien4723
+
 ## 4.21.3
 
 Added missing Civ VI natural wonders (Grand Canyon, Nile River) - By unciv-loof
