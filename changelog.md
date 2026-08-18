@@ -1,4 +1,4 @@
-## 4.21.5
+## 4.21.6
 
 Enabled Open Borders in the trade list for both player and AI - By trungkien4723
 
