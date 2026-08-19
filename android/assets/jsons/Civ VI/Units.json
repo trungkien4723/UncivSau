@@ -2568,6 +2568,7 @@
         "unitType": "Civilian",
         "cost": 50,
         "uniques": [
+            "Unbuildable",
             "Founds a new city <by consuming this unit>",
             "Enables construction of private buildings in Washington",
             "Immortal [in capital]",
