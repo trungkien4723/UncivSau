@@ -66,6 +66,28 @@ class RoadImprovementTests {
     }
 
     @Test
+    fun builderCannotConnectRoads() {
+        testGame.makeHexagonalMap(2)
+        val civ = addCivWithAllTechs()
+        val tile = makeLandTile(1, 1)
+        val builder = testGame.addUnit("Builder", civ, tile)
+
+        val actions = UnitActions.getUnitActions(builder, UnitActionType.ConnectRoad).toList()
+        assertTrue("Builder should not offer ConnectRoad (roads are for Military Engineers): ${actions.map { it.title }}", actions.isEmpty())
+    }
+
+    @Test
+    fun traderIsConstructible() {
+        testGame.makeHexagonalMap(2)
+        val civ = addCivWithAllTechs()
+        val tile = makeLandTile(0, 0)
+        val city = testGame.addCity(civ, tile)
+
+        val trader = testGame.ruleset.units["Trader"]!!
+        assertTrue("Trader should be constructible in a city", trader in city.cityConstructions.getConstructableUnits())
+    }
+
+    @Test
     fun militaryEngineerCanConstructRoads() {
         testGame.makeHexagonalMap(2)
         val civ = addCivWithAllTechs()

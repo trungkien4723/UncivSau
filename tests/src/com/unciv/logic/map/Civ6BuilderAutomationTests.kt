@@ -93,4 +93,30 @@ class Civ6BuilderAutomationTests {
         assertTrue("Repairing should consume the builder charge",
             createActions(builder).none { it.contains("Repair [", ignoreCase = true) })
     }
+
+    @Test
+    fun builderCanHarvestBonusResource() {
+        val (civ, city) = setUp()
+        val target = plainTile(1, 0)
+        target.baseTerrain = "Grassland"
+        target.setTerrainFeatures(listOf("Jungle"))
+        val bananas = testGame.ruleset.tileResources["Bananas"]!!
+        target.tileResource = bananas
+        target.resourceAmount = 3
+        testGame.addTileToCity(city, target)
+        target.setTransients()
+
+        val builder = addBuilder(civ, target)
+        val actions = UnitActions.getUnitActions(builder, UnitActionType.HarvestResource).toList()
+        val harvestAction = actions.firstOrNull { it.title.contains("Harvest [") }
+        assertNotNull("Builder should offer a Harvest action on a Banana tile, got: ${actions.map { it.title }}", harvestAction)
+
+        val foodBefore = city.population.foodStored
+        val invoke = harvestAction!!.action
+        assertNotNull("Harvest should be available", invoke)
+        invoke!!.invoke()
+
+        assertTrue("Harvesting should remove the resource", target.tileResource == null)
+        assertTrue("Harvesting should grant Food to the city", city.population.foodStored > foodBefore)
+    }
 }

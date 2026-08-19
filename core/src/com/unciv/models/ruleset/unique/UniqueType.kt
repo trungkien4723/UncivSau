@@ -729,6 +729,8 @@ Immortal("Immortal [cityFilter]", UniqueTarget.Unit,
                 "The current stockpiled amount can be affected with trigger uniques."),
     CityResource("City-level resource", UniqueTarget.Resource, docDescription = "This resource is calculated on a per-city level rather than a per-civ level"),
     CannotBeTraded("Cannot be traded", UniqueTarget.Resource),
+    MayBeHarvestedFor("May be harvested for [amount] [stat]", UniqueTarget.Resource,
+        docDescription = "A Builder can remove this resource from its tile for a one-time yield. In Civ 6 only bonus resources can be harvested."),
     NotShownOnWorldScreen("Not shown on world screen", UniqueTarget.Resource, UniqueTarget.Promotion, flags = UniqueFlag.setOfHiddenToUsers),
 
     ResourceWeighting("Generated with weight [amount]", UniqueTarget.Resource, flags = UniqueFlag.setOfHiddenToUsers,

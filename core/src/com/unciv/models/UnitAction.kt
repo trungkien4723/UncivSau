@@ -37,6 +37,9 @@ open class UnitAction(
             UnitActionType.CreateImprovement -> {
                 ImageGetter.getImprovementPortrait(title.getPlaceholderParameters()[0], size)
             }
+            UnitActionType.HarvestResource -> {
+                ImageGetter.getResourcePortrait(title.getPlaceholderParameters()[0], size)
+            }
             UnitActionType.SpreadReligion -> {
                 val religionName = title.getPlaceholderParameters()[0]
                 ImageGetter.getReligionPortrait(
@@ -239,6 +242,8 @@ enum class UnitActionType(
         { ImageGetter.getUnitActionPortrait("TradeRoute") }, defaultPage = 1),
     ExcavateAntiquitySite("Excavate",
         { ImageGetter.getUnitActionPortrait("CreateGreatWork") }, UncivSound.Chimes, defaultPage = 1),
+    HarvestResource("Harvest",
+        null, false, UncivSound.Construction),
     ;
 
     // Allow shorter initializations

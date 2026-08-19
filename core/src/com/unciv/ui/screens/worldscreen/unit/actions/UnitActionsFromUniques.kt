@@ -4,6 +4,8 @@ import com.unciv.Constants
 import com.unciv.GUI
 import com.unciv.UncivGame
 import com.unciv.logic.civilization.Civilization
+import com.unciv.logic.civilization.NotificationCategory
+import com.unciv.logic.civilization.NotificationIcon
 import com.unciv.logic.civilization.PlayerType
 import com.unciv.logic.civilization.diplomacy.DiplomacyFlags
 import com.unciv.logic.civilization.managers.GameModesManager
@@ -18,6 +20,7 @@ import com.unciv.models.UncivSound
 import com.unciv.models.UnitAction
 import com.unciv.models.UnitActionType
 import com.unciv.models.ruleset.District
+import com.unciv.models.ruleset.tile.ResourceType
 import com.unciv.models.ruleset.unique.GameContext
 import com.unciv.models.ruleset.unique.UniqueTarget
 import com.unciv.models.ruleset.unique.UniqueTriggerActivation
@@ -411,8 +414,58 @@ object UnitActionsFromUniques {
         }
     }
 
+    internal fun getHarvestResourceActions(unit: MapUnit, tile: Tile) = sequence {
+        // Civ 6: only Builders (units that can build improvements and still have build charges) can harvest.
+        if (!unit.cache.hasUniqueToBuildImprovements) return@sequence
+        val constructUnique = UnitActionModifiers.getUsableUnitActionUniques(unit, UniqueType.ConstructImprovementInstantly).firstOrNull()
+            ?: return@sequence
+        val resource = tile.tileResource ?: return@sequence
+        if (resource.resourceType != ResourceType.Bonus) return@sequence
+        val harvestUnique = resource.getMatchingUniques(UniqueType.MayBeHarvestedFor).firstOrNull() ?: return@sequence
+        // Cannot harvest an improved tile, a city center, or a tile with a district
+        if (tile.tileImprovement != null || tile.isCityCenter() || tile.district != null) return@sequence
+        // Civ 6: harvesting is only possible inside your own territory
+        if (tile.getOwner() != unit.civ) return@sequence
+
+        val stat = Stat.values().firstOrNull { it.name == harvestUnique.params[1] } ?: return@sequence
+        val amount = harvestUnique.params[0].toInt()
+
+        val useFrequency = 72f
+        yield(UnitAction(
+            UnitActionType.HarvestResource, useFrequency,
+            title = "Harvest [${resource.name}] (+$amount {$stat.name})",
+            associatedUnique = constructUnique,
+            action = {
+                val city = unit.getClosestCity()
+                if (city != null) city.addStat(stat, amount)
+                else unit.civ.addStat(stat, amount)
+                tile.tileResource = null
+                tile.resourceAmount = 0
+                tile.getCity()?.cityStats?.update()
+                unit.civ.cache.updateViewableTiles()
+                unit.civ.addNotification(
+                    "Harvested [${resource.name}] - +$amount {$stat.name}!",
+                    NotificationCategory.General,
+                    when (stat) {
+                        Stat.Food -> NotificationIcon.Food
+                        Stat.Production -> NotificationIcon.Production
+                        Stat.Gold -> NotificationIcon.Gold
+                        Stat.Science -> NotificationIcon.Science
+                        Stat.Culture -> NotificationIcon.Culture
+                        Stat.Faith -> NotificationIcon.Faith
+                        else -> NotificationIcon.Question
+                    }
+                )
+                UnitActionModifiers.activateSideEffects(unit, constructUnique)
+            }.takeIf { unit.hasMovement() && UnitActionModifiers.canActivateSideEffects(unit, constructUnique) }
+        ))
+    }
+
     internal fun getConnectRoadActions(unit: MapUnit, tile: Tile) = sequence {
         if (!unit.hasUnique(UniqueType.BuildImprovements)) return@sequence
+        // Civ 6-style units (which build improvements via "Can instantly construct..." uniques)
+        // build roads through the "Create [Road]/[Railroad]" actions and have no road automation.
+        if (unit.hasUnique(UniqueType.ConstructImprovementInstantly)) return@sequence
         val unitCivBestRoad = unit.civ.tech.getBestRoadAvailable()
         if (unitCivBestRoad == RoadStatus.None) return@sequence
 
