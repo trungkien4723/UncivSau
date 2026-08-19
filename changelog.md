@@ -1,3 +1,8 @@
+## 4.21.7
+
+Make Hero units unbuildable (grant-only via Heroes game mode, no longer shown at start of game) - By trungkien4723
+Release pipeline: build APK and desktop JAR in a single CI run from the same commit - By trungkien4723
+
 ## 4.21.6
 
 Enabled Open Borders in the trade list for both player and AI - By trungkien4723
