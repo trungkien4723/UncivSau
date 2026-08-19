@@ -2321,6 +2321,8 @@
     },
     {
         "name": "Ordu",
+        "replaces": "Stable",
+        "uniqueTo": "Mongolia",
         "district": "Encampment",
         "cost": 30,
         "maintenance": 1,

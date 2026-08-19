@@ -48,6 +48,10 @@ class TargetHelperTest {
         testGame.addTileToCity(attackerCity, tile)
         testGame.addUnit("Submarine", defenderCiv, tile) // enemy unit inside city range, invisible, not bombardable
 
+        val encampmentTile = testGame.getTile(0, 1)
+        testGame.addTileToCity(attackerCity, encampmentTile)
+        attackerCity.districts[encampmentTile.position] = "Encampment" // bombardment requires an Encampment
+
         // when
         val bombardableTiles = TargetHelper.getBombardableTiles(attackerCity)
 

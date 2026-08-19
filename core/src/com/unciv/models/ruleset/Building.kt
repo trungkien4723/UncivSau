@@ -298,6 +298,7 @@ class Building : RulesetStatsObject(), INonPerpetualConstruction {
                 it.type == RejectionReasonType.RequiresTech
                     || it.type == RejectionReasonType.RequiresCivic
                     || it.type == RejectionReasonType.UniqueToOtherNation
+                    || it.type == RejectionReasonType.ReplacedByOurUnique
             })
             return true
 

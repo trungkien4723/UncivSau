@@ -41,6 +41,9 @@
         "turnsToBuild":  7,
         "techRequired":  "Mining",
         "uniques":  [
+                        "Does not need removal of [Forest]",
+                        "Does not need removal of [Jungle]",
+                        "Does not need removal of [Marsh]",
                         "[+1 Production] \u003cafter discovering [Chemistry]\u003e",
                         "Pillaging this improvement yields approximately [+20 Gold]"
                     ],
@@ -74,6 +77,7 @@
         "uniques":  [
                         "Does not need removal of [Forest]",
                         "Does not need removal of [Jungle]",
+                        "Does not need removal of [Marsh]",
                         "[+1 Gold] \u003cafter discovering [Economics]\u003e",
                         "Can only be built to improve a resource",
                         "Pillaging this improvement yields approximately [+10 Gold]"
@@ -85,6 +89,8 @@
         "turnsToBuild":  9,
         "techRequired":  "Scientific Theory",
         "uniques":  [
+                        "Does not need removal of [Marsh]",
+                        "Does not need removal of [Jungle]",
                         "Can only be built to improve a resource",
                         "Cannot be built on [Water] tiles",
                         "Pillaging this improvement yields approximately [+20 Gold]"
@@ -119,6 +125,9 @@
         "gold":  1,
         "techRequired":  "Calendar",
         "uniques":  [
+                        "Does not need removal of [Forest]",
+                        "Does not need removal of [Jungle]",
+                        "Does not need removal of [Marsh]",
                         "[+1 Food] \u003cafter discovering [Chemistry]\u003e",
                         "Can only be built to improve a resource",
                         "Pillaging this improvement yields approximately [+10 Gold]"

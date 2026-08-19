@@ -88,4 +88,40 @@ class CivVIDistrictIntegrationTest {
         assertTrue("Coastal tile must be valid for Harbor",
             city.cityConstructions.canPlaceCreateOneDistrictOn(harbor, coastalTile))
     }
+
+    @Test
+    fun `Bombardment requires an Encampment or its unique replacement`() {
+        assertEquals("City without an Encampment cannot bombard", 0, city.getBombardRange())
+
+        val encampmentTile = city.getTiles().first { !it.isCityCenter() }
+        testGame.addTileToCity(city, encampmentTile)
+        city.districts[encampmentTile.position] = "Encampment"
+        assertEquals("Encampment district enables bombardment", 2, city.getBombardRange())
+
+        val thanhTile = city.getTiles().first { !it.isCityCenter() && it.position != encampmentTile.position }
+        testGame.addTileToCity(city, thanhTile)
+        city.districts[thanhTile.position] = "Thành"
+        assertEquals("Unique district replacing the Encampment enables bombardment", 2, city.getBombardRange())
+    }
+
+    @Test
+    fun `Base Encampment is not buildable when a unique district replaces it`() {
+        val ruleset = RulesetCache[BaseRuleset.Civ_VI.fullName]!!
+        val vietnam = testGame.addCiv("Vietnam")
+        for (tech in ruleset.technologies.values)
+            vietnam.tech.addTechnology(tech.name)
+        val vietnamCity = testGame.addCity(vietnam, testGame.tileMap[2, 0])
+
+        assertTrue("Vietnam should have the Thành in its unique buildings", vietnam.cache.uniqueBuildings.any { it.name == "Thành" })
+        assertFalse("Vietnam should not be able to build the base Encampment",
+            ruleset.buildings["Encampment"]!!.isBuildable(vietnamCity.cityConstructions))
+    }
+
+    @Test
+    fun `Ordu is a Mongolian replacement for the Stable`() {
+        val ruleset = RulesetCache[BaseRuleset.Civ_VI.fullName]!!
+        val ordu = ruleset.buildings["Ordu"]!!
+        assertEquals("Stable", ordu.replaces)
+        assertEquals("Mongolia", ordu.uniqueTo)
+    }
 }

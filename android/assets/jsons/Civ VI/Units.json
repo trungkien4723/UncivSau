@@ -966,8 +966,7 @@
         "uniques": [
             "Establishes a [Land] [Trade Route] with another city <by consuming this unit>",
             "May activate a trade route action",
-            "Excess Food converted to Production when under construction",
-            "Unbuildable"
+            "Excess Food converted to Production when under construction"
         ],
         "movement": 2
     },

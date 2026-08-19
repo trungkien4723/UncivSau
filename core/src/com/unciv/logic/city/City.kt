@@ -269,7 +269,24 @@ class City : IsPartOfGameInfoSerialization, INamed {
     @Readonly fun isCoastal(): Boolean = centerTile.isAdjacentToCoast()
     @Readonly fun isNaval(): Boolean = centerTile.isWater || isCoastal()
 
-    @Readonly fun getBombardRange(): Int = civ.gameInfo.ruleset.modOptions.constants.baseCityBombardRange
+    @Readonly fun getBombardRange(): Int =
+        if (hasEncampment()) civ.gameInfo.ruleset.modOptions.constants.baseCityBombardRange else 0
+
+    /** True if the city contains an Encampment district, or a unique district that replaces the Encampment
+     *  (e.g. Thành, Ikanda, Oppidum, Stronghold). Only such cities may bombard. */
+    @Readonly
+    fun hasEncampment(): Boolean {
+        if (hasDistrict("Encampment")) return true
+        val ruleset = civ.gameInfo.ruleset
+        // Unique districts that replace the Encampment are created by buildings with `replaces: "Encampment"`
+        val replacingDistrictNames = ruleset.buildings.values.asSequence()
+            .filter { it.replaces == "Encampment" }
+            .flatMap { it.getMatchingUniques(UniqueType.CreatesOneDistrict, GameContext.IgnoreConditionals) }
+            .map { it.params[0] }
+            .toHashSet()
+        if (replacingDistrictNames.isEmpty()) return false
+        return districts.values.any { it in replacingDistrictNames }
+    }
     @Readonly fun getWorkRange(): Int = civ.gameInfo.ruleset.modOptions.constants.cityWorkRange
     @Readonly fun getExpandRange(): Int = civ.gameInfo.ruleset.modOptions.constants.cityExpandRange
 

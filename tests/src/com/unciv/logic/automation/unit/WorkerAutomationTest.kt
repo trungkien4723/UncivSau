@@ -88,7 +88,7 @@ internal class WorkerAutomationTest {
     @Test
     fun `should remove terrain feature enable resource`() {
         // Add the needed tech to construct the improvements below
-        for (improvement in listOf("Remove Forest", "Plantation")) {
+        for (improvement in listOf("Remove Forest", "Quarry")) {
             civInfo.tech.techsResearched.add(testGame.ruleset.tileImprovements[improvement]!!.techRequired!!)
         }
 
@@ -97,7 +97,7 @@ internal class WorkerAutomationTest {
         val currentTile = testGame.tileMap[1,1]
         currentTile.addTerrainFeature("Hill")
         currentTile.addTerrainFeature("Forest")
-        currentTile.setTileResource("Citrus")
+        currentTile.setTileResource("Marble")
         currentTile.resourceAmount = 1
 
         val mapUnit = addLegacyWorker(civInfo, currentTile)
