@@ -1,3 +1,7 @@
+## 4.21.8
+
+Make Washington unit unbuildable (no longer appears in construction list for all civs) - By trungkien4723
+
 ## 4.21.7
 
 Make Hero units unbuildable (grant-only via Heroes game mode, no longer shown at start of game) - By trungkien4723
