@@ -36,6 +36,7 @@ class EnvoyDiplomacyTests {
     fun `no bonuses without envoys`() {
         val cityState = addCiv(cityStateType = "Militaristic")
         meet(a, cityState)
+        cityState.getDiplomacyManager(a)!!.setEnvoys(0) // remove the free first-contact envoy
 
         a.cache.updateCivResources()
 
@@ -118,6 +119,7 @@ class EnvoyDiplomacyTests {
         val cityState = addCiv(cityStateType = "Militaristic")
         meet(a, cityState)
         val csDiplomacy = cityState.getDiplomacyManager(a)!!
+        csDiplomacy.setEnvoys(0) // remove the free first-contact envoy
 
         cityState.cityStateFunctions.threateningBarbarianKilledBy(a)
 
@@ -136,20 +138,13 @@ class EnvoyDiplomacyTests {
     }
 
     @Test
-    fun `unassigned envoys accrue per turn and can be sent to a city-state`() {
+    fun `no unassigned envoys accrue per turn`() {
         val cityState = addCiv(cityStateType = "Militaristic")
         meet(a, cityState)
-        val csDiplomacy = cityState.getDiplomacyManager(a)!!
 
         assertEquals(0, a.unassignedEnvoys)
         a.cityStateFunctions.gainEnvoysPerTurn()
-        assertEquals(1, a.unassignedEnvoys)
-
-        // Send an envoy from the accumulated pool
-        a.unassignedEnvoys -= 1
-        csDiplomacy.addEnvoys(1)
         assertEquals(0, a.unassignedEnvoys)
-        assertEquals(1, csDiplomacy.getEnvoys())
     }
 
     @Test
@@ -157,6 +152,7 @@ class EnvoyDiplomacyTests {
         val cityState = addCiv(cityStateType = "Militaristic")
         meet(a, cityState)
         val csDiplomacy = cityState.getDiplomacyManager(a)!!
+        csDiplomacy.setEnvoys(0) // remove the free first-contact envoy
 
         a.unassignedEnvoys = 3
         a.cityStateFunctions.aiSendEnvoys()
@@ -169,8 +165,7 @@ class EnvoyDiplomacyTests {
         val b = testGame.addCiv("Gain [1] Envoys per turn")
         assertEquals(0, b.unassignedEnvoys)
         b.cityStateFunctions.gainEnvoysPerTurn()
-        // baseline +1 plus the unique's +1
-        assertEquals(2, b.unassignedEnvoys)
+        assertEquals(1, b.unassignedEnvoys)
     }
 
     @Test

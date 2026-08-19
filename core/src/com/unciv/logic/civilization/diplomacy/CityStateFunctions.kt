@@ -363,10 +363,9 @@ class CityStateFunctions(val civInfo: Civilization) {
         return true
     }
 
-    /** Accrue free Envoys into the unassigned pool (Civ VI: a steady trickle plus policy/governor/society bonuses). */
+    /** Accrue free Envoys into the unassigned pool (only from explicit "Gain [x] Envoys per turn" uniques; Civ VI has no per-turn trickle). */
     fun gainEnvoysPerTurn() {
-        var gain = 1
-        gain += civInfo.getMatchingUniques(UniqueType.GainEnvoy).sumOf { it.params[0].toIntOrNull() ?: 0 }
+        var gain = civInfo.getMatchingUniques(UniqueType.GainEnvoy).sumOf { it.params[0].toIntOrNull() ?: 0 }
         civInfo.unassignedEnvoys += gain
     }
 

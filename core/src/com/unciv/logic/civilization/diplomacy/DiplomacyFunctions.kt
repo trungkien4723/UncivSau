@@ -10,8 +10,6 @@ import com.unciv.logic.map.mapunit.movement.UnitMovement
 import com.unciv.logic.map.tile.Tile
 import com.unciv.logic.civilization.diplomacy.CasusBelli
 import com.unciv.models.ruleset.unique.UniqueType
-import com.unciv.models.stats.Stat
-import com.unciv.models.stats.Stats
 import yairm210.purity.annotations.Readonly
 import kotlin.math.max
 
@@ -41,33 +39,19 @@ class DiplomacyFunctions(val civInfo: Civilization) {
 
 
         if (civInfo.isCityState && otherCiv.isMajorCiv()) {
-            if (warOnContact || otherCiv.isMinorCivAggressor()) return // No gift if they are bad people, or we are just about to be at war
+            if (warOnContact || otherCiv.isMinorCivAggressor()) return // No envoy if they are bad people, or we are just about to be at war
 
             val cityStateLocation = if (civInfo.cities.isEmpty()) null else civInfo.getCapital()!!.location
 
-            val giftAmount = Stats(gold = 15f)
-            val faithAmount = Stats(faith = 4f)
-            // Later, religious city-states will also gift gold, making this the better implementation
-            // For now, it might be overkill though.
-            var meetString = "[${civInfo.civName}] has given us [${giftAmount.toStringForNotifications()}] as a token of goodwill for meeting us"
-            val religionMeetString = "[${civInfo.civName}] has also given us [${faithAmount.toStringForNotifications()}]"
+            // Civ VI: the first major civ to meet a city-state receives a free envoy
             if (civInfo.diplomacy.count { it.value.otherCiv.isMajorCiv() } == 1) {
-                giftAmount.timesInPlace(2f)
-                meetString = "[${civInfo.civName}] has given us [${giftAmount.toStringForNotifications()}] as we are the first major civ to meet them"
+                civInfo.getDiplomacyManager(otherCiv)!!.addEnvoys(1)
+                val envoyString = "[${civInfo.civName}] has given us [1] Envoy as we are the first major civ to meet them"
+                if (cityStateLocation != null)
+                    otherCiv.addNotification(envoyString, cityStateLocation, NotificationCategory.Diplomacy, NotificationIcon.Diplomacy)
+                else
+                    otherCiv.addNotification(envoyString, NotificationCategory.Diplomacy, NotificationIcon.Diplomacy)
             }
-            if (cityStateLocation != null)
-                otherCiv.addNotification(meetString, cityStateLocation, NotificationCategory.Diplomacy, NotificationIcon.Gold)
-            else
-                otherCiv.addNotification(meetString, NotificationCategory.Diplomacy, NotificationIcon.Gold)
-
-            if (civInfo.cityStateFunctions.canProvideStat(Stat.Faith)) {
-                otherCiv.addNotification(religionMeetString, NotificationCategory.Diplomacy, NotificationIcon.Faith)
-
-                for ((key, value) in faithAmount)
-                    otherCiv.addStat(key, value.toInt())
-            }
-            for ((key, value) in giftAmount)
-                otherCiv.addStat(key, value.toInt())
 
             if (civInfo.cities.isNotEmpty())
                 civInfo.getCapital()?.getCenterTile()?.setExplored(otherCiv, true)

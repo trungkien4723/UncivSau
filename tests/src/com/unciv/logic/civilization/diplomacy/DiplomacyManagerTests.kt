@@ -214,7 +214,8 @@ class DiplomacyManagerTests {
         val cityState = addCiv(cityStateType = "Militaristic")
         meet(a, cityState)
         meet(b, cityState)
-        cityState.getDiplomacyManager(a)!!.addEnvoys(DiplomacyManager.allyThreshold - 1)
+        // a gets the free first-contact envoy (1), so reaching ally threshold needs one less
+        cityState.getDiplomacyManager(a)!!.addEnvoys(DiplomacyManager.allyThreshold - 2)
 
         // when
         cityState.getDiplomacyManager(b)!!.addEnvoys(DiplomacyManager.allyThreshold)
@@ -245,7 +246,8 @@ class DiplomacyManagerTests {
         val cityState = addCiv(cityStateType = "Militaristic", testGame.getTile(HexCoord.Zero)) // making peace tries to move units around, so we need to initialize their positions
         val e = addCiv(defaultUnitTile = testGame.getTile(HexCoord(1,0)))
         meet(e, cityState)
-        // we cannot be allied and simoultaneously having a city state declare indirect war on us
+        // remove the free first-contact envoy so the pre-war resting point is exactly one envoy
+        cityState.getDiplomacyManager(e)!!.setEnvoys(0)
         cityState.getDiplomacyManager(e)!!.addEnvoys(DiplomacyManager.friendThreshold)
         cityState.getDiplomacyManager(e)!!.declareWar(DeclareWarReason(WarType.DefensivePactWar, a))
 
