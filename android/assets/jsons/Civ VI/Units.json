@@ -2472,6 +2472,7 @@
         "strength": 35,
         "cost": 80,
         "uniques": [
+            "Unbuildable",
             "Can perform a limited number of attacks per turn.",
             "+10 Combat Strength against [Barbarian] units.",
             "Immortal [in capital]"
@@ -2484,6 +2485,7 @@
         "strength": 35,
         "cost": 80,
         "uniques": [
+            "Unbuildable",
             "+15 Combat Strength when fighting [Barbarian] units or in [Forest] tiles.",
             "Bonus [+5] Movement"
         ]
@@ -2495,6 +2497,7 @@
         "strength": 35,
         "cost": 80,
         "uniques": [
+            "Unbuildable",
             "+10 Combat Strength",
             "Immortal [in capital]"
         ]
@@ -2506,6 +2509,7 @@
         "strength": 35,
         "cost": 80,
         "uniques": [
+            "Unbuildable",
             "+1 Combat Strength for each adjacent [Sword] unit.",
             "Immortal [in capital]"
         ]
@@ -2517,6 +2521,7 @@
         "strength": 35,
         "cost": 80,
         "uniques": [
+            "Unbuildable",
             "+15 Combat Strength against [Armored] units.",
             "Immortal [in capital]"
         ]
@@ -2528,6 +2533,7 @@
         "strength": 35,
         "cost": 80,
         "uniques": [
+            "Unbuildable",
             "+10 Combat Strength for [all] units within 2 tiles.",
             "Immortal [in capital]"
         ]
@@ -2539,6 +2545,7 @@
         "strength": 35,
         "cost": 80,
         "uniques": [
+            "Unbuildable",
             "+20 Combat Strength when fighting [Light Cavalry] units.",
             "+20 Combat Strength when fighting [Heavy Cavalry] units.",
             "Immortal [in capital]"
@@ -2551,6 +2558,7 @@
         "strength": 35,
         "cost": 80,
         "uniques": [
+            "Unbuildable",
             "+10 Combat Strength for adjacent [Melee] units.",
             "Immortal [in capital]"
         ]
