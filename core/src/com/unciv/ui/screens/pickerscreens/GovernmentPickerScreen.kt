@@ -17,6 +17,7 @@ import com.unciv.ui.components.extensions.toTextButton
 import com.unciv.ui.components.input.onClick
 import com.unciv.ui.popups.Popup
 import com.unciv.ui.screens.basescreen.BaseScreen
+import com.unciv.ui.screens.civilopediascreen.FormattedLine
 import com.unciv.ui.screens.civilopediascreen.MarkupRenderer
 
 class GovernmentPickerScreen(
@@ -63,7 +64,7 @@ class GovernmentPickerScreen(
             repeat(government.totalSlots()) { selectedCards.add("") }
         }
 
-        descriptionLabel.setText(government.getCivilopediaTextLines(ruleset)
+        descriptionLabel.setText(getGovernmentDescriptionLines(government)
             .joinToString("\n") { it.text })
         rebuildGovernmentList()
         rebuildSlotTable()
@@ -74,8 +75,12 @@ class GovernmentPickerScreen(
         governmentListTable.clear()
         governmentListTable.defaults().pad(5f)
         val governmentList = governmentListTable
+        // Civ 6: only governments whose required civic has been researched can be adopted.
+        // The current government is always shown, so there is always at least one entry.
         for (government in ruleset.governments.values.sortedBy { it.name }) {
             val available = manager.isGovernmentAvailable(government)
+            if (!available && government.name != manager.currentGovernment)
+                continue
             val button = government.name.toTextButton()
                 .apply {
                     if (available) {
@@ -84,8 +89,6 @@ class GovernmentPickerScreen(
                     } else isDisabled = true
                 }
             governmentList.add(button).row()
-            if (!available)
-                governmentList.add("Requires [$government.requiredCivic]".tr().toLabel()).padBottom(4f).row()
         }
     }
 
@@ -104,7 +107,7 @@ class GovernmentPickerScreen(
                     add("empty".toLabel(fontSize = 16)).pad(10f)
                 } else {
                     add(card.name.toLabel(fontSize = 20)).pad(10f).row()
-                    val descLines = card.getCivilopediaTextLines(ruleset).drop(1)
+                    val descLines = getCardDescriptionLines(card)
                     if (descLines.isNotEmpty()) {
                         add(MarkupRenderer.render(descLines, labelWidth = SLOT_DESCRIPTION_WIDTH)).pad(10f)
                     } else {
@@ -129,7 +132,7 @@ class GovernmentPickerScreen(
         }.sortedBy { it.name }
         if (available.isEmpty()) popup.add("No available cards".toLabel()).row()
         for (card in available) {
-            val descLines = card.getCivilopediaTextLines(ruleset).drop(1)
+            val descLines = getCardDescriptionLines(card)
             popup.add(card.name.toTextButton().apply {
                 onClick {
                     selectedCards.addOrReplaceAt(slotIndex, card.name)
@@ -150,6 +153,19 @@ class GovernmentPickerScreen(
         while (this.size <= index) this.add("")
         this[index] = value
     }
+
+    /** Card description for the picker: skips the "Slot" header and the (redundant) "Requires [civic]" line,
+     *  since only available cards are ever shown. */
+    private fun getCardDescriptionLines(card: PolicyCard): List<FormattedLine> =
+        card.getCivilopediaTextLines(ruleset)
+            .drop(1)
+            .filterNot { it.text.startsWith("Requires [") }
+
+    /** Government description for the picker: skips the "Requires [civic]" line, as only available
+     *  governments are listed and the requirement is implied. */
+    private fun getGovernmentDescriptionLines(government: Government): List<FormattedLine> =
+        government.getCivilopediaTextLines(ruleset)
+            .filterNot { it.text.startsWith("Requires [") }
 
     private fun adopt() {
         if (!GUI.isAllowedChangeState()) return

@@ -210,8 +210,9 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
             governmentButtonHolder.actor = null
             return
         }
-        val gov = viewingCiv.government
-        if (!gov.isGovernmentAdopted() && !gov.shouldShowGovernmentPicker()) {
+        // Civ 6: only show the government button when there is something to do - a new government
+        // has just been unlocked (or the initial government/cards have not been picked yet).
+        if (!viewingCiv.government.shouldShowGovernmentPicker()) {
             governmentButtonHolder.touchable = Touchable.disabled
             governmentButtonHolder.actor = null
             return
