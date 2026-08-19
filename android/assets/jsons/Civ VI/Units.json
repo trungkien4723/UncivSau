@@ -27,6 +27,7 @@
     },
     {
         "name": "Jaguar",
+        "replaces": "Warrior",
         "unitType": "Sword",
         "strength": 8,
         "cost": 40,
@@ -45,6 +46,7 @@
     },
     {
         "name": "Bowman",
+        "replaces": "Archer",
         "unitType": "Archery",
         "strength": 7,
         "rangedStrength": 9,
@@ -56,6 +58,7 @@
     },
     {
         "name": "Atlatlist",
+        "replaces": "Archer",
         "unitType": "Archery",
         "strength": 5,
         "rangedStrength": 7,
@@ -80,6 +83,7 @@
     },
     {
         "name": "Chariot Archer",
+        "requiredResource": "Horses",
         "unitType": "Archery",
         "movement": 4,
         "strength": 6,
@@ -95,6 +99,8 @@
     },
     {
         "name": "War Chariot",
+        "replaces": "Chariot Archer",
+        "requiredResource": "Horses",
         "unitType": "Archery",
         "movement": 5,
         "strength": 6,
@@ -110,6 +116,7 @@
     },
     {
         "name": "War Elephant",
+        "replaces": "Chariot Archer",
         "unitType": "Archery",
         "movement": 3,
         "strength": 9,
@@ -151,6 +158,8 @@
     },
     {
         "name": "Companion Cavalry",
+        "replaces": "Horseman",
+        "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 14,
@@ -166,6 +175,8 @@
     },
     {
         "name": "Cataphract",
+        "replaces": "Horseman",
+        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 3,
         "strength": 15,
@@ -180,6 +191,7 @@
     },
     {
         "name": "Ballista",
+        "replaces": "Catapult",
         "unitType": "Siege",
         "strength": 8,
         "rangedStrength": 10,
@@ -207,6 +219,7 @@
     },
     {
         "name": "Landsknecht",
+        "replaces": "Pikeman",
         "unitType": "Anti Cavalry",
         "strength": 16,
         "cost": 45,
@@ -234,6 +247,7 @@
     },
     {
         "name": "Camel Archer",
+        "replaces": "Crossbowman",
         "unitType": "Archery",
         "movement": 4,
         "strength": 17,
@@ -249,6 +263,7 @@
     },
     {
         "name": "Keshik",
+        "replaces": "Chariot Archer",
         "unitType": "Archery",
         "movement": 5,
         "strength": 15,
@@ -264,6 +279,7 @@
     },
     {
         "name": "Chu-Ko-Nu",
+        "replaces": "Crossbowman",
         "unitType": "Archery",
         "strength": 13,
         "rangedStrength": 14,
@@ -275,6 +291,7 @@
     },
     {
         "name": "Longbowman",
+        "replaces": "Crossbowman",
         "unitType": "Archery",
         "strength": 13,
         "rangedStrength": 18,
@@ -286,6 +303,7 @@
     },
     {
         "name": "Hwach'a",
+        "replaces": "Trebuchet",
         "unitType": "Siege",
         "strength": 11,
         "rangedStrength": 26,
@@ -310,6 +328,7 @@
     },
     {
         "name": "Turtle Ship",
+        "replaces": "Caravel",
         "unitType": "Melee Water",
         "movement": 4,
         "strength": 36,
@@ -323,6 +342,7 @@
     },
     {
         "name": "Musketeer",
+        "replaces": "Musketman",
         "unitType": "Gunpowder",
         "strength": 28,
         "cost": 150,
@@ -333,6 +353,7 @@
     },
     {
         "name": "Minuteman",
+        "replaces": "Musketman",
         "unitType": "Gunpowder",
         "strength": 24,
         "cost": 150,
@@ -346,6 +367,7 @@
     },
     {
         "name": "Tercio",
+        "replaces": "Musketman",
         "unitType": "Gunpowder",
         "strength": 26,
         "cost": 160,
@@ -359,6 +381,7 @@
     },
     {
         "name": "Sea Beggar",
+        "replaces": "Privateer",
         "unitType": "Melee Water",
         "movement": 5,
         "strength": 25,
@@ -369,6 +392,7 @@
     },
     {
         "name": "Ship of the Line",
+        "replaces": "Frigate",
         "unitType": "Ranged Water",
         "movement": 5,
         "strength": 30,
@@ -398,6 +422,7 @@
     },
     {
         "name": "Sipahi",
+        "replaces": "Lancer",
         "unitType": "Anti Cavalry",
         "movement": 5,
         "strength": 25,
@@ -414,6 +439,7 @@
     },
     {
         "name": "Hakkapeliitta",
+        "replaces": "Cavalry",
         "unitType": "Anti Cavalry",
         "movement": 4,
         "promotions": ["[Hakkapeliitta] ability"],
@@ -466,6 +492,7 @@
     },
     {
         "name": "Mehal Sefari",
+        "replaces": "Rifleman",
         "unitType": "Gunpowder",
         "strength": 34,
         "cost": 200,
@@ -476,6 +503,7 @@
     },
     {
         "name": "Cavalry",
+        "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "movement": 4,
         "strength": 34,
@@ -500,6 +528,7 @@
     },
     {
         "name": "Foreign Legion",
+        "replaces": "Infantry",
         "unitType": "Gunpowder",
         "strength": 50,
         "cost": 320,
@@ -591,6 +620,7 @@
     },
     {
         "name": "Zero",
+        "replaces": "Fighter",
         "unitType": "Fighter",
         "movement": 1,
         "strength": 45,
@@ -607,6 +637,7 @@
     },
     {
         "name": "B17",
+        "replaces": "Bomber",
         "unitType": "Bomber",
         "movement": 1,
         "strength": 70,
@@ -630,6 +661,7 @@
     },
     {
         "name": "Panzer",
+        "replaces": "Tank",
         "unitType": "Armored",
         "movement": 6,
         "strength": 80,
@@ -1659,6 +1691,7 @@
     },
     {
         "name": "Horseman",
+        "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "movement": 4,
         "strength": 36,
@@ -1670,6 +1703,7 @@
     },
     {
         "name": "Courser",
+        "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 46,
@@ -1681,6 +1715,7 @@
     },
     {
         "name": "Malón Raider",
+        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 1,
         "strength": 48,
@@ -1692,6 +1727,7 @@
     },
     {
         "name": "Oromo Cavalry",
+        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 5,
         "strength": 48,
@@ -1703,6 +1739,7 @@
     },
     {
         "name": "Black Army",
+        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 5,
         "strength": 49,
@@ -1714,6 +1751,7 @@
     },
     {
         "name": "Cossack",
+        "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 62,
@@ -1725,6 +1763,7 @@
     },
     {
         "name": "Llanero",
+        "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 62,
@@ -1736,6 +1775,7 @@
     },
     {
         "name": "Huszár",
+        "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 65,
@@ -1747,6 +1787,7 @@
     },
     {
         "name": "Mountie",
+        "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 70,
@@ -1778,6 +1819,7 @@
     },
     {
         "name": "War-Cart",
+        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 3,
         "strength": 20,
@@ -1788,6 +1830,7 @@
     },
     {
         "name": "Heavy Chariot",
+        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 1,
         "strength": 28,
@@ -1796,6 +1839,7 @@
     },
     {
         "name": "Hetairoi",
+        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 4,
         "strength": 36,
@@ -1807,6 +1851,7 @@
     },
     {
         "name": "Varu",
+        "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "strength": 40,
         "cost": 60,
@@ -1818,6 +1863,7 @@
     },
     {
         "name": "Knight",
+        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 4,
         "strength": 50,
@@ -1829,6 +1875,7 @@
     },
     {
         "name": "Tagma",
+        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 4,
         "strength": 50,
@@ -1840,6 +1887,7 @@
     },
     {
         "name": "Mamluk",
+        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 4,
         "strength": 53,
@@ -1851,6 +1899,7 @@
     },
     {
         "name": "Mandekalu Cavalry",
+        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 4,
         "strength": 53,
@@ -1862,6 +1911,7 @@
     },
     {
         "name": "Winged Hussar",
+        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 4,
         "strength": 64,
@@ -1873,6 +1923,7 @@
     },
     {
         "name": "Cuirassier",
+        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 4,
         "strength": 64,
@@ -1884,6 +1935,7 @@
     },
     {
         "name": "Rough Rider",
+        "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "movement": 5,
         "strength": 64,

@@ -1,3 +1,12 @@
+## 4.22.0
+
+Horse-mounted units require Horses resource (Chariot Archer, Horseman, Knight, Cavalry, and all unique variants) - By trungkien4723
+Removed Delegation and Embassy trade deals entirely; Open Borders is directly available without an embassy prerequisite - By trungkien4723
+All unique units now correctly replace their base units (no more duplicate units in the build list) - By trungkien4723
+Chat button docked to the top-right corner of the screen - By trungkien4723
+City-state diplomacy now matches Civ 6: removed Give a Gift, Pledge to protect, and Demand Tribute actions (Declare War kept) - By trungkien4723
+Removed Drill promotion from melee units; Alhambra wonder now grants Battlecry - By trungkien4723
+
 ## 4.21.9
 
 Civ 6 envoy mechanics: removed per-turn envoy trickle, first civ to meet a city-state gets a free envoy, no more gold/faith gift on first contact - By trungkien4723

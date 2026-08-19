@@ -145,52 +145,6 @@ object DiplomacyAutomation {
         return motivation > 0
     }
 
-    /**
-     * Try establishing embassy in other civs' capitals
-     * 
-     * @param civInfo Civilization which initiates trade
-     */
-    internal fun offerToEstablishEmbassy(civInfo: Civilization) {
-        if (civInfo.getCapital() == null) return
-        val civsThatWeCanEstablishEmbassyWith = civInfo.getKnownCivs().filter {
-            civInfo.diplomacyFunctions.canEstablishEmbassyWith(it)
-            && !civInfo.getDiplomacyManager(it)!!.hasFlag(DiplomacyFlags.DeclinedEmbassy)
-            && !areWeOfferingTrade(civInfo, it, Constants.acceptEmbassy)
-        }.sortedByDescending { it.getDiplomacyManager(civInfo)!!.relationshipLevel() }
-
-        for (otherCiv in civsThatWeCanEstablishEmbassyWith) {
-            val rng = civInfo.getDiplomacyManager(otherCiv)!!.state.stateBasedRandom("DiplomacyAutomation.offerToEstablishEmbassy")
-            // Default setting is 3
-            if ((1..10).random(getRandom(civInfo, otherCiv, "embassy")) < 7) continue
-            if (wantsToAcceptEmbassy(civInfo, otherCiv)) {
-                val tradeLogic = TradeLogic(civInfo, otherCiv)
-                val embassyOffer = TradeOffer(Constants.acceptEmbassy, TradeOfferType.Embassy, speed = civInfo.gameInfo.speed)
-                tradeLogic.currentTrade.theirOffers.add(embassyOffer)
-
-                // If possible offer mutual embassies (Civ V behavior) so we don't waste gold
-                if (otherCiv.diplomacyFunctions.canEstablishEmbassyWith(civInfo)) {
-                    tradeLogic.currentTrade.ourOffers.add(embassyOffer)
-                }
-                else { // Otherwise offer GPT (prefered) or flat gold for embassy in their capital
-                    val embassyValue = TradeEvaluation().evaluateBuyCostWithInflation(embassyOffer, civInfo, otherCiv, tradeLogic.currentTrade)
-                    val embassyGptValue = embassyValue / civInfo.gameInfo.speed.dealDuration
-                    val ourGpt = civInfo.stats.statsForNextTurn.gold.toInt()
-                    if (embassyGptValue in 1..ourGpt)
-                        tradeLogic.currentTrade.ourOffers.add(TradeOffer(Constants.goldPerTurn, TradeOfferType.Gold_Per_Turn, embassyGptValue, civInfo.gameInfo.speed))
-                    else if (civInfo.gold >= embassyValue && ourGpt >= 0)
-                        tradeLogic.currentTrade.ourOffers.add(TradeOffer(Constants.flatGold, TradeOfferType.Gold, embassyValue, civInfo.gameInfo.speed))
-                    // else let them make counter offer
-                }
-                
-                otherCiv.tradeRequests.add(TradeRequest(civInfo.civID, tradeLogic.currentTrade.reverse()))
-            }
-            else {
-                // Remember this for a few turns to save computation power
-                civInfo.getDiplomacyManager(otherCiv)!!.setFlag(DiplomacyFlags.DeclinedEmbassy, 5)
-            }
-        }        
-    }
-
     internal fun offerOpenBorders(civInfo: Civilization) {
         if (!civInfo.hasUnique(UniqueType.EnablesOpenBorders)) return
 
@@ -223,35 +177,6 @@ object DiplomacyAutomation {
         }
     }
 
-    /**
-     * Test if [otherCiv] wants to accept our embassy in their capital
-     */
-    @Readonly
-    fun wantsToAcceptEmbassy(civInfo: Civilization, otherCiv: Civilization): Boolean {
-        val theirDiploManager = otherCiv.getDiplomacyManager(civInfo)!!
-        if (civInfo.getDiplomacyManager(otherCiv)!!.hasFlag(DiplomacyFlags.DeclinedEmbassy)) return false
-        if (theirDiploManager.isRelationshipLevelLT(RelationshipLevel.Afraid)) return false
-
-        // Being able to see their capital can give us an advantage later on, especially with espionage enabled
-        if (!civInfo.getCapital()!!.getCenterTile().isExplored(otherCiv)) return true
-
-        // Did they not discovered our capital yet?
-        if (!otherCiv.getCapital()!!.getCenterTile().isExplored(civInfo)) {
-            // If we're afraid of them deny embassy
-            if (theirDiploManager.relationshipLevel() == RelationshipLevel.Afraid) return false
-
-            // If they're much stronger than us deny embassy
-            val ourCombatStrength = civInfo.getStatForRanking(RankingType.Force)
-            val theirCombatStrength = otherCiv.getStatForRanking(RankingType.Force)
-            val ourAbsoluteAdvantage = ourCombatStrength - theirCombatStrength
-            val percentageAdvantage = ourAbsoluteAdvantage / theirCombatStrength.toFloat()
-            if (percentageAdvantage > 0.5) return false
-        }
-
-        return true // Relationship is Afraid or greater
-    }
-
-    @Readonly
     fun wantsToOpenBorders(civInfo: Civilization, otherCiv: Civilization): Boolean {
         val ourDiploManager = civInfo.getDiplomacyManager(otherCiv)!!
         if (ourDiploManager.hasFlag(DiplomacyFlags.DeclinedOpenBorders)) return false

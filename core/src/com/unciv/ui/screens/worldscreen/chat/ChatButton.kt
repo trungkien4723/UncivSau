@@ -100,8 +100,9 @@ class ChatButton(val worldScreen: WorldScreen) : IconTextButton(
         }
     }
 
-    fun updatePosition() = setPosition(
-        worldScreen.techPolicyAndDiplomacy.x.coerceAtLeast(1f),
-        worldScreen.techPolicyAndDiplomacy.y - height - 1f
-    )
+    fun updatePosition() {
+        val statusButtons = worldScreen.statusButtons
+        val anchorY = if (statusButtons.height > 1f) statusButtons.y else worldScreen.topBar.y
+        setPosition(worldScreen.stage.width - width - 10f, anchorY - height - 10f)
+    }
 }

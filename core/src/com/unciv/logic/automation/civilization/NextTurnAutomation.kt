@@ -56,7 +56,6 @@ object NextTurnAutomation {
             }
 
             DiplomacyAutomation.denounce(civInfo)
-            DiplomacyAutomation.offerToEstablishEmbassy(civInfo)
             DiplomacyAutomation.offerOpenBorders(civInfo)
             DiplomacyAutomation.offerResearchAgreement(civInfo)
             DiplomacyAutomation.offerDefensivePact(civInfo)

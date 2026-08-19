@@ -110,12 +110,6 @@
 		"column": 4,
 		"row": 4
 	},
-	{
-		"name": "Drill I",
-		"uniques": ["[+15]% Strength <when fighting in [Rough terrain] tiles>"],
-		"unitTypes": ["Sword", "Gunpowder"]
-	},
-
 	// Anti-Cavalry
 	{
 		"name": "Echelon",

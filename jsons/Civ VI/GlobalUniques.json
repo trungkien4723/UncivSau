@@ -1,7 +1,6 @@
 {
     "name": "Global Uniques",
     "uniques": [
-        "Requires establishing embassies to conduct advanced diplomacy",
         "Enables Open Borders agreements",
         "[-75]% growth [in all cities] <when between [-10] and [-1] [Happiness]>",
         "Nullifies Growth [in all cities] <when below [-10] [Happiness]>",

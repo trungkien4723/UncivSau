@@ -783,7 +783,7 @@
         },
         "uniques": [
             "[4] Era Score",
-            "All newly-trained [relevant] units [in this city] receive the [Drill I] promotion",
+            "All newly-trained [relevant] units [in this city] receive the [Battlecry] promotion",
             "Gain a free [Castle] [in this city]"
         ],
         "requiredTech": "Machinery",

@@ -22,21 +22,6 @@ class TradeLogic(val ourCivilization: Civilization, val otherCivilization: Civil
     val currentTrade = Trade()
 
     init {
-        // Delegation: one-way, costs gold, available from Ancient era
-        val delegationOffer = TradeOffer(Constants.acceptDelegation, TradeOfferType.Delegation, speed = ourCivilization.gameInfo.speed)
-        if (ourCivilization.diplomacyFunctions.canOfferDelegationTo(otherCivilization))
-            ourAvailableOffers.add(delegationOffer)
-        if (ourCivilization.diplomacyFunctions.canEstablishDelegationWith(otherCivilization))
-            theirAvailableOffers.add(delegationOffer)
-
-        // Embassy: mutual, requires Diplomatic Service civic, replaces delegation
-        val embassyOffer = TradeOffer(Constants.acceptEmbassy, TradeOfferType.Embassy, speed = ourCivilization.gameInfo.speed)
-        if (ourCivilization.diplomacyFunctions.canEstablishEmbassyWith(otherCivilization))
-            theirAvailableOffers.add(embassyOffer)
-
-        if (ourCivilization.diplomacyFunctions.canOfferEmbassyTo(otherCivilization))
-            ourAvailableOffers.add(embassyOffer)
-
         // Other trade items are added as usual for both sides
         ourAvailableOffers += getAvailableOffers(ourCivilization, otherCivilization)
         theirAvailableOffers += getAvailableOffers(otherCivilization, ourCivilization)
