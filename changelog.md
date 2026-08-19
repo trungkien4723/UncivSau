@@ -1,3 +1,7 @@
+## 4.21.9
+
+Civ 6 envoy mechanics: removed per-turn envoy trickle, first civ to meet a city-state gets a free envoy, no more gold/faith gift on first contact - By trungkien4723
+
 ## 4.21.8
 
 Make Washington unit unbuildable (no longer appears in construction list for all civs) - By trungkien4723
