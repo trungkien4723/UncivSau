@@ -1,3 +1,10 @@
+## 4.23.1
+
+Civ 6 policy cards: an already-assigned policy card is no longer offered for another slot - By trungkien4723
+Civ 6 golden ages: a single wonder is no longer enough to enter a Golden Age - era score must actually accumulate (Golden Age at 10 + 4*era, Dark Age at 2 + 2*era) - By trungkien4723
+Civ 6 city-states: separate City-States diplomacy screen with a dedicated top-bar button; majors and city-states no longer share one list - By trungkien4723
+Civ 6 surprise war on city-states: attacking a city-state you are not at war with confirms and declares a Surprise War (no Casus Belli against city-states); the city-state's Suzerain is pulled into the war; declaring war on a city-state removes all your envoys there - By trungkien4723
+
 ## 4.23.0
 
 Civ 6 harvest mechanic: Builders can harvest bonus resources (Cattle, Sheep, Deer, Bananas, Wheat, Fish, Stone) for a one-time Food/Production yield - By trungkien4723
