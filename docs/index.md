@@ -12,9 +12,7 @@ The game contains a tutorial to get you started
 
 ## How can I contribute?
 
-The most valuable first step to getting involved is engaging with the community: join the [Discord!](https://discord.gg/bjrB4Xw) It's a great place to meet your fellow contributors.
-
-In addition, you can keep track of requests, bugs, and the todo list for the application at the repository's [Issue Tracker](https://github.com/trungkien4723/UncivSau/issues)
+There is no community server yet, but you can keep track of requests, bugs, and the todo list for the application at the repository's [Issue Tracker](https://github.com/trungkien4723/UncivSau/issues)
 
 If you're a developer, you'll probably want to start at the [Getting Started](Developers/Building-Locally.md) page!
 

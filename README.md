@@ -3,7 +3,6 @@
 ![](/extraImages/GithubPreviewImage.jpg)
 
 [![GitHub Release](https://img.shields.io/github/v/release/trungkien4723/UncivSau?logo=github)](https://github.com/trungkien4723/UncivSau/releases)
-[![Discord](https://img.shields.io/discord/586194543280390151?color=%237289DA&logo=discord&logoColor=%23FFFFFF)](https://discord.gg/bjrB4Xw)
 
 > **⚠️ Work in progress** - This project is **not finished**. The gameplay mechanics are being ported over one by one, and some assets are still missing - a number of images, icons, and other graphics are placeholders that will be filled in over time. If something looks rough around the edges, that's why :)
 
