@@ -54,7 +54,7 @@ As a solo side project, this is done in spare time, of which there isn't much.
 
 ### Why Civ 6?
 
-Because a lot of players grew up with Civ 6, and there is no other small, fast, moddable, open-source way to play it. If you know and love Civ 6, this is your Civ.
+Because it is the second version of the Sid Meier's Civilization game series that I played and loved, so I want to try to develop it - for anyone who loves both Civ 6 and Unciv.
 
 ### Aren't you basically making a Civ VI clone? Is that even legal?
 
