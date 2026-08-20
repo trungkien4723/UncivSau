@@ -127,4 +127,24 @@ class GovernmentManager : IsPartOfGameInfoSerialization {
         if (government.requiredCivic.isEmpty()) return true
         return civInfo.civics.isResearched(government.requiredCivic)
     }
+
+    /** Civ 6: the policy cards that can be assigned to slot [slotIndex] - matching the slot type,
+     *  whose required civic (if any) is researched, and not already assigned to another slot.
+     *  Each policy card is unique and cannot occupy two slots at once. */
+    @Readonly
+    fun getAvailableCardsForSlot(slotIndex: Int): List<PolicyCard> {
+        val government = getGovernment() ?: return emptyList()
+        val slots = government.getSlots()
+        if (slotIndex < 0 || slotIndex >= slots.size) return emptyList()
+        val slotType = slots[slotIndex]
+        val usedElsewhere = assignedCards.withIndex()
+            .filter { it.index != slotIndex && it.value.isNotEmpty() }
+            .map { it.value }
+            .toHashSet()
+        return getRuleset().policyCards.values.filter {
+            (slotType == "Wildcard" || it.slotType == "Wildcard" || it.slotType == slotType)
+                    && isCardAvailable(it)
+                    && it.name !in usedElsewhere
+        }.sortedBy { it.name }
+    }
 }

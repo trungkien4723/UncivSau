@@ -59,4 +59,25 @@ class GovernmentManagerTest {
         assertEquals(listOf("Survey", "God King"), manager.assignedCards)
         assertTrue(manager.isValid())
     }
+
+    @Test
+    fun cardAssignedToASlotIsNotOfferedForOtherSlots() {
+        val manager = makeManager()
+        manager.adoptGovernment("Autocracy") // slots: Military, Military, Economic, Wildcard
+        // Research every civic so all policy cards become available
+        for (civic in manager.civInfo.gameInfo.ruleset.civics.values)
+            manager.civInfo.civics.civicsResearched.add(civic.name)
+
+        manager.assignCard(0, "Discipline") // Military
+        val forSlot1 = manager.getAvailableCardsForSlot(1)
+        assertFalse("A card already assigned to another slot must not be offered again",
+            forSlot1.any { it.name == "Discipline" })
+        assertTrue("The slot that already holds the card must still offer it",
+            manager.getAvailableCardsForSlot(0).any { it.name == "Discipline" })
+
+        // A card in an Economic slot must not be offered for a Military slot either
+        manager.assignCard(2, "God King")
+        assertFalse("A card assigned to an Economic slot must not be offered for a Military slot",
+            manager.getAvailableCardsForSlot(1).any { it.name == "God King" })
+    }
 }

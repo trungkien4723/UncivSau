@@ -126,10 +126,8 @@ class GovernmentPickerScreen(
     private fun openCardChooser(slotIndex: Int, slotType: String) {
         val popup = Popup(this)
         popup.add("Choose a [${slotType}] policy card".tr()).row()
-        val available = ruleset.policyCards.values.filter {
-            (slotType == "Wildcard" || it.slotType == "Wildcard" || it.slotType == slotType)
-                    && manager.isCardAvailable(it)
-        }.sortedBy { it.name }
+        // Civ 6: each policy card is unique - a card already assigned to another slot is not offered again
+        val available = manager.getAvailableCardsForSlot(slotIndex)
         if (available.isEmpty()) popup.add("No available cards".toLabel()).row()
         for (card in available) {
             val descLines = getCardDescriptionLines(card)
