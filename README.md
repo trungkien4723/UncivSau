@@ -22,7 +22,7 @@ If you want a small, fast, moddable, FOSS, in-depth 4X with the Civ 6 ruleset - 
 - **Android** - Grab the latest APK from [Releases](https://github.com/trungkien4723/UncivSau/releases) and sideload it
 - **Windows** - Grab the MSI from [Releases](https://github.com/trungkien4723/UncivSau/releases) or the Windows zip
 - **Linux** - Grab the Linux zip from [Releases](https://github.com/trungkien4723/UncivSau/releases)
-- Jars are also in [Releases](https://github.com/trungkien4723/UncivSau/releases) (run jar with `java -jar UncivSau.jar`) - *not recommended* since we update frequently and you will quickly become out-of-date
+- Jars are also in [Releases](https://github.com/trungkien4723/UncivSau/releases) (run jar with `java -jar UncivSau.jar`) - *not recommended* since it updates frequently and you will quickly become out-of-date
 - [Build from scratch](https://yairm210.github.io/Unciv/Developers/Building-Locally/) if that's your thing
 
 ## What's the roadmap?
@@ -51,11 +51,11 @@ Having a clear vision is important for actually getting things done.
 
 Anyone can make a suggestion. Not all are good, viable, or simple. Not many can actually implement stuff.
 
-As an open source project, this stuff is done in our spare time, of which there isn't much.
+As a solo side project, this is done in spare time, of which there isn't much.
 
 ### Why Civ 6?
 
-Because some of us grew up with Civ 6, and there is no other small, fast, moddable, open-source way to play it. If you know and love Civ 6, this is your Civ.
+Because a lot of players grew up with Civ 6, and there is no other small, fast, moddable, open-source way to play it. If you know and love Civ 6, this is your Civ.
 
 ### Aren't you basically making a Civ VI clone? Is that even legal?
 
@@ -82,8 +82,8 @@ Translators start [here](https://yairm210.github.io/Unciv/Translating/Translatin
 
 Modders start [here](https://yairm210.github.io/Unciv/Modders/Mods/)!
 
-You can join us in any of the open issues, or work on improving anything you want - once you're finished, issue a pull request and it'll go into the next version!
+You can work on any of the open issues, or on improving anything you want - once you're finished, issue a pull request and it'll go into the next version!
 
-If not, you can help by spreading the word - mention it on Reddit or Twitter etc, and help us with new ideas of how to get the word out!
+If not, you can help by spreading the word - mention it on Reddit or Twitter etc, and share new ideas of how to get the word out!
 
 ## [Credits and 3rd parties](docs/Credits.md)
