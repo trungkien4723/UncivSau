@@ -5,6 +5,8 @@
 [![GitHub Release](https://img.shields.io/github/v/release/trungkien4723/UncivSau?logo=github)](https://github.com/trungkien4723/UncivSau/releases)
 [![Discord](https://img.shields.io/discord/586194543280390151?color=%237289DA&logo=discord&logoColor=%23FFFFFF)](https://discord.gg/bjrB4Xw)
 
+> **⚠️ Work in progress** - This project is **not finished**. The gameplay mechanics are being ported over one by one, and some assets are still missing - a number of images, icons, and other graphics are placeholders that will be filled in over time. If something looks rough around the edges, that's why :)
+
 ## What is this?
 
 A fork of [Unciv](https://github.com/yairm210/Unciv) - the open source, moddability-focused Android and Desktop remake of Civ V, made with [LibGDX](https://github.com/libgdx/libgdx) - whose goal is to bring Civilization VI mechanics into the engine, for everyone who grew up with and loves Civ 6.
