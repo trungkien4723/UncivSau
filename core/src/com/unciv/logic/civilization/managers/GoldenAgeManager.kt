@@ -140,12 +140,10 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
     fun onEraTransition(newEraNumber: Int): String {
         val isDramaticAges = civInfo.gameModes.isDramaticAgesModeActive()
         
-        // Thresholds scale with era number (Civ VI-like): Golden if score >= 2*era, Dark if < era.
-        val goldenThreshold = if (isDramaticAges)
-            (3 * newEraNumber.coerceAtLeast(1)) // Higher threshold in Dramatic Ages
-        else
-            2 * newEraNumber.coerceAtLeast(1)
-        val darkThreshold = newEraNumber.coerceAtLeast(1)
+        // Thresholds scale with era number (Civ VI-like): Golden requires a real accumulation of
+        // Era Score (mainly wonders, [4] each) rather than a single event; Dark punishes an empty era.
+        val goldenThreshold = getGoldenThreshold(newEraNumber, isDramaticAges)
+        val darkThreshold = getDarkThreshold(newEraNumber)
         
         val age = when {
             eraScore >= goldenThreshold -> "Golden"
@@ -352,10 +350,15 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
         }
     }
     
-    /** Get era score thresholds for UI. */
+    /** Get era score thresholds for UI and era transition.
+     *  Era Score is earned mainly from wonders ([4] each), so the Golden Age threshold requires
+     *  building several of them in an era (Civ VI): 14 in the first era, +4 per subsequent era. */
     @Readonly
-    fun getGoldenThreshold(newEraNumber: Int): Int = 2 * newEraNumber.coerceAtLeast(1)
+    fun getGoldenThreshold(newEraNumber: Int, isDramaticAges: Boolean = civInfo.gameModes.isDramaticAgesModeActive()): Int {
+        val base = 10 + 4 * newEraNumber.coerceAtLeast(1)
+        return if (isDramaticAges) (base * 1.5).toInt() else base
+    }
     
     @Readonly
-    fun getDarkThreshold(newEraNumber: Int): Int = newEraNumber.coerceAtLeast(1)
+    fun getDarkThreshold(newEraNumber: Int): Int = 2 + 2 * newEraNumber.coerceAtLeast(1)
 }

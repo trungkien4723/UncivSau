@@ -49,17 +49,17 @@ class CivVIRulesetLoadTest {
         val civ = testGame.addCiv()
 
         // High Era Score in a later era -> Golden Age
-        civ.goldenAges.eraScore = 20
-        val golden = civ.goldenAges.onEraTransition(4) // goldenThreshold = 8
+        civ.goldenAges.eraScore = 26
+        val golden = civ.goldenAges.onEraTransition(4) // goldenThreshold = 26
         Assert.assertEquals("High Era Score yields Golden Age", "Golden", golden)
 
         // Reset and low Era Score -> Dark Age
         civ.goldenAges.eraScore = 1
-        val dark = civ.goldenAges.onEraTransition(4) // darkThreshold = 4
+        val dark = civ.goldenAges.onEraTransition(4) // darkThreshold = 10
         Assert.assertEquals("Low Era Score yields Dark Age", "Dark", dark)
 
         // Middle -> Normal Age
-        civ.goldenAges.eraScore = 5
+        civ.goldenAges.eraScore = 15
         val normal = civ.goldenAges.onEraTransition(4)
         Assert.assertEquals("Mid Era Score yields Normal Age", "Normal", normal)
     }

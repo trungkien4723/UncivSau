@@ -127,4 +127,40 @@ class GoldenAgeManagerTest {
 
         assertEquals(15, goldenAgeManager.turnsLeftForCurrentGoldenAge)
     }
+
+    @Test
+    fun `age is decided by era score thresholds at era transition`() {
+        testGame.makeHexagonalMap(2)
+        val manager = testGame.addCiv().goldenAges
+
+        // First real transition is into the Classical era (eraNumber = 1)
+        val golden = manager.getGoldenThreshold(1)
+        val dark = manager.getDarkThreshold(1)
+        assertEquals(14, golden)
+        assertEquals(4, dark)
+
+        // A single ancient wonder ([4] Era Score) must NOT trigger a Golden Age early on
+        manager.eraScore = 4
+        assertEquals("Normal", manager.onEraTransition(1))
+
+        // Scoring below the Dark threshold (e.g. no wonders at all) leads to a Dark Age
+        manager.eraScore = 1
+        assertEquals("Dark", manager.onEraTransition(1))
+
+        // A solid accumulation of Era Score leads to a Golden Age
+        manager.eraScore = golden
+        assertEquals("Golden", manager.onEraTransition(1))
+    }
+
+    @Test
+    fun `golden threshold scales with era`() {
+        testGame.makeHexagonalMap(2)
+        val manager = testGame.addCiv().goldenAges
+
+        assertEquals(14, manager.getGoldenThreshold(1))
+        assertEquals(18, manager.getGoldenThreshold(2))
+        assertEquals(22, manager.getGoldenThreshold(3))
+        assertEquals(4, manager.getDarkThreshold(1))
+        assertEquals(6, manager.getDarkThreshold(2))
+    }
 }
