@@ -1068,6 +1068,8 @@ class Civilization : IsPartOfGameInfoSerialization {
         // Outgoing domestic routes (tracked on source city)
         for (city in cities) {
             if (city.tradeRoutes.hasDomesticRoute()) count++
+            // A Trader walking to establish a route also dedicates capacity
+            if (city.tradeRoutes.isTravelling()) count++
         }
         // Outgoing international routes (tracked on destination city's internationalRoutes)
         for (civ in gameInfo.civilizations) {
@@ -1083,13 +1085,15 @@ class Civilization : IsPartOfGameInfoSerialization {
         return getActiveTradeRouteCount() < getMaxTradeRoutes()
     }
 
-    /** Civ VI: base trade route reach in tiles, extended by +5 per trading post this civ holds in a foreign city. */
+    /** Civ VI: base trade route reach in tiles - 15 over land, 30 over water - extended by +15
+     *  (land) or +30 (water) per trading post this civ holds in a foreign city. */
     @Readonly
-    fun getTradeRouteRange(): Int {
+    fun getTradeRouteRange(destinationCity: City? = null): Int {
+        val overWater = destinationCity?.isCoastal() == true
         val foreignPosts = tradingPosts.count { postCityName ->
             gameInfo.getCities().any { it.name == postCityName && it.civ != this }
         }
-        return 15 + 5 * foreignPosts
+        return (if (overWater) 30 else 15) + (if (overWater) 30 else 15) * foreignPosts
     }
 
     //endregion

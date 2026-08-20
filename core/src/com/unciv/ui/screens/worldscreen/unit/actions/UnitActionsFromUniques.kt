@@ -15,6 +15,7 @@ import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.tile.ImprovementBuildingProblem
 import com.unciv.logic.map.tile.RoadStatus
 import com.unciv.logic.map.tile.Tile
+import com.unciv.logic.trade.TradeRouteFunctions
 import com.unciv.models.Counter
 import com.unciv.models.UncivSound
 import com.unciv.models.UnitAction
@@ -29,8 +30,12 @@ import com.unciv.models.stats.Stat
 import com.unciv.models.translations.fillPlaceholders
 import com.unciv.models.translations.removeConditionals
 import com.unciv.models.translations.tr
+import com.unciv.ui.components.extensions.toLabel
+import com.unciv.ui.components.extensions.toTextButton
 import com.unciv.ui.components.fonts.Fonts
 import com.unciv.ui.popups.ConfirmPopup
+import com.unciv.ui.popups.Popup
+import com.unciv.ui.components.input.onClick
 import com.unciv.ui.screens.pickerscreens.ImprovementPickerScreen
 import com.unciv.ui.screens.pickerscreens.DistrictPickerScreen
 import com.unciv.ui.screens.worldscreen.unit.actions.UnitActionModifiers.getUseFrequency
@@ -698,52 +703,45 @@ internal fun getBuildDistrictActions(unit: MapUnit, tile: Tile) = sequence {
 
     /**
      * Sets up a trade route between two cities when a Trader unit is consumed.
-     * Domestic routes connect same-civ cities; international routes connect cross-civ.
+     * The Trader starts the route from the city it currently stands in; the player picks the
+     * destination from a chooser (Civ VI style), and the route is established along the way.
      */
     internal fun getCreateTradeRouteActions(unit: MapUnit, tile: Tile): Sequence<UnitAction> {
         if (unit.name != "Trader") return emptySequence()
-        val city = tile.getCity() ?: return emptySequence()
-
-        val useFrequency = 70f
+        // A Trader starts its route from the city it currently stands in
+        val sourceCity = tile.getCity() ?: return emptySequence()
+        if (sourceCity.civ != unit.civ) return emptySequence()
 
         if (!unit.civ.hasAvailableTradeRouteCapacity()) return emptySequence()
 
-        val sourceCity = unit.civ.getCapital() ?: return emptySequence()
-        if (sourceCity.getCenterTile().aerialDistanceTo(city.getCenterTile()) > unit.civ.getTradeRouteRange())
-            return emptySequence()
-
+        val useFrequency = 70f
         return sequenceOf(UnitAction(UnitActionType.CreateTradeRoute, useFrequency,
             action = {
-                paveRoadAlongRoute(sourceCity, city, unit)
-                // Civ VI: completing a route establishes a Trading Post at both ends
-                unit.civ.tradingPosts.add(sourceCity.name)
-                unit.civ.tradingPosts.add(city.name)
-                if (city.civ == unit.civ) {
-                    // Domestic route
-                    sourceCity.tradeRoutes.domesticRouteTo = city.name
-                    sourceCity.tradeRoutes.domesticRouteTurns = Constants.tradeRouteDuration
-                    unit.civ.addNotification(
-                        "Established a domestic trade route from [${sourceCity.name}] to [${city.name}]!",
-                        com.unciv.logic.civilization.NotificationCategory.Trade, "TradeRoute")
-                } else if (!city.civ.isBarbarian) {
-                    // International route
-                    city.tradeRoutes.internationalRoutes[unit.civ.civName] = Constants.tradeRouteDuration
-                    unit.civ.addNotification(
-                        "Established an international trade route from [${sourceCity.name}] to [${city.name}]!",
-                        com.unciv.logic.civilization.NotificationCategory.Trade, "TradeRoute")
+                // Civ VI: choose the destination city like a spy chooses its target city
+                val destinations = TradeRouteFunctions.getTradeRouteDestinations(sourceCity)
+                val worldScreen = GUI.getWorldScreen()
+                val popup = Popup(worldScreen, Popup.Scrollability.WithoutButtons)
+                popup.add("Choose a destination city for the trade route from [${sourceCity.name}]".toLabel()).row()
+                if (destinations.isEmpty()) {
+                    popup.add("No destinations within trade route range".toLabel()).row()
+                } else {
+                    for (destination in destinations) {
+                        val label = if (destination.civ == unit.civ)
+                            "[${destination.name}] (domestic)"
+                        else "[${destination.name}] ([${destination.civ.civName}])"
+                        popup.add(label.toTextButton().apply {
+                            onClick {
+                                TradeRouteFunctions.startTradeRoute(unit.civ, sourceCity, destination, unit)
+                                GUI.setUpdateWorldOnNextRender()
+                                popup.close()
+                            }
+                        }).row()
+                    }
                 }
-                unit.destroy()
+                popup.addCloseButton()
+                popup.open()
             }.takeIf { unit.hasMovement() }
         ))
-    }
-
-    private fun paveRoadAlongRoute(sourceCity: City, destinationCity: City, unit: MapUnit) {
-        val roadStatus = unit.civ.tech.getBestRoadAvailable()
-        if (roadStatus == RoadStatus.None) return
-        val path = sourceCity.getRoadPath(destinationCity) ?: return
-        for (tile in path)
-            if (tile.isLand)
-                tile.setRoadStatus(roadStatus, unit.civ)
     }
 
     internal fun getPerformRockBandActions(unit: MapUnit, tile: Tile): Sequence<UnitAction> {

@@ -1,14 +1,11 @@
 package com.unciv.logic.trade
 
 import com.unciv.logic.civilization.Civilization
-import com.unciv.logic.map.tile.RoadStatus
+import com.unciv.logic.trade.TradeRouteFunctions
 import com.unciv.logic.map.tile.Tile
-import com.unciv.models.UnitActionType
 import com.unciv.testing.GdxTestRunner
 import com.unciv.testing.TestGame
-import com.unciv.ui.screens.worldscreen.unit.actions.UnitActions
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -38,23 +35,38 @@ class TradeRouteTests {
     }
 
     @Test
-    fun establishingRouteCreatesTradingPostsAtBothEnds() {
+    fun establishingRouteCreatesTradingPostsOnCompletion() {
         testGame.makeHexagonalMap(2)
         val civ = addCivWithAllTechs()
         val sourceTile = makeLandTile(0, 0)
         val destTile = makeLandTile(2, 0)
         val sourceCity = testGame.addCity(civ, sourceTile)
         val destCity = testGame.addCity(civ, destTile)
-        val trader = testGame.addUnit("Trader", civ, destTile)
-        trader.currentMovement = trader.getMaxMovement().toFloat()
 
-        val actions = UnitActions.getUnitActions(trader, UnitActionType.CreateTradeRoute).toList()
-        val routeAction = actions.firstOrNull { it.action != null }
-        assertNotNull("Trader should offer a trade route action, got: ${actions.map { it.title }}", routeAction)
-        routeAction!!.action!!.invoke()
+        val destinations = TradeRouteFunctions.getTradeRouteDestinations(sourceCity)
+        assertTrue("The other own city should be offered as a destination within range",
+            destinations.contains(destCity))
 
-        assertTrue("Trading post should be established at the source (capital) city", civ.tradingPosts.contains(sourceCity.name))
-        assertTrue("Trading post should be established at the destination city", civ.tradingPosts.contains(destCity.name))
+        val trader = testGame.addUnit("Trader", civ, sourceTile)
+        TradeRouteFunctions.startTradeRoute(civ, sourceCity, destCity, trader)
+
+        assertTrue("No trading posts yet while the Trader is travelling", civ.tradingPosts.isEmpty())
+        assertTrue("The Trader should still be alive while travelling", !trader.isDestroyed)
+
+        // Walk the Trader to its destination (1 tile per turn)
+        while (sourceCity.tradeRoutes.isTravelling()) {
+            TradeRouteFunctions.advanceTravellingTraders(civ)
+        }
+        // The route is now active (duration runs)
+        assertEquals(destCity.name, sourceCity.tradeRoutes.domesticRouteTo)
+        assertEquals(com.unciv.Constants.tradeRouteDuration, sourceCity.tradeRoutes.domesticRouteTurns)
+
+        // Complete the route's duration - only now is a Trading Post established at the destination
+        sourceCity.tradeRoutes.domesticRouteTurns = 1
+        TradeRouteFunctions.advanceTradeRouteDurations(civ)
+        assertTrue("A Trading Post is established at the destination only when the route completes",
+            civ.tradingPosts.contains(destCity.name))
+        assertTrue("No route should remain after it completes", !sourceCity.tradeRoutes.hasDomesticRoute())
     }
 
     @Test
@@ -110,15 +122,21 @@ class TradeRouteTests {
         val farCiv = addCivWithAllTechs()
 
         testGame.addCity(civ, sourceTile)
+        // Make the foreign city coastal (set the water BEFORE founding, since coastal-ness is cached)
+        testGame.setTileTerrain(com.unciv.logic.map.HexCoord(3, 1), "Coast")
         val foreignCity = testGame.addCity(otherCiv, makeLandTile(3, 0))
         testGame.addCity(farCiv, makeLandTile(4, 0))
 
-        assertEquals("Base trade route range should be 15 tiles without foreign trading posts",
+        assertEquals("Base trade route range should be 15 tiles for a land route without foreign trading posts",
             15, civ.getTradeRouteRange())
+        assertEquals("Base trade route range should be 30 tiles for a water route without foreign trading posts",
+            30, civ.getTradeRouteRange(foreignCity))
 
         civ.tradingPosts.add(foreignCity.name)
-        assertEquals("Each trading post in a foreign city extends range by +5",
-            20, civ.getTradeRouteRange())
+        assertEquals("Each trading post in a foreign land city extends range by +15",
+            30, civ.getTradeRouteRange())
+        assertEquals("Each trading post in a foreign coastal city extends range by +30",
+            60, civ.getTradeRouteRange(foreignCity))
     }
 
     @Test
@@ -130,20 +148,17 @@ class TradeRouteTests {
 
         // 20 tiles away — beyond the base range of 15
         val farTile = makeLandTile(10, 0)
-        testGame.addCity(civ, farTile)
-        val farTrader = testGame.addUnit("Trader", civ, farTile)
-        farTrader.currentMovement = farTrader.getMaxMovement().toFloat()
-        val farActions = UnitActions.getUnitActions(farTrader, UnitActionType.CreateTradeRoute).toList()
-        assertTrue("Route beyond range should NOT be offered, got: ${farActions.map { it.title }}",
-            farActions.none { it.action != null })
+        val farCity = testGame.addCity(civ, farTile)
+        assertTrue("A city 20 tiles away should be beyond the base range of 15",
+            TradeRouteFunctions.getTradeRouteDestinations(farCity).none { it == sourceCity })
 
         // After establishing a trading post in a foreign city within 20 tiles, the same route becomes available
         val foreignCiv = addCivWithAllTechs()
         val foreignCity = testGame.addCity(foreignCiv, makeLandTile(-5, 0))
         civ.tradingPosts.add(foreignCity.name)
-        assertEquals(20, civ.getTradeRouteRange())
-        val farActionsAfterPost = UnitActions.getUnitActions(farTrader, UnitActionType.CreateTradeRoute).toList()
-        assertTrue("Route should be offered once trading posts extend range",
-            farActionsAfterPost.any { it.action != null })
+        assertEquals("A single foreign trading post extends land routes to 30 tiles",
+            30, civ.getTradeRouteRange())
+        assertTrue("Route should be available once trading posts extend range",
+            TradeRouteFunctions.getTradeRouteDestinations(farCity).any { it == sourceCity })
     }
 }

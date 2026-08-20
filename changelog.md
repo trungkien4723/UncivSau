@@ -1,3 +1,13 @@
+## 4.24.0
+
+Civ 6 traders: Traders now travel to their destination over several turns, paving roads along the way; the route only becomes active on arrival, and completing it establishes a Trading Post at the destination - By trungkien4723
+Civ 6 trade range: base reach is 15 tiles over land / 30 over water, extended by +15/+30 per Trading Post held in a foreign city - By trungkien4723
+Civ 6 envoys: entering a new era now grants a free Envoy to the pool - By trungkien4723
+Civ 6 espionage: the Espionage overview has a Mission button with location-aware mission choices (Counterintelligence at home, Fabricate Scandal / Rigging Elections in city-states, full mission list in foreign cities) - By trungkien4723
+Bombard city: a new Next Turn action cycles the camera through cities that can bombard (Encampment required) - By trungkien4723
+Top-left buttons: removed the Government shortcut button; restored the Diplomacy button, aligned with the City-States button - By trungkien4723
+Government picker no longer offers an already-assigned policy card for another slot (fixed for in-progress selections) - By trungkien4723
+
 ## 4.23.1
 
 Civ 6 policy cards: an already-assigned policy card is no longer offered for another slot - By trungkien4723

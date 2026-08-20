@@ -10,6 +10,7 @@ import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.mapunit.UnitTurnManager
 import com.unciv.logic.map.tile.Tile
 import com.unciv.logic.trade.TradeEvaluation
+import com.unciv.logic.trade.TradeRouteFunctions
 import com.unciv.models.ruleset.unique.UniqueTriggerActivation
 import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.models.ruleset.unique.endTurn
@@ -350,21 +351,10 @@ class TurnManager(val civInfo: Civilization) {
 
         civInfo.storedTourism += nextTurnStats.tourism.toInt()
 
-        // Trade route duration decay — routes expire after their duration
-        for (city in civInfo.cities) {
-            val routes = city.tradeRoutes
-            if (routes.domesticRouteTurns > 0) {
-                routes.domesticRouteTurns--
-                if (routes.domesticRouteTurns <= 0) routes.domesticRouteTo = ""
-            }
-            val toRemove = mutableListOf<String>()
-            for ((civName, turns) in routes.internationalRoutes) {
-                val newTurns = turns - 1
-                if (newTurns <= 0) toRemove.add(civName)
-                else routes.internationalRoutes[civName] = newTurns
-            }
-            for (civName in toRemove) routes.internationalRoutes.remove(civName)
-        }
+        // Trade routes - advance travelling Traders, then decay route durations (routes expire after
+        // their duration, establishing a Trading Post at the destination when they complete)
+        TradeRouteFunctions.advanceTravellingTraders(civInfo)
+        TradeRouteFunctions.advanceTradeRouteDurations(civInfo)
 
         civInfo.espionageManager.endTurn()
 

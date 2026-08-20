@@ -80,4 +80,37 @@ class GovernmentManagerTest {
         assertFalse("A card assigned to an Economic slot must not be offered for a Military slot",
             manager.getAvailableCardsForSlot(1).any { it.name == "God King" })
     }
+
+    @Test
+    fun cardPickedInProgressIsNotOfferedForOtherSlots() {
+        val manager = makeManager()
+        manager.adoptGovernment("Autocracy") // slots: Military, Military, Economic, Wildcard
+        for (civic in manager.civInfo.gameInfo.ruleset.civics.values)
+            manager.civInfo.civics.civicsResearched.add(civic.name)
+
+        // Simulate the picker's in-progress selection: "Discipline" picked for slot 0, not yet committed
+        val inProgress = ArrayList(listOf("Discipline", "", "", ""))
+        assertFalse("A card picked for one slot must not be offered for another slot while the selection is in progress",
+            manager.getAvailableCardsForSlot(1, manager.getGovernment()!!, inProgress).any { it.name == "Discipline" })
+        assertFalse("A card picked for a Military slot must not be offered for an Economic slot either",
+            manager.getAvailableCardsForSlot(2, manager.getGovernment()!!, inProgress).any { it.name == "Discipline" })
+        assertTrue("The slot holding the card must still offer it",
+            manager.getAvailableCardsForSlot(0, manager.getGovernment()!!, inProgress).any { it.name == "Discipline" })
+    }
+
+    @Test
+    fun previewingAnotherGovernmentFiltersCardsByItsOwnSlots() {
+        val manager = makeManager()
+        manager.adoptGovernment("Autocracy") // slots: Military, Military, Economic, Wildcard
+        for (civic in manager.civInfo.gameInfo.ruleset.civics.values)
+            manager.civInfo.civics.civicsResearched.add(civic.name)
+
+        // Player is previewing Theocracy (slots: Military, Economic, Diplomatic, Diplomatic, Wildcard)
+        val theocracy = manager.civInfo.gameInfo.ruleset.governments["Theocracy"]!!
+        val inProgress = ArrayList(listOf("", "", "", "", ""))
+        val diploSlot = manager.getAvailableCardsForSlot(2, theocracy, inProgress)
+        assertTrue("The previewed government's Diplomatic slot must offer diplomatic cards - "
+                + "filtering with the adopted government's (Economic) slot instead would hide them",
+            diploSlot.any { it.slotType == "Diplomatic" })
+    }
 }

@@ -9,6 +9,7 @@ import com.unciv.Constants
 import com.unciv.UncivGame
 import com.unciv.logic.GameInfo
 import com.unciv.logic.UncivShowableException
+import com.unciv.logic.battle.TargetHelper
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.civilization.PlayerType
 import com.unciv.logic.civilization.diplomacy.DiplomaticStatus
@@ -703,6 +704,21 @@ class WorldScreen(
     internal fun isNextTurnUpdateRunning(): Boolean {
         val job = nextTurnUpdateJob
         return job != null && job.isActive
+    }
+
+    fun switchToNextBombardCity() {
+        val cities = viewingCiv.cities.filter { it.canBombard() && TargetHelper.getBombardableTiles(it).any() }
+        if (cities.isEmpty()) {
+            mapHolder.selectedTile = null
+            shouldUpdate = true
+            return
+        }
+        val selectedCity = mapHolder.selectedTile?.getCity()
+        val nextCity = if (selectedCity != null && selectedCity in cities)
+            cities[(cities.indexOf(selectedCity) + 1) % cities.size]
+        else cities.first()
+        mapHolder.setCenterPosition(nextCity.location, immediately = false, selectUnit = true)
+        shouldUpdate = true
     }
 
     private fun updateGameplayButtons() {

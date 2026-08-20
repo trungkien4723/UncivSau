@@ -506,6 +506,11 @@ class TechManager : IsPartOfGameInfoSerialization {
                         NotificationCategory.General, civInfo.civName, NotificationIcon.Science
                     )
                 }
+                // Civ VI: entering a new era grants a free Envoy for the unassigned pool
+                civInfo.unassignedEnvoys += 1
+                civInfo.addNotification(
+                    "You have received [1] Envoy for entering the [$currentEra]!",
+                    NotificationCategory.General, NotificationIcon.Diplomacy)
             }
             
             for (policyBranch in getRuleset().policyBranches.values.filter {

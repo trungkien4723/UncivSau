@@ -128,12 +128,17 @@ class GovernmentManager : IsPartOfGameInfoSerialization {
         return civInfo.civics.isResearched(government.requiredCivic)
     }
 
-    /** Civ 6: the policy cards that can be assigned to slot [slotIndex] - matching the slot type,
-     *  whose required civic (if any) is researched, and not already assigned to another slot.
-     *  Each policy card is unique and cannot occupy two slots at once. */
+    /** Civ 6: the policy cards that can be assigned to slot [slotIndex] of [government] given the cards in
+     *  [assignedCards] - matching the slot type, whose required civic (if any) is researched, and not already
+     *  assigned to another slot. Each policy card is unique and cannot occupy two slots at once.
+     *  The [assignedCards] list is passed in so callers can preview an in-progress selection (e.g. the government
+     *  picker, where cards are only committed on adopt) against the government being configured. */
     @Readonly
-    fun getAvailableCardsForSlot(slotIndex: Int): List<PolicyCard> {
-        val government = getGovernment() ?: return emptyList()
+    fun getAvailableCardsForSlot(
+        slotIndex: Int,
+        government: Government,
+        assignedCards: List<String>
+    ): List<PolicyCard> {
         val slots = government.getSlots()
         if (slotIndex < 0 || slotIndex >= slots.size) return emptyList()
         val slotType = slots[slotIndex]
@@ -146,5 +151,13 @@ class GovernmentManager : IsPartOfGameInfoSerialization {
                     && isCardAvailable(it)
                     && it.name !in usedElsewhere
         }.sortedBy { it.name }
+    }
+
+    /** Civ 6: the policy cards that can be assigned to slot [slotIndex] of the currently adopted government,
+     *  given its currently assigned cards. See [getAvailableCardsForSlot] for the full semantics. */
+    @Readonly
+    fun getAvailableCardsForSlot(slotIndex: Int): List<PolicyCard> {
+        val government = getGovernment() ?: return emptyList()
+        return getAvailableCardsForSlot(slotIndex, government, assignedCards)
     }
 }

@@ -30,6 +30,7 @@ import com.unciv.ui.components.input.onRightClick
 import com.unciv.ui.components.widgets.AutoScrollPane
 import com.unciv.ui.images.ImageGetter
 import com.unciv.ui.popups.ConfirmPopup
+import com.unciv.ui.popups.Popup
 import com.unciv.ui.screens.pickerscreens.PickerScreen
 import com.unciv.ui.screens.worldscreen.WorldScreen
 import yairm210.purity.annotations.Pure
@@ -147,8 +148,39 @@ class EspionageOverviewScreen(val civInfo: Civilization, val worldScreen: WorldS
             // Spectators aren't allowed to move the spies of the Civs they are viewing
             moveSpyButton.disable()
         }
-        spySelectionTable.add(moveSpyButton).row()
+        spySelectionTable.add(moveSpyButton)
+        // Mission button column: choose which espionage mission the spy runs (Civ VI)
+        val missionButton = "Mission".toTextButton()
+        missionButton.onClick { openMissionChooser(spy) }
+        if (!worldScreen.canChangeState || !spy.isAlive() || civInfo.isDefeated()
+                || spy.getValidMissions().isEmpty()) {
+            missionButton.disable()
+        }
+        spySelectionTable.add(missionButton).row()
         moveSpyButtons[spy] = moveSpyButton
+    }
+
+    private fun openMissionChooser(spy: Spy) {
+        val missions = spy.getValidMissions()
+        val popup = Popup(this)
+        popup.add("Choose a mission for [${spy.name}]".toLabel()).row()
+        if (missions.isEmpty()) {
+            popup.add("No missions available: the spy must be set up in a city first.".toLabel()).row()
+        } else {
+            for (mission in missions) {
+                val isCurrent = mission == spy.action
+                popup.add((mission.displayString + if (isCurrent) " (current)" else "").toTextButton().apply {
+                    onClick {
+                        // Counter-intelligence runs for 10 turns; the other missions run once
+                        spy.setAction(mission, if (mission == SpyAction.CounterIntelligence) 10 else 0)
+                        popup.close()
+                        update()
+                    }
+                }).row()
+            }
+        }
+        popup.addCloseButton()
+        popup.open()
     }
 
     private fun updateLocationList() {

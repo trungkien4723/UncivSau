@@ -170,8 +170,9 @@ class TestGame(vararg addGlobalUniques: String, forUITesting: Boolean = false) {
         gameInfo.civilizations.add(civInfo)
         civInfo.setTransients()
 
-        // Add 1 tech to the player so the era is computed correctly
-        civInfo.tech.addTechnology(ruleset.technologies.values.minBy { it.era() }.name)
+        // Add 1 tech to the player so the era is computed correctly (no notifications/era rewards,
+        // like the real game's starting techs which are granted with showNotification = false)
+        civInfo.tech.addTechnology(ruleset.technologies.values.minBy { it.era() }.name, false)
         if (cityStateType != null) {
             civInfo.cityStateFunctions.initCityState(ruleset, "Ancient era", emptySequence(), Random.Default)
         }

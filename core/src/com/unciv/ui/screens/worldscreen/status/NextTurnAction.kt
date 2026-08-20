@@ -2,6 +2,7 @@ package com.unciv.ui.screens.worldscreen.status
 
 import com.badlogic.gdx.graphics.Color
 import com.unciv.Constants
+import com.unciv.logic.battle.TargetHelper
 import com.unciv.logic.civilization.managers.ReligionManager
 import com.unciv.logic.civilization.managers.ReligionState
 import com.unciv.models.Counter
@@ -149,6 +150,15 @@ enum class NextTurnAction(protected val text: String, val color: Color) {
         override fun getSubText(worldScreen: WorldScreen): String? =
             getIdleUnitsText(worldScreen)
     },
+    BombardCity("Bombard city", Color.RED) {
+        override val icon: String? get() = "OtherIcons/CrosshairB"
+        override fun isChoice(worldScreen: WorldScreen) =
+            worldScreen.viewingCiv.cities.any { it.canBombard() && TargetHelper.getBombardableTiles(it).any() }
+        override fun action(worldScreen: WorldScreen) =
+            worldScreen.switchToNextBombardCity()
+        override fun getSubText(worldScreen: WorldScreen): String? =
+            getIdleBombardCitiesText(worldScreen)
+    },
     MoveAutomatedUnits("Move automated units", Color.LIGHT_GRAY) {
         override fun isChoice(worldScreen: WorldScreen) =
             worldScreen.canMoveAutomatedUnits()
@@ -245,6 +255,15 @@ enum class NextTurnAction(protected val text: String, val color: Color) {
             val count = worldScreen.viewingCiv.units.getDueUnits().count()
             if (count > 0) {
                 return "[$count] units idle"
+            }
+            return null
+        }
+
+        private fun getIdleBombardCitiesText(worldScreen: WorldScreen): String? {
+            val count = worldScreen.viewingCiv.cities
+                .count { it.canBombard() && TargetHelper.getBombardableTiles(it).any() }
+            if (count > 0) {
+                return "[$count] cities can bombard"
             }
             return null
         }

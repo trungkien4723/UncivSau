@@ -126,8 +126,10 @@ class GovernmentPickerScreen(
     private fun openCardChooser(slotIndex: Int, slotType: String) {
         val popup = Popup(this)
         popup.add("Choose a [${slotType}] policy card".tr()).row()
-        // Civ 6: each policy card is unique - a card already assigned to another slot is not offered again
-        val available = manager.getAvailableCardsForSlot(slotIndex)
+        // Civ 6: each policy card is unique - a card already assigned to another slot, including one picked
+        // for another slot in this in-progress selection (not yet committed on adopt), is not offered again.
+        val government = ruleset.governments[selectedGovernment] ?: return
+        val available = manager.getAvailableCardsForSlot(slotIndex, government, selectedCards)
         if (available.isEmpty()) popup.add("No available cards".toLabel()).row()
         for (card in available) {
             val descLines = getCardDescriptionLines(card)

@@ -2,6 +2,7 @@ package com.unciv.logic.map
 
 import com.unciv.logic.map.tile.RoadStatus
 import com.unciv.logic.map.tile.Tile
+import com.unciv.logic.trade.TradeRouteFunctions
 import com.unciv.models.UnitActionType
 import com.unciv.models.ruleset.unique.GameContext
 import com.unciv.models.ruleset.unique.UniqueType
@@ -108,22 +109,25 @@ class RoadImprovementTests {
     fun traderPavesRoadsAlongEstablishedRoute() {
         testGame.makeHexagonalMap(2)
         val civ = addCivWithAllTechs()
+        val otherCiv = addCivWithAllTechs()
         val sourceTile = makeLandTile(0, 0)
-        val middleTile = makeLandTile(1, 0)
         val destTile = makeLandTile(2, 0)
         val sourceCity = testGame.addCity(civ, sourceTile)
-        val destCity = testGame.addCity(civ, destTile)
-        val trader = testGame.addUnit("Trader", civ, destTile)
-        trader.currentMovement = trader.getMaxMovement().toFloat()
+        // Foreign destination - no auto city connection, so only the Trader can pave intermediate tiles
+        val destCity = testGame.addCity(otherCiv, destTile)
+        // Road pathing only crosses explored tiles - reveal the map for this civ
+        for (tile in testGame.tileMap.values) tile.setExplored(civ, true)
+        val trader = testGame.addUnit("Trader", civ, sourceTile)
 
-        assertEquals(RoadStatus.None, middleTile.roadStatus)
+        TradeRouteFunctions.startTradeRoute(civ, sourceCity, destCity, trader)
+        val firstCrossedTile = testGame.getTile(sourceCity.tradeRoutes.travelPath.first())
+        assertEquals("The tile the Trader will cross should start with no road",
+            RoadStatus.None, firstCrossedTile.roadStatus)
 
-        val actions = UnitActions.getUnitActions(trader, UnitActionType.CreateTradeRoute).toList()
-        val routeAction = actions.firstOrNull { it.action != null }
-        assertNotNull("Trader should offer a trade route action, got: ${actions.map { it.title }}", routeAction)
-        routeAction!!.action!!.invoke()
+        // The Trader walks to its destination (1 tile per turn), paving roads as it goes
+        TradeRouteFunctions.advanceTravellingTraders(civ)
 
-        assertEquals(destCity.name, sourceCity.tradeRoutes.domesticRouteTo)
-        assertNotEquals("Trader should pave a road along the route", RoadStatus.None, middleTile.roadStatus)
+        assertNotEquals("Trader should pave a road on the tile it crosses",
+            RoadStatus.None, firstCrossedTile.roadStatus)
     }
 }

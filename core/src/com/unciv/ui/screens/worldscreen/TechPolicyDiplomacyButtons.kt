@@ -25,7 +25,6 @@ import com.unciv.ui.screens.diplomacyscreen.DiplomacyScreen
 import com.unciv.ui.screens.overviewscreen.EspionageOverviewScreen
 import com.unciv.ui.screens.pickerscreens.CivicButton
 import com.unciv.ui.screens.pickerscreens.CivicPickerScreen
-import com.unciv.ui.screens.pickerscreens.GovernmentPickerScreen
 import com.unciv.ui.screens.pickerscreens.PolicyPickerScreen
 import com.unciv.ui.screens.pickerscreens.TechButton
 import com.unciv.ui.screens.pickerscreens.TechPickerScreen
@@ -47,9 +46,6 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
     private val pickCivicLabel = "".toLabel(Color.WHITE, 30)
     private val pickCivicInnerLabel = "".toLabel(Color.WHITE, 30)
 
-    private val governmentButtonHolder = Container<Button?>()
-    private val governmentScreenButton = Button(skin)
-
     private val policyButtonHolder = Container<Button?>()
     private val policyScreenButton = Button(skin)
     private val diplomacyButtonHolder = Container<Button?>()
@@ -64,16 +60,11 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
     private val viewingCiv = worldScreen.viewingCiv
     private val game = worldScreen.game
 
-    /** Whether the current ruleset uses the Civ VI government system (Governments.json present). */
-    private var hasGovernmentButton = false
-
     init {
         defaults().left()
         add(fogOfWarButtonHolder).colspan(4).row()
         add(techButtonHolder).colspan(4).row()
         add(civicButtonHolder).colspan(4).row()
-        hasGovernmentButton = worldScreen.gameInfo.ruleset.governments.isNotEmpty()
-        if (hasGovernmentButton) add(governmentButtonHolder).colspan(4).row()
         add(policyButtonHolder).padTop(10f).padRight(10f)
         add(diplomacyButtonHolder).padTop(10f).padRight(10f)
         add(cityStateButtonHolder).padTop(10f).padRight(10f)
@@ -101,11 +92,6 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
         pickCivicButton.add(pickCivicLabel)
         civicButtonHolder.onActivation(UncivSound.Paper, KeyboardBinding.CivicTree) {
             game.pushScreen(CivicPickerScreen(viewingCiv))
-        }
-
-        governmentScreenButton.add(ImageGetter.getImage("OtherIcons/Politics")).size(30f).pad(15f)
-        governmentButtonHolder.onActivation {
-            game.pushScreen(GovernmentPickerScreen(viewingCiv))
         }
 
         undoButton.add(ImageGetter.getImage("OtherIcons/Undo")).size(30f).pad(15f)
@@ -146,7 +132,6 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
         updateFogOfWarButton()
         updateTechButton()
         updateCivicButton()
-        updateGovernmentButton()
         updateUndoButton()
         updatePolicyButton()
         val result = updateDiplomacyButton()
@@ -216,23 +201,6 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
         }
     }
 
-    private fun updateGovernmentButton() {
-        if (!hasGovernmentButton) {
-            governmentButtonHolder.touchable = Touchable.disabled
-            governmentButtonHolder.actor = null
-            return
-        }
-        // Civ 6: only show the government button when there is something to do - a new government
-        // has just been unlocked (or the initial government/cards have not been picked yet).
-        if (!viewingCiv.government.shouldShowGovernmentPicker()) {
-            governmentButtonHolder.touchable = Touchable.disabled
-            governmentButtonHolder.actor = null
-            return
-        }
-        governmentButtonHolder.touchable = Touchable.enabled
-        governmentButtonHolder.actor = governmentScreenButton
-    }
-
     private fun updateUndoButton() {
         // Don't show the undo button if there is no action to undo
         if (worldScreen.canUndo()) {
@@ -257,17 +225,17 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
     }
 
     private fun updateDiplomacyButton(): Boolean {
-        return if (viewingCiv.isDefeated() || viewingCiv.isSpectator()
+        // No button in single-player games
+        if (viewingCiv.isDefeated() || viewingCiv.isSpectator()
                 || viewingCiv.getKnownCivs().filterNot { it == viewingCiv || it.isBarbarian }.none()
         ) {
             diplomacyButtonHolder.touchable = Touchable.disabled
             diplomacyButtonHolder.actor = null
-            false
-        } else {
-            diplomacyButtonHolder.touchable = Touchable.enabled
-            diplomacyButtonHolder.actor = diplomacyButton
-            true
+            return false
         }
+        diplomacyButtonHolder.touchable = Touchable.enabled
+        diplomacyButtonHolder.actor = diplomacyButton
+        return true
     }
 
     private fun updateCityStateButton() {

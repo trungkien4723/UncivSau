@@ -286,6 +286,30 @@ class Spy private constructor() : IsPartOfGameInfoSerialization {
     @Readonly fun canDoCoup(): Boolean = getCityOrNull() != null && getCity().civ.isCityState && isSetUp()
             && getCity().civ.allyCiv != civInfo
 
+    /** Civ VI: the espionage missions a spy can currently run at its location.
+     *  A spy must be inside a city and have established its network (be set up). */
+    @Readonly
+    fun getValidMissions(): List<SpyAction> {
+        val city = getCityOrNull() ?: return emptyList()
+        if (!isSetUp()) return emptyList()
+        val cityCiv = city.civ
+        return when {
+            cityCiv == civInfo -> listOf(SpyAction.CounterIntelligence)
+            cityCiv.isCityState -> listOf(SpyAction.FabricateScandal, SpyAction.RiggingElections)
+            else -> listOf(
+                SpyAction.StealingTech,
+                SpyAction.SabotageProduction,
+                SpyAction.NeutralizeGovernor,
+                SpyAction.StealGreatWork,
+                SpyAction.FomentUnrest,
+                SpyAction.GainSources,
+                SpyAction.SiphonFunds,
+                SpyAction.RecruitPartisans,
+                SpyAction.FabricateScandal
+            )
+        }
+    }
+
     /**
      * Initiates a coup if this spies civ is not the ally of the city-state.
      * The coup will only happen at the end of the Civ's turn for save scum reasons, so a play may not reload in multiplayer.
