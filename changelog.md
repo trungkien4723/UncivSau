@@ -1,3 +1,13 @@
+## 4.23.0
+
+Civ 6 harvest mechanic: Builders can harvest bonus resources (Cattle, Sheep, Deer, Bananas, Wheat, Fish, Stone) for a one-time Food/Production yield - By trungkien4723
+Builders no longer build roads; only Military Engineers construct roads/railroads - By trungkien4723
+Cities can only bombard when they have an Encampment or its unique replacement (Thành, Ikanda, Oppidum, Stronghold) - By trungkien4723
+Unique districts now properly replace their base district: Vietnam cannot build the base Encampment (Thành), Mongolia's Ordu replaces the Stable - By trungkien4723
+Trader is buildable again (no longer erroneously unbuildable) - By trungkien4723
+Resource improvements (Plantation, Mine, Camp, Oil well) no longer require removing Forest/Jungle/Marsh, so every resource tile has a buildable improvement - By trungkien4723
+Government picker only lists governments whose required civic is researched; removed redundant 'Requires [civic]' text - By trungkien4723
+
 ## 4.22.0
 
 Horse-mounted units require Horses resource (Chariot Archer, Horseman, Knight, Cavalry, and all unique variants) - By trungkien4723
