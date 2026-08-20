@@ -5,6 +5,8 @@ import com.unciv.UncivGame
 import com.unciv.logic.automation.civilization.NextTurnAutomation
 import com.unciv.logic.city.City
 import com.unciv.logic.civilization.*
+import com.unciv.logic.civilization.diplomacy.DeclareWarReason
+import com.unciv.logic.civilization.diplomacy.WarType
 import com.unciv.logic.map.HexCoord
 import com.unciv.logic.map.tile.Tile
 import com.unciv.models.UnitActionType
@@ -100,7 +102,23 @@ object Battle {
         }
     }
 
+    /** Civ VI: launching a surprise attack on a city-state we are not at war with declares a Surprise War. */
+    private fun declareWarIfCityStateSurpriseAttack(attacker: ICombatant, defender: ICombatant) {
+        val attackingCiv = attacker.getCivInfo()
+        val defendingCiv = defender.getCivInfo()
+        if (!attackingCiv.isHuman() || !defendingCiv.isCityState) return
+        if (attackingCiv.isAtWarWith(defendingCiv)) return
+        attackingCiv.getDiplomacyManager(defendingCiv)?.declareWar(
+            DeclareWarReason(WarType.DirectWar)
+        )
+    }
+
     fun attack(attacker: ICombatant, defender: ICombatant): DamageDealt {
+        // Civ VI: attacking a city-state we are not at war with is a Surprise War.
+        // The UI shows a confirmation first; this is the safety net for any path that skips it
+        // (e.g. city bombardment), and is a no-op when war was already declared.
+        declareWarIfCityStateSurpriseAttack(attacker, defender)
+
         debug("%s %s attacked %s %s", attacker.getCivInfo().civID, attacker.getName(), defender.getCivInfo().civID, defender.getName())
         val attackedTile = defender.getTile()
         if (attacker is MapUnitCombatant) {

@@ -34,6 +34,7 @@ import com.unciv.ui.components.input.onClick
 import com.unciv.ui.components.widgets.AutoScrollPane
 import com.unciv.ui.components.widgets.UnitIconGroup
 import com.unciv.ui.images.ImageGetter
+import com.unciv.ui.popups.ConfirmPopup
 import com.unciv.ui.screens.basescreen.BaseScreen
 import com.unciv.ui.screens.worldscreen.UndoHandler.Companion.clearUndoCheckpoints
 import com.unciv.ui.screens.worldscreen.WorldScreen
@@ -348,6 +349,23 @@ class BattleTable(val worldScreen: WorldScreen) : Table() {
         defender: ICombatant,
         attackableTile: AttackableTile
     ) {
+        val defenderCiv = defender.getCivInfo()
+        if (defenderCiv.isCityState && !attacker.getCivInfo().isAtWarWith(defenderCiv)) {
+            // Civ VI: attacking a city-state we are not at war with is a Surprise War - confirm first
+            ConfirmPopup(
+                worldScreen,
+                "Declare War on [${defenderCiv.civName}]?",
+                "Declare War",
+                true
+            ) {
+                performAttack(attacker, defender, attackableTile)
+            }.open()
+            return
+        }
+        performAttack(attacker, defender, attackableTile)
+    }
+
+    private fun performAttack(attacker: ICombatant, defender: ICombatant, attackableTile: AttackableTile) {
         val canStillAttack = Battle.movePreparingAttack(attacker, attackableTile)
         worldScreen.mapHolder.removeUnitActionOverlay() // the overlay was one of attacking
         // There was a direct worldScreen.update() call here, removing its 'private' but not the comment justifying the modifier.

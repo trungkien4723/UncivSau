@@ -48,9 +48,9 @@ import com.unciv.ui.components.widgets.AutoScrollPane as ScrollPane
  * When [selectCiv] and [selectTrade] are supplied, that Trade for that Civilization is selected, used for the counter-offer option from `TradePopup`.
  * Note calling this with [selectCiv] a City State and [selectTrade] supplied is **not allowed**.
  */
-class DiplomacyScreen(
+open class DiplomacyScreen(
     internal val viewingCiv: Civilization,
-    private val selectCiv: Civilization? = null,
+    protected val selectCiv: Civilization? = null,
     private val selectTrade: Trade? = null,
     private val showTrade: Boolean = selectTrade != null
 ): BaseScreen(), RecreateOnResize {
@@ -81,6 +81,11 @@ class DiplomacyScreen(
     private val closeButton = getCloseButton(closeButtonSize) { game.popScreen() }
 
     internal fun isNotPlayersTurn() = !GUI.isAllowedChangeState()
+
+    /** Which civilizations are listed on the left side. Overridden by [CityStateDiplomacyScreen]
+     *  to list only city-states; here we list only the major civilizations (Civ VI separation). */
+    protected open fun getKnownCivsForLeftSide(): List<Civilization> =
+        viewingCiv.diplomacyFunctions.getKnownCivsSorted(includeCityStates = false).toList()
 
     init {
         // In cramped conditions, start the left side with enough width for nation icon and padding, but allow it to get squeezed until just the icon fits.
@@ -139,7 +144,7 @@ class DiplomacyScreen(
 
         var selectCivY = 0f
 
-        for (civ in viewingCiv.diplomacyFunctions.getKnownCivsSorted()) {
+        for (civ in getKnownCivsForLeftSide()) {
             if (civ == selectCiv) {
                 selectCivY = leftSideTable.prefHeight
             }
@@ -326,8 +331,20 @@ class DiplomacyScreen(
             declareWarButton.setText(declareWarButton.text.toString() + " (${turnsToPeaceTreaty.tr()}${Fonts.turn})")
         }
         declareWarButton.onClick {
-            rightSideTable.clear()
-            rightSideTable.add(ScrollPane(getCasusBelliPicker(diplomacyManager, otherCiv))).height(stage.height)
+            if (otherCiv.isCityState) {
+                // Civ VI: there is no Casus Belli against city-states - it is always a Surprise War
+                ConfirmPopup(
+                    this,
+                    "Declare War on [${otherCiv.civName}]?",
+                    "Declare War",
+                    true
+                ) {
+                    executeWarDeclaration(diplomacyManager, otherCiv, null)
+                }.open()
+            } else {
+                rightSideTable.clear()
+                rightSideTable.add(ScrollPane(getCasusBelliPicker(diplomacyManager, otherCiv))).height(stage.height)
+            }
         }
         if (isNotPlayersTurn()) declareWarButton.disable()
         return declareWarButton

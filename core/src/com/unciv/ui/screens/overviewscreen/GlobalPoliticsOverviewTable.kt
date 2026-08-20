@@ -24,6 +24,7 @@ import com.unciv.ui.components.widgets.AutoScrollPane
 import com.unciv.ui.components.widgets.ColorMarkupLabel
 import com.unciv.ui.images.ImageGetter
 import com.unciv.ui.screens.basescreen.BaseScreen
+import com.unciv.ui.screens.diplomacyscreen.CityStateDiplomacyScreen
 import com.unciv.ui.screens.diplomacyscreen.DiplomacyScreen
 import yairm210.purity.annotations.Readonly
 import kotlin.math.roundToInt
@@ -346,7 +347,9 @@ class GlobalPoliticsOverviewTable(
         table.touchable = Touchable.enabled
         table.onClick {
             if (civInfo.isDefeated() || viewingPlayer.isSpectator() || civInfo == viewingPlayer) return@onClick
-            UncivGame.Current.pushScreen(DiplomacyScreen(viewingPlayer, civInfo))
+            val screen = if (civInfo.isCityState) CityStateDiplomacyScreen(viewingPlayer, civInfo)
+                else DiplomacyScreen(viewingPlayer, civInfo)
+            UncivGame.Current.pushScreen(screen)
         }
         return table
     }

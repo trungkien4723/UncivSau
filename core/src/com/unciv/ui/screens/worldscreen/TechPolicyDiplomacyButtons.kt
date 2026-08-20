@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.ui.Button
 import com.badlogic.gdx.scenes.scene2d.ui.Container
 import com.badlogic.gdx.scenes.scene2d.ui.Table
+import com.unciv.logic.civilization.NotificationIcon
 import com.unciv.models.UncivSound
 import com.unciv.models.translations.tr
 import com.unciv.ui.components.extensions.colorFromRGB
@@ -19,6 +20,7 @@ import com.unciv.ui.components.input.KeyboardBinding
 import com.unciv.ui.components.input.onActivation
 import com.unciv.ui.images.ImageGetter
 import com.unciv.ui.screens.basescreen.BaseScreen
+import com.unciv.ui.screens.diplomacyscreen.CityStateDiplomacyScreen
 import com.unciv.ui.screens.diplomacyscreen.DiplomacyScreen
 import com.unciv.ui.screens.overviewscreen.EspionageOverviewScreen
 import com.unciv.ui.screens.pickerscreens.CivicButton
@@ -52,6 +54,8 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
     private val policyScreenButton = Button(skin)
     private val diplomacyButtonHolder = Container<Button?>()
     private val diplomacyButton = Button(skin)
+    private val cityStateButtonHolder = Container<Button?>()
+    private val cityStateButton = Button(skin)
     private val undoButtonHolder = Container<Button?>()
     private val undoButton = Button(skin)
     private val espionageButtonHolder = Container<Button?>()
@@ -72,6 +76,7 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
         if (hasGovernmentButton) add(governmentButtonHolder).colspan(4).row()
         add(policyButtonHolder).padTop(10f).padRight(10f)
         add(diplomacyButtonHolder).padTop(10f).padRight(10f)
+        add(cityStateButtonHolder).padTop(10f).padRight(10f)
         add(espionageButtonHolder).padTop(10f).padRight(10f)
         add(undoButtonHolder).padTop(10f).padRight(10f)
         add().growX()  // Allows Policy and Diplo buttons to keep to the left
@@ -118,6 +123,12 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
             game.pushScreen(DiplomacyScreen(viewingCiv))
         }
 
+        // Civ VI: separate City-States screen, opened from its own banner button
+        cityStateButton.add(ImageGetter.getImage(NotificationIcon.CityState)).size(30f).pad(15f)
+        cityStateButtonHolder.onActivation {
+            game.pushScreen(CityStateDiplomacyScreen(viewingCiv))
+        }
+
         if (game.gameInfo!!.isEspionageEnabled()) {
             espionageButton.add(ImageGetter.getImage("OtherIcons/Espionage")).size(30f).pad(15f)
             espionageButtonHolder.onActivation(binding = KeyboardBinding.Espionage) {
@@ -139,6 +150,7 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
         updateUndoButton()
         updatePolicyButton()
         val result = updateDiplomacyButton()
+        updateCityStateButton()
         if (game.gameInfo!!.isEspionageEnabled())
             updateEspionageButton()
         pack()
@@ -255,6 +267,18 @@ class TechPolicyDiplomacyButtons(val worldScreen: WorldScreen) : Table(BaseScree
             diplomacyButtonHolder.touchable = Touchable.enabled
             diplomacyButtonHolder.actor = diplomacyButton
             true
+        }
+    }
+
+    private fun updateCityStateButton() {
+        val hasKnownCityStates = !viewingCiv.isDefeated() && !viewingCiv.isSpectator()
+                && viewingCiv.getKnownCivs().any { it.isCityState }
+        if (!hasKnownCityStates) {
+            cityStateButtonHolder.touchable = Touchable.disabled
+            cityStateButtonHolder.actor = null
+        } else {
+            cityStateButtonHolder.touchable = Touchable.enabled
+            cityStateButtonHolder.actor = cityStateButton
         }
     }
 

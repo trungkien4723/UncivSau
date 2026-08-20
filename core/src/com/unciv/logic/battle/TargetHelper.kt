@@ -113,7 +113,11 @@ object TargetHelper {
         // If the user automates units, one may capture the city before the user had a chance to decide what to do with it,
         //  and then the next unit should not attack that city
         if (tileCombatant is CityCombatant && tileCombatant.city.hasJustBeenConquered) return false
-        if (!combatant.getCivInfo().isAtWarWith(tileCombatant.getCivInfo())) return false
+        if (!combatant.getCivInfo().isAtWarWith(tileCombatant.getCivInfo())) {
+            // Civ VI: a player may launch a Surprise War against a city-state by attacking it directly
+            if (!(combatant.getCivInfo().isHuman() && tileCombatant.getCivInfo().isCityState))
+                return false
+        }
 
         if (combatant is MapUnitCombatant && combatant.isLandUnit() && combatant.isMelee() && tile.isWater &&
             !combatant.getCivInfo().tech.unitsCanEmbark && !combatant.unit.cache.canMoveOnWater

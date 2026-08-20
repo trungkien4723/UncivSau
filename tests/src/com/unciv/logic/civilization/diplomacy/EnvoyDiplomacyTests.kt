@@ -104,6 +104,34 @@ class EnvoyDiplomacyTests {
     }
 
     @Test
+    fun `declaring war on a city-state removes all your envoys there`() {
+        val cityState = addCiv(cityStateType = "Militaristic")
+        meet(a, cityState)
+        val csDiplomacy = cityState.getDiplomacyManager(a)!!
+        csDiplomacy.addEnvoys(DiplomacyManager.allyThreshold)
+        assertTrue(csDiplomacy.getEnvoys() >= DiplomacyManager.allyThreshold)
+
+        a.getDiplomacyManager(cityState)!!.declareWar(DeclareWarReason(WarType.DirectWar))
+
+        assertEquals("War removes all envoys placed on the city-state", 0, csDiplomacy.getEnvoys())
+    }
+
+    @Test
+    fun `declaring war on a city-state pulls its suzerain into the war`() {
+        val suzerain = addCiv()
+        val cityState = addCiv(cityStateType = "Militaristic")
+        meet(suzerain, cityState)
+        meet(a, cityState)
+        cityState.getDiplomacyManager(suzerain)!!.addEnvoys(DiplomacyManager.allyThreshold)
+        assertEquals(suzerain, cityState.allyCiv)
+        assertTrue(!suzerain.isAtWarWith(a))
+
+        a.getDiplomacyManager(cityState)!!.declareWar(DeclareWarReason(WarType.DirectWar))
+
+        assertTrue("Suzerain defense: the city-state's suzerain is pulled into the war", suzerain.isAtWarWith(a))
+    }
+
+    @Test
     fun `gold gift grants single digit envoys`() {
         val cityState = addCiv(cityStateType = "Militaristic")
         meet(a, cityState)

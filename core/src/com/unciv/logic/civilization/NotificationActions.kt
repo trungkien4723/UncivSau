@@ -10,6 +10,7 @@ import com.unciv.logic.map.HexCoord
 import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.ui.components.MayaCalendar
 import com.unciv.ui.screens.cityscreen.CityScreen
+import com.unciv.ui.screens.diplomacyscreen.CityStateDiplomacyScreen
 import com.unciv.ui.screens.diplomacyscreen.DiplomacyScreen
 import com.unciv.ui.screens.overviewscreen.EmpireOverviewCategories
 import com.unciv.ui.screens.overviewscreen.EmpireOverviewScreen
@@ -125,7 +126,12 @@ class DiplomacyAction : NotificationAction {
         if (showTrade && currentCiv.isAtWarWith(otherCiv))
             showTrade = false  // Can't trade right now
 
-        worldScreen.game.pushScreen(DiplomacyScreen(currentCiv, otherCiv, showTrade = showTrade))
+        // Civ VI: city-states have their own separate diplomacy screen
+        val screen = if (otherCiv.isCityState)
+            CityStateDiplomacyScreen(currentCiv, otherCiv)
+        else
+            DiplomacyScreen(currentCiv, otherCiv, showTrade = showTrade)
+        worldScreen.game.pushScreen(screen)
     }
 }
 

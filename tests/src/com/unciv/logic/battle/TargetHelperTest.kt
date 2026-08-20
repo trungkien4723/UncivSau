@@ -61,6 +61,45 @@ class TargetHelperTest {
     }
 
     @Test
+    fun `human units can target a city-state they are not at war with`() {
+        // given
+        val humanCiv = testGame.addCiv(isPlayer = true)
+        val cityState = testGame.addCiv(cityStateType = "Militaristic")
+        humanCiv.diplomacyFunctions.makeCivilizationsMeet(cityState)
+
+        val attackFromTile = testGame.getTile(HexCoord.Zero)
+        val attackedTile = testGame.getTile(1, 0)
+        val attackerUnit = testGame.addUnit("Warrior", humanCiv, attackFromTile)
+        attackerUnit.currentMovement = defaultWarriorMovePoints
+        testGame.addUnit("Warrior", cityState, attackedTile)
+
+        // when
+        val attackableEnemies = TargetHelper.getAttackableEnemies(attackerUnit, attackerUnit.movement.getDistanceToTiles())
+
+        // then (Civ VI: a player may launch a Surprise War against a city-state by attacking it directly)
+        assertTrue("Player should be able to surprise-attack the city-state",
+            attackableEnemies.any { it.tileToAttack == attackedTile })
+    }
+
+    @Test
+    fun `AI units cannot target a city-state they are not at war with`() {
+        // given
+        val aiCiv = testGame.addCiv()
+        val cityState = testGame.addCiv(cityStateType = "Militaristic")
+        aiCiv.diplomacyFunctions.makeCivilizationsMeet(cityState)
+
+        val attackerUnit = testGame.addUnit("Warrior", aiCiv, testGame.getTile(HexCoord.Zero))
+        attackerUnit.currentMovement = defaultWarriorMovePoints
+        testGame.addUnit("Warrior", cityState, testGame.getTile(1, 0))
+
+        // when
+        val attackableEnemies = TargetHelper.getAttackableEnemies(attackerUnit, attackerUnit.movement.getDistanceToTiles())
+
+        // then
+        assertTrue("AI must declare war before attacking a city-state", attackableEnemies.isEmpty())
+    }
+
+    @Test
     fun `should get attackable tile when melee next to enemy unit`() {
         // given
         val attackFromTile = testGame.getTile(HexCoord.Zero)

@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.math.Interpolation
 import com.badlogic.gdx.scenes.scene2d.*
 import com.unciv.UncivGame
+import com.unciv.logic.battle.AttackableTile
 import com.unciv.logic.battle.Battle
 import com.unciv.logic.battle.MapUnitCombatant
 import com.unciv.logic.battle.TargetHelper
@@ -28,6 +29,7 @@ import com.unciv.ui.components.MiscArrowTypes
 import com.unciv.ui.components.extensions.center
 import com.unciv.ui.components.extensions.isShiftKeyPressed
 import com.unciv.ui.components.extensions.surroundWithCircle
+import com.unciv.ui.popups.ConfirmPopup
 import com.unciv.ui.components.input.*
 import com.unciv.ui.components.tilegroups.TileGroup
 import com.unciv.ui.components.tilegroups.TileGroupMap
@@ -293,13 +295,15 @@ class WorldMapHolder(
             if (unit.canAttack() && attackableTile != null) {
                 /** ****** Right-click Attack ****** */
                 val attacker = MapUnitCombatant(unit)
-                if (!Battle.movePreparingAttack(attacker, attackableTile)) return
-                if (!SoundPlayer.play(UncivSound(attacker.getName())))
-                    SoundPlayer.play(attacker.getAttackSound())
-                val (damageToDefender, damageToAttacker) = Battle.attackOrNuke(attacker, attackableTile)
-                if (attackableTile.combatant != null)
-                    worldScreen.battleAnimationDeferred(attacker, damageToAttacker, attackableTile.combatant, damageToDefender)
-                localShouldUpdate = true
+                val defenderCiv = attackableTile.combatant?.getCivInfo()
+                if (defenderCiv != null && defenderCiv.isCityState && !unit.civ.isAtWarWith(defenderCiv)) {
+                    // Civ VI: attacking a city-state we are not at war with is a Surprise War - confirm first
+                    ConfirmPopup(worldScreen, "Declare War on [${defenderCiv.civName}]?", "Declare War", true) {
+                        if (performRightClickAttack(attacker, attackableTile)) worldScreen.shouldUpdate = true
+                    }.open()
+                } else {
+                    if (performRightClickAttack(attacker, attackableTile)) localShouldUpdate = true
+                }
             } else if (unit.movement.canReach(tile)) {
                 /** ****** Right-click Move ****** */
                 moveUnitToTargetTile(listOf(unit), tile)
@@ -307,6 +311,16 @@ class WorldMapHolder(
             }
         }
         worldScreen.shouldUpdate = localShouldUpdate
+    }
+
+    private fun performRightClickAttack(attacker: MapUnitCombatant, attackableTile: AttackableTile): Boolean {
+        if (!Battle.movePreparingAttack(attacker, attackableTile)) return false
+        if (!SoundPlayer.play(UncivSound(attacker.getName())))
+            SoundPlayer.play(attacker.getAttackSound())
+        val (damageToDefender, damageToAttacker) = Battle.attackOrNuke(attacker, attackableTile)
+        if (attackableTile.combatant != null)
+            worldScreen.battleAnimationDeferred(attacker, damageToAttacker, attackableTile.combatant, damageToDefender)
+        return true
     }
 
     private fun markUnitMoveTutorialComplete(unit: MapUnit) {

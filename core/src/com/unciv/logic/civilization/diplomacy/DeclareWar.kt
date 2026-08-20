@@ -68,6 +68,7 @@ object DeclareWar {
         val otherCiv = diplomacyManager.otherCiv
         val otherCivDiplomacy = diplomacyManager.otherCivDiplomacy()
 
+        // Civ VI: declaring war on a city-state removes all envoys placed there
         otherCivDiplomacy.setInfluence(-60f)
         civInfo.numMinorCivsAttacked += 1
         otherCiv.cityStateFunctions.cityStateAttacked(civInfo)
@@ -80,6 +81,21 @@ object DeclareWar {
                 knownCiv.getDiplomacyManager(civInfo)!!.addModifier(DiplomaticModifiers.BetrayedDeclarationOfFriendship, -10f)
             }
         }
+
+        // Civ VI Suzerain defense: the city-state's Suzerain is pulled into the war against us
+        pullSuzerainIntoWar(diplomacyManager, otherCiv)
+    }
+
+    /** Civ VI: attacking a city-state automatically pulls its Suzerain (the ally civ) into the war. */
+    private fun pullSuzerainIntoWar(diplomacyManager: DiplomacyManager, cityState: Civilization) {
+        val attacker = diplomacyManager.civInfo
+        val suzerain = cityState.allyCiv ?: return
+        if (suzerain == attacker || suzerain.isDefeated() || !suzerain.isMajorCiv()) return
+        if (suzerain.isAtWarWith(attacker)) return
+        if (!suzerain.knows(attacker))
+            suzerain.diplomacyFunctions.makeCivilizationsMeet(attacker, warOnContact = true)
+        suzerain.getDiplomacyManager(attacker)!!
+            .declareWar(DeclareWarReason(WarType.AlliedCityStateWar, cityState))
     }
 
     private fun notifyOfWar(diplomacyManager: DiplomacyManager, declareWarReason: DeclareWarReason) {

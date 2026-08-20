@@ -20,6 +20,7 @@ import com.unciv.ui.popups.Popup
 import com.unciv.ui.screens.basescreen.BaseScreen
 import com.unciv.ui.screens.cityscreen.CityReligionInfoTable
 import com.unciv.ui.screens.cityscreen.CityScreen
+import com.unciv.ui.screens.diplomacyscreen.CityStateDiplomacyScreen
 import com.unciv.ui.screens.diplomacyscreen.DiplomacyScreen
 import com.unciv.utils.DebugUtils
 import yairm210.purity.annotations.Readonly
@@ -229,7 +230,10 @@ class CityButton(val city: City, private val tileGroup: TileGroup) : Table(BaseS
     }
 
     private fun foreignCityInfoPopup() {
-        fun openDiplomacy() = GUI.pushScreen(DiplomacyScreen(viewingPlayer, city.civ))
+        fun openDiplomacy() = GUI.pushScreen(
+            if (city.civ.isCityState) CityStateDiplomacyScreen(viewingPlayer, city.civ)
+            else DiplomacyScreen(viewingPlayer, city.civ)
+        )
 
         val espionageVisible = city.civ.gameInfo.isEspionageEnabled()
                 && viewingPlayer.espionageManager.getSpyAssignedToCity(city)?.isSetUp() == true
