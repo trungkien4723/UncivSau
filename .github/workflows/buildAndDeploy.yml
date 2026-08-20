@@ -86,7 +86,7 @@ jobs:
         with:
           name: UncivJar
           path: |
-            desktop/build/libs/Unciv.jar
+            desktop/build/libs/UncivSau.jar
 
       - name: Upload linux files
         continue-on-error: true
@@ -157,7 +157,7 @@ jobs:
         with:
           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON  }}
           packageName: com.unciv.app
-          releaseFiles: android/build/outputs/bundle/release/Unciv-release.aab
+          releaseFiles: android/build/outputs/bundle/release/UncivSau-release.aab
           track: production
           whatsNewDirectory: whatsNewDirectory
 
@@ -178,14 +178,14 @@ jobs:
       - name: Move APK to deploy folder
         shell: bash
         run: |
-          SRC=$(ls android/build/outputs/apk/release/Unciv-release-unsigned-signed.apk 2>/dev/null || ls android/build/outputs/apk/release/Unciv-release-unsigned.apk 2>/dev/null || ls android/build/outputs/apk/release/*.apk 2>/dev/null | head -1)
-          mv "$SRC" Unciv-signed.apk
+          SRC=$(ls android/build/outputs/apk/release/UncivSau-release-unsigned-signed.apk 2>/dev/null || ls android/build/outputs/apk/release/UncivSau-release-unsigned.apk 2>/dev/null || ls android/build/outputs/apk/release/*.apk 2>/dev/null | head -1)
+          mv "$SRC" UncivSau.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: UncivAPK
-          path: Unciv-signed.apk
+          path: UncivSau.apk
 
 
   packr-build:
@@ -214,7 +214,7 @@ jobs:
       - name: Packr build
         run: |
           mkdir -p desktop/build/libs
-          mv Unciv.jar desktop/build/libs
+          mv UncivSau.jar desktop/build/libs
 
           wget -q -O packr-all-4.0.0.jar https://github.com/libgdx/packr/releases/download/4.0.0/packr-all-4.0.0.jar
 
@@ -229,8 +229,8 @@ jobs:
         with:
           name: UncivDeploymentZips
           path: |
-            deploy/Unciv-Windows64.zip
-            deploy/Unciv-Linux64.zip
+            deploy/UncivSau-Windows64.zip
+            deploy/UncivSau-Linux64.zip
 
   build-msi:
     continue-on-error: true
@@ -251,7 +251,7 @@ jobs:
       - name: Unzip unciv file
         run: | 
           mkdir .github/workflows/wix-msi-files
-          tar -xf Unciv-Windows64.zip -C .github/workflows/wix-msi-files
+          tar -xf UncivSau-Windows64.zip -C .github/workflows/wix-msi-files
           dir .github/workflows/wix-msi-files
         
       - name: Install WiX
@@ -294,8 +294,8 @@ jobs:
           unzip butler.zip
           chmod +x butler
 
-          ./butler push Unciv-Linux64.zip yairm210/unciv:Linux64     --userversion ${{ github.ref_name }}
-          ./butler push Unciv-Windows64.zip yairm210/unciv:Windows64 --userversion ${{ github.ref_name }}
+          ./butler push UncivSau-Linux64.zip yairm210/unciv:Linux64     --userversion ${{ github.ref_name }}
+          ./butler push UncivSau-Windows64.zip yairm210/unciv:Windows64 --userversion ${{ github.ref_name }}
 
   upload-github-release-and-post-to-discord:
     needs: [get-release-body, android-build, packr-build, build-msi]
@@ -308,11 +308,11 @@ jobs:
       - name: consolidate deploy folder
         run: |
           mkdir deploy
-          mv UncivJar/Unciv.jar deploy
+          mv UncivJar/UncivSau.jar deploy
           mv UncivLinuxFiles/linuxFilesForJar.zip deploy
-          mv UncivDeploymentZips/Unciv-Windows64.zip deploy
-          mv UncivDeploymentZips/Unciv-Linux64.zip deploy
-          mv UncivAPK/Unciv-signed.apk deploy
+          mv UncivDeploymentZips/UncivSau-Windows64.zip deploy
+          mv UncivDeploymentZips/UncivSau-Linux64.zip deploy
+          mv UncivAPK/UncivSau.apk deploy
           mv UncivServer/UncivServer.jar deploy
           [ -d "Unciv-MSI" ] && mv Unciv-MSI/Unciv.msi deploy || true
 
@@ -391,7 +391,7 @@ jobs:
         uses: mislav/bump-homebrew-formula-action@v4
         with:
           formula-name: unciv
-          download-url: https://github.com/yairm210/Unciv/releases/download/${{ github.ref_name }}/Unciv.jar
+          download-url: https://github.com/yairm210/Unciv/releases/download/${{ github.ref_name }}/UncivSau.jar
           commit-message: |
             unciv {{version}}
 
