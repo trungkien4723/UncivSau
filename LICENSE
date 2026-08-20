@@ -1,6 +1,17 @@
 Mozilla Public License Version 2.0
 ==================================
 
+UncivSau is a fork of Unciv (https://github.com/yairm210/Unciv) that adds
+Civilization VI mechanics to the Unciv engine, for everyone who knows and
+loves Civ 6. It is free software, distributed under the same Mozilla Public
+License 2.0 as the original Unciv. No assets, names, or logos from
+Civilization V or Civilization VI are used - only game mechanics recreated
+from scratch, which are not subject to intellectual property rights.
+
+The full text of the license follows.
+
+==================================
+
 1. Definitions
 --------------
 
