@@ -531,6 +531,9 @@ class Tile : IsPartOfGameInfoSerialization {
     fun providesResources(civInfo: Civilization): Boolean {
         val resource = tileResource // To avoid additional checks later
         if (!civInfo.canSeeResource(resource)) return false
+        // Civ VI: a district placed over an (unrevealed) strategic resource collects it
+        // automatically every turn once the revealing tech is researched
+        if (district != null && resource.resourceType == ResourceType.Strategic) return true
         if (isCityCenter()) {
             val possibleImprovements = resource.getImprovements()
             if (possibleImprovements.isEmpty()) return true

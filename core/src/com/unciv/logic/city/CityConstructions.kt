@@ -25,6 +25,7 @@ import com.unciv.models.ruleset.PerpetualConstruction
 import com.unciv.models.ruleset.RejectionReasonType
 import com.unciv.models.ruleset.Ruleset
 import com.unciv.models.ruleset.tile.TileImprovement
+import com.unciv.models.ruleset.tile.ResourceType
 import com.unciv.models.ruleset.unique.UniqueMap
 import com.unciv.models.ruleset.unique.UniqueTriggerActivation
 import com.unciv.models.ruleset.unique.UniqueType
@@ -908,11 +909,32 @@ class CityConstructions : IsPartOfGameInfoSerialization {
             && !tile.isMarkedForCreatesOneImprovement()
             && tile.improvementFunctions.canBuildImprovement(improvement, city.state)
 
+    /** Civ VI: terrain features that a district removes on completion, and the tech required
+     *  before the district may be placed over them. */
+    private val featureRemovalTech = mapOf(
+        "Forest" to "Mining",
+        "Jungle" to "Iron Working",
+        "Marsh" to "Bronze Working"
+    )
+
     /** Whether [tile] may host [district] for this city. */
     @Readonly
     fun canPlaceCreateOneDistrictOn(district: District, tile: Tile): Boolean {
         val techRequired = district.requiredTech
         val civicRequired = district.requiredCivic
+        // Civ VI: revealed Luxury and Strategic resources block district placement - only Bonus
+        // resources may be crushed by a district. Unrevealed strategic resources don't block;
+        // the district collects them automatically once they are revealed.
+        val tileResource = tile.tileResource
+        if (tileResource != null && city.civ.canSeeResource(tileResource)
+                && tileResource.resourceType != ResourceType.Bonus)
+            return false
+        // Civ VI: a district can only be placed over a removable feature once its removal tech is researched
+        for (feature in tile.terrainFeatures) {
+            val removalTech = featureRemovalTech[feature] ?: continue
+            if (removalTech in city.getRuleset().technologies && !city.civ.tech.isResearched(removalTech))
+                return false
+        }
         return tile.getCity() == city
             && tile in city.tilesInRange
             && !tile.isCityCenter()
@@ -1160,6 +1182,12 @@ class CityConstructions : IsPartOfGameInfoSerialization {
             ?: return
         tileForDistrict.districtToCreate = null
         if (removeOnly) return
+        // Civ VI: completing a district removes terrain features and crushes any Bonus resource
+        // on the tile (without yields - harvest with a Builder first!)
+        if (tileForDistrict.terrainFeatures.isNotEmpty()) tileForDistrict.removeTerrainFeatures()
+        val tileResource = tileForDistrict.tileResource
+        if (tileResource != null && tileResource.resourceType == ResourceType.Bonus)
+            tileForDistrict.tileResource = null
         city.districts[tileForDistrict.position] = district.name
         tileForDistrict.district = district.name
         GUI.setUpdateWorldOnNextRender()
