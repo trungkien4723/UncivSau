@@ -155,10 +155,16 @@ object TargetHelper {
         return true
     }
 
-    /** Get a list of visible tiles which have something attackable */
+    /** Get a list of visible tiles which have something attackable - only actual enemies
+     *  (civs we are at war with, incl. barbarians); neutral city-states don't count. */
     @Readonly
     fun getBombardableTiles(city: City): Sequence<Tile> =
             city.getCenterTile().getTilesInDistance(city.getBombardRange())
-                    .filter { it.isVisible(city.civ) && containsAttackableEnemy(it, CityCombatant(city)) }
+                    .filter {
+                        if (!it.isVisible(city.civ)) return@filter false
+                        val tileCombatant = Battle.getMapCombatantOfTile(it) ?: return@filter false
+                        city.civ.isAtWarWith(tileCombatant.getCivInfo())
+                                && containsAttackableEnemy(it, CityCombatant(city))
+                    }
 
 }

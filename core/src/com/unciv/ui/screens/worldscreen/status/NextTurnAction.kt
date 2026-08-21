@@ -150,15 +150,6 @@ enum class NextTurnAction(protected val text: String, val color: Color) {
         override fun getSubText(worldScreen: WorldScreen): String? =
             getIdleUnitsText(worldScreen)
     },
-    BombardCity("Bombard city", Color.RED) {
-        override val icon: String? get() = "OtherIcons/CrosshairB"
-        override fun isChoice(worldScreen: WorldScreen) =
-            worldScreen.viewingCiv.cities.any { it.canBombard() && TargetHelper.getBombardableTiles(it).any() }
-        override fun action(worldScreen: WorldScreen) =
-            worldScreen.switchToNextBombardCity()
-        override fun getSubText(worldScreen: WorldScreen): String? =
-            getIdleBombardCitiesText(worldScreen)
-    },
     MoveAutomatedUnits("Move automated units", Color.LIGHT_GRAY) {
         override fun isChoice(worldScreen: WorldScreen) =
             worldScreen.canMoveAutomatedUnits()
@@ -170,8 +161,11 @@ enum class NextTurnAction(protected val text: String, val color: Color) {
             true  // When none of the others is active..
         override fun action(worldScreen: WorldScreen) =
             worldScreen.confirmedNextTurn()
-        override fun getSubText(worldScreen: WorldScreen): String? =
-            getIdleUnitsText(worldScreen)
+        override fun getSubText(worldScreen: WorldScreen): String? {
+            val idleUnits = getIdleUnitsText(worldScreen)
+            val bombardCities = getIdleBombardCitiesText(worldScreen)
+            return listOfNotNull(idleUnits, bombardCities).joinToString(" | ").ifEmpty { null }
+        }
     },
 
     ;

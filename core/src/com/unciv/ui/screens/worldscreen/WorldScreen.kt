@@ -706,21 +706,6 @@ class WorldScreen(
         return job != null && job.isActive
     }
 
-    fun switchToNextBombardCity() {
-        val cities = viewingCiv.cities.filter { it.canBombard() && TargetHelper.getBombardableTiles(it).any() }
-        if (cities.isEmpty()) {
-            mapHolder.selectedTile = null
-            shouldUpdate = true
-            return
-        }
-        val selectedCity = mapHolder.selectedTile?.getCity()
-        val nextCity = if (selectedCity != null && selectedCity in cities)
-            cities[(cities.indexOf(selectedCity) + 1) % cities.size]
-        else cities.first()
-        mapHolder.setCenterPosition(nextCity.location, immediately = false, selectUnit = true)
-        shouldUpdate = true
-    }
-
     private fun updateGameplayButtons() {
         nextTurnButton.update()
 
