@@ -721,7 +721,8 @@
           "Celestial Navigation"
         ],
         "uniques": [
-          "Eureka: [40]% of the cost of this technology <upon building a [Lighthouse]>"
+          "Eureka: [40]% of the cost of this technology <upon building a [Lighthouse]>",
+          "Enables [All] units to enter ocean tiles"
         ],
         "quote": "'The map is not the territory.' - Alfred Korzybski",
         "civilopediaText": [

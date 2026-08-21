@@ -2687,6 +2687,8 @@
     "favoredReligion": "Christianity",
     "uniqueName": "Mana",
     "uniques": [
+      "Enables [All] units to enter ocean tiles",
+      "Enables embarkation for land units",
       "Unlocks the Toa ability to construct a Pā, unique to Māori.Occupying unit receives +4Defense Strength, and automatically gains 2 turns of fortification. A Māori unit occupying a Pā heals even if they just moved or attacked. Must be built on a Hill tile.",
       "Māori unique Classical era melee unit. Adjacent enemy units receive -5Combat Strength. Can build the unique Pā improvement.<Construction>"
     ],
@@ -2843,6 +2845,9 @@
     "uniqueName": "Knarr",
     "uniques": [
       "Units gain the ability to enter Ocean tiles after researching the Shipbuilding technology. Naval melee units heal in neutral territory. Units ignore additionalMovement costs from embarking and disembarking.",
+      "Enables [All] units to enter ocean tiles <after discovering [Shipbuilding]>",
+      "[1] Movement point cost to embark",
+      "[1] Movement point cost to disembark",
       "Norwegian unique Medieval era melee unit that replaces the Man-At-Arms. 4Movement if this unit starts in enemy territory. +10Combat Strength when attacking and -5Combat Strength when defending against melee attacks.<Military Tactics>",
       "Norwegian unique Ancient era naval unit that replaces the Galley. Can pillage enemy coastal lands and capture civilians if adjacent using its coastal raiding ability. 4Movement while in coastal waters.<Sailing>"
     ],
