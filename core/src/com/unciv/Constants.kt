@@ -110,6 +110,9 @@ object Constants {
     const val embarked = "Embarked"
     const val wounded = "Wounded"
 
+    /** Civ VI: Influence points needed to gain one assignable Envoy. */
+    const val influencePerEnvoy = 20
+
     const val remove = "Remove "
     const val repair = "Repair"
 

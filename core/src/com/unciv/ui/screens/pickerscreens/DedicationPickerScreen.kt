@@ -66,22 +66,14 @@ class DedicationPickerScreen(
     }
 
     private fun getDedicationDescription(dedicationName: String): String {
-        // Return description based on dedication name (simplified)
+        // Return description based on dedication name
         return when (dedicationName) {
-            "Exodus of the Evangelists" -> "Religious units gain [+2] Movement and [+25]% Religious Strength."
-            "Penitent" -> "Holy Sites and Shrines provide [+2] Faith."
-            "Commune" -> "Districts provide [+1] Housing."
-            "Inquisition" -> "Inquisitors gain [+1] Spread Religion charge."
-            "Heartbeat of Steam" -> "Industrial Zones provide [+2] Production."
-            "To Arms!" -> "Encampments provide [+2] Production and [+1] Great General points."
-            "Monumentality" -> "Faith purchasing of civilian units [+50]% cheaper."
-            "Free Inquiry" -> "Campus and Library provide [+2] Science."
-            "Bodyguard of Lies" -> "Spies gain [+2] levels and [+20]% mission success chance."
-            "Hic Sunt Dracones" -> "Natural Wonders provide [+2] Science and [+2] Culture."
-            "Wonders of the Ancient World" -> "Wonder production [+15]%."
-            "Civic Pride" -> "Monuments provide [+2] Culture and [+1] Loyalty."
-            "Heroic Epic" -> "Military units gain [+1] Movement and [+5] Combat Strength."
-            "Age of Discovery" -> "Naval units gain [+2] Movement and [+1] Sight."
+            "Monumentality" -> "+1 Era Score for each specialty District built. Golden Age: civilian units can be bought with Faith at a discount."
+            "Free Inquiry" -> "+1 Era Score per Eureka, +2 for Campus and Commercial Hub buildings. Golden Age: +10% Science in all cities."
+            "Pen, Brush, and Voice" -> "+1 Era Score per Inspiration, +2 for Theater Square buildings. Golden Age: +10% Culture and +1 Gold per citizen."
+            "Exodus of the Evangelists" -> "+2 Era Score for converting a foreign city. Golden Age: religious units gain Movement and Religious Strength."
+            "Reform the Coinage" -> "+1 Era Score for completing an international Trade Route. Golden Age: bonus Gold from Trade Routes and pillaging."
+            "To Arms!" -> "+1 Era Score for killing an enemy military unit or conquering a city. Golden Age: military production bonus."
             else -> "Special dedication bonus for ${goldenAgeManager.currentAge} Age."
         }
     }

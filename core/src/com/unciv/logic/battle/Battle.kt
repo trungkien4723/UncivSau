@@ -7,6 +7,7 @@ import com.unciv.logic.city.City
 import com.unciv.logic.civilization.*
 import com.unciv.logic.civilization.diplomacy.DeclareWarReason
 import com.unciv.logic.civilization.diplomacy.WarType
+import com.unciv.logic.civilization.managers.GoldenAgeManager
 import com.unciv.logic.map.HexCoord
 import com.unciv.logic.map.tile.Tile
 import com.unciv.models.UnitActionType
@@ -214,6 +215,10 @@ object Battle {
 
             if (attacker is MapUnitCombatant) triggerVictoryUniques(attacker, defender, attackedTile)
             triggerDefeatUniques(defender, attacker, attackedTile)
+
+            // Civ VI dedication (To Arms!): Era Score for killing an enemy military unit
+            attacker.getCivInfo().goldenAges.awardDedicationEraScore(
+                GoldenAgeManager.DedicationEvent.EnemyMilitaryUnitKilled)
 
         } else if (attacker.isDefeated() && attacker is MapUnitCombatant && !attacker.unit.isCivilian()) {
             tryEarnFromKilling(defender, attacker)

@@ -20,6 +20,10 @@ class Government : RulesetObject() {
     /** Civic that must be researched before this government becomes available (empty = available from start). */
     var requiredCivic: String = ""
 
+    /** Civ VI: Influence points generated per turn while this government is active.
+     *  Accumulated points convert into assignable Envoys (see Civilization.accumulatedInfluence). */
+    var influencePerTurn: Int = 1
+
     /** Total number of policy card slots this government provides. */
     @Suppress("MemberVisibilityCanBePrivate")
     fun totalSlots() = militarySlots + economicSlots + diplomaticSlots + wildcardSlots
@@ -45,6 +49,7 @@ class Government : RulesetObject() {
         lineList += FormattedLine("{Economic} slots: $economicSlots")
         lineList += FormattedLine("{Diplomatic} slots: $diplomaticSlots")
         lineList += FormattedLine("{Wildcard} slots: $wildcardSlots")
+        lineList += FormattedLine("{Influence} per turn: $influencePerTurn")
         uniquesToCivilopediaTextLines(lineList)
         return lineList
     }

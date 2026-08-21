@@ -4,6 +4,7 @@ import com.unciv.Constants
 import com.unciv.logic.city.City
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.civilization.NotificationCategory
+import com.unciv.logic.civilization.managers.GoldenAgeManager
 import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.tile.RoadStatus
 import com.unciv.logic.map.tile.Tile
@@ -123,6 +124,9 @@ object TradeRouteFunctions {
                         sourceCiv.addNotification(
                             "Trading Post established in [${city.name}]!",
                             NotificationCategory.Trade, "TradeRoute")
+                        // Civ VI dedication (Reform the Coinage): Era Score for an international route
+                        sourceCiv.goldenAges.awardDedicationEraScore(
+                            GoldenAgeManager.DedicationEvent.InternationalTradeRouteCompleted)
                     }
                     toRemove.add(sourceCivName)
                 } else routes.internationalRoutes[sourceCivName] = newTurns

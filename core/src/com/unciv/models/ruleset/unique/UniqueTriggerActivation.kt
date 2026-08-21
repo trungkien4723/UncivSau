@@ -6,6 +6,7 @@ import com.unciv.logic.automation.civilization.NextTurnAutomation
 import com.unciv.logic.city.City
 import com.unciv.logic.civilization.*
 import com.unciv.logic.civilization.diplomacy.DiplomacyFlags
+import com.unciv.logic.civilization.managers.GoldenAgeManager
 import com.unciv.logic.civilization.managers.SecretSociety
 import com.unciv.logic.civilization.diplomacy.DiplomaticModifiers
 import com.unciv.logic.civilization.managers.PolicyManager
@@ -949,6 +950,9 @@ object UniqueTriggerActivation {
                     // If this is the tech currently being researched, it may now be completable
                     civInfo.tech.updateResearchProgress()
 
+                    // Civ VI dedication (Free Inquiry): Era Score for triggering a Eureka
+                    civInfo.goldenAges.awardDedicationEraScore(GoldenAgeManager.DedicationEvent.EurekaTriggered)
+
                     if (civInfo.isMajorCiv() && !civInfo.isSpectator()) {
                         val notificationText = getNotificationText(
                             notification, triggerNotificationText,
@@ -980,6 +984,9 @@ object UniqueTriggerActivation {
                         (civInfo.civics.civicsInProgress[civic] ?: 0) + cultureGain
                     // If this is the civic currently being researched, it may now be completable
                     civInfo.civics.updateResearchProgress()
+
+                    // Civ VI dedication (Pen, Brush, and Voice): Era Score for an Inspiration
+                    civInfo.goldenAges.awardDedicationEraScore(GoldenAgeManager.DedicationEvent.InspirationTriggered)
 
                     if (civInfo.isMajorCiv() && !civInfo.isSpectator()) {
                         val notificationText = getNotificationText(

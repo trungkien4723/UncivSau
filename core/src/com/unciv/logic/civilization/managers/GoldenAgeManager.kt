@@ -166,7 +166,7 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
         civInfo.temporaryUniques.clear() // Clear old dedication effects
         
         // Generate available dedications for the new age
-        availableDedications = generateDedicationsForAge(finalAge).toMutableList()
+        availableDedications = dedications.toMutableList()
         // Flag that player needs to pick a dedication (for human players)
         if (civInfo.isHuman()) {
             pendingDedicationSelection = true
@@ -236,6 +236,14 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
                 "[-50]% [Faith] cost of units [in all cities]"
             )
             "Free Inquiry" -> listOf("[+10]% [Science] [in all cities]")
+            "Pen, Brush, and Voice" -> listOf(
+                "[+10]% [Culture] [in all cities]",
+                "[+1] [Gold] from every [Population] [in all cities]"
+            )
+            "Reform the Coinage" -> listOf(
+                "[+2 Gold] per [Trade Route] [in all cities]",
+                "[+100]% Yield from pillaging tiles"
+            )
             "Bodyguard of Lies" -> listOf("[+2] Spy capacity", "[+10]% Spy effectiveness")
             "Hic Sunt Dracones" -> listOf(
                 "[+3] Movement <for [Land] units>",
@@ -316,38 +324,52 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
         }
     }
     
-    /** Get available dedications for current age. */
-    fun getDedicationsForAge(): List<String> {
-        return generateDedicationsForAge(currentAge)
+    /** Get available dedications for current age - in Civ VI the same core dedications
+     *  are offered every era, regardless of the age entered. */
+    fun getDedicationsForAge(): List<String> = dedications
+
+    /** The Civ VI dedications offered at every era transition. */
+    private val dedications = listOf(
+        "Monumentality",
+        "Free Inquiry",
+        "Pen, Brush, and Voice",
+        "Exodus of the Evangelists",
+        "Reform the Coinage",
+        "To Arms!"
+    )
+
+    /** Civ VI: during a Normal or Dark Age the dedication acts as a quest generator,
+     *  granting Era Score each time the player performs the dedicated action. */
+    enum class DedicationEvent(val score: Int) {
+        DistrictBuilt(1),
+        EurekaTriggered(1),
+        ScienceOrTradeBuildingBuilt(2),
+        InspirationTriggered(1),
+        CultureBuildingBuilt(2),
+        ForeignCityConverted(2),
+        InternationalTradeRouteCompleted(1),
+        EnemyMilitaryUnitKilled(1),
+        CityConquered(1)
     }
-    
-    private fun generateDedicationsForAge(age: String): List<String> {
-        val darkAgeDedications = listOf(
-            "Exodus of the Evangelists",
-            "Penitent",
-            "Commune",
-            "Inquisition",
-            "Heartbeat of Steam"
-        )
-        val normalAgeDedications = listOf(
-            "Civic Pride",
-            "Heroic Epic",
-            "Age of Discovery",
-            "To Arms!"
-        )
-        val goldenAgeDedications = listOf(
-            "Monumentality",
-            "Free Inquiry",
-            "Bodyguard of Lies",
-            "Hic Sunt Dracones",
-            "Wonders of the Ancient World"
-        )
-        return when (age) {
-            "Dark" -> darkAgeDedications
-            "Golden" -> goldenAgeDedications
-            "Heroic" -> darkAgeDedications + goldenAgeDedications
-            else -> normalAgeDedications
+
+    /** Awards Era Score for [event] if it matches the active dedication and we are in a
+     *  Normal or Dark Age (during a Golden/Heroic Age the dedication grants its power instead). */
+    fun awardDedicationEraScore(event: DedicationEvent) {
+        if (isGoldenAge() || isHeroicAge()) return
+        val dedication = currentDedication ?: return
+        val matches = when (dedication) {
+            "Monumentality" -> event == DedicationEvent.DistrictBuilt
+            "Free Inquiry" -> event == DedicationEvent.EurekaTriggered
+                    || event == DedicationEvent.ScienceOrTradeBuildingBuilt
+            "Pen, Brush, and Voice" -> event == DedicationEvent.InspirationTriggered
+                    || event == DedicationEvent.CultureBuildingBuilt
+            "Exodus of the Evangelists" -> event == DedicationEvent.ForeignCityConverted
+            "Reform the Coinage" -> event == DedicationEvent.InternationalTradeRouteCompleted
+            "To Arms!" -> event == DedicationEvent.EnemyMilitaryUnitKilled
+                    || event == DedicationEvent.CityConquered
+            else -> false
         }
+        if (matches) addEraScore(event.score, dedication)
     }
     
     /** Get era score thresholds for UI and era transition.

@@ -320,7 +320,7 @@ class DiplomacyManagerTests {
     }
 
     @Test
-    fun `should increase influence in city state when under resting points`() {
+    fun `should not change influence in city state when under resting points`() {
         // given
         val cityState = addCiv(cityStateType = "Mercantile")
         cityState.cityStatePersonality = CityStatePersonality.Neutral
@@ -332,11 +332,12 @@ class DiplomacyManagerTests {
         cityState.getDiplomacyManager(a)!!.nextTurn()
 
         // then
-        assertEquals(-29f, cityState.getDiplomacyManager(a)!!.getInfluence())
+        // Civ VI: envoys never decay or recover towards a resting point
+        assertEquals(-30f, cityState.getDiplomacyManager(a)!!.getInfluence())
     }
 
     @Test
-    fun `should increase influence in city state when under resting points and sharing religion`() {
+    fun `should not change influence in city state when under resting points and sharing religion`() {
         // given
         val cityState = addCiv(cityStateType = "Mercantile")
         cityState.cityStatePersonality = CityStatePersonality.Neutral
@@ -357,8 +358,8 @@ class DiplomacyManagerTests {
         cityState.getDiplomacyManager(a)!!.nextTurn()
 
         // then
-        // -30 + 1.5 recovery (sharing religion) = -28.5, truncated to an integer envoy count
-        assertEquals(-28f, cityState.getDiplomacyManager(a)!!.getInfluence())
+        // Civ VI: envoys never decay or recover towards a resting point
+        assertEquals(-30f, cityState.getDiplomacyManager(a)!!.getInfluence())
     }
 
     @Test

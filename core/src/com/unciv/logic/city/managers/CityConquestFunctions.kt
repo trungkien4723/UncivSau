@@ -13,6 +13,7 @@ import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.logic.civilization.NotificationIcon
 import com.unciv.logic.civilization.diplomacy.DiplomaticModifiers
 import com.unciv.logic.civilization.diplomacy.DiplomaticStatus
+import com.unciv.logic.civilization.managers.GoldenAgeManager
 import com.unciv.logic.map.mapunit.UnitPromotions
 import com.unciv.logic.trade.TradeLogic
 import com.unciv.logic.trade.TradeOffer
@@ -112,6 +113,9 @@ class CityConquestFunctions(val city: City) {
         conqueringCiv.addGold(goldPlundered)
         conqueringCiv.addNotification("Received [$goldPlundered] Gold for capturing [${city.name}]",
             city.getCenterTile().position, NotificationCategory.General, NotificationIcon.Gold)
+
+        // Civ VI dedication (To Arms!): Era Score for conquering a city
+        conqueringCiv.goldenAges.awardDedicationEraScore(GoldenAgeManager.DedicationEvent.CityConquered)
 
         val reconqueredCityWhileStillInResistance = city.previousOwner == receivingCiv.civID && city.isInResistance()
 

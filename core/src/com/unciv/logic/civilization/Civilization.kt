@@ -198,6 +198,10 @@ class Civilization : IsPartOfGameInfoSerialization {
     /** Unassigned Envoys available to send to City-States (Civ VI diplomacy). */
     var unassignedEnvoys = 0
 
+    /** Civ VI: Influence points accumulated from the government, converting into Envoys
+     *  once [Constants.influencePerEnvoy] points have been gathered. */
+    var accumulatedInfluence = 0
+
     /** Civ VI: the hidden agenda randomly assigned to this civ at game start. */
     var chosenHiddenAgenda: String? = null
     val popupAlerts = ArrayList<PopupAlert>()

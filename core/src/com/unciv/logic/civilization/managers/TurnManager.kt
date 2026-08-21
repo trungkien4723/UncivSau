@@ -1,6 +1,7 @@
 package com.unciv.logic.civilization.managers
 
 import com.unciv.UncivGame
+import com.unciv.Constants
 import com.unciv.logic.VictoryData
 import com.unciv.logic.automation.civilization.NextTurnAutomation
 import com.unciv.logic.city.managers.CityTurnManager
@@ -32,6 +33,17 @@ class TurnManager(val civInfo: Civilization) {
         civInfo.threatManager.clear()
         if (civInfo.isMajorCiv() && civInfo.isAlive()) {
             civInfo.statsHistory.recordRankingStats(civInfo)
+            // Civ VI: the government generates Influence points each turn; a full meter
+            // converts into an assignable Envoy. "Gain Envoys per turn" uniques add directly.
+            val government = civInfo.government.getGovernment()
+            val influenceGain = government?.influencePerTurn ?: 1
+            civInfo.accumulatedInfluence += influenceGain
+            while (civInfo.accumulatedInfluence >= Constants.influencePerEnvoy) {
+                civInfo.accumulatedInfluence -= Constants.influencePerEnvoy
+                civInfo.unassignedEnvoys += 1
+                civInfo.addNotification("Your government's Influence has earned you [1] Envoy!",
+                    NotificationCategory.Diplomacy, NotificationIcon.Diplomacy)
+            }
             civInfo.cityStateFunctions.gainEnvoysPerTurn()
         }
 

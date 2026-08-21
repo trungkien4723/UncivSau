@@ -93,16 +93,8 @@ object DiplomacyTurnManager {
     private fun DiplomacyManager.nextTurnCityStateInfluence() {
         val initialRelationshipLevel = relationshipIgnoreAfraid()  // Enough since only >= Friend is notified
 
-        val restingPoint = getCityStateInfluenceRestingPoint()
-        // We use direct `envoys` access here instead of `getInfluence()`, so that during war
-        // the envoys count is preserved (rather than reset to -60) and restored when the war ends.
-        if (envoys.toFloat() > restingPoint) {
-            val decrement = getCityStateInfluenceDegrade()
-            setInfluenceWithoutSideEffects(max(restingPoint, envoys.toFloat() - decrement))
-        } else if (envoys.toFloat() < restingPoint) {
-            val increment = getCityStateInfluenceRecovery()
-            setInfluenceWithoutSideEffects(min(restingPoint, envoys.toFloat() + increment))
-        }
+        // Civ VI: Envoys placed at a City-State never decay or drift back to a resting point -
+        // they stay until removed by game events (war, spy missions, etc.)
 
         if (!civInfo.isDefeated()) { // don't display city state relationship notifications when the city state is currently defeated
             val notificationActions = civInfo.cityStateFunctions.getNotificationActions()

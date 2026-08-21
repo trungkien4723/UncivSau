@@ -1,7 +1,8 @@
 [
     {
         "name": "Chiefdom",
-        "requiredCivic": "Code of Laws",
+        "influencePerTurn": 1,
+"requiredCivic": "Code of Laws",
         "militarySlots": 1,
         "economicSlots": 1,
         "diplomaticSlots": 0,
@@ -10,7 +11,8 @@
     },
     {
         "name": "Autocracy",
-        "requiredCivic": "Political Philosophy",
+        "influencePerTurn": 3,
+"requiredCivic": "Political Philosophy",
         "militarySlots": 2,
         "economicSlots": 1,
         "diplomaticSlots": 0,
@@ -19,7 +21,8 @@
     },
     {
         "name": "Classical Republic",
-        "requiredCivic": "Political Philosophy",
+        "influencePerTurn": 3,
+"requiredCivic": "Political Philosophy",
         "militarySlots": 1,
         "economicSlots": 1,
         "diplomaticSlots": 1,
@@ -28,7 +31,8 @@
     },
     {
         "name": "Oligarchy",
-        "requiredCivic": "Political Philosophy",
+        "influencePerTurn": 3,
+"requiredCivic": "Political Philosophy",
         "militarySlots": 2,
         "economicSlots": 1,
         "diplomaticSlots": 0,
@@ -37,7 +41,8 @@
     },
     {
         "name": "Monarchy",
-        "requiredCivic": "Divine Right",
+        "influencePerTurn": 5,
+"requiredCivic": "Divine Right",
         "militarySlots": 2,
         "economicSlots": 1,
         "diplomaticSlots": 1,
@@ -46,7 +51,8 @@
     },
     {
         "name": "Theocracy",
-        "requiredCivic": "Divine Right",
+        "influencePerTurn": 5,
+"requiredCivic": "Divine Right",
         "militarySlots": 1,
         "economicSlots": 1,
         "diplomaticSlots": 2,
@@ -55,7 +61,8 @@
     },
     {
         "name": "Merchant Republic",
-        "requiredCivic": "Mercantilism",
+        "influencePerTurn": 5,
+"requiredCivic": "Mercantilism",
         "militarySlots": 1,
         "economicSlots": 3,
         "diplomaticSlots": 1,
@@ -64,7 +71,8 @@
     },
     {
         "name": "Democracy",
-        "requiredCivic": "The Enlightenment",
+        "influencePerTurn": 6,
+"requiredCivic": "The Enlightenment",
         "militarySlots": 1,
         "economicSlots": 2,
         "diplomaticSlots": 2,
@@ -73,7 +81,8 @@
     },
     {
         "name": "Fascism",
-        "requiredCivic": "Totalitarianism",
+        "influencePerTurn": 6,
+"requiredCivic": "Totalitarianism",
         "militarySlots": 4,
         "economicSlots": 1,
         "diplomaticSlots": 0,
@@ -82,7 +91,8 @@
     },
     {
         "name": "Communism",
-        "requiredCivic": "Class Struggle",
+        "influencePerTurn": 6,
+"requiredCivic": "Class Struggle",
         "militarySlots": 2,
         "economicSlots": 2,
         "diplomaticSlots": 1,

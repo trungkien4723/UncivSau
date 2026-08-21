@@ -13,6 +13,7 @@ import com.unciv.logic.civilization.MapUnitAction
 import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.logic.civilization.NotificationIcon
 import com.unciv.logic.civilization.PopupAlert
+import com.unciv.logic.civilization.managers.GoldenAgeManager
 import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.tile.Tile
 import com.unciv.logic.multiplayer.isUsersTurn
@@ -655,6 +656,15 @@ class CityConstructions : IsPartOfGameInfoSerialization {
         // Civ VI Era Score: completing a building/wonder with the EraScore unique grants Era Score (6C)
         for (unique in building.getMatchingUniques(UniqueType.EraScore))
             civ.goldenAges.addEraScore(unique.params[0].toInt(), buildingName)
+
+        // Civ VI dedications: Free Inquiry (+2 Campus/Commercial Hub buildings),
+        // Pen, Brush, and Voice (+2 Theater Square buildings)
+        when (building.district) {
+            "Campus", "Commercial Hub" ->
+                civ.goldenAges.awardDedicationEraScore(GoldenAgeManager.DedicationEvent.ScienceOrTradeBuildingBuilt)
+            "Theater Square" ->
+                civ.goldenAges.awardDedicationEraScore(GoldenAgeManager.DedicationEvent.CultureBuildingBuilt)
+        }
         if (building.hasUnique(UniqueType.EnemyUnitsSpendExtraMovement))
             civ.cache.updateHasActiveEnemyMovementPenalty()
 
@@ -1200,6 +1210,10 @@ class CityConstructions : IsPartOfGameInfoSerialization {
 
         // Civ VI: Governor XP from district completion
         city.civ.governorManager.addGovernorXP(city, 3)
+
+        // Civ VI dedication (Monumentality): Era Score for building a specialty district
+        if (district.name != "City Center")
+            city.civ.goldenAges.awardDedicationEraScore(GoldenAgeManager.DedicationEvent.DistrictBuilt)
     }
 
     /** Support for [UniqueType.CreatesOneImprovement]:
