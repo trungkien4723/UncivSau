@@ -329,6 +329,7 @@ class GoldenAgeManager : IsPartOfGameInfoSerialization {
     fun getDedicationsForAge(): List<String> = dedications
 
     /** The Civ VI dedications offered at every era transition. */
+    @Transient
     private val dedications = listOf(
         "Monumentality",
         "Free Inquiry",

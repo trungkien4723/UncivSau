@@ -921,6 +921,7 @@ class CityConstructions : IsPartOfGameInfoSerialization {
 
     /** Civ VI: terrain features that a district removes on completion, and the tech required
      *  before the district may be placed over them. */
+    @Transient
     private val featureRemovalTech = mapOf(
         "Forest" to "Mining",
         "Jungle" to "Iron Working",
