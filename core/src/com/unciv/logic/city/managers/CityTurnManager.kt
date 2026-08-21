@@ -107,7 +107,9 @@ class CityTurnManager(val city: City) {
         if (city.civ.gameInfo.isReligionEnabled()) city.religion.endTurn()
 
         if (city in city.civ.cities) { // city was not destroyed
-            city.health = (city.health + 20).coerceAtMost(city.getMaxHealth())
+            // Civ VI: a city Under Siege (all adjacent tiles blocked by enemy ZoC) cannot heal
+            if (!city.isUnderSiege())
+                city.health = (city.health + 20).coerceAtMost(city.getMaxHealth())
             city.population.unassignExtraPopulation()
         }
         

@@ -1,5 +1,6 @@
 package com.unciv.ui.components.tilegroups.citybutton
 
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.unciv.GUI
 import com.unciv.logic.city.City
@@ -44,6 +45,13 @@ internal class StatusTable(
         if (city.isBeingRazed) {
             val fireImage = ImageGetter.getImage("OtherIcons/Fire")
             add(fireImage).size(iconSize)
+        }
+
+        // Civ VI: Under Siege - all adjacent tiles blocked by enemy ZoC, city cannot heal
+        if (city.isUnderSiege()) {
+            val siegeImage = ImageGetter.getImage("StatIcons/Malcontent")
+            siegeImage.color = Color.RED
+            add(siegeImage).size(iconSize)
         }
     }
 }

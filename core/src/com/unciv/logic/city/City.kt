@@ -223,6 +223,59 @@ class City : IsPartOfGameInfoSerialization, INamed {
     }
 
     @Readonly fun canBombard() = getBombardRange() > 0 && !attackedThisTurn && !isInResistance()
+
+    /**
+     * Civ VI "Under Siege" (Rise and Fall): a city is under siege when every passable tile
+     * adjacent to the city center is blocked - either by impassable terrain (mountains, ice),
+     * occupied by an enemy unit, or covered by an enemy unit's Zone of Control.
+     *
+     * Only melee, cavalry and naval melee units exert ZoC for sieging; ranged, siege and
+     * civilian units only block the tile they physically stand on. Rivers break ZoC.
+     * A besieged city cannot heal its health each turn.
+     */
+    @Readonly
+    fun isUnderSiege(): Boolean {
+        val centerTile = getCenterTile()
+        val owner = civ
+
+        // Enemy military units within 2 tiles of the center - the only possible ZoC sources
+        val enemyUnits = centerTile.getTilesInDistance(2)
+            .flatMap { it.getUnits() }
+            .filter { it.isMilitary() && owner.isAtWarWith(it.civ) }
+            .toList()
+        if (enemyUnits.isEmpty()) return false
+
+        for (neighbor in centerTile.neighbors) {
+            // Impassable terrain (mountains, ice) counts as blocked automatically
+            if (neighbor.isImpassible()) continue
+            // An enemy standing on the tile blocks it regardless of unit type
+            val occupant = neighbor.militaryUnit
+            if (occupant != null && owner.isAtWarWith(occupant.civ)) continue
+            // Otherwise an enemy exerting Zone of Control over this tile must cover it
+            if (enemyUnits.none { enemy -> exertsZoneOfControlOver(enemy, neighbor) })
+                return false
+        }
+        return true
+    }
+
+    /** Whether enemy [unit] covers [tile] with its Zone of Control. Only melee, cavalry and
+     *  naval melee units project ZoC; rivers between the unit's tile and [tile] break it. */
+    @Readonly
+    private fun exertsZoneOfControlOver(unit: com.unciv.logic.map.mapunit.MapUnit, tile: Tile): Boolean {
+        val unitTile = unit.getTile()
+        if (unitTile == tile) return true  // physically occupying the tile always blocks it
+        if (!unitTile.neighbors.contains(tile)) return false  // ZoC only covers adjacent tiles
+        // Rivers break Zone of Control
+        if (unitTile.isConnectedByRiver(tile)) return false
+        // Only melee, cavalry and naval melee units project ZoC - not ranged, siege or civilians
+        if (unit.isCivilian() || unit.isEmbarked()) return false
+        if (unit.baseUnit.isRanged()) return false
+        return when (unit.baseUnit.unitType) {
+            "Sword", "Gunpowder", "Mounted", "Armored", "Melee Water" -> true
+            else -> false
+        }
+    }
+
     @Readonly fun getCenterTile(): Tile = centerTile
     @Readonly fun getCenterTileOrNull(): Tile? = if (::centerTile.isInitialized) centerTile else null
     @Readonly fun getTiles(): Sequence<Tile> = tiles.asSequence().map { tileMap[it] }
