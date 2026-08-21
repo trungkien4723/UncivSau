@@ -1,3 +1,9 @@
+## 4.25.0
+
+Civ 6 Under Siege (Rise and Fall): a city whose every adjacent passable tile is blocked by impassable terrain, an occupying enemy, or enemy Zone of Control can no longer heal its HP each turn; a red indicator appears on the city banner - By trungkien4723
+Civ 6 Zone of Control for sieging: only melee, cavalry and naval melee units project ZoC over adjacent tiles; ranged, siege and civilians only block the tile they stand on; rivers break ZoC - By trungkien4723
+Fixed: Bombard city no longer blocks ending your turn - the Next Turn button now shows a non-blocking "[N] cities can bombard" hint instead of forcing the action whenever any city had a bombardable tile - By trungkien4723
+
 ## 4.24.0
 
 Civ 6 traders: Traders now travel to their destination over several turns, paving roads along the way; the route only becomes active on arrival, and completing it establishes a Trading Post at the destination - By trungkien4723
