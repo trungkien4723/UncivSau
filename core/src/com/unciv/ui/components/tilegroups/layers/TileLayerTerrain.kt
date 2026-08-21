@@ -41,8 +41,40 @@ class TileLayerTerrain(tileGroup: TileGroup, size: Float) : TileLayer(tileGroup,
         return ImageGetter.imageExists(strings.getTile("$shownImprovement-Pillaged"))
     }
 
-    private fun getDistrictImageName(districtName: String): String? {
-        val districtImage = when (districtName) {
+    /** Civ VI wonders that don't have tileset art yet reuse the closest existing wonder art as a
+     *  placeholder - real art will be added to the tilesets in the future. */
+    private fun getNaturalWonderImageName(wonderName: String): String {
+        val placeholder = when (wonderName) {
+            "Grand Canyon" -> "Grand Mesa"
+            "Nile River" -> "Great Barrier Reef"
+            "Cliffs of Dover" -> "Rock of Gibraltar"
+            "Crater Lake" -> "Barringer Crater"
+            "Dead Sea" -> "Great Barrier Reef"
+            "Galapagos Islands" -> "Great Barrier Reef"
+            "Lake Retba" -> "Great Barrier Reef"
+            "Mount Everest" -> "Mount Fuji"
+            "Mount Roraima" -> "Grand Mesa"
+            "Pantanal" -> "Great Barrier Reef"
+            "Piopiotahi" -> "Rock of Gibraltar"
+            "Tsingy de Bemaraha" -> "Grand Mesa"
+            "Torres del Paine" -> "Mount Fuji"
+            "Yosemite" -> "Grand Mesa"
+            "Bermuda Triangle" -> "Great Barrier Reef"
+            "Chocolate Hills" -> "Uluru"
+            "Delicate Arch" -> "Grand Mesa"
+            "Eye of the Sahara" -> "Uluru"
+            "Giant's Causeway" -> "Rock of Gibraltar"
+            "Mato Tipila" -> "Grand Mesa"
+            "Matterhorn" -> "Mount Fuji"
+            "Mount Kilimanjaro" -> "Mount Fuji"
+            "Mount Vesuvius" -> "Krakatoa"
+            "Pamukkale" -> "Grand Mesa"
+            else -> wonderName
+        }
+        return if (ImageGetter.imageExists(strings.getTile(placeholder))) placeholder else wonderName
+    }
+
+    private fun getDistrictImageName(districtName: String): String? {        val districtImage = when (districtName) {
             "Campus" -> "Academy"
             "University" -> "Academy"
             "Industrial Zone" -> "Manufactory"
@@ -153,7 +185,16 @@ class TileLayerTerrain(tileGroup: TileGroup, size: Float) : TileLayer(tileGroup,
                 add(allTogetherLocation)
                 addAll(edgeImages)
             }
-            tile.naturalWonder != null -> getNaturalWonderBackupImage(baseHexagon) + edgeImages
+            tile.naturalWonder != null -> {
+                // If the wonder has no art at all (not even a placeholder), render the plain
+                // terrain instead of leaving the tile blank
+                val wonderBackup = getNaturalWonderBackupImage(ArrayList(baseHexagon))
+                if (wonderBackup.any { ImageGetter.imageExists(it) })
+                    wonderBackup + edgeImages
+                else baseHexagon.apply {
+                    addAll(getTerrainImageLocations(terrainImages))
+                } + edgeImages
+            }
             else -> baseHexagon.apply {
                 addAll(getTerrainImageLocations(terrainImages))
                 addAll(edgeImages)
@@ -360,7 +401,7 @@ class TileLayerTerrain(tileGroup: TileGroup, size: Float) : TileLayer(tileGroup,
 
     private fun getNaturalWonderBackupImage(baseHexagon: ArrayList<String>): ArrayList<String> =
             if (strings.tileSetConfig.useSummaryImages) baseHexagon.apply { add(strings.naturalWonder) }
-            else baseHexagon.apply { add(strings.orFallback{ getTile(tileGroup.tile.naturalWonder!!) }) }
+            else baseHexagon.apply { add(strings.orFallback{ getTile(getNaturalWonderImageName(tileGroup.tile.naturalWonder!!)) }) }
 
 }
 
