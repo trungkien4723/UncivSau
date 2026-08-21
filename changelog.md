@@ -1,3 +1,7 @@
+## 4.25.2
+
+Fixed: Crash (NPE) when viewing city-states from old saves (e.g. 4.21.2) on WorldScreen - `cityStateType` now falls back to first available type instead of `!!` - By trungkien4723
+
 ## 4.25.1
 
 Fixed: Resume/Load broken for saves created with 4.25.0 - constant lookup tables were incorrectly serialized into the save file, making it unreadable - By trungkien4723

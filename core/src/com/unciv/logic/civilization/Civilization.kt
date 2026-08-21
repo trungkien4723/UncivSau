@@ -485,7 +485,15 @@ class Civilization : IsPartOfGameInfoSerialization {
     @Readonly fun isAlive(): Boolean = !isDefeated()
 
     @delegate:Transient
-    val cityStateType: CityStateType by lazy { gameInfo.ruleset.cityStateTypes[nation.cityStateType!!]!! }
+    val cityStateType: CityStateType by lazy {
+        // Safe fallback: old saves (e.g. 4.21.2) may have city-states whose nation.cityStateType
+        // is null or whose type was renamed/removed. Never crash the render - fall back to first type.
+        val typeName = nation.cityStateType
+        val fallback = gameInfo.ruleset.cityStateTypes.values.firstOrNull()
+            ?: error("Ruleset has no CityStateTypes defined")
+        if (typeName == null) return@lazy fallback
+        gameInfo.ruleset.cityStateTypes[typeName] ?: fallback
+    }
     var cityStatePersonality: CityStatePersonality = CityStatePersonality.Neutral
     var cityStateResource: String? = null
     var cityStateUniqueUnit: String? = null // Unique unit for militaristic city state. Might still be null if there are no appropriate units

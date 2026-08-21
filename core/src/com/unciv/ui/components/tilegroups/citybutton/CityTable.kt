@@ -213,7 +213,13 @@ internal class CityTable(
     private fun addCivIcon(city: City) {
         val icon = when {
             city.civ.isMajorCiv() -> ImageGetter.getNationIcon(city.civ.nation.name)
-            else -> ImageGetter.getImage("CityStateIcons/" + city.civ.cityStateType.name)
+            else -> try {
+                ImageGetter.getImage("CityStateIcons/" + city.civ.cityStateType.name)
+            } catch (_: Exception) {
+                // Fallback for saves with missing/broken cityStateType (e.g. 4.21.2 saves)
+                try { ImageGetter.getImage("OtherIcons/CityState") }
+                catch (_: Exception) { ImageGetter.getNationIcon("CityState") }
+            }
         }
         icon.color = city.civ.nation.getInnerColor()
 
