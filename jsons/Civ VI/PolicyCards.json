@@ -14,13 +14,13 @@
     {
         "name": "Discipline",
         "slotType": "Military",
-        "requiredCivic": "Political Philosophy",
-        "uniques": ["[+1 Production] from [Bonus resource] tiles [in all cities]"]
+        "requiredCivic": "Code of Laws",
+        "uniques": ["[+5] Strength <vs [Barbarians] units>"]
     },
     {
         "name": "Urban Planning",
         "slotType": "Economic",
-        "requiredCivic": "Political Philosophy",
+        "requiredCivic": "Code of Laws",
         "uniques": ["[+1 Production] [in all cities]"]
     },
     {
@@ -115,9 +115,9 @@
     },
     {
         "name": "Serfdom",
-        "slotType": "Military",
+        "slotType": "Economic",
         "requiredCivic": "Feudalism",
-        "uniques": ["[+1 Builder] build charges [in all cities]"]
+        "uniques": ["[+2 Builder] build charges [in all cities]"]
     },
     {
         "name": "Feudal Contract",
@@ -152,20 +152,14 @@
     {
         "name": "Professional Army",
         "slotType": "Military",
-        "requiredCivic": "Theology",
-        "uniques": ["[-2 Gold] [Unit maintenance] [in all cities]"]
-    },
-    {
-        "name": "Mercenary Army",
-        "slotType": "Military",
         "requiredCivic": "Mercenaries",
-        "uniques": ["[+50% Production] towards [Military] units [in all cities]"]
+        "uniques": ["[-50]% Gold cost of upgrading"]
     },
     {
         "name": "Levee en Masse",
         "slotType": "Military",
-        "requiredCivic": "Nationalism",
-        "uniques": ["[+50% Production] towards [Military] units [in all cities]", "[+1 Builder] build charges [in all cities]"]
+        "requiredCivic": "Mobilization",
+        "uniques": ["[-2 Gold] [Unit maintenance] [in all cities]"]
     },
     {
         "name": "National Identity",
@@ -176,8 +170,8 @@
     {
         "name": "Total War",
         "slotType": "Military",
-        "requiredCivic": "Totalitarianism",
-        "uniques": ["[+20% Production] towards [Military] units [in all cities]"]
+        "requiredCivic": "Scorched Earth",
+        "uniques": ["[+100]% Yield from pillaging tiles"]
     },
     {
         "name": "Logistics",
@@ -193,9 +187,9 @@
     },
     {
         "name": "Public Works",
-        "slotType": "Military",
-        "requiredCivic": "Scorched Earth",
-        "uniques": ["[+25% Production] towards [District]s [in all cities]"]
+        "slotType": "Economic",
+        "requiredCivic": "Civil Engineering",
+        "uniques": ["[+2 Builder] build charges [in all cities]", "[+30% Production] towards [Builder]s [in all cities]"]
     },
     {
         "name": "Strategic Command",
@@ -236,8 +230,8 @@
     {
         "name": "Triangular Trade",
         "slotType": "Economic",
-        "requiredCivic": "Exploration",
-        "uniques": ["[+50% Production] towards [Trader]s [in all cities]"]
+        "requiredCivic": "Mercantilism",
+        "uniques": ["[+4 Gold] per [Trade Route] [in all cities]", "[+1 Faith] per [Trade Route] [in all cities]"]
     },
     {
         "name": "Colonization",
@@ -253,9 +247,9 @@
     },
     {
         "name": "Merchant Confederation",
-        "slotType": "Economic",
-        "requiredCivic": "Exploration",
-        "uniques": ["[+2 Gold] [in all cities]"]
+        "slotType": "Diplomatic",
+        "requiredCivic": "Medieval Faires",
+        "uniques": ["[+1 Gold] per [City-State] [in all cities]"]
     },
     {
         "name": "Economic Union",
@@ -331,9 +325,9 @@
     },
     {
         "name": "Aesthetics",
-        "slotType": "Diplomatic",
-        "requiredCivic": "Cultural Heritage",
-        "uniques": ["[+2 Culture] per [City-State] [in all cities]"]
+        "slotType": "Economic",
+        "requiredCivic": "Medieval Faires",
+        "uniques": ["[+100]% [Theater Square] district adjacency bonuses"]
     },
     {
         "name": "Cultural Diplomacy",
@@ -378,10 +372,10 @@
         "uniques": ["[+2 Great General] points [in all cities]"]
     },
     {
-        "name": "Scriptuire",
-        "slotType": "Wildcard",
+        "name": "Scripture",
+        "slotType": "Economic",
         "requiredCivic": "Theology",
-        "uniques": ["[+2 Great Prophet] points [in all cities]"]
+        "uniques": ["[+100]% [Holy Site] district adjacency bonuses"]
     },
     {
         "name": "Theocracy",
@@ -391,9 +385,9 @@
     },
     {
         "name": "Simultaneum",
-        "slotType": "Wildcard",
-        "requiredCivic": "Theology",
-        "uniques": ["[+1 Faith] [in all cities]"]
+        "slotType": "Economic",
+        "requiredCivic": "Reformed Church",
+        "uniques": ["[+100]% [Faith] from every [Holy Site]"]
     },
     {
         "name": "Hachiman",
@@ -440,8 +434,8 @@
     {
         "name": "Heritage Tourism",
         "slotType": "Wildcard",
-        "requiredCivic": "Cultural Hegemony",
-        "uniques": ["[+100% Tourism] [in all cities]"]
+        "requiredCivic": "Cultural Heritage",
+        "uniques": ["[+100]% Tourism [in all cities]"]
     },
     {
         "name": "Online Communities",
@@ -502,5 +496,59 @@
         "slotType": "Wildcard",
         "requiredCivic": "Smart Power Doctrine",
         "uniques": ["[+1 Culture] [in all cities]"]
+    },
+    {
+        "name": "Raid",
+        "slotType": "Military",
+        "requiredCivic": "Military Training",
+        "uniques": ["[+100]% Yield from pillaging tiles"]
+    },
+    {
+        "name": "Veterancy",
+        "slotType": "Military",
+        "requiredCivic": "Military Training",
+        "uniques": ["[+30% Production] towards [Encampment]s [in all cities]", "[+30% Production] towards [Harbor]s [in all cities]"]
+    },
+    {
+        "name": "Natural Philosophy",
+        "slotType": "Economic",
+        "requiredCivic": "Recorded History",
+        "uniques": ["[+100]% [Campus] district adjacency bonuses"]
+    },
+    {
+        "name": "Charismatic Leader",
+        "slotType": "Diplomatic",
+        "requiredCivic": "Political Philosophy",
+        "uniques": ["Gain [2] Envoys per turn"]
+    },
+    {
+        "name": "Praetorium",
+        "slotType": "Diplomatic",
+        "requiredCivic": "Recorded History",
+        "uniques": ["[+2] extra Loyalty per turn from Governors"]
+    },
+    {
+        "name": "Literary Tradition",
+        "slotType": "Wildcard",
+        "requiredCivic": "Drama and Poetry",
+        "uniques": ["[+2 Great Writer] points [in all cities]"]
+    },
+    {
+        "name": "Town Charters",
+        "slotType": "Economic",
+        "requiredCivic": "Guilds",
+        "uniques": ["[+100]% [Commercial Hub] district adjacency bonuses"]
+    },
+    {
+        "name": "Machiavellianism",
+        "slotType": "Diplomatic",
+        "requiredCivic": "Diplomatic Service",
+        "uniques": ["[+50% Production] towards [Spy] units [in all cities]"]
+    },
+    {
+        "name": "Gunboat Diplomacy",
+        "slotType": "Diplomatic",
+        "requiredCivic": "Ideology",
+        "uniques": ["Gain [4] Envoys per turn"]
     }
 ]

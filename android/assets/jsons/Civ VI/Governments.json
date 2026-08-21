@@ -55,7 +55,7 @@
     },
     {
         "name": "Merchant Republic",
-        "requiredCivic": "Foreign Trade",
+        "requiredCivic": "Mercantilism",
         "militarySlots": 1,
         "economicSlots": 3,
         "diplomaticSlots": 1,
@@ -64,7 +64,7 @@
     },
     {
         "name": "Democracy",
-        "requiredCivic": "Drama and Poetry",
+        "requiredCivic": "The Enlightenment",
         "militarySlots": 1,
         "economicSlots": 2,
         "diplomaticSlots": 2,
@@ -73,7 +73,7 @@
     },
     {
         "name": "Fascism",
-        "requiredCivic": "Military Tradition",
+        "requiredCivic": "Totalitarianism",
         "militarySlots": 4,
         "economicSlots": 1,
         "diplomaticSlots": 0,
@@ -82,7 +82,7 @@
     },
     {
         "name": "Communism",
-        "requiredCivic": "Feudalism",
+        "requiredCivic": "Class Struggle",
         "militarySlots": 2,
         "economicSlots": 2,
         "diplomaticSlots": 1,

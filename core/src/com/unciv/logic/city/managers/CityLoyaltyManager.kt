@@ -7,6 +7,7 @@ import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.logic.civilization.PopupAlert
 import com.unciv.models.Counter
 import com.unciv.models.ruleset.Governor
+import com.unciv.models.ruleset.unique.UniqueType
 import yairm210.purity.annotations.Readonly
 
 /**
@@ -86,7 +87,12 @@ class CityLoyaltyManager : IsPartOfGameInfoSerialization {
 
         // Assigned governor provides loyalty pressure
         val governor = city.getGovernor()
-        if (governor != null) pressure += governor.loyaltyBonus
+        if (governor != null) {
+            pressure += governor.loyaltyBonus
+            // Civ VI policies (e.g. Praetorium): assigned Governors give extra Loyalty
+            for (unique in civ.getMatchingUniques(UniqueType.LoyaltyFromGovernor))
+                pressure += unique.params[0].toInt()
+        }
 
         // Nearby enemy military units apply negative pressure
         val enemyPressure = Counter<String>()

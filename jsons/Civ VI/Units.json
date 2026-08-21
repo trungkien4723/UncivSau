@@ -35,15 +35,7 @@
         "uniqueTo": "Aztec",
         "movement": 2
     },
-    {
-        "name": "Brute",
-        "unitType": "Sword",
-        "strength": 8,
-        "cost": 20,
-        "upgradesTo": "Swordsman",
-        "uniqueTo": "Barbarians",
-        "movement": 2
-    },
+  
     {
         "name": "Bowman",
         "replaces": "Archer",
@@ -143,19 +135,7 @@
         "movement": 2,
         "replaces": "Spearman"
     },
-    {
-        "name": "Marauder",
-        "unitType": "Anti Cavalry",
-        "strength": 10,
-        "cost": 56,
-        "requiredTech": "Bronze Working",
-        "upgradesTo": "Pikeman",
-        "uniqueTo": "Barbarians",
-        "uniques": [
-            "[+50]% Strength <vs [Light Cavalry] units> <vs [Heavy Cavalry] units>"
-        ],
-        "movement": 2
-    },
+    
     {
         "name": "Companion Cavalry",
         "replaces": "Horseman",

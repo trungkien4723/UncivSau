@@ -13,8 +13,8 @@ import yairm210.purity.annotations.LocalState
 import yairm210.purity.annotations.Pure
 import yairm210.purity.annotations.Readonly
 import kotlin.collections.set
+import kotlin.math.exp
 import kotlin.math.max
-import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.random.Random
 
@@ -334,9 +334,9 @@ object BattleDamage {
     ): Int {
         if (attacker.isRanged() && !attacker.isAirUnit()) return 0
         if (defender.isCivilian()) return 0
-        val ratio = getAttackingStrength(attacker, defender, tileToAttackFrom, combatAction) / getDefendingStrength(
-                attacker, defender, tileToAttackFrom, combatAction)
-        return (damageModifier(ratio, true, randomnessFactor) * getHealthDependantDamageRatio(defender)).roundToInt()
+        val strengthDifference = getAttackingStrength(attacker, defender, tileToAttackFrom, combatAction) -
+                getDefendingStrength(attacker, defender, tileToAttackFrom, combatAction)
+        return (damageModifier(strengthDifference, randomnessFactor) * getHealthDependantDamageRatio(defender)).roundToInt()
     }
 
     @Readonly
@@ -350,26 +350,22 @@ object BattleDamage {
         combatAction: CombatAction = CombatAction.Attack
     ): Int {
         if (defender.isCivilian()) return BattleConstants.DAMAGE_TO_CIVILIAN_UNIT
-        val ratio = getAttackingStrength(attacker, defender, tileToAttackFrom, combatAction) /
+        val strengthDifference = getAttackingStrength(attacker, defender, tileToAttackFrom, combatAction) -
                 getDefendingStrength(attacker, defender, tileToAttackFrom, combatAction)
-        return (damageModifier(ratio, false, randomnessFactor) * getHealthDependantDamageRatio(attacker)).roundToInt()
+        return (damageModifier(strengthDifference, randomnessFactor) * getHealthDependantDamageRatio(attacker)).roundToInt()
     }
 
+    /** Civ VI: damage scales exponentially with the combat strength difference - each point of
+     *  advantage multiplies damage by e^0.04 (~+4%). Equal strengths deal ~30 of 100 HP, a +15
+     *  advantage ~55, and a one-shot needs roughly a +26 to +36 gap. */
     @Pure
     private fun damageModifier(
-        attackerToDefenderRatio: Float,
-        damageToAttacker: Boolean,
+        strengthDifference: Float,
         /** Between 0 and 1. */
         randomnessFactor: Float,
     ): Float {
-        // https://forums.civfanatics.com/threads/getting-the-combat-damage-math.646582/#post-15468029
-        val strongerToWeakerRatio =
-            attackerToDefenderRatio.pow(if (attackerToDefenderRatio < 1) -1 else 1)
-        var ratioModifier = (((strongerToWeakerRatio + 3) / 4).pow(4) + 1) / 2
-        if (damageToAttacker && attackerToDefenderRatio > 1 || !damageToAttacker && attackerToDefenderRatio < 1) // damage ratio from the weaker party is inverted
-            ratioModifier = ratioModifier.pow(-1)
         val randomCenteredAround30 = 24 + 12 * randomnessFactor
-        return randomCenteredAround30 * ratioModifier
+        return randomCenteredAround30 * exp(0.04f * strengthDifference)
     }
 }
 enum class CombatAction {

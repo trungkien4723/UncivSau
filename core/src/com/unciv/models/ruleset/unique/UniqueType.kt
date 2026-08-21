@@ -753,6 +753,10 @@ Immortal("Immortal [cityFilter]", UniqueTarget.Unit,
     ImprovementStatsOnTile("[stats] from [tileFilter] tiles", UniqueTarget.Improvement),
     ImprovementStatsForAdjacencies("[stats] for each adjacent [tileFilter] tile", UniqueTarget.Improvement),
     StatsForAdjacentDistrict("[stats] for each adjacent [districtFilter]", UniqueTarget.District),
+    DistrictAdjacencyBonus("[relativeAmount]% [districtFilter] district adjacency bonuses", UniqueTarget.Global,
+        docDescription = "Civ VI policy effect, e.g. Natural Philosophy: doubles Campus adjacency bonuses"),
+    LoyaltyFromGovernor("[amount] extra Loyalty per turn from Governors", UniqueTarget.Global,
+        docDescription = "Civ VI policy effect, e.g. Praetorium: assigned Governors give +2 Loyalty to their host city"),
     EnsureMinimumStats("Ensures a minimum tile yield of [stats]", UniqueTarget.Improvement), // City center
 
     CanBuildOutsideBorders("Can be built outside your borders", UniqueTarget.Improvement),

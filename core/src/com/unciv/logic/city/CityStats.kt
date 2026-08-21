@@ -445,6 +445,12 @@ class CityStats(val city: City) {
     @Readonly
     fun getDistrictAdjacencyStats(tile: Tile, district: District): Stats {
         val stats = Stats()
+        // Civ VI policies (e.g. Natural Philosophy) can multiply specific districts' adjacency bonuses
+        var adjacencyMultiplier = 1f
+        for (unique in city.civ.getMatchingUniques(UniqueType.DistrictAdjacencyBonus)) {
+            if (district.matchesFilter(unique.params[1]))
+                adjacencyMultiplier *= unique.params[0].toPercent()
+        }
         for (unique in district.getMatchingUniques(UniqueType.StatsForAdjacentDistrict)) {
             val filter = unique.params[1].removePrefix("districtFilter: ")
             val adjacent = tile.neighbors.count { neighbor ->
@@ -455,7 +461,7 @@ class CityStats(val city: City) {
                             && neighbor.getCity()!!.cityConstructions.getBuiltBuildings().any { it.isAnyWonder() })
                         || neighbor.matchesFilter(filter, city.civ)
             }
-            if (adjacent > 0) stats.add(unique.stats.times(adjacent.toFloat()))
+            if (adjacent > 0) stats.add(unique.stats.times(adjacent * adjacencyMultiplier))
         }
         return stats
     }

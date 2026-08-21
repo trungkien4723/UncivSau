@@ -87,7 +87,7 @@ class BattleTest(
         val damageDealt = Battle.attack(MapUnitCombatant(attackerUnit), MapUnitCombatant(defaultDefenderUnit))
 
         // then
-        assertEquals(35, damageDealt.attackerDealt)
+        assertEquals(37, damageDealt.attackerDealt)
         assertEquals(0, damageDealt.defenderDealt)
     }
 
@@ -133,7 +133,7 @@ class BattleTest(
     fun `should earn XP when fighting barbarian and below XP cap`() {
         // given
         val barbarianCiv = testGame.addBarbarianCiv()
-        val barbarianUnit = testGame.addUnit("Brute", barbarianCiv, testGame.getTile(0,1))
+        val barbarianUnit = testGame.addUnit("Warrior", barbarianCiv, testGame.getTile(0,1))
 
         // when
         Battle.attack(MapUnitCombatant(barbarianUnit), MapUnitCombatant(defaultDefenderUnit))
@@ -147,7 +147,7 @@ class BattleTest(
     fun `should not earn XP when fighting barbarian if exceeding XP cap`() {
         // given
         val barbarianCiv = testGame.addBarbarianCiv()
-        val barbarianUnit = testGame.addUnit("Brute", barbarianCiv, testGame.getTile(0,1))
+        val barbarianUnit = testGame.addUnit("Warrior", barbarianCiv, testGame.getTile(0,1))
         defaultDefenderUnit.promotions.XP = 35
 
         // when
@@ -238,7 +238,7 @@ class BattleTest(
     fun `should not earn Great General from combat against barbarians`() {
         // given
         val barbarianCiv = testGame.addBarbarianCiv()
-        val barbarianUnit = testGame.addUnit("Brute", barbarianCiv, testGame.getTile(0,1))
+        val barbarianUnit = testGame.addUnit("Warrior", barbarianCiv, testGame.getTile(0,1))
 
         // when
         Battle.attack(MapUnitCombatant(defaultAttackerUnit), MapUnitCombatant(barbarianUnit))
@@ -559,10 +559,10 @@ class BattleTest(
         // then
         assertEquals(7, attackerUnit.promotions.XP) // Attacker should get 2 xp from ranged attack + 5 xp from melee attack
         assertEquals(4, defaultDefenderUnit.promotions.XP) // Defender should get 2 xp from ranged attack + 2 xp from melee attack
-        assertEquals(19, damageDealt.attackerDealt) // Attacker deals damage from both the ranged attack and melee attack
-        assertEquals(61, damageDealt.defenderDealt)
-        assertEquals(39, attackerUnit.health)
-        assertEquals(81, defaultDefenderUnit.health)
+        assertEquals(36, damageDealt.attackerDealt) // Attacker deals damage from both the ranged attack and melee attack
+        assertEquals(19, damageDealt.defenderDealt)
+        assertEquals(81, attackerUnit.health)
+        assertEquals(64, defaultDefenderUnit.health)
     }
 
     @Test
@@ -571,7 +571,7 @@ class BattleTest(
         val attackerUnit = testGame.addDefaultMeleeUnitWithUniques(attackerCiv, testGame.getTile(0,1), "Before engaging in combat performs an extra ranged attack with [50]% of melee combat strength")
         attackerUnit.promotions.XP = 28
         val barbarianCiv = testGame.addBarbarianCiv()
-        val barbarianUnit = testGame.addUnit("Brute", barbarianCiv, testGame.getTile(0,2))
+        val barbarianUnit = testGame.addUnit("Warrior", barbarianCiv, testGame.getTile(0,2))
 
         // when
         val damageDealt = Battle.attack(MapUnitCombatant(attackerUnit), MapUnitCombatant(barbarianUnit))

@@ -28,6 +28,7 @@ class District : RulesetStatsObject() {
     /** Optional terrain/feature filter restricting where the district may be placed. */
     var onlyBuildableOn: String = ""
 
+    @yairm210.purity.annotations.Readonly
     fun matchesFilter(filter: String): Boolean {
         return filter == name || filter == "all districts"
     }
