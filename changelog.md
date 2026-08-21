@@ -1,3 +1,7 @@
+## 4.25.1
+
+Fixed: Resume/Load broken for saves created with 4.25.0 - constant lookup tables were incorrectly serialized into the save file, making it unreadable - By trungkien4723
+
 ## 4.25.0
 
 Civ 6 Under Siege (Rise and Fall): a city whose every adjacent passable tile is blocked by impassable terrain, an occupying enemy, or enemy Zone of Control can no longer heal its HP each turn; a red indicator appears on the city banner - By trungkien4723
