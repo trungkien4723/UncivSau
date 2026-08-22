@@ -2,7 +2,6 @@
     {
         "name": "Chiefdom",
         "influencePerTurn": 1,
-"requiredCivic": "Code of Laws",
         "militarySlots": 1,
         "economicSlots": 1,
         "diplomaticSlots": 0,

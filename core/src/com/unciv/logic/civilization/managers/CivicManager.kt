@@ -265,6 +265,25 @@ class CivicManager : IsPartOfGameInfoSerialization {
         if (newlyUnlockedGovs.isNotEmpty()) {
             civInfo.government.shouldOpenGovernmentPicker = true
         }
+        // Civ 6: If this civic unlocks policy cards that fit the current government's empty slots,
+        // open the Government picker. This is how Code of Laws (Discipline/Survey + God-King/Urban
+        // Planning) first populates Chiefdom (1 Military + 1 Economic) after Turn 0.
+        val currentGov = civInfo.government.getGovernment()
+        if (currentGov != null) {
+            val newlyUnlockedCards = getRuleset().policyCards.values
+                .filter { it.requiredCivic == civicName }
+            if (newlyUnlockedCards.isNotEmpty()) {
+                val hasEmptySlotForNewCard = newlyUnlockedCards.any { card ->
+                    currentGov.getSlots().withIndex().any { (idx, slotType) ->
+                        civInfo.government.assignedCards.getOrNull(idx).isNullOrEmpty() &&
+                            (slotType == "Wildcard" || card.slotType == "Wildcard" || card.slotType == slotType)
+                    }
+                }
+                if (hasEmptySlotForNewCard) {
+                    civInfo.government.shouldOpenGovernmentPicker = true
+                }
+            }
+        }
 
         val triggerNotificationText = "due to adopting [$civicName]"
         for (unique in newCivic.uniqueObjects) {

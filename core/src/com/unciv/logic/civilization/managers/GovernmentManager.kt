@@ -67,10 +67,17 @@ class GovernmentManager : IsPartOfGameInfoSerialization {
     fun setTransients(civInfo: Civilization) {
         this.civInfo = civInfo
         if (currentGovernment.isEmpty()) {
+            // Turn 0: Chiefdom is the default tier-0 government with no slots filled yet.
+            // Do NOT open the picker - the player must first research Code of Laws to unlock
+            // Discipline/Survey (Military) and God-King/Urban Planning (Economic).
             currentGovernment = getRuleset().governments.keys.firstOrNull() ?: ""
-            if (currentGovernment.isNotEmpty()) {
-                shouldOpenGovernmentPicker = true
+            // Ensure assignedCards matches the government's slot layout (empty slots on Turn 0)
+            val gov = getGovernment()
+            if (gov != null) {
+                while (assignedCards.size < gov.totalSlots()) assignedCards.add("")
+                while (assignedCards.size > gov.totalSlots()) assignedCards.removeAt(assignedCards.size - 1)
             }
+            shouldOpenGovernmentPicker = false
         }
         rebuildTransients()
     }
