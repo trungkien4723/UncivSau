@@ -747,7 +747,6 @@
         "cost": -1,
         "uniques": [
             "Empire enters a [8]-turn Golden Age <by consuming this unit>",
-            "Can instantly construct a [Landmark] improvement <by consuming this unit>",
             "Is part of Great Person group [Great Person]",
             "[This Unit] gets a name from the [Artist] group",
             "Great Person - [Culture]",
@@ -762,7 +761,6 @@
         "cost": -1,
         "uniques": [
             "Can hurry technology research",
-            "Can instantly construct a [Academy] improvement <by consuming this unit>",
             "Is part of Great Person group [Great Person]",
             "[This Unit] gets a name from the [Scientist] group",
             "Great Person - [Science]",
@@ -777,7 +775,6 @@
         "cost": -1,
         "uniques": [
             "Can undertake a trade mission with City-State, giving a large sum of gold and [2] Influence",
-            "Can instantly construct a [Customs house] improvement <by consuming this unit>",
             "Is part of Great Person group [Great Person]",
             "[This Unit] gets a name from the [Merchant] group",
             "Great Person - [Gold]",
@@ -792,7 +789,6 @@
         "cost": -1,
         "uniques": [
             "Can speed up construction of a building",
-            "Can instantly construct a [Manufactory] improvement <by consuming this unit>",
             "Is part of Great Person group [Great Person]",
             "[This Unit] gets a name from the [Engineer] group",
             "Great Person - [Production]",
@@ -806,7 +802,6 @@
         "unitType": "Civilian",
         "cost": -1,
         "uniques": [
-            "Can instantly construct a [Holy site] improvement <by consuming this unit> <if it hasn't used other actions yet>",
             "Can Spread Religion <for [2] movement> <[4] times> <after which this unit is consumed>",
             "Removes other religions when spreading religion",
             "May found a religion <by consuming this unit> <if it hasn't used other actions yet>",
@@ -829,7 +824,6 @@
         "cost": -1,
         "uniques": [
             "[+15]% Strength bonus for [{Military} {Land}] units within [2] tiles",
-            "Can instantly construct a [Citadel] improvement <by consuming this unit>",
             "Can be earned through combat <for [Land] units>",
             "Is part of Great Person group [General]",
             "[This Unit] gets a name from the [General] group",
@@ -849,7 +843,6 @@
             "[+15]% Strength bonus for [Military] units within [2] tiles",
             "All adjacent units heal [+15] HP when healing",
             "[+15] HP when healing",
-            "Can instantly construct a [Citadel] improvement <by consuming this unit>",
             "Can be earned through combat <for [Land] units>",
             "Is part of Great Person group [General]",
             "[This Unit] gets a name from the [Khan] group",
@@ -955,7 +948,6 @@
         "unitType": "Civilian",
         "cost": -1,
         "uniques": [
-            "Can instantly construct a [Writers guild] improvement <by consuming this unit>",
             "Is part of Great Person group [Great Person]",
             "[This Unit] gets a name from the [Writer] group",
             "Great Person - [Culture]",
@@ -969,7 +961,6 @@
         "unitType": "Civilian",
         "cost": -1,
         "uniques": [
-            "Can instantly construct a [Musicians guild] improvement <by consuming this unit>",
             "Is part of Great Person group [Great Person]",
             "[This Unit] gets a name from the [Musician] group",
             "Great Person - [Culture]",
@@ -983,7 +974,6 @@
         "unitType": "Civilian",
         "cost": -1,
         "uniques": [
-            "Can instantly construct a [Diplomats guild] improvement <by consuming this unit>",
             "Is part of Great Person group [Great Person]",
             "[This Unit] gets a name from the [Diplomat] group",
             "Great Person - [Culture]",
@@ -2065,6 +2055,7 @@
         "uniques": [
             "Can instantly construct a [All Road] improvement <[2] times> <for all movement>",
             "Can instantly construct a [Fort] improvement <[2] times> <for all movement>",
+            "Can instantly construct a [Tunnel] improvement <[2] times> <for all movement>",
             "Can build [All Road] improvements on tiles",
             "Can build [Fort] improvements on tiles"
         ]

@@ -1,6 +1,5 @@
 package com.unciv.uniques
 
-import com.unciv.json.json
 import com.unciv.logic.map.HexCoord
 import com.unciv.logic.map.mapunit.UnitTurnManager
 import com.unciv.models.UnitActionType
@@ -55,20 +54,27 @@ class UnitUniquesTests {
     fun canConstructResourceRequiringImprovement() {
         // Do this early so the uniqueObjects lazy is still un-triggered
         val requireUnique = UniqueType.ConsumesResources.text.fillPlaceholders("3", "Iron")
-        // Get a clone with lazies un-tripped
-        val oldImprovement = game.ruleset.tileImprovements["Manufactory"]!!
-        val improvement = json().run { fromJson(TileImprovement::class.java, toJson(oldImprovement)) }
-        improvement.uniques.add(requireUnique)
-        Assert.assertFalse("Test preparation failed to add ConsumesResources to Manufactory",
-            improvement.uniqueObjects.none { it.type == UniqueType.ConsumesResources })
-        game.ruleset.tileImprovements["Manufactory"] = improvement
+        // Civ VI removed the Great Person improvements, so inject a custom improvement for this
+        // test instead of relying on e.g. Manufactory existing in the ruleset
+        val improvement = TileImprovement().apply {
+            name = "Test Improvement"
+            terrainsCanBeBuiltOn = listOf("Land")
+            uniques.add(requireUnique)
+        }
+        game.ruleset.tileImprovements[improvement.name] = improvement
+        Assert.assertTrue("Test preparation failed to add ConsumesResources to the improvement",
+            improvement.uniqueObjects.any { it.type == UniqueType.ConsumesResources })
+        // And give a unit the generic great-person improvement construction ability
+        val engineerUnit = game.ruleset.units["Great Engineer"]!!
+        engineerUnit.uniques.add("Can instantly construct a [Test Improvement] improvement <by consuming this unit>")
+        engineerUnit.setRuleset(game.ruleset) // recompute rulesetUniqueObjects from the changed uniques list
 
         game.makeHexagonalMap(1)
         val civ = game.addCiv(isPlayer = true)
         val centerTile = game.getTile(HexCoord.Zero)
         val capital = game.addCity(civ, centerTile)
 
-        // Place an Engineer and see if he could create a Manufactory
+        // Place an Engineer and see if he could create the improvement
         val unitTile = game.getTile(HexCoord(1,0))
         val unit = game.addUnit("Great Engineer", civ, unitTile)
         unit.currentMovement = unit.baseUnit.movement.toFloat()  // Required!
@@ -77,10 +83,10 @@ class UnitUniquesTests {
         } catch (ex: Throwable) {
             // Give that IndexOutOfBoundsException a nicer name
             Assert.fail("getImprovementConstructionActions throws Exception ${ex.javaClass.simpleName}")
-            game.ruleset.tileImprovements["Manufactory"] = oldImprovement
+            game.ruleset.tileImprovements.remove(improvement.name)
             return
         }.filter { it.action != null }
-        Assert.assertTrue("Great Engineer should NOT be able to create a Manufactory modded to require Iron with 0 Iron",
+        Assert.assertTrue("Great Engineer should NOT be able to create an Iron-requiring improvement with 0 Iron",
             actionsWithoutIron.none())
 
         // Supply Iron
@@ -95,12 +101,12 @@ class UnitUniquesTests {
         val ironAvailable = civ.getResourceAmount("Iron")
         Assert.assertTrue("Test preparation failed to add Iron to Civ resources", ironAvailable >= 3)
 
-        // See if that same Engineer could create a Manufactory NOW
+        // See if that same Engineer could create the improvement NOW
         val actionsWithIron = UnitActionsFromUniques.getImprovementConstructionActionsFromGeneralUnique(unit, unitTile)
             .filter { it.action != null }
-        Assert.assertFalse("Great Engineer SHOULD be able to create a Manufactory modded to require Iron once Iron is available",
+        Assert.assertFalse("Great Engineer SHOULD be able to create the Iron-requiring improvement once Iron is available",
             actionsWithIron.none())
-        game.ruleset.tileImprovements["Manufactory"] = oldImprovement
+        game.ruleset.tileImprovements.remove(improvement.name)
     }
 
     @Test

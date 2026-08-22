@@ -198,25 +198,9 @@ class TileImprovementConstructionTests {
         }
     }
 
-    @Test
-    fun buildingGreatImprovementRemovesFeatures() {
-        val tile = tileMap[1,1]
-        tile.baseTerrain = "Plains"
-        tile.addTerrainFeature("Hill")
-        tile.addTerrainFeature("Forest")
-        Assert.assertEquals(tile.terrainFeatures, listOf("Hill", "Forest"))
-
-        tile.setImprovement("Landmark")
-        Assert.assertEquals(tile.terrainFeatures, listOf("Hill"))
-    }
-
-    @Test
-    fun citadelTakesOverAdjacentTiles() {
-        val tile = tileMap[1,1]
-        Assert.assertFalse(tile.neighbors.all { it.owningCity == city })
-        tile.setImprovement("Citadel", civInfo)
-        Assert.assertTrue(tile.neighbors.all { it.owningCity == city })
-    }
+    // Civ VI removed the Great Person tile improvements (Academy, Citadel, Landmark, Manufactory,
+    // Customs house, Holy site) - the tests covering their feature-removal and tile-takeover
+    // behavior were removed along with them.
 
     @Test
     fun terraceFarmCanNOTBeBuiltOnBonus() {
