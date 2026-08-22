@@ -2,16 +2,23 @@ package com.unciv.logic.trade
 
 import com.unciv.Constants
 import com.unciv.logic.city.City
+import com.unciv.logic.city.CityTradeRoutes
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.logic.civilization.managers.GoldenAgeManager
+import com.unciv.logic.map.HexCoord
 import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.tile.RoadStatus
 import com.unciv.logic.map.tile.Tile
+import com.unciv.models.ruleset.unique.UniqueType
 import yairm210.purity.annotations.Readonly
 
 /** Civ VI trade route logic: choosing a destination city for a Trader, walking it there over
- *  several turns while paving roads, then running the route until it completes. */
+ *  several turns while paving roads, then running the route until it completes.
+ *
+ *  A Trader is fully automated once assigned: the player only picks the destination city - the
+ *  Trader walks to the destination, activates the route, turns around and walks back home, and is
+ *  then ready for a new assignment (the destination chooser opens again). */
 object TradeRouteFunctions {
 
     /** Candidate destination cities for a trade route from [sourceCity] - within range
@@ -32,10 +39,36 @@ object TradeRouteFunctions {
             .toList()
     }
 
+    @Readonly
+    fun isTrader(unit: MapUnit): Boolean = unit.hasUnique(UniqueType.Civ6EstablishesTradeRoute)
+
+    /** Whether [unit] is a Trader committed to a route (walking out or walking home) - such Traders
+     *  cannot be controlled manually by the player. */
+    @Readonly
+    fun isCommittedTrader(unit: MapUnit): Boolean {
+        if (!isTrader(unit)) return false
+        return unit.civ.cities.any { it.tradeRoutes.travellingTraderId == unit.id }
+    }
+
+    /** The first idle Trader of [civ] standing in one of its own cities and awaiting a destination,
+     *  together with that city - or null when none exists or capacity is exhausted. */
+    @Readonly
+    fun getIdleTraderAwaitingAssignment(civ: Civilization): Pair<MapUnit, City>? {
+        if (!civ.hasAvailableTradeRouteCapacity()) return null
+        for (unit in civ.units.getCivUnits()) {
+            if (unit.isDestroyed || !isTrader(unit)) continue
+            if (isCommittedTrader(unit)) continue
+            val city = unit.getTile().getCity() ?: continue
+            if (city.civ != civ) continue
+            return unit to city
+        }
+        return null
+    }
+
     /** Starts a trade route: the [trader] will walk from [sourceCity] toward [destinationCity] at
      *  1 tile per turn, paving roads on the land tiles it crosses. The route only becomes active
-     *  (yielding stats and running its duration) once the Trader arrives, and a Trading Post is
-     *  established at the destination when the route's duration completes. */
+     *  (yielding stats and running its duration) once the Trader arrives; afterwards the Trader
+     *  walks back home and becomes available for a new assignment. */
     fun startTradeRoute(civ: Civilization, sourceCity: City, destinationCity: City, trader: MapUnit) {
         val path = sourceCity.getRoadPath(destinationCity)
             ?: getFallbackPath(sourceCity.getCenterTile(), destinationCity.getCenterTile())
@@ -47,6 +80,8 @@ object TradeRouteFunctions {
         routes.travelDestination = destinationCity.name
         routes.travelPath.clear()
         routes.travelPath.addAll(remainingPath)
+        routes.traderReturningHome = false
+        routes.returnPath.clear()
         trader.currentMovement = 0f  // the Trader is committed to this route now
         civ.addNotification(
             "A [Trader] from [${sourceCity.name}] is travelling to [${destinationCity.name}]...",
@@ -54,43 +89,77 @@ object TradeRouteFunctions {
     }
 
     /** Advances all travelling Traders of [civInfo] by one tile (called each turn end).
-     *  Traders pave roads on the land tiles they enter; once a Trader arrives, its route becomes
-     *  active (domestic or international) and the Trader is consumed. */
+     *  Outbound: paves roads and moves toward the destination, activating the route on arrival.
+     *  Returning: moves back home tile by tile; on arrival the Trader is released for a new
+     *  assignment (the player is prompted to choose a new destination). */
     fun advanceTravellingTraders(civInfo: Civilization) {
-        for (city in civInfo.cities) {
+        for (city in civInfo.cities.toList()) {
             val routes = city.tradeRoutes
             if (!routes.isTravelling()) continue
-            val destinationCity = civInfo.gameInfo.getCities().firstOrNull { it.name == routes.travelDestination }
-            if (destinationCity == null) {
-                routes.travellingTraderId = -1
-                routes.travelDestination = ""
-                routes.travelPath.clear()
-                continue
-            }
             val trader = civInfo.units.getUnitById(routes.travellingTraderId)
             if (trader == null || trader.isDestroyed) {
-                routes.travellingTraderId = -1
-                routes.travelDestination = ""
-                routes.travelPath.clear()
+                clearRoutes(routes)
+                continue
+            }
+
+            if (routes.traderReturningHome) {
+                advanceReturningTrader(civInfo, city, routes, trader)
+                continue
+            }
+
+            val destinationCity = civInfo.gameInfo.getCities().firstOrNull { it.name == routes.travelDestination }
+            if (destinationCity == null) { // destination was destroyed mid-route
+                clearRoutes(routes)
                 continue
             }
             if (routes.travelPath.isEmpty()) {
                 activateRouteOnArrival(civInfo, city, destinationCity, trader)
-                routes.travellingTraderId = -1
-                routes.travelDestination = ""
                 continue
             }
-            // Take one step: pave the next land tile and move the Trader onto it
-            val nextTile = civInfo.gameInfo.tileMap[routes.travelPath.removeAt(0)]
-            if (nextTile.isLand) {
-                val roadStatus = civInfo.tech.getBestRoadAvailable()
-                if (roadStatus != RoadStatus.None) nextTile.setRoadStatus(roadStatus, civInfo)
-            }
-            if (trader.getTile() != nextTile) {
-                trader.removeFromTile()
-                trader.putInTile(nextTile)
-            }
+            stepTrader(civInfo, routes.travelPath.removeAt(0), trader)
         }
+    }
+
+    /** Moves [trader] one tile onto the tile at [coord], paving it with the best road when on land. */
+    private fun stepTrader(civInfo: Civilization, coord: HexCoord, trader: MapUnit) {
+        val nextTile = civInfo.gameInfo.tileMap[coord]
+        if (nextTile.isLand) {
+            val roadStatus = civInfo.tech.getBestRoadAvailable()
+            if (roadStatus != RoadStatus.None) nextTile.setRoadStatus(roadStatus, civInfo)
+        }
+        if (trader.getTile() != nextTile) {
+            trader.removeFromTile()
+            trader.putInTile(nextTile)
+        }
+        trader.currentMovement = 0f
+    }
+
+    private fun advanceReturningTrader(civInfo: Civilization, sourceCity: City, routes: CityTradeRoutes, trader: MapUnit) {
+        if (routes.returnPath.isEmpty()) {
+            // Back home - release the Trader for a new assignment
+            val homeTile = sourceCity.getCenterTile()
+            val homeOccupant = homeTile.militaryUnit
+            if (trader.getTile() != homeTile && (homeOccupant == null || homeOccupant == trader)) {
+                trader.removeFromTile()
+                trader.putInTile(homeTile)
+            }
+            clearRoutes(routes)
+            civInfo.addNotification(
+                "Your [Trader] has returned to [${sourceCity.name}].",
+                NotificationCategory.Trade, "TradeRoute")
+            if (civInfo.isHuman())
+                civInfo.pendingTradeRouteAssignment = true
+            return
+        }
+        stepTrader(civInfo, routes.returnPath.removeAt(0), trader)
+    }
+
+    private fun clearRoutes(routes: CityTradeRoutes) {
+        routes.travellingTraderId = -1
+        routes.travelDestination = ""
+        routes.travelPath.clear()
+        routes.traderReturningHome = false
+        routes.returnPath.clear()
     }
 
     /** Advances the duration of all active routes of [civInfo] by one turn (called each turn end).
@@ -158,7 +227,8 @@ object TradeRouteFunctions {
         return null
     }
 
-    private fun activateRouteOnArrival(civ: Civilization, sourceCity: City, destinationCity: City, trader: MapUnit) {        if (destinationCity.civ == civ) {
+    private fun activateRouteOnArrival(civ: Civilization, sourceCity: City, destinationCity: City, trader: MapUnit) {
+        if (destinationCity.civ == civ) {
             // Domestic route
             sourceCity.tradeRoutes.domesticRouteTo = destinationCity.name
             sourceCity.tradeRoutes.domesticRouteTurns = Constants.tradeRouteDuration
@@ -172,6 +242,13 @@ object TradeRouteFunctions {
                 "Established an international trade route from [${sourceCity.name}] to [${destinationCity.name}]!",
                 NotificationCategory.Trade, "TradeRoute")
         }
-        trader.destroy()
+        // The Trader turns around and walks back home instead of being consumed
+        val routes = sourceCity.tradeRoutes
+        val backPath = destinationCity.getRoadPath(sourceCity)
+            ?: getFallbackPath(destinationCity.getCenterTile(), sourceCity.getCenterTile())
+        routes.returnPath.clear()
+        if (backPath != null)
+            routes.returnPath.addAll(backPath.drop(1).map { it.position })
+        routes.traderReturningHome = true
     }
 }

@@ -5,6 +5,7 @@ import com.unciv.Constants
 import com.unciv.logic.battle.TargetHelper
 import com.unciv.logic.civilization.managers.ReligionManager
 import com.unciv.logic.civilization.managers.ReligionState
+import com.unciv.logic.trade.TradeRouteFunctions
 import com.unciv.models.Counter
 import com.unciv.models.ruleset.BeliefType
 import com.unciv.ui.components.extensions.disable
@@ -22,6 +23,7 @@ import com.unciv.ui.screens.pickerscreens.CivicPickerScreen
 import com.unciv.ui.screens.pickerscreens.TechPickerScreen
 import com.unciv.ui.screens.pickerscreens.GovernmentPickerScreen
 import com.unciv.ui.screens.worldscreen.WorldScreen
+import com.unciv.ui.screens.worldscreen.unit.actions.openTradeRouteDestinationChooser
 import com.unciv.utils.Concurrency
 import com.unciv.utils.launchOnGLThread
 import yairm210.purity.annotations.Readonly
@@ -155,6 +157,17 @@ enum class NextTurnAction(protected val text: String, val color: Color) {
             worldScreen.canMoveAutomatedUnits()
         override fun action(worldScreen: WorldScreen) =
             moveAutomatedUnits(worldScreen)
+    },
+    PickTradeDestination("Choose trade destination", Color.GOLD) {
+        override fun isChoice(worldScreen: WorldScreen) =
+            worldScreen.viewingCiv.pendingTradeRouteAssignment
+                    && TradeRouteFunctions.getIdleTraderAwaitingAssignment(worldScreen.viewingCiv) != null
+        override fun action(worldScreen: WorldScreen) {
+            val traderInfo = TradeRouteFunctions.getIdleTraderAwaitingAssignment(worldScreen.viewingCiv) ?: return
+            val (trader, sourceCity) = traderInfo
+            worldScreen.viewingCiv.pendingTradeRouteAssignment = false
+            openTradeRouteDestinationChooser(sourceCity, trader)
+        }
     },
     NextTurn("Next turn", Color.WHITE) {
         override fun isChoice(worldScreen: WorldScreen) =

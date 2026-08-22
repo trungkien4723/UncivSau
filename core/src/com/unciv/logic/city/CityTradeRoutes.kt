@@ -1,7 +1,6 @@
 package com.unciv.logic.city
 
 import com.unciv.logic.IsPartOfGameInfoSerialization
-import com.unciv.logic.city.City
 import com.unciv.logic.map.HexCoord
 import yairm210.purity.annotations.Readonly
 
@@ -20,6 +19,11 @@ class CityTradeRoutes : IsPartOfGameInfoSerialization {
     var travelDestination: String = ""
     val travelPath = ArrayList<HexCoord>()
 
+    // After arriving, the Trader turns around and walks back home; when it arrives the player is
+    // asked to choose a new destination.
+    var traderReturningHome: Boolean = false
+    val returnPath = ArrayList<HexCoord>()
+
     fun clone(): CityTradeRoutes {
         val toReturn = CityTradeRoutes()
         toReturn.domesticRouteTo = domesticRouteTo
@@ -28,6 +32,8 @@ class CityTradeRoutes : IsPartOfGameInfoSerialization {
         toReturn.travellingTraderId = travellingTraderId
         toReturn.travelDestination = travelDestination
         toReturn.travelPath.addAll(travelPath)
+        toReturn.traderReturningHome = traderReturningHome
+        toReturn.returnPath.addAll(returnPath)
         return toReturn
     }
 

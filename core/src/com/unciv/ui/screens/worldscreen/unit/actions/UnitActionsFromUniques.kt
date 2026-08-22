@@ -707,7 +707,9 @@ internal fun getBuildDistrictActions(unit: MapUnit, tile: Tile) = sequence {
      * destination from a chooser (Civ VI style), and the route is established along the way.
      */
     internal fun getCreateTradeRouteActions(unit: MapUnit, tile: Tile): Sequence<UnitAction> {
-        if (unit.name != "Trader") return emptySequence()
+        if (!TradeRouteFunctions.isTrader(unit)) return emptySequence()
+        // A committed Trader walks its route automatically - no new assignment until it returns home
+        if (TradeRouteFunctions.isCommittedTrader(unit)) return emptySequence()
         // A Trader starts its route from the city it currently stands in
         val sourceCity = tile.getCity() ?: return emptySequence()
         if (sourceCity.civ != unit.civ) return emptySequence()
@@ -717,29 +719,7 @@ internal fun getBuildDistrictActions(unit: MapUnit, tile: Tile) = sequence {
         val useFrequency = 70f
         return sequenceOf(UnitAction(UnitActionType.CreateTradeRoute, useFrequency,
             action = {
-                // Civ VI: choose the destination city like a spy chooses its target city
-                val destinations = TradeRouteFunctions.getTradeRouteDestinations(sourceCity)
-                val worldScreen = GUI.getWorldScreen()
-                val popup = Popup(worldScreen, Popup.Scrollability.WithoutButtons)
-                popup.add("Choose a destination city for the trade route from [${sourceCity.name}]".toLabel()).row()
-                if (destinations.isEmpty()) {
-                    popup.add("No destinations within trade route range".toLabel()).row()
-                } else {
-                    for (destination in destinations) {
-                        val label = if (destination.civ == unit.civ)
-                            "[${destination.name}] (domestic)"
-                        else "[${destination.name}] ([${destination.civ.civName}])"
-                        popup.add(label.toTextButton().apply {
-                            onClick {
-                                TradeRouteFunctions.startTradeRoute(unit.civ, sourceCity, destination, unit)
-                                GUI.setUpdateWorldOnNextRender()
-                                popup.close()
-                            }
-                        }).row()
-                    }
-                }
-                popup.addCloseButton()
-                popup.open()
+                openTradeRouteDestinationChooser(sourceCity, unit)
             }.takeIf { unit.hasMovement() }
         ))
     }
@@ -759,4 +739,34 @@ internal fun getBuildDistrictActions(unit: MapUnit, tile: Tile) = sequence {
             }.takeIf { unit.hasMovement() }
         ))
     }
+}
+
+/**
+ * Opens the Civ VI-style destination chooser for a [trader] starting a route from [sourceCity].
+ * Once the player picks a city, the Trader walks there automatically over several turns - it is
+ * fully automated from this point on and cannot be controlled manually.
+ */
+internal fun openTradeRouteDestinationChooser(sourceCity: City, trader: MapUnit) {
+    val worldScreen = GUI.getWorldScreen() ?: return
+    val destinations = TradeRouteFunctions.getTradeRouteDestinations(sourceCity)
+    val popup = Popup(worldScreen, Popup.Scrollability.WithoutButtons)
+    popup.add("Choose a destination city for the trade route from [${sourceCity.name}]".toLabel()).row()
+    if (destinations.isEmpty()) {
+        popup.add("No destinations within trade route range".toLabel()).row()
+    } else {
+        for (destination in destinations) {
+            val label = if (destination.civ == trader.civ)
+                "[${destination.name}] (domestic)"
+            else "[${destination.name}] ([${destination.civ.civName}])"
+            popup.add(label.toTextButton().apply {
+                onClick {
+                    TradeRouteFunctions.startTradeRoute(trader.civ, sourceCity, destination, trader)
+                    GUI.setUpdateWorldOnNextRender()
+                    popup.close()
+                }
+            }).row()
+        }
+    }
+    popup.addCloseButton()
+    popup.open()
 }

@@ -4,8 +4,8 @@
         "unitType": "Civilian",
         "cost": 50,
         "uniques": [
-            "Can instantly construct a [{All} {non-[Great]} {non-[Road]} {non-[Railroad]} {non-[Remove Road]} {non-[Remove Railroad]}] improvement <[3] times> <after which this unit is consumed> <for all movement>",
-            "Can build [All] improvements on tiles",
+            "Can instantly construct a [{All} {non-[Great]} {non-[Road]} {non-[Railroad]} {non-[Remove Road]} {non-[Remove Railroad]} {non-[Fort]}] improvement <[3] times> <after which this unit is consumed> <for all movement>",
+            "Can build [{All} {non-[Fort]}] improvements on tiles",
             "May travel on Water tiles without embarking <after discovering [Shipbuilding]>",
             "May create improvements on water resources",
             "Cannot enter ocean tiles",
@@ -1184,7 +1184,8 @@
         "requiredTech": "Iron Working",
         "uniqueTo": "Rome",
         "uniques": [
-            "1Build Charges"
+            "Can instantly construct a [Fort] improvement <[1] times> <for all movement>",
+            "Can build [Fort] improvements on tiles"
         ],
         "movement": 2,
         "replaces": "Swordsman",
@@ -2062,7 +2063,10 @@
         "cost": 85,
         "requiredTech": "Military Engineering",
         "uniques": [
-            "Can instantly construct a [All Road] improvement <[2] times> <for all movement>"
+            "Can instantly construct a [All Road] improvement <[2] times> <for all movement>",
+            "Can instantly construct a [Fort] improvement <[2] times> <for all movement>",
+            "Can build [All Road] improvements on tiles",
+            "Can build [Fort] improvements on tiles"
         ]
     },
     {

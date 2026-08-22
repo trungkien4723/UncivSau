@@ -20,6 +20,7 @@ import com.unciv.logic.multiplayer.MultiplayerGameUpdated
 import com.unciv.logic.multiplayer.storage.FileStorageRateLimitReached
 import com.unciv.logic.multiplayer.storage.MultiplayerAuthException
 import com.unciv.logic.trade.TradeEvaluation
+import com.unciv.logic.trade.TradeRouteFunctions
 import com.unciv.models.TutorialTrigger
 import com.unciv.models.metadata.GameSetupInfo
 import com.unciv.models.ruleset.Event
@@ -67,6 +68,7 @@ import com.unciv.ui.screens.worldscreen.topbar.WorldScreenTopBar
 import com.unciv.ui.screens.worldscreen.unit.AutoPlay
 import com.unciv.ui.screens.worldscreen.unit.UnitTable
 import com.unciv.ui.screens.worldscreen.unit.actions.UnitActionsTable
+import com.unciv.ui.screens.worldscreen.unit.actions.openTradeRouteDestinationChooser
 import com.unciv.ui.screens.worldscreen.worldmap.WorldMapHolder
 import com.unciv.ui.screens.worldscreen.worldmap.WorldMapTileUpdater.updateTiles
 import com.unciv.utils.Concurrency
@@ -448,6 +450,16 @@ class WorldScreen(
                     game.pushScreen(DedicationPickerScreen(viewingCiv) { dedicationName ->
                         viewingCiv.goldenAges.selectDedication(dedicationName)
                     })
+                }
+                viewingCiv.pendingTradeRouteAssignment -> {
+                    // Civ VI: a newly built (or returned) Trader asks for its destination
+                    viewingCiv.pendingTradeRouteAssignment = false
+                    val traderInfo = TradeRouteFunctions.getIdleTraderAwaitingAssignment(viewingCiv)
+                    if (traderInfo != null) {
+                        val (trader, sourceCity) = traderInfo
+                        mapHolder.setCenterPosition(sourceCity.location, immediately = false, selectUnit = true)
+                        openTradeRouteDestinationChooser(sourceCity, trader)
+                    }
                 }
                 viewingCiv.popupAlerts.any() -> AlertPopup(this, viewingCiv.popupAlerts.first())
                 viewingCiv.tradeRequests.isNotEmpty() -> {

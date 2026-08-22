@@ -544,6 +544,10 @@ class CityConstructions : IsPartOfGameInfoSerialization {
             unit = construction.construct(this, null)
                 ?: return false // unable to place unit
 
+            // Civ VI: a newly constructed Trader immediately asks for its trade destination
+            if (construction.hasUnique(UniqueType.Civ6EstablishesTradeRoute) && city.civ.isHuman())
+                city.civ.pendingTradeRouteAssignment = true
+
             /* check if it's true that we should load saved promotion for the unitType,
                Then check if the player want to rebuild the unit the saved promotion,
                and do a null check.

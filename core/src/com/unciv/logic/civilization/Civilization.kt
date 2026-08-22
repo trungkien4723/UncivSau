@@ -304,6 +304,11 @@ class Civilization : IsPartOfGameInfoSerialization {
 
     var hasMovedAutomatedUnits = false
 
+    /** Civ VI: set when a Trader needs its destination chosen - on construction and again
+     *  whenever a Trader finishes its route (returns home). Cleared by WorldScreen when
+     *  the destination chooser is shown. */
+    var pendingTradeRouteAssignment = false
+
     @Transient
     var hasLongCountDisplayUnique = false
 
@@ -399,6 +404,7 @@ class Civilization : IsPartOfGameInfoSerialization {
         toReturn.totalFaithForContests = totalFaithForContests
         toReturn.attacksSinceTurnStart = attacksSinceTurnStart.copy()
         toReturn.hasMovedAutomatedUnits = hasMovedAutomatedUnits
+        toReturn.pendingTradeRouteAssignment = pendingTradeRouteAssignment
         toReturn.statsHistory = statsHistory.clone()
         toReturn.resourceStockpiles = resourceStockpiles.clone()
         return toReturn
