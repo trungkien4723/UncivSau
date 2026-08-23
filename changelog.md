@@ -1,3 +1,7 @@
+## 4.26.2
+
+Fixed: saves referencing content removed by updates (Calendar tech, Stone Works building, removed units/policies) crashed on load - such entries are now silently dropped instead - By trungkien4723
+
 ## 4.26.1
 
 Civ 6 Victor siege immunity: Governor Victor with his Defense Logistics promotion prevents the city from being put under siege, however many enemy units surround it - By trungkien4723
