@@ -305,7 +305,53 @@ object BattleDamage {
         combatAction: CombatAction = CombatAction.Attack
     ): Float {
         val attackModifier = modifiersToFinalBonus(getAttackModifiers(attacker, defender, tileToAttackFrom, combatAction))
-        return max(1f, attacker.getAttackingStrength(defender, combatAction) * attackModifier)
+        val baseStrength = max(1f, attacker.getAttackingStrength(defender, combatAction) * attackModifier)
+        // Civ VI combat-class counter system: flat Combat Strength bonuses/penalties
+        return max(1f, baseStrength + getCombatClassAdjustment(attacker, defender, combatAction))
+    }
+
+    /** Unit-type names of the two cavalry classes (Light = Mounted, Heavy = Armored). */
+    private val CAVALRY_UNIT_TYPES = setOf("Mounted", "Armored")
+    /** Unit-type names of the melee classes. */
+    private val MELEE_UNIT_TYPES = setOf("Sword", "Gunpowder")
+
+    /**
+     * Civ VI counter system (flat Combat Strength adjustments on top of percent modifiers):
+     *
+     * - **Melee (+5) vs Anti-Cavalry** - Swordsmen break Spearman/Pikeman lines.
+     * - **Anti-Cavalry (+10) vs Light & Heavy Cavalry** - Spearmen hold against Horsemen/Knights.
+     * - **Siege (-17 Bombard Strength) attacking Land units** - siege is for walls, not field armies.
+     * - **Ranged (-17 Ranged Strength) attacking Cities/Districts** - only Siege deals full damage to walls.
+     * - **Ranged (-17 Ranged Strength) attacking Naval units**.
+     */
+    @Readonly
+    fun getCombatClassAdjustment(attacker: ICombatant, defender: ICombatant, combatAction: CombatAction): Int {
+        if (combatAction == CombatAction.TheologicalCombat) return 0
+        if (attacker !is MapUnitCombatant) return 0
+
+        val attackerType = attacker.unit.baseUnit.unitType
+        val defenderCombatant = defender as? MapUnitCombatant
+        val defenderType = defenderCombatant?.unit?.baseUnit?.unitType
+
+        // --- The counter triangle (flat bonuses) ---
+        if (attackerType in MELEE_UNIT_TYPES && defenderType == "Anti Cavalry")
+            return 5
+        if (attackerType == "Anti Cavalry" && defenderType in CAVALRY_UNIT_TYPES)
+            return 10
+
+        // --- Class penalties (-17 Strength) ---
+        if (!attacker.isRanged() || attacker.isAirUnit()) return 0
+        return when {
+            // Siege vs city walls: full Bombard Strength - this is what siege is FOR
+            defender.isCity() -> if (attackerType == "Siege") 0 else -17
+            // Siege vs field armies: heavily penalized without escort support
+            defenderCombatant != null && defenderCombatant.unit.baseUnit.isLandUnit ->
+                if (attackerType == "Siege") -17 else 0
+            // Ranged vs Naval units
+            defenderCombatant != null && defenderCombatant.unit.baseUnit.isWaterUnit ->
+                if (attackerType == "Siege") 0 else -17
+            else -> 0
+        }
     }
 
 
