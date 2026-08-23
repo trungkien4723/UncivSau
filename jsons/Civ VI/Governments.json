@@ -51,7 +51,7 @@
     {
         "name": "Theocracy",
         "influencePerTurn": 5,
-"requiredCivic": "Divine Right",
+"requiredCivic": "Reformed Church",
         "militarySlots": 1,
         "economicSlots": 1,
         "diplomaticSlots": 2,
@@ -61,7 +61,7 @@
     {
         "name": "Merchant Republic",
         "influencePerTurn": 5,
-"requiredCivic": "Mercantilism",
+"requiredCivic": "Exploration",
         "militarySlots": 1,
         "economicSlots": 3,
         "diplomaticSlots": 1,
@@ -71,7 +71,7 @@
     {
         "name": "Democracy",
         "influencePerTurn": 6,
-"requiredCivic": "The Enlightenment",
+"requiredCivic": "Ideology",
         "militarySlots": 1,
         "economicSlots": 2,
         "diplomaticSlots": 2,
@@ -81,7 +81,7 @@
     {
         "name": "Fascism",
         "influencePerTurn": 6,
-"requiredCivic": "Totalitarianism",
+"requiredCivic": "Ideology",
         "militarySlots": 4,
         "economicSlots": 1,
         "diplomaticSlots": 0,
@@ -91,7 +91,7 @@
     {
         "name": "Communism",
         "influencePerTurn": 6,
-"requiredCivic": "Class Struggle",
+"requiredCivic": "Ideology",
         "militarySlots": 2,
         "economicSlots": 2,
         "diplomaticSlots": 1,

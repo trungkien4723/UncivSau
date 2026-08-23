@@ -2382,7 +2382,7 @@
             "+25% XP for all units",
             "Units heal +15 HP/turn in city"
         ],
-        "requiredTech": "Gunpowder",
+        "requiredTech": "Military Engineering",
         "production": 2,
         "greatPersonPoints": {
             "Great General": 1
@@ -2423,7 +2423,7 @@
             "+1 Relic slot",
             "[+25]% weight to this choice for AI decisions"
         ],
-        "requiredCivic": "Political Philosophy",
+        "requiredCivic": "Theology",
         "faith": 4,
         "greatPersonPoints": {
             "Great Prophet": 1
@@ -2758,7 +2758,7 @@
         "cost": 145,
         "maintenance": 2,
         "uniques": [],
-        "requiredTech": "Astronomy",
+        "requiredCivic": "Humanism",
         "tourism": 2,
         "greatWorkSlots": {
             "Art": 3
@@ -2770,7 +2770,7 @@
         "cost": 145,
         "maintenance": 2,
         "uniques": [],
-        "requiredTech": "Writing",
+        "requiredCivic": "Humanism",
         "tourism": 2,
         "greatWorkSlots": {
             "Artifact": 3

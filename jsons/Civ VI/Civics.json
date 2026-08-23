@@ -41,6 +41,7 @@
         ],
         "quote": "'Commerce with all nations, alliance with none.' - Thomas Jefferson",
         "uniques": [
+          "+1 Trade Route capacity",
           "Inspiration: [40]% of the cost of this civic <upon discovering a [Continental Divide]>"
         ],
         "column": {
@@ -836,7 +837,7 @@
           "Globalization",
           "Social Media"
         ],
-        "quote": "'The future is already here — it's just not very evenly distributed.' - William Gibson",
+        "quote": "'The future is already here â€” it's just not very evenly distributed.' - William Gibson",
         "uniques": [
           "Can be continually researched"
         ],

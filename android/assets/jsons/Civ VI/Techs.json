@@ -646,6 +646,7 @@
           "Mathematics"
         ],
         "uniques": [
+          "[+1 Production] from [Mine] tiles [in all cities]",
           "[+100]% weight to this choice for AI decisions"
         ],
         "civilopediaText": [
@@ -1628,7 +1629,7 @@
           "Nuclear Fission",
           "Rocketry"
         ],
-        "quote": "'Our scientific power has outrun our spiritual power, we have guided missiles and misguided men.' – Martin Luther King Jr.",
+        "quote": "'Our scientific power has outrun our spiritual power, we have guided missiles and misguided men.' â€“ Martin Luther King Jr.",
         "civilopediaText": [
           {
             "text": "Precision-guided weaponry - enabled anti-air guns and machine guns with power plant infrastructure."
