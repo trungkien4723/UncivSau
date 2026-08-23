@@ -26,8 +26,9 @@ class Governor : RulesetObject() {
 
     /** Promotions by level (0-indexed). Each level is a list of uniques that unlock at that level.
      *  promotions[0] = level 1 promotion, promotions[1] = level 2, etc.
-     *  Stored as strings for JSON deserialization, converted to Unique objects via promotionObjects. */
-    var promotions: List<List<String>> = emptyList()
+     *  Must be concrete ArrayList types (not List) - Gdx Json otherwise deserializes
+     *  com.badlogic.gdx.utils.Array into it, crashing getPromotionObjects with a CCE. */
+    var promotions: ArrayList<ArrayList<String>> = ArrayList()
 
     override fun makeLink() = "Governor/$name"
 
