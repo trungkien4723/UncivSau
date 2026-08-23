@@ -1,3 +1,7 @@
+## 4.26.5
+
+Fixed: walled cities were unkillable - Walls incorrectly granted 200/400/600 city combat strength (Civ V style), making every attack deal 0 damage while cities one-shot attackers. In Civ VI walls give only extra wall HP and a Ranged Strike; their combat-strength bonus is now 0 - By trungkien4723
+
 ## 4.26.4
 
 Civ 6 barbarians: a captured Settler is converted into a Builder immediately (Barbarians never found cities), and recapturing returns it as a Builder with its charges intact - By trungkien4723
