@@ -169,29 +169,7 @@
           "columnNumber": 2
         }
       },
-      {
-        "name": "Calendar",
-        "row": 2,
-        "prerequisites": [
-          "Pottery"
-        ],
-        "uniques": [
-          "[+100]% weight to this choice for AI decisions"
-        ],
-        "quote": "'So teach us to number our days, so that we may apply our hearts unto wisdom.' - Bible Psalms 90:12",
-        "civilopediaText": [
-          {
-            "text": "Developed methods to track days, months, and years - essential for agriculture, religious observances, and administrative record-keeping."
-          },
-          {
-            "text": "Unlocks: None directly; enables other medieval technologies. (Rise and Fall / Gathering Storm)"
-          }
-        ],
-        "column": {
-          "columnNumber": 2
-        }
-      },
-      {
+            {
         "name": "Writing",
         "row": 3,
         "prerequisites": [
