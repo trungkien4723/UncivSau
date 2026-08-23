@@ -300,6 +300,10 @@ jobs:
   upload-github-release-and-post-to-discord:
     needs: [get-release-body, android-build, packr-build, build-msi]
     runs-on: ubuntu-latest
+    # Creating the Github release requires write access to Contents - the default
+    # GITHUB_TOKEN is read-only, which silently broke every auto-release.
+    permissions:
+      contents: write
     steps:
 
       - name: Download all artifacts
@@ -324,7 +328,8 @@ jobs:
           fi
 
       - name: Upload binaries to Github release
-        continue-on-error: true
+        # NOT continue-on-error: a silent failure here means the release never gets
+        # published (that's how 4.25.x/4.26.0 needed manual patching)
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
