@@ -42,6 +42,37 @@ object TradeRouteFunctions {
     @Readonly
     fun isTrader(unit: MapUnit): Boolean = unit.hasUnique(UniqueType.Civ6EstablishesTradeRoute)
 
+    /** The enemy Trader committed to a route standing on [tile], plunderrable by [civ] - Civ VI:
+     *  a military unit sharing the Trader's tile may plunder it for Gold, destroying it. */
+    @Readonly
+    fun getPlunderableEnemyTrader(civ: Civilization, tile: com.unciv.logic.map.tile.Tile): MapUnit? =
+        tile.getUnits().firstOrNull {
+            isTrader(it) && it.civ != civ && civ.isAtWarWith(it.civ) && isCommittedTrader(it)
+        }
+
+    /** Cancels everything tied to a plundered/lost [trader]: its walking assignment and, when the
+     *  route had already been activated (trader was heading home), the active route itself. */
+    fun cancelTraderRoute(trader: MapUnit) {
+        val sourceCity = trader.civ.cities.firstOrNull { it.tradeRoutes.travellingTraderId == trader.id }
+            ?: return
+        val routes = sourceCity.tradeRoutes
+        val wasReturning = routes.traderReturningHome
+        val destinationName = routes.travelDestination
+        clearRoutes(routes)
+        if (!wasReturning) return  // route never activated - nothing else to cancel
+
+        if (routes.domesticRouteTo == destinationName && routes.domesticRouteTurns > 0) {
+            routes.domesticRouteTo = ""
+            routes.domesticRouteTurns = 0
+        } else {
+            val destinationCity = trader.civ.gameInfo.getCities().firstOrNull { it.name == destinationName }
+            destinationCity?.tradeRoutes?.internationalRoutes?.remove(trader.civ.civName)
+        }
+    }
+
+    /** Civ VI: how much Gold plundering a Trader is worth. */
+    const val traderPlunderGold = 100
+
     /** Whether [unit] is a Trader committed to a route (walking out or walking home) - such Traders
      *  cannot be controlled manually by the player. */
     @Readonly

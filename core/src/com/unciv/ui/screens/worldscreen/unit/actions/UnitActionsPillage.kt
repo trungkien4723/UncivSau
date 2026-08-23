@@ -5,6 +5,7 @@ import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.logic.civilization.NotificationIcon
 import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.tile.Tile
+import com.unciv.logic.trade.TradeRouteFunctions
 import com.unciv.models.UnitAction
 import com.unciv.models.UnitActionType
 import com.unciv.models.ruleset.unique.UniqueType
@@ -18,6 +19,10 @@ import kotlin.random.Random
 object UnitActionsPillage {
 
     internal fun getPillageActions(unit: MapUnit, tile: Tile): Sequence<UnitAction> {
+        // Civ VI: a military unit sharing a tile with an enemy Trader may plunder it
+        val trader = TradeRouteFunctions.getPlunderableEnemyTrader(unit.civ, unit.currentTile)
+        if (trader != null) return sequenceOf(getPlunderTraderAction(unit, trader))
+
         val pillageAction = getPillageAction(unit, tile)
             ?: return emptySequence()
         if (pillageAction.action == null || unit.civ.isAIOrAutoPlaying())
@@ -35,6 +40,36 @@ object UnitActionsPillage {
             }.open()
         })
     }
+
+    /** Civ VI: plunder an enemy Trader standing on the same tile - destroys it, cancels its
+     *  route and grants Gold to the plunderer. */
+    private fun getPlunderTraderAction(unit: MapUnit, trader: MapUnit): UnitAction =
+        UnitAction(
+            UnitActionType.Pillage, 65f,
+            title = "${UnitActionType.Pillage} [${trader.name}]",
+            action = {
+                val ownerCiv = trader.civ
+                TradeRouteFunctions.cancelTraderRoute(trader)
+                trader.destroy()
+                if (!unit.hasUnique(UniqueType.NoMovementToPillage, checkCivInfoUniques = true))
+                    unit.useMovementPoints(1f)
+
+                val loot = TradeRouteFunctions.traderPlunderGold
+                unit.civ.addGold(loot)
+                unit.civ.addNotification(
+                    "We have plundered [+${loot} Gold] from a [${
+                        if (ownerCiv.civName.isNotEmpty()) "Trader" else "Trader"
+                    }] of [${ownerCiv.civName}]!",
+                    unit.getTile().position, NotificationCategory.War,
+                    NotificationIcon.War, unit.baseUnit.name
+                )
+                ownerCiv.addNotification(
+                    "An enemy [${unit.baseUnit.name}] has plundered our [Trader] for [+${loot} Gold]!",
+                    unit.getTile().position, NotificationCategory.War,
+                    NotificationIcon.War, unit.baseUnit.name
+                )
+            }.takeIf { unit.hasMovement() }
+        )
 
     internal fun getPillageAction(unit: MapUnit, tile: Tile): UnitAction? {
         val improvementName = unit.currentTile.getImprovementToPillageName()

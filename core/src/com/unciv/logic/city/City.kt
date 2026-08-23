@@ -235,6 +235,13 @@ class City : IsPartOfGameInfoSerialization, INamed {
      */
     @Readonly
     fun isUnderSiege(): Boolean {
+        // Governor Victor with his Defense Logistics promotion (tier 1): the city cannot be
+        // put under siege, regardless of how many enemy units surround it (Civ VI Rise and Fall)
+        val governor = getGovernor()
+        if (governor != null && governor.name == "Victor"
+                && civ.governorManager.getGovernorPromotionLevel(this) >= 1)
+            return false
+
         val centerTile = getCenterTile()
         val owner = civ
 
