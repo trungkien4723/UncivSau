@@ -1,3 +1,8 @@
+## 4.26.6
+
+Fixed: the version shown in-game was stuck at "4.21.2" regardless of the actual release - the in-app version string is now generated from the build config on every compile - By trungkien4723
+Hardened governor promotion deserialization (potential ClassCastException when opening the governor picker) - By trungkien4723
+
 ## 4.26.5
 
 Fixed: walled cities were unkillable - Walls incorrectly granted 200/400/600 city combat strength (Civ V style), making every attack deal 0 damage while cities one-shot attackers. In Civ VI walls give only extra wall HP and a Ranged Strike; their combat-strength bonus is now 0 - By trungkien4723
