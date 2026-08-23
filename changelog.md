@@ -1,3 +1,7 @@
+## 4.26.7
+
+Added flavor descriptions to 41 buildings that previously showed no description (Monument, Granary, Water Mill, all Worship buildings, Madrasa, Amphitheater, museums, Government Plaza buildings, Water Park line and more) - By trungkien4723
+
 ## 4.26.6
 
 Fixed: the version shown in-game was stuck at "4.21.2" regardless of the actual release - the in-app version string is now generated from the build config on every compile - By trungkien4723
