@@ -321,8 +321,9 @@ object BattleDamage {
      * - **Melee (+5) vs Anti-Cavalry** - Swordsmen break Spearman/Pikeman lines.
      * - **Anti-Cavalry (+10) vs Light & Heavy Cavalry** - Spearmen hold against Horsemen/Knights.
      * - **Siege (-17 Bombard Strength) attacking Land units** - siege is for walls, not field armies.
-     * - **Ranged (-17 Ranged Strength) attacking Cities/Districts** - only Siege deals full damage to walls.
-     * - **Ranged (-17 Ranged Strength) attacking Naval units**.
+     *
+     * Ranged units attack cities and naval targets at full strength (as in Civ VI) - the
+     * earlier -17 penalties here made early ranged units useless against walls.
      */
     @Readonly
     fun getCombatClassAdjustment(attacker: ICombatant, defender: ICombatant, combatAction: CombatAction): Int {
@@ -342,14 +343,10 @@ object BattleDamage {
         // --- Class penalties (-17 Strength) ---
         if (!attacker.isRanged() || attacker.isAirUnit()) return 0
         return when {
-            // Siege vs city walls: full Bombard Strength - this is what siege is FOR
-            defender.isCity() -> if (attackerType == "Siege") 0 else -17
-            // Siege vs field armies: heavily penalized without escort support
+            // Siege attacking field armies is heavily penalized without escort support -
+            // siege is FOR breaking walls, so vs cities it fights at full Bombard Strength
             defenderCombatant != null && defenderCombatant.unit.baseUnit.isLandUnit ->
                 if (attackerType == "Siege") -17 else 0
-            // Ranged vs Naval units
-            defenderCombatant != null && defenderCombatant.unit.baseUnit.isWaterUnit ->
-                if (attackerType == "Siege") 0 else -17
             else -> 0
         }
     }
