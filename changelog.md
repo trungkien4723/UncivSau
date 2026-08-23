@@ -1,3 +1,9 @@
+## 4.26.0
+
+Civ 6 Traders fully automated: a newly built Trader immediately asks for its destination, then walks there 1 tile per turn paving roads - it cannot be controlled manually; on arrival the route activates and the Trader turns around and walks home, then asks for a new assignment again - By trungkien4723
+Civ 6 Builder improvements audit: added Ski Resort, Offshore Wind Farm, Outback Station (Australia), Rock-Hewn Church (Ethiopia), Mission (Spain), Open-Air Museum (Sweden), Nubian Pyramid (Nubia) and Pa (Maori); removed Civ V leftovers (Academy, Citadel, Landmark, Manufactory, Customs house, Holy site, guilds, Moai, Wood) and non-Civ VI entries (Research Station, Hydroelectric Dam, Biosphere, Canal/Dam improvements) - By trungkien4723
+Improvement unlocks updated to Civ VI: Lumber mill Machinery, Plantation Irrigation, Oil well Combustion, Offshore Platform Plastics, Wind/Solar Farm Predictive Systems, Chateau Humanism, Sphinx Craftsmanship, Seaside Resort Radio; Solar renamed Solar Farm - By trungkien4723
+
 ## 4.25.2
 
 Fixed: Crash (NPE) when viewing city-states from old saves (e.g. 4.21.2) on WorldScreen - `cityStateType` now falls back to first available type instead of `!!` - By trungkien4723
