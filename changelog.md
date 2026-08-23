@@ -1,3 +1,7 @@
+## 4.26.4
+
+Civ 6 barbarians: a captured Settler is converted into a Builder immediately (Barbarians never found cities), and recapturing returns it as a Builder with its charges intact - By trungkien4723
+
 ## 4.26.3
 
 Fixed: ranged attacks against cities dealt almost no damage - the -17 ranged penalty vs cities/naval was removed (only Siege keeps its -17 vs land units), matching Civ VI - By trungkien4723
