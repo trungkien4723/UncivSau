@@ -1,3 +1,9 @@
+## 4.26.3
+
+Fixed: ranged attacks against cities dealt almost no damage - the -17 ranged penalty vs cities/naval was removed (only Siege keeps its -17 vs land units), matching Civ VI - By trungkien4723
+Civ 6 unit upgrade chains completed for every combat class; added Heavy Chariot, Skirmisher, Ranger, Spec Ops and Missile Cruiser; renamed Trireme->Galley and Galleass->Quadrireme; removed leftover Civilization V units - By trungkien4723
+Android releases are now properly signed (previous APKs could not install) - By trungkien4723
+
 ## 4.26.2
 
 Fixed: saves referencing content removed by updates (Calendar tech, Stone Works building, removed units/policies) crashed on load - such entries are now silently dropped instead - By trungkien4723
