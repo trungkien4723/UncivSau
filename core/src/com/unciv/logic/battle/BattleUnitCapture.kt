@@ -182,14 +182,16 @@ object BattleUnitCapture {
     }
 
     /**
-     *  Capture wrapper that also implements the rule that non-barbarians get a Worker as replacement for a captured Settler.
+     *  Capture wrapper implementing the Civ VI rule that a captured Settler becomes a
+     *  Builder - including when Barbarians do the capturing (they never found cities).
+     *  Recapturing the unit therefore returns it as a Builder, with its charges intact.
      *  @return position the captured unit is in afterwards - can rarely be a different tile if the unit is no longer allowed where it originated.
      *          Returns `null` if there is no Worker replacement for a Settler in the ruleset or placeUnitNearTile couldn't place it.
      *  @see MapUnit.capturedBy
      */
     fun captureOrConvertToWorker(capturedUnit: MapUnit, capturingCiv: Civilization): HexCoord? {
-        // Captured settlers are converted to workers unless captured by barbarians (so they can be returned later).
-        if (!capturedUnit.hasUnique(UniqueType.FoundCity, GameContext.IgnoreConditionals) || capturingCiv.isBarbarian) {
+        // Non-settlers are simply captured as-is
+        if (!capturedUnit.hasUnique(UniqueType.FoundCity, GameContext.IgnoreConditionals)) {
             capturedUnit.capturedBy(capturingCiv)
             return capturedUnit.currentTile.position // if capturedBy has moved the unit, this is updated
         }
