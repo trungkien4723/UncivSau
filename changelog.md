@@ -1,3 +1,10 @@
+## 4.26.1
+
+Civ 6 Victor siege immunity: Governor Victor with his Defense Logistics promotion prevents the city from being put under siege, however many enemy units surround it - By trungkien4723
+New broken-heart banner icon for cities that are Under Siege (replaces the red placeholder) - By trungkien4723
+Civ 6 Trader plunder: a military unit sharing a tile with an enemy Trader can plunder it - the Trader is destroyed, its trade route is cancelled and the plunderer gains 100 Gold - By trungkien4723
+CI: releases now publish automatically to Github (fixed silent upload failure) - By trungkien4723
+
 ## 4.26.0
 
 Civ 6 Traders fully automated: a newly built Trader immediately asks for its destination, then walks there 1 tile per turn paving roads - it cannot be controlled manually; on arrival the route activates and the Trader turns around and walks home, then asks for a new assignment again - By trungkien4723
