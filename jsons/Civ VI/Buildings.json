@@ -2209,7 +2209,10 @@
             "[+25]% weight to this choice for AI decisions"
         ],
         "requiredTech": "Writing",
-        "culture": 2
+        "culture": 2,
+        "civilopediaText": [
+            { "text": "Civ VI starting building. Provides Culture, expanding your borders and speeding Civic research." }
+    ],
     },
     {
         "name": "Granary",
@@ -2220,7 +2223,10 @@
         ],
         "requiredTech": "Pottery",
         "food": 2,
-        "housing": 1
+        "housing": 1,
+        "civilopediaText": [
+            { "text": "Civ VI food building. Keeps your city growing with extra Food and Housing." }
+    ],
     },
     {
         "name": "Water Mill",
@@ -2232,21 +2238,30 @@
         "requiredTech": "Wheel",
         "food": 2,
         "production": 1,
-        "housing": 1
+        "housing": 1,
+        "civilopediaText": [
+            { "text": "Civ VI early Food and Production building; must be built next to a River." }
+    ],
     },
     {
         "name": "Flood Barrier",
         "cost": 40,
         "maintenance": 1,
         "uniques": [],
-        "requiredTech": "Predictive Systems"
+        "requiredTech": "Predictive Systems",
+        "civilopediaText": [
+            { "text": "Civ VI late-game structure protecting low-lying coastal tiles from flooding." }
+    ],
     },
     {
         "name": "Palgum",
         "cost": 40,
         "maintenance": 0,
         "uniques": [],
-        "requiredTech": "Wheel"
+        "requiredTech": "Wheel",
+        "civilopediaText": [
+            { "text": "Babylonian unique building. Early Production boost for cities on Rivers." }
+    ],
     },
     {
         "name": "Ancient Walls",
@@ -2288,7 +2303,10 @@
         "maintenance": 2,
         "uniques": [],
         "requiredTech": "Sanitation",
-        "housing": 2
+        "housing": 2,
+        "civilopediaText": [
+            { "text": "Civ VI Industrial-era Housing building." }
+    ],
     },
     {
         "name": "Renaissance Walls",
@@ -2377,7 +2395,10 @@
         "cost": 165,
         "maintenance": 2,
         "uniques": [],
-        "requiredTech": "Military Science"
+        "requiredTech": "Military Science",
+        "civilopediaText": [
+            { "text": "Civ VI Encampment building; enables training of modern land military units." }
+    ],
     },
     {
         "name": "Shrine",
@@ -2442,7 +2463,10 @@
         "cost": 95,
         "maintenance": 0,
         "uniques": [],
-        "requiredCivic": "Theology"
+        "requiredCivic": "Theology",
+        "civilopediaText": [
+            { "text": "Worship building: a Religion slot and Faith output for cities following this religion." }
+    ],
     },
     {
         "name": "Gurdwara",
@@ -2450,7 +2474,10 @@
         "cost": 95,
         "maintenance": 0,
         "uniques": [],
-        "requiredCivic": "Theology"
+        "requiredCivic": "Theology",
+        "civilopediaText": [
+            { "text": "Worship building: Food-oriented Faith building for this religion." }
+    ],
     },
     {
         "name": "Meeting House",
@@ -2458,7 +2485,10 @@
         "cost": 95,
         "maintenance": 0,
         "uniques": [],
-        "requiredCivic": "Theology"
+        "requiredCivic": "Theology",
+        "civilopediaText": [
+            { "text": "Worship building: Production-oriented Faith building for this religion." }
+    ],
     },
     {
         "name": "Mosque",
@@ -2466,7 +2496,10 @@
         "cost": 95,
         "maintenance": 0,
         "uniques": [],
-        "requiredCivic": "Theology"
+        "requiredCivic": "Theology",
+        "civilopediaText": [
+            { "text": "Worship building: extra Spread Religion charges for this religion." }
+    ],
     },
     {
         "name": "Pagoda",
@@ -2474,7 +2507,10 @@
         "cost": 95,
         "maintenance": 0,
         "uniques": [],
-        "requiredCivic": "Theology"
+        "requiredCivic": "Theology",
+        "civilopediaText": [
+            { "text": "Worship building: Population and Amenities for this religion." }
+    ],
     },
     {
         "name": "Synagogue",
@@ -2482,7 +2518,10 @@
         "cost": 95,
         "maintenance": 0,
         "uniques": [],
-        "requiredCivic": "Theology"
+        "requiredCivic": "Theology",
+        "civilopediaText": [
+            { "text": "Worship building: strong Faith output for this religion." }
+    ],
     },
     {
         "name": "Wat",
@@ -2490,7 +2529,10 @@
         "cost": 95,
         "maintenance": 0,
         "uniques": [],
-        "requiredTech": "Education"
+        "requiredTech": "Education",
+        "civilopediaText": [
+            { "text": "Worship building: Science and Culture for this religion (Thai temple)." }
+    ],
     },
     {
         "name": "Stupa",
@@ -2498,7 +2540,10 @@
         "cost": 95,
         "maintenance": 0,
         "uniques": [],
-        "requiredCivic": "Theology"
+        "requiredCivic": "Theology",
+        "civilopediaText": [
+            { "text": "Worship building: extra Relics for this religion." }
+    ],
     },
     {
         "name": "Dar-e Mehr",
@@ -2506,7 +2551,10 @@
         "cost": 95,
         "maintenance": 0,
         "uniques": [],
-        "requiredCivic": "Theology"
+        "requiredCivic": "Theology",
+        "civilopediaText": [
+            { "text": "Zoroastrian worship building with strong long-term Faith." }
+    ],
     },
     {
         "name": "Library",
@@ -2545,7 +2593,10 @@
         "cost": 125,
         "maintenance": 2,
         "uniques": [],
-        "requiredTech": "Education"
+        "requiredTech": "Education",
+        "civilopediaText": [
+            { "text": "Arabian unique Campus building; Science plus Faith and extra Citizen slots." }
+    ],
     },
     {
         "name": "Navigation School",
@@ -2553,7 +2604,10 @@
         "cost": 125,
         "maintenance": 2,
         "uniques": [],
-        "requiredTech": "Education"
+        "requiredTech": "Education",
+        "civilopediaText": [
+            { "text": "Portuguese unique Harbor building; boosts naval technology research." }
+    ],
     },
     {
         "name": "Research Lab",
@@ -2576,7 +2630,10 @@
         "cost": 50,
         "maintenance": 1,
         "uniques": [],
-        "requiredCivic": "Games and Recreation"
+        "requiredCivic": "Games and Recreation",
+        "civilopediaText": [
+            { "text": "Aztec unique Entertainment building; Amenities and Great General points." }
+    ],
     },
     {
         "name": "Arena",
@@ -2585,7 +2642,10 @@
         "maintenance": 1,
         "uniques": [],
         "requiredCivic": "Games and Recreation",
-        "tourism": 1
+        "tourism": 1,
+        "civilopediaText": [
+            { "text": "Civ VI Entertainment Complex building; Amenities for the city." }
+    ],
     },
     {
         "name": "Zoo",
@@ -2594,7 +2654,10 @@
         "maintenance": 2,
         "uniques": [],
         "requiredCivic": "Games and Recreation",
-        "tourism": 1
+        "tourism": 1,
+        "civilopediaText": [
+            { "text": "Civ VI Entertainment building; Amenities plus Science from Jungle tiles." }
+    ],
     },
     {
         "name": "Thermal Bath",
@@ -2602,7 +2665,10 @@
         "cost": 180,
         "maintenance": 2,
         "uniques": [],
-        "requiredCivic": "State Workforce"
+        "requiredCivic": "State Workforce",
+        "civilopediaText": [
+            { "text": "Hungarian unique bath; Amenities and Production near geothermal fissures." }
+    ],
     },
     {
         "name": "Stadium",
@@ -2611,7 +2677,10 @@
         "maintenance": 3,
         "uniques": [],
         "requiredTech": "Refrigeration",
-        "tourism": 2
+        "tourism": 2,
+        "civilopediaText": [
+            { "text": "Civ VI final Entertainment building; regional Amenities." }
+    ],
     },
     {
         "name": "Lighthouse",
@@ -2636,7 +2705,10 @@
         "cost": 145,
         "maintenance": 1,
         "uniques": [],
-        "requiredTech": "Sailing"
+        "requiredTech": "Sailing",
+        "civilopediaText": [
+            { "text": "Civ VI Harbor building line: naval Production from sea resources." }
+    ],
     },
     {
         "name": "Seaport",
@@ -2644,7 +2716,10 @@
         "cost": 220,
         "maintenance": 0,
         "uniques": [],
-        "requiredTech": "Astronomy"
+        "requiredTech": "Astronomy",
+        "civilopediaText": [
+            { "text": "Civ VI final Harbor building; naval unit production and Fleet purchases." }
+    ],
     },
     {
         "name": "Market",
@@ -2668,7 +2743,10 @@
         "cost": 60,
         "maintenance": 0,
         "uniques": [],
-        "requiredTech": "Currency"
+        "requiredTech": "Currency",
+        "civilopediaText": [
+            { "text": "Polish unique Market; extra Gold from Luxury resources." }
+    ],
     },
     {
         "name": "Grand Bazaar",
@@ -2725,7 +2803,10 @@
         "tourism": 1,
         "greatWorkSlots": {
             "Writing": 1
-        }
+        },
+        "civilopediaText": [
+            { "text": "Civ VI Theater Square building; Culture and Great Writer points." }
+    ],
     },
     {
         "name": "Marae",
@@ -2733,7 +2814,10 @@
         "cost": 75,
         "maintenance": 0,
         "uniques": [],
-        "requiredCivic": "Drama and Poetry"
+        "requiredCivic": "Drama and Poetry",
+        "civilopediaText": [
+            { "text": "Maori unique Amphitheater; Culture and Tourism from every terrain type." }
+    ],
     },
     {
         "name": "Art Museum",
@@ -2745,7 +2829,10 @@
         "tourism": 2,
         "greatWorkSlots": {
             "Art": 3
-        }
+        },
+        "civilopediaText": [
+            { "text": "Civ VI Theater building holding Great Works of Art." }
+    ],
     },
     {
         "name": "Archaeological Museum",
@@ -2757,7 +2844,10 @@
         "tourism": 2,
         "greatWorkSlots": {
             "Artifact": 3
-        }
+        },
+        "civilopediaText": [
+            { "text": "Civ VI Museum holding Artifacts dug up by Archaeologists." }
+    ],
     },
     {
         "name": "Broadcast Center",
@@ -2986,7 +3076,10 @@
         "cost": 75,
         "maintenance": 0,
         "uniques": [],
-        "requiredCivic": "Conservation"
+        "requiredCivic": "Conservation",
+        "civilopediaText": [
+            { "text": "Civ VI Preserve building: Faith and Culture from untouched tiles." }
+    ],
     },
     {
         "name": "Sanctuary",
@@ -2994,7 +3087,10 @@
         "cost": 220,
         "maintenance": 0,
         "uniques": [],
-        "requiredCivic": "Conservation"
+        "requiredCivic": "Conservation",
+        "civilopediaText": [
+            { "text": "Civ VI final Preserve building: stronger yields for high-Appeal tiles." }
+    ],
     },
     {
         "name": "Consulate",
@@ -3002,7 +3098,10 @@
         "cost": 75,
         "maintenance": 1,
         "uniques": [],
-        "requiredCivic": "Diplomatic Service"
+        "requiredCivic": "Diplomatic Service",
+        "civilopediaText": [
+            { "text": "Civ VI Government Plaza building; City-State oriented benefits." }
+    ],
     },
     {
         "name": "Chancery",
@@ -3010,7 +3109,10 @@
         "cost": 145,
         "maintenance": 2,
         "uniques": [],
-        "requiredCivic": "Diplomatic Service"
+        "requiredCivic": "Diplomatic Service",
+        "civilopediaText": [
+            { "text": "Civ VI Government Plaza building; Espionage and Diplomacy benefits." }
+    ],
     },
     {
         "name": "Workshop",
@@ -3048,7 +3150,10 @@
         "cost": 145,
         "maintenance": 2,
         "uniques": [],
-        "requiredTech": "Industrialization"
+        "requiredTech": "Industrialization",
+        "civilopediaText": [
+            { "text": "Japanese unique Factory; regional Production and Culture." }
+    ],
     },
     {
         "name": "Coal Power Plant",
@@ -3110,7 +3215,10 @@
         "maintenance": 1,
         "uniques": [],
         "requiredCivic": "Games and Recreation",
-        "tourism": 1
+        "tourism": 1,
+        "civilopediaText": [
+            { "text": "Civ VI Water Park building; Amenities and Housing." }
+    ],
     },
     {
         "name": "Aquarium",
@@ -3119,7 +3227,10 @@
         "maintenance": 2,
         "uniques": [],
         "requiredCivic": "Games and Recreation",
-        "tourism": 2
+        "tourism": 2,
+        "civilopediaText": [
+            { "text": "Civ VI Water Park building; Science from sea resources." }
+    ],
     },
     {
         "name": "Aquatics Center",
@@ -3128,7 +3239,10 @@
         "maintenance": 3,
         "uniques": [],
         "requiredCivic": "Games and Recreation",
-        "tourism": 2
+        "tourism": 2,
+        "civilopediaText": [
+            { "text": "Civ VI final Water Park building; Amenities on water maps." }
+    ],
     },
     {
         "name": "Hangar",
@@ -3136,7 +3250,10 @@
         "cost": 160,
         "maintenance": 1,
         "uniques": [],
-        "requiredTech": "Flight"
+        "requiredTech": "Flight",
+        "civilopediaText": [
+            { "text": "Civ VI Aerodrome building; enables training of modern air units." }
+    ],
     },
     {
         "name": "Aircraft Factory",
@@ -3173,7 +3290,10 @@
         "cost": 190,
         "maintenance": 1,
         "uniques": [],
-        "requiredTech": "Sanitation"
+        "requiredTech": "Sanitation",
+        "civilopediaText": [
+            { "text": "Civ VI Sewer-line building; additional Food and Housing." }
+    ],
     },
     {
         "name": "Shopping Mall",
@@ -3182,7 +3302,10 @@
         "maintenance": 1,
         "uniques": [],
         "requiredCivic": "Capitalism",
-        "tourism": 2
+        "tourism": 2,
+        "civilopediaText": [
+            { "text": "Civ VI modern Gold and Tourism building." }
+    ],
     },
     {
         "name": "Hydroelectric Dam",
