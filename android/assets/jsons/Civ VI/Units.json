@@ -489,7 +489,7 @@
         "strength": 34,
         "cost": 225,
         "requiredTech": "Military Science",
-        "upgradesTo": "Landship",
+        "upgradesTo": "Helicopter",
         "uniques": [
             "Can move after attacking",
             "No defensive terrain bonus",
@@ -1109,7 +1109,7 @@
         "uniqueTo": "Gaul",
         "movement": 2,
         "replaces": "Warrior",
-        "upgradesTo": "Swordsman"
+        "upgradesTo": "Swordsman",
     },
     {
         "name": "Eagle Warrior",
@@ -1142,7 +1142,7 @@
         "uniqueTo": "Persia",
         "movement": 2,
         "replaces": "Swordsman",
-        "upgradesTo": "Man-At-Arms"
+        "upgradesTo": "Man-At-Arms",
     },
     {
         "name": "Ngao Mbeba",
@@ -1212,7 +1212,7 @@
         "uniqueTo": "Japan",
         "movement": 2,
         "replaces": "Swordsman",
-        "upgradesTo": "Man-At-Arms"
+        "upgradesTo": "Musketman",
     },
     {
         "name": "Khevsur",
@@ -1245,7 +1245,7 @@
         "uniqueTo": "Spain",
         "movement": 2,
         "replaces": "Musketman",
-        "upgradesTo": "Line Infantry"
+        "upgradesTo": "Line Infantry",
     },
     {
         "name": "Janissary",
@@ -1278,10 +1278,10 @@
         "uniqueTo": "England",
         "movement": 2,
         "replaces": "Line Infantry",
-        "upgradesTo": "Infantry"
+        "upgradesTo": "Infantry",
     },
     {
-        "name": "Garde Impériale",
+        "name": "Garde ImpÃ©riale",
         "unitType": "Sword",
         "strength": 70,
         "cost": 180,
@@ -1311,7 +1311,7 @@
         "uniqueTo": "Australia",
         "movement": 2,
         "replaces": "Infantry",
-        "upgradesTo": "Mechanized Infantry"
+        "upgradesTo": "Mechanized Infantry",
     },
     {
         "name": "Mechanized Infantry",
@@ -1353,7 +1353,7 @@
         "uniqueTo": "Greece",
         "movement": 2,
         "replaces": "Spearman",
-        "upgradesTo": "Pikeman"
+        "upgradesTo": "Pikeman",
     },
     {
         "name": "Pikeman",
@@ -1375,7 +1375,7 @@
         "uniqueTo": "Zulu",
         "movement": 2,
         "replaces": "Pikeman",
-        "upgradesTo": "Pike and Shot"
+        "upgradesTo": "Pike and Shot",
     },
     {
         "name": "Pike and Shot",
@@ -1397,7 +1397,7 @@
         "uniqueTo": "Sweden",
         "movement": 2,
         "replaces": "Pike and Shot",
-        "upgradesTo": "Infantry"
+        "upgradesTo": "AT Crew",
     },
     {
         "name": "AT Crew",
@@ -1454,10 +1454,10 @@
         "uniqueTo": "Maya",
         "movement": 2,
         "replaces": "Slinger",
-        "upgradesTo": "Archer"
+        "upgradesTo": "Modern AT",
     },
     {
-        "name": "Pítati Archer",
+        "name": "PÃ­tati Archer",
         "unitType": "Archery",
         "strength": 17,
         "rangedStrength": 30,
@@ -1489,7 +1489,7 @@
         "cost": 45,
         "requiredTech": "Wheel",
         "uniqueTo": "Egypt",
-        "replaces": "Chariot Archer",
+        "replaces": "Heavy Chariot",
         "upgradesTo": "Knight"
     },
     {
@@ -1514,7 +1514,7 @@
         "uniqueTo": "China",
         "movement": 2,
         "replaces": "Crossbowman",
-        "upgradesTo": "Field Cannon"
+        "upgradesTo": "Field Cannon",
     },
     {
         "name": "Keshig",
@@ -1529,7 +1529,7 @@
         "upgradesTo": "Field Cannon"
     },
     {
-        "name": "Voi Chiến",
+        "name": "Voi Chiáº¿n",
         "unitType": "Archery",
         "movement": 3,
         "strength": 35,
@@ -1612,7 +1612,7 @@
         ],
         "movement": 2,
         "replaces": "Catapult",
-        "upgradesTo": "Trebuchet"
+        "upgradesTo": "Bombard",
     },
     {
         "name": "Bombard",
@@ -1684,7 +1684,7 @@
         ]
     },
     {
-        "name": "Malón Raider",
+        "name": "MalÃ³n Raider",
         "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 1,
@@ -1693,7 +1693,7 @@
         "requiredTech": "Military Science",
         "uniqueTo": "Mapuche",
         "replaces": "Cuirassier",
-        "upgradesTo": "Tank"
+        "upgradesTo": "Rocket Artillery",
     },
     {
         "name": "Oromo Cavalry",
@@ -1744,7 +1744,7 @@
         "upgradesTo": "Landship"
     },
     {
-        "name": "Huszár",
+        "name": "HuszÃ¡r",
         "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "movement": 5,
@@ -1817,7 +1817,7 @@
         "requiredTech": "Horseback Riding",
         "uniqueTo": "Macedon",
         "replaces": "Horseman",
-        "upgradesTo": "Knight"
+        "upgradesTo": "Knight",
     },
     {
         "name": "Varu",
@@ -1853,7 +1853,7 @@
         "requiredTech": "Stirrups",
         "uniqueTo": "Byzantium",
         "replaces": "Knight",
-        "upgradesTo": "Cavalry"
+        "upgradesTo": "Cuirassier",
     },
     {
         "name": "Mamluk",
@@ -1913,7 +1913,7 @@
         "requiredTech": "Rifling",
         "uniqueTo": "America",
         "replaces": "Cavalry",
-        "upgradesTo": "Landship"
+        "upgradesTo": "Tank",
     },
     {
         "name": "Tank",
@@ -1964,7 +1964,7 @@
         "cost": 20,
         "uniqueTo": "Cree",
         "replaces": "Scout",
-        "upgradesTo": "Skirmisher"
+        "upgradesTo": "Skirmisher",
     },
     {
         "name": "Skirmisher",
@@ -1979,7 +1979,7 @@
         ]
     },
     {
-        "name": "Warak’aq",
+        "name": "Warakâ€™aq",
         "unitType": "Recon",
         "movement": 3,
         "strength": 25,
@@ -1988,7 +1988,7 @@
         "requiredTech": "Horseback Riding",
         "uniqueTo": "Inca",
         "replaces": "Skirmisher",
-        "upgradesTo": "Ranger"
+        "upgradesTo": "Ranger",
     },
     {
         "name": "Ranger",
@@ -2012,7 +2012,7 @@
         "requiredTech": "Rifling",
         "uniqueTo": "Scotland",
         "replaces": "Ranger",
-        "upgradesTo": "Spec Ops"
+        "upgradesTo": "Spec Ops",
     },
     {
         "name": "Spec Ops",
@@ -2032,7 +2032,7 @@
         "cost": 32,
         "requiredTech": "Masonry",
         "uniques": [
-            "Ancient era support unit. When adjacent to a city, attacking melee and anti-cavalry units do full damage to the city’s Walls. Does not affect cities with Medieval or Renaissance Walls. Ineffective against Urban Defenses."
+            "Ancient era support unit. When adjacent to a city, attacking melee and anti-cavalry units do full damage to the cityâ€™s Walls. Does not affect cities with Medieval or Renaissance Walls. Ineffective against Urban Defenses."
         ],
         "movement": 2
     },
@@ -2136,7 +2136,7 @@
         "requiredTech": "Sailing",
         "uniqueTo": "Norway",
         "replaces": "Galley",
-        "upgradesTo": "Quadrireme"
+        "upgradesTo": "Caravel",
     },
     {
         "name": "Bireme",
@@ -2172,7 +2172,7 @@
             "2Build Charges"
         ],
         "replaces": "Caravel",
-        "upgradesTo": "Ironclad"
+        "upgradesTo": "Ironclad",
     },
     {
         "name": "Ironclad",
@@ -2220,7 +2220,7 @@
         "requiredTech": "Shipbuilding",
         "uniqueTo": "Byzantium",
         "replaces": "Quadrireme",
-        "upgradesTo": "Frigate"
+        "upgradesTo": "Destroyer",
     },
     {
         "name": "Frigate",
@@ -2244,10 +2244,10 @@
         "uniqueTo": "Indonesia",
         "requiredCivic": "Mercantilism",
         "replaces": "Frigate",
-        "upgradesTo": "Battleship"
+        "upgradesTo": "Battleship",
     },
     {
-        "name": "De Zeven Provinciën",
+        "name": "De Zeven ProvinciÃ«n",
         "unitType": "NavalRanged",
         "movement": 4,
         "strength": 50,
@@ -2284,7 +2284,7 @@
         ],
         "requiredCivic": "Nationalism",
         "replaces": "Battleship",
-        "upgradesTo": "Missile Cruiser"
+        "upgradesTo": "Missile Cruiser",
     },
     {
         "name": "Missile Cruiser",
@@ -2321,7 +2321,7 @@
         "uniqueTo": "England",
         "requiredCivic": "Mercantilism",
         "replaces": "Privateer",
-        "upgradesTo": "Submarine"
+        "upgradesTo": "Submarine",
     },
     {
         "name": "Barbary Corsair",
@@ -2431,7 +2431,7 @@
         "requiredTech": "Advanced Flight",
         "uniqueTo": "America",
         "replaces": "Fighter",
-        "upgradesTo": "Jet Fighter"
+        "upgradesTo": "Jet Fighter",
     },
     {
         "name": "Jet Fighter",
@@ -2447,6 +2447,7 @@
     },
     {
         "name": "Bomber",
+        "upgradesTo": "Jet Bomber",
         "unitType": "Bomber",
         "movement": 10,
         "strength": 80,
