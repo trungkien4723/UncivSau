@@ -900,6 +900,11 @@ class Tile : IsPartOfGameInfoSerialization {
     }
 
     fun setUnitTransients(unitCivTransients: Boolean) {
+        // Backward compatibility: drop units whose type was removed from the ruleset
+        if (militaryUnit != null && militaryUnit!!.name !in ruleset.units) militaryUnit = null
+        if (civilianUnit != null && civilianUnit!!.name !in ruleset.units) civilianUnit = null
+        airUnits.removeAll { it.name !in ruleset.units }
+
         for (unit in getUnits()) {
             unit.currentTile = this
             if (unitCivTransients)

@@ -583,9 +583,11 @@ class TechManager : IsPartOfGameInfoSerialization {
     private fun addTechToTransients(tech: Technology) {
         techUniques.addUniques(tech.uniqueObjects)
     }
-
     fun setTransients(civInfo: Civilization) {
         this.civInfo = civInfo
+        // Backward compatibility: drop techs that no longer exist in the ruleset
+        // (e.g. removed in an update) instead of crashing on load
+        techsResearched.removeAll { it !in getRuleset().technologies }
         researchedTechnologies.addAll(techsResearched.map { getRuleset().technologies[it]!! })
         researchedTechnologies.forEach { addTechToTransients(it) }
         updateEra()  // before updateTransientBooleans so era-based conditionals can work

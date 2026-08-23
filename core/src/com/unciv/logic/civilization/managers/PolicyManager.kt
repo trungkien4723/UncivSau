@@ -111,6 +111,8 @@ class PolicyManager : IsPartOfGameInfoSerialization {
 
     fun setTransients(civInfo: Civilization) {
         this.civInfo = civInfo
+        // Backward compatibility: drop policies that no longer exist in the ruleset
+        adoptedPolicies.removeAll { it !in getRulesetPolicies() }
         for (policyName in adoptedPolicies) addPolicyToTransients(
             getPolicyByName(policyName)
         )

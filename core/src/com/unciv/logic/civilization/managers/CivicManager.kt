@@ -325,6 +325,8 @@ class CivicManager : IsPartOfGameInfoSerialization {
 
     fun setTransients(civInfo: Civilization) {
         this.civInfo = civInfo
+        // Backward compatibility: drop civics that no longer exist in the ruleset
+        civicsResearched.removeAll { it !in getRuleset().civics }
         researchedCivics.addAll(civicsResearched.map { getRuleset().civics[it]!! })
         researchedCivics.forEach { addCivicToTransients(it) }
     }

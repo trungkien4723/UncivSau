@@ -334,9 +334,20 @@ class CityConstructions : IsPartOfGameInfoSerialization {
     //region state changing functions
 
     fun setTransients() {
+        val ruleset = city.getRuleset()
+        // Backward compatibility: purge constructions removed from the ruleset
+        // (e.g. Stone Works) so old saves don't crash on load
+        builtBuildings.removeAll { it !in ruleset.buildings }
+        constructionQueue.removeAll {
+            it !in ruleset.buildings && it !in ruleset.units
+                    && it !in PerpetualConstruction.perpetualConstructionsMap.keys
+        }
+        inProgressConstructions.keys.removeAll {
+            it !in ruleset.buildings && it !in ruleset.units
+                    && it !in PerpetualConstruction.perpetualConstructionsMap.keys
+        }
         builtBuildingObjects = ArrayList(builtBuildings.map {
-            city.getRuleset().buildings[it]
-                    ?: throw java.lang.Exception("Building $it is not found!")
+            ruleset.buildings[it]!!
         })
         updateUniques(true)
     }
