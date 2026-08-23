@@ -195,3 +195,6 @@ detekt/reports.html
 /buildSrc/.kotlin/errors/*
 /buildSrc/.kotlin/sessions/*
 /.claude/
+
+# Release signing key - never commit!
+keystore/
