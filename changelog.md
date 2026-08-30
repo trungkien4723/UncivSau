@@ -1,3 +1,7 @@
+## 4.26.12
+
+City-State envoys now fully manual - disabled automatic Government Influence → Envoy trickle (1 Influence/turn → 1 Envoy per 20 Influence). Envoys are now only earned via entering new Era, first-meet bonus, quests, wonders/uniques with GainEnvoy, then must be manually sent via City-State screen to compete for Suzerain/Alliance - By trungkien4723 (Requested: city state tự động nhận điểm envoy)
+
 ## 4.26.11
 
 P0/P1 Full Wiki Sync: synced every Civ VI unit to full wiki stats (cost, movement, strength, ranged, range, required Resource/Tech) across all eras — 54 base units + 14 unique units (Varu, War-Cart, Hoplite, Legion, Cossack, etc.) now match civfanatics wiki; Heavy Chariot already fixed in 4.26.9 now correctly has no resource requirement per wiki - By trungkien4723 (Requested: kiểm tra cả các unit từ mọi era, full wiki cost, lần lượt P0, P1)

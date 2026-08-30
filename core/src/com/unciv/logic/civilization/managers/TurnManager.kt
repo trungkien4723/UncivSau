@@ -33,17 +33,19 @@ class TurnManager(val civInfo: Civilization) {
         civInfo.threatManager.clear()
         if (civInfo.isMajorCiv() && civInfo.isAlive()) {
             civInfo.statsHistory.recordRankingStats(civInfo)
-            // Civ VI: the government generates Influence points each turn; a full meter
-            // converts into an assignable Envoy. "Gain Envoys per turn" uniques add directly.
-            val government = civInfo.government.getGovernment()
-            val influenceGain = government?.influencePerTurn ?: 1
-            civInfo.accumulatedInfluence += influenceGain
-            while (civInfo.accumulatedInfluence >= Constants.influencePerEnvoy) {
-                civInfo.accumulatedInfluence -= Constants.influencePerEnvoy
-                civInfo.unassignedEnvoys += 1
-                civInfo.addNotification("Your government's Influence has earned you [1] Envoy!",
-                    NotificationCategory.Diplomacy, NotificationIcon.Diplomacy)
-            }
+            // Manual envoy system: Government influence trickle disabled per user request
+            // (city-state was auto-receiving envoys). Envoys now only from:
+            // - entering new era (TechManager), first meet bonus, quests, wonders/uniques with GainEnvoy.
+            // To re-enable, uncomment the government influence block below.
+            // val government = civInfo.government.getGovernment()
+            // val influenceGain = government?.influencePerTurn ?: 1
+            // civInfo.accumulatedInfluence += influenceGain
+            // while (civInfo.accumulatedInfluence >= Constants.influencePerEnvoy) {
+            //     civInfo.accumulatedInfluence -= Constants.influencePerEnvoy
+            //     civInfo.unassignedEnvoys += 1
+            //     civInfo.addNotification("Your government's Influence has earned you [1] Envoy!",
+            //         NotificationCategory.Diplomacy, NotificationIcon.Diplomacy)
+            // }
             civInfo.cityStateFunctions.gainEnvoysPerTurn()
         }
 
