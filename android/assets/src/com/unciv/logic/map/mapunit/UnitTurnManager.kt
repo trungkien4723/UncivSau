@@ -23,11 +23,11 @@ class UnitTurnManager(val unit: MapUnit) {
         }
 
         if (!unit.hasUnitMovedThisTurn()
-            && (unit.isFortified() || (unit.isGuarding() && unit.canFortify()))
+            && (unit.isFortified() || unit.isAlerted() || (unit.isGuarding() && unit.canFortify()))
             && unit.turnsFortified < 2) {
             unit.turnsFortified++
         }
-        if (!unit.isFortified() && !unit.isGuarding())
+        if (!unit.isFortified() && !unit.isGuarding() && !unit.isAlerted())
             unit.turnsFortified = 0
 
         if ((!unit.hasUnitMovedThisTurn() && unit.attacksThisTurn == 0) || unit.hasUnique(UniqueType.HealsEvenAfterAction))
@@ -152,6 +152,24 @@ class UnitTurnManager(val unit: MapUnit) {
                     it.militaryUnit != null && it in unit.civ.viewableTiles && it.militaryUnit!!.civ.isAtWarWith(unit.civ)
                 }
         )  unit.action = null
+
+        // Wake alerted units if enemy comes into sight (Civ5 Alert)
+        if (unit.isAlerted() && unit.currentTile.getTilesInDistance(unit.getVisibilityRange()).any {
+                    it.militaryUnit != null && it in unit.civ.viewableTiles && it.militaryUnit!!.civ.isAtWarWith(unit.civ)
+                }
+        ) {
+            unit.action = null
+            if (unit.civ.isHuman()) {
+                unit.civ.addNotification("[${unit.displayName()}] woke from Alert - enemy spotted!",
+                    MapUnitAction(unit), NotificationCategory.War, unit.name)
+                // Auto camera: if world screen is showing this civ, center on the alerted unit
+                try {
+                    if (com.unciv.GUI.isWorldLoaded() && com.unciv.GUI.getWorldScreen().viewingCiv == unit.civ) {
+                        com.unciv.GUI.getWorldScreen().mapHolder.setCenterPosition(unit.currentTile.position, immediately = false, selectUnit = true, forceSelectUnit = unit)
+                    }
+                } catch (_: Exception) {}
+            }
+        }
 
         if (unit.action != null && unit.health > 99 && unit.isActionUntilHealed()) {
             unit.action = null // wake up when healed

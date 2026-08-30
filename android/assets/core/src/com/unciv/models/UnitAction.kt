@@ -161,6 +161,8 @@ enum class UnitActionType(
         { ImageGetter.getUnitActionPortrait("Fortify") }, UncivSound.Fortify),
     FortifyUntilHealed("Fortify until healed",
         { ImageGetter.getUnitActionPortrait("FortifyUntilHealed") }, UncivSound.Fortify),
+    Alert("Alert",
+        { ImageGetter.getUnitActionPortrait("Fortify") }, UncivSound.Fortify),
     Guard("Guard",
         { ImageGetter.getUnitActionPortrait("Guard") }, UncivSound.Fortify, defaultPage = 0),
     Explore("Explore",

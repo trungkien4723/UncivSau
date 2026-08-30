@@ -7,7 +7,9 @@ import com.unciv.logic.automation.unit.UnitAutomation
 import com.unciv.logic.battle.BattleUnitCapture
 import com.unciv.logic.battle.MapUnitCombatant
 import com.unciv.logic.city.City
+import com.unciv.GUI
 import com.unciv.logic.civilization.Civilization
+import com.unciv.logic.civilization.PlayerType
 import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.logic.civilization.NotificationIcon
 import com.unciv.logic.map.HexCoord
@@ -268,10 +270,12 @@ class MapUnit : IsPartOfGameInfoSerialization {
 
     @Readonly fun isFortified() = action?.startsWith(UnitActionType.Fortify.value) == true
     @Readonly fun isGuarding() = action?.equals(UnitActionType.Guard.value) == true
+    @Readonly fun isAlerted() = action == UnitActionType.Alert.value
+    @Readonly fun canAlert() = canFortify()
     @Readonly fun isFortifyingUntilHealed() = isFortified() && isActionUntilHealed()
     @Readonly
     fun getFortificationTurns(): Int {
-        if (!(isFortified() || isGuarding())) return 0
+        if (!(isFortified() || isGuarding() || isAlerted())) return 0
         return turnsFortified
     }
 
@@ -307,7 +311,7 @@ class MapUnit : IsPartOfGameInfoSerialization {
                 !tile.isMarkedForCreatesOneImprovement()
         ) return false
         if (includeOtherEscortUnit && isEscorting() && !getOtherEscortUnit()!!.isIdle(false)) return false
-        return !(isFortified() || isExploring() || isSleeping() || isAutomated() || isMoving() || isGuarding())
+        return !(isFortified() || isExploring() || isSleeping() || isAutomated() || isMoving() || isGuarding() || isAlerted())
     }
 
     @Readonly fun getUniques(): Sequence<Unique> = tempUniquesMap.getAllUniques()
@@ -843,6 +847,10 @@ class MapUnit : IsPartOfGameInfoSerialization {
         action = "Fortify until healed"
     }
 
+    fun alert() {
+        action = UnitActionType.Alert.value
+    }
+
     fun fortifyIfCan() {
         if (canFortify()) fortify()
     }
@@ -899,6 +907,13 @@ class MapUnit : IsPartOfGameInfoSerialization {
         health -= amount
         if (health > 100) health = 100 // For cheating modders, e.g. negative tile damage
         if (health < 0) health = 0
+        if (amount > 0 && health > 0 && ::currentTile.isInitialized && civ.playerType == PlayerType.Human) {
+            try {
+                if (com.unciv.GUI.isWorldLoaded() && com.unciv.GUI.getWorldScreen().viewingCiv == civ) {
+                    com.unciv.GUI.getWorldScreen().mapHolder.setCenterPosition(currentTile.position, immediately = false, selectUnit = true, forceSelectUnit = this)
+                }
+            } catch (_: Exception) {}
+        }
         if (health == 0) destroy()
         else cache.updateUniques()
     }

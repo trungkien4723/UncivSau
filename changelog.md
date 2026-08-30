@@ -1,3 +1,8 @@
+## 4.26.10
+
+Added **Alert** action for military units - works like Fortify but automatically wakes and centers camera when an enemy enters sight range - By trungkien4723 (Requested: units only had Fortify, no Alert)
+Added **auto camera on attack** - when your unit is attacked, camera automatically pans to that unit so you know where the battle happened - By trungkien4723 (Requested: camera chuyển đến khi bị tấn công)
+
 ## 4.26.9
 
 Fixed: Heavy Chariot now has 2 Movement (was 1), cost 65 Production and ignores Zone of Control per Civ VI — previously only 1 movement made it unusable as Ancient Era heavy cavalry - By trungkien4723 (Reported: Heavy Chariot 1 move bug)

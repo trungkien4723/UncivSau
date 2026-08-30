@@ -50,7 +50,7 @@ open class UnitOverviewTabHelpers {
         val workerText by lazy { getWorkerActionText(unit) }
         return when {
             unit.action == null -> workerText
-            unit.isFortified() -> UnitActionType.Fortify.value
+            unit.isFortified() || unit.isAlerted() -> UnitActionType.Fortify.value
             unit.isGuarding() -> UnitActionType.Guard.value
             unit.isMoving() -> "Moving"
             unit.isAutomated() && workerText != null -> "[$workerText] ${Fonts.automate}"

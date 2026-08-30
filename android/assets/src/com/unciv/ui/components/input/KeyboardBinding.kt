@@ -115,6 +115,8 @@ enum class KeyboardBinding(
     SleepUntilHealed(Category.UnitActions,"Sleep until healed", 'h'),
     Fortify(Category.UnitActions, 'f'),
     FortifyUntilHealed(Category.UnitActions,"Fortify until healed", 'h'),
+    Alert(Category.UnitActions, 'a'),
+    Guard(Category.UnitActions, 'g'),
     Explore(Category.UnitActions, 'x'),
     StopExploration(Category.UnitActions,"Stop exploration", 'x'),
     Promote(Category.UnitActions, 'o'),

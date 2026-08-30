@@ -164,6 +164,7 @@ object UnitActions {
 
         addSleepActions(unit, tile)
         addFortifyActions(unit)
+        addAlertActions(unit)
 
         addExplorationActions(unit)
 
@@ -307,8 +308,25 @@ object UnitActions {
         ))
     }
 
+    private suspend fun SequenceScope<UnitAction>.addAlertActions(unit: MapUnit) {
+        if (unit.isAlerted()) {
+            yield(UnitAction(
+                type = UnitActionType.Alert,
+                useFrequency = 10f,
+                isCurrentAction = true,
+                title = "${"Alert".tr()} ${unit.getFortificationTurns() * 20}%"
+            ))
+            return
+        }
+        if (!unit.canAlert() || !unit.hasMovement()) return
+        yield(UnitAction(UnitActionType.Alert,
+            action = { unit.alert() },
+            useFrequency = 25f
+        ))
+    }
+
     private suspend fun SequenceScope<UnitAction>.addSleepActions(unit: MapUnit, tile: Tile) {
-        if (unit.isFortified() || unit.canFortify() || unit.isGuarding() || !unit.hasMovement()) return
+        if (unit.isFortified() || unit.canFortify() || unit.isGuarding() || unit.isAlerted() || !unit.hasMovement()) return
         if (tile.hasImprovementInProgress() && unit.canBuildImprovement(tile.getTileImprovementInProgress()!!)) return
 
         yield(UnitAction(UnitActionType.Sleep,

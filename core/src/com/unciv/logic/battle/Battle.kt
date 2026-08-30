@@ -734,7 +734,7 @@ if (!otherIsBarbarian && civ.isMajorCiv()) { // Can't get great generals from Ba
                 unit.useMovementPoints(1f)
         } else unit.currentMovement = 0f
         
-        if (unit.isFortified() || unit.isSleeping() || unit.isGuarding())
+        if (unit.isFortified() || unit.isSleeping() || unit.isGuarding() || unit.isAlerted())
             attacker.unit.action = null // but not, for instance, if it's Set Up - then it should definitely keep the action!
     }
 
