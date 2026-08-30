@@ -17,7 +17,7 @@
     {
         "name": "Settler",
         "unitType": "Civilian",
-        "cost": 106,
+        "cost": 80,
         "uniques": [
             "Founds a new city <by consuming this unit>",
             "Excess Food converted to Production when under construction",
@@ -35,7 +35,6 @@
         "uniqueTo": "Aztec",
         "movement": 2
     },
-  
     {
         "name": "Bowman",
         "replaces": "Archer",
@@ -75,7 +74,6 @@
     },
     {
         "name": "Chariot Archer",
-        "requiredResource": "Horses",
         "unitType": "Archery",
         "movement": 4,
         "strength": 6,
@@ -87,7 +85,8 @@
             "No defensive terrain bonus",
             "Rough terrain penalty",
             "Never appears as a Barbarian unit"
-        ]
+        ],
+        "requiredResource": "Horses"
     },
     {
         "name": "War Chariot",
@@ -135,7 +134,6 @@
         "movement": 2,
         "replaces": "Spearman"
     },
-    
     {
         "name": "Companion Cavalry",
         "replaces": "Horseman",
@@ -422,7 +420,9 @@
         "replaces": "Cavalry",
         "unitType": "Anti Cavalry",
         "movement": 4,
-        "promotions": ["[Hakkapeliitta] ability"],
+        "promotions": [
+            "[Hakkapeliitta] ability"
+        ],
         "strength": 25,
         "cost": 185,
         "requiredTech": "Steel",
@@ -485,9 +485,9 @@
         "name": "Cavalry",
         "requiredResource": "Horses",
         "unitType": "Light Cavalry",
-        "movement": 4,
-        "strength": 34,
-        "cost": 225,
+        "movement": 5,
+        "strength": 62,
+        "cost": 330,
         "requiredTech": "Military Science",
         "upgradesTo": "Helicopter",
         "uniques": [
@@ -934,7 +934,7 @@
     {
         "name": "Trader",
         "unitType": "Civilian",
-        "cost": 65,
+        "cost": 40,
         "requiredTech": "Currency",
         "uniques": [
             "Establishes a [Land] [Trade Route] with another city <by consuming this unit>",
@@ -994,7 +994,7 @@
             "Unbuildable",
             "Uncapturable"
         ],
-        "movement": 2
+        "movement": 4
     },
     {
         "name": "Archaeologist",
@@ -1008,7 +1008,7 @@
             "Unbuildable",
             "Uncapturable"
         ],
-        "movement": 2
+        "movement": 4
     },
     {
         "name": "Rock Band",
@@ -1095,7 +1095,7 @@
         "name": "Warrior",
         "unitType": "Sword",
         "strength": 20,
-        "cost": 20,
+        "cost": 40,
         "uniques": [
             "Weak Ancient era melee unit."
         ],
@@ -1109,13 +1109,13 @@
         "uniqueTo": "Gaul",
         "movement": 2,
         "replaces": "Warrior",
-        "upgradesTo": "Swordsman",
+        "upgradesTo": "Swordsman"
     },
     {
         "name": "Eagle Warrior",
         "unitType": "Sword",
         "strength": 28,
-        "cost": 32,
+        "cost": 65,
         "uniqueTo": "Aztec",
         "movement": 2,
         "replaces": "Warrior",
@@ -1124,13 +1124,14 @@
     {
         "name": "Swordsman",
         "unitType": "Sword",
-        "strength": 36,
-        "cost": 45,
+        "strength": 35,
+        "cost": 90,
         "requiredTech": "Iron Working",
         "uniques": [
             "Strong Classical era melee unit."
         ],
-        "movement": 2
+        "movement": 2,
+        "requiredResource": "Iron"
     },
     {
         "name": "Immortal",
@@ -1142,7 +1143,7 @@
         "uniqueTo": "Persia",
         "movement": 2,
         "replaces": "Swordsman",
-        "upgradesTo": "Man-At-Arms",
+        "upgradesTo": "Man-At-Arms"
     },
     {
         "name": "Ngao Mbeba",
@@ -1170,7 +1171,7 @@
         "name": "Legion",
         "unitType": "Sword",
         "strength": 40,
-        "cost": 55,
+        "cost": 110,
         "requiredTech": "Iron Working",
         "uniqueTo": "Rome",
         "uniques": [
@@ -1185,7 +1186,7 @@
         "name": "Berserker",
         "unitType": "Sword",
         "strength": 40,
-        "cost": 80,
+        "cost": 180,
         "requiredTech": "Military Tactics",
         "uniqueTo": "Norway",
         "movement": 2,
@@ -1206,13 +1207,13 @@
     {
         "name": "Samurai",
         "unitType": "Sword",
-        "strength": 48,
-        "cost": 80,
+        "strength": 45,
+        "cost": 180,
         "requiredTech": "Military Tactics",
         "uniqueTo": "Japan",
         "movement": 2,
         "replaces": "Swordsman",
-        "upgradesTo": "Musketman",
+        "upgradesTo": "Musketman"
     },
     {
         "name": "Khevsur",
@@ -1229,23 +1230,24 @@
         "name": "Musketman",
         "unitType": "Sword",
         "strength": 55,
-        "cost": 110,
+        "cost": 240,
         "requiredTech": "Gunpowder",
         "uniques": [
             "Renaissance era melee unit."
         ],
-        "movement": 2
+        "movement": 2,
+        "requiredResource": "Niter"
     },
     {
         "name": "Conquistador",
         "unitType": "Sword",
-        "strength": 58,
-        "cost": 125,
+        "strength": 55,
+        "cost": 250,
         "requiredTech": "Gunpowder",
         "uniqueTo": "Spain",
         "movement": 2,
         "replaces": "Musketman",
-        "upgradesTo": "Line Infantry",
+        "upgradesTo": "Line Infantry"
     },
     {
         "name": "Janissary",
@@ -1272,13 +1274,13 @@
     {
         "name": "Redcoat",
         "unitType": "Sword",
-        "strength": 70,
-        "cost": 180,
+        "strength": 65,
+        "cost": 340,
         "requiredTech": "Military Science",
         "uniqueTo": "England",
         "movement": 2,
         "replaces": "Line Infantry",
-        "upgradesTo": "Infantry",
+        "upgradesTo": "Infantry"
     },
     {
         "name": "Garde ImpÃ©riale",
@@ -1294,9 +1296,9 @@
     {
         "name": "Infantry",
         "unitType": "Sword",
-        "movement": 3,
-        "strength": 80,
-        "cost": 215,
+        "movement": 2,
+        "strength": 70,
+        "cost": 430,
         "requiredTech": "Replaceable Parts",
         "uniques": [
             "Modern era melee unit."
@@ -1311,14 +1313,14 @@
         "uniqueTo": "Australia",
         "movement": 2,
         "replaces": "Infantry",
-        "upgradesTo": "Mechanized Infantry",
+        "upgradesTo": "Mechanized Infantry"
     },
     {
         "name": "Mechanized Infantry",
         "unitType": "Sword",
         "movement": 3,
         "strength": 90,
-        "cost": 325,
+        "cost": 660,
         "requiredTech": "Satellites",
         "uniques": [
             "Information era melee unit."
@@ -1337,7 +1339,7 @@
         "name": "Spearman",
         "unitType": "Anti Cavalry",
         "strength": 25,
-        "cost": 32,
+        "cost": 65,
         "requiredTech": "Bronze Working",
         "uniques": [
             "Ancient era anti-cavalry unit."
@@ -1347,19 +1349,19 @@
     {
         "name": "Hoplite",
         "unitType": "Anti Cavalry",
-        "strength": 28,
-        "cost": 32,
+        "strength": 25,
+        "cost": 65,
         "requiredTech": "Bronze Working",
         "uniqueTo": "Greece",
         "movement": 2,
         "replaces": "Spearman",
-        "upgradesTo": "Pikeman",
+        "upgradesTo": "Pikeman"
     },
     {
         "name": "Pikeman",
         "unitType": "Anti Cavalry",
-        "strength": 45,
-        "cost": 100,
+        "strength": 41,
+        "cost": 200,
         "requiredTech": "Military Tactics",
         "uniques": [
             "Medieval era anti-cavalry unit."
@@ -1375,7 +1377,7 @@
         "uniqueTo": "Zulu",
         "movement": 2,
         "replaces": "Pikeman",
-        "upgradesTo": "Pike and Shot",
+        "upgradesTo": "Pike and Shot"
     },
     {
         "name": "Pike and Shot",
@@ -1397,13 +1399,13 @@
         "uniqueTo": "Sweden",
         "movement": 2,
         "replaces": "Pike and Shot",
-        "upgradesTo": "AT Crew",
+        "upgradesTo": "AT Crew"
     },
     {
         "name": "AT Crew",
         "unitType": "Anti Cavalry",
-        "strength": 80,
-        "cost": 200,
+        "strength": 70,
+        "cost": 400,
         "requiredTech": "Chemistry",
         "uniques": [
             "Modern era counter to cavalry class units."
@@ -1413,9 +1415,9 @@
     {
         "name": "Modern AT",
         "unitType": "Anti Cavalry",
-        "movement": 3,
-        "strength": 90,
-        "cost": 290,
+        "movement": 2,
+        "strength": 80,
+        "cost": 580,
         "requiredTech": "Composites",
         "uniques": [
             "Information era counter to cavalry class units."
@@ -1426,23 +1428,25 @@
         "unitType": "Archery",
         "strength": 5,
         "rangedStrength": 15,
-        "cost": 17,
+        "cost": 35,
         "uniques": [
             "Weak Ancient era ranged unit. Better on attack than defense."
         ],
-        "movement": 2
+        "movement": 2,
+        "range": 1
     },
     {
         "name": "Archer",
         "unitType": "Archery",
         "strength": 15,
         "rangedStrength": 25,
-        "cost": 30,
+        "cost": 50,
         "requiredTech": "Archery",
         "uniques": [
             "First Ancient era ranged unit with aRange of 2."
         ],
-        "movement": 2
+        "movement": 2,
+        "range": 2
     },
     {
         "name": "Hul'che",
@@ -1454,7 +1458,7 @@
         "uniqueTo": "Maya",
         "movement": 2,
         "replaces": "Slinger",
-        "upgradesTo": "Modern AT",
+        "upgradesTo": "Modern AT"
     },
     {
         "name": "PÃ­tati Archer",
@@ -1497,24 +1501,26 @@
         "unitType": "Archery",
         "strength": 30,
         "rangedStrength": 40,
-        "cost": 90,
+        "cost": 180,
         "requiredTech": "Machinery",
         "uniques": [
             "Medieval era ranged unit."
         ],
-        "movement": 2
+        "movement": 2,
+        "range": 2
     },
     {
         "name": "Crouching Tiger",
         "unitType": "Archery",
         "strength": 30,
-        "rangedStrength": 7,
-        "cost": 85,
+        "rangedStrength": 50,
+        "cost": 160,
         "requiredTech": "Machinery",
         "uniqueTo": "China",
         "movement": 2,
         "replaces": "Crossbowman",
         "upgradesTo": "Field Cannon",
+        "range": 1
     },
     {
         "name": "Keshig",
@@ -1557,36 +1563,39 @@
         "unitType": "Archery",
         "strength": 50,
         "rangedStrength": 60,
-        "cost": 165,
+        "cost": 330,
         "requiredTech": "Ballistics",
         "uniques": [
             "Industrial era ranged unit."
         ],
-        "movement": 2
+        "movement": 2,
+        "range": 2
     },
     {
         "name": "Machine Gun",
         "unitType": "Archery",
-        "movement": 3,
-        "strength": 70,
-        "rangedStrength": 85,
-        "cost": 270,
+        "movement": 2,
+        "strength": 65,
+        "rangedStrength": 75,
+        "cost": 540,
         "requiredTech": "Advanced Ballistics",
         "uniques": [
             "Atomic era ranged unit."
-        ]
+        ],
+        "range": 1
     },
     {
         "name": "Catapult",
         "unitType": "Siege",
-        "strength": 25,
-        "cost": 60,
+        "strength": 23,
+        "cost": 120,
         "requiredTech": "Engineering",
         "uniques": [
             "35Bombard Strength",
             "Classical era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
         ],
-        "movement": 2
+        "movement": 2,
+        "range": 2
     },
     {
         "name": "Trebuchet",
@@ -1612,43 +1621,47 @@
         ],
         "movement": 2,
         "replaces": "Catapult",
-        "upgradesTo": "Bombard",
+        "upgradesTo": "Bombard"
     },
     {
         "name": "Bombard",
         "unitType": "Siege",
-        "strength": 45,
-        "cost": 140,
+        "strength": 43,
+        "cost": 280,
         "requiredTech": "Metal Casting",
         "uniques": [
             "55Bombard Strength",
             "Renaissance era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
         ],
-        "movement": 2
+        "movement": 2,
+        "range": 2,
+        "requiredResource": "Niter"
     },
     {
         "name": "Artillery",
         "unitType": "Siege",
-        "strength": 60,
-        "cost": 215,
+        "strength": 58,
+        "cost": 430,
         "requiredTech": "Steel",
         "uniques": [
             "80Bombard Strength",
             "Modern era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
         ],
-        "movement": 2
+        "movement": 2,
+        "range": 2
     },
     {
         "name": "Rocket Artillery",
         "unitType": "Siege",
-        "movement": 3,
-        "strength": 70,
-        "cost": 340,
+        "movement": 2,
+        "strength": 78,
+        "cost": 680,
         "requiredTech": "Guidance Systems",
         "uniques": [
             "100Bombard Strength",
             "Information era siege unit, ideal for attacking cities. Cannot move and attack on the same turn unless they've earned the Expert Crew promotion."
-        ]
+        ],
+        "range": 3
     },
     {
         "name": "Light Cavalry",
@@ -1664,8 +1677,8 @@
         "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "movement": 4,
-        "strength": 36,
-        "cost": 40,
+        "strength": 35,
+        "cost": 80,
         "requiredTech": "Horseback Riding",
         "uniques": [
             "Fast-moving Classical era light cavalry unit."
@@ -1693,7 +1706,7 @@
         "requiredTech": "Military Science",
         "uniqueTo": "Mapuche",
         "replaces": "Cuirassier",
-        "upgradesTo": "Rocket Artillery",
+        "upgradesTo": "Rocket Artillery"
     },
     {
         "name": "Oromo Cavalry",
@@ -1721,11 +1734,10 @@
     },
     {
         "name": "Cossack",
-        "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "movement": 5,
-        "strength": 62,
-        "cost": 170,
+        "strength": 67,
+        "cost": 340,
         "requiredTech": "Military Science",
         "uniqueTo": "Russia",
         "replaces": "Cavalry",
@@ -1770,9 +1782,9 @@
     {
         "name": "Helicopter",
         "unitType": "Light Cavalry",
-        "movement": 5,
-        "strength": 86,
-        "cost": 300,
+        "movement": 4,
+        "strength": 82,
+        "cost": 600,
         "requiredTech": "Synthetic Materials",
         "uniques": [
             "Fast-moving Atomic era light cavalry unit."
@@ -1789,24 +1801,24 @@
     },
     {
         "name": "War-Cart",
-        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 3,
-        "strength": 20,
-        "cost": 20,
+        "strength": 30,
+        "cost": 55,
         "uniqueTo": "Sumeria",
         "replaces": "Warrior",
         "upgradesTo": "Swordsman"
     },
     {
         "name": "Heavy Chariot",
-        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 2,
         "strength": 28,
         "cost": 65,
         "requiredTech": "Wheel",
-        "uniques": ["Ignores Zone of Control"]
+        "uniques": [
+            "Ignores Zone of Control"
+        ]
     },
     {
         "name": "Hetairoi",
@@ -1818,27 +1830,26 @@
         "requiredTech": "Horseback Riding",
         "uniqueTo": "Macedon",
         "replaces": "Horseman",
-        "upgradesTo": "Knight",
+        "upgradesTo": "Knight"
     },
     {
         "name": "Varu",
-        "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "strength": 40,
-        "cost": 60,
+        "cost": 120,
         "requiredTech": "Horseback Riding",
         "uniqueTo": "India",
-        "movement": 4,
+        "movement": 2,
         "replaces": "Horseman",
         "upgradesTo": "Knight"
     },
     {
         "name": "Knight",
-        "requiredResource": "Horses",
+        "requiredResource": "Iron",
         "unitType": "Heavy Cavalry",
         "movement": 4,
-        "strength": 50,
-        "cost": 100,
+        "strength": 48,
+        "cost": 180,
         "requiredTech": "Stirrups",
         "uniques": [
             "Hard-hitting, Medieval era heavy cavalry unit."
@@ -1854,15 +1865,14 @@
         "requiredTech": "Stirrups",
         "uniqueTo": "Byzantium",
         "replaces": "Knight",
-        "upgradesTo": "Cuirassier",
+        "upgradesTo": "Cuirassier"
     },
     {
         "name": "Mamluk",
-        "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
         "movement": 4,
-        "strength": 53,
-        "cost": 110,
+        "strength": 48,
+        "cost": 180,
         "requiredTech": "Stirrups",
         "uniqueTo": "Arabia",
         "replaces": "Knight",
@@ -1906,37 +1916,38 @@
     },
     {
         "name": "Rough Rider",
-        "requiredResource": "Horses",
         "unitType": "Light Cavalry",
         "movement": 5,
-        "strength": 64,
-        "cost": 192,
+        "strength": 67,
+        "cost": 385,
         "requiredTech": "Rifling",
         "uniqueTo": "America",
         "replaces": "Cavalry",
-        "upgradesTo": "Tank",
+        "upgradesTo": "Tank"
     },
     {
         "name": "Tank",
         "unitType": "Armored",
         "movement": 4,
-        "strength": 85,
-        "cost": 240,
+        "strength": 80,
+        "cost": 480,
         "requiredTech": "Combustion",
         "uniques": [
             "Fast-moving Modern era heavy cavalry unit that ignores zone of control."
-        ]
+        ],
+        "requiredResource": "Oil"
     },
     {
         "name": "Modern Armor",
         "unitType": "Armored",
         "movement": 4,
-        "strength": 95,
-        "cost": 340,
+        "strength": 90,
+        "cost": 680,
         "requiredTech": "Composites",
         "uniques": [
             "Information era heavy cavalry unit that is fast and strong."
-        ]
+        ],
+        "requiredResource": "Uranium"
     },
     {
         "name": "Recon",
@@ -1952,7 +1963,7 @@
         "unitType": "Recon",
         "movement": 3,
         "strength": 10,
-        "cost": 15,
+        "cost": 30,
         "uniques": [
             "Fast-moving Ancient era recon unit."
         ]
@@ -1965,7 +1976,7 @@
         "cost": 20,
         "uniqueTo": "Cree",
         "replaces": "Scout",
-        "upgradesTo": "Skirmisher",
+        "upgradesTo": "Skirmisher"
     },
     {
         "name": "Skirmisher",
@@ -1989,19 +2000,20 @@
         "requiredTech": "Horseback Riding",
         "uniqueTo": "Inca",
         "replaces": "Skirmisher",
-        "upgradesTo": "Ranger",
+        "upgradesTo": "Ranger"
     },
     {
         "name": "Ranger",
         "unitType": "Recon",
         "movement": 3,
-        "strength": 55,
-        "rangedStrength": 65,
-        "cost": 190,
+        "strength": 45,
+        "rangedStrength": 60,
+        "cost": 380,
         "requiredTech": "Rifling",
         "uniques": [
             "Fast-moving Industrial era recon unit."
-        ]
+        ],
+        "range": 1
     },
     {
         "name": "Highlander",
@@ -2013,7 +2025,7 @@
         "requiredTech": "Rifling",
         "uniqueTo": "Scotland",
         "replaces": "Ranger",
-        "upgradesTo": "Spec Ops",
+        "upgradesTo": "Spec Ops"
     },
     {
         "name": "Spec Ops",
@@ -2030,7 +2042,7 @@
     {
         "name": "Battering Ram",
         "unitType": "Support",
-        "cost": 32,
+        "cost": 65,
         "requiredTech": "Masonry",
         "uniques": [
             "Ancient era support unit. When adjacent to a city, attacking melee and anti-cavalry units do full damage to the cityâ€™s Walls. Does not affect cities with Medieval or Renaissance Walls. Ineffective against Urban Defenses."
@@ -2040,7 +2052,7 @@
     {
         "name": "Siege Tower",
         "unitType": "Support",
-        "cost": 50,
+        "cost": 100,
         "requiredTech": "Construction",
         "uniques": [
             "Medieval era support unit. When adjacent to a city, attacking melee and anti-cavalry units ignore Walls and immediately assault the city. Does not affect cities with Renaissance Walls. Ineffective against Urban Defenses."
@@ -2050,8 +2062,8 @@
     {
         "name": "Military Engineer",
         "unitType": "Support",
-        "movement": 3,
-        "cost": 85,
+        "movement": 2,
+        "cost": 170,
         "requiredTech": "Military Engineering",
         "uniques": [
             "Can instantly construct a [All Road] improvement <[2] times> <for all movement>",
@@ -2064,19 +2076,19 @@
     {
         "name": "Medic",
         "unitType": "Support",
-        "movement": 1,
-        "cost": 150,
+        "movement": 2,
+        "cost": 370,
         "requiredTech": "Sanitation"
     },
     {
         "name": "Observation Balloon",
         "unitType": "Support",
-        "cost": 120,
+        "cost": 240,
         "requiredTech": "Flight",
         "uniques": [
             "Modern era support unit. Grants +1Range to Siege class units within 1 hex."
         ],
-        "movement": 1
+        "movement": 2
     },
     {
         "name": "Anti-Air Gun",
@@ -2092,13 +2104,14 @@
     {
         "name": "Mobile SAM",
         "unitType": "Support",
-        "movement": 3,
-        "cost": 295,
+        "movement": 2,
+        "cost": 590,
         "requiredTech": "Guidance Systems",
         "uniques": [
             "110Anti-air Strength",
             "Information era anti-air support unit. Provides cover from air and nuclear attacks up to 1 hex away from the weapon."
-        ]
+        ],
+        "range": 1
     },
     {
         "name": "Drone",
@@ -2121,8 +2134,8 @@
         "name": "Galley",
         "unitType": "NavalMelee",
         "movement": 3,
-        "strength": 30,
-        "cost": 32,
+        "strength": 25,
+        "cost": 65,
         "requiredTech": "Sailing",
         "uniques": [
             "Ancient era melee naval combat unit. Can only operate on Coastal waters until Cartography is researched."
@@ -2137,7 +2150,7 @@
         "requiredTech": "Sailing",
         "uniqueTo": "Norway",
         "replaces": "Galley",
-        "upgradesTo": "Caravel",
+        "upgradesTo": "Caravel"
     },
     {
         "name": "Bireme",
@@ -2154,8 +2167,8 @@
         "name": "Caravel",
         "unitType": "NavalMelee",
         "movement": 4,
-        "strength": 55,
-        "cost": 120,
+        "strength": 50,
+        "cost": 240,
         "requiredTech": "Cartography",
         "uniques": [
             "Fast Renaissance era exploration melee naval unit."
@@ -2173,25 +2186,26 @@
             "2Build Charges"
         ],
         "replaces": "Caravel",
-        "upgradesTo": "Ironclad",
+        "upgradesTo": "Ironclad"
     },
     {
         "name": "Ironclad",
         "unitType": "NavalMelee",
         "movement": 5,
-        "strength": 70,
-        "cost": 190,
+        "strength": 60,
+        "cost": 380,
         "requiredTech": "Steam Power",
         "uniques": [
             "Powerful Industrial era armored melee naval unit."
-        ]
+        ],
+        "requiredResource": "Coal"
     },
     {
         "name": "Destroyer",
         "unitType": "NavalMelee",
-        "movement": 6,
-        "strength": 90,
-        "cost": 270,
+        "movement": 4,
+        "strength": 80,
+        "cost": 540,
         "requiredTech": "Combined Arms",
         "uniques": [
             "90Anti-air Strength",
@@ -2205,11 +2219,12 @@
         "movement": 3,
         "strength": 20,
         "rangedStrength": 25,
-        "cost": 60,
+        "cost": 120,
         "requiredTech": "Shipbuilding",
         "uniques": [
             "Classical era ranged naval unit withRange of 1. Can only operate on Coastal waters until Cartography is researched."
-        ]
+        ],
+        "range": 1
     },
     {
         "name": "Dromon",
@@ -2221,7 +2236,7 @@
         "requiredTech": "Shipbuilding",
         "uniqueTo": "Byzantium",
         "replaces": "Quadrireme",
-        "upgradesTo": "Destroyer",
+        "upgradesTo": "Destroyer"
     },
     {
         "name": "Frigate",
@@ -2229,11 +2244,12 @@
         "movement": 4,
         "strength": 45,
         "rangedStrength": 55,
-        "cost": 140,
+        "cost": 280,
         "requiredTech": "Square Rigging",
         "uniques": [
             "Renaissance era ranged naval unit withRange of 2."
-        ]
+        ],
+        "range": 2
     },
     {
         "name": "Jong",
@@ -2245,7 +2261,7 @@
         "uniqueTo": "Indonesia",
         "requiredCivic": "Mercantilism",
         "replaces": "Frigate",
-        "upgradesTo": "Battleship",
+        "upgradesTo": "Battleship"
     },
     {
         "name": "De Zeven ProvinciÃ«n",
@@ -2263,14 +2279,16 @@
         "name": "Battleship",
         "unitType": "NavalRanged",
         "movement": 5,
-        "strength": 65,
-        "rangedStrength": 75,
-        "cost": 215,
+        "strength": 60,
+        "rangedStrength": 70,
+        "cost": 430,
         "requiredTech": "Steel",
         "uniques": [
             "90Anti-air Strength",
             "Modern era naval ranged unit withRange of 3. Provides cover from air and nuclear attacks up to 1 tile away."
-        ]
+        ],
+        "range": 3,
+        "requiredResource": "Coal"
     },
     {
         "name": "Minas Geraes",
@@ -2278,7 +2296,7 @@
         "movement": 5,
         "strength": 70,
         "rangedStrength": 80,
-        "cost": 215,
+        "cost": 430,
         "uniqueTo": "Brazil",
         "uniques": [
             "95Anti-air Strength"
@@ -2286,19 +2304,21 @@
         "requiredCivic": "Nationalism",
         "replaces": "Battleship",
         "upgradesTo": "Missile Cruiser",
+        "range": 3
     },
     {
         "name": "Missile Cruiser",
         "unitType": "NavalRanged",
-        "movement": 5,
-        "strength": 75,
-        "rangedStrength": 90,
-        "cost": 340,
+        "movement": 4,
+        "strength": 70,
+        "rangedStrength": 85,
+        "cost": 680,
         "requiredTech": "Lasers",
         "uniques": [
             "110Anti-air Strength",
             "Information era ranged naval unit withRange of 4. Provides cover from air and nuclear attacks up to 1 tile away."
-        ]
+        ],
+        "range": 3
     },
     {
         "name": "Privateer",
@@ -2306,11 +2326,12 @@
         "movement": 4,
         "strength": 40,
         "rangedStrength": 50,
-        "cost": 140,
+        "cost": 280,
         "uniques": [
             "Renaissance era ranged naval unit with the ability to coastal raid.Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range."
         ],
-        "requiredCivic": "Mercantilism"
+        "requiredCivic": "Mercantilism",
+        "range": 2
     },
     {
         "name": "Sea Dog",
@@ -2322,7 +2343,7 @@
         "uniqueTo": "England",
         "requiredCivic": "Mercantilism",
         "replaces": "Privateer",
-        "upgradesTo": "Submarine",
+        "upgradesTo": "Submarine"
     },
     {
         "name": "Barbary Corsair",
@@ -2336,14 +2357,15 @@
     {
         "name": "Submarine",
         "unitType": "Naval Raider",
-        "movement": 4,
+        "movement": 3,
         "strength": 65,
         "rangedStrength": 75,
-        "cost": 240,
+        "cost": 480,
         "requiredTech": "Electricity",
         "uniques": [
             "Modern era ranged raiding naval unit. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range."
-        ]
+        ],
+        "range": 2
     },
     {
         "name": "U-Boat",
@@ -2363,22 +2385,25 @@
         "movement": 4,
         "strength": 80,
         "rangedStrength": 85,
-        "cost": 340,
+        "cost": 680,
         "requiredTech": "Telecommunications",
         "uniques": [
             "Highly advanced Information era ranged raiding naval unit that can be armed with nuclear weapons. Can only be seen by other Naval Raiders unless adjacent to it. Reveals Naval Raiders within sight range."
-        ]
+        ],
+        "range": 2,
+        "requiredResource": "Uranium"
     },
     {
         "name": "Aircraft Carrier",
         "unitType": "Aircraft Carrier",
-        "movement": 5,
-        "strength": 80,
-        "cost": 270,
+        "movement": 3,
+        "strength": 65,
+        "cost": 540,
         "requiredTech": "Combined Arms",
         "uniques": [
             "Atomic era melee naval unit that can transport air units."
-        ]
+        ],
+        "requiredResource": "Oil"
     },
     {
         "name": "Nihang",
@@ -2401,26 +2426,29 @@
     {
         "name": "Biplane",
         "unitType": "Fighter",
-        "movement": 6,
-        "strength": 75,
-        "rangedStrength": 70,
-        "cost": 215,
+        "movement": 3,
+        "strength": 60,
+        "rangedStrength": 55,
+        "cost": 430,
         "requiredTech": "Flight",
         "uniques": [
             "First air combat unit, available in the Modern era."
-        ]
+        ],
+        "range": 3
     },
     {
         "name": "Fighter",
         "unitType": "Fighter",
-        "movement": 8,
-        "strength": 95,
-        "rangedStrength": 95,
-        "cost": 260,
+        "movement": 4,
+        "strength": 80,
+        "rangedStrength": 65,
+        "cost": 540,
         "requiredTech": "Advanced Flight",
         "uniques": [
             "Atomic era Biplane upgrade."
-        ]
+        ],
+        "range": 4,
+        "requiredResource": "Aluminum"
     },
     {
         "name": "P-51 Mustang",
@@ -2432,44 +2460,50 @@
         "requiredTech": "Advanced Flight",
         "uniqueTo": "America",
         "replaces": "Fighter",
-        "upgradesTo": "Jet Fighter",
+        "upgradesTo": "Jet Fighter"
     },
     {
         "name": "Jet Fighter",
         "unitType": "Fighter",
-        "movement": 10,
-        "strength": 105,
-        "rangedStrength": 105,
-        "cost": 325,
+        "movement": 5,
+        "strength": 90,
+        "rangedStrength": 75,
+        "cost": 680,
         "requiredTech": "Lasers",
         "uniques": [
             "Information era Fighter upgrade."
-        ]
+        ],
+        "range": 5,
+        "requiredResource": "Aluminum"
     },
     {
         "name": "Bomber",
         "upgradesTo": "Jet Bomber",
         "unitType": "Bomber",
         "movement": 10,
-        "strength": 80,
-        "cost": 280,
+        "strength": 65,
+        "cost": 540,
         "requiredTech": "Advanced Flight",
         "uniques": [
             "105Bombard Strength",
             "First bomber unit, available in the Atomic era."
-        ]
+        ],
+        "range": 10,
+        "requiredResource": "Aluminum"
     },
     {
         "name": "Jet Bomber",
         "unitType": "Bomber",
         "movement": 15,
-        "strength": 85,
-        "cost": 350,
+        "strength": 78,
+        "cost": 680,
         "requiredTech": "Stealth Technology",
         "uniques": [
             "115Bombard Strength",
             "Information era Bomber upgrade."
-        ]
+        ],
+        "range": 15,
+        "requiredResource": "Aluminum"
     },
     {
         "name": "GDR",

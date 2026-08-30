@@ -1,3 +1,7 @@
+## 4.26.11
+
+P0/P1 Full Wiki Sync: synced every Civ VI unit to full wiki stats (cost, movement, strength, ranged, range, required Resource/Tech) across all eras — 54 base units + 14 unique units (Varu, War-Cart, Hoplite, Legion, Cossack, etc.) now match civfanatics wiki; Heavy Chariot already fixed in 4.26.9 now correctly has no resource requirement per wiki - By trungkien4723 (Requested: kiểm tra cả các unit từ mọi era, full wiki cost, lần lượt P0, P1)
+
 ## 4.26.10
 
 Added **Alert** action for military units - works like Fortify but automatically wakes and centers camera when an enemy enters sight range - By trungkien4723 (Requested: units only had Fortify, no Alert)
