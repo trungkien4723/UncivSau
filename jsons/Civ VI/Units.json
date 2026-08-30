@@ -1802,10 +1802,11 @@
         "name": "Heavy Chariot",
         "requiredResource": "Horses",
         "unitType": "Heavy Cavalry",
-        "movement": 1,
+        "movement": 2,
         "strength": 28,
-        "cost": 32,
-        "requiredTech": "Wheel"
+        "cost": 65,
+        "requiredTech": "Wheel",
+        "uniques": ["Ignores Zone of Control"]
     },
     {
         "name": "Hetairoi",

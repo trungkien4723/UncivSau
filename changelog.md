@@ -1,3 +1,7 @@
+## 4.26.9
+
+Fixed: Heavy Chariot now has 2 Movement (was 1), cost 65 Production and ignores Zone of Control per Civ VI — previously only 1 movement made it unusable as Ancient Era heavy cavalry - By trungkien4723 (Reported: Heavy Chariot 1 move bug)
+
 ## 4.26.8
 
 Fixed: crash on `WorldScreen` next turn (`UninitializedPropertyAccessException: lateinit property civInfo has not been initialized` in `DiplomacyManager`) when leader agenda `Friendly` filter queried relationship before all diplomacy transients were initialized - By Muse Spark (Reported: SM-X510, Civ VI ruleset, Build 1252)
