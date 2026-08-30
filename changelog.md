@@ -1,3 +1,7 @@
+## 4.26.8
+
+Fixed: crash on `WorldScreen` next turn (`UninitializedPropertyAccessException: lateinit property civInfo has not been initialized` in `DiplomacyManager`) when leader agenda `Friendly` filter queried relationship before all diplomacy transients were initialized - By Muse Spark (Reported: SM-X510, Civ VI ruleset, Build 1252)
+
 ## 4.26.7
 
 Added flavor descriptions to 41 buildings that previously showed no description (Monument, Granary, Water Mill, all Worship buildings, Madrasa, Amphitheater, museums, Government Plaza buildings, Water Park line and more) - By trungkien4723

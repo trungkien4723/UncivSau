@@ -392,6 +392,7 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
      */
     @Readonly
      fun relationshipLevel(): RelationshipLevel {
+         if (!::civInfo.isInitialized) return RelationshipLevel.Neutral
          val level = relationshipIgnoreAfraid()
          return when {
              level != RelationshipLevel.Neutral || !civInfo.isCityState -> level
@@ -403,11 +404,15 @@ class DiplomacyManager() : IsPartOfGameInfoSerialization {
      /** Same as [relationshipLevel] but omits the distinction Neutral/Afraid, which can be _much_ cheaper */
      @Readonly
      fun relationshipIgnoreAfraid(): RelationshipLevel {
+         if (!::civInfo.isInitialized) return RelationshipLevel.Neutral
          if (civInfo.isHuman() && otherCiv.isHuman())
              return RelationshipLevel.Neutral // People make their own choices.
 
-         if (civInfo.isHuman())
-             return otherCivDiplomacy().relationshipLevel()
+         if (civInfo.isHuman()) {
+             val otherDiplomacy = otherCiv.getDiplomacyManager(civInfo)
+                 ?: return RelationshipLevel.Neutral
+             return otherDiplomacy.relationshipLevel()
+         }
 
          if (civInfo.isCityState) return when {
              envoys >= suzerainThreshold -> RelationshipLevel.Ally

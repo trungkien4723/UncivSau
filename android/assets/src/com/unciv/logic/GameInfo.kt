@@ -733,6 +733,8 @@ class GameInfo : IsPartOfGameInfoSerialization, HasGameInfoSerializationVersion 
                 diplomacyManager.civInfo = civInfo
                 diplomacyManager.updateHasOpenBorders()
             }
+        }
+        for (civInfo in civilizations) {
             for (diplomacyManager in civInfo.diplomacy.values)
                 diplomacyManager.updateAgendaModifiers()
         }
