@@ -10,6 +10,7 @@ import com.unciv.logic.city.City
 import com.unciv.GUI
 import com.unciv.logic.civilization.Civilization
 import com.unciv.logic.civilization.PlayerType
+import com.unciv.models.ruleset.unique.UniqueType
 import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.logic.civilization.NotificationIcon
 import com.unciv.logic.map.HexCoord
@@ -203,14 +204,20 @@ class MapUnit : IsPartOfGameInfoSerialization {
         val baseName =
                 if (instanceName == null) "[$name]"
                 else "$instanceName ([$name])"
+        val suffix = formationSuffix()
 
-        return if (religion == null) baseName
-        else "$baseName ([${getReligionDisplayName()}])"
+        return if (religion == null) baseName + suffix
+        else "$baseName ([${getReligionDisplayName()}])$suffix"
     }
 
     fun shortDisplayName(): String {
-        return if (instanceName != null) "[$instanceName]"
-        else "[$name]"
+        return (if (instanceName != null) "[$instanceName]" else "[$name]") + formationSuffix()
+    }
+
+    @Readonly private fun formationSuffix(): String = when (formationLevel) {
+        1 -> if (baseUnit.isWaterUnit) " Fleet" else " Corps"
+        2 -> if (baseUnit.isWaterUnit) " Armada" else " Army"
+        else -> ""
     }
 
     @Readonly
@@ -311,6 +318,10 @@ class MapUnit : IsPartOfGameInfoSerialization {
                 !tile.isMarkedForCreatesOneImprovement()
         ) return false
         if (includeOtherEscortUnit && isEscorting() && !getOtherEscortUnit()!!.isIdle(false)) return false
+        // Traders awaiting assignment are not idle - they are waiting for destination chooser and should not be cycled as normal units nor moved manually
+        if (com.unciv.logic.trade.TradeRouteFunctions.isTrader(this) && !com.unciv.logic.trade.TradeRouteFunctions.isCommittedTrader(this)) {
+            if (com.unciv.logic.trade.TradeRouteFunctions.getIdleTraderAwaitingAssignment(civ)?.first == this) return false
+        }
         return !(isFortified() || isExploring() || isSleeping() || isAutomated() || isMoving() || isGuarding() || isAlerted())
     }
 
@@ -907,6 +918,7 @@ class MapUnit : IsPartOfGameInfoSerialization {
         health -= amount
         if (health > 100) health = 100 // For cheating modders, e.g. negative tile damage
         if (health < 0) health = 0
+        // Auto camera when own human unit is attacked (user request)
         if (amount > 0 && health > 0 && ::currentTile.isInitialized && civ.playerType == PlayerType.Human) {
             try {
                 if (com.unciv.GUI.isWorldLoaded() && com.unciv.GUI.getWorldScreen().viewingCiv == civ) {
@@ -914,11 +926,39 @@ class MapUnit : IsPartOfGameInfoSerialization {
                 }
             } catch (_: Exception) {}
         }
-        if (health == 0) destroy()
-        else cache.updateUniques()
+        if (health == 0) {
+            if (hasUnique(UniqueType.Immortal, checkCivInfoUniques = true) && !civ.isDefeated() && !isDestroyed) {
+                val capital = civ.getCapital()
+                if (capital != null && ::currentTile.isInitialized) {
+                    val capitalTile = capital.getCenterTile()
+                    stopEscorting()
+                    currentMovement = 0f
+                    removeFromTile()
+                    putInTile(capitalTile)
+                    health = 100
+                    cache.updateUniques()
+                    isDestroyed = false
+                    return
+                }
+            }
+            destroy()
+        } else cache.updateUniques()
     }
 
     fun destroy(destroyTransportedUnit: Boolean = true) {
+        // Zombie Defense mode: down instead of destroy for zombie units
+        if (civ.gameModes.isZombieModeActive() && name.contains("Zombie", ignoreCase = true)) {
+            if (::currentTile.isInitialized) {
+                civ.zombieManager.downZombie(this)
+            }
+            civ.units.removeUnit(this)
+            if (::currentTile.isInitialized) {
+                removeFromTile()
+            }
+            isDestroyed = true
+            return
+        }
+
         stopEscorting()
         currentMovement = 0f
         civ.units.removeUnit(this)
@@ -932,6 +972,10 @@ class MapUnit : IsPartOfGameInfoSerialization {
                 currentTile.getUnits().filter { it.isTransported && isTransportTypeOf(it) }
                         .toList() // because we're changing the list
                         .forEach { unit -> unit.destroy() }
+            }
+            // Zombie Defense mode: spawn zombie on non-zombie unit death
+            if (civ.gameModes.isZombieModeActive()) {
+                civ.zombieManager.onUnitKilled(this, currentTile)
             }
         }
 

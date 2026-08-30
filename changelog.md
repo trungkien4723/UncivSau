@@ -1,3 +1,7 @@
+## 4.26.13
+
+Trader fully automated (Civ VI): newly built or returned Trader immediately opens destination chooser and cannot be moved manually; committed and idle-awaiting-assignment Traders are blocked from manual movement and excluded from idle cycle, and advance 1 tile per turn paving roads until arrival/return - By trungkien4723 (Reported: trader không tự mở khung chọn, không tự di chuyển, có thể di chuyển như quân vô dụng)
+
 ## 4.26.12
 
 City-State envoys now fully manual - disabled automatic Government Influence → Envoy trickle (1 Influence/turn → 1 Envoy per 20 Influence). Envoys are now only earned via entering new Era, first-meet bonus, quests, wonders/uniques with GainEnvoy, then must be manually sent via City-State screen to compete for Suzerain/Alliance - By trungkien4723 (Requested: city state tự động nhận điểm envoy)

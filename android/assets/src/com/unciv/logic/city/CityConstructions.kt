@@ -13,6 +13,7 @@ import com.unciv.logic.civilization.MapUnitAction
 import com.unciv.logic.civilization.NotificationCategory
 import com.unciv.logic.civilization.NotificationIcon
 import com.unciv.logic.civilization.PopupAlert
+import com.unciv.logic.civilization.managers.GoldenAgeManager
 import com.unciv.logic.map.mapunit.MapUnit
 import com.unciv.logic.map.tile.Tile
 import com.unciv.logic.multiplayer.isUsersTurn
@@ -25,6 +26,7 @@ import com.unciv.models.ruleset.PerpetualConstruction
 import com.unciv.models.ruleset.RejectionReasonType
 import com.unciv.models.ruleset.Ruleset
 import com.unciv.models.ruleset.tile.TileImprovement
+import com.unciv.models.ruleset.tile.ResourceType
 import com.unciv.models.ruleset.unique.UniqueMap
 import com.unciv.models.ruleset.unique.UniqueTriggerActivation
 import com.unciv.models.ruleset.unique.UniqueType
@@ -332,9 +334,20 @@ class CityConstructions : IsPartOfGameInfoSerialization {
     //region state changing functions
 
     fun setTransients() {
+        val ruleset = city.getRuleset()
+        // Backward compatibility: purge constructions removed from the ruleset
+        // (e.g. Stone Works) so old saves don't crash on load
+        builtBuildings.removeAll { it !in ruleset.buildings }
+        constructionQueue.removeAll {
+            it !in ruleset.buildings && it !in ruleset.units
+                    && it !in PerpetualConstruction.perpetualConstructionsMap.keys
+        }
+        inProgressConstructions.keys.removeAll {
+            it !in ruleset.buildings && it !in ruleset.units
+                    && it !in PerpetualConstruction.perpetualConstructionsMap.keys
+        }
         builtBuildingObjects = ArrayList(builtBuildings.map {
-            city.getRuleset().buildings[it]
-                    ?: throw java.lang.Exception("Building $it is not found!")
+            ruleset.buildings[it]!!
         })
         updateUniques(true)
     }
@@ -422,6 +435,24 @@ class CityConstructions : IsPartOfGameInfoSerialization {
         }
         chooseNextConstruction()
         validateCreatesOneImprovementMarkers()
+        validateCreatesOneDistrictMarkers()
+    }
+
+    /** Remove orphaned [UniqueType.CreatesOneDistrict] markers whose queue entry was removed elsewhere. */
+    private fun validateCreatesOneDistrictMarkers() {
+        val markedTiles = city.getTiles()
+            .filter { it.districtToCreate != null }
+            .toList()
+        if (markedTiles.isEmpty()) return
+
+        val districtsInQueue = constructionQueue.asSequence()
+            .mapNotNull { getConstruction(it) as? Building }
+            .mapNotNullTo(hashSetOf()) { it.getDistrictToCreate(city.getRuleset())?.name }
+
+        for (tile in markedTiles) {
+            if (tile.districtToCreate !in districtsInQueue)
+                tile.districtToCreate = null
+        }
     }
 
     /** Remove orphaned [UniqueType.CreatesOneImprovement] markers whose queue entry was removed elsewhere. */
@@ -523,6 +554,25 @@ class CityConstructions : IsPartOfGameInfoSerialization {
         else if (construction is BaseUnit) {
             unit = construction.construct(this, null)
                 ?: return false // unable to place unit
+
+            // Civ VI: a newly constructed Trader immediately asks for its trade destination
+            if (construction.hasUnique(UniqueType.Civ6EstablishesTradeRoute)) {
+                city.civ.pendingTradeRouteAssignment = true
+                // For human, try to open chooser immediately (WorldScreen will also handle via pending flag)
+                if (city.civ.isHuman()) {
+                    try {
+                        if (com.unciv.GUI.isWorldLoaded()) {
+                            val traderInfo = com.unciv.logic.trade.TradeRouteFunctions.getIdleTraderAwaitingAssignment(city.civ)
+                            if (traderInfo != null) {
+                                val worldScreen = com.unciv.GUI.getWorldScreen()
+                                worldScreen.mapHolder.setCenterPosition(traderInfo.second.location.toHexCoord(), immediately = false, selectUnit = true, forceSelectUnit = traderInfo.first)
+                                com.unciv.ui.screens.worldscreen.unit.actions.openTradeRouteDestinationChooser(traderInfo.second, traderInfo.first)
+                                city.civ.pendingTradeRouteAssignment = false
+                            }
+                        }
+                    } catch (_: Exception) {}
+                }
+            }
 
             /* check if it's true that we should load saved promotion for the unitType,
                Then check if the player want to rebuild the unit the saved promotion,
@@ -636,6 +686,15 @@ class CityConstructions : IsPartOfGameInfoSerialization {
         // Civ VI Era Score: completing a building/wonder with the EraScore unique grants Era Score (6C)
         for (unique in building.getMatchingUniques(UniqueType.EraScore))
             civ.goldenAges.addEraScore(unique.params[0].toInt(), buildingName)
+
+        // Civ VI dedications: Free Inquiry (+2 Campus/Commercial Hub buildings),
+        // Pen, Brush, and Voice (+2 Theater Square buildings)
+        when (building.district) {
+            "Campus", "Commercial Hub" ->
+                civ.goldenAges.awardDedicationEraScore(GoldenAgeManager.DedicationEvent.ScienceOrTradeBuildingBuilt)
+            "Theater Square" ->
+                civ.goldenAges.awardDedicationEraScore(GoldenAgeManager.DedicationEvent.CultureBuildingBuilt)
+        }
         if (building.hasUnique(UniqueType.EnemyUnitsSpendExtraMovement))
             civ.cache.updateHasActiveEnemyMovementPenalty()
 
@@ -675,6 +734,19 @@ class CityConstructions : IsPartOfGameInfoSerialization {
                 city.civ.worldCongress.addDiplomaticFavor(unique.params[0].toInt())
             }
         }
+
+        // Civ VI: Governor titles from Government Plaza buildings
+        for (unique in building.uniqueObjects) {
+            if (unique.type == UniqueType.AwardsGovernorTitle) {
+                city.civ.governorManager.addGovernorTitle(unique.params[0].toInt())
+            }
+            if (unique.type == UniqueType.GovernorXP) {
+                city.civ.governorManager.addGovernorXP(city, unique.params[0].toInt())
+            }
+        }
+
+        // Civ VI: Governor XP from building completion (default 2)
+        city.civ.governorManager.addGovernorXP(city, 2)
     }
 
     fun removeBuilding(buildingName: String) {
@@ -877,20 +949,44 @@ class CityConstructions : IsPartOfGameInfoSerialization {
             && !tile.isMarkedForCreatesOneImprovement()
             && tile.improvementFunctions.canBuildImprovement(improvement, city.state)
 
+    /** Civ VI: terrain features that a district removes on completion, and the tech required
+     *  before the district may be placed over them. */
+    @Transient
+    private val featureRemovalTech = mapOf(
+        "Forest" to "Mining",
+        "Jungle" to "Iron Working",
+        "Marsh" to "Bronze Working"
+    )
+
     /** Whether [tile] may host [district] for this city. */
     @Readonly
     fun canPlaceCreateOneDistrictOn(district: District, tile: Tile): Boolean {
         val techRequired = district.requiredTech
         val civicRequired = district.requiredCivic
+        // Civ VI: revealed Luxury and Strategic resources block district placement - only Bonus
+        // resources may be crushed by a district. Unrevealed strategic resources don't block;
+        // the district collects them automatically once they are revealed.
+        val tileResource = tile.tileResource
+        if (tileResource != null && city.civ.canSeeResource(tileResource)
+                && tileResource.resourceType != ResourceType.Bonus)
+            return false
+        // Civ VI: a district can only be placed over a removable feature once its removal tech is researched
+        for (feature in tile.terrainFeatures) {
+            val removalTech = featureRemovalTech[feature] ?: continue
+            if (removalTech in city.getRuleset().technologies && !city.civ.tech.isResearched(removalTech))
+                return false
+        }
         return tile.getCity() == city
             && tile in city.tilesInRange
             && !tile.isCityCenter()
             && tile.district == null
             && tile.districtToCreate == null
             && city.getDistrictsCount() < city.getDistrictCapacity()
+            && district.name !in city.districts.values
             && (techRequired == null || city.civ.tech.isResearched(techRequired))
             && (civicRequired == null || city.civ.civics.isResearched(civicRequired))
             && (district.onlyBuildableOn.isEmpty() || tile.matchesFilter(district.onlyBuildableOn, city.civ))
+            && district.getMatchingUniques(UniqueType.Civ6Requires).all { tile.matchesFilter(it.params[0], city.civ) }
     }
 
     /**
@@ -918,8 +1014,8 @@ class CityConstructions : IsPartOfGameInfoSerialization {
     fun tryPlaceCreateOneDistrictMarker(district: District, tile: Tile): Boolean {
         if (tile.getCity() == city && tile.districtToCreate == district.name)
             return true
-        if (district.name !in city.districts.values && city.districts.values.count { it == district.name } >= 1)
-            return false // one of each district type per city
+        if (district.name in city.districts.values)
+            return false
         if (!canPlaceCreateOneDistrictOn(district, tile))
             return false
         tile.districtToCreate = district.name
@@ -1122,9 +1218,17 @@ class CityConstructions : IsPartOfGameInfoSerialization {
      */
     private fun applyCreateOneDistrict(building: Building, removeOnly: Boolean = false) {
         val district = building.getDistrictToCreate(city.getRuleset()) ?: return
-        val tileForDistrict = getTileForDistrict(district.name) ?: return
+        val tileForDistrict = getTileForDistrict(district.name)
+            ?: Automation.getTileForDistrict(city, district)
+            ?: return
         tileForDistrict.districtToCreate = null
         if (removeOnly) return
+        // Civ VI: completing a district removes terrain features and crushes any Bonus resource
+        // on the tile (without yields - harvest with a Builder first!)
+        if (tileForDistrict.terrainFeatures.isNotEmpty()) tileForDistrict.removeTerrainFeatures()
+        val tileResource = tileForDistrict.tileResource
+        if (tileResource != null && tileResource.resourceType == ResourceType.Bonus)
+            tileForDistrict.tileResource = null
         city.districts[tileForDistrict.position] = district.name
         tileForDistrict.district = district.name
         GUI.setUpdateWorldOnNextRender()
@@ -1134,6 +1238,13 @@ class CityConstructions : IsPartOfGameInfoSerialization {
         }) {
             UniqueTriggerActivation.triggerUnique(unique, city.civ, tile = tileForDistrict)
         }
+
+        // Civ VI: Governor XP from district completion
+        city.civ.governorManager.addGovernorXP(city, 3)
+
+        // Civ VI dedication (Monumentality): Era Score for building a specialty district
+        if (district.name != "City Center")
+            city.civ.goldenAges.awardDedicationEraScore(GoldenAgeManager.DedicationEvent.DistrictBuilt)
     }
 
     /** Support for [UniqueType.CreatesOneImprovement]:

@@ -470,8 +470,12 @@ class UnitMovement(val unit: MapUnit) {
 
     fun moveToTile(destination: Tile, considerZoneOfControl: Boolean = true): Unit = timeThis<Unit>("moveToTile") {
         if (destination == unit.getTile() || unit.isDestroyed) return // already here (or dead)!
-        // Civ VI: a Trader committed to a trade route is fully automated - the player cannot move it
+        // Civ VI: a Trader is fully automated - committed or idle awaiting assignment cannot be moved manually
         if (com.unciv.logic.trade.TradeRouteFunctions.isCommittedTrader(unit)) return
+        if (com.unciv.logic.trade.TradeRouteFunctions.isTrader(unit) && !com.unciv.logic.trade.TradeRouteFunctions.isCommittedTrader(unit)) {
+            val idle = com.unciv.logic.trade.TradeRouteFunctions.getIdleTraderAwaitingAssignment(unit.civ)
+            if (idle != null && idle.first == unit) return
+        }
         // Reset closestEnemy chache
         val escortUnit = if (unit.isEscorting()) unit.getOtherEscortUnit()!! else null
 

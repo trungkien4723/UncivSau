@@ -318,6 +318,10 @@ class MapUnit : IsPartOfGameInfoSerialization {
                 !tile.isMarkedForCreatesOneImprovement()
         ) return false
         if (includeOtherEscortUnit && isEscorting() && !getOtherEscortUnit()!!.isIdle(false)) return false
+        // Traders awaiting assignment are not idle - they are waiting for destination chooser and should not be cycled as normal units nor moved manually
+        if (com.unciv.logic.trade.TradeRouteFunctions.isTrader(this) && !com.unciv.logic.trade.TradeRouteFunctions.isCommittedTrader(this)) {
+            if (com.unciv.logic.trade.TradeRouteFunctions.getIdleTraderAwaitingAssignment(civ)?.first == this) return false
+        }
         return !(isFortified() || isExploring() || isSleeping() || isAutomated() || isMoving() || isGuarding() || isAlerted())
     }
 

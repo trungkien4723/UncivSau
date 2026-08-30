@@ -556,8 +556,23 @@ class CityConstructions : IsPartOfGameInfoSerialization {
                 ?: return false // unable to place unit
 
             // Civ VI: a newly constructed Trader immediately asks for its trade destination
-            if (construction.hasUnique(UniqueType.Civ6EstablishesTradeRoute) && city.civ.isHuman())
+            if (construction.hasUnique(UniqueType.Civ6EstablishesTradeRoute)) {
                 city.civ.pendingTradeRouteAssignment = true
+                // For human, try to open chooser immediately (WorldScreen will also handle via pending flag)
+                if (city.civ.isHuman()) {
+                    try {
+                        if (com.unciv.GUI.isWorldLoaded()) {
+                            val traderInfo = com.unciv.logic.trade.TradeRouteFunctions.getIdleTraderAwaitingAssignment(city.civ)
+                            if (traderInfo != null) {
+                                val worldScreen = com.unciv.GUI.getWorldScreen()
+                                worldScreen.mapHolder.setCenterPosition(traderInfo.second.location.toHexCoord(), immediately = false, selectUnit = true, forceSelectUnit = traderInfo.first)
+                                com.unciv.ui.screens.worldscreen.unit.actions.openTradeRouteDestinationChooser(traderInfo.second, traderInfo.first)
+                                city.civ.pendingTradeRouteAssignment = false
+                            }
+                        }
+                    } catch (_: Exception) {}
+                }
+            }
 
             /* check if it's true that we should load saved promotion for the unitType,
                Then check if the player want to rebuild the unit the saved promotion,
