@@ -1,0 +1,1 @@
+Fix: Resume/Load game no longer fails with misleading "incompatible version" for saves created with 4.26.13 - corrupted/incomplete autosaves now correctly show "file data seems to be corrupted" and Resume shows the real error; removed 689 accidentally committed files under android/assets/src and android/assets/core that kept packaging stale 4.21.2 assets

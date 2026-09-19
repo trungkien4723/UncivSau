@@ -1,0 +1,391 @@
+package com.unciv.logic.civilization.diplomacy
+
+import com.unciv.logic.civilization.Civilization
+import com.unciv.logic.civilization.diplomacy.DiplomacyTurnManager.nextTurn
+import com.unciv.logic.map.HexCoord
+import com.unciv.logic.map.tile.Tile
+import com.unciv.models.ruleset.BeliefType
+import com.unciv.testing.GdxTestRunner
+import com.unciv.testing.TestGame
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
+
+@RunWith(GdxTestRunner::class)
+class DiplomacyManagerTests {
+
+    private val testGame = TestGame()
+
+    fun addCiv(cityStateType: String? = null, defaultUnitTile: Tile? = null) = testGame.addCiv(cityStateType = cityStateType).apply { testGame.addUnit("Warrior", this@apply, defaultUnitTile) }
+    // We need to add units so they are not considered defeated, since defeated civs are filtered out of knowncivs
+    private val a = addCiv()
+    private val b = addCiv()
+    private val c = addCiv()
+    private val d = addCiv()
+
+
+    private fun meet(civilization: Civilization, otherCivilization: Civilization) {
+        civilization.diplomacyFunctions.makeCivilizationsMeet(otherCivilization)
+    }
+
+    @Before
+    fun setUp() {
+        testGame.makeHexagonalMap(4)
+    }
+
+    @Test
+    fun `getCommonKnownCivs does not include either DiplomacyManagers's civs`() {
+        meet(a, b)
+        val commonKnownCivs = a.getDiplomacyManager(b)!!.getCommonKnownCivs()
+
+        assertTrue(a !in commonKnownCivs)
+        assertTrue(b !in commonKnownCivs)
+    }
+
+    @Test
+    fun `getCommonKnownCivs includes civs met by both civs`() {
+        meet(a,b)
+        meet(b,c)
+        meet(c,a)
+        val commonKnownCivs = a.getDiplomacyManager(b)!!.getCommonKnownCivs()
+
+        assertTrue(c in commonKnownCivs)
+    }
+
+    @Test
+    fun `getCommonKnownCivs does not include civs met by only one civ`() {
+        meet(a,b)
+        meet(a,c)
+        val commonKnownCivs = a.getDiplomacyManager(b)!!.getCommonKnownCivs()
+
+        assertTrue(c !in commonKnownCivs)
+    }
+
+    @Test
+    fun getCommonKnownCivsIsEqualForMirroredDiplomacyManagers() {
+        meet(a,b)
+        meet(a,c)
+        meet(b,c)
+        meet(a,d)
+        meet(b,d)
+
+        assertEquals(
+            a.getDiplomacyManager(b)!!.getCommonKnownCivs(),
+            b.getDiplomacyManager(a)!!.getCommonKnownCivs()
+        )
+    }
+
+    @Test
+    fun `should have 0 opinion when just met`() {
+        // when
+        meet(a, b)
+
+        // then
+        val opinionOfOtherCiv = a.getDiplomacyManager(b)!!.opinionOfOtherCiv()
+        assertEquals(0f, opinionOfOtherCiv)
+    }
+
+    @Test
+    fun `should change opinion when denouncing`() {
+        // given
+        meet(a, b)
+
+        // when
+        a.getDiplomacyManager(b)!!.denounce()
+
+        // then
+        val aOpinionOfB = a.getDiplomacyManager(b)!!.opinionOfOtherCiv()
+        val bOpinionOfA = b.getDiplomacyManager(a)!!.opinionOfOtherCiv()
+
+        // B is upset that A denounced them
+        assertEquals(DiplomacyManager.INITIAL_OPINION_CHANGE_WHEN_DENOUNCED, bOpinionOfA)
+     
+        // A denounces B because A already dislikes B
+        // denouncing simply reflects that - it does not change their opinion further
+        assertEquals(0f, aOpinionOfB)
+    }
+
+    @Test
+    fun `should change opinions when liberating city`() {
+        // given
+        meet(a, b)
+        meet(a, c)
+        meet(c, b)
+        meet(a, d)
+        meet(b, d)
+        meet(c, d)
+
+        testGame.gameInfo.currentPlayerCiv = addCiv() // otherwise test crashes when puppetying city
+        testGame.gameInfo.currentPlayer = testGame.gameInfo.currentPlayerCiv.civID
+
+        val bCity = testGame.addCity(b, testGame.getTile(HexCoord.Zero), initialPopulation = 2)
+        testGame.addCity(b, testGame.getTile(1,1))  // another city otherwise b is destroyed when bCity is captured
+        bCity.puppetCity(c)
+
+        // when
+        bCity.liberateCity(a)
+
+        // then
+        val aOpinionOfB = a.getDiplomacyManager(b)!!.opinionOfOtherCiv()
+        val bOpinionOfA = b.getDiplomacyManager(a)!!.opinionOfOtherCiv()
+        val cOpinionOfA = c.getDiplomacyManager(a)!!.opinionOfOtherCiv()
+        val dOpinionOfA = d.getDiplomacyManager(a)!!.opinionOfOtherCiv()
+
+        assertEquals(0f, aOpinionOfB) // A shouldn't change its opinion of others
+        assertEquals(66f, bOpinionOfA) // massive boost, liberated their city
+        assertEquals(0f, cOpinionOfA) // city conquering counters liberated city
+        assertEquals(6f, dOpinionOfA) // small boost, liberated another civ's city
+    }
+
+    @Test
+    fun `should change opinions when conquering city`() {
+        // given
+        meet(a, b)
+        meet(a, c)
+        meet(c, b)
+
+        testGame.gameInfo.currentPlayerCiv = addCiv() // otherwise test crashes when puppetying city
+        testGame.gameInfo.currentPlayer = testGame.gameInfo.currentPlayerCiv.civID
+
+        val bCity = testGame.addCity(b, testGame.getTile(HexCoord.Zero), initialPopulation = 2)
+        testGame.addCity(b, testGame.getTile(1,1))  // another city otherwise b is destroyed when bCity is captured
+
+        // when
+        bCity.puppetCity(a)
+
+        // then
+        val aOpinionOfB = a.getDiplomacyManager(b)!!.opinionOfOtherCiv()
+        val bOpinionOfA = b.getDiplomacyManager(a)!!.opinionOfOtherCiv()
+        val cOpinionOfA = c.getDiplomacyManager(a)!!.opinionOfOtherCiv()
+
+        assertEquals(0f, aOpinionOfB) // A shouldn't change its opinion of others
+        assertEquals(-239f, bOpinionOfA) // -77 CapturedOurCities, -8 warmonger, -154 grievances (2x for original capital)
+        assertEquals(-8f, cOpinionOfA) // warmonging penalty
+    }
+
+    @Test
+    fun `should make city state friend when over threshold`() {
+        // given
+        val cityState = addCiv(cityStateType = "Militaristic")
+        meet(a, cityState)
+
+        // when
+        cityState.getDiplomacyManager(a)!!.addEnvoys(DiplomacyManager.friendThreshold)
+
+        // then
+        assertTrue(cityState.getDiplomacyManager(a)!!.isRelationshipLevelEQ(RelationshipLevel.Friend))
+    }
+
+    @Test
+    fun `should make city state allied when over threshold and no other civ are allied`() {
+        // given
+        val cityState = addCiv(cityStateType = "Militaristic")
+        meet(a, cityState)
+
+        // when
+        cityState.getDiplomacyManager(a)!!.addEnvoys(DiplomacyManager.allyThreshold)
+
+        // then
+        assertTrue(cityState.getDiplomacyManager(a)!!.isRelationshipLevelEQ(RelationshipLevel.Ally))
+    }
+
+    @Test
+    fun `should not make city state allied when over threshold and other civ has more influence`() {
+        // given
+        val cityState = addCiv(cityStateType = "Militaristic")
+        meet(a, cityState)
+        meet(b, cityState)
+        cityState.getDiplomacyManager(a)!!.addEnvoys(DiplomacyManager.allyThreshold)
+
+        // when
+        cityState.getDiplomacyManager(b)!!.addEnvoys(DiplomacyManager.allyThreshold - 1)
+
+        // then
+        assertTrue(cityState.getDiplomacyManager(a)!!.isRelationshipLevelEQ(RelationshipLevel.Ally))
+        assertTrue(cityState.getDiplomacyManager(b)!!.isRelationshipLevelEQ(RelationshipLevel.Friend))
+    }
+
+    @Test
+    fun `should make city state allied when over threshold and most influencial`() {
+        // given
+        val cityState = addCiv(cityStateType = "Militaristic")
+        meet(a, cityState)
+        meet(b, cityState)
+        // a gets the free first-contact envoy (1), so reaching ally threshold needs one less
+        cityState.getDiplomacyManager(a)!!.addEnvoys(DiplomacyManager.allyThreshold - 2)
+
+        // when
+        cityState.getDiplomacyManager(b)!!.addEnvoys(DiplomacyManager.allyThreshold)
+
+        // then
+        assertTrue(cityState.getDiplomacyManager(a)!!.isRelationshipLevelEQ(RelationshipLevel.Friend))
+        assertTrue(cityState.getDiplomacyManager(b)!!.isRelationshipLevelEQ(RelationshipLevel.Ally))
+    }
+
+    @Test
+    fun `should make city state angry when at war regardless of previous influence`() {
+        // given
+        val cityState = addCiv(cityStateType = "Militaristic")
+        meet(a, cityState)
+        cityState.getDiplomacyManager(a)!!.addEnvoys(DiplomacyManager.allyThreshold)
+
+        // when
+        a.getDiplomacyManager(cityState)!!.declareWar()
+
+        // then
+        assertTrue(cityState.getDiplomacyManager(a)!!.relationshipLevel() == RelationshipLevel.Unforgivable)
+        assertEquals(-60f, cityState.getDiplomacyManager(a)!!.getInfluence())
+    }
+
+    @Test
+    fun `should gain previous influence in city state after indirect war`() {
+        // given
+        val cityState = addCiv(cityStateType = "Militaristic", testGame.getTile(HexCoord.Zero)) // making peace tries to move units around, so we need to initialize their positions
+        val e = addCiv(defaultUnitTile = testGame.getTile(HexCoord(1,0)))
+        meet(e, cityState)
+        // remove the free first-contact envoy so the pre-war resting point is exactly one envoy
+        cityState.getDiplomacyManager(e)!!.setEnvoys(0)
+        cityState.getDiplomacyManager(e)!!.addEnvoys(DiplomacyManager.friendThreshold)
+        cityState.getDiplomacyManager(e)!!.declareWar(DeclareWarReason(WarType.DefensivePactWar, a))
+
+        // when
+        e.getDiplomacyManager(cityState)!!.makePeace()
+
+        // then
+        assertTrue(cityState.getDiplomacyManager(e)!!.isRelationshipLevelEQ(RelationshipLevel.Friend))
+        assertEquals(DiplomacyManager.friendThreshold.toFloat(), cityState.getDiplomacyManager(e)!!.getInfluence())
+    }
+
+    @Test
+    fun `should degrade influence in city state on next turn`() {
+        // given
+        val cityState = addCiv(cityStateType = "Mercantile")
+        cityState.cityStatePersonality = CityStatePersonality.Neutral
+        meet(a, cityState)
+
+        cityState.getDiplomacyManager(a)!!.addInfluence(30f)
+
+        // when
+        cityState.getDiplomacyManager(a)!!.nextTurn()
+
+        // then
+        assertEquals(29f, cityState.getDiplomacyManager(a)!!.getInfluence())
+    }
+
+    @Test
+    fun `should degrade influence in hostile city state on next turn`() {
+        // given
+        val cityState = addCiv(cityStateType = "Militaristic")
+        cityState.cityStatePersonality = CityStatePersonality.Hostile
+        meet(a, cityState)
+
+        cityState.getDiplomacyManager(a)!!.addInfluence(30f)
+
+        // when
+        cityState.getDiplomacyManager(a)!!.nextTurn()
+
+        // then
+        // 30 envoys - 1.5 hostile degradation = 28.5, truncated to an integer envoy count
+        assertEquals(28f, cityState.getDiplomacyManager(a)!!.getInfluence())
+    }
+
+    @Test
+    fun `should degrade influence in city state when sharing religion on next turn`() {
+        // given
+        val cityState = addCiv(cityStateType = "Mercantile")
+        cityState.cityStatePersonality = CityStatePersonality.Neutral
+
+        meet(a, cityState)
+
+        // to spread religion, need cities
+        testGame.addCity(a, testGame.getTile(HexCoord.Zero))
+        val cityStateCapital = testGame.addCity(cityState, testGame.getTile(HexCoord(1,0)), initialPopulation = 2)
+
+        val religion = testGame.addReligion(a)
+        val belief = testGame.createBelief(BeliefType.Founder, "[+1 Food] from every [Shrine]")
+        religion.addBeliefs(listOf(belief))
+        cityStateCapital.religion.addPressure(religion.name, 1000)
+
+        cityState.getDiplomacyManager(a)!!.addInfluence(30f)
+
+        // when
+        cityState.getDiplomacyManager(a)!!.nextTurn()
+
+        // then
+        // 30 envoys - 0.75 degradation (sharing religion) = 29.25, truncated to an integer envoy count
+        assertEquals(29f, cityState.getDiplomacyManager(a)!!.getInfluence())
+    }
+
+    @Test
+    fun `should not change influence in city state when under resting points`() {
+        // given
+        val cityState = addCiv(cityStateType = "Mercantile")
+        cityState.cityStatePersonality = CityStatePersonality.Neutral
+        meet(a, cityState)
+
+        cityState.getDiplomacyManager(a)!!.setInfluenceWithoutSideEffects(-30f)
+
+        // when
+        cityState.getDiplomacyManager(a)!!.nextTurn()
+
+        // then
+        // Civ VI: envoys never decay or recover towards a resting point
+        assertEquals(-30f, cityState.getDiplomacyManager(a)!!.getInfluence())
+    }
+
+    @Test
+    fun `should not change influence in city state when under resting points and sharing religion`() {
+        // given
+        val cityState = addCiv(cityStateType = "Mercantile")
+        cityState.cityStatePersonality = CityStatePersonality.Neutral
+        meet(a, cityState)
+
+        // to spread religion, need cities
+        testGame.addCity(a, testGame.getTile(HexCoord.Zero))
+        val cityStateCapital = testGame.addCity(cityState, testGame.getTile(HexCoord(1,0)), initialPopulation = 2)
+
+        val religion = testGame.addReligion(a)
+        val belief = testGame.createBelief(BeliefType.Founder, "[+1 Food] from every [Shrine]")
+        religion.addBeliefs(listOf(belief))
+        cityStateCapital.religion.addPressure(religion.name, 1000)
+
+        cityState.getDiplomacyManager(a)!!.setInfluenceWithoutSideEffects(-30f)
+
+        // when
+        cityState.getDiplomacyManager(a)!!.nextTurn()
+
+        // then
+        // Civ VI: envoys never decay or recover towards a resting point
+        assertEquals(-30f, cityState.getDiplomacyManager(a)!!.getInfluence())
+    }
+
+    @Test
+    fun `should give science for research agreement`() {
+        // given
+        meet(a, b)
+
+        testGame.addCity(a, testGame.getTile(HexCoord.Zero), initialPopulation = 10)
+        testGame.addCity(b, testGame.getTile(HexCoord(1,0)), initialPopulation = 20)
+
+        val expectedSciencePerTurnCivA = 12 // 10 pop, Civ VI Palace (+2 Science). Smaller than 22 science per turn of civ B (20 pop, +2 Palace)
+        val turns = 10
+
+        // when
+        a.getDiplomacyManager(b)!!.setFlag(DiplomacyFlags.ResearchAgreement, turns)
+        b.getDiplomacyManager(a)!!.setFlag(DiplomacyFlags.ResearchAgreement, turns)
+        repeat(turns) {
+            a.getDiplomacyManager(b)!!.nextTurn()
+            b.getDiplomacyManager(a)!!.nextTurn()
+        }
+
+        // then
+        assertFalse(a.getDiplomacyManager(b)!!.hasFlag(DiplomacyFlags.ResearchAgreement))
+        assertFalse(b.getDiplomacyManager(a)!!.hasFlag(DiplomacyFlags.ResearchAgreement))
+        assertEquals(expectedSciencePerTurnCivA * turns, a.tech.scienceFromResearchAgreements)
+        assertEquals(expectedSciencePerTurnCivA * turns, b.tech.scienceFromResearchAgreements)
+    }
+
+}

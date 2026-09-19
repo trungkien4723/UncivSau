@@ -1,0 +1,65 @@
+Kotlin does not yet support 24 JDK target, falling back to Kotlin JVM_22 JVM target
+> Task :buildSrc:checkKotlinGradlePluginConfigurationErrors SKIPPED
+
+> Task :buildSrc:compileKotlin UP-TO-DATE
+Kotlin does not yet support 24 JDK target, falling back to Kotlin JVM_22 JVM target
+
+> Task :buildSrc:compileJava NO-SOURCE
+> Task :buildSrc:compileGroovy NO-SOURCE
+> Task :buildSrc:pluginDescriptors UP-TO-DATE
+> Task :buildSrc:processResources NO-SOURCE
+> Task :buildSrc:classes UP-TO-DATE
+> Task :buildSrc:jar UP-TO-DATE
+> Task :core:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :desktop:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :desktop:processResources NO-SOURCE
+> Task :core:compileKotlin UP-TO-DATE
+> Task :core:compileJava NO-SOURCE
+> Task :core:processResources NO-SOURCE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :desktop:compileKotlin UP-TO-DATE
+> Task :desktop:compileJava NO-SOURCE
+> Task :desktop:classes UP-TO-DATE
+
+> Task :desktop:run
+2026-07-25T02:36:07.663942400Z [threadpool-nondaemon-1] [UncivGame$Companion] [ERROR] Uncaught throwable | java.lang.Exception: Could not parse json of file Buildings.json
+	at com.unciv.json.UncivJsonKt.fromJsonFile(UncivJson.kt:52)
+	at com.unciv.models.ruleset.Ruleset.load(Ruleset.kt:459)
+	at com.unciv.models.ruleset.RulesetCache.loadRulesets$loadBuiltinRuleset(RulesetCache.kt:41)
+	at com.unciv.models.ruleset.RulesetCache.loadRulesets$lambda$1$0(RulesetCache.kt:47)
+	at com.unciv.utils.Concurrency$parallelize$1$1$1.invokeSuspend(Concurrency.kt:65)
+	at com.unciv.utils.Concurrency$parallelize$1$1$1.invoke(Concurrency.kt)
+	at com.unciv.utils.Concurrency$parallelize$1$1$1.invoke(Concurrency.kt)
+	at com.unciv.utils.ConcurrencyKt$launchCrashHandling$1.invokeSuspend(Concurrency.kt:106)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at com.unciv.utils.Dispatchers$CrashHandlingDispatcher$dispatch$1.invoke(Concurrency.kt:207)
+	at com.unciv.utils.Dispatchers$CrashHandlingDispatcher$dispatch$1.invoke(Concurrency.kt:207)
+	at com.unciv.ui.crashhandling.CrashHandlingExtensionsKt.wrapCrashHandling$lambda$0(CrashHandlingExtensions.kt:17)
+	at com.unciv.ui.crashhandling.CrashHandlingExtensionsKt.wrapCrashHandlingUnit$lambda$0(CrashHandlingExtensions.kt:33)
+	at com.unciv.utils.Dispatchers$CrashHandlingDispatcher.dispatch$lambda$0(Concurrency.kt:207)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1095)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:619)
+	at java.base/java.lang.Thread.run(Thread.java:1447)
+Caused by: com.badlogic.gdx.utils.SerializationException: Error reading file: jsons/Civ VI/Buildings.json
+	at com.badlogic.gdx.utils.Json.fromJson(Json.java:812)
+	at com.unciv.json.UncivJsonKt.fromJsonFile(UncivJson.kt:49)
+	... 17 more
+Caused by: com.badlogic.gdx.utils.SerializationException: Error parsing file: jsons/Civ VI/Buildings.json
+	at com.badlogic.gdx.utils.JsonReader.parse(JsonReader.java:85)
+	at com.badlogic.gdx.utils.Json.fromJson(Json.java:810)
+	... 18 more
+Caused by: com.badlogic.gdx.utils.SerializationException: Error parsing JSON on line 2 near: ?[
+    *ERROR*{
+        "name":  "Campus",
+        "cost":  36,
+        "re
+	at com.badlogic.gdx.utils.JsonReader.parse(JsonReader.java:558)
+	at com.badlogic.gdx.utils.JsonReader.parse(JsonReader.java:62)
+	at com.badlogic.gdx.utils.JsonReader.parse(JsonReader.java:83)
+	... 19 more
+
+
+BUILD SUCCESSFUL in 20s
+7 actionable tasks: 1 executed, 6 up-to-date
