@@ -1,3 +1,7 @@
+## 4.26.14
+
+Fix: Resume/Load game no longer fails with misleading "incompatible version" for saves created with 4.26.13 - corrupted/incomplete autosaves now correctly show "file data seems to be corrupted" and `Resume` shows the real error; removed 689 accidentally committed files under `android/assets/src` and `android/assets/core` that kept packaging stale `4.21.2` assets - By Muse Spark (Reported: không resume game được bị báo lỗi phiên bản cũ)
+
 ## 4.26.13
 
 Trader fully automated (Civ VI): newly built or returned Trader immediately opens destination chooser and cannot be moved manually; committed and idle-awaiting-assignment Traders are blocked from manual movement and excluded from idle cycle, and advance 1 tile per turn paving roads until arrival/return - By trungkien4723 (Reported: trader không tự mở khung chọn, không tự di chuyển, có thể di chuyển như quân vô dụng)
