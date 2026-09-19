@@ -415,8 +415,18 @@ class UncivFiles(
                 json().fromJson(GameInfo::class.java, unzippedJson)
             } catch (ex: Exception) {
                 Log.error("Exception while deserializing GameInfo JSON", ex)
-                val onlyVersion = json().fromJson(GameInfoSerializationVersion::class.java, unzippedJson)
-                throw IncompatibleGameInfoVersionException(onlyVersion.version, ex)
+                // Try to parse only the version to give a more accurate error.
+                // Only report "incompatible version" if the save is actually *newer* than current.
+                // Otherwise the failure is due to corruption or schema mismatch.
+                try {
+                    val onlyVersion = json().fromJson(GameInfoSerializationVersion::class.java, unzippedJson)
+                    if (onlyVersion.version > CompatibilityVersion.CURRENT_COMPATIBILITY_VERSION) {
+                        throw IncompatibleGameInfoVersionException(onlyVersion.version, ex)
+                    }
+                } catch (_: Exception) {
+                    // If we can't even parse the version, fall through to rethrow original
+                }
+                throw ex
             } ?: throw UncivShowableException("The file data seems to be corrupted.")
 
             if (gameInfo.version > CompatibilityVersion.CURRENT_COMPATIBILITY_VERSION) {

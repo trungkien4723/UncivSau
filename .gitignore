@@ -196,5 +196,9 @@ detekt/reports.html
 /buildSrc/.kotlin/sessions/*
 /.claude/
 
+# Prevent accidental commit of core source inside assets (see #110c7f0)
+android/assets/src/
+android/assets/core/
+
 # Release signing key - never commit!
 keystore/

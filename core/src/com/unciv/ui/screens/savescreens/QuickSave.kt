@@ -113,10 +113,11 @@ object QuickSave {
                 } catch (_: OutOfMemoryError) {
                     outOfMemory()
                 } catch (ex: Exception) {
+                    Log.error("Could not autoload game", ex)
+                    val (message) = LoadGameScreen.getLoadExceptionMessage(ex, "Cannot resume game!")
                     launchOnGLThread {
-                        Log.error("Could not autoload game", ex)
                         loadingPopup.close()
-                        ToastPopup("Cannot resume game!", screen)
+                        ToastPopup(message, screen)
                     }
                 }
             }
