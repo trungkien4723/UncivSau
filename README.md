@@ -36,6 +36,21 @@ The original Unciv roadmap is all about Civ V's Gods & Kings and Brave New World
 * Era score, golden ages and dark ages
 * And more, slowly but surely
 
+### Civ6 Rewrite (clean, no Civ5 loop) - branch `civ6-rewrite`
+
+Master `4.26.14` still Civ5-hotfix. Clean rewrite is on `civ6-rewrite` (orphan, 9 commits):
+
+* **Sprint1 City** - Housing/Amenity (not global happiness), `maxDistrictSlots 1,4,7...`, adjacency `+0.5`, district `cost+15` scaling
+* **Sprint2 Tech/Civic** - 2 trees separate, eureka/inspiration `+50%`, Government slots `Military/Economic/Diplomatic/Wildcard`
+* **Sprint3 Combat** - walls HP only (not `200/400` strength), siege `-17` vs land only, support/flanking `+2`
+* **Sprint4 Loyalty/Era/Governor/Religion** - pressure `pop*(10-dist)/10`, Governor `ArrayList<ArrayList>` fix CCE, Religion pantheon 25/prophet 60
+* **Sprint5 Engine v10** - `GameInfoV2` `CURRENT_NUMBER=10` cuts Civ5 saves, `TurnManager`
+* **Sprint6 UI** - `Civ6WorldScreen`/`CityScreen` adapters
+* **Sprint7 Map/Save** - `TileMapV2` district loses resource, `Civ6Files` only `>10` incompatible (fixed misleading error)
+* **Sprint8 AI** - `City/Tech/Government` automation
+
+See `docs/civ6-spec.md` (single truth) + `docs/civ6/ARCHITECTURE.md`.
+
 ## FAQ
 
 ### Will you implement {feature}?
