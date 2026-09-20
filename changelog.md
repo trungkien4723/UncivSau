@@ -1,3 +1,7 @@
+## 5.1.2
+
+Fix TurnManager final/private breaks TurnManagerWithAI build (This type is final, Cannot access val gameInfo) - make TurnManager open and gameInfo protected - By Muse Spark
+
 ## 5.1.1
 
 Fix BuildConfig missing identifier (breaks android build at android/build.gradle.kts:31) - restore identifier = com.unciv.app lost in 5.0.0-civ6 merge - By Muse Spark

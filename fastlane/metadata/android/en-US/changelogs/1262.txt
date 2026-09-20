@@ -1,0 +1,1 @@
+Fix TurnManager final/private breaks TurnManagerWithAI build
