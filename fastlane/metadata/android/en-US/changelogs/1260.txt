@@ -1,0 +1,1 @@
+Clean Civ6 rewrite - no Civ5 loop: City v2 Housing/Amenity, Tech/Civic split, Combat walls HP only, Loyalty/Governor/Religion, Engine v10, Map/Save v10, AI, Worker multiplayer flagfish/horse, Balancing
