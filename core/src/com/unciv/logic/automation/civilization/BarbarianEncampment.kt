@@ -95,16 +95,18 @@ class BarbarianEncampment() : IsPartOfGameInfoSerialization {
     /** When a barbarian is spawned, seed the counter for next spawn */
     private fun resetCountdown() {
         val rng = gameInfo.getBarbarianCivilization().state.stateBasedRandom("BarbarianManager.resetCooldown")
-        // Base 8-12 turns
-        countdown = 8 + rng.nextInt(5)
+        // Base 12-16 turns (was 8-12) - reduce spam
+        countdown = 12 + rng.nextInt(5)
         // Quicker on Raging Barbarians
         if (gameInfo.gameParameters.ragingBarbarians)
             countdown /= 2
         // Higher on low difficulties
         countdown += gameInfo.ruleset.difficulties[gameInfo.gameParameters.difficulty]!!.barbarianSpawnDelay
-        // Quicker if this camp has already spawned units
-        countdown -= spawnedUnits.coerceAtMost(3)
+        // Quicker if this camp has already spawned units, but less aggressive
+        countdown -= spawnedUnits.coerceAtMost(2)
 
         countdown = (countdown * gameInfo.speed.barbarianModifier).toInt()
+        // Ensure at least 6 turns even on quick speeds
+        countdown = countdown.coerceAtLeast(6)
     }
 }

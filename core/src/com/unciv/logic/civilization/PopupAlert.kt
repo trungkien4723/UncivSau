@@ -40,7 +40,8 @@ enum class AlertType : IsPartOfGameInfoSerialization {
     GameHasBeenWon,
     Event,
     
-    Denounced
+    Denounced,
+    EnvoyGained
 }
 
 class PopupAlert : IsPartOfGameInfoSerialization {

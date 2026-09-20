@@ -366,11 +366,18 @@ class CityStateFunctions(val civInfo: Civilization) {
     /** Accrue free Envoys into the unassigned pool (only from explicit "Gain [x] Envoys per turn" uniques; Civ VI has no per-turn trickle). */
     fun gainEnvoysPerTurn() {
         var gain = civInfo.getMatchingUniques(UniqueType.GainEnvoy).sumOf { it.params[0].toIntOrNull() ?: 0 }
-        civInfo.unassignedEnvoys += gain
+        if (gain > 0) {
+            civInfo.unassignedEnvoys += gain
+            if (civInfo.isHumanPlayer()) {
+                civInfo.addNotification("You have gained [$gain] Envoy(s)!", NotificationCategory.Diplomacy, NotificationIcon.Diplomacy)
+                civInfo.popupAlerts.add(PopupAlert(AlertType.EnvoyGained, gain.toString()))
+            }
+        }
     }
 
     /** AI: send one accumulated unassigned Envoy to the City-State the civ has the strongest interest in. */
     fun aiSendEnvoys() {
+        if (civInfo.isHumanPlayer()) return // Human must send manually via City-State screen, no auto
         if (civInfo.unassignedEnvoys <= 0) return
         val cityStates = civInfo.gameInfo.getAliveCityStates()
             .filter { civInfo.knows(it) && !civInfo.isAtWarWith(it) }

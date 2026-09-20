@@ -87,8 +87,8 @@ class BarbarianManager : IsPartOfGameInfoSerialization {
 
     fun placeBarbarianEncampment(forTesting: Boolean = false) {
         val rng = gameInfo.getBarbarianCivilization().state.stateBasedRandom("BarbarianManager.placeBarbarianEncampent", encampments.hashCode())
-        // Before we do the expensive stuff, do a roll to see if we will place a camp at all
-        if (!forTesting && gameInfo.turns > 1 && rng.nextBoolean())
+        // Before we do the expensive stuff, do a roll to see if we will place a camp at all - 70% skip (was 50%) to reduce spam
+        if (!forTesting && gameInfo.turns > 1 && rng.nextInt(10) < 7)
             return
 
         // Barbarians will only spawn in places that no one can see
@@ -96,7 +96,7 @@ class BarbarianManager : IsPartOfGameInfoSerialization {
             .flatMap { it.viewableTiles }.toHashSet()
         val fogTiles = tileMap.values.filter { it.isLand && it !in allViewableTiles }
 
-        val fogTilesPerCamp = (tileMap.values.size.toFloat().pow(0.4f)).toInt() // Approximately
+        val fogTilesPerCamp = (tileMap.values.size.toFloat().pow(0.45f)).toInt() // Slightly larger -> fewer camps (was 0.4)
 
         // Check if we have more room
         var campsToAdd = (fogTiles.size / fogTilesPerCamp) - encampments.count { !it.destroyed }

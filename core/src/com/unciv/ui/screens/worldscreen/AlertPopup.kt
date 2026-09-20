@@ -131,6 +131,7 @@ class AlertPopup(
             AlertType.RecapturedCivilian -> shouldOpen = addRecapturedCivilian()
             AlertType.GameHasBeenWon -> addGameHasBeenWon()
             AlertType.Event -> shouldOpen = addEvent()
+            AlertType.EnvoyGained -> addEnvoyGained()
         }
         if (shouldOpen) open()
         else viewingCiv.popupAlerts.remove(popupAlert)
@@ -659,6 +660,17 @@ class AlertPopup(
         } else {
             addGoodSizedLabel("Original capitals and holy cities cannot be razed.").row()
         }
+    }
+
+    private fun addEnvoyGained() {
+        val count = popupAlert.value.toIntOrNull() ?: 1
+        addGoodSizedLabel("You have gained [$count] Envoy${if (count > 1) "s" else ""}!").row()
+        addGoodSizedLabel("Send them to City-States via the City-State screen to earn bonuses and become Suzerain.").row()
+        addCloseButton("Go to City-States") {
+            close()
+            // Open city-state overview? For now just close, player can open via world screen
+        }.row()
+        addCloseButton("Later")
     }
 
     /** Returns if event was triggered correctly */
