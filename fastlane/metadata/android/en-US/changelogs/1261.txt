@@ -1,0 +1,1 @@
+Fix BuildConfig missing identifier (breaks android build)

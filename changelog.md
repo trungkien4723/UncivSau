@@ -1,3 +1,7 @@
+## 5.1.1
+
+Fix BuildConfig missing identifier (breaks android build at android/build.gradle.kts:31) - restore identifier = com.unciv.app lost in 5.0.0-civ6 merge - By Muse Spark
+
 ## 5.0.0-civ6
 
 Clean Civ6 rewrite - no Civ5 loop (branch civ6-rewrite, 23 sprints): City v2 Housing/Amenity + District adjacency, Tech/Civic split + Government cards, Combat walls HP only + siege -17, Loyalty/Era/Governor (ArrayList fix) + Religion, Engine v10 + TurnManager, UI Civ6WorldScreen/CityScreen, Map/Save v10, AI, Worker multiplayer flagfish/horse + WS realtime + push, Modding Workshop R2, Balancing, Performance LRU, Tutorial, CI/CD - By Muse Spark (Requested: chuẩn civ 6 kể cả đập đi xây lại)
