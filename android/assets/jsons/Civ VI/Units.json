@@ -1985,7 +1985,8 @@
         "strength": 25,
         "rangedStrength": 35,
         "cost": 75,
-        "requiredTech": "Horseback Riding",
+        "requiredTech": "Castles",
+        "range": 1,
         "uniques": [
             "Medieval Era recon unit."
         ]
@@ -1997,7 +1998,7 @@
         "strength": 25,
         "rangedStrength": 40,
         "cost": 82,
-        "requiredTech": "Horseback Riding",
+        "requiredTech": "Castles",
         "uniqueTo": "Inca",
         "replaces": "Skirmisher",
         "upgradesTo": "Ranger"
