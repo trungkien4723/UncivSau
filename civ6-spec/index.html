@@ -8,31 +8,31 @@
       
       
       
-        <link rel="canonical" href="https://yairm210.github.io/Unciv/Developers/Uniques/">
+        <link rel="canonical" href="https://yairm210.github.io/Unciv/civ6-spec/">
       
       
-        <link rel="prev" href="../Unique-replacement-process/">
+        <link rel="prev" href="../Credits_trailer/">
       
       
-        <link rel="next" href="../../Other/Force-rating-calculation/">
+        <link rel="next" href="../civ6/ARCHITECTURE/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/favicon.png">
+      <link rel="icon" href="../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Uniques - Unciv</title>
+        <title>Civ6 Rewrite Spec - UncivSau civ6-rewrite (clean) - Unciv</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,7 +51,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#uniques" class="md-skip">
+        <a href="#civ6-rewrite-spec-uncivsau-civ6-rewrite-clean" class="md-skip">
           Skip to content
         </a>
       
@@ -92,9 +92,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Unciv" class="md-header__button md-logo" aria-label="Unciv" data-md-component="logo">
+    <a href=".." title="Unciv" class="md-header__button md-logo" aria-label="Unciv" data-md-component="logo">
       
-  <img src="../../assets/Icon.png" alt="logo">
+  <img src="../assets/Icon.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Uniques
+              Civ6 Rewrite Spec - UncivSau civ6-rewrite (clean)
             
           </span>
         </div>
@@ -227,9 +227,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Unciv" class="md-nav__button md-logo" aria-label="Unciv" data-md-component="logo">
+    <a href=".." title="Unciv" class="md-nav__button md-logo" aria-label="Unciv" data-md-component="logo">
       
-  <img src="../../assets/Icon.png" alt="logo">
+  <img src="../assets/Icon.png" alt="logo">
 
     </a>
     Unciv
@@ -256,7 +256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   
@@ -283,7 +283,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Guiding-Principles/" class="md-nav__link">
+      <a href="../Guiding-Principles/" class="md-nav__link">
         
   
   
@@ -357,7 +357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Translating/Translating/" class="md-nav__link">
+      <a href="../Translating/Translating/" class="md-nav__link">
         
   
   
@@ -385,7 +385,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Translating/Translation-generation/" class="md-nav__link">
+      <a href="../Translating/Translation-generation/" class="md-nav__link">
         
   
   
@@ -413,7 +413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Translating/Translation-mods/" class="md-nav__link">
+      <a href="../Translating/Translation-mods/" class="md-nav__link">
         
   
   
@@ -495,7 +495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/Mods/" class="md-nav__link">
+      <a href="../Modders/Mods/" class="md-nav__link">
         
   
   
@@ -523,7 +523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/Making-a-new-Civilization/" class="md-nav__link">
+      <a href="../Modders/Making-a-new-Civilization/" class="md-nav__link">
         
   
   
@@ -551,7 +551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/Images-and-Audio/" class="md-nav__link">
+      <a href="../Modders/Images-and-Audio/" class="md-nav__link">
         
   
   
@@ -626,7 +626,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/Mod-file-structure/1-Overview/" class="md-nav__link">
+      <a href="../Modders/Mod-file-structure/1-Overview/" class="md-nav__link">
         
   
   
@@ -654,7 +654,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/Mod-file-structure/2-Civilization-related-JSON-files/" class="md-nav__link">
+      <a href="../Modders/Mod-file-structure/2-Civilization-related-JSON-files/" class="md-nav__link">
         
   
   
@@ -682,7 +682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/Mod-file-structure/3-Map-related-JSON-files/" class="md-nav__link">
+      <a href="../Modders/Mod-file-structure/3-Map-related-JSON-files/" class="md-nav__link">
         
   
   
@@ -710,7 +710,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/Mod-file-structure/4-Unit-related-JSON-files/" class="md-nav__link">
+      <a href="../Modders/Mod-file-structure/4-Unit-related-JSON-files/" class="md-nav__link">
         
   
   
@@ -738,7 +738,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/Mod-file-structure/5-Miscellaneous-JSON-files/" class="md-nav__link">
+      <a href="../Modders/Mod-file-structure/5-Miscellaneous-JSON-files/" class="md-nav__link">
         
   
   
@@ -821,7 +821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/Creating-a-custom-tileset/" class="md-nav__link">
+      <a href="../Modders/Creating-a-custom-tileset/" class="md-nav__link">
         
   
   
@@ -849,7 +849,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/Creating-a-UI-skin/" class="md-nav__link">
+      <a href="../Modders/Creating-a-UI-skin/" class="md-nav__link">
         
   
   
@@ -885,7 +885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/Unique-parameters/" class="md-nav__link">
+      <a href="../Modders/Unique-parameters/" class="md-nav__link">
         
   
   
@@ -913,7 +913,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/uniques/" class="md-nav__link">
+      <a href="../Modders/uniques/" class="md-nav__link">
         
   
   
@@ -941,7 +941,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/Type-checking/" class="md-nav__link">
+      <a href="../Modders/Type-checking/" class="md-nav__link">
         
   
   
@@ -969,7 +969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/Scenarios/" class="md-nav__link">
+      <a href="../Modders/Scenarios/" class="md-nav__link">
         
   
   
@@ -997,7 +997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Modders/Autoupdates/" class="md-nav__link">
+      <a href="../Modders/Autoupdates/" class="md-nav__link">
         
   
   
@@ -1029,20 +1029,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -1063,7 +1061,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1081,7 +1079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Building-Locally/" class="md-nav__link">
+      <a href="../Developers/Building-Locally/" class="md-nav__link">
         
   
   
@@ -1109,7 +1107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Coding-standards/" class="md-nav__link">
+      <a href="../Developers/Coding-standards/" class="md-nav__link">
         
   
   
@@ -1137,7 +1135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../From-code-to-deployment/" class="md-nav__link">
+      <a href="../Developers/From-code-to-deployment/" class="md-nav__link">
         
   
   
@@ -1165,7 +1163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Game-Making-Tips/" class="md-nav__link">
+      <a href="../Developers/Game-Making-Tips/" class="md-nav__link">
         
   
   
@@ -1193,7 +1191,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Map-rendering/" class="md-nav__link">
+      <a href="../Developers/Map-rendering/" class="md-nav__link">
         
   
   
@@ -1221,7 +1219,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Project-structure-and-major-classes/" class="md-nav__link">
+      <a href="../Developers/Project-structure-and-major-classes/" class="md-nav__link">
         
   
   
@@ -1249,7 +1247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Saved-games-and-transients/" class="md-nav__link">
+      <a href="../Developers/Saved-games-and-transients/" class="md-nav__link">
         
   
   
@@ -1277,7 +1275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Testing-Android-Builds/" class="md-nav__link">
+      <a href="../Developers/Testing-Android-Builds/" class="md-nav__link">
         
   
   
@@ -1305,7 +1303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Translations%2C-mods%2C-and-modding-freedom-in-Open-Source/" class="md-nav__link">
+      <a href="../Developers/Translations%2C-mods%2C-and-modding-freedom-in-Open-Source/" class="md-nav__link">
         
   
   
@@ -1333,7 +1331,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../UI-development/" class="md-nav__link">
+      <a href="../Developers/UI-development/" class="md-nav__link">
         
   
   
@@ -1361,7 +1359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../Unique-replacement-process/" class="md-nav__link">
+      <a href="../Developers/Unique-replacement-process/" class="md-nav__link">
         
   
   
@@ -1386,37 +1384,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Uniques
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../Developers/Uniques/" class="md-nav__link">
         
   
   
@@ -1432,76 +1403,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-modders-need-to-know" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What Modders Need To Know
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="What Modders Need To Know">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#conditionals-and-modifiers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conditionals and Modifiers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#triggerable-uniques" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Triggerable Uniques
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what-developers-need-to-know" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What Developers Need To Know
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1568,7 +1469,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Other/Force-rating-calculation/" class="md-nav__link">
+      <a href="../Other/Force-rating-calculation/" class="md-nav__link">
         
   
   
@@ -1596,7 +1497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Other/Installing-on-macOS/" class="md-nav__link">
+      <a href="../Other/Installing-on-macOS/" class="md-nav__link">
         
   
   
@@ -1624,7 +1525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Other/Intentional-departures-from-Civ-V/" class="md-nav__link">
+      <a href="../Other/Intentional-departures-from-Civ-V/" class="md-nav__link">
         
   
   
@@ -1652,7 +1553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Other/Multiplayer/" class="md-nav__link">
+      <a href="../Other/Multiplayer/" class="md-nav__link">
         
   
   
@@ -1680,7 +1581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Other/Regions/" class="md-nav__link">
+      <a href="../Other/Regions/" class="md-nav__link">
         
   
   
@@ -1708,7 +1609,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Other/Simulations/" class="md-nav__link">
+      <a href="../Other/Simulations/" class="md-nav__link">
         
   
   
@@ -1743,7 +1644,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Privacy-Policy/" class="md-nav__link">
+      <a href="../Privacy-Policy/" class="md-nav__link">
         
   
   
@@ -1770,7 +1671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Credits/" class="md-nav__link">
+      <a href="../Credits/" class="md-nav__link">
         
   
   
@@ -1797,7 +1698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Credits_trailer/" class="md-nav__link">
+      <a href="../Credits_trailer/" class="md-nav__link">
         
   
   
@@ -1821,10 +1722,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../civ6-spec/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Civ6 Rewrite Spec - UncivSau civ6-rewrite (clean)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1840,6 +1768,131 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-muc-tieu-clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Mục tiêu clean
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-data-model-v2-jsonsciv6v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Data Model v2 (jsons/Civ6v2/)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Data Model v2 (jsons/Civ6v2/)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-schema-moi-validator-rulesetvalidatorkt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Schema mới (validator RulesetValidator.kt)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-rulesetcache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 RulesetCache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-domain-modules-coresrccomuncivciv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Domain modules (core/src/com/unciv/civ6/)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-lo-trinh-khong-va-4-sprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Lộ trình không vá (4 sprint)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-quy-tac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Quy tắc
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Branch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-next-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Next step
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1898,7 +1951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../civ6/ARCHITECTURE/" class="md-nav__link">
+      <a href="../civ6/ARCHITECTURE/" class="md-nav__link">
         
   
   
@@ -1926,7 +1979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../civ6/COVERAGE/" class="md-nav__link">
+      <a href="../civ6/COVERAGE/" class="md-nav__link">
         
   
   
@@ -1954,7 +2007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../civ6/RELEASE_NOTES/" class="md-nav__link">
+      <a href="../civ6/RELEASE_NOTES/" class="md-nav__link">
         
   
   
@@ -1982,7 +2035,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../civ6/TODO/" class="md-nav__link">
+      <a href="../civ6/TODO/" class="md-nav__link">
         
   
   
@@ -2037,22 +2090,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-modders-need-to-know" class="md-nav__link">
+  <a href="#1-muc-tieu-clean" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What Modders Need To Know
+        1. Mục tiêu clean
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="What Modders Need To Know">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-data-model-v2-jsonsciv6v2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Data Model v2 (jsons/Civ6v2/)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Data Model v2 (jsons/Civ6v2/)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#conditionals-and-modifiers" class="md-nav__link">
+  <a href="#21-schema-moi-validator-rulesetvalidatorkt" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conditionals and Modifiers
+        2.1 Schema mới (validator RulesetValidator.kt)
       
     </span>
   </a>
@@ -2060,10 +2124,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#triggerable-uniques" class="md-nav__link">
+  <a href="#22-rulesetcache" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Triggerable Uniques
+        2.2 RulesetCache
       
     </span>
   </a>
@@ -2076,10 +2140,54 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#what-developers-need-to-know" class="md-nav__link">
+  <a href="#3-domain-modules-coresrccomuncivciv6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What Developers Need To Know
+        3. Domain modules (core/src/com/unciv/civ6/)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-lo-trinh-khong-va-4-sprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Lộ trình không vá (4 sprint)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-quy-tac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Quy tắc
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-branch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Branch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-next-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Next step
       
     </span>
   </a>
@@ -2106,44 +2214,62 @@
   
 
 
-<h1 id="uniques">Uniques</h1>
-<h2 id="what-modders-need-to-know">What Modders Need To Know</h2>
-<p>Objects in the game - terrains, units, buildings, improvements, etc - differ by their stats, but what makes them truly different mechanically are their special abilities, or as we call them - <em>Uniques</em>.</p>
-<p>Each game object can have any number of these Uniques.</p>
-<p>The different possible types of uniques are available <a href="../../Modders/uniques/">here</a>, with each unique having a string value, e.g. <code>"Gain [amount] [stat/resource]"</code></p>
-<p>These are unique types, because they are in fact <em>templates</em> for possible <em>concrete</em> uniques, where the parameters in square brackets are filled in with specific values - e.g. <code>"Gain [20] [Gold]"</code>
-Game objects should have <em>concrete</em> uniques (parameters filled in)</p>
-<p>Every parameter in square brackets, is defined by its type, a list of which is available <a href="../../Modders/Unique-parameters/">here</a> - each parameter type has its own text value, e.g. "amount" means an integer.
-That determines possible values that this parameter can contain, e.g. "amount" should only contain strings that can be serialized as integers.</p>
-<p>Concrete uniques that contain <em>incorrect values</em> (e.g. <code>"Gain [three] [money]"</code>) are warned against in the mod checker, and if they're serious enough, also when starting a new game with the mod</p>
-<p>Sometimes uniques are deprecated - Unciv provides autoupdating, meaning you only need to click a button to update the deprecated uniques in your mod!</p>
-<h3 id="conditionals-and-modifiers">Conditionals and Modifiers</h3>
-<p>Uniques can be modified to do certain things, using special Uniques that are shown in the <a href="../../Modders/uniques/">uniques list</a> within <code>&lt;these brackets&gt;</code>.</p>
-<p>This is done by adding these modifiers after the unique like so: <code>"Gain [30] [Gold] &lt;after discovering [Steam Power]&gt;"</code></p>
-<p>The most common type of modifier is a conditional - basically limiting the unique to only apply under certain conditions - so all modifiers are sometimes refered to as conditionals.</p>
-<p>Other more specialized types of modifiers exist:</p>
+<h1 id="civ6-rewrite-spec-uncivsau-civ6-rewrite-clean">Civ6 Rewrite Spec - UncivSau civ6-rewrite (clean)</h1>
+<p>Đây là single source of truth cho bản đập đi xây lại, không vá <code>Civ5</code> loop. Mọi code mới phải bám spec này.</p>
+<p>Nguồn gốc: <code>CIV6_GAMEPLAY_MECHANICS.md</code> + <code>CIV6_PROJECT_COMPARISON.md</code> (tổng hợp từ Civ VI wiki + CivFanatics).</p>
+<h2 id="1-muc-tieu-clean">1. Mục tiêu clean</h2>
 <ul>
-<li>Triggerable uniques can get <em>under what circumstances they activate</em></li>
-<li>Unit actions can get <em>costs, side effects, and limited uses</em></li>
+<li>Xóa <code>core/src/com/unciv/logic/</code> và <code>models/ruleset/</code> cũ (Civ5: happiness global, 1 tech tree, building queue Civ5, combat Civ5).</li>
+<li>Giữ shell: <code>android/</code> (launcher), <code>desktop/</code> (PW/desktop), <code>core/ui/</code> (LibGDX UI, <code>UncivGame.kt:470</code>), <code>buildSrc/</code>, <code>gradle/</code>, <code>tests/</code> framework.</li>
+<li><code>CompatibilityVersion.CURRENT_COMPATIBILITY_NUMBER</code> bump từ <code>4</code> -&gt; <code>10</code> để cắt save cũ, không cố migrate.</li>
 </ul>
-<p>As you can see, these conditionals <em>also</em> can contain parameters, and these follow the same rules for parameters as the regular uniques.</p>
-<h3 id="triggerable-uniques">Triggerable Uniques</h3>
-<p>Most uniques are long-term effects - they apply as long as you have the object containing them (building, resource, tech, policy).
-Trigger uniques are different - they are one-time effects, but which may be triggered several times.</p>
-<p>Trigger uniques come in two flavors - <a href="../../Modders/uniques/#triggerable-uniques">civ-wide triggers</a> and <a href="../../Modders/uniques/#unittriggerable-uniques">unit-wide triggers</a>.
-Unit triggerables are only relevant in the context of a specific unit, so they can be attached to units, promotions or unit types.</p>
-<p>Any triggerable unique added to a unit which has <a href="../../Modders/uniques/#unitactionmodifier-uniques">unit action modifiers</a> will be considered as a unit action.
-Unit actions can contain civ-wide effects as well.</p>
-<p>Trigger uniques specify their activation with trigger conditions.
-Like the triggers themselves, these come in two flavors - <a href="../../Modders/uniques/#triggercondition-uniques">civ-wide conditions</a> and <a href="../../Modders/uniques/#unittriggercondition-uniques">unit-wide conditions</a>.
-Trigger uniques with no trigger modifiers are activated upon construction (units, buildings, improvements) or discovery (techs, policies).  </p>
-<p>Events are a ruleset object that act as a sort of "extended trigger" - they are activated by the <code>"Triggers a [event] event"</code> unique, and they trigger other uniques depending on user choice.</p>
-<h2 id="what-developers-need-to-know">What Developers Need To Know</h2>
-<p>We parse the unique by comparing the string given by the modder minus square bracket contents, to the known list of uniques.
-If we find a match - Congrats, we set that as the unique type.</p>
-<p>When we check for uniques in the code, it's always for uniques of a specific type, so we can just check the 'unique type' we previously assigned</p>
-<p>We then take the parameters of that unique, which we also determined previously by scanning for all strings within square brackets, and use their values in determining the effect of the unique</p>
-<p>There is a LOT of caching involved everywhere to make this all as fast as possible, but you really don't need to worry about that, that's my job ;)</p>
+<h2 id="2-data-model-v2-jsonsciv6v2">2. Data Model v2 (<code>jsons/Civ6v2/</code>)</h2>
+<h3 id="21-schema-moi-validator-rulesetvalidatorkt">2.1 Schema mới (validator <code>RulesetValidator.kt</code>)</h3>
+<ul>
+<li><code>District.json</code>: <code>cost</code>, <code>adjacencyBonus</code>, <code>populationRequirement</code>, <code>terrainRequirement</code>, <code>specialistSlots</code>, <code>maintenance</code></li>
+<li><code>Building.json</code>: chỉ nằm trong District (không còn city-center building queue Civ5), <code>requiredDistrict</code>, <code>requiredPopulation</code></li>
+<li><code>Governments.json</code>: <code>policySlots</code> theo tier + <code>Government.kt</code> cards, không còn <code>PolicyBranch</code> Civ5</li>
+<li><code>Civic.json</code> tách khỏi <code>Tech.json</code>: 2 cây riêng, <code>eureka</code>/<code>inspiration</code> riêng</li>
+<li><code>Governor.json</code>: <code>promotions: ArrayList&lt;ArrayList&lt;String&gt;&gt;</code> (đã fix <code>Governor.kt:27</code> CCE), <code>GovernorManager.kt</code></li>
+</ul>
+<h3 id="22-rulesetcache">2.2 RulesetCache</h3>
+<ul>
+<li><code>RulesetCache.kt:115</code> load <code>BaseRuleset.Civ_VI_v2</code>, bỏ <code>Civ_V</code> fallback.</li>
+</ul>
+<h2 id="3-domain-modules-coresrccomuncivciv6">3. Domain modules (<code>core/src/com/unciv/civ6/</code>)</h2>
+<div class="highlight"><pre><span></span><code>civ6/
+  data/          # JSON DTO + validator v2
+  domain/
+    city/        # City.kt, CityStats (housing/amenity, không phải happiness global), CityConstructions district queue, CityExpansionManager
+    tech/        # TechManager, CivicManager riêng, TechColumn/CivicColumn
+    government/  # GovernmentManager, PolicyManager cards
+    combat/      # Battle.kt, BattleDamage (support/flanking, walls chỉ +HP không +strength như fix 4.26.5), CityCombatant/MapUnitCombatant
+    loyalty/     # LoyaltyManager, EraScore, GoldenAgeManager
+    religion/    # ReligionManager
+  engine/        # TurnManager, Simulation, GameInfo v2 (version 10)
+  ai/            # NextTurnAutomation Civ6
+</code></pre></div>
+<h2 id="4-lo-trinh-khong-va-4-sprint">4. Lộ trình không vá (4 sprint)</h2>
+<ul>
+<li><strong>Sprint1 - City loop:</strong> <code>City.kt</code>, <code>CityStats.kt</code>, <code>CityConstructions.kt</code> rewrite. 1 district / type / city, adjacency tính tại <code>CityTurnManager</code>. Test: <code>CityStatsTest</code>.</li>
+<li><strong>Sprint2 - Progression:</strong> Tách <code>TechManager.kt</code>/<code>CivicManager.kt</code>, <code>GovernmentManager.kt</code> cards. Test: civic inspiration trigger.</li>
+<li><strong>Sprint3 - Combat:</strong> <code>Battle.kt:1</code>, <code>BattleDamage.kt:22</code>, <code>BattleConstants.kt</code> theo Civ6 (walls 0 strength, ranged -17 chỉ cho Siege). Test: <code>BattleTests</code>.</li>
+<li><strong>Sprint4 - Loyalty/Era/Religion/Governor:</strong> <code>LoyaltyManager</code>, <code>Era.kt</code>, <code>ReligionManager</code>, <code>GovernorManager</code>. Test: <code>GovernorPromotionTest</code>.</li>
+</ul>
+<h2 id="5-quy-tac">5. Quy tắc</h2>
+<ul>
+<li>Không reuse code <code>logic/</code> cũ, viết mới pure Kotlin, coverage &gt;80% trước khi merge.</li>
+<li>Mọi JSON đổi phải có migration hoặc bump <code>CompatibilityVersion</code>.</li>
+<li>UI <code>core/ui/</code> reuse, chỉ thay presenter <code>CityScreen.kt</code>, <code>TechPickerScreen.kt</code>, <code>GovernmentPickerScreen.kt</code>.</li>
+</ul>
+<h2 id="6-branch">6. Branch</h2>
+<ul>
+<li><code>civ6-rewrite</code> (orphan) là main mới. <code>master</code> giữ <code>4.26.14</code> để hotfix, không merge chéo.</li>
+</ul>
+<h2 id="7-next-step">7. Next step</h2>
+<ul>
+<li>Scaffold <code>core/src/com/unciv/civ6/</code> + <code>jsons/Civ6v2/</code> mẫu + <code>Versioning.kt</code> v10, commit <code>scaffold: civ6 clean base</code>.</li>
+</ul>
 
 
 
@@ -2193,10 +2319,10 @@ If we find a match - Congrats, we set that as the unique type.</p>
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
