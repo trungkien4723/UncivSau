@@ -7,9 +7,9 @@ import com.unciv.civ6.domain.loyalty.LoyaltyPressure
  * TurnManager v2 - tích hợp city housing/amenity, loyalty, era, government tick.
  * Thay thế core/src/com/unciv/logic/civilization/managers/TurnManager.kt Civ5.
  */
-class TurnManager(private val gameInfo: GameInfoV2) {
+open class TurnManager(protected val gameInfo: GameInfoV2) {
 
-    fun nextTurn() {
+    open fun nextTurn() {
         gameInfo.nextTurn()
         // Tick cities
         for (city in gameInfo.cities) {
