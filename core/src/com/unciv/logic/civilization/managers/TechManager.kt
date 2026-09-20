@@ -511,7 +511,7 @@ class TechManager : IsPartOfGameInfoSerialization {
                 civInfo.addNotification(
                     "You have received [1] Envoy for entering the [$currentEra]!",
                     NotificationCategory.General, NotificationIcon.Diplomacy)
-                if (civInfo.isHumanPlayer()) {
+                if (civInfo.isHuman()) {
                     civInfo.popupAlerts.add(PopupAlert(AlertType.EnvoyGained, "1"))
                 }
             }

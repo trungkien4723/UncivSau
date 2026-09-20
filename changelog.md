@@ -1,3 +1,7 @@
+## 5.1.4
+
+Fix isHumanPlayer() typo breaks build (Unresolved reference) - correct to isHuman() in CityStateFunctions and TechManager - By Muse Spark
+
 ## 5.1.3
 
 Fix 3 bugs + wiki audit: barbarians spawn too many (BarbarianEncampment 12-16, BarbarianManager 70% skip), city-state auto envoy (aiSendEnvoys guard isHuman), envoy popup (AlertType.EnvoyGained), Skirmisher era Horseback Riding -> Castles + Slinger verified 1 range per wiki - By Muse Spark
