@@ -36,6 +36,11 @@ The original Unciv roadmap is all about Civ V's Gods & Kings and Brave New World
 * Era score, golden ages and dark ages
 * And more, slowly but surely
 
+### Civ6 Rewrite (clean, no Civ5 loop) - `civ6-rewrite` is now merged into `master` as `5.0.0-civ6`
+
+* **Sprint1-33** full clean: City Housing/Amenity, Tech/Civic split, Combat walls HP only, Loyalty/Governor/Religion, Engine v10, Map/Save v10, AI, Worker multiplayer flagfish/horse + WS realtime + push, Modding, Balancing, Performance, Tutorial, Victory, etc. — no Civ5 loop.
+
+See `docs/civ6-spec.md` (single truth) + `docs/civ6/ARCHITECTURE.md` + `docs/civ6/COVERAGE.md`.
 ## FAQ
 
 ### Will you implement {feature}?

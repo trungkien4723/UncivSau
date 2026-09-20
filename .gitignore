@@ -158,16 +158,16 @@ android/assets/SaveFiles/
 android/assets/scenarios/
 
 # When running the desktop app locally using "gradlew desktop:run"
-lasterror.txt
-GameSettings.json
-ModListCache.json
-fonts/
-maps/
-mods/
-MultiplayerGames/
-music/
-SaveFiles/
-scenarios/
+/lasterror.txt
+/GameSettings.json
+/ModListCache.json
+/fonts/
+/maps/
+/mods/
+/MultiplayerGames/
+/music/
+/SaveFiles/
+/scenarios/
 
 # server artifacts
 server.auth

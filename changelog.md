@@ -1,3 +1,7 @@
+## 5.0.0-civ6
+
+Clean Civ6 rewrite - no Civ5 loop (branch civ6-rewrite, 23 sprints): City v2 Housing/Amenity + District adjacency, Tech/Civic split + Government cards, Combat walls HP only + siege -17, Loyalty/Era/Governor (ArrayList fix) + Religion, Engine v10 + TurnManager, UI Civ6WorldScreen/CityScreen, Map/Save v10, AI, Worker multiplayer flagfish/horse + WS realtime + push, Modding Workshop R2, Balancing, Performance LRU, Tutorial, CI/CD - By Muse Spark (Requested: chuẩn civ 6 kể cả đập đi xây lại)
+
 ## 4.26.14
 
 Fix: Resume/Load game no longer fails with misleading "incompatible version" for saves created with 4.26.13 - corrupted/incomplete autosaves now correctly show "file data seems to be corrupted" and `Resume` shows the real error; removed 689 accidentally committed files under `android/assets/src` and `android/assets/core` that kept packaging stale `4.21.2` assets - By Muse Spark (Reported: không resume game được bị báo lỗi phiên bản cũ)
