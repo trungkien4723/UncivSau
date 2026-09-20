@@ -5,4 +5,5 @@ object BuildConfig {
     const val appName = "UncivSau"
     const val appCodeNumber = 1260
     const val appVersion = "5.0.0-civ6"
+    const val identifier = "com.unciv.app"
 }
